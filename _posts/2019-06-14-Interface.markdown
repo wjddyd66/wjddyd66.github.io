@@ -6,6 +6,7 @@ categories: [JAVA]
 ---
 
 ### 자바의 인터페이스: 공동 작업시 충돌을 방지하기 위하여 작성
+<br><br>
 <table align="center">
 
 	<tr bgcolor="silver">	
