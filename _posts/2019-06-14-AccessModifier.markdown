@@ -34,7 +34,7 @@ categories: [JAVA]
 <br>
 
 ### 1. Private
-Private는 Class내에서만 접근할 수 있어서, 자원이나 Logic을 보호하기 위하여 사용 된다
+Private는 Class내에서만 접근할 수 있어서, 자원이나 Logic을 보호하기 위하여 사용 된다  
 <span style ="color: red">**Encapsulation: 보호된 자원에 접근하기 위하여 Set, 과 Get Method를 활용하여 자원의 변경을 한다. => Encryption과 Automation의 장점이 있다.**</span>
 
 <span style ="color: red">**Get 과 Set을 사용할때 같은 같은 변수명을 사용하기 위하여 this를 사용하게 된다. this는 객체, 자기 자신을 나타내게 된다. => 변수의 이름을 같게하여 자원의 재활용성을 늘리게 된다.**</span>
