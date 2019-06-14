@@ -8,59 +8,91 @@ categories: [JAVA]
 ### 변수의 저장 방식  
 CallByValue, CallByReference의 설명의 들어가기 앞서 컴퓨터의 값의 저장방식에 대해서 알아야 한다. 밑의 그림을 보면 컴퓨터이 저장 방식을 알 수 있다.
 
-![Screenshot broadcast](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Reference.png"Screenshot broadcast")
+![Screenshot broadcast](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Reference.PNG"Screenshot broadcast")
+
+참조 :<<https://dojang.io/mod/page/view.php?id=509>>
 
 1. 주소 - 저장되어있는 공간
-2. 행위 - 저장되어있는 공간에 가지고 있는 값
+2.  값 - 저장되어있는 공간에 가지고 있는 값
 
-### 자바의 메소드: Input과 Output + Logic이 결합된 하나의 Function  
-한번의 Logic이 아닌 여러군대에서 사용되는 Function이 있을경우 불러다 계속해서 사용하기 위하여 정의  
-Format : Access Modifer OutputType(Input type Input Value...)  
-<span style ="color: red">**메소드 중 클래스의 초기 조건을 설정해 주는 메소드이다. 객체 생성 시 가장 먼저 수행, 생성자가 정의하지 않을 경우 컴파일러가 만들어 주게 된다. => 아무런 조건이 없는 상태로 만들어 줌**</span>
+밑의 코드를 보게 되면 변수가 선언되는 과정을 알 수 있다.
+
 {% highlight java %}
 
-	//Class_Method.java
-	public class Class_Method {
-	//private 변수 선언
-	private int a=3;
-	//private 변수에 접근하기 위하여 Getter public Method 선언
-	public int getA() {
-		return a;
-	}
+```
+int a=3;
+//변수를 선언하면 자동으로 주소를 할당하고 값을 넣게 된다.
+System.out.println(a);
+//저장한 변수에는 선언한 변수의 이름으로 접근하게 된다.
+//int a => 저장 공간은 4Byte로 선언하고 4Byte의 공간에 값 3 을 넣게 된다.
+```
+
+{% endhighlight %}
+
+### CallByValue, CallByReference  
+
+1. Call By Value : 호출 시 값을 복사하여 준다.
+2. Call By Reference: 호출 시 주소를 복사하여 준다.
+
+
+
+<span style ="color: red">**결론부터 말하자면 자바는 Call By Value 방식이다. 주소로서 접근하는 것이 아닌 값으로서 접근하게 된다. 밑의 코드는 Call By Value 방식과 Call By Reference는 아니지만 Call By Reference 같이 접근하는 방식의 Code이다.**</span>   
+
+{% highlight java %}
+
+```
+public class CallByValue_CallByReference {
+	String s;
 	
-	//생성자로서 객체가 생성 될때 초기 조건을 주어줄 수 있다.
-	public Class_Method() {
-		System.out.println("생성자 생성 완료");
-		this.a =4;
-	}
-	
+public CallByValue_CallByReference(String s) {
+	this.s=s;
+}
+
+public static void main(String[] args) {
+	//Call By Value 의 예제이다
+	String s1 = "Hello";
+	String s2 = "World";
+	ValueSwap(s1, s2);
+	System.out.println(s1+s2);
 	/*
-	Method 선언으로서 
-	public => Access Modifier
-	int => return Type
-	abc => Class 이름 
-	int a => input Type
+	WorldHello
+	HelloWorld
+	결과에서 보았듯이 주소가 아닌 값을 참조하여 s1과 s2가 Swap되지 않는 결과를 보인다.
 	*/
-	public int abc(int a) {
-		return a;
-	}
-	}
+	CallByValue_CallByReference ss1 
+	= new CallByValue_CallByReference("Hello");
 	
-	//Object.java
-	public class Object {
-		public static void main(String[] args) {
-			//앞에서 선언한 Object 선언
-			Class_Method object = new Class_Method();
-			System.out.println(object.abc(3));
-			System.out.println(object.getA());
-			/*3 4
-			Object 가 생성되면서 Constructor 실행
-			System.out.println("생성자 생성 완료");
-			this.a =4;
-			가 실행되므로 private 변수 a가 4로 값이 변하게 되었다.
-			*/
-		}
-	}
+	CallByValue_CallByReference ss2 
+	= new CallByValue_CallByReference("World");
+	ReferenceSwap(ss1,ss2);
+	System.out.println(ss1.s+ss2.s);
+	/*
+	WorldHello
+	WorldHello
+	객체의 값을 바꾼 것 이기 때문에 값이 Swap되었다.
+	하지만 Call By Reference는 아니고 Call By Value로서
+	Call By Reference처럼 흉내를 낸 것이다.
+	객체안의 변수에 접근하여 값을 바꾼 것 이기 때문에 위의 결과와 다르게 나오게 된다.
+	*/
+}
+
+//Call By Value Method
+static void ValueSwap(String one, String two) {
+	String temp = one;
+	one = two;
+	two = temp;
+	System.out.println(one+two);
+}
+
+//Call By Reference같은 Method
+static void ReferenceSwap(CallByValue_CallByReference ss1, CallByValue_CallByReference ss2) {
+	String temp =ss1.s;
+	ss1.s =ss2.s;
+	ss2.s =temp;
+	System.out.println(ss1.s+ss2.s);
+}
+}
+```
 
 {% endhighlight %}
 <hr>
