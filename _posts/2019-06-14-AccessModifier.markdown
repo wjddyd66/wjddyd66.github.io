@@ -106,7 +106,8 @@ public class Car {
 public class Sonata {
 	public static void main(String[] args) {
 		Car c1 = new Car();
-		//위에서 Car라는 Class를 public으로 선언하			여 다른 클래스에서 접근하여 객체를 만들 수 있		  었다.
+		//위에서 Car라는 Class를 public으로 선언하여 
+		다른 클래스에서 접근하여 객체를 만들 수 있었다.
 	}
 }
 ```
