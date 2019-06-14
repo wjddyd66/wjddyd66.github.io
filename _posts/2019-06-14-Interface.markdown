@@ -24,13 +24,15 @@ categories: [JAVA]
 	</tr>
 
 </table>
-<br>
+<br><br>
 
 공동 작업시 충돌 방지라는 것은 변수와 Method를 미리 선언하여 변경 불가하게 만든다는 뜻이다. 변수의 경우 Final Type으로 선언하여 값을 변경 불가능 하게 한다.  
 <span style ="color: red">**Type 앞에 붙일 수 있는 것은 Static과 Final이 존재한다.**</span>
 
 1. Static: 메모리에 고정하여 모든 객체가 공유하는 자원
+
 2. Final: 변수가 한번 선언되면 변경 불가능한 자원  
+
 Method의 경우 선언만 해주고 내용은 물려받은 Child에서 정의하게 된다.  
 <span style ="color: red">**정의한 Method를 Overriding 하지 않으면 Error가 나오게 된다.  이러한 이유로 실제 Project에서 Project 관리하는 사람이 꼭 필요한 기능을 정의하고 팀원들에게 배포하는 형식을 취할 때 많이 사용하게 된다.**</span>
 
@@ -79,12 +81,12 @@ public class Child implements Parent,Parent2{
 
 
 ​	
-	//Interface에서 정의한 Method는 반드시 Child Class에서 정의하여야 한다.
-	@Override
-	public String getName() {
-		return name;
-	}
-	
+​	//Interface에서 정의한 Method는 반드시 Child Class에서 정의하여야 한다.
+​	@Override
+​	public String getName() {
+​		return name;
+​	}
+​	
 	@Override
 	public void setName(String name) {
 		this.name = name;
