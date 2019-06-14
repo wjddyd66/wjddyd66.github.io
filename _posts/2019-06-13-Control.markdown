@@ -1,0 +1,167 @@
+---
+layout: post
+title:  "자바의 조건문, 반복문"
+date:   2019-06-13 11:45:20 +0700
+categories: [JAVA]
+---
+
+### 자바의 조건문, 반복문
+### 1. 자바의 조건문
+작성한 코드를 조건에 따라 코드의 실행 흐름을 다르게 동작하도록 제어  
+1. if문 - 가장 기본적이고 많이 사용되는 조건문
+ - if: 초기 조건을 설정
+ - else if: 초기 조건을 제외한 다른 조건을 설정
+ - else: if 와 else if에 걸리지 않는 나머지 조건을 설정
+2. switch/cas문 - if문과 비슷하나 가독성을 위하여 사용한다.
+ - switch: 사용할 변수를 정의
+ - case: switch에서 정의한 변수의 조건을 걸기 위하여 사용한다.
+ - default: caseㅔ 걸리지 않는 나머지 조건을 설정
+
+<h3> 1-1. if문 </h3>
+if문의 조건 수행자
+1. Camparison operator - 두개의 <span style ="color: red">값</span>을 비교할 때 사용하는 연산자.
+ - <,>,==,!=,>=,<=
+2. Additional opreator - 두개 이상의 <span style ="color: red">조건</span>을 이어주기 위하여 사용하는 연산자
+ - &&(And),||(Or),!(Not)  
+<span style ="color: red">**=: 값을 대입할 때 사용, ==: 값이 같은지 비교할 때 사용**</span>
+{% highlight java %}
+		/* 
+		Control - if, switch/case, while, for, for each
+		if - used to cast initial conditions
+		else if - used to specify a condition after one if statement
+		else - Use to set other conditions of if, else if
+		
+		Comparison operator - Operators used to compare conditions
+		=> <, >, ==, !=, >=, <=
+		=: Assign a value
+		==: Compare values to each other
+		*/		
+		int a =3;
+		if(a<1) {
+			System.out.println("a < 1");
+		}
+		else if(a<2) {
+			System.out.println("1 <= a < 2");
+		}
+		else {
+			System.out.println("2 <= a");
+		}
+		//2 <= a
+		/*
+		Additional operators - used to cast multiple conditions
+		and(&&), or(||), not(!)
+		*/
+		int b =3;
+		int c = 4;
+		if(b ==3 || c ==1) {
+			System.out.println(b+c);
+		}
+		else {
+			System.out.println(b-c);
+		}
+		//7
+{% endhighlight %}
+## 1-2. swith/case 
+swith/case문 같은 경우 if문과 완전히 같으나 가독성을 위하여 사용한다.  
+<span style ="color: red">**case 나 default의 조건 이후 break을 사용하지 않으면 그대로 밑의 Code로 실행되게 된다.**</span>
+{% highlight java %}
+		/*
+		Switch/Case - The statement is the same as the if statement, 
+		but is used for readability.
+		*/
+		int month = 3;
+		String result = "";
+		switch(month) {
+		case 1: result = "J";
+				break;
+		case 2: result = "F";
+				break;
+		case 3: result = "M";
+				break;
+		case 4: result = "A";
+				break;
+		default: result = "NaN";
+				break;
+		}
+		System.out.println(result);
+		//M
+		//case 1: result ="J" => if month == 1 result="J"
+		//break => end the syntax enclosed by {}.
+		//case 2: result ="F" => else if month == 2 result="F"
+		//...
+		//default => else
+{% endhighlight %}
+### 2. 자바의 반복문
+작성한 코드를 조건에 따라 일정 수를 반복하게 작동하도록 설정  
+1. while문 - () 안의 조건을 만족할때 계속 반복하는 조건문  
+2. for문 - 가장 빈번하게 사용되는 반복문  
+
+## 2-1. While
+주로 조건으로 탈출할 수 있는 무한 반복문에서 사용된다.  
+continue : 밑의 Code를 실행하지 않고 While문 첫번째로 돌아가게 한다.  
+break: 반복문을 탈출하게 해준다.  
+<span style ="color: red">탈출 조건을 주어지지 않을 경우 계속해서 반복문을 돌게 되는 불상사가 야기될 수 있다.</span>  
+{% highlight java %}
+		/*
+		While - The while loop repeats while the condition in () is satisfied
+		Use the for statement a lot, but use infinite loop for while
+		 */
+		int d = 1;
+		while(d<10) {
+			System.out.print(d);
+			d++;
+		}
+		//123456789
+		
+		System.out.println();
+		
+		while(true) {
+			System.out.print(d);
+			if(d>15)
+				break;
+			else if(d>13) {
+				d=d+2;
+				continue;
+			}
+			d++;
+		}
+		//10 11 12 13 14 16
+		//while(true) -> Infinite loop So you must make an escape condition with Break
+		//continue - Execute the While statement again without executing the following syntax
+{% endhighlight %}
+<br>
+
+## 2-2. For
+가장 빈번하게 사용되는 반복문  
+Format: (Initial Value; Conditional Statements; Increment)  
+continue : 밑의 Code를 실행하지 않고 While문 첫번째로 돌아가게 한다.  
+break: 반복문을 탈출하게 해준다.  
+<span style ="color: red">향상된 For문 Format(Value:Array)</span>  
+<span style ="color: red">자동적으로 0~Array의 크기만큼 반복하게 되고 Value는 Array의  값을 가져 오게 된다.</span>  
+{% highlight java %}
+		/*
+		for - Popular Loop for(Initial Value; Conditional Statements; Increment)
+		*/
+		for(int i=2;i<10;i++) {
+			for(int j=1;j<10;j++) {
+				System.out.println(i+"*"+j+" = "+i*j+" ");
+			}
+			System.out.println();
+		}
+		//Multiplication Table
+		
+		/*
+		Etc - A convenient For syntax 
+		when you need to get the value of an array and use it
+		Repeat for the number of items in the array
+		Assign the value of the array to a variable that is declared automatically
+		*/
+		int array[] = {1,2,3,4,5};
+		for (int number: array)
+			System.out.print(number);
+		//12345
+{% endhighlight %}
+<br>
+<hr>
+원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Control.java>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

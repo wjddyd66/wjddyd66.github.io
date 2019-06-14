@@ -1,0 +1,114 @@
+---
+layout: post
+title:  "자바의 자료 구조"
+date:   2019-06-13 10:45:20 +0700
+categories: [JAVA]
+---
+
+### 자바의 자료 구조: 하나의 데이터가 아닌 여러 데이터를 사용하는 것
+### 자바의 자료 구조 타입
+데이터를 사용할 목적에 따라서 자료 구조를 선택하여 사용하게 된다. 각각의 구조는 서로 다른 특성을 가지게 된다.  
+<table align="center">
+
+	<tr bgcolor="silver">	
+		<th>자료 구조</th>
+		<th>종류</th>
+		<th>크기</th>
+		<th>순서</th>
+		<th>원소의 타입</th>
+	</tr>
+
+	<tr>
+		<td>Array</td><td>array</td><td>고정</td><td>정해져 있음</td><td>같음</td>
+	</tr>
+
+	<tr>
+		<td>List</td><td>ArrayList, LinkedList</td><td>고정</td><td>정해져 있음</td><td>다를 수 있음</td>
+	</tr>
+
+	<tr>
+		<td>Map</td><td>HashMap, Tree Map</td><td>유동</td><td>순서가 없음</td><td>같음</td>
+	</tr>
+
+</table>
+<br>
+### 1. Array
+Array 의 경우 고정된 길이와 순서가 보장 된다. 또한 자료 구조 내의 모든 원소의 타입이 같다.  
+순서가 보장되어 있기 때문에 추가나 삭제는 Index를 통하여 추가 삭제 가능하다.  
+<span style ="color: red">**Index: 자료구조 내의 원소 순서, Value: 자료 구조 내의 원소의 값**</span>
+{% highlight java %}
+		int [] array = {1,2,3,4,5};
+		System.out.println(array.length); //5
+		System.out.println(array[0]); //1
+		System.out.println(array[1]); //2
+{% endhighlight %}
+### 2. List
+List 의 경우 가변적인 길이와 순서가 보장 된다. 또한 자료 구조 내의 모든 원소의 타입이 다를 수 있다.  
+<span style ="color: red">자료 구조 내의 모든 원소의 타입이 다를 수 있다고 명시한 것은 모든 원소의 타입을 같게도 할 수 있고 다르게도 할 수 있기 때문이다.</span>  
+<span style ="color: red">기본적으로 모든 원소는 다르나 Generics라는 것을 사용하여 모든 원소의 타입을 정의할 수 있다. Generics는 <u>  <br><
+Type></u>으로 사용된다.</span>  
+순서가 보장되어 있기 때문에 원소 추가는 Element만을 사용하여 삭제는 Element 혹은 Value로 접근하여 삭제 가능하다.  
+{% highlight java %}
+		ArrayList al = new ArrayList();
+		al.add("123");
+		al.add("456");
+		al.add("789");
+		al.add(3);
+		System.out.println(al.get(3)); //3
+		//List has an order, so we can access elements by index
+		
+		System.out.println(al.size()); //4
+		System.out.println(al.remove("123")); //true
+		System.out.println(al.remove("123")); //false
+		System.out.println(al.remove(0)); //456
+		
+		/*
+		remove(x) x = Element or Index
+		Element - Return True or Flase
+		Index - Return Value
+		*/		
+		
+		System.out.println(al);//[789,3]
+		
+		//Generics
+		ArrayList<String> al2 = new ArrayList<String>();
+		al2.add("123");
+		//al2.add(3); -> Error Because of <String> means All elements must be String
+{% endhighlight %}
+### 3. Map
+Map은 가변적인 길이와 순서가 존재하지 않다. 서로 다른 원소가 불가능하다.  
+<span style ="color: red">Map은 순서가 존재하지 않으므로 "<Key, Value>"형식으로 이루워져 있다. 원소의 접근, 추가, 삭제가 모두 Key값으로 접근하여 이루워지는 것이 특징이다.</span>  
+<br>
+{% highlight java %}
+		/*
+		Map - Map has flexible length and is not in order, 
+		Different types of elements are possible
+		=> Not in order: Using Key and Value
+		List is composed of HashMap, Tree Map etc.
+		*/
+
+		HashMap<String, String> hm = new HashMap<String, String>();
+		
+		/*
+		Map has no order and uses Key.
+		Therefore, when defining a map, 
+		the value of the key value should be defined using generics.
+		*/
+
+		hm.put("example1","Hello");
+		hm.put("example2","World");
+		hm.put("example3","!!!");
+		System.out.println(hm.get("example1"));
+		//Map has not an order, so we can access elements by Key
+		System.out.println(hm.containsKey("example1"));
+		//Find Key => Return: True, Flase
+		System.out.println(hm.remove("example1"));
+		System.out.println(hm.remove("World"));
+		System.out.println(hm); // {example3=!!!, example2=World}
+		//remove must using Key and Result is not an order
+		System.out.println(hm.size()); //2
+{% endhighlight %}
+<br>
+<hr>
+원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Type2.java>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

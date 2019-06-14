@@ -1,0 +1,59 @@
+title: Programming Theory Posts
+description: My Personal Programming Problems And Solution
+author: Hwang Jeong Yong
+github: https://github.com/wjddyd66
+about: I am a programmer who wants to be good at A.I and R. It is a place to sort out the basics of various programming.
+disqus_shortname: stackproblems
+google_analytics: UA-XXXXXXXX-Y
+avatar_url: /static/img/programmer.png
+
+enableTags: true
+tagarray: [JAVA, Python, DB, NoSQL, Spring, Django, A.I, R]
+
+collections:
+  project:
+    output: true
+    permalink: /project/:path/
+
+social:
+    - icon: fa-facebook
+      link: "#"
+    - icon: fa-twitter
+      link: "#"
+    - icon: fa-linkedin
+      link: "#"
+    - icon: fa-stack-exchange
+      link: "#"
+    - icon: fa-github
+      link: "https://github.com/wjddyd66"
+
+share:
+  twitter_username: github.io
+  fb_appid: 1749788565247320
+
+urls:
+    - text: About Me
+      url: /about/
+    - text: My Projects
+      url: /projects/
+    - text: XML Feed
+      url: /feed.xml
+    - text: Categories
+      url: /category/Python
+
+url: "https://wjddyd66.github.io"
+baseurl: ""
+paginate: 20
+per_page: 20
+paginate_path: "/page/:num/"
+markdown: kramdown
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: ['development']

@@ -1,0 +1,168 @@
+---
+layout: post
+title:  "자바의 변수와 데이터 타입 & 연산자"
+date:   2019-06-13 09:41:20 +0700
+categories: [JAVA]
+---
+
+### 자바의 변수와 데이터 타입
+### 자바의 변수
+자바의 변수: 데이터의 저장과 참조를 위해 할당된 메모리 공간 => 변수에 이름을 주어서 구분하게 된다.
+### 자바의 데이터 타입
+자바의 데이터 타입: 자바의 변수가 메모리 공간에 할당 되게 된다. 저장되는 메모리 공간을 효율적으로 사용하기 위하여 데이터 타입을 정하게 된다. 각각의 타입에 따라 데이터의 표현 범위가 다르다
+
+1. 숫자형
+  - 정수 - byte, short, int, long
+  - 실수 - float, double
+2. 논리형
+ - True & False - Boolean
+3. 문자형
+ - 문자 - char
+ - 문자열 - String
+
+### 1. 숫자형
+숫자형의 경우 크게 정수와 실수로 나뉘게 된다.<br>
+정수 - byte, short, int, long<br>
+실수 - float, double
+각각의 자료형의 메모리 크기와 그에 따른 범위는 아래와 같다<br>
+
+정수형
+<table align="center">
+
+	<tr bgcolor="silver">	
+		<th>Data Type</th>
+		<th>Memory Size</th>
+		<th>Range</th>
+	</tr>
+
+	<tr>
+		<td>byte</td><td>1 Byte</td><td>-128 ~ 127</td>
+	</tr>
+
+	<tr>
+		<td>short</td><td>2 Byte</td><td>-32768 ~ 32767</td>
+	</tr>
+
+	<tr>
+		<td>int</td><td>4 Byte</td><td>-2147483648 ~ 2147483647</td>
+	</tr>
+
+	<tr>
+		<td>long</td><td>8 Byte</td><td>-922337036854775808 ~ 9223372036854775807</td>
+	</tr>
+</table>
+<br>
+
+실수형
+<table align="center">
+	
+	<tr bgcolor="silver">	
+		<th>Data Type</th>
+		<th>Memory Size</th>
+		<th>Range</th>
+	</tr>
+
+	<tr>
+		<td>float</td><td>4 Byte</td><td>1.40239846E-45f ~ 3.40282347E+38f</td>
+	</tr>
+
+	<tr>
+		<td>double</td><td>8 Byte</td><td>4.94065645841246544E-324 ~ 1.79769313486231570E+308</td>
+	</tr>
+</table>
+<br>
+{% highlight java %}
+		//정수형 변수 선언		
+		byte i1 = 1;
+		short i2 = 2;
+		int i3 = 3;
+		long i4 = 4;
+		
+		//실수형 변수 선언
+		float r1 = 3.14F;
+		double r2 = 3.2;
+{% endhighlight %}
+<span style ="color: red">**자바에서 float Type은 값 뒤에 F를 붙여주어야 한다.**</span><br><br>
+### 2. 논리형
+논리형은 오직 True 혹은 False만의 값만 가진다. => 대부분 조건문에서 사용한다.
+
+{% highlight java %}
+boolean b1 = true;
+if(b1){
+... // 조건 선언
+}
+{% endhighlight %}
+<br>
+###3. 문자형
+문자형의 경우 크게 문자와 문자열로 나뉘게 된다<br>
+문자 - Memory Size: 1Byte, Range: \u0000 ~ \uFFFF<br>
+문자열 - Memory Size: X, Range: X  
+<span style ="color: red">참고 사항</span>  
+문자열의 경우 특별한 데이터 Type 이므로 String Buffer 라는 것을 사용한다. String Buffer 전에 String 과 String Buffer의 차이를 생각해 보자  
+1. String Buffer는 오직 한번만 생성된다.
+2. String 은 생성될때와 연산을 할 때 마다 생성되게 된다.
+3. String 은 한 번 생성하게 되면 수정하기 어렵다.
+=> 따라서 String 보다 String Buffer가 사용이 권장된다.
+<br>
+{% highlight java %}
+		//문자 선언
+		char c1 = 'A';
+		
+		//문자열 선언
+		//String은 객체 이므로 2번째 Code처럼 선언되어야 하나 편하게 1번째 Code처럼 선언할 수 있다.
+		String s1 = "Hello World";
+		String s2 = new String("Hello World");
+		
+		//문자열에서 자주 사용되는 함수	
+		System.out.println(s1.contentEquals(s2)); //True
+		System.out.println(s1.indexOf('W')); //6
+		System.out.println(s1.replaceAll("Hello", "World")); //World World
+		System.out.println(s1.substring(0,4)); // Hell
+		System.out.println(s1.toUpperCase()); // HELLO WORLD
+
+		//String Buffer 사용 방법
+		StringBuffer sb = new StringBuffer();
+		sb.append("Hello");
+		sb.append("World");
+		String s3 = "Hello";
+		s3=s3+"World";
+		System.out.println(s3.contentEquals(sb.toString())); //True
+{% endhighlight %}
+
+### 연산자
+위에 선언한 데이터 타입들을 계산하기 위하여 사용하는 연산자 이다.  
+1. Numeric Operation - 일반적인 연산을 위하여 사용하는 사칙연산 및 % 연산자
+ - -,+,*,/,%
+2. Increase Decrease Operation - 하나의 변수의 값을 1 차이로 변화 시킬때 사용하는 연산자
+ - i++, ++i, i--, i--
+{% highlight java %}
+		i3 =3;
+		i4 =4;
+		//Numeric Operation - +, -, *, /, %
+		System.out.println(i4+i3);
+		System.out.println(i4-i3);
+		System.out.println(i4*i3);
+		System.out.println(i4/i3);
+		System.out.println(i4%i3);
+
+		//Result: 7 1 12 1 1
+		// / = Share, % = Reminder
+
+		
+
+		//Increase / Decrease Operation - i++, ++i, i--, --i
+		int i = 3;
+		System.out.print(++i);
+		System.out.print(i++);
+		System.out.print(i);
+		System.out.print(--i);
+		System.out.print(i--);
+		System.out.println(i);
+		/* Result: 4 4 5 4 4 3
+		++ i is calculated before the operation
+		i ++ computes after computation */
+{% endhighlight %}
+<br>
+<hr>
+원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Type.java>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
