@@ -14,6 +14,7 @@ categories: [JAVA]
 하나의 클래스는 속성과 행위로 이루어져 있다.(속성 or 행위 or 속성 + 행위)  
 1. 속성 - 멤버 변수
 2. 행위 - 메소드
+
 ### 자바의 메소드: Input과 Output + Logic이 결합된 하나의 Function  
 한번의 Logic이 아닌 여러군대에서 사용되는 Function이 있을경우 불러다 계속해서 사용하기 위하여 정의  
 Format : Access Modifer OutputType(Input type Input Value...)  
@@ -63,9 +64,9 @@ Format : Access Modifer OutputType(Input type Input Value...)
 		}
 	}
 
-
 {% endhighlight %}
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/tree/master/AccessModifier>
+원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Class_Method>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
 
