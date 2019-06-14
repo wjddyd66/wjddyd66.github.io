@@ -8,7 +8,8 @@ categories: [JAVA]
 ### 자바의 상속  
 Class 를 통하여 Object를 만들 수 있다는 것을 공부하였다.  
 Object들 중 똑같은 변수 혹은 Method를 공통으로 가지고 있는 객체들이 있다면 Parent Class에 한 번만 정의하여 계속해서 선언해야 하는 불편함을 감소 시킬수 있다.  
-Format: 자식클래스  <span style ="color: red">extends</span>  부모 클래스
+Format: 자식클래스  <span style ="color: red">extends</span>  부모 클래스  
+<span style ="color: red">자바에서는 다중 상속이 불가능 하다.</span>
 
 ### Overriding , Overloading
 Overriding 과 Overloading의 경우 용어가 비슷하여 많이 혼동된다. 하지만 용어만 비슷할 뿐 개념은 아예 다르므로 비교하여 알아두자.
@@ -21,12 +22,17 @@ Overriding 과 Overloading의 경우 용어가 비슷하여 많이 혼동된다.
     => 목적이 같은 Method이나 Type이나 개수에 따라서 달라지는 Method를 선언할 때 적합
 
     {% highlight java %}
-
-  //Parent.java 부모 선언
-  public class Parent {
-  	private String name;
-  /*
-  오버로딩(Overloading): 같은 클래스 내 에서 같은 이름의 Method를 사용하는 것 이다.
+	//다중 상속을 위한 부모 선언
+	public class MultipleInheritance {
+	public void msg() {
+		System.out.println("Hello World");
+	}
+}
+    //Parent.java 부모 선언
+    public class Parent {
+    	private String name;
+    /*
+    오버로딩(Overloading): 같은 클래스 내 에서 같은 이름의 Method를 사용하는 것 이다.
   1. Argument 의 개수가 다르다.
   2. Argument 의 Type이 다르다.
 
@@ -49,7 +55,11 @@ Overriding 과 Overloading의 경우 용어가 비슷하여 많이 혼동된다.
   }
   }
   //Child.java 자식선언
-  //Format: 자식클래스 extends 부모클래스로 자식이라는 것을 표현
+  /*
+  Format: 자식클래스 extends 부모클래스로 자식이라는 것을 표현
+  자바에서는 다중 상속이 불가하다.
+  public class Child extends Parent,Multiplenheritance 불가
+  */
   public class Child extends Parent{
   	String name;
   	
