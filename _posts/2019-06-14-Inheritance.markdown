@@ -22,8 +22,8 @@ Overriding 과 Overloading의 경우 용어가 비슷하여 많이 혼동된다.
     => 목적이 같은 Method이나 Type이나 개수에 따라서 달라지는 Method를 선언할 때 적합
 
     {% highlight java %}
-	//다중 상속을 위한 부모 선언
-	public class MultipleInheritance {
+//다중 상속을 위한 부모 선언
+public class MultipleInheritance {
 	public void msg() {
 		System.out.println("Hello World");
 	}
