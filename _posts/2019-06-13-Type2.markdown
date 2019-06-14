@@ -17,15 +17,15 @@ categories: [JAVA]
 		<th>순서</th>
 		<th>원소의 타입</th>
 	</tr>
-
+	
 	<tr>
 		<td>Array</td><td>array</td><td>고정</td><td>정해져 있음</td><td>같음</td>
 	</tr>
-
+	
 	<tr>
 		<td>List</td><td>ArrayList, LinkedList</td><td>고정</td><td>정해져 있음</td><td>다를 수 있음</td>
 	</tr>
-
+	
 	<tr>
 		<td>Map</td><td>HashMap, Tree Map</td><td>유동</td><td>순서가 없음</td><td>같음</td>
 	</tr>
@@ -94,7 +94,7 @@ Map은 가변적인 길이와 순서가 존재하지 않다. 서로 다른 원�
 		Therefore, when defining a map, 
 		the value of the key value should be defined using generics.
 		*/
-
+	
 		hm.put("example1","Hello");
 		hm.put("example2","World");
 		hm.put("example3","!!!");
@@ -110,5 +110,6 @@ Map은 가변적인 길이와 순서가 존재하지 않다. 서로 다른 원�
 {% endhighlight %}
 <br>
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Type2.java>
+원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Type2.java><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+

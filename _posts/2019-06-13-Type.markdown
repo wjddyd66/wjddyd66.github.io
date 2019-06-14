@@ -34,19 +34,19 @@ categories: [JAVA]
 		<th>Memory Size</th>
 		<th>Range</th>
 	</tr>
-
+	
 	<tr>
 		<td>byte</td><td>1 Byte</td><td>-128 ~ 127</td>
 	</tr>
-
+	
 	<tr>
 		<td>short</td><td>2 Byte</td><td>-32768 ~ 32767</td>
 	</tr>
-
+	
 	<tr>
 		<td>int</td><td>4 Byte</td><td>-2147483648 ~ 2147483647</td>
 	</tr>
-
+	
 	<tr>
 		<td>long</td><td>8 Byte</td><td>-922337036854775808 ~ 9223372036854775807</td>
 	</tr>
@@ -55,17 +55,17 @@ categories: [JAVA]
 
 실수형
 <table align="center">
-	
+
 	<tr bgcolor="silver">	
 		<th>Data Type</th>
 		<th>Memory Size</th>
 		<th>Range</th>
 	</tr>
-
+	
 	<tr>
 		<td>float</td><td>4 Byte</td><td>1.40239846E-45f ~ 3.40282347E+38f</td>
 	</tr>
-
+	
 	<tr>
 		<td>double</td><td>8 Byte</td><td>4.94065645841246544E-324 ~ 1.79769313486231570E+308</td>
 	</tr>
@@ -119,7 +119,7 @@ if(b1){
 		System.out.println(s1.replaceAll("Hello", "World")); //World World
 		System.out.println(s1.substring(0,4)); // Hell
 		System.out.println(s1.toUpperCase()); // HELLO WORLD
-
+	
 		//String Buffer 사용 방법
 		StringBuffer sb = new StringBuffer();
 		sb.append("Hello");
@@ -135,34 +135,36 @@ if(b1){
  - -,+,*,/,%
 2. Increase Decrease Operation - 하나의 변수의 값을 1 차이로 변화 시킬때 사용하는 연산자
  - i++, ++i, i--, i--
-{% highlight java %}
-		i3 =3;
-		i4 =4;
-		//Numeric Operation - +, -, *, /, %
-		System.out.println(i4+i3);
-		System.out.println(i4-i3);
-		System.out.println(i4*i3);
-		System.out.println(i4/i3);
-		System.out.println(i4%i3);
+  {% highlight java %}
+  	i3 =3;
+  	i4 =4;
+  	//Numeric Operation - +, -, *, /, %
+  	System.out.println(i4+i3);
+  	System.out.println(i4-i3);
+  	System.out.println(i4*i3);
+  	System.out.println(i4/i3);
+  	System.out.println(i4%i3);
 
-		//Result: 7 1 12 1 1
-		// / = Share, % = Reminder
+  	//Result: 7 1 12 1 1
+  	// / = Share, % = Reminder
 
-		
 
-		//Increase / Decrease Operation - i++, ++i, i--, --i
-		int i = 3;
-		System.out.print(++i);
-		System.out.print(i++);
-		System.out.print(i);
-		System.out.print(--i);
-		System.out.print(i--);
-		System.out.println(i);
-		/* Result: 4 4 5 4 4 3
-		++ i is calculated before the operation
-		i ++ computes after computation */
-{% endhighlight %}
-<br>
+  ​	
+
+  	//Increase / Decrease Operation - i++, ++i, i--, --i
+  	int i = 3;
+  	System.out.print(++i);
+  	System.out.print(i++);
+  	System.out.print(i);
+  	System.out.print(--i);
+  	System.out.print(i--);
+  	System.out.println(i);
+  	/* Result: 4 4 5 4 4 3
+  	++ i is calculated before the operation
+  	i ++ computes after computation */
+  {% endhighlight %}
+  <br>
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Type.java>
+원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Type.java><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+

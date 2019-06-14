@@ -29,6 +29,7 @@ Overriding 과 Overloading의 경우 용어가 비슷하여 많이 혼동된다.
   오버로딩(Overloading): 같은 클래스 내 에서 같은 이름의 Method를 사용하는 것 이다.
   1. Argument 의 개수가 다르다.
   2. Argument 의 Type이 다르다.
+
     => 목적이 같은 Method이나 Type이나 개수에 따라서 달라지는 Method를 선언할 때 적합
     */
     public void setName(String name) {
@@ -85,7 +86,7 @@ Overriding 과 Overloading의 경우 용어가 비슷하여 많이 혼동된다.
 
 {% endhighlight %}
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Inheritance>
+원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Inheritance><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
 

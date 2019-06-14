@@ -66,7 +66,7 @@ Format : Access Modifer OutputType(Input type Input Value...)
 
 {% endhighlight %}
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Class_Method>
+원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Class_Method><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
 
