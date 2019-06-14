@@ -8,7 +8,7 @@ categories: [JAVA]
 ### 변수의 저장 방식  
 CallByValue, CallByReference의 설명의 들어가기 앞서 컴퓨터의 값의 저장방식에 대해서 알아야 한다. 밑의 그림을 보면 컴퓨터이 저장 방식을 알 수 있다.
 
-![Screenshot broadcast](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Reference.PNG"Screenshot broadcast")
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Reference.PNG" height="300" width="600" />
 
 참조 :<https://dojang.io/mod/page/view.php?id=509>
 
