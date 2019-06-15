@@ -1,0 +1,159 @@
+---
+layout: post
+title:  "자바의 Network"
+date:   2019-06-15 12:30:20 +0700
+categories: [JAVA]
+---
+
+###  NetWork
+
+NetWork 란 물리적으로 연결되어있지 않은 컴퓨터 끼리 서로 연결해주어 데이터를 손쉽게 주고받거나 자원을 공유할 수 있게 해주는 통로 인다  
+
+NetWork 주요 용어
+1. Server: 데이터 전송 또는 수신 서비스를 제공하는 컴퓨터 이다.
+
+2. Client: 서버에서 보내주는 데이터를 수신또는 서버에세 데이터를 전송 하는 컴퓨터 이다.
+
+3. Socket: 응용 프로그램에서 TCP/IP를 이용하는 창구 역할을 하며 응용 프로그램과 소켓 사이의 인터페이스 역할
+
+4. TCP/IP: 신뢰성 있는 통신을 가능하게 하기 위한 프로토콜(통신 규약)  
+
+   
+
+밑의 코드를 수행하기에 앞서 필요한 작업이다.  
+1. TCP/IP 주소 확인을 위하여 먼저 자신의 IP를 검색하여야 한다. Cmd 창에 ipconfig라는 명령어를 통해 자신의 IP를 알 수 있다.
+
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Java/IpCheck.PNG" height="300" width="600" />
+
+2. Server와 Client를 동시에 돌려야 하므로 두가지의 상태를 확인하기 위한 환경이 필요하다. 아래 주소에 환경에 관한 자세한 내용이 나와있다.
+  참조: <https://m.blog.naver.com/PostView.nhn?blogId=xxxstarxxx&logNo=221014452771&proxyReferer=https%3A%2F%2Fwww.google.com%2F><br>
+
+  
+
+
+{% highlight java %}
+
+	import java.io.BufferedReader;
+	import java.io.InputStreamReader;
+	import java.io.PrintWriter;
+	import java.net.ServerSocket;
+	import java.net.Socket;
+	/*
+	Server.java
+	Server: 데이터 전송 서비스를 제공하는 컴퓨터
+	Client: 서버에서 보내주는 데이터 서비스를 수신하는 컴퓨터
+	Socket: 응용 프로그램에서 TCP/IP를 이용하는 창구 역할을 하며 
+	응용 프로그램과 소켓 사이의 인터페이스 역할. 
+	*/
+	public class Server {
+		//통신을 위한 Socket 정의
+		ServerSocket ss;
+		Socket socket;
+		//출력을 위한 변수
+		PrintWriter out;
+		BufferedReader br;
+	
+		//Constructor 로 정의
+		public Server() {
+			try {
+				//Socket의 Port 번호 설정: 3000
+				ss = new ServerSocket(3000);
+			} catch (Exception e) {
+				System.out.println("Error: " + e);
+				System.exit(0);
+			}
+			System.out.println("서버 서비스 중...");
+	
+			try {
+				//socket을 통하여 Client가 보내는 정보 받아들임
+				socket = ss.accept();
+				//Socket에서 받아들인 내용을 Console에 출력하기 위한 과정
+				//euc-kr: 한글처리를 위해
+				out = new PrintWriter(socket.getOutputStream(), true);
+				br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "euc-kr"));
+			} catch (Exception e) {
+				System.out.println("err: " + e);
+			}
+		}
+	
+		//Socket을 Consle에 출력하기 위한 Method
+		public void receiveMsg() {
+			try {
+				String msg = br.readLine();
+				System.out.println("receiveMsg: " + msg);
+	
+				out.println("from server: " + msg);
+				br.close();
+				out.close();
+				socket.close();
+				ss.close();
+			} catch (Exception e) {
+				System.out.println("receiveMsg: " + e);
+			}
+		}
+	
+		public static void main(String[] args) {
+			while (true) {
+				Server server = new Server();
+				server.receiveMsg();
+			}
+		}
+	}
+	
+	import java.io.BufferedReader;
+	import java.io.InputStreamReader;
+	import java.io.PrintWriter;
+	import java.net.Socket;
+	import java.util.Scanner;
+	//Client.java
+	public class Client {
+		Socket socket;
+		PrintWriter out;
+		BufferedReader br;
+		
+		public Client() {
+			try {
+				//Socket을 통한 Ip와 Port 번호 설정
+				socket=new Socket("172.30.1.2", 3000);
+				//Socket 에게 Message를 전달하는 과정
+				out=new PrintWriter(socket.getOutputStream(), true);
+				br=new BufferedReader(new InputStreamReader(socket.getInputStream(), "euc-kr"));
+			
+			} catch (Exception e) {
+				System.out.println("NetTest4Client err: "+e);
+				System.exit(0);
+			}
+		}
+		
+		//Message 전송을 위한 Method
+		public void processMsg() {
+			try {
+				Scanner sc=new Scanner(System.in);
+				System.out.println("서버 전송 메시지");
+				String data=sc.nextLine();
+				out.println(data);
+			} catch (Exception e) {
+				System.out.println("processMsg err: "+e);
+			} finally {
+				try {
+					br.close();
+					out.close();
+					socket.close();
+				} catch (Exception e2) {}
+			}
+		}
+	
+		public static void main(String[] args) {
+			Client client=new Client();
+			client.processMsg();
+		}
+	}
+
+{% endhighlight %}  
+
+결과  
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Java/NetWork.PNG" height="300" width="600" />
+
+<hr>
+원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Network><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
