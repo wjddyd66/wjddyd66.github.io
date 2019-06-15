@@ -1,0 +1,115 @@
+---
+layout: post
+title:  "자바의 추상 클래스"
+date:   2019-06-15 09:15:20 +0700
+categories: [JAVA]
+---
+
+###  추상 클래스: 하나 이상의 추상 메소드를 포함하는 클래스
+<span style ="color: red">**일반 Class + Interface의 특징**</span>  
+추상 클래스를 일반 Class + Interface의 특징을 가지고 있다고 정의하였다.  
+Format: abstract class "Class-Name"  
+일반 Class에 Interface의 특징인 Method를 선언만 하고 자식 클래스에서 내용을 꼭 선언하는것이다.  
+이러한 Interface의 특징을 <span style ="color: red">추상Method</span>로서 구현한다.  
+Format: abstract returnType "Method-Name"(Argument)  
+추상클래스에 정의된 추상 Method를 제외한 일반 Method는 Override를 통하여 재정의 하거나 그대로 사용할 수 있는 특징이 있다.  
+<span style ="color: red">추상 클래스는 바로 객체화 할 수 없다. 추상 Method가 정의되어 있지 않기 때문이다. 따라서 추상 클래스는 자식 클래스에서 추상 Method를 선언한 뒤
+객체화 하여 사용하여야 한다.</span>  
+
+{% highlight java %}
+/*
+Parent.java
+추상클래스 선언
+Format: abstract class Class-Name
+추상클래스란 추상 메소드를 포함하는 클래스 이다.
+*/
+abstract class Parent {
+	String name="Kim";
+	
+	//Interface와 다르게 Method의 내용을 정의할 수 있다.
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+	
+	//추상 메소드 이다. 추상메소드는 Interface와 같이 선언만 한다.
+	abstract void func();
+
+}
+
+//Child.java
+//추상 클래스를 extends한 자식 클래스이다.
+//extends이므로 다중 상속 불가
+public class Child extends Parent{
+	String name = "Hwang";
+	
+	/*
+	추상 클래스의 일반 Method도 Override할 수 있다.
+	Override하여 재정의 하거나 그대로 상속받은 대로 사용할 수 있다.
+	super: 자식 클래스에서 상속받은 부모 클래스의 멤버 변수를 참조할 때 사용 
+	*/
+	@Override
+	public void setName(String name) {
+		super.setName(name);
+	}
+	
+	@Override
+	public String getName() {
+		super.setName(this.name);
+		return super.getName();
+	}
+	
+	//추상 Method는 정의하지 않으면 Error가 발생하게 된다.
+	@Override
+	void func() {
+		System.out.println("추상화 Class 의 추상 Method Override");
+	}
+
+}
+
+//Child2.java
+public class Child2 extends Parent{
+	
+	//추상 Method만 정의하고 나머지는 그대로 상속받은 Method를 사용하겠다는 뜻이다.
+	@Override
+	void func() {
+		System.out.println("추상화 Class 의 추상 Method Override");
+	}
+
+}
+
+//Abstract.java
+public class Abstract {
+	
+	public static void main(String[] args) {
+		/*
+		Parent p1 = new Parent(); 
+		추상 클래스는 바로 객체화 할 수 없다.
+		추상 Method가 정의되어 있지 않기 때문이다.
+		따라서 추상 클래스는 자식 클래스에서 추상 Method를 선언한 뒤
+		객체화 하여 사용하여야 한다.
+		*/
+		Child c1 = new Child();
+		Child2 c2 = new Child2();
+		System.out.println(c1.getName());
+		c1.func();
+		System.out.println(c2.getName());
+		c2.func();
+		/*
+		Hwang
+		추상화 Class 의 추상 Method Override
+		Child1은 일반 Method가 Override O => 재정의한 내용 출력
+		Kim
+		추상화 Class 의 추상 Method Override
+		Child1은 일반 Method가 Override X => 부모 Class의 내용 출력
+		*/
+	}
+}
+{% endhighlight %}  
+<span style ="color: red"> Super -  자식 클래스에서 상속받은 부모 클래스의 멤버 변수를 참조할 때 사용</span>
+
+<hr>
+원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Abstract/Abstract>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
