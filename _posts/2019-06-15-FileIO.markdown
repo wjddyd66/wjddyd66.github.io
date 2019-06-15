@@ -1,0 +1,99 @@
+---
+layout: post
+title:  "자바의 FileIO와 Exception Handling"
+date:   2019-06-15 11:00:20 +0700
+categories: [JAVA]
+---
+
+###  FileIO
+대표적인 FileIO Type  
+1. FileWriter:  File에 내용을 쓰기 위하여 사용  
+FileWriter fw = new Filewriter('Path') - 이름이 같은 File있을 시 기존 File 내용 삭제  
+FileWriter fw = new Filewriter('Path',true) - 이름이 같은 File있을 시 기존 File 에 내용 추가 
+2. FileReader: File에 내용을 읽기 위하여 사용  
+FileReader fr = new FileReader('Path') - 파일의 내용을 읽음  
+<span style ="color: red">**File IO는 상당히 시간이 오래 걸리는 작업이다. 따라서 Buffer를 거쳐 출력장치로 값을 전달하여 데이터 처리 효율성이 높이는 것이 권장된다.(String Buffer와 같은 이유)**</span>  
+BufferedReader br = new BufferedReader('path') 
+
+###  Exception Handler
+예외(Exception) 발생시 효율적으로 Exception을 처리하기 위하여 사용한다.  
+1. throws: 이미 정의되어있는 예외처리를 따르기 위하여 사용
+2. try-catch: try안의 Code실행 동안 Exception 발생시 Catch 구문 실행  
+<span style ="color: red">finally로 어떤 예외가 발생하더라도 반드 시 실행하도록 만들 수 있다.</span>
+
+{% highlight java %}
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+/*
+FileIO.java
+파일의 입출력을 위한 예제이다
+예외처리: 예외처리를 하기 위한 방법은 크게 2가지가 있다.
+throws, try-catch이다.
+throws는 이미 정의되어있는 예외처리대로 실행하겠다는 의미이다.
+try-catch는 Error발생시 Code작성에 따라 실행한다는 의미이다.
+=> Try-Catch 사용 권장
+*/
+public class FileIO {
+
+	public static void main(String[] args) {
+		/*
+		File에 접근하기 위한 변수 선언
+		fw - 파일을 내용을 쓰기 위한 변수
+		fw2 - 파일의 내용을 추가하기 위한 변수
+		br - 파일의 내용을 읽기 위하여 사용
+		=> FileReader도 있지만 File IO에는 시간이 오래 걸린다.
+		따라서 Buffer를 이용하여 File IO의 시간을 줄여 Code 실행 시간을 크게 감소시킨다.
+		*/
+		FileWriter fw,fw2;
+		BufferedReader br;
+		
+		//Try Catch로 예외처리 => File 경로가 없거나, 접근권한 등 많은 Error가 있다.
+		try {
+			//File에 내용을 쓰는 과정
+			//이름이 같은File 존재 시 기존 File 내용삭제
+			fw = new FileWriter("./out.txt");
+			for(int i=1; i<11; i++) {
+	            String data = i+": HelloWorld\n";
+	            fw.write(data);
+	        }
+			//File에 접근 한 뒤에는 File의 내용 보존을 위행 꼭 Close하는 습관 권장
+			fw.close();
+			
+			//File이 내용을 그대로 보존한채 내용을 추가하기 위한 과정
+			fw2 = new FileWriter("./out.txt",true);
+			for(int i=1; i<11; i++) {
+	            String data = i+": HelloWorld\n";
+	            fw2.write(data);
+	        }
+			fw2.close();
+			
+			//File 의 내용을 읽기위한 과정
+			br = new BufferedReader(new FileReader("./out.txt"));
+	        while(true) {
+	            String line = br.readLine();
+	            if (line==null) break;
+	            System.out.println(line);
+	        }
+	        br.close();
+	    
+	        /*
+	        1: HelloWorld
+	        '''
+	        10: HelloWorld
+	        1: HelloWorld
+	        '''
+	        10: HelloWorld
+	         */
+		} catch (IOException e) {
+			System.out.println("Error: "+e);
+		}	
+	}
+}
+{% endhighlight %}  
+
+<hr>
+원본코드: <https://github.com/wjddyd66/JAVA/tree/master/FileIo><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
