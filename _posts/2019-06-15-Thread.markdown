@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 FileIO와 Exception Handling"
+title:  "자바의 Thread"
 date:   2019-06-15 11:30:20 +0700
 categories: [JAVA]
 ---
@@ -13,9 +13,9 @@ Thread를 사용함으로써 장점은 Thread를 여러개 선언하여 실행�
 
 이런 동시처리 효과로 인하여 각 Thread는 돌아가면서 CPU점유를 하게 된다.   <span style ="color: red">즉 동시처리라는 것은 한번에 여러개를 Run 할 수 있다는 것이 아니라 하나의 작업이 끝나기 전에 다른 작업으로 넘어간다는 것을 의미한다.</span>  이러한 Cpu 점유를 위한 우선순위를 주어서 CPU 점유 시간을 다르게 할 수 있다.  Thread의 상태는 Ready, Runnable, Running, Dead의 4가지 상태가 있다. 밑의 그림은 Thread의 상태를 잘 나타내고 있다.  
 
-<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Thread.PNG" height="300" width="600" />
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Thread.PNG" height="300" width="600" />
 
-참조: <<http://blog.naver.com/PostView.nhn?blogId=crom77x&logNo=50046897200>><br>
+참조: <http://blog.naver.com/PostView.nhn?blogId=crom77x&logNo=50046897200><br>
 
 1. Runnable - 준비상태: CPU를 점유하지 않고 있다. CPU를 점유하기 위하여 대기 상태라고 할 수 있다.
 2. Running - 실행상태: Cpu를 점유하고 있는 상태이다. => Run Method를 실행하게 되는 단계 이다.
@@ -75,8 +75,9 @@ Thread를 사용함으로써 장점은 Thread를 여러개 선언하여 실행�
 	            t.start();
 	            threads.add(t);
 	        }
-	
-	        
+
+
+​	        
 	        for(int i=0; i<threads.size(); i++) {
 	            //ArrayList이므로 get으로서 ArrayList안의 thread 접근
 	        	Thread t = threads.get(i);
