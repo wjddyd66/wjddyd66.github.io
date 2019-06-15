@@ -13,39 +13,39 @@ categories: [JAVA]
 3. 외부 클래스의 모든 멤버에 접근할 수 있다는 장점
 Format: OuterClass.newInnerClass();
 {% highlight java %}
-/*
-InnerClass.java
-OuterClass - TestInnerClass
-InnerClass - Inner
-내부클래스: 코드의 복잡성과 가독성을 높이기 위하여 사용한다.
-외부클래스의 멤버에 쉽게 접근 가능하다는 장점을 가지고 있다.
-*/
-public class InnerClass {
-	
-	//Outer Class의 Value
-	String outer_value ="Hello";
-	
-	//Outer Class의 Method
-	public void outMethod() {
-		System.out.println("OuterMethod");
-	}
-	
-	//Inner Class 선언
-	public class Inner{
-		//Inner Class의 Value
-		String inner_value ="World";
-		//Inner Class의 Method
-		public void innerMethdod() {
-			System.out.println("InnerMethod");
-		}
-	}
-	
-	public static void main(String[] args) {
-		//OuterClass 선언 및 객체화
-		InnerClass outer = new InnerClass();
-		//InnerClass는 OuterClass.new InnerClass()로서 객체화 하여 사용
-		Inner inner = outer.new Inner();
+
+	/*
+	InnerClass.java
+	OuterClass - TestInnerClass
+	InnerClass - Inner
+	내부클래스: 코드의 복잡성과 가독성을 높이기 위하여 사용한다.
+	외부클래스의 멤버에 쉽게 접근 가능하다는 장점을 가지고 있다.
+	*/
+		public class InnerClass {
 		
+		//Outer Class의 Value
+		String outer_value ="Hello";
+		
+		//Outer Class의 Method
+		public void outMethod() {
+			System.out.println("OuterMethod");
+		}
+		
+		//Inner Class 선언
+		public class Inner{
+			//Inner Class의 Value
+			String inner_value ="World";
+			//Inner Class의 Method
+			public void innerMethdod() {
+				System.out.println("InnerMethod");
+			}
+		}
+		
+		public static void main(String[] args) {
+			//OuterClass 선언 및 객체화
+			InnerClass outer = new InnerClass();
+			//InnerClass는 OuterClass.new InnerClass()로서 객체화 하여 사용
+			Inner inner = outer.new Inner();
 		outer.outMethod();
 		inner.innerMethdod();
 		System.out.println(outer.outer_value+inner.inner_value);
@@ -54,9 +54,9 @@ public class InnerClass {
 		InnerMethod
 		HelloWorld
 		 */
+		 }
 	}
-}
-{% endhighlight %}
+	{% endhighlight %}
 
 <br><h3>내부 클래스</h3>
 <span style ="color: red">**클래스의 선언과 객체의 생성이 동시에 되는 클래스 이다. 1개의 객체만을 생성하고 1번만 사용되는 특징을 가지고 있다.**</span>    

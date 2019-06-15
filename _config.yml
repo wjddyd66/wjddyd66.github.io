@@ -39,7 +39,7 @@ urls:
     - text: XML Feed
       url: /feed.xml
     - text: Categories
-      url: /category/Python
+      url: /category/JAVA
 
 url: "https://wjddyd66.github.io"
 baseurl: ""
