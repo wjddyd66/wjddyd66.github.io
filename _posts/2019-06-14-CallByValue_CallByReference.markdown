@@ -89,5 +89,5 @@ static void ReferenceSwap(CallByValue_CallByReference ss1, CallByValue_CallByRef
 {% endhighlight %}
 <hr>
 참조 사이트:<https://sleepyeyes.tistory.com/11><br>
-원본코드: <https://github.com/wjddyd66/JAVA/blob/master/CallByValue_CallByReference.java>
+원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Basic/CallByValue_CallByReference.java><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

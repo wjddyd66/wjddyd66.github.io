@@ -110,6 +110,6 @@ Map은 가변적인 길이와 순서가 존재하지 않다. 서로 다른 원�
 {% endhighlight %}
 <br>
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Type2.java><br>
+원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Basic/Type2.java><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
