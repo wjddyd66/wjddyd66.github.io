@@ -25,6 +25,7 @@ NetWork 주요 용어
 
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Java/IpCheck.PNG" height="300" width="600" />
 
+
 2. Server와 Client를 동시에 돌려야 하므로 두가지의 상태를 확인하기 위한 환경이 필요하다. 아래 주소에 환경에 관한 자세한 내용이 나와있다.  
   참조: <https://m.blog.naver.com/PostView.nhn?blogId=xxxstarxxx&logNo=221014452771&proxyReferer=https%3A%2F%2Fwww.google.com%2F><br>
 
