@@ -68,7 +68,7 @@ Format: "ClassName" ObjectName = new "ClassName"(){Member Field};
 
 <h3>내부 익명 클래스</h3>
 
-<span style ="color: red">**추상 클래스인 경우 바로 객체로 선언할 수 없다.</span>  <span style ="color: red">내부 클래스 + 익명 클래스를 활용한 내부익명 클래스 선언=>추상 클래스를 바로 객체화 하여 사용할 수 있다.**</span>
+<span style ="color: red">**추상 클래스인 경우 바로 객체로 선언할 수 없다.**</span><br><span style ="color: red">**내부 클래스 + 익명 클래스를 활용한 내부익명 클래스 선언=>추상 클래스를 바로 객체화 하여 사용할 수 있다.**</span>
 
 
 
