@@ -111,5 +111,5 @@ public class Abstract {
 <span style ="color: red"> Super -  자식 클래스에서 상속받은 부모 클래스의 멤버 변수를 참조할 때 사용</span>
 
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Abstract/Abstract>
+원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Abstract/Abstract><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
