@@ -15,7 +15,7 @@ Input의 형태를 강제로 정해주기 위하여 사용한다.
 <table class = "table">
   <thead>
     <tr>
-      <th>표현 식</th>
+      <th width="30">표현 식</th>
       <th>설명</th>
     </tr>
   </thead>
