@@ -138,6 +138,8 @@ Reshape
 1. Melt: Column을 Row로 바꿈.
 2. Reshape: 함수를 통해 Row를 Column으로 바꿈.
 3. Dcast: Melt된 Data에 함수를 적용.
+
+<br>
 ```R
 #그룹화
 install.packages("plyr")
