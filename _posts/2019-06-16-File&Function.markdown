@@ -12,6 +12,7 @@ File 읽기: 읽기의 경우 크게 3가지로 나누었다.
 2. File 읽기: txt파일, Excel 파일, CSV파일: read.table(), read.xlxs(), read.csv()
 3. Web에서 File읽기: htmlParse()  
 <br>
+
 ```R
 #키보드 입력
 n<-scan()
@@ -69,6 +70,7 @@ File 쓰기의 경우 2가지로 나누었다.
 1. print(),cat()을 통한 Console에 출력
 2. sink()를 통한 File에 출력: sink란 콘솔의 출력을 그 파일로 Direction하는 것
 <br>
+
 ```R
 #출력
 print('출력')
