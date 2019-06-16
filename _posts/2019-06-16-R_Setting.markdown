@@ -1,0 +1,186 @@
+---
+layout: post
+title:  "R 환경설정 및 기본"
+date:   2019-06-16 08:30:20 +0700
+categories: [R]
+---
+
+###  R
+R 이란 통계 계산과 그래픽을 위해 특화된 프로그래밍 언어이자 소프트웨어 환경이다. 패키지 개발이 용이하여 원하는 패키지를 가져다가 활용하는 것이 쉬워 널리 사용된다.  
+
+<span style ="color: red">장점</span>  
+1. 다양한 통계 기법과 수치 해석 기법을 지원한다.
+2. R은 사용자가 제작한 패키지를 추가할 수 있다.
+3. 행렬 계산이 가능하다.
+4. 오픈소스 패키지의 집합 이기 때문에 필요한 부분을 가져다가 사용하면 된다.  
+
+R과 R Studio 설치는 아래 링크을 참조하였습니다.  
+참조: <https://backgomc.tistory.com/34>  
+
+###  통계에서 측정수준에 따른 변수
+측정수준: 측정의 수준은 측정 대상의 속성을 측정하는 방식을 말한다.  축정의 방식은 척도의 의미를 갖기 때문에 측정 척도라고 한다.  
+<img src="http://cfile260.uf.daum.net/image/99BFF7355CB593900297D0" height="300" width="600" />
+참조: <http://cafe.daum.net/flowlife/RlkF/32><br>
+
+###  R에서 제공하는 자료구조
+1. Vector: 1차원 배열 형태의 자료구조, 같은 자료형의 데이터를 정해진 갯수만큼 모아놓음
+2. Metircs: 2차원의 dataset, 동일한 데이터 타입을 가진다.
+3. Array: 어떠한 차원으로도 가능, 동일한 데이터 타입을 가진다.
+4. List: 서로다른 데이터를 기억할 수 있다.
+5. <span style ="color: red">DataFrame</span>: 데이터 베이스의 테이블 구조와 유사, 칼럼 단위로 type이 달라도 됨
+
+###  R 실습용 Data 
+앞으로의 실습에서는 다양한 Type의 Data를 활용할 것 이다. 이를 위하여 미리 실습에 사용할 데이터를 다운받아 놓는 것을 추천한다.  
+실습용 Data 주소:  <https://github.com/wjddyd66/R/tree/master/Data><br>
+<span style ="color: red">Data의 원본은 https://github.com/pykwon/python/tree/master/testdata_utf8 에있습니다.</span><br>
+
+
+
+```R
+#변수와 데이터 유형
+
+# 변수: 참조형, 들어오는 값에 의해 타입을 결정한다.
+va<-1
+va<-2
+var1=3
+4->var2
+a<-2
+A<-3
+var.first<-5 #변수명에 .찍어서 표현가능
+var.second<-6
+a<-5
+b<-6
+c<-a+b
+print(c)
+c
+(c<-a+b)
+
+rnorm(10)
+mean(rnorm(10))
+
+#데이터유형 - 수치형
+kbs<-9
+object.size(kbs)
+typeof(kbs)
+typeof(5)
+typeof(5.5)
+is(kbs) #numeric:integer, double
+mbc<-as.integer(kbs) # 형변환
+is(mbc)
+sbs<-5L #"L"을 붙이면 integer가 된다.
+typeof(sbs)
+
+#데이터유형 - 문자형
+string<-"홍길동"
+string<-'홍길동'
+typeof(string)
+is.character(string)
+
+#데이터유형 - 논리형
+b<-TRUE #logical형 타입
+b<-T
+is.logical(b)
+typeof(b)
+
+#데이터유형 - 복소수형
+z<-5.3-3i
+z
+Re(z)
+Im(z)
+is.complex(z)
+
+#04.17
+#NA, NULL, NaN
+aa<-NA #결측치: 값이 입력되지 않은 상태
+aa
+is.na(aa)
+sum(2,3,na.rm = T) #연산되지 않는다.
+aa<-NULL #그냥 값이 없는 상태
+aa
+sum(2,3,NULL) #자동으로 NULL을 제외하고 연산한다.
+aa<-NaN
+aa
+sum(2,3,NaN)
+
+typeof(NULL) #="NULL"
+typeof(NA) #="logical"
+typeof(NaN) #="double"
+length(NULL) #=0
+length(NA) #=1
+length(NaN) #=1
+Inf
+0/0
+Inf*0
+Inf+Inf#=Inf
+Inf/Inf#=NaN
+Inf*Inf#=Inf
+Inf-Inf#=NaN
+
+#Factor(요인형)
+kbs<-c("second","first","third","second") #문자열벡터, c:combination함수
+kbs
+is.factor(kbs)
+is.character(kbs)
+mbc<-as.factor(kbs)
+mbc
+is.factor(mbc)
+levels(mbc)#문자열의 순위 출력
+summary(mbc)#빈도수 출력
+plot(mbc)#빈도수를 그래프로 출력
+
+mbc2<-factor(mbc,levels=c("third","second","first"),ordered = TRUE)
+mbc2
+plot(mbc2)
+plot(mbc)
+
+names<-c("공길동","홍길동","사임당")
+gender<-c("2","2","1")
+(names<-c(names,"손오공"))#print(...)와 같은 기능
+print(gender<-c(gender,"남자"))
+names
+gender
+str(names)#R은 index가 1부터 출발
+str(gender)
+gender[5]<-"여자"
+gender
+f.gender<-factor(gender)
+f.gender
+str(f.gender)
+levels(f.gender)
+
+ans<-c(2,2,3,2,3,4,4,4,3,4)
+ans
+f.ans<-factor(ans)
+f.ans
+str(f.ans)
+f.ans<-factor(ans,levels=c(1,2,3,4,5))
+f.ans
+str(f.ans)
+f.ans<-factor(ans,levels=c(1,2,3,4,5),ordered=TRUE)
+f.ans
+str(f.ans)
+f.ans<-factor(ans,levels=c(1,2,3,4,5),ordered=TRUE,
+              labels=c("매우불만","불만","보통","만족","매우만족"))
+f.ans
+str(f.ans)
+
+names<-c("고길동","심길동","사임당")
+gender<-c("2","2","1")
+df<-data.frame(name=names,gender=gender)
+df
+str(df)
+df2<-data.frame(name=names,gender=gender)
+df2
+str(df2)
+
+#함수
+f<-function(){
+  return('good')
+}
+f()
+typeof(f)#closure:함수타입이라는 의미        
+```
+
+<hr>
+원본코드: <https://github.com/wjddyd66/R/blob/master/R_Basic.R><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
