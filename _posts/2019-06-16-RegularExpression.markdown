@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "R 환경설정 및 기본"
+title:  "정규 표현식"
 date:   2019-06-16 09:30:20 +0700
 categories: [others]
 ---
@@ -11,7 +11,8 @@ Input의 형태를 강제로 정해주기 위하여 사용한다.
 ###  문법
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <br>
-<table "table table-striped">
+
+<table class = "table table-striped">
   <thead>
     <tr>
       <th>표현식</th>
