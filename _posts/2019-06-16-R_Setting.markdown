@@ -19,8 +19,8 @@ R과 R Studio 설치는 아래 링크을 참조하였습니다.
 
 ###  통계에서 측정수준에 따른 변수
 측정수준: 측정의 수준은 측정 대상의 속성을 측정하는 방식을 말한다.  축정의 방식은 척도의 의미를 갖기 때문에 측정 척도라고 한다.  
-<img src="http://cfile260.uf.daum.net/image/99BFF7355CB593900297D0" height="300" width="600" />
-참조: <http://cafe.daum.net/flowlife/RlkF/32><br>
+<div><img src="http://cfile260.uf.daum.net/image/99BFF7355CB593900297D0" height="300" width="600" /></div>
+<br>참조: <http://cafe.daum.net/flowlife/RlkF/32><br>
 
 ###  R에서 제공하는 자료구조
 1. Vector: 1차원 배열 형태의 자료구조, 같은 자료형의 데이터를 정해진 갯수만큼 모아놓음
