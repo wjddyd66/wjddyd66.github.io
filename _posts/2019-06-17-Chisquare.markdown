@@ -52,9 +52,9 @@ CrossTable(study$공부함,study$합격,chisq=T)
 
 출력결과
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare1.PNG" height="300" width="600" /><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare1.PNG" height="300" width="600" /></div><br>
 
-###  카이제곱 적합성 검정
+###  카이제곱 기본 이해
 <table class="table">
 	<tbody>
 	<tr>
@@ -83,7 +83,7 @@ chisq.test(c(4,6,17,16,8,9))
 
 출력결과
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare2.PNG" height="300" width="600" /><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare2.PNG" height="300" width="600" /></div><br>
 
 ###  카이제곱 독립성 검정
 <table class="table">
@@ -122,7 +122,7 @@ chisq.test(x,y,correct = F) #correct = F : 연속성 보정 미적용(기본값:
 
 출력결과
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare3.PNG" height="300" width="600" /><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare3.PNG" height="300" width="600" /></div><br>
 
 ###  카이제곱 동질성 검정
 <table class="table">
@@ -194,7 +194,7 @@ CrossTable(data$method2,data$survey2,chisq = T)
 
 출력결과
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare4.PNG" height="300" width="600" /><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare4.PNG" height="300" width="600" /></div><br>
 
 <hr>
 참조: <https://github.com/wjddyd66/R/tree/master/Chisquare><br>
