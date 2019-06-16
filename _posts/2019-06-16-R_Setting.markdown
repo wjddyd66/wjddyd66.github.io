@@ -40,7 +40,7 @@ R과 R Studio 설치는 아래 링크을 참조하였습니다.
 <table class="table">
 
 
-	<thread>
+	<thead>
 	<tr bgcolor="silver">	
 		<th>자료형</th>
 		<th>의미</th>
