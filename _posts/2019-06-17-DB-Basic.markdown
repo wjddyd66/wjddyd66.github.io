@@ -22,12 +22,15 @@ categories: [DB]
 1. 데이터 정의 언어 (DDL)
  - 데이터베이스 검색, 등록, 삭제, 갱신을 하기 위해 사용하는 데이터베이스 언어   
  - 데이터베이스의 검색 및 업데이트 등 데이터 조작을 위해 사용
+ - Create, Alter, Drop
 2. 데이터 조작 언어 (DML)
  - 관계형 데이터베이스의 구조를 정의함
  - 쌍, 속성, 관계 인덱스 파일 위치 등 데이터베이스 고유의 특성을 포함함
+ - CRUD(Insert, Select, Update, Delete)
 3. 데이터 제어 언어 (DCL)
  - 데이터베이스에서 데이터에 대한 엑세스를 제어하기 위한 데이터베이스 언어 또는 데이터베이스 언어 요소
  - 박탈, 연결, 권한 부여, 질의, 자료 삽입, 갱신, 삭제 등
+ - Grant, Revoke, Commit, RoLLBack
 <hr>
 참조: <https://coding-factory.tistory.com/77><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
