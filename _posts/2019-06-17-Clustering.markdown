@@ -51,7 +51,7 @@ plot(hc_avg,hang = -1)
 ```
 
 결과-단일연결법: 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Clustering-1.PNG" height="300" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Clustering-1.PNG" height="300" width="400" /></div><br>
 
 결과-완전연결법: 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Clustering-2.PNG" height="300" width="600" /></div><br>
@@ -81,10 +81,10 @@ clusplot(iris_p)
 ```
 
 결과-Model: 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Clustering-3.PNG" height="400" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Clustering-4.PNG" height="400" width="600" /></div><br>
 
 결과-Model 시각화: 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Clustering-3.PNG" height="200" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Clustering-5.PNG" height="200" width="600" /></div><br>
 
 <hr>
 원본코드: <https://github.com/wjddyd66/R/tree/master/Clustering><br>
