@@ -7,12 +7,14 @@ categories: [R]
 
 ###  T검정
 <span style ="color: red">**T검정이란 두 집간 단의 평균을 비교하는 방법이다. 즉, 두 모집단의 평균의 차이유무를 판단하는 통계적 검정방법으로 단순히 차이의 존재여부를 떠나 그 정도의 통계적 유의미성까지 검정하는 방법**</span><br>
+
+<span style ="color: red">**독립변수: 범주형, 종속변수: 연속형**</span><br>
+<span style ="color: red">**전제조건: 정규분포를 따라야 한다, 일반적으로 표본의 수가 대략 30개 이하일 때 실시**</span><br>
+
 1. One Sample T-검정: 두 집단의 수가 틀려도 상관이 없으며 동일 시점에서 두 집단의 평균을 비교하는 것이다.
 2. 동일성 검정: 두 집단의 분포가 동일한가? 다른 분포인가? 
 3. Independent Sample T-검정: 독립인 두 Sample을 검정할 때 사용 => 등분산성 확인 해야 한다. 
 4. Paired Sample T-검정: 동일 집단의 전/후의 평균을 비교하는 것으로 전과 후의 수가 동일해야 한다.
-<span style ="color: red">**독립변수: 범주형, 종속변수: 연속형**</span><br>
-<span style ="color: red">**전제조건: 정규분포를 따라야 한다, 일반적으로 표본의 수가 대략 30개 이하일 때 실시**</span><br>
 
 ### T검정 기본 이해
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
@@ -245,7 +247,7 @@ mean(data$weight[data$gender==2]) #3375.308
 	<tr>
 		<td>결과</td><td>p-value(0.015670) 
 		<
-        0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 기각, 대립가설 채택</td>
+	    0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 기각, 대립가설 채택</td>
 	</tr>
 	</tbody>
 </table>
