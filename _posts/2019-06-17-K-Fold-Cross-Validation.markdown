@@ -13,8 +13,12 @@ K 개의 fold를 만들어서 진행하는 교차 검증
 	<li>기존에 Training, Validation, Test 세 개의 집단으로 분류하는 것보다, Trainning 과 Test로만 분류할 때 학습 데이터 셋이 더 많기 때문이다.</li>
 	<li>데이터 수가 적은데 검증과 테스트에 데이터를 더 뺏기면 underfitting 등 성능이 미달되는 모델이 학습됨</li>
 </ul>  
-<div><img src="https://www.researchgate.net/profile/B_Aksasse/publication/326866871/figure/fig2/AS:669601385947145@1536656819574/K-fold-cross-validation-In-addition-we-outline-an-overview-of-the-different-metrics-used.jpg" height="300" width="600" /></div><br>  
+<div><img src="https://www.researchgate.net/profile/B_Aksasse/publication/326866871/figure/fig2/AS:669601385947145@1536656819574/K-fold-cross-validation-In-addition-we-outline-an-overview-of-the-different-metrics-used.jpg" height="300" width="600" /></div><br>
+
+참조: <https://www.researchgate.net/figure/K-fold-cross-validation-In-addition-we-outline-an-overview-of-the-different-metrics-used_fig2_326866871>  
+
 과정  
+
 <ul>
 	<li>기존 과정과 같이 Trainning Set과 Test Set을 나눈다.</li>
 	<li>Trainning 을 K 개의 fold로 나눈다.</li>
