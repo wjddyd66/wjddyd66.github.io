@@ -14,6 +14,7 @@ categories: [R,others]
 3. 랜덤 포레스트(Random Forest)
 4. 나이브베이즈 분류(Naive Bayes Classification)
 5. SVM(Support Vector Machine)
+6. K-NN Classfication
 
 
 ###  의사결정 나무(Dicision Tree)
@@ -237,6 +238,85 @@ SVM Model 결과:
 
 SVM Model 시각화:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/SVM2.PNG" height="150" width="600" /></div><br>
+
+###  K-NN Classfication
+K-NN 알고리즘은 지도학습(Supervised Learning)의 한 종류로 레이블이 있는 데이터를 사용하여 분류 작업을 하는 알고리즘이다. 알고리즘의 이름에서 볼 수 있듯이 데이터로부터 거리가 가까운 K개의 다른 데이터이 레이블을 참조하며 분류하는 알고리즘이다. 주로 거리를 측정할 때 유클리디안 거리 계산법을 사용하여 거리를 측정하는데, 벡터의 크기가 커지면 계산이 복잡해진다.  
+장점  
+<ul>
+<li>알고리즘이 간단하여 구현하기 쉽다.</li> 
+<li>수치 기반 데이터 분류 작업에서 성능이 좋다.</li>
+</ul>  
+단점  
+<ul>
+<li>학습 데이터의 양이 많으면 분류 속도가 느려진다.</li> 
+<li>차원의 크기가 크면 계산량이 많아진다.</li>
+</ul>
+참조:<https://proinlab.com/archives/2125>  
+<span style ="color: red">**유클리디안 거리**</span><br>
+<div><img src="http://bbs.nicklib.com/files/attach/images/197/662/001/9e4cb5385ea79678f8e680fb22cc1601.png" height="300" width="600" /></div><br>
+참조:<http://bbs.nicklib.com/algorithm/1662>  
+
+
+```R
+#K-NN
+#필요한 패키지 설치
+install.packages("ggvis")
+library(ggvis)
+
+#데이터 분포 시각화
+iris%>%ggvis(~Petal.Length,~Petal.Width,fill=~factor(Species))
+
+#정규화 과정: 정규화란 전체 구간을 0~100으로 설정하여 데이터를 관찰하는 방법
+(요소값-최소값)/(최대값-최소값)
+func_normal<-function(x){
+  num<-x-min(x)
+  m_n<-max(x)-min(x)
+  return (num/m_n)
+}
+
+test_df<-data.frame(x=c(1:5))
+test_df
+func_normal(test_df)
+
+#데이터 전처리 과정(정규화및 DataFrame으로 만들기)
+lapply(iris[1:4], func_normal)
+normal_d<-as.data.frame(lapply(iris[1:4], func_normal))
+head(normal_d)
+summary(normal_d)
+df<-data.frame(normal_d,Species=iris$Species)
+head(df)
+
+#Train, Test Data로 나누기
+set.seed(123)
+idx<-sample(1:nrow(df),0.7*nrow(df))
+ir_train<-df[idx,]
+ir_test<-df[-idx,]
+nrow(ir_train):nrow(ir_test)
+
+#Model 만들기
+library(class)
+model<-knn(train=ir_train[,-5],test=ir_test[,-5]
+           ,cl=ir_train$Species,k=3)
+summary(model)
+
+#Model 정확도 측정
+t<-table(model,ir_test$Species)
+t
+(t[1,1]+t[2,2]+t[3,3])/nrow(ir_test)
+
+```
+
+변수 분포 시각화::
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/K-NN1.PNG" height="300" width="600" /></div><br>
+
+변수 정규화 결과:
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/K-NN3.PNG" height="150" width="600" /></div><br>
+
+Model 결과:
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/K-NN4.PNG" height="150" width="600" /></div><br>
+
+Model 정확도:
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/K-NN5.PNG" height="150" width="600" /></div><br>
 
 <hr>
 원본코드: <https://github.com/wjddyd66/R/tree/master/Classification><br>
