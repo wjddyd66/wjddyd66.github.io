@@ -115,7 +115,6 @@ write.csv(data,"./desc_report1.csv") #가공된 데이터로 저장하기로
 1. 종속변수: 반응변수, 결과변수, 어떠한 영향을 받는 변수(Y)
 2. 독립변수: 설명변수, 원인변수, 종속변수에 의해 영향을 주는 변수(X)
 <br>
-###  검정방법
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
 <table class="table table-striped">
