@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "R Shiny"
-date:   2019-06-16 08:30:20 +0700
+date:   2019-06-17 11:30:20 +0700
 categories: [R,others]
 ---
 
@@ -61,7 +61,7 @@ shinyApp(ui = ui, server = server)
 ```
 
 결과:
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Shiny1.PNG" height="150" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Shiny1.PNG" height="300" width="600" /></div><br>
 <hr>
 원본코드: <https://github.com/wjddyd66/R/tree/master/Shiny><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
