@@ -23,7 +23,7 @@ Alter table 테이블명...
 이미 존재하는 개체를 삭제할때 사용  
 Drop table 테이블명...
 
-```mariadb
+```mysql
 -- DML: Create, Alter, Drop
 -- 1) Create Table
 -- primary key(기본키) 제약: 1번 방법에 충실하되, 2,3번도 가능하다는 정도만 알고 있자.
@@ -112,7 +112,7 @@ select [distinct] 소유자명, 테이블명, 칼럼명, [as 별명]... [into �
  - 컴럼별칭: AS
  - ALL/DISTINCT  
   - ALL: 테이블에 동일한 데이터 행이 있는 경우에도 데이터 출력  
-  -DISTINCT: 테이블에 동일한 데이터 행이 있는 경우 중복을 제거한 1개만 돌려준다. 
+    -DISTINCT: 테이블에 동일한 데이터 행이 있는 경우 중복을 제거한 1개만 돌려준다. 
  - 단일행 함수: 단일행 조작 함수에서 하나의 행에 대해 하나의 결과를 반환  
   - 문자합수, 숫자함수, 날짜함수, 데이터 형식 변환 함수
  - 그룹함수: 그룹화를 한 행에 대해 하나의 결과를 반환하는 함수
@@ -127,7 +127,7 @@ select [distinct] 소유자명, 테이블명, 칼럼명, [as 별명]... [into �
 4. Delete  
 테이블 또는 뷰에서 한개 이상의 행을 삭제한다.
 
-```mariadb
+```mysql
 -- DDL: Insert, Select, Update, Delete
 -- 1) Insert
 -- 자료추가
