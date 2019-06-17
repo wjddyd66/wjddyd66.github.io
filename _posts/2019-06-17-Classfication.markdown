@@ -253,7 +253,7 @@ K-NN 알고리즘은 지도학습(Supervised Learning)의 한 종류로 레이�
 </ul>
 참조:<https://proinlab.com/archives/2125>  
 <span style ="color: red">**유클리디안 거리**</span><br>
-<div><img src="http://bbs.nicklib.com/files/attach/images/197/662/001/9e4cb5385ea79678f8e680fb22cc1601.png" height="300" width="600" /></div><br>
+<div><img src="http://bbs.nicklib.com/files/attach/images/197/662/001/9e4cb5385ea79678f8e680fb22cc1601.png" height="150" width="600" /></div><br>
 참조:<http://bbs.nicklib.com/algorithm/1662>  
 
 
@@ -267,7 +267,7 @@ library(ggvis)
 iris%>%ggvis(~Petal.Length,~Petal.Width,fill=~factor(Species))
 
 #정규화 과정: 정규화란 전체 구간을 0~100으로 설정하여 데이터를 관찰하는 방법
-(요소값-최소값)/(최대값-최소값)
+#(요소값-최소값)/(최대값-최소값)
 func_normal<-function(x){
   num<-x-min(x)
   m_n<-max(x)-min(x)
