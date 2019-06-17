@@ -2,7 +2,7 @@
 layout: post
 title:  "R 분류분석"
 date:   2019-06-17 12:30:20 +0700
-categories: [R,others]
+categories: [R]
 ---
 
 ###  분류(Classfication)

@@ -2,7 +2,7 @@
 layout: post
 title:  "R 군집화"
 date:   2019-06-17 12:35:20 +0700
-categories: [R,others]
+categories: [R]
 ---
 
 ###  군집화(Clustering)
