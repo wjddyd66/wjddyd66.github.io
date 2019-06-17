@@ -162,7 +162,7 @@ select distinct buser_num from jikwon;
 select distinct buser_num, jikwon_no from jikwon; --x
 
 -- 정렬하기
-select * from jikwon order by jikwon_no desc; -- 내림차순 정렬 하->가, 9->0, Z->A 순으로 정렬
+select * from jikwon order by jikwon_no desc; 내림차순 정렬 하->가, 9->0, Z->A 순으로 정렬
 select * from jikwon order by jikwon_no asc; -- asc(오름차순)는 기본적으로 생략가능
 select * from jikwon order by jikwon_pay asc;
 select * from jikwon order by buser_num asc, jikwon_pay desc;
@@ -177,7 +177,7 @@ select * from jikwon where jikwon_jik='대리';
 select * from jikwon where jikwon_no=1;
 select * from jikwon where jikwon_no>=10;
 select * from jikwon where jikwon_no<10;
-select * from jikwon where jikwon_jik<>'대리'; -- !=과 같은 표현. 부정.
+select * from jikwon where jikwon_jik<>'대리'; !=과 같은 표현. 부정.
 select * from jikwon where jikwon_no=1+5; -- 산술연산 사용가능
 select * from jikwon where jikwon_jik='사원' and jikwon_gen='남' and jikwon_pay>=2000+1000;
 select * from jikwon where jikwon_jik='사원' or jikwon_gen='여';
