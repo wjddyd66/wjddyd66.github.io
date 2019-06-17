@@ -118,7 +118,7 @@ select [distinct] 소유자명, 테이블명, 칼럼명, [as 별명]... [into �
  - 그룹함수: 그룹화를 한 행에 대해 하나의 결과를 반환하는 함수
   - Having절, Order By 절에서 사용가능: AVG, MAX, MIN, SUM, COUNT
  - 집합연산: 여러 테이블에서 질의 결과를 참조하는 복합문을 처리하기 위한 연산자 구분
-  - UNION, UNION ALL, INTERSECT, EXCEPT, MINUS
+  - UNION, UNION ALL, INTERSECT, EXCEPT, MINUS  
 출처: <https://ko.wikipedia.org/wiki/Select_(SQL)>
 2. Insert  
 테이블 또는 뷰에 한개 이상의 행을 추가한다.
