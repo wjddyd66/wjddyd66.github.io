@@ -157,7 +157,7 @@ summary(model)
 
 출력결과-Model 사진
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Regression8.png" height="150" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Regression8.PNG" height="150" width="600" /></div><br>
 
 출력결과-잔차의 독립성 학인
 
