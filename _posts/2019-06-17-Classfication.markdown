@@ -17,7 +17,7 @@ categories: [R,others]
 
 
 ###  의사결정 나무(Dicision Tree)
-의사결정나무분석은 탐색과 모형화라는 두 가지 특징을 가지고 있다. 의사결정나무분석은 판별분석, 회귀분석 등과 같은 모수적(parameter) 모형을 분석하기 위해 사전에 이상치(outlier)를 검색하거나 분석에 필요한 변수 또는 모형에 포함되어야할 상호작용의 효과를 찾아내기 위해서 사용될 수도 있고, 의사결정나무 자체가 분류 또는 예측모형으로 사용될 수동 있다.  
+의사결정나무분석은 탐색과 모형화라는 두 가지 특징을 가지고 있다. 의사결정나무분석은 판별분석, 회귀분석 등과 같은 모수적(parameter) 모형을 분석하기 위해 사전에 이상치(outlier)를 검색하거나 분석에 필요한 변수 또는 모형에 포함되어야할 상호작용의 효과를 찾아내기 위해서 사용될 수도 있고, 의사결정나무 자체가 분류 또는 예측모형으로 사용될 수도 있다.  
 참조: <https://dreamlog.tistory.com/576>
 
 ```R
@@ -145,14 +145,14 @@ for(i in param$n){
 나이브 베이즈 정리  
 조건부 확률 P(A|B)는 사건 B가 발생할 경우 A의 확률을 나타낸다.  
 베이즈 정리는 P(A|B)의 추정이 P(AnB)와 P(B)에 기반을 두어야 한다는 정리이다.  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/99BBBA335A1CE3AB20" height="100" width="600" /></div><br>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/99BBBA335A1CE3AB20" height="100" width="300" /></div><br>
 예제  
 <div><img src="https://t1.daumcdn.net/cfile/tistory/9927EC335A1CE9C01B" height="150" width="600" /></div><br>
 전체 사건 중 비가 온 확률은 P(비) = 7/20 입니다. 그렇다면 비가 안온 확률은 얼마인가?   
 P(~비) = 13/20 이겠죠. 비가 오는지 안오는지 같이 둘 중 하나의 상태만 가능한 사건들은 모든 경우의 수를 더했을 때 1이 된다.  
 
 그렇다면 이제 P(비|맑은날) 의 값은 얼마인가?  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/999A41335A1CE91C1C" height="100" width="600" /></div><br>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/999A41335A1CE91C1C" height="100" width="300" /></div><br>
 
 
 위 식을 통해 P(비|맑은날) 을 구하기 위해선 P(맑은날|비), P(비), P(맑은날) 이 세개의 값만 알아내면 된다.  
@@ -160,8 +160,8 @@ P(~비) = 13/20 이겠죠. 비가 오는지 안오는지 같이 둘 중 하나�
 
 P(비|맑은날) = P(맑은날|비) * P(비) / P(맑은날)  
 = (2/7) * 0.35 / 0.5 = 0.2  
-전체중에서 맑은날 이면서 비가올 확률은 20% 정도 된다고 볼 수 있을 것 같습니다.  
-
+전체중에서 맑은날 이면서 비가올 확률은 20% 정도 된다고 볼 수 있다.  
+참조:<https://gomguard.tistory.com/69>  
 
 ```R
 #나이브베이지안(NaiveBayes Classfication)
@@ -233,11 +233,11 @@ plot(cmdscale(dist(iris[,-5])),col=as.integer(iris[,5])
 ```
 
 SVM Model 결과:
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/SVM1.PNG" height="150" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/SVM1.PNG" height="300" width="600" /></div><br>
 
 SVM Model 시각화:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/SVM2.PNG" height="150" width="600" /></div><br>
 
 <hr>
-원본코드: <https://github.com/wjddyd66/R/tree/master/Shiny><br>
+원본코드: <https://github.com/wjddyd66/R/tree/master/Classification><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
