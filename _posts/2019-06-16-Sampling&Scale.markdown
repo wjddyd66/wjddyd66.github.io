@@ -117,6 +117,7 @@ write.csv(data,"./desc_report1.csv") #가공된 데이터로 저장하기로
 <br>
 ###  검정방법
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
 <table class="table table-striped">
 	<thead>
 	<tr>	
@@ -145,6 +146,13 @@ write.csv(data,"./desc_report1.csv") #가공된 데이터로 저장하기로
 </table>
 <br>
 <br>
+###  검정방법
+1. 모수적 방법: 모집단이 정규분포를 따른다는 가정하에 사용되는 통계 분석(일반적인 방법)
+2. 비모수적 방법: 수집된 자료가 정규분포를 하지 않는 경우
+
+모집단이 정규분포를 할 때는 표본수가 커질수록 정규분포에 가까워지게 된다..  즉 표본수가 작을 때 정규분포를 하기 어려워지고 모집단이 정규분포를 따르는지를 알 수 없게 되기 때문에 이때 비모수 검정을 사용하게 된다.  
+측정 자료가 명목형(이산형)일 경우도 마찬가지로 정규분포를 하지 않죠.  예를 들어 얘기해서 남.녀의 수를 비교한다는 것은 정규분포를 할 수 없다.
+참조: <https://m.blog.naver.com/PostView.nhn?blogId=nlboman&logNo=23354659&proxyReferer=https%3A%2F%2Fwww.google.com%2F>
 ###  귀무가설, 대립가설, p-value
 귀무가설(H0): 관습적이고 보수적인 주장, 차이가 없다.  
 대립가설(H1): 적극적으로 입증하려는 주장, 차이가 있음을 통계적 근거를 통해 입증하고 하는 주장  
