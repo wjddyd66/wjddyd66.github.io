@@ -226,5 +226,5 @@ delete from jikwon where jikwon_no=2
 <br>
 
 <hr>
-참조: <https://github.com/wjddyd66/R/tree/master/T><br>
+참조: <https://github.com/wjddyd66/DB/tree/master/DB-DDL%2CDML%2CData><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
