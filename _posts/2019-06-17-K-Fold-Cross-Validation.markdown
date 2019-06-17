@@ -2,7 +2,7 @@
 layout: post
 title:  "R 교차검증"
 date:   2019-06-17 12:40:20 +0700
-categories: [R,others]
+categories: [R]
 ---
 
 ###  교차검증(K-Fold Cross Validation)
