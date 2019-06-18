@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "DB Join"
+title:  "DB Join,Union"
 date:   2019-06-18 10:00:00 +0700
 categories: [DB,RDBMS]
 ---
@@ -25,7 +25,7 @@ select a.jikwon_name, b.jikwon_jik from jikwon a, jikwon b where a.jikwon_no=b.j
 Outer Join은 조인하는 여러 테이블에서 한 쪽에는 데이터가 있고 한 쪽에는 데이터가 없는 경우(NULL 값), 데이터가 있는 쪽 테이블의 내용을 전부 출력하는 방법이다. 없는 쪽의 값은 NULL값으로 나오게 된다.  
 1. Left Outer Join
  - 왼쪽에 있는 테이블의 모든 결과를 가져온 후 오른쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.  
-<div ><img src="https://t1.daumcdn.net/cfile/tistory/224EFA4656EF49B309" height="200" width="400" align="center"/></div><br>
+<div ><img src="https://t1.daumcdn.net/cfile/tistory/224EFA4656EF49B309" height="200" width="400"/></div><br>
 ```sql
 select jikwon_name, buser_name from jikwon, buser where buser_num=buser_no (+); 
 -- 없는 값 null
@@ -33,7 +33,7 @@ select jikwon_name, buser_name from jikwon inner join buser on buser_num=buser_n
 ```
 2. Right Outer Join
  - 오른쪽에 있는 테이블의 모든 결과를 가져온 후 왼쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/2418A25056EF4BA912" height="200" width="400" align="center"/></div><br>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/2418A25056EF4BA912" height="200" width="400"/></div><br>
 ```sql
 select jikwon_name, buser_name from jikwon, buser where buser_num(+)=buser_no; 
 -- 없는 값 null
@@ -42,7 +42,7 @@ select jikwon_name, buser_name from jikwon inner join buser on buser_num(+)=buse
 
 3. Full Outer Join
  - Left Outer Join + Right Outer Join. 양쪽 모두 조건이 일치하지 않는 것들까지 모두 결합하여 출력  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/232EF54356EF4DA123" height="200" width="400" align="center"/></div><br>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/232EF54356EF4DA123" height="200" width="400"/></div><br>
 ```sql
 select jikwon_name, buser_name from jikwon, buser where buser_num(+)=buser_no(+); -- X
 select jikwon_name, buser_name from jikwon full join buser on buser_num=buser_no; 
@@ -56,7 +56,7 @@ select jikwon_name, buser_name from jikwon full join buser on buser_num=buser_no
 <li>Oracle(권장X)</li>
 <li>select "column_name" from "table_name"<span style ="color: red">,</span>"table_name" where 조건</li>
 </ul>
-<div><img src="https://t1.daumcdn.net/cfile/tistory/251A374456EB994D13" height="200" width="400" align="center"/></div><br>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/251A374456EB994D13" height="200" width="400"/></div><br>
 ```sql
 select jikwon_name, buser_name from jikwon, buser where buser_num=buser_no; 
 -- 오라클용 (다른데 가서 이렇게 쓰면 안될 수가 있다.)
@@ -75,6 +75,49 @@ select jikwon_name, buser_name, gogek_name
 from jikwon inner join buser on buser_num=buser_no 
 inner join gogek on jikwon_no=gogek_damsano;
 ```
+
+###  Union  
+Join과 마찬가지로 테이블을 합치는 작업이지만 결과물을 상하위로 합치는 직렬 조합에 사용  
+ <span style ="color: red">Union은 전체 행에 대해 Distinct 작업이 수행되므로 전체 행의 값이 같은 경우 제거</span><br>
+```sql
+-- union: 구조가 일치하는 두 개 이상의 테이블 자료 합쳐보기
+create table pum1(bun int, pummok varchar2(10));
+insert into pum1 values(1, '한라봉');
+insert into pum1 values(2, '귤');
+insert into pum1 values(3, '천혜향');
+insert into pum1 values(50, '자몽');
+select * from pum1;
+drop table pum1;
+
+create table pum2 (num int, sangpum varchar2(10));
+insert into pum2 values(10, '사과');
+insert into pum2 values(20, '배');
+insert into pum2 values(30, '포도');
+insert into pum2 values(40, '딸기');
+insert into pum2 values(50, '자몽');
+select * from pum2;
+
+-- 합집합: 두 테이블을 합쳐서 보여준다. 
+select bun, pummok from pum1
+union
+select num, sangpum from pum2;
+
+-- 유니온하되, 중복 있게 보여준다.
+select bun, pummok from pum1
+union all
+select num, sangpum from pum2;
+
+-- 차집합: pum1-pum2. 자몽이 제외된다. 
+select bun, pummok from pum1
+minus
+select num, sangpum from pum2;
+
+-- 교집합: 두 테이블 사이에 중복되는 데이터만 반환
+select bun, pummok from pum1
+intersect
+select num, sangpum from pum2;
+```
+
 <hr>
 그림 및 내용 참조: <https://clairdelunes.tistory.com/22><br>
 참조: <https://github.com/wjddyd66/DB/tree/master/Join><br>
