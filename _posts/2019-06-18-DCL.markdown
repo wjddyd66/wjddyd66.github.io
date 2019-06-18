@@ -1,0 +1,75 @@
+---
+layout: post
+title:  "DB DCL"
+date:   2019-06-18 09:30:00 +0700
+categories: [DB,RDBMS]
+---
+
+###  DCL
+데이터베이스에서 데이터에 대한 엑세스를 제어하기 위한 데이터베이스 언어 또는 데이터베이스 언어 요소 
+###  Grant  
+사용자에게 시스템 권한을 부여하는 명령이다.  
+grant [select, update, delete, all] on [tablename] to [username, username...];  
+###  Revoke
+사용자에게 시스템 권한을 뺏는 명령이다.  
+revoke [select, update, delete, all] on [tablename] from [username, username...];  
+CDM 창을 통해 Scott 계정에서 user1, user2, user3 create및 grant, revoke 부여 연습
+<div><img src="https://postfiles.pstatic.net/MjAxOTAxMjlfMTYw/MDAxNTQ4NzIyODc0MjY1.9OVUV1yzMozktno4kESBt4X4oYqTNXDmt46N-leeKq8g.ayu3CaBnhsTW9kJIzIyixdrQ_aV432DczsciXJgPWIAg.PNG.mint3081/image.png?type=w966" height="300" width="600" /></div><br>
+
+user1에서 만든 테이블에 대해 system에서도 접근가능: select * from user1.kbs;  
+참조:<https://blog.naver.com/mint3081/221453982183>  
+<span style ="color: red">**추가: ROLE**</span><br>
+ROLE이란 사용자에게 허가 할 수 있는 권한들의 집합이다.  
+ROLE을 통해 권한 부여야 회수를 쉽게 할 수 있다.  
+```sql
+create role role_name;
+grant role_name to user1,user2...
+```
+###  Commit,RollBack
+Commit,RollBack을 설명하기 전에 트랜잭션에 대해 알아야 한다.  
+트랜잭션(Transaction)이란 논리적인 일의 단위를 의미한다.  
+Update, Insert, Delete의 작업을 하게 되면 DB자체에서 Lock이 걸리게 되고 실제 저장소에 자료가 변형되는 것이 아닌 논리적인 장소에서 작업이 이루어지게 된다.  
+Commit 이란 논리적인 장소에서 작업된 Data를  실제 저장소에 적용시키는 명령어가 이다.  
+ROllBack이란 트랜잭션을 수행하지 않고 원상태로 되돌릴수 있는 명령어 이다.  
+<span style ="color: red">**DeacLock**</span><br>
+데드락이란 프로세스가 자원을 얻지 못해 다음 처리를 하지 못하는 상태로 "고착 상태"라고도 하며 시스템적으로 한정된 자원을 여러곳에서 사용하려고 할 때 발생한다.  
+DB에서는 두 개의 트랜잭션이 서로의 진행을 막고 충돌하는 현상을 의미하게 된다.  
+```sql
+-- Commit, RollBack
+create table trtest as select * from jikwon;
+select * from trtest;
+commit;
+delete from trtest; 
+drop table trtest;
+rollback;
+
+-- Transaction
+select * from trtest where jikwon_no=1;
+update trtest set jikwon_pay=100000 where jikwon_no=1;
+savepoint a; -- 이것을 이용하여 부분적으로 커밋/롤백 할 수 있다.
+update trtest set jikwon_pay=110000 where jikwon_no=2;
+select * from trtest where jikwon_no=2;
+rollback to savepoint a; -- savepoint까지는 유지하고, 그 이후만 rollback
+select * from trtest where jikwon_no in (1,2);
+rollback; -- 전체 다 rollback
+select * from trtest where jikwon_no in (1,2);
+update trtest set jikwon_pay=120000 where jikwon_no=3;
+commit;
+select * from trtest where jikwon_no in (1,2,3);
+-- update, insert, delete가 들어가는 순간 Lock이 걸린다. 
+-- 이것을 푸는 방법: Commit, RollBack
+-- 그 와중에 저장 포인트를 지정해주는 방법: savepoint
+-- 작업이 끝난 뒤에는 Commit을 꼭 해주어야 한다.
+
+
+-- deadlock: 두 개의 트랜잭션이 서로의 진행을 막고 충돌하는 현상
+-- 트랜잭션의 마무리로 커밋/롤백을 그때 그때 해줘라! 안 그러면 데드락에 빠지고 만다...
+update trtest set jikwon_pay=777 where jikwon_no=3;
+select * from trtest;
+commit;
+delete from trtest where jikwon_no=5;
+```
+
+<hr>
+참조: <https://github.com/wjddyd66/DB/tree/master/DCL><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
