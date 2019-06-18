@@ -64,9 +64,6 @@ db.user.distinct("name")
 		<tr>
 		<td>condition</td><td>조건을 줄 때 사용한다.</td>
 	</tr>
-		<tr>
-		<td>$ninl</td><td>존재하지 않는다</td>
-	</tr>
 	</tbody>
 </table>
 <br>
