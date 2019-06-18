@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "NoSQL 개념"
-date:   2019-06-18 11:00:00 +0700
+date:   2019-06-18 12:00:00 +0700
 categories: [DB,NoSQL]
 ---
 
+<span style ="color: red">본 글은 NoSQL Post는 Namoosori-MongoDB(ver2.21) PDF자료를 참조하여 정리하였습니다.</span>  
 ###  NoSQL
-<span style ="color: red">앞으로의 NoSQL Post는 Namoosori-MongoDB(ver2.21) PDF자료를 참조하여 정리하였습니다.</span>  
 NoSQL(Not Only SQL)은 RDBMS의 한계를 극복하기 위해 만들어진 새로운 형태의 데이터 베이스 이다. RDBMS와 같이 고정된 스키마가 없이 Key-Value형식으로 이루어진 거대한 Map 이다.  
 <span style ="color: red">RDBMS의 한계</span><br>
 1. Big Data를 스키마에 맞게 변경하는데 시간이 오래 걸린다.
