@@ -185,9 +185,6 @@ from jikwon
 where jikwon_pay is not null and jikwon_jik is not null
 group by cube(buser_num, jikwon_jik);
 ```
- - 집합연산: 여러 테이블에서 질의 결과를 참조하는 복합문을 처리하기 위한 연산자 구분
-  - UNION, UNION ALL, INTERSECT, EXCEPT, MINUS  
-출처: <https://ko.wikipedia.org/wiki/Select_(SQL)>  
 
 ###  Insert 
 <span style ="color: red">**제약 조건**</span><br>
