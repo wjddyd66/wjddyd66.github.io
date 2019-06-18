@@ -49,7 +49,7 @@ db.programmer.find(query)
 
 ###  갱신하기(Update)
 기존 문서를 수정합니다.
-1. 기본적인 방법: Method의 첫번째 인자는 갱신하려는 문서를 찾고, 두번째 인자는 치환할 새로운 문서의 내용이다.
+ - 기본적인 방법: Method의 첫번째 인자는 갱신하려는 문서를 찾고, 두번째 인자는 치환할 새로운 문서의 내용이다.
 
 
 ```js
@@ -71,7 +71,7 @@ db.programmer.find()
 결과:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Update.PNG" height="150" width="600" /></div><br>
 
-2. 조건을 걸어서 Update하기
+ - 조건을 걸어서 Update하기
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
 	<tbody>
@@ -110,7 +110,7 @@ db.programmer.find()
 결과:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Update2.PNG" height="150" width="600" /></div><br>
 
-3. 조건에 맞지 않는 문서가 발견되면 쿼리 문서와 갱신문서를 합친 새로운 문서 입력, 3번째 인자를 True로 한다.
+ - 조건에 맞지 않는 문서가 발견되면 쿼리 문서와 갱신문서를 합친 새로운 문서 입력, 3번째 인자를 True로 한다.
 
 
 ```js
@@ -125,7 +125,7 @@ db.programmer.find()
 결과:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Update3.PNG" height="150" width="600" /></div><br>
 
-4. 다중 문서 갱신, 4번째 인자를 True로 한다.
+ - 다중 문서 갱신, 4번째 인자를 True로 한다.
 
 
 ```js
@@ -165,7 +165,7 @@ db.programmer.find()
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Delete1.PNG" height="150" width="600" /></div><br>
 결과 - 모두 삭제하기:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Delete2.PNG" height="150" width="600" /></div><br>
-
+<span style ="color: red">**_id: Mongo에서 RDBMS의 PK와 같은 역할을 한다. Document생성시 자동으로 배정받고 Document끼리 중복되지 않는 값 이다.**</span>
 <hr>
 참조: <https://github.com/wjddyd66/NoSQL/tree/master/CRUD><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
