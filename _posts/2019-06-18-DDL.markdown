@@ -1,0 +1,109 @@
+---
+layout: post
+title:  "DB DDL"
+date:   2019-06-17 12:50:20 +0700
+categories: [DB,RDBMS]
+---
+
+###  DDL
+DDL이란 데이터 정의 언어로서 데이터베이스 검색, 등록, 삭제, 갱신을 하기 위해 사용하는 데이터 베이스 언어 이다.  
+1. Create  
+객체를 생성하는데 사용, Create Table 시에 제약조건을 줄 수 있다. 
+ - DoMain 제약 조건: Create Table 시, 컬럼의 성격, 크기, null 허용 여부
+ - Primary Key 제약 조건: 중복 자료 방지 목적
+ - 사용자 정의 제약 조건: Check, Unique, Foriegn Key, Default  
+  - Check: 특정 갈럼값 조사
+  - Unique: 특정 칼럼의 동일값 불허용
+  - Default: 특정 칼럼에 초기값 부여
+  - Foreign Key(외부키, 참조키): 다른 테이블 칼럼(타 테이블의 PK)를 참조
+2. Alter  
+이미 존재하는 개체의 특성을 변경할때 사용  
+Alter table 테이블명...
+3. Drop  
+이미 존재하는 개체를 삭제할때 사용  
+Drop table 테이블명...
+
+```sql
+-- DML: Create, Alter, Drop
+-- 1) Create Table
+-- primary key(기본키) 제약: 1번 방법에 충실하되, 2,3번도 가능하다는 정도만 알고 있자.
+-- 방법 1)
+create table aa (bun number primary key, irum char(10)); -- bun은 중복 불가, not null ! 
+desc aa;
+
+select constraint_type, constraint_name from user_constraints where table_name='AA';
+drop table aa;
+
+-- 방법 2)
+create table aa (bun number constraint aa_bun primary key, irum char(10));
+select constraint_type, constraint_name from user_constraints where table_name='AA';
+drop table aa;
+
+-- 방법 3)
+create table aa (bun number, irum char(10), constraint aa_bun primary key(bun));
+select constraint_type, constraint_name from user_constraints where table_name='AA';
+drop table aa;
+
+-- Check 제약조건: 특정 칼럼 값 검사
+create table aa (bun number, irum char(10), nai number check(nai>=20));
+desc aa;
+select constraint_type, constraint_name from user_constraints where table_name='AA';
+insert into aa value (1, 'tom', 23);
+insert into aa value (2, 'tom2', 13);
+drop table aa;
+
+-- Unique 제약조건: 특정 칼럼의 동일값 불허용
+create table aa (bun number, irum char(10) unique);
+desc aa;
+select constraint_type, constraint_name from user_constraints where table_name='AA';
+insert into aa values (1, 'tom');
+insert into aa values (2, 'tom2');
+select * from aa;
+drop table aa;
+
+-- default 제약 조건: 특정 칼럼에 초기값 부여
+create table aa (bun number, irum char(10), addr varchar(20) default '강남구 역삼동');
+desc aa;
+insert into aa values (1, 'tom', '서초구 서초동');
+insert into aa (bun, irum)values (2, 'james');
+select * from aa;
+drop table aa;
+
+-- foreign key (외부키, 참조키) 제약조건: 다른 테이블의 칼럼(타 테이블의 PK)을 참조
+create table jikwon (bun number primary key, irum varchar2(10), buser varchar2(10));
+insert into jikwon values (1, '홍길동', '총무부');
+insert into jikwon values (2, '길길동', '영업부');
+insert into jikwon values (3, '홍길동', '전산부');
+select * from jikwon;
+
+create table gajok (code number primary key, name varchar2(10), birth date, jikwon_bun number references jikwon(bun));
+insert into gajok values (100, '홍두께', '2000-05-05', 1); -- 주의: 없는 부모키를 참조하려고 하면 에러가 난다.
+insert into gajok values (110, '홍당무', '2010-05-05', 1);
+insert into gajok values (120, '신기혜', '2002-05-05', 2);
+insert into gajok values (130, '신선혜', sysdate, 2); -- sysdate: 오늘 날짜 반환 (오라클만), now: 다른 모든 DB에서 같은 역할!
+select * from gajok;
+
+-- 2) Alter Table, Drop Table, Rename Table
+rename aa to kbs;
+select * from kbs;
+
+-- 컬럼 관련 명령
+-- 컬럼 추가
+alter table kbs add (job_id number(5) default 100);
+select * from kbs;
+-- 컬럼 수정
+alter table kbs modify (job_id number(3)); -- 자료형의 사이즈를 축소하는 것은 불가!
+alter table kbs modify (job_id number(7)); -- 확장은 가능!
+desc kbs;
+-- 컬럼명 수정
+alter table kbs rename column job_id to job_no;
+select * from kbs;
+-- 컬럼 삭제
+alter table kbs drop (job_no);
+select * from kbs;
+```
+<br>
+
+<hr>
+참조: <https://github.com/wjddyd66/DB/tree/master/DDL><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

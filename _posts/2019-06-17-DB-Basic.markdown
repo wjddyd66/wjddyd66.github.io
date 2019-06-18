@@ -32,5 +32,6 @@ categories: [DB]
  - 박탈, 연결, 권한 부여, 질의, 자료 삽입, 갱신, 삭제 등
  - Grant, Revoke, Commit, RoLLBack
 <hr>
+Test Data: <https://github.com/wjddyd66/DB/tree/master><br>
 참조: <https://coding-factory.tistory.com/77><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
