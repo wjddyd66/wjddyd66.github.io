@@ -64,7 +64,19 @@ select jikwon_name, buser_name from jikwon inner join buser on buser_num=buser_n
 -- 표준SQL용
 ```
 
+###  추가: 삼중조인
+(1 + 2)Join 후 3과 Join하는 방식  
+```sql
+-- (1 + 2)Join 후 3과 Join하는 방식
+select jikwon_name, buser_name, gogek_name from jikwon, buser, gogek
+where buser_num=buser_no and jikwon_no=gogek_damsano;
+
+select jikwon_name, buser_name, gogek_name 
+from jikwon inner join buser on buser_num=buser_no 
+inner join gogek on jikwon_no=gogek_damsano;
+```
 <hr>
 그림 및 내용 참조: <https://clairdelunes.tistory.com/22>
+코드 참조:<https://blog.naver.com/mint3081/221450743145>
 참조: <https://github.com/wjddyd66/DB/tree/master/Join><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
