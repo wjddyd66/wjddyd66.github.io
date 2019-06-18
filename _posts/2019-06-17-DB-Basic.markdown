@@ -2,7 +2,7 @@
 layout: post
 title:  "DB 개념 및 용어 설명"
 date:   2019-06-17 12:45:20 +0700
-categories: [DB]
+categories: [DB,RDBMS]
 ---
 
 ###  DB 개념 및 용어 설명
