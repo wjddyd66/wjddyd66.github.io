@@ -1,0 +1,70 @@
+---
+layout: post
+title:  "DB DCL"
+date:   2019-06-18 10:00:00 +0700
+categories: [DB,RDBMS]
+---
+
+###  Join - Cross Join, Self Join, Outer Join, Inner Join
+2개의 이상의 테이블을 조합하여 하나의 열로 표현하는 것 이다.
+
+###  Cross Join  
+두 테이블에서 곱집합을 반환한다.  
+m개의 열을 가진 테이블과, n열을 가진 테이블이 교차 조인되면 m x n개의 열을 생성  
+```sql
+select jikwon_name, buser_name from jikwon, buser; -- 직원이름(16)과 부서이름(4)이 1:1 대응. 16*4 = 64개.
+```
+
+###  Self Join
+자기 자신을 조인하는 것
+```sql
+select a.jikwon_name, b.jikwon_jik from jikwon a, jikwon b where a.jikwon_no=b.jikwon_no; 
+-- 'a, b'라는 별명을 줄 수 있다.
+```
+###  Outer Join
+Outer Join은 조인하는 여러 테이블에서 한 쪽에는 데이터가 있고 한 쪽에는 데이터가 없는 경우(NULL 값), 데이터가 있는 쪽 테이블의 내용을 전부 출력하는 방법이다. 없는 쪽의 값은 NULL값으로 나오게 된다.  
+1. Left Outer Join
+ - 왼쪽에 있는 테이블의 모든 결과를 가져온 후 오른쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.  
+<div><img src="https://t1.daumcdn.net/cfile/tistory/224EFA4656EF49B309" height="300" width="400" /></div><br>
+```sql
+select jikwon_name, buser_name from jikwon, buser where buser_num=buser_no (+); 
+-- 없는 값 null
+select jikwon_name, buser_name from jikwon inner join buser on buser_num=buser_no (+); 
+```
+2. Right Outer Join
+ - 오른쪽에 있는 테이블의 모든 결과를 가져온 후 왼쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.  
+<div><img src="https://t1.daumcdn.net/cfile/tistory/2418A25056EF4BA912" height="300" width="400" /></div><br>
+```sql
+select jikwon_name, buser_name from jikwon, buser where buser_num(+)=buser_no; 
+-- 없는 값 null
+select jikwon_name, buser_name from jikwon inner join buser on buser_num(+)=buser_no;
+```
+
+3. Full Outer Join
+ - Left Outer Join + Right Outer Join. 양쪽 모두 조건이 일치하지 않는 것들까지 모두 결합하여 출력  
+<div><img src="https://t1.daumcdn.net/cfile/tistory/232EF54356EF4DA123" height="300" width="400" /></div><br>
+```sql
+select jikwon_name, buser_name from jikwon, buser where buser_num(+)=buser_no(+); -- X
+select jikwon_name, buser_name from jikwon full join buser on buser_num=buser_no; 
+-- 전부 다 출력
+```
+###  Inner Join
+서로 연관된 내용만 출력  
+<ul>
+<li>표주SQL</li>  
+<li>select "column_name" from "table_name" <span style ="color: red">**INNER  JOIN**</span> "table_name" <span style ="color: red">**on**</span> 조건</li>
+<li>Oracle(권장X)</li>
+<li>select "column_name" from "table_name"<span style ="color: red">**,**</span>"table_name" where 조건</li>
+</ul>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/251A374456EB994D13" height="300" width="400" /></div><br>
+```sql
+select jikwon_name, buser_name from jikwon, buser where buser_num=buser_no; 
+-- 오라클용 (다른데 가서 이렇게 쓰면 안될 수가 있다.)
+select jikwon_name, buser_name from jikwon inner join buser on buser_num=buser_no; 
+-- 표준SQL용
+```
+
+<hr>
+그림 및 내용 참조: <https://clairdelunes.tistory.com/22>
+참조: <https://github.com/wjddyd66/DB/tree/master/Join><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
