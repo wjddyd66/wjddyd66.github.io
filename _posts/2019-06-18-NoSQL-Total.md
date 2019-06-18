@@ -41,12 +41,8 @@ db.runCommand({"distinct":"user","key":"name"})
 db.user.distinct("name")
 ```
 <br>
-결과 - db.runCommand({"distinct":"user","key":"name"})
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Distinct1.PNG" height="150" width="600" /></div>
-
-<br>
 결과 - db.user.distinct("name")
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Distinct2.PNG" height="150" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Distinct1.PNG" height="150" width="600" /></div>
 
 ###  Group
 문서들을 선택한 기준으로 그룹으로 묶어 집계를 낼 때 사용  
@@ -129,7 +125,7 @@ db.user2.group({
 ```
 <br>
 결과:
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Groupt.PNG" height="150" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Group.PNG" height="150" width="600" /></div><br>
 
 <hr>
 내용 참조: Namoosori-MongoDB(ver2.21) PDF<br>
