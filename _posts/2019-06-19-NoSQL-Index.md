@@ -93,7 +93,7 @@ db.user.find().sort({score:1})
 
 ###  공간정보 인덱스
 좌표 평면으로 적용된다. 다양한 이유로 사용된다.
-1. Within: 좌표와 Boundary를 지정한 모형을 생성한 후 Boundary안에 있는 Document 찾기  
+ - Within: 좌표와 Boundary를 지정한 모형을 생성한 후 Boundary안에 있는 Document 찾기  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
 	<tbody>
@@ -112,7 +112,7 @@ db.user.find().sort({score:1})
 	</tbody>
 </table>
 <br>
-2. near: 좌표를 지정한 후 가까운 거리 순으로 문서를 찾음  
+ - near: 좌표를 지정한 후 가까운 거리 순으로 문서를 찾음  
 ```js
 db.places.find({
   location: {
@@ -128,7 +128,7 @@ db.places.find({
 })
 ```
 <br>
-3. geoNear aggregation stage: aggregation은 쿼리에 포함이 가능하므로 MongoDb aggregation 파이프라인의 장점을 최대한 이용할 수 있다  
+ - geoNear aggregation stage: aggregation은 쿼리에 포함이 가능하므로 MongoDb aggregation 파이프라인의 장점을 최대한 이용할 수 있다  
 Option
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
