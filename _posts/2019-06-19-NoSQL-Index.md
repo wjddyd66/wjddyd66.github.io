@@ -126,6 +126,7 @@ db.legacyplaces.find({
   }
 })
 ```
+<br>
  - near: 좌표를 지정한 후 가까운 거리 순으로 문서를 찾음  
 
 
