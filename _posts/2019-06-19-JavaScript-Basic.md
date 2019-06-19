@@ -426,69 +426,72 @@ function [name]([param1[, param2[, ..., paramN]]]) {
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js20.JPG" height="150" width="600" /></div>
 <br>
 ## 클로져
-실행이 끝난 함수의 스코프를 참조할 수 있는 함수
+클로져는 독립적인 변수를 가르키는 함수이다. 또는 클로저 안에 정의된 함수는 만들어진 환경을 기억한다.  
+클로져가 변수에 접근할 때에는 변수명 앞에 underscore(_)를 써서 접근가능하도록 하였다.  
 
 ```js
-function parent() {
-  var a = 'Parent is done';
-  function child() {
-    console.log(a);
-  }
-  return child;
+function Hello(name) {
+  this._name = name;
 }
-var closure = parent();
-closure();
+
+Hello.prototype.say = function() {
+  console.log('Hello, ' + this._name);
+}
+
+var hello1 = new Hello('승민');
+var hello2 = new Hello('현섭');
+var hello3 = new Hello('유근');
+
+hello1.say(); // 'Hello, 승민'
+hello2.say(); // 'Hello, 현섭'
+hello3.say(); // 'Hello, 유근'
+hello1.name = 'anonymous';
+hello1.say(); // 'Hello, anonymous'
+hello1._name = 'anonymous';
+hello1.say(); // 'Hello, anonymous'
 ```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js21.JPG" height="150" width="600" /></div>
+<br>
 
-위 내부함수의 정의대로라면 parent 의 내부함수인 child() 는 외부에서 접근이 불가능하다.
-하지만 return 값에 child 를 넘김으로써 외부에서도 child 를 호출할 수 있게 된다.
-따라서, child() 에서 parent 의 값을 참고하고 있다면, child() 를 밖에서 호출함으로써
-parent() 의 변수에 접근이 가능하게 된다. 이것이 **클로져**
-
-## map() 구현
+## 클로져를 통한 은닉화
+클로져가 변수에 접근하기 위해서는 변수명 앞에 underscore(_)를 써서 접근 가능하다.  
+이러한 접근이 싫으면 미리 _변수명 = Value로서 선언함으로 인하여 은닉화를 구현할 수 있다.  
 
 ```js
-// definition
-Array.prototype.myMap = function(callback) {
-    arr = [];
-    for (var i = 0; i < this.length; i++)
-        arr.push(callback(this[i], i, this));
-    return arr;
-};
+function Hello(name) {
+  this._name = name;
+}
 
-//tests
-var arrs = ['dic tanin', 'boo radley', 'hans gruber'];
-var numbers2 = [1, 4, 9];
+Hello.prototype.say = function() {
+  console.log('Hello, ' + this._name);
+}
 
-var goodT = arrs.myMap(function(n) {
-    return n;
-});
+var hello1 = new Hello('승민');
+var hello2 = new Hello('현섭');
+var hello3 = new Hello('유근');
 
-var squareRoot = numbers2.myMap(function(num) {
-    return Math.sqrt(num);
-});
-
-console.log(goodT); // [ 'dic tanin', 'boo radley', 'hans gruber' ]
-console.log(squareRoot); // [ 1, 2, 3 ]
+hello1.say(); // 'Hello, 승민'
+hello2.say(); // 'Hello, 현섭'
+hello3.say(); // 'Hello, 유근'
+hello1.name = 'anonymous';
+hello1.say(); // 'Hello, anonymous'
+hello1._name = 'anonymous';
+hello1.say(); // 'Hello, anonymous'
 ```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js22.JPG" height="150" width="600" /></div>
+<br>
 
 ## 실행 컨텍스트를 이해하기 위한 자바스크립트 동작과정
-1. 변수, 함수 선언, arguments 을 가진 활성 객체(Variable Object) 생성
-2. Scope Chain 생성 및 초기화
-  - 변수 초기화 : 변수 값에 undefined 할당
+1. Variable Object: 실행에 필요한 여러 정보들을 담을 객체 생성
+ - 변수
+ - Parameter, Argument
+ - 함수 선언
+2. Scope Chain: 해당 전역 또는 함수가 참조할 수 있는 변수, 함수선언 등의 정보를 담고있는 전역객체 또는 활성객체의 리스트
+3. this: this 프로퍼티에는 this값이 할당된다. this에 할당되는 값은 함수 호출 패턴에 의해 결정된다.
 
-3. this 바인딩
-4. 코드 해석 및 실행
-  - 변수 값 할당 : 변수에 실제 값 할당
 
-## 변수 초기화 과정
-1. 변수 선언 - 변수를 활성 객체에 할당
-2. 변수 초기화 - 변수 값에 undefined 할당
-3. 변수 실제 값 할당 - 변수에 실제 값을 할당
-
-## 실행 컨텍스트를 이해하기 위한 문제
-비동기 실행 방식인 setTimeout 를 이용한 예제이다.
-
+비동기 실행 방식인 setTimeout 를 이용한 예제이다.  
+setTimeout 이 지연시간이 0 이라고 할지라도 실행 컨텍스트가 다르기 때문에 1,4 가 먼저 출력된다.
 ```js
 console.log("1");
 function exec() {
@@ -506,10 +509,13 @@ function exec() {
 console.log(exec());
 // 위 코드 실행 결과 : 1, 4, 3, 5, 2
 ```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js23.JPG" height="150" width="600" /></div>
+<br>
 
-setTimeout 이 지연시간이 0 이라고 할지라도 실행 컨텍스트가 다르기 때문에 1,4 가 먼저 출력된다.
-
-이번엔 for 문과 setTimeout 이다.
+이번엔 for 문과 setTimeout 이다.  
+실행되는 메인 컨텍스트와 setTimeout 이 실행되는 컨텍스트가 다르기 때문에
+일반 프로그래밍 지식 관점에서는 0,1,2,3,4 이라고 추측하겠지만, 실제로는 for 문의 실행이 모두 끝난 후에
+setTimeout 의 콜백 함수가 실행되기 때문에 숫자 5가 다섯 번 출력된다.  
 
 ```js
 var i;
@@ -519,26 +525,12 @@ for (i = 0; i < 5; i++) {
   }, 1000);
 }
 ```
-
-위 코드를 실행시켰을 때, 이 코드가 실행되는 메인 컨텍스트와 setTimeout 이 실행되는 컨텍스트가 다르기 때문에
-일반 프로그래밍 지식 관점에서는 0,1,2,3,4 이라고 추측하겠지만, 실제로는 for 문의 실행이 모두 끝난 후에
-setTimeout 의 콜백 함수가 실행되기 때문에 숫자 5가 다섯 번 출력된다.
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js24.JPG" height="150" width="600" /></div>
+<br>
 
 ## arguments 객체
-함수 호출시에 넘겨진 실제 인자 값을 가진 배열
-
-```js
-// 아래 함수 정의에 포함된 인자 값은 2개
-function add(a, b) {
-  console.dir(arguments);
-}
-console.log(add(1)); // Arguments(1), 0: 1
-console.log(add(1, 2)); // Arguments(2), 0: 1, 1: 2
-console.log(add(1, 2, 3)); // Arguments(3), 0: 1, 1: 2, 2: 3
-```
-
+함수 호출시에 넘겨진 실제 인자 값을 가진 배열  
 arguments 의 활용 : 메서드에 넘겨 받을 인자의 개수를 모를 때 유용
-
 ```js
 function sum() {
   for (var i = 0, result = 0; i < arguments.length; i++) {
@@ -549,22 +541,47 @@ function sum() {
 console.log(sum(1,2,3)); // 6
 console.log(sum(1,2,3,4,5,6)); // 21
 ```
-
-<p class="notice">참고: arguments는 length 속성과 `arguments[i]`와 같은 index를 지니지만 배열은 아니다. 이러한 객체를 배열과 비슷한 객체(array-like object)라고 한다.</p>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js25.JPG" height="150" width="600" /></div>
+<br>
 
 ## apply() & call()
-위에서 배운 arguments에 `apply()`, `call()`을 이용하여 실제 배열 메서드를 사용할 수 있다.
+다른 객체 대신 메소드를 호출하는데 사용된다.  
+이 메서드를 사용하여 함수의 this 객체를 원래 컨텍스트에서 thisObj로 지정된 새 객체로 변경할 수 있다.  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>종류</td><td>구문</td><td>매게변수</td>
+	</tr>
+
+	<tr>
+		<td>call</td>
+		<td>fun.call([thisObj[, arg[, arg2[, ...]]]</td>
+		<td>
+			<ul>
+				<li>fun: 가져다 쓸 메소드</li>
+				<li>thisObj(선택 사항): 현재 객체로 사용될 객체</li>
+				<li>arg1,arg2,argN(선택 사항): 메소드에 전달될 인수 목록</li>
+			</ul>
+		</td>
+	</tr>
+	
+		<tr>
+		<td>apply</td>
+		<td>fun.apply([thisObj[,argArray]])</td>
+		<td>
+			<ul>
+				<li>fun: 가져다 쓸 메소드</li>
+				<li>thisObj(선택 사항): 현재 객체로 사용될 객체</li>
+				<li>argArray: 메소드에 전달될 인수 집합</li>
+			</ul>
+		</td>
+	</tr>
+	
+	</tbody>
+</table>
+<br>
 
 ```js
-// apply() 적용 전
-function sum() {
-  console.log("arguments length : " + arguments.length);
-  arguments.push(100); // Uncaught TypeError: arguments.push is not a function
-  console.dir(arguments); // Arguments(3)
-}
-sum(1,2,3);
-
-// apply() 적용 후
 function sum() {
   var args1 = Array.apply(arguments);
   args1.push(100); // 0: 100
@@ -576,14 +593,8 @@ function sum() {
 }
 sum(1,2,3);
 ```
-
-```text
-함수명.apply(대상, 인자 배열);
-```
-
-**`apply()`, `call()` 메서드는 결국 .apply()를 호출하는 함수를 실행하는 것** 이다.
-그리고 호출하는 함수의 인자 값에 apply() 로 넘긴 인자 배열을 넣어서
-마지막 실행 결과만 대상에 연결한다라고 보면 되겠다.
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js25.JPG" height="150" width="600" /></div>
+<br>
 
 ```js
 function user(firstName, lastName, age) {
@@ -595,9 +606,13 @@ user.apply(window, ['pangyo', 'captain']); // user.call(window, 'John', 'Doe'); 
 console.log(window.firstName); // 'pangyo'
 console.log(window.lastName); // 'captain'
 ```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js27.JPG" height="150" width="600" /></div>
+<br>
 
 ## this 바인딩
-일반적으로 함수 내부에서 this를 사용하면 전역 스코프(window)에 접근한다.
+일반적으로 함수 내부에서 this를 사용하면 전역 스코프(window)에 접근한다.  
+<span style ="color: red">**하지만 현재 작업하고 있는 환경에서는 this가 적용되지 않았다.  Online Complier 환경에서 Complie하고 있어서 생기는 문제인 것 같다.**</span><br>
+
 
 ```js
 // 함수 선언식
@@ -608,17 +623,9 @@ function binding() {
   console.log(this); // Window {stop: ƒ, open: ƒ, alert: ƒ, confirm: ƒ, prompt: ƒ, …}
 }
 binding();
-
-// 함수 표현식
-var text = 'global';
-var binding = function() {
-  var text = 'local';
-  console.log(this.text); // 'global'
-  console.log(this); // Window {stop: ƒ, open: ƒ, alert: ƒ, confirm: ƒ, prompt: ƒ, …}
-}
-binding();
 ```
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js28.JPG" height="150" width="600" /></div>
+<br>
 객체의 속성에서 함수를 선언하고 this를 사용하면 해당 객체를 접근한다.
 
 ```js
@@ -633,26 +640,10 @@ var binding = {
 binding.printText();
 ```
 
-함수의 내부함수에서 this를 사용하면 전역 객체(window)에 접근한다.
-
-```js
-var text = 'global';
-var binding = {
-  text: 'local',
-  printText: function () {
-    console.log(this.text); // local
-    var innerFunc = function () {
-      console.log(this.text); // global
-    };
-    innerFunc();
-  }
-};
-binding.printText();
-```
-
-
 ## 스코프 체인을 이해하기 위한 예제
-아래는 전역 스코프와 함수 스코프를 구분하면 된다.
+스코프 체인이란 실행 시점에서 identifiers(식별자)를 찾는 것이다.  
+아래 예제는 지역변수와 전역 변수의 스코프이다.  
+지역변수가 우선시 되는것을 확인할 수 있다.  
 
 ```js
 // ex.1
@@ -668,7 +659,8 @@ func();
 console.log(a); // 1
 console.log(b); // 2
 ```
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js29.JPG" height="150" width="600" /></div>
+<br>
 아래는 내부함수 innerfunc 에서 외부함수인 func 의 변수에 접근하고 있다.
 
 ```js
@@ -683,7 +675,8 @@ function func() {
 }
 func();
 ```
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js30.JPG" height="150" width="600" /></div>
+<br>
 아래 예제는 func1 의 실행 컨텍스트가 전역이라는 것에 주목한다.
 
 ```js
@@ -698,113 +691,14 @@ function func2(func1) {
 }
 func2(func1);
 ```
-
-## 클로져 정의 및 코드 예시
-- 외부 함수의 실행이 종료되어 컨텍스트가 반환되더라도, 내부 함수로 종료된 외부 함수의 스코프(변수)에 접근이 가능한 기법:스코프 체이닝
-- 이미 생명주기가 끝난 외부 함수의 변수를 참조하는 함수
-
-```js
-function func() {
-  var a = 1;
-  var cl = function () {
-    console.log(a);
-  };
-  return cl
-}
-var result = func();
-console.dir(result); // [[Scope]] 에서 Closure 함수임을 확인 가능
-result();
-```
-
-![closure]({{ site.url }}/images/posts/web/javascript/js-basic-summary/closure.JPG)
-
-일정한 형식을 가진 템플릿에서 입력된 값에 따라 다른 결과물을 내는 코드
-
-```js
-var str = [
-  'hello ',
-  '',
-  ' world'
-];
-
-function completeSentence(name) {
-  str[1] = name;
-  return str.join('');
-}
-completeSentence('js');
-```
-
-위 코드에 클로져를 적용하면
-
-```js
-function completeSentence(name) {
-  var str = [
-    'hello ',
-    '',
-    ' world'
-  ];
-  return function () {
-    str[1] = name;
-    return str.join('');
-  };
-}
-var result = completeSentence('js');
-result();
-```
-
-위 함수를 좀 더 기능 단위로 분할해보면
-
-```js
-function completeSentence(name) {
-  var str = [
-    'hello ',
-    '',
-    ' world'
-  ];
-  // 입력된 문자열로 문장을 완성하는 기능
-  var complete = function () {
-    str[1] = name;
-    return str.join('');
-  };
-  // 문장 완성 기능을 클로져로 빼는 역할
-  var closure = function () {
-    return complete();
-  };
-  return closure;
-}
-var result = completeSentence('js');
-result();
-```
-
-## 클로져 활용
-클로져를 활용하여 Java나 기타 언어처럼 속성 및 메서드의 범위를 정할 수 있다.
-
-```js
-// 클로져로 Java 클래스와 유사하게 모듈화한 예제
-var Module = (function() {
-    var privateProperty = 'foo';
-    function privateMethod(args) {
-      console.log('private method');
-    }
-
-    return {
-        publicProperty: '',
-        publicMethod: function(args) {
-          console.log("public method");
-        },
-        privilegedMethod: function(args) {
-          return privateMethod(args);
-        }
-    };
-})();
-
-Module.privilegedMethod();
-```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js31.JPG" height="150" width="600" /></div>
+<br>
 
 
 <hr>
 내용 참조: <https://joshua1988.github.io/web-development/javascript/javascript-basic-summary/><br>
 내용 참조: <http://tcpschool.com/javascript/js_intro_basic><br>
-내용 참조: <https://jsfiddle.net/z48w2s6o/35/>
-<br>
+내용 참조: <https://jsfiddle.net/z48w2s6o/35/><br>
+내용 참조: <https://hyunseob.github.io/2016/08/30/javascript-closure/><br>
+내용 참조:<https://beomy.tistory.com/4><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
