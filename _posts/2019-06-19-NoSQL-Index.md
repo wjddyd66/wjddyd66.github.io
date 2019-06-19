@@ -113,6 +113,8 @@ db.user.find().sort({score:1})
 </table>
 <br>
  - near: 좌표를 지정한 후 가까운 거리 순으로 문서를 찾음  
+
+
 ```js
 db.places.find({
   location: {
@@ -128,7 +130,9 @@ db.places.find({
 })
 ```
 <br>
- - geoNear aggregation stage: aggregation은 쿼리에 포함이 가능하므로 MongoDb aggregation 파이프라인의 장점을 최대한 이용할 수 있다  
+ - geoNear aggregation stage: aggregation은 쿼리에 포함이 가능하므로 MongoDb aggregation 파이프라인의 장점을 최대한 이용할 수 있다.  
+
+
 Option
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
@@ -149,7 +153,7 @@ Option
 </table>
 <br>
 ```js
-/$geoNear aggregation stage: 가까운 곳을 찾고 거리까지 구하는 방법
+$geoNear aggregation stage: //가까운 곳을 찾고 거리까지 구하는 방법
 db.places.aggregate([
   {
     $geoNear: {
