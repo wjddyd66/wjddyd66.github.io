@@ -49,7 +49,6 @@ ul Element 에 Event를 걸어 자식인 a 링크가 가지 않게 되는 실습
 <br>
 
 <hr>
-내용참조:<https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%9C%84%EC%9E%84---event-delegation>
-내용참조:<http://tcpschool.com/jquery/jq_event_delegation>
-<br>
+내용참조:<https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%9C%84%EC%9E%84---event-delegation><br>
+내용참조:<http://tcpschool.com/jquery/jq_event_delegation><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
