@@ -26,7 +26,7 @@ Event를 등록하는 방법은 크게 두가지가 있다.
 ###  이벤트 버블링(Event Bubbling)
 이벤트 버블링이란 엘레멘트에서 이벤트가 감지 되었을 때, 해당 엘리먼트를 포함하고 있는 부모 엘리먼트를 통하여 최상위 까지 이벤트가 전달되는 것이다.  
 아래 화면은 글자 P를 누르게 되면 p -> div -> form 순으로 이벤트가 전달되는 것을 알 수 있다.  
-<iframe width="100%" height="350" src="//jsfiddle.net/wjddyd66/t3h156m8/10/embedded/html,js,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="350" src="//jsfiddle.net/wjddyd66/t3h156m8/10/embedded/html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <br>
 
 ###  이벤트 캡쳐(Event Capture)
