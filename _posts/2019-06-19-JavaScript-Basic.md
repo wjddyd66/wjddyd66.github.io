@@ -45,7 +45,7 @@ console.log(typeof nullCheck === null);
 console.log(nullCheck === null);
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js1.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js1.JPG" height="150" width="600" /></div>
 <br>
 
 참조 타입(객체 타입)
@@ -64,7 +64,7 @@ objA = objB;
 console.log( objA == objB );
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js2.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js2.JPG" height="150" width="600" /></div>
 <br>
 ### NaN (Not a Number)
 수치 연산을 해서 정상적인 값을 얻지 못할 때 발생하는 에러  
@@ -74,7 +74,7 @@ console.log(1 - 'hello'); // NaN
 console.log(1 + 'hello'); // 1hello
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js3.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js3.JPG" height="150" width="600" /></div>
 <br>
 
 ### delete 연산자
@@ -100,7 +100,7 @@ delete foo;
 console.log(foo); // {name: "foo", nickname: "pangyo"}
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js4.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js4.JPG" height="150" width="600" /></div>
 <br>
 
 ### 객체의 모든 연산은 참조 값을 처리
@@ -123,7 +123,7 @@ console.log(objA == objB); // false
 console.log(objB == objC); // true
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js5.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js5.JPG" height="150" width="600" /></div>
 <br>
 ## Array 랑 Object 구분 방법
 <table class="table">
@@ -151,7 +151,7 @@ console.log(arr.constructor.name);
 console.log(obj.constructor.name);
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js6.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js6.JPG" height="150" width="600" /></div>
 <br>
 
 ## delete & splice 연산자 in 배열
@@ -167,7 +167,7 @@ arr.splice(1, 1);
 console.log(arr); // [1, 3]
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js7.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js7.JPG" height="150" width="600" /></div>
 <br>
 
 ## typeof 연산자
@@ -193,7 +193,7 @@ console.log(typeof arr); // object (배열도 object)
 console.log(typeof func); // function
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js8.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js8.JPG" height="150" width="600" /></div>
 <br>
 
 ## == 연산자와 === 연산자
@@ -205,7 +205,7 @@ console.log(1 == '1'); // true
 console.log(1 === '1'); // false
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js9.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js9.JPG" height="150" width="600" /></div>
 <br>
 
 ## 함수 호이스팅
@@ -220,7 +220,7 @@ var add = function (a, b) {
 add(4, 5);
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js10.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js10.JPG" height="150" width="600" /></div>
 <br>
 함수 호이스팅 하였지만, 개인적인 환경에서는 같은 Error가 발생하게 되었다.  
 ```js
@@ -232,7 +232,7 @@ console.log(add(4, 5))
 console.log(add(2, 3))
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js12.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js12.JPG" height="150" width="600" /></div>
 <br>
 함수 선언 후 수행:  
 ```js
@@ -244,7 +244,7 @@ console.log(add(4, 5))
 console.log(add(2, 3))
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js11.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js11.JPG" height="150" width="600" /></div>
 <br>
 
 ## 함수의 length 속성
@@ -261,7 +261,7 @@ console.log('func3 length : ' + func3.length); // func3 length : 3
 console.log('func4 length : ' + func4.length); // func4 length : 1
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js13.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js13.JPG" height="150" width="600" /></div>
 <br>
 
 ## 내부 함수
@@ -292,7 +292,7 @@ parent(); // 10, 30, 10, 40
 child1(); // child is not defined
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js14.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js14.JPG" height="150" width="600" /></div>
 <br>
 
 ## 생성자 함수
@@ -311,7 +311,7 @@ console.log(dev); // Developer {name: "captain", stack: "web", city: "pangyo"}
 console.log(devops); // Developer {name: "hulk", stack: "devops", city: "seoul"}
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js15.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js15.JPG" height="150" width="600" /></div>
 <br>
 
 ## instaceof
@@ -331,7 +331,7 @@ console.log(auto2 instanceof Car); //true
 console.log(auto3 instanceof Car); //false
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js16.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js16.JPG" height="150" width="600" /></div>
 <br>
 
 ## instaceof 를 활용한 생성자 함수 구분법
@@ -353,7 +353,7 @@ console.log(a.value);
 console.log(b.value);
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js17.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js17.JPG" height="150" width="600" /></div>
 <br>
 
 ## 프로토타입(Prototype)
@@ -373,7 +373,7 @@ console.log(kim.eyes); //Kim에 eyes라는 property가 존재하지 않으나 �
 console.log(park.eyes);// => 2
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js18.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js18.JPG" height="150" width="600" /></div>
 <br>
 
 ## 프로토타입 객체 메서드 재정의
@@ -404,7 +404,7 @@ var child = new MyChild();
 // 메서드 호출 
 child.method1(); 
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js19.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js19.JPG" height="150" width="600" /></div>
 <br>
 ## 즉시 실행 함수
 함수를 정의함과 동시에 바로 실행하는 함수. 함수를 다시 호출할 수 없다는 특징이 있다.
@@ -423,7 +423,7 @@ function [name]([param1[, param2[, ..., paramN]]]) {
   console.log('This is the immediate function : ' + name);
 })(['foo',['foo2']]);
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js20.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js20.JPG" height="150" width="600" /></div>
 <br>
 ## 클로져
 실행이 끝난 함수의 스코프를 참조할 수 있는 함수
@@ -716,7 +716,7 @@ console.dir(result); // [[Scope]] 에서 Closure 함수임을 확인 가능
 result();
 ```
 
-![closure]({{ site.url }}/images/posts/web/javascript/js-basic-summary/closure.png)
+![closure]({{ site.url }}/images/posts/web/javascript/js-basic-summary/closure.JPG)
 
 일정한 형식을 가진 템플릿에서 입력된 값에 따라 다른 결과물을 내는 코드
 
