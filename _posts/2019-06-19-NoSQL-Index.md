@@ -112,10 +112,25 @@ db.user.find().sort({score:1})
 	</tbody>
 </table>
 <br>
+```js
+//공간 정보 인덱스 2차원으로 생성
+//$geoWithin은 지형 모형을 선택하여 실행하겠다는 의미이다.
+//$centerSphere: 구형, $box: 사각형, $center: 원형
+db.legacyplaces.find({
+  location: {
+    $geoWithin: {
+      //(x,y)=> Center값 지정후
+      //반지름 정하기: radian 을 사용하여 정해지므로 6378.1로 나누었다.
+      $centerSphere: [[126.876933, 33.381018], 5 / 6378.1]
+    }
+  }
+})
+```
  - near: 좌표를 지정한 후 가까운 거리 순으로 문서를 찾음  
 
 
 ```js
+//$near: 좌표를 지정한 후 가까운 거리 순으로 문서를 찾는 Option
 db.places.find({
   location: {
     $nearSphere: {
@@ -153,7 +168,7 @@ Option
 </table>
 <br>
 ```js
-$geoNear aggregation stage: //가까운 곳을 찾고 거리까지 구하는 방법
+//$geoNear aggregation stage: 가까운 곳을 찾고 거리까지 구하는 방법
 db.places.aggregate([
   {
     $geoNear: {
