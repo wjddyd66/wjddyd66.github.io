@@ -18,8 +18,7 @@ Input Element
  - type="submit": Form 안의 내용을 해당 URL에 맞는 Servlet 요청으로 들어가게 함
 
 ###  Html
-get과 post방식으로 hi.do라는 URL로 통해 보내게 된다.  
-get방식은 HTML Element에 
+get과 post방식으로 hi.do라는 URL로 통해 보내게 된다.   
 
 
 ```html
