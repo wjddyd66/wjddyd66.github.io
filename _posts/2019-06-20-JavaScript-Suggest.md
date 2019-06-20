@@ -156,7 +156,7 @@ function show(ele) {
 Jsp에서는 DB에 연결하여 Query문을 날린다음에 결과를 반환한다.  
 Query: select jikwon_name from jikwon where jikwon_name like ?  
 ?는 suggest.js에서 받은 keyword이다.  
-```jsp
+```html
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -216,7 +216,7 @@ Query: select jikwon_name from jikwon where jikwon_name like ?
 ```
 <br>
 결과: 
-<iframe width="100%" height="350" src="https://www.loom.com/share/a30f391d1b0c4bc78cfc08743fa6d382" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="350" src="https://www.loom.com/share/a30f391d1b0c4bc78cfc08743fa6d382" frameborder="0" gesture="media" allowfullscreen=""></iframe>
 <br>
 
 <hr>
