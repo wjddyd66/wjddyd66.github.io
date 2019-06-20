@@ -223,5 +223,5 @@ Query: select jikwon_name from jikwon where jikwon_name like ?
 내용참조:<https://webclub.tistory.com/218><br>
 내용참조:<http://tcpschool.com/jquery/jq_event_delegation><br>
 내용참조:<https://coding-factory.tistory.com/143><br>
-참조:<https://github.com/wjddyd66/Others/tree/master/Suggest><br>
+참조:<https://github.com/wjddyd66/Web/tree/master/Suggest><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
