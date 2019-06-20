@@ -12,6 +12,8 @@ HTML Form Element안에 정보를 담고 Input Element에 의해 정보 전송
 Form Element
  - method: 원하는 동작 설정: get or post
  - action: Servlet에게 전송되는 논리적인 URL
+
+
 Input Element
  - type="submit": Form 안의 내용을 해당 URL에 맞는 Servlet 요청으로 들어가게 함
 
@@ -81,9 +83,12 @@ hi.do라는 URL요청이 왔을 경우 처리하는 곳 이다.
 3. destroy()
  - 서비스 종료시 1회 수행되는 함수이다.
  - Servlet 객체를 메모리에서 제거한다.
-<div><img src="https://gmlwjd9405.github.io/images/web/servlet-program.png" height="300" width="600" /></div>
+<div><img src="https://gmlwjd9405.github.io/images/web/servlet-program.png" height="300" width="700" /></div>
 <br>
-출처: <https://gmlwjd9405.github.io/2018/10/28/servlet.html><br>
+출처: <https://gmlwjd9405.github.io/2018/10/28/servlet.html><br><br>
+
+
+Servlet 코드
 ```java
 package pack;
 
@@ -135,7 +140,7 @@ public class TestServlet extends HttpServlet {
 
 ###  결과
 아래 동영상은 Get, Post방식에 따른 출력 결과이다.  
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/share/efbdce3a1cab40c88eb32574f8ae8ec7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div><br>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/efbdce3a1cab40c88eb32574f8ae8ec7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div><br>
 아래 사진은 생성자에 의해 한번만 수행되는 것을 나타낸 결과이다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js44.JPG" height="150" width="600" /></div>
 <br>
