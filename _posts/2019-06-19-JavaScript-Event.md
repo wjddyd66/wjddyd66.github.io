@@ -2,7 +2,7 @@
 layout: post
 title:  "JavaScript-Event"
 date:   2019-06-19 11:30:00 +0700
-categories: [others]
+categories: [Web]
 ---
 
 ###  Event

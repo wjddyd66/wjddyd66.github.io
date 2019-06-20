@@ -2,7 +2,7 @@
 layout: post
 title:  "JavaScript-Basic"
 date:   2019-06-19 11:00:00 +0700
-categories: [others]
+categories: [Web]
 ---
 <span style ="color: red">**본 글은 <https://joshua1988.github.io/web-development/javascript/javascript-basic-summary/>을 보고 연습한 글입니다.**</span><br>
 

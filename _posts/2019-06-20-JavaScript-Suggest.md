@@ -2,7 +2,7 @@
 layout: post
 title:  "JavaScript-Suggest"
 date:   2019-06-20 08:30:00 +0700
-categories: [others]
+categories: [Web]
 ---
 
 ###  Suggest
@@ -153,6 +153,7 @@ function show(ele) {
 ```
 
 ###  Jsp
+Jsp(JavaServer Page): HTML 코드에 JAVA코드를 넣어 동적 웹페이지를 생성하는 웹어플리케이션 도구 이다.  
 Jsp에서는 DB에 연결하여 Query문을 날린다음에 결과를 반환한다.  
 Query: select jikwon_name from jikwon where jikwon_name like ?  
 ?는 suggest.js에서 받은 keyword이다.  

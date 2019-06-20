@@ -2,7 +2,7 @@
 layout: post
 title:  "JavaScript-DOM,JQuery,Ajax"
 date:   2019-06-20 08:00:00 +0700
-categories: [others]
+categories: [Web]
 ---
 
 ###  DOM
@@ -30,10 +30,10 @@ DOM이란 브라우저 화면에 보이는 요소를 조작하기 위한 기능�
 		/>
         로 이루어 진다 이런 Element안에 다른 Element를 추가하여 Tree형식으로 구성되어 
         부모/자식 관계로 접근할 수 있다.
-		
+
 		</td>
 	</tr>
-
+	
 	</tbody>
 </table>
 아래 예제는 DOM을 이해하기 위한 구구단 출력 예제 이다.
