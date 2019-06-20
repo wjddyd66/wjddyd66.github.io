@@ -214,7 +214,5 @@ public class SessionLogin extends HttpServlet {
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/ebb408944dae4cc199b534d1c30bedba" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div><br>
 
 <hr>
-내용참조: <https://mangkyu.tistory.com/14><br>
-내용참조: <https://gmlwjd9405.github.io/2018/10/28/servlet.html><br>
 참조:<https://github.com/wjddyd66/Web/tree/master/Session_Cookie><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
