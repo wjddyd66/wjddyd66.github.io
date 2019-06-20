@@ -44,13 +44,13 @@ get방식은 HTML Element에
 ```
 ###  Servlet - Java
 hi.do라는 URL요청이 왔을 경우 처리하는 곳 이다.  
-1. init()
+1) init()
  - 최초 접속자에 의해 1회 수행되는 초기화 작업이다. 
  - Servlet 객체를 초기화하는 역할이다(Servlet 객체를 메모리에 할당한다.)
  - 1초뒤 sendKeyword() 실행
  - 1초의 텀을 둔 이유는 한글에서 한 글자를 적을때까지 기달리게 하기 위해서 이다.
 
-2. Service(request,response)
+2) Service(request,response)
  - 응답에 대한 모든 내용이 구현되는 곳 입니다.
  - doget()
   - Service중 doget Method를 Override한 곳이다.
@@ -80,7 +80,7 @@ hi.do라는 URL요청이 왔을 경우 처리하는 곳 이다.
 </table>
 <br>
 
-3. destroy()
+3) destroy()
  - 서비스 종료시 1회 수행되는 함수이다.
  - Servlet 객체를 메모리에서 제거한다.
 <div><img src="https://gmlwjd9405.github.io/images/web/servlet-program.png" height="300" width="700" /></div>
@@ -140,7 +140,7 @@ public class TestServlet extends HttpServlet {
 
 ###  결과
 아래 동영상은 Get, Post방식에 따른 출력 결과이다.  
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/efbdce3a1cab40c88eb32574f8ae8ec7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div><br>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/179d1b78de5a44bf9df0cf0c9eb74ac8" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 아래 사진은 생성자에 의해 한번만 수행되는 것을 나타낸 결과이다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js44.JPG" height="150" width="600" /></div>
 <br>
