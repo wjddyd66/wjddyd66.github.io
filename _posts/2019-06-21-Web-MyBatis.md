@@ -449,6 +449,18 @@ DataDto dto = processDao.selectDataPart(code);
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/b10.JPG" height="300" width="700" /></div>
 <br>
 
+###  MyBatis include
+MyBatis에서는 DataMapper에서 많이 사용하는 구문을 include하여서 사용할 수 있다.  
+```xml
+<!--My Batis Include-->
+  <sql id="my">order by code asc</sql>
+
+ <!-- selectDataAll과 같은 구문 -->
+ <select id="selectDataAll2" resultType="dto">
+  select * from sangdata
+  <include refid="my1"/>
+ </select>
+```
 <br>
 <hr>
 자료참조:<https://m.blog.naver.com/PostView.nhn?blogId=wwwkang8&logNo=220989381100&proxyReferer=https%3A%2F%2Fwww.google.com%2F><br>
