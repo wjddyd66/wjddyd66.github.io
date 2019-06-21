@@ -16,20 +16,28 @@ MyBatis를 이해하기 위한 기본은 DAO, DTO, Bean이다.
  - DAO(Data Access Objects)  
   1)실질적인 DB와의 연결을 담당하는 객체  
   2)저장소에 데이터를 입력, 조쇠, 수정, 삭제 등 처리를 담당  
+
+
  -DTO(Data Tranfer Object)  
   1)데이터 전달을 위해 만들어진 객체  
-  2)Private로 변수를 선언하고 getter, setter Method로 접근한다.  
-Private, getter, setter  
-참조:<https://wjddyd66.github.io/java/2019/06/14/AccessModifier.html>
+  2)Private로 변수를 선언하고 getter, setter Method로 접근한다.
+
+
+참조:<https://wjddyd66.github.io/java/2019/06/14/AccessModifier.html><br>
+
  - FormBean:DTO와 같지만 Client 에서 WebServer로 전달하는 Data 객채이다.
+
+
 DTO vs FormBean  
 <div><img src="https://postfiles.pstatic.net/MjAxOTAzMDVfMTQ0/MDAxNTUxNzU3MTE4MDQ5.QdTmkbaeDzQ9phL0jdgOdfNm7lKNvjDqtaVjnCVIE3wg.tkKrd3TmhjzDytTxrZ7cklfvRVlRerHmEt0QuXXTyIgg.PNG.mint3081/image.png?type=w966" height="300" width="700" /></div>
 <br>
 
 ###  MyBatis 설정
  - SqlSessionConfig.xml: MyBatis가 JDBC 코드를 실행하는데 필요한 전반에 걸친 환경 설정 파일이다.
-  - 어떤 DB와 연결할 것인지
-  - 사용할 모델 클래스에 대한 별칭은 무엇인지
+1)어떤 DB와 연결할 것인지
+2) 사용할 모델 클래스에 대한 별칭은 무엇인지
+
+
 
 
 ```java
@@ -60,9 +68,11 @@ public static SqlSessionFactory getSqlSession(){
 }
 ```
  - DataMapper: SQL문과 관련된 설정을 하는 파일이다.
-  - SQL문 id 설정
-  - ParameterType, ResultType 설정(정하지 않으면 defalut값으로 설정)
-  - SQL문 작성
+1) SQL문 id 설정
+2) ParameterType, ResultType 설정(정하지 않으면 defalut값으로 설정)
+3) SQL문 작성
+
+
 
 
 ```xml
@@ -95,9 +105,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </mapper>
 ```
  - Configuration.xml: Config와 Mapper를 연결시켜주는 작업이다.
-  - DB연결 정보 작성
-  - Mapper 연결
-  - Mapper에서 사용할 type설정(DAO 혹은 많이 사용하는 Type)
+1) DB연결 정보 작성
+2)  Mapper 연결
+3)  Mapper에서 사용할 type설정(DAO 혹은 많이 사용하는 Type)
 
 
 ```xml
@@ -128,8 +138,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </configuration>
 ```
  - properties
-  - .properties는 응용 프로그램의 구성 가능한 파라미터들을 저장하기 위해 자바 관련 기술, 주로 보안상의 이유로 사용한다.
-  - DB계정은 보안이 필요한 정보이므로 properties형식에 저장하고 사용하였다.
+1)  .properties는 응용 프로그램의 구성 가능한 파라미터들을 저장하기 위해 자바 관련 기술, 주로 보안상의 이유로 사용한다.
+2)  DB계정은 보안이 필요한 정보이므로 properties형식에 저장하고 사용하였다.
 
 
 ```xml
