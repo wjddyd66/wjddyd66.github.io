@@ -63,7 +63,7 @@ categories: [Web]
 ```
 <br>
 실행 화면:
-<div><img src="https://gmlwjd9405.github.io/images/Web/FR.JPG" height="150" width="700" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/FR.JPG" height="150" width="700" /></div>
 <br>
 ###  Forward
 Forward방식으로 요청을 처리하는 방식이다.  
@@ -133,10 +133,10 @@ public class Forward extends HttpServlet {
 ```
 <br>
 결과 URL:  
-<div><img src="https://gmlwjd9405.github.io/images/Web/Forward1.JPG" height="100" width="700" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/Forward1.JPG" height="100" width="700" /></div>
 <br>
 결과:  
-<div><img src="https://gmlwjd9405.github.io/images/Web/Forward2.JPG" height="150" width="700" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/Forward2.JPG" height="150" width="700" /></div>
 <br>
 
 ###  Redirect
@@ -203,14 +203,13 @@ public class Redirect extends HttpServlet {
 ```
 <br>
 결과 URL:  
-<div><img src="https://gmlwjd9405.github.io/images/Web/Redirect1.JPG" height="100" width="700" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/Redirect1.JPG" height="100" width="700" /></div>
 <br>
 결과:  
-<div><img src="https://gmlwjd9405.github.io/images/Web/Redirect2.JPG" height="150" width="700" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/Redirect2.JPG" height="150" width="700" /></div>
+
 <br>
 
 <hr>
-내용참조: <https://mangkyu.tistory.com/14><br>
-내용참조: <https://gmlwjd9405.github.io/2018/10/28/servlet.html><br>
 참조:<https://github.com/wjddyd66/Web/tree/master/Forward_Redirect><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
