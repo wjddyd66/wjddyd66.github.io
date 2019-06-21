@@ -63,7 +63,7 @@ categories: [Web]
 ```
 <br>
 실행 화면:
-<div><img src="https://gmlwjd9405.github.io/images/web/FR.JPG" height="150" width="700" /></div>
+<div><img src="https://gmlwjd9405.github.io/images/Web/FR.JPG" height="150" width="700" /></div>
 <br>
 ###  Forward
 Forward방식으로 요청을 처리하는 방식이다.  
@@ -133,10 +133,10 @@ public class Forward extends HttpServlet {
 ```
 <br>
 결과 URL:  
-<div><img src="https://gmlwjd9405.github.io/images/web/Forward1.JPG" height="100" width="700" /></div>
+<div><img src="https://gmlwjd9405.github.io/images/Web/Forward1.JPG" height="100" width="700" /></div>
 <br>
 결과:  
-<div><img src="https://gmlwjd9405.github.io/images/web/Forward2.JPG" height="150" width="700" /></div>
+<div><img src="https://gmlwjd9405.github.io/images/Web/Forward2.JPG" height="150" width="700" /></div>
 <br>
 
 ###  Redirect
@@ -203,10 +203,10 @@ public class Redirect extends HttpServlet {
 ```
 <br>
 결과 URL:  
-<div><img src="https://gmlwjd9405.github.io/images/web/Redirect1.JPG" height="100" width="700" /></div>
+<div><img src="https://gmlwjd9405.github.io/images/Web/Redirect1.JPG" height="100" width="700" /></div>
 <br>
 결과:  
-<div><img src="https://gmlwjd9405.github.io/images/web/Redirect2.JPG" height="150" width="700" /></div>
+<div><img src="https://gmlwjd9405.github.io/images/Web/Redirect2.JPG" height="150" width="700" /></div>
 <br>
 
 <hr>
