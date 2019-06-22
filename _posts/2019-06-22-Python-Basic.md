@@ -196,6 +196,9 @@ print(s);#Name:황정용,Age:26,Job:Programmer
 	</tbody>
 </table>
 <br>
+<span style ="color: red">**id(): 객체의 주소를 확인**</span><br>
+<span style ="color: red">**is: 객체의 주소를 비교**</span><br>
+<span style ="color: red">**==: 객체의 값을 비교**</span><br>
 ```python
 #연산자
 
