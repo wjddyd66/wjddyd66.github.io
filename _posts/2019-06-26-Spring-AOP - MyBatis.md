@@ -180,7 +180,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 ###  pack.model
 DB와 연관되는 작업을 하는 곳이다.  
 JikwonDto: Jikwon정보를 전달하기 위해 만들어진 객체이다.  
- - Getter,Setter Method로 이루워져 있다.  
+ - Getter,Setter Method로 이루워져 있다.
+
+
 JikwonInter: Interface를 사용하여 공동 작업시 충돌 방지  
  - List<
 JikwonDto> selectDataAll(): 직원 전체 자료 조사
@@ -191,7 +193,8 @@ String, Object>> selectDataEx1(): 부서별 직원 수 조사
  - List<
 Map<
 String, Object>> selectDataEx2(): 부서별 가장 월급을 많이 받는 직원
-JikwonInter: 실제 DB와 연결하여 작업 DAO의 역할을 한다. 따라서 @Repository로서 Annotation을 하고 Interface에서 정의한 내용을 작성하였다.  
+
+JikwonImpl: 실제 DB와 연결하여 작업 DAO의 역할을 한다. 따라서 @Repository로서 Annotation을 하고 Interface에서 정의한 내용을 작성하였다.  
 
 ```java
 //JikwonDto
@@ -469,6 +472,8 @@ public class MyAdvice {
 ```
 실행결과-selectDataAll()  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/MyBatis1.JPG" height="250" width="600" /></div>
+<div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/MyBatis6.JPG" height="250" width="600" /></div>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/MyBatis2.JPG" height="250" width="600" /></div>
 <br>
 실행결과-selectDataCount()  
