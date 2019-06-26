@@ -206,7 +206,7 @@ Ajax를 활용하여 결과를 얻을때 Return Type을 Json으로 받은뒤 처
 btnOk1은 Ajax 통신을 통하여 한개의 자료를 그냥 받아서 처리하는 과정 이다.  
 btnOk2를 Ajax 통신을 통하여 다량의 자료를 Json 타입으로 받아서 처리하는 과정이다.  
 
-```jsp
+```code
 <!DOCTYPE html>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
