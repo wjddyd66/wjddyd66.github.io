@@ -35,6 +35,9 @@ XML(EXtensible Markup Language): HTML과 매우 비슷한 문자 기반의 마�
 <br>
 <span style ="color: red">**JSON은 문자열이므로 XML보다 빠르고 장점이 많지만, 사용자가 직접 데이터의 무결성을 검증하여야 한다.따라서 데이터 검증이나 스키마를 사용하여 무결성을 검증할 수 있는 XML도 많이 사용이 된다.**</span>
 <br>
+<br>
+Ajax( Asynchronous Javascript And Xml)  
+AJAX 참고:<https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html>  
 Ajax통신에서 사용하는 Parameter  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
@@ -60,8 +63,7 @@ Ajax통신에서 사용하는 Parameter
 	</tbody>
 </table>
 <br>
-Ajax의 자세한 내용은 아래 링크에 POST해두었다.  
-AJAX 참고:<https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html>
+
 
 ###  XML - myform.jsp
 myform.jsp는 XML로 Return하는 값을 요청하기 위하여 값을 넣고 요청하는 곳이다.  
@@ -274,7 +276,7 @@ btnOk2를 Ajax 통신을 통하여 다량의 자료를 Json 타입으로 받아�
 ```
 <br>
 
-###  JSON,Ajax - pack.model
+###  JSON,Ajax - pack.Controller
 jsonController: 하나의 자료를 처리하는 Controller이다.  
 jsonController2: 다수의 자료를 처리하는 Controller이다.  
 둘다 반환하는 형식은 비슷하지만 Ajax 통신을 설정할때 dataType을 어떻게 설정하냐에 따라서 Return Type이 결정나는 것이다.  
@@ -307,36 +309,6 @@ public class JsonController {
 		myModel.setSkills(new String[] {"자바 전문 개발자","DB운영 숙련자"});
 		return myModel;
 	}
-}
-
-```
-<br>
-
-###  JSON,Ajax - pack.model
-자료를 저장하고 옮기는 저장소를 하는 형태를 정하는 곳이다.(DTO)  
-
-```java
-//JsonController
-package pack.model;
-import org.springframework.stereotype.Component;
-
-@Component
-public class MyModel {
-	private String name;
-	private String skills[];
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String[] getSkills() {
-		return skills;
-	}
-	public void setSkills(String[] skills) {
-		this.skills = skills;
-	}
-	
 }
 
 //JsonController2
@@ -386,6 +358,35 @@ public class JsonController2 {
 		data2.put("datas",datalist);
 		return data2;
 	}
+}
+
+```
+<br>
+
+###  JSON,Ajax - pack.model
+자료를 저장하고 옮기는 저장소를 하는 형태를 정하는 곳이다.(DTO)  
+
+```java
+package pack.model;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MyModel {
+	private String name;
+	private String skills[];
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String[] getSkills() {
+		return skills;
+	}
+	public void setSkills(String[] skills) {
+		this.skills = skills;
+	}
+	
 }
 ```
 <br>
