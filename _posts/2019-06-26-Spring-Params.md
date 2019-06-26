@@ -112,9 +112,14 @@ index.jsp -> Controller를 거친뒤의 결과를 보여주는 곳 이다.
 <br>
 ###  loginController.java
 index.jsp에서 받은 요청을 처리하는 곳 이다.  
+1. admin(),user(),etc(): kic/login뒤에 붙은 변수 type으로 써 구별한다.  
+2. post(): Post방식으로 들어오는 것을 처리한다.  
+3. get(): Get방식으로 들어오는 것을 처리한다.  
+
+
 @Controller: Controller라는 것을 명시  
 @RequestMapping: index.jsp의 요청을 받기 위하여 사용(value: 실제 요청 내용, params: 받은 변수 내용)  
-@RequestParam: GET요청에 대해 매칭되는 request parameter값이 자동으로 들어감  
+@RequestParam: 요청에 대해 매칭되는 request parameter값이 자동으로 들어감  
 @PathVariable: HTTP 요청에 대해 매칭되는 request parameter값이 자동으로 들어감   
 ModelAndView: ViewResolver에 전달할 View 이름이다. Spring에서는 WEB-INF/view에 jsp형태로 자동으로 찾아가게 된다. ModelandView admin()을 예로 들면  
 
