@@ -1,6 +1,6 @@
 ---
 layout: project_single
-title:  "Cool Project"
-slug: "cool-project"
+title:  "BOM AIR"
+slug: "Spring-project"
 ---
 Just a demo text for now, which signifies there is lot of scope for improvement.
