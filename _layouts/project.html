@@ -22,9 +22,9 @@ layout: default
       
       {% for i in site.data.projects %}
       <div class="project-item project-outer" data-tags='{{ i.tags | jsonify | downcase }}'>
-        <div class="project-inner">
+        <div class="project-inner" style="width: 450px;">
           <a href="/static/projects/{{ i.image }}" class="thickbox">
-            <div class="project-img bordered" style="background-image: url('/static/projects/{{ i.image }}'); background-size: auto;"></div>
+            <div class="project-img bordered" style="background-image: url('/static/projects/{{ i.image }}'); background-size: auto; width: 400px"></div>
           </a>
           {% assign p_url = nil %}
           {% for pr in p_array %}
