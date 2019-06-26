@@ -58,7 +58,7 @@ Spring은 POJO프레임 워크이다. 이러한 Spring은 클래스를 관리하
 Spring은 인터페이스 기반의 설계를 하고, 어떤 클래스를 사용시 구상 클래스가 아닌 인터페이스를 통해 사용하려는 클래스의 메서드를 호출한다.  
 따라서 객체가 서로 약한 결합으로 연결되므로 유지보수에 용이하다.  
 아래 그림은 Spring MVC 구조를 이해하기 위한 그림이다.  
-<div><img src="https://mblogthumb-phinf.pstatic.net/20160512_289/lakeni_1463025116804Q2uGQ_PNG/%B1%D7%B8%B21.png?type=w800" height="150" width="600" /></div>
+<div><img src="https://mblogthumb-phinf.pstatic.net/20160512_289/lakeni_1463025116804Q2uGQ_PNG/%B1%D7%B8%B21.png?type=w800" height="400" width="600" /></div>
 그림참조:<https://m.blog.naver.com/PostView.nhn?blogId=lakeni&logNo=220708587953&proxyReferer=https%3A%2F%2Fwww.google.com%2F>
 <br>
 위와 같은 그림의 흐름을 약결합으로 인해 분리하고 유지보수가 쉽게 하기 위해서 MVC라는 패턴을 사용하는 것이다.  
