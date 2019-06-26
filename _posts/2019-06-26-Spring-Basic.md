@@ -22,7 +22,61 @@ POJO를 사용하게 되면 복잡한 로우레벨의 API를 이용해야 하는
 이러한 POJO에서 제공하는 객체지향적인 장점과 EJB의 제공하는 엔터프라이즈 서비스와 기술을 그대로 사용할 수 있도록 도와주는 프레임워크가 POJO 프레임 워크이다.  
 Sping은 이러한 POJO프레임 워크중에 하나이다.  
 (Spring에서는 POJO를 Beans라고 부른다.)
+###  Bean Mapping 방법
+bean을 사용하기 위하여 Mapping하는 방법은 3가지가 있다.
+1. URL
+2. Pattern
+3. Annotation
 
+```xml
+    <!-- Mapping 1 : url-->
+	<!-- 
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	
+	<bean id="/hello.do" name="/hi.do, /abc/world.do" class="pack.controller.HelloController">
+		<property name="helloModel" ref="helloModel"/>
+	</bean>
+	<bean id="helloModel" class="pack.model.HelloModel"/>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/views/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	 -->
+	 
+	 <!-- Mapping 2 : pattern (?, *) -->
+	 <!-- 
+	 <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	 	<property name="alwaysUseFullPath" value="true"/>
+	 	<property name="mappings">
+	 		<props>
+	 			<prop key="*.do">hi</prop>
+	 			<prop key="/**/?????.do">hi</prop>
+	 		</props>
+	 	</property>
+	 </bean>
+	 
+	 <bean name="hi" class="pack.controller.HelloController">
+	 	<property name="helloModel" ref="helloModel"/>
+	 </bean>
+	 
+	 <bean id="helloModel" class="pack.model.HelloModel"/>
+	 
+	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	<property name="prefix" value="/views/"/>
+		<property name="suffix" value=".jsp"/>
+	 </bean>
+	  -->
+	 
+	 <!-- Mapping 3 : Using Annotation -->
+	 <context:component-scan base-package="pack.controller"/>
+	 <context:component-scan base-package="pack.model"/>
+	 
+	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	<property name="prefix" value="/views/"/>
+		<property name="suffix" value=".jsp"/>
+	 </bean>
+```
 ###  Bean Scope
 스프링은 기본적으로 bean을 하나의 Singletone객체로 설정한다.  
 bean의 Scope를 사용하여 다른 범위로 사용할 수 있다.  
