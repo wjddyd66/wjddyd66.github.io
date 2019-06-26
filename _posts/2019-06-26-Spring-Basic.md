@@ -66,9 +66,31 @@ Spring은 인터페이스 기반의 설계를 하고, 어떤 클래스를 사용
 2. View: 사용자에게 화면을 보여주는 인터페이스
 3. Controller: 비지니스 로직과 모델의 상호동작의 조정 역할을 한다.
 
+###  Maven
+Maven이란 사용할 라이브러리뿐만 아니라 해당 라이브러리가 작동하는 필요한 다른 라이브러리들까지 관리하여 네트워크를 통해서 자동으로 다운받아주는 것 이다.  
+이로 인하여 프로젝트 전체적인 라이프 사이클을 관리하는 도구로서 사용하게 된다.  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>장점</td><td>단점</td>
+	</tr>
+	<tr>
+		<td>컴파일과 빌드를 동시에 수행 가능</td><td>기본적으로 지원하지 않는 빌드 과정을 추가 하여야 한다.</td>
+	</tr>
+		<tr>
+		<td>pom.xml파일을 통해 관리하므로 개발, 유지보수 측면에서 오픈소스 라이브러리, 프로젝트 등 관리가 용이하다.</td><td>플러그인이 설정이 약간만 달라도 해당 설정을 분리해서 중복 기술할 해야 한다.</td>
+	</tr>
+		<tr>
+		<td>IDE에 종속된 부분들을 제거 가능</td><td></td>
+	</tr>
+	</tbody>
+</table>
+<br>
+
 <br>
 <hr>
 내용참조:<https://12bme.tistory.com/157><br>
 내용참조:<https://limmmee.tistory.com/8><br>
 내용참조:<https://gmlwjd9405.github.io/2018/11/10/spring-beans.html><br>
+내용참조:<https://jerryjerryjerry.tistory.com/63><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
