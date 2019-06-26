@@ -1,48 +1,10 @@
 [
 	{
 		"slug": "cool-project",
-		"name": "Cool project 1",
-		"image": "placeholder.jpg",
+		"name": "Spring Project",
+		"image": "logo.png",
 		"url": "https://www.google.com",
 		"date": "Jan 2014",
-		"tags": ["JAVA"]
-	},
-	{
-		"name": "Cool project 2",
-		"image": "placeholder.jpg",
-		"url": "#",
-		"date": "May 2014",
-		"tags": ["Python","Django"]
-	},
-	{
-		"name": "Cool project 3",
-		"image": "placeholder.jpg",
-		"url": "#",
-		"date": "June 2014",
-		"tags": ["NoSQL"]
-	},
-	{
-		"name": "Cool project 4",
-		"image": "placeholder.jpg",
-		"date": "Oct 2016",
-		"tags": ["DB"]
-	},
-	{
-		"name": "Cool project 5",
-		"image": "placeholder.jpg",
-		"date": "Oct 2016",
-		"tags": ["Spring","A.I"]
-	},
-	{
-		"name": "Cool project 6",
-		"image": "placeholder.jpg",
-		"date": "Oct 2016",
-		"tags": ["R"]
-	},
-	{
-		"name": "Cool project 7",
-		"image": "placeholder.jpg",
-		"date": "Oct 2016",
-		"tags": ["JAVA"]
+		"tags": ["Spring"]
 	}
 ]
