@@ -181,6 +181,10 @@ $(document).ready(
 	}
 ```
 <br>
+MainPage 공지사항  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/Gong.PNG" height="250" width="600" /></div><br>
+실제 DB 공지사항  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/Gong2.PNG" height="250" width="600" /></div><br>
 <br>
 <hr>
 참조:<https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final><br>
