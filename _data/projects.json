@@ -1,9 +1,11 @@
 [
+
+
 	{
 		"slug": "spring-project",
 		"name": "Spring-project",
 		"image": "logo.png",
-		"url": "/projects/spring-project/",
+		"url": "#",
 		"date": "June 2019",
 		"tags": ["Spring"]
 	},{
