@@ -41,7 +41,6 @@ BOM AIR Spring Project는 실제 항공사들이 서비스하는 Flight Booking 
 ### EXERD Diagram
 DB는 Maria DB를 사용하였고, 프로젝트를 위한 DB의 설계는 아래의 그림과 같이 설계하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo4.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/spring/2019/06/26/Spring-Project-DB.html>  
 <br>
 ### Project Main Page
 Project의 Main Page이다.  
