@@ -215,7 +215,7 @@ public class UploadController {
 
 <br>
 실제 등록된 차량을 삭제시 사진도 같이 삭제   
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/bc9588752fd94ffda64c9d2065d5e102" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/b5a117d077194d56937007369b5cf9b9" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 <br>
 ###  렌트카-차량 랜트
 실제 등록된 차량이 있을 경우 사용자가 차량을 랜트 할 수 있다.  
