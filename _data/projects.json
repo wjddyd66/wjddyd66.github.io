@@ -3,22 +3,22 @@
 		"slug": "spring-project",
 		"name": "Spring-project",
 		"image": "logo.png",
-		"url": "#",
-		"date": "Jun 2019",
+		"url": "/projects/spring-project/",
+		"date": "June 2019",
 		"tags": ["Spring"]
 	},{
 		"slug": "paper",
 		"name": "Paper",
 		"image": "logo.png",
 		"url": "#",
-		"date": "Jun 2019",
+		"date": "June 2019",
 		"tags": ["A.I"]
 	},{
 		"slug": "django-project",
 		"name": "Django-project",
 		"image": "logo.png",
 		"url": "#",
-		"date": "Jun 2019",
+		"date": "June 2019",
 		"tags": ["Django"]
 	}
 
