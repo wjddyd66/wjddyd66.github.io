@@ -24,7 +24,7 @@ layout: default
       <div class="project-item project-outer" data-tags='{{ i.tags | jsonify | downcase }}'>
         <div class="project-inner">
           <a href="/static/projects/{{ i.image }}" class="thickbox">
-            <div class="project-img bordered" style="background-image: url('/static/projects/{{ i.image }}'); background-size: 50% 100%;"></div>
+            <div class="project-img bordered" style="background-image: url('/static/projects/{{ i.image }}'); background-size: 100% 100%;"></div>
           </a>
           {% assign p_url = nil %}
           {% for pr in p_array %}
