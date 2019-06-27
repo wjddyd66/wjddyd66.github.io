@@ -8,7 +8,6 @@ categories: [Spring]
 ###  회원가입-Pgae 구성
 회원가입의 경우 하나의 기능을 가지고 있는 것을 분리하기 싫어 한 코드에 두개의 페이지를 담게 구성하였다.  
 div 속성의 show와 hide로 구성하게 되었다.  
-회원가입 1 페이지  
 
 ```js
 function nextBtn() {
@@ -32,6 +31,7 @@ function nextBtn() {
 }
 ```
 <br>
+회원가입 1 페이지  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID1.PNG" height="100%" width="100%" /></div><br>
 회원가입 2 페이지  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID2.PNG" height="100%" width="100%" /></div><br>
