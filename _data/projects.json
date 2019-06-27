@@ -4,21 +4,21 @@
 		"name": "Spring-project",
 		"image": "logo.png",
 		"url": "#",
-		"date": "June 2019",
+		"date": "Jun 2019",
 		"tags": ["Spring"]
 	},{
 		"slug": "paper",
 		"name": "³í¹®",
 		"image": "logo.png",
 		"url": "#",
-		"date": "June 2019",
+		"date": "Jun 2019",
 		"tags": ["A.I"]
 	},{
 		"slug": "django-project",
 		"name": "Django-project",
 		"image": "logo.png",
 		"url": "#",
-		"date": "June 2019",
+		"date": "Jun 2019",
 		"tags": ["Django"]
 	}
 
