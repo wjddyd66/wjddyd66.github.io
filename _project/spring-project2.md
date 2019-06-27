@@ -17,23 +17,46 @@ BOM AIR Spring Project는 실제 항공사들이 서비스하는 Flight Booking 
 실제 이용자가 사용하는 경우의 순서도를 Use Case Diagram으로 나누었다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo3.PNG" height="100%" width="100%" /></div>  
 사용자의 경우 크게 3가지로 나누었다.  
-1. Login 을 하지 않은 사용자
- - 회원가입
- - 아이디, 비밀번호 찾기
- - 비행기 티켓조회
- - 렌트카 조회
-2. Login 이 되어있는 사용자
- - 회원정보 수정, 탈퇴
- - 비행기 티켓 예약
- - 웹 체크인
- - 예약 정보 상세보기
- - 렌트카 예약
-3. 관리자
- - 매출현황 조회
- - 항공 노선 정보 추가
- - 렌트카 차량 등록
- - 공지사항 등록, 수정, 삭제
-
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
+	<tbody>
+	<tr>
+		<td>사용자</td><td>사용 가능 기능</td>
+	</tr>
+	<tr>
+		<td>Login을 하지 않은 사용자</td><td>
+		<ul>
+			<li>회원가입</li>
+			<li>아이디, 비밀번호 찾기</li>
+			<li>비행기 조회</li>
+			<li>렌트카 조회</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Login이 되어있는 사용자</td><td>
+		<ul>
+			<li>회원정보 수정, 탈퇴</li>
+			<li>비행기 티켓 예약</li>
+			<li>(티켓 예약 후)웹 체크인</li>
+			<li>예약 정보 상세보기</li>
+			<li>렌트카 예약</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>관리자</td><td>
+		<ul>
+			<li>매출현황 조회</li>
+			<li>비행기 등록</li>
+			<li>렌트카 등록, 수정, 삭제</li>
+			<li>공지사항 등록, 수정, 삭제</li>
+		</ul>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<br>
 
 각각의 사용자는 Session을 이용하여 판별하였다.  
 <br>
