@@ -14,8 +14,9 @@ BOM AIR Spring Project는 실제 항공사들이 서비스하는 Flight Booking 
 프로젝트 기간: 2주  
 
 ### Use Case Diagram
-실제 이용자가 사용하는 경우의 순서도를 Use Case Diagram으로 나누었다.  
+실제 이용자가 사용하는 경우의 순서도를 Use Case Diagram으로 나타내었다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo3.PNG" height="100%" width="100%" /></div>  
+<br>
 사용자의 경우 크게 3가지로 나누었다.  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
