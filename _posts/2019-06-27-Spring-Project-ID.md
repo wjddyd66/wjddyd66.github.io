@@ -9,10 +9,6 @@ categories: [Spring]
 회원가입의 경우 하나의 기능을 가지고 있는 것을 분리하기 싫어 한 코드에 두개의 페이지를 담게 구성하였다.  
 div 속성의 show와 hide로 구성하게 되었다.  
 회원가입 1 페이지  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID1.PNG" height="250" width="600" /></div><br>
-회원가입 2 페이지  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID2.PNG" height="250" width="600" /></div><br>
-<br>
 
 ```js
 function nextBtn() {
@@ -35,6 +31,10 @@ function nextBtn() {
 	}
 }
 ```
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID1.PNG" height="100%" width="100%" /></div><br>
+회원가입 2 페이지  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID2.PNG" height="100%" width="100%" /></div><br>
 <br>
 ###  회원가입 정규성 검사
 회원가입의 경우 id는 DB에서 Primary Key로 선언하여 실제로 가입되어있는 회원이있나 검사하고 확인하여야 했다.  
@@ -165,6 +165,7 @@ function addradd() {
 	}
 }
 ```
+<br>
 ###  아이디, 비밀번호 찾기
 아이디 같은경우 중요한 정보가 아니기 때문에 바로 보여지는 것이 가능하였으나, 비밀번호 같은 경우는 개인적인 정보이므로 쉽게 정보를 보여주어서는 안된다.  
 따라서 회원가입되어있는 정보로 Mail을 발송하는 것으로 구성하였다.  
@@ -235,6 +236,9 @@ password=비밀번호
 		return b;
 	}
 ```
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID4.PNG" height="100%" width="100%" /></div><br>
+
 <hr>
 참조:<https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
