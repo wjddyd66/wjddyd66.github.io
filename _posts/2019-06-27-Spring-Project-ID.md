@@ -203,6 +203,30 @@ Mail은 G-mail을 통하여 발송하는 것으로 구성하였다.
 		</dependency>
 ```
 <br>
+Bean추가 하여 연동  
+```xml
+<!-- Mail Properties -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:pack/mail/controller/mail.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${host}" /> <!-- smtp 서버명 -->
+		<property name="port" value="${port}" /> <!-- 포트 번호 -->
+		<property name="username" value="${username}" /> <!-- id(일반적인 id가 아니니 확인 필요) -->
+		<property name="password" value="${password}" /> <!-- 비밀번호 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+```
+<br>
 Mail을 G-mail로 발송하기 위해서는 Google계정과 연동이 되어야 한다.  
 이러한 Google 계정 연동을 위한 개인적인 정보는 mail.properties를 통하여 properties 파일에 저장하여 보안성을 강구하였다.  
 ```code
