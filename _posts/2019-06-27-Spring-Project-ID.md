@@ -5,6 +5,9 @@ date:   2019-06-27 07:00:00 +0700
 categories: [Spring]
 ---
 
+###  회원가입-DB 구성
+회원가입을 위한 DB구성은 아래 그림과 같다  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID5.PNG" height="100%" width="100%" /></div><br>
 ###  회원가입-Pgae 구성
 회원가입의 경우 하나의 기능을 가지고 있는 것을 분리하기 싫어 한 코드에 두개의 페이지를 담게 구성하였다.  
 div 속성의 show와 hide로 구성하게 되었다.  
