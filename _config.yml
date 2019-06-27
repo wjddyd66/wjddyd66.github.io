@@ -13,7 +13,7 @@ tagarray: [JAVA, Python, DB, NoSQL, Spring, Django, A.I, R]
 collections:
   project:
     output: true
-    permalink: /project/:path/
+    permalink: /projects/:path/
 
 social:
     - icon: fa-facebook
