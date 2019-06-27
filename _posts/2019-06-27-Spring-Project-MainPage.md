@@ -122,6 +122,8 @@ div의 같은 위치에서 show 와 hide를 사용하여 구성하게 되었다.
 
 					});
 ```
+<br>
+<span style ="color: red">**Google Loom을 사용하여 촬영하였으나, Alert창은 보이지 않는 문제가 있다. 출발일이 도착일보다 빠르면 Alert창이 보이게 구성하였다.**</span><br>
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/6e9d22a37ae1476bbfac03abbcb3c972" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 <br>
 
