@@ -1,19 +1,27 @@
 [
 	{
-		"slug": "spring-project4",
+		"slug": "spring-project",
 		"name": "Spring-project",
 		"image": "logo.png",
 		"url": "#",
-		"date": "June 2018",
+		"date": "June 2019",
 		"tags": ["Spring"]
 	},{
-		"slug": "spring-project3",
-		"name": "Spring-project",
+		"slug": "paper",
+		"name": "³í¹®",
 		"image": "logo.png",
 		"url": "#",
-		"date": "June 2018",
-		"tags": ["Spring"]
+		"date": "June 2019",
+		"tags": ["A.I"]
+	},{
+		"slug": "django-project",
+		"name": "Django-project",
+		"image": "logo.png",
+		"url": "#",
+		"date": "June 2019",
+		"tags": ["Django"]
 	}
+
 
 
 ]

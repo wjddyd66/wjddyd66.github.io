@@ -1,8 +1,6 @@
 ---
 layout: project_single
 title:  "Spring project"
-slug: "spring-project"
+slug: "Spring Project"
 ---
-Just a demo text for now, which signifies there is lot of scope for improvement.
-
-Upload2
+Spring Project
