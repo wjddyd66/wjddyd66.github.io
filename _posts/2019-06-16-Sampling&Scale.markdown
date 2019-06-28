@@ -156,7 +156,9 @@ write.csv(data,"./desc_report1.csv") #가공된 데이터로 저장하기로
 귀무가설(H0): 관습적이고 보수적인 주장, 차이가 없다.  
 대립가설(H1): 적극적으로 입증하려는 주장, 차이가 있음을 통계적 근거를 통해 입증하고 하는 주장  
 p-value(유의확률): 대립가설이 틀릴 확률  
-<div><img src="https://postfiles.pstatic.net/MjAxOTA0MjlfMjM4/MDAxNTU2NDk5Nzk1MDU1.tmr-Di76Anqi-bf5PudogKeZBvk40viyGMPD4FK9yo8g.lfYOVPQuNn_Rp0zBxxuVO3VXajbDtIWg9oHr1yJaumEg.PNG.mint3081/image.png?type=w966" height="300" width="600" /></div><br>
+출력결과
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Sa.PNG" height="350" width="600" /></div>
+<br>
 
 <span style ="color: red">**우리 R 환경에서는 귀무가설은 통상적인 이념이 아닌 "차이가 없다, 영향력이 없다, 연관성이 없다, 효과가 없다"로 생각하자.**</span><br>
 참조: <https://kkokkilkon.tistory.com/36>  
