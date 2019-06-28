@@ -3,7 +3,7 @@ layout: project_single
 title:  "논문"
 slug: "project"
 ---
-<embed src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/paper.pdf" width="600px" height="800px"/>
+<embed src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/paper.pdf" width="800px" height="1000px"/>
 
 <hr>
 참조:<https://github.com/wjddyd66/Project/blob/master/Paper/%EB%85%BC%EB%AC%B8.pdf><br>
