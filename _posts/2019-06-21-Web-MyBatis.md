@@ -14,13 +14,13 @@ categories: [Web]
 ###  DAO, DTO, FormBean
 MyBatis를 이해하기 위한 기본은 DAO, DTO, Bean이다.  
  - DAO(Data Access Objects)  
-  1)실질적인 DB와의 연결을 담당하는 객체  
-  2)저장소에 데이터를 입력, 조쇠, 수정, 삭제 등 처리를 담당  
+    1)실질적인 DB와의 연결을 담당하는 객체  
+    2)저장소에 데이터를 입력, 조쇠, 수정, 삭제 등 처리를 담당  
 
 
  - DTO(Data Tranfer Object)  
-  1)데이터 전달을 위해 만들어진 객체  
-  2)Private로 변수를 선언하고 getter, setter Method로 접근한다.
+    1)데이터 전달을 위해 만들어진 객체  
+    2)Private로 변수를 선언하고 getter, setter Method로 접근한다.
 
 
 참조:<https://wjddyd66.github.io/java/2019/06/14/AccessModifier.html><br>
@@ -29,7 +29,7 @@ MyBatis를 이해하기 위한 기본은 DAO, DTO, Bean이다.
 
 
 DTO vs FormBean  
-<div><img src="https://postfiles.pstatic.net/MjAxOTAzMDVfMTQ0/MDAxNTUxNzU3MTE4MDQ5.QdTmkbaeDzQ9phL0jdgOdfNm7lKNvjDqtaVjnCVIE3wg.tkKrd3TmhjzDytTxrZ7cklfvRVlRerHmEt0QuXXTyIgg.PNG.mint3081/image.png?type=w966" height="300" width="700" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/dd.PNG" height="300" width="700" /></div>
 <br>
 그림참조:<https://blog.naver.com/mint3081/221480907154><br>
 
