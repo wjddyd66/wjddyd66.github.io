@@ -29,7 +29,7 @@ ANOVA 검정이란 통계학에서 두 개 이상 다수의 집단을 비교하�
 	<tr>
 		<td>결과</td><td>p-value(=0.4777 , 0.7012) 
 		>
-        0.05(95% 신뢰확률에서의 유의수준) =>  대립가설 채택  </td>
+	    0.05(95% 신뢰확률에서의 유의수준) =>  대립가설 채택  </td>
 	</tr>
 	</tbody>
 </table>
@@ -144,7 +144,7 @@ corrgram(result)
 
 출력결과
 
-<div><img src="https://postfiles.pstatic.net/MjAxOTA1MDFfMjE4/MDAxNTU2Njk2NjQ0OTQ2.n8ztI9uREOZ78p28fdtEe1zdpeXAJaQEpl7pRVqeH84g.ozCONJkEzm2NfMPDev2ItPHiVM_jqaURXz8VD6-icmkg.PNG.mint3081/image.png?type=w966" height="150" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/ANOVA4.PNG" height="150" width="600" /></div><br>
 
 <hr>
 참조: <https://github.com/wjddyd66/R/tree/master/ANOVA%26Corr><br>
