@@ -48,7 +48,7 @@ cron 표현식(왼쪽부터 오른쪽 순으로 다음과 같은 의미가 있�
 <table class="table">
 	<tbody>
 	<tr>
-		<td>특수문자</td><td>의미</td>
+		<td style="width:50px">특수문자</td><td>의미</td>
 	</tr>
 	<tr>
 		<td>*</td><td>모든수를 의미, Minutes 위치에 사용될 경우 매분마다 라는 뜻</td>
@@ -127,7 +127,7 @@ public class Scheduler {
 }
 ```
 실제 스케줄러 작동 전 후 DB 사진  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/Sc.PNG" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/Sc.PNG" height="400px" width="350px" /></div><br>
 
 <br>
 <hr>
