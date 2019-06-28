@@ -14,7 +14,7 @@ grant [select, update, delete, all] on [tablename] to [username, username...];
 사용자에게 시스템 권한을 뺏는 명령이다.  
 revoke [select, update, delete, all] on [tablename] from [username, username...];  
 CDM 창을 통해 Scott 계정에서 user1, user2, user3 create및 grant, revoke 부여 연습
-<div><img src="https://postfiles.pstatic.net/MjAxOTAxMjlfMTYw/MDAxNTQ4NzIyODc0MjY1.9OVUV1yzMozktno4kESBt4X4oYqTNXDmt46N-leeKq8g.ayu3CaBnhsTW9kJIzIyixdrQ_aV432DczsciXJgPWIAg.PNG.mint3081/image.png?type=w966" height="300" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/abs.PNG" height="300" width="600" /></div><br>
 
 user1에서 만든 테이블에 대해 system에서도 접근가능: select * from user1.kbs;  
 참조:<https://blog.naver.com/mint3081/221453982183>  
