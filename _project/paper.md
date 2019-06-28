@@ -3,8 +3,7 @@ layout: project_single
 title:  "논문"
 slug: "project"
 ---
-<iframe style="width: 100%; height:100%;" src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/paper.pdf">
-</iframe>
+<embed src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/paper.pdf#toolbar=1" type="application/pdf" width="100" height="100" />
 
 <hr>
 참조:<https://github.com/wjddyd66/Project/blob/master/Paper/%EB%85%BC%EB%AC%B8.pdf><br>
