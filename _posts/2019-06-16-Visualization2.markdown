@@ -43,9 +43,8 @@ arrange(addr_count, desc(점포수))%>%head(10)
 <br>
 
 출력결과
-
-<div><img src="https://postfiles.pstatic.net/MjAxOTA0MjVfMjQ2/MDAxNTU2MTUyNDgxNTcw.tapC1Gs2_DeTdFOGO8jQqf4My-u_fCMDX0Q3UybzTy8g.PQg0mnOvRFXWAuTT7K6kk4KYmiinqRKFvRxmNZJ_-ZIg.PNG.mint3081/image.png?type=w966" height="300" width="600" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/V1.PNG" height="350" width="600" /></div>
+<br>
 ### 워드클라우드: 핵심단어를 시각화 하는 기법
 
 
@@ -96,8 +95,8 @@ wordcloud(names(word),freq = word
 ```
 <br>
 출력결과
-<div><img src="https://postfiles.pstatic.net/MjAxOTA0MjVfMjg0/MDAxNTU2MTc1MjE2MjA4.0BVVw7X-_6XE2lCOkBwMUr4aEosFaTu7Rl6RiYb5UM4g.ufK0HFwbn5wkV9BUecpYya7wkCtBAnFhu9KP-unhDJcg.PNG.mint3081/image.png?type=w966" height="300" width="600" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/V2.PNG" height="350" width="600" /></div>
+<br>
 
 ### Twitter API: 트위터 API를 활용하여 크롤링한 내용을 워드클라우드로 나타내기
 
@@ -150,7 +149,8 @@ wordcloud2(word_table,size=5,color="random-light",backgroundColor = 'black')
 ```
 <br>
 출력결과
-<div><img src="https://postfiles.pstatic.net/MjAxOTA0MjVfMTEz/MDAxNTU2MTc5NzE1MjQ3.20ApM347RsVo_jC_aZ_ddTfHZ8_sB4bi0wYr4sdbzvIg.nRmWBLNDuqvka4wX6NtK2W42iqqr2vucliS5cOLMSeog.PNG.mint3081/image.png?type=w966" height="300" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/V3.PNG" height="350" width="600" /></div>
+<br>
 <hr>
 참조: <https://github.com/wjddyd66/R/tree/master/Visualization2><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
