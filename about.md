@@ -39,11 +39,11 @@ permalink: /about/
     </div>
 </div>
 
-<div class="columns-block container">
+<div class="columns-block container" style="width:100%">
 <div class="left-col-block blocks">
     <header class="header theiaStickySidebar">
         <div class="content">
-            <h1>Leon Wei횩</h1>
+            <h1>Leon Wei</h1>
             <span class="lead">Marketing Consultant</span>
 
             <div class="about-text">
@@ -127,7 +127,7 @@ permalink: /about/
 </section>
 <!-- .expertise-wrapper -->
 
-<section class="section-wrapper skills-wrapper" style="width: 500px;"">
+<section class="section-wrapper skills-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
