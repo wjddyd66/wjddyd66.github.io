@@ -456,29 +456,33 @@ permalink: /about/
                     <h2>Get in touch</h2>
     
                     <form class="gform pure-form pure-form-stacked" action="https://script.google.com/macros/s/AKfycbxATH2hvD5ouueT5UmmARk4n8lrCPYCD9kCixvU/exec" method="post">
-                        <div class="form-group">
+                        <div class="form-group pure-group">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
                                    placeholder="Full Name">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group pure-group">
                             <label for="InputEmail">Email address</label>
                             <input type="email" name="email" required="" class="form-control" id="InputEmail"
                                    placeholder="Email">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group pure-group">
                             <label for="InputSubject">Subject</label>
                             <input type="text" name="subject" class="form-control" id="InputSubject"
                                    placeholder="Subject">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group pure-group">
                             <label for="message-text" class="control-label">Message</label>
                             <textarea class="form-control" rows="4" required="" name="message" id="message-text"
                                       placeholder="Write message"></textarea>
                         </div>
     
-                        <button  class="btn btn-primary">Submit</button>
-                        <div style='display:none;' id='thankyou_message'><h2>Thanks</h2></div>
+      <button class="button-success pure-button button-xlarge">
+        <i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+     <div class="thankyou_message" style="display:none;">
+      <h2><em>Thanks</em> for contacting us!
+        We will get back to you soon!</h2>
+    </div>
                     </form>
                 </div>
                 <!-- .feedback-form -->
