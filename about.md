@@ -394,13 +394,7 @@ Bicycle storage location judgment</small>
                     <p>A.I 의 Trainning Dataset 을 만들기 위하여 필수적인 과정이자 관심있는 분야 입니다. 통계적인 기초는 공부(Googling, 서적, Youtube 등) 다양한 경로를 통하여 획득하고 있고, IDE 로서는 R, Python을 공부하고 있습니다.</p>
     
                 </div>
-                <div class="content-item">
-                    <h3>Art</h3>
-    
-                    <p>Dramatically utilize superior infomediaries whereas functional core competencies.
-                        Enthusiastically repurpose synergistic vortals for customer directed portals. Interactively
-                        pursue sustainable leadership via.</p>
-                </div>
+               
             </div>
         </div>
         <!-- .row -->
