@@ -477,15 +477,13 @@ permalink: /about/
                                       placeholder="Write message"></textarea>
                         </div>
     
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button  class="btn btn-primary">Submit</button>
           
           <!--  결과 확인 -->
-                        <div style="display:none" class="thankyou_message">
-<h2>
-   <em>Thanks</em>
-   확인하는 즉시 연락드리겠습니다.<br>
-   <button type="button" class="btn btn-link" onclick='https://wjddyd66.github.io/about/' >돌아가기</button>
-</h2>
+                       <div style="display:none" class="thankyou_message">
+ <!-- You can customize the thankyou message by editing the code below -->
+ <h2><em>Thanks</em> for contacting us! We will get back to you soon!
+ </h2>
 </div>
                     </form>
                 </div>
@@ -531,5 +529,8 @@ permalink: /about/
 <script src="/static/about/js/bootstrap.min.js"></script>
 <script src="/static/about/js/theia-sticky-sidebar.js"></script>
 <script src="/static/about/js/scripts.js"></script>
+
+<!--  Gmail -->
+<script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
 
 </body>
