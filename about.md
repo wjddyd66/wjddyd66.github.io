@@ -532,7 +532,4 @@ permalink: /about/
 <script src="/static/about/js/theia-sticky-sidebar.js"></script>
 <script src="/static/about/js/scripts.js"></script>
 
-<!-- Gmail -->
-<script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
-
 </body>
