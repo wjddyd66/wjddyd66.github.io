@@ -14,6 +14,10 @@ collections:
   project:
     output: true
     permalink: /projects/:path/
+  about:
+    output: true
+    permalink: /about/:path/
+
 
 social:
     - icon: fa-facebook
