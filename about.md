@@ -478,6 +478,14 @@ permalink: /about/
                         </div>
     
                         <button type="submit" class="btn btn-primary">Submit</button>
+          
+          <!--  결과 확인 -->
+                        <div style="display:none" class="thankyou_message">
+<h2>
+	<em>Thanks</em>
+	확인하는 즉시 연락드리겠습니다.
+</h2>
+</div>
                     </form>
                 </div>
                 <!-- .feedback-form -->
@@ -526,10 +534,4 @@ permalink: /about/
 <!-- Gmail -->
 <script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
 
-<div style="display:none" class="thankyou_message">
-<h2>
-	<em>Thanks</em>
-	확인하는 즉시 연락드리겠습니다.
-</h2>
-</div>
 </body>
