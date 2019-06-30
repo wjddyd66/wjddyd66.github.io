@@ -43,21 +43,27 @@ permalink: /about/
 <div class="left-col-block blocks">
     <header class="header theiaStickySidebar">
         <div class="content">
-            <h1>Leon Wei</h1>
-            <span class="lead">Marketing Consultant</span>
+            <h1>황정용</h1>
+            <span class="lead">Programmer</span>
 
             <div class="about-text">
                 <p>
-                    Credibly embrace visionary internal or "organic" sources and business benefits. Collaboratively
-                    integrate efficient portals rather than customized customer service. Assertively deliver
-                    frictionless services via leveraged interfaces. Conveniently evisculate accurate sources and
-                    process-centric expertise.
+                    A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다.
                 </p>
     
-                <p>Energistically fabricate customized imperatives through cooperative catalysts for change.</p>
+                <p>이 Page의 구성은 다음과 같습니다.</p>
+                
+                <p>
+                <ul>
+                <li>Available Languages</li>
+                <li>Project</li>
+                <li>Certificate</li>
+                <li>Education</li>
+                <li>Interest</li>
+                <li>Contact</li>
+                </ul>
+                </p>
 
-
-                <p><img src="img/Signature.png" alt="" class="img-responsive"/></p>
             </div>
         </div>
     
@@ -69,6 +75,149 @@ permalink: /about/
 
 <div class="right-col-block blocks">
 <div class="theiaStickySidebar">
+
+<!-- Available Language -->
+<section class="section-wrapper skills-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>Available Languages</h2>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="progress-wrapper">
+					<!-- Java -->    
+                    <div class="progress-item">
+                        <span class="progress-title">Java</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 80%"><span class="progress-percent"> 80%</span>
+                            </div>
+                        </div>
+                        <!-- .progress -->
+                    </div>
+                    <!-- .skill-progress -->
+
+					<!-- R --> 
+                    <div class="progress-item">
+                        <span class="progress-title">R</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 60%"><span class="progress-percent"> 60%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+
+					<!-- RDBMS -->
+                    <div class="progress-item">
+                        <span class="progress-title">RDBMS</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 70%;"><span class="progress-percent"> 70%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+    
+    				<!-- NoSQL -->
+                    <div class="progress-item">
+                        <span class="progress-title">NoSQL</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 50%;"><span class="progress-percent"> 50%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+                    
+                    <!-- Web -->
+                    <div class="progress-item">
+                        <span class="progress-title">Web(CSS, HTML, Java Script, JSTL, JQuery, Ajax, MyBatis....)</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 65%;"><span class="progress-percent"> 65%</span>
+                            </div>
+                        </div>
+                        <!-- .progress -->
+                    </div>
+                    <!-- .skill-progress -->
+    
+                        <!-- Python -->
+                    <div class="progress-item">
+                        <span class="progress-title">Python</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 65%;"><span class="progress-percent"> 65%</span>
+                            </div>
+                        </div>
+                        <!-- .progress -->
+                    </div>
+                    <!-- .skill-progress -->
+    
+                        <!-- Spring -->
+                    <div class="progress-item">
+                        <span class="progress-title">Spring</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 75%;"><span class="progress-percent"> 75%</span>
+                            </div>
+                        </div>
+                        <!-- .progress -->
+                    </div>
+                    <!-- .skill-progress -->
+    
+                        <!-- Django -->
+                    <div class="progress-item">
+                        <span class="progress-title">Django</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 55%;"><span class="progress-percent"> 55%</span>
+                            </div>
+                        </div>
+                        <!-- .progress -->
+                    </div>
+                    <!-- .skill-progress -->
+    
+                            <!-- Tensorflow -->
+                    <div class="progress-item">
+                        <span class="progress-title">Tensorflow</span>
+    
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 40%;"><span class="progress-percent"> 40%</span>
+                            </div>
+                        </div>
+                        <!-- .progress -->
+                    </div>
+                    <!-- .skill-progress -->
+    
+    
+                </div>
+                <!-- /.progress-wrapper -->
+            </div>
+        </div>
+        <!--.row -->
+    </div>
+    <!-- .container-fluid -->
+</section>
+<!-- Available Languages -->
+
 <section class="expertise-wrapper section-wrapper gray-bg">
     <div class="container-fluid">
         <div class="row">
@@ -126,91 +275,6 @@ permalink: /about/
     </div>
 </section>
 <!-- .expertise-wrapper -->
-
-<section class="section-wrapper skills-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2>Skills</h2>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="progress-wrapper">
-    
-                    <div class="progress-item">
-                        <span class="progress-title">Marketing</span>
-    
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="62" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 62%"><span class="progress-percent"> 62%</span>
-                            </div>
-                        </div>
-                        <!-- .progress -->
-                    </div>
-                    <!-- .skill-progress -->
-
-
-                    <div class="progress-item">
-                        <span class="progress-title">Market Research</span>
-    
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 90%"><span class="progress-percent"> 90%</span>
-                            </div>
-                        </div>
-                        <!-- /.progress -->
-                    </div>
-                    <!-- /.skill-progress -->
-
-
-                    <div class="progress-item">
-                        <span class="progress-title">Organisational Skills</span>
-    
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 75%;"><span class="progress-percent"> 75%</span>
-                            </div>
-                        </div>
-                        <!-- /.progress -->
-                    </div>
-                    <!-- /.skill-progress -->
-    
-                    <div class="progress-item">
-                        <span class="progress-title">Communtcation Skills</span>
-    
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 55%;"><span class="progress-percent"> 55%</span>
-                            </div>
-                        </div>
-                        <!-- /.progress -->
-                    </div>
-                    <!-- /.skill-progress -->
-                    <div class="progress-item">
-                        <span class="progress-title">Project Management</span>
-    
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 80%;"><span class="progress-percent"> 80%</span>
-                            </div>
-                        </div>
-                        <!-- .progress -->
-                    </div>
-                    <!-- .skill-progress -->
-    
-                </div>
-                <!-- /.progress-wrapper -->
-            </div>
-        </div>
-        <!--.row -->
-    </div>
-    <!-- .container-fluid -->
-</section>
-<!-- .skills-wrapper -->
 
 <section class="section-wrapper section-experience gray-bg">
     <div class="container-fluid">
@@ -477,7 +541,7 @@ permalink: /about/
                             <textarea class="form-control" rows="4" required="" name="message" id="message-text"
                                       placeholder="Write message"></textarea>
                         </div>
-    
+
       <button class="button-success pure-button button-xlarge form-elements">
         <i class="fa fa-paper-plane"></i>&nbsp;Send</button>
 </div>
