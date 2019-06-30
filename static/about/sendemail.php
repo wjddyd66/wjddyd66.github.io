@@ -53,7 +53,7 @@
         );
 
 
-    $templateContents = file_get_contents( dirname(__FILE__) . '/email-templates/'.$email_template);
+    $templateContents = file_POST_contents( dirname(__FILE__) . '/email-templates/'.$email_template);
 
     $contents =  strtr($templateContents, $templateTags);
 

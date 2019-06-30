@@ -10,9 +10,6 @@ permalink: /about/
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Resumex - Professional HTML CSS Resume Website Template</title>
-
-    <!-- favicon -->
-    <link href="favicon.png" rel=icon>
     
     <!-- web-fonts -->
     <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
@@ -65,15 +62,6 @@ permalink: /about/
 
                 <p><img src="img/Signature.png" alt="" class="img-responsive"/></p>
             </div>
-
-
-            <ul class="social-icon">
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-slack" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-            </ul>
         </div>
     
     </header>
@@ -470,7 +458,7 @@ permalink: /about/
                 <div class="feedback-form">
                     <h2>Get in touch</h2>
     
-                    <form id="contactForm" action="/static/about/sendemail.php" method="POST">
+                    <form id="contactForm" action="/static/about/sendemail.php" method="GET">
                         <div class="form-group">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
