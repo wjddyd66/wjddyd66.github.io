@@ -10,7 +10,7 @@ permalink: /about/
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Resumex - Professional HTML CSS Resume Website Template</title>
-    
+
     <!-- web-fonts -->
     <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
     
@@ -42,9 +42,6 @@ permalink: /about/
 <div class="columns-block container">
 <div class="left-col-block blocks">
     <header class="header theiaStickySidebar">
-        <div class="profile-img">
-            <img src="img/img-profile.jpg" class="img-responsive" alt=""/>
-        </div>
         <div class="content">
             <h1>Leon Wei횩</h1>
             <span class="lead">Marketing Consultant</span>
@@ -458,7 +455,7 @@ permalink: /about/
                 <div class="feedback-form">
                     <h2>Get in touch</h2>
     
-                    <form id="contactForm" action="/static/about/sendemail.php" method="GET">
+                    <form id="gform" action="https://script.google.com/macros/s/AKfycbynVqXIMfvnE-yeHETe5bPdX059_ydvmcyuVLJ-/exec" method="post">
                         <div class="form-group">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
