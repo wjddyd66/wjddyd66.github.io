@@ -456,35 +456,44 @@ permalink: /about/
                     <h2>Get in touch</h2>
     
                     <form id="gform" action="https://script.google.com/macros/s/AKfycbxATH2hvD5ouueT5UmmARk4n8lrCPYCD9kCixvU/exec" method="post">
-                        <div class="form-group">
-                            <label for="InputName">Name</label>
-                            <input type="text" name="name" required="" class="form-control" id="InputName"
-                                   placeholder="Full Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputEmail">Email address</label>
-                            <input type="email" name="email" required="" class="form-control" id="InputEmail"
-                                   placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputSubject">Subject</label>
-                            <input type="text" name="subject" class="form-control" id="InputSubject"
-                                   placeholder="Subject">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="control-label">Message</label>
-                            <textarea class="form-control" rows="4" required="" name="message" id="message-text"
-                                      placeholder="Write message"></textarea>
-                        </div>
-    
-                        <button  class="btn btn-primary">Submit</button>
-          
-          <!--  결과 확인 -->
-                       <div style="display:none" class="thankyou_message">
- <!-- You can customize the thankyou message by editing the code below -->
- <h2><em>Thanks</em> for contacting us! We will get back to you soon!
- </h2>
-</div>
+    <div class="form-elements">
+      <fieldset class="pure-group">
+        <label for="name">Name: </label>
+        <input id="name" name="name" placeholder="What your Mom calls you" />
+      </fieldset>
+
+      <fieldset class="pure-group">
+        <label for="message">Message: </label>
+        <textarea id="message" name="message" rows="10"
+        placeholder="Tell us what's on your mind..."></textarea>
+      </fieldset>
+
+      <fieldset class="pure-group">
+        <label for="email"><em>Your</em> Email Address:</label>
+        <input id="email" name="email" type="email" value=""
+        required placeholder="your.name@email.com"/>
+      </fieldset>
+
+      <fieldset class="pure-group">
+        <label for="color">Favourite Color: </label>
+        <input id="color" name="color" placeholder="green" />
+      </fieldset>
+
+      <fieldset class="pure-group honeypot-field">
+        <label for="honeypot">To help avoid spam, utilize a Honeypot technique with a hidden text field; must be empty to submit the form! Otherwise, we assume the user is a spam bot.</label>
+        <input id="honeypot" type="text" name="honeypot" value="" />
+      </fieldset>
+
+      <button class="button-success pure-button button-xlarge">
+        <i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+    </div>
+
+    <!-- Customise the Thankyou Message People See when they submit the form: -->
+    <div class="thankyou_message" style="display:none;">
+      <h2><em>Thanks</em> for contacting us!
+        We will get back to you soon!</h2>
+    </div>
+
                     </form>
                 </div>
                 <!-- .feedback-form -->
