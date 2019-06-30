@@ -532,5 +532,4 @@ permalink: /about/
 
 <!--  Gmail -->
 <script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
-
 </body>
