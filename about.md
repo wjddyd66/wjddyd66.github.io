@@ -538,8 +538,8 @@ permalink: /about/
 function send(){
     
  var param = $("#gform").serialize();
- $('#email').hide();
- $('#thanks').show();
+ $('#email').style.display = "none";
+ $('#thanks').style.display = "block";
  $.ajax({   
    type: "POST"  
   ,url: "https://script.google.com/macros/s/AKfycbynVqXIMfvnE-yeHETe5bPdX059_ydvmcyuVLJ-/exec"
@@ -555,8 +555,8 @@ function send(){
 }
 
 function thanks(){
- $('#email').show();
- $('#thanks').hide();
+ $('#email').style.display = "block";
+ $('#thanks').style.display = "none";
 }
 </script>
 </body>
