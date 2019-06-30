@@ -127,7 +127,7 @@ permalink: /about/
 </section>
 <!-- .expertise-wrapper -->
 
-<section class="section-wrapper skills-wrapper">
+<section class="section-wrapper skills-wrapper" style="width: 500px;"">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
