@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -539,3 +539,4 @@ permalink: /about/
 <script src="/static/about/css/theia-sticky-sidebar.js"></script>
 <script src="/static/about/css/scripts.js"></script>
 </body>
+</html>
