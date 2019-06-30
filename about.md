@@ -48,19 +48,17 @@ permalink: /about/
 
             <div class="about-text">
                 <p>
-                    A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다.
+                    A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다. 이 Page의 구성은 다음과 같습니다.
                 </p>
-    
-                <p>이 Page의 구성은 다음과 같습니다.</p>
                 
                 <p>
-                <ul>
-                <li>Available Languages</li>
-                <li>Project</li>
-                <li>Certificate</li>
-                <li>Education</li>
-                <li>Interest</li>
-                <li>Contact</li>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">Available Languages</li>
+                <li class="list-group-item">Project</li>
+                <li class="list-group-item">Certificate</li>
+                <li class="list-group-item">Education</li>
+                <li class="list-group-item">Interest</li>
+                <li class="list-group-item">Contact</li>
                 </ul>
                 </p>
 
