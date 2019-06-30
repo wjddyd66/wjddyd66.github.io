@@ -456,22 +456,22 @@ permalink: /about/
                     <h2>Get in touch</h2>
     
                     <form class="gform pure-form pure-form-stacked" action="https://script.google.com/macros/s/AKfycbxATH2hvD5ouueT5UmmARk4n8lrCPYCD9kCixvU/exec" method="post">
-                        <div class="form-group form-elements">
+                        <div class="form-elements">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
                                    placeholder="Full Name">
                         </div>
-                        <div class="form-group form-elements">
+                        <div class="form-elements">
                             <label for="InputEmail">Email address</label>
                             <input type="email" name="email" required="" class="form-control" id="InputEmail"
                                    placeholder="Email">
                         </div>
-                        <div class="form-group form-elements">
+                        <div class="form-elements">
                             <label for="InputSubject">Subject</label>
                             <input type="text" name="subject" class="form-control" id="InputSubject"
                                    placeholder="Subject">
                         </div>
-                        <div class="form-group form-elements">
+                        <div class="form-elements">
                             <label for="message-text" class="control-label">Message</label>
                             <textarea class="form-control" rows="4" required="" name="message" id="message-text"
                                       placeholder="Write message"></textarea>
