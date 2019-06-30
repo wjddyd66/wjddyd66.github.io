@@ -455,7 +455,7 @@ permalink: /about/
                 <div class="feedback-form">
                     <h2>Get in touch</h2>
     
-                    <form id="gform" action="https://script.google.com/macros/s/AKfycbxATH2hvD5ouueT5UmmARk4n8lrCPYCD9kCixvU/exec" method="post">
+                    <form class="gform pure-form pure-form-stacked" action="https://script.google.com/macros/s/AKfycbxATH2hvD5ouueT5UmmARk4n8lrCPYCD9kCixvU/exec" method="post">
                         <div class="form-group">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
@@ -525,6 +525,7 @@ permalink: /about/
 <script src="/static/about/js/scripts.js"></script>
 
 <!-- Gmail -->
-<script data-cfasync="false" type="text/javascript"
-src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+<script src="/static/about/js/gmail.js"></script>
+<script src="/static/about/js/form-submission-handler.js"></script>
+
 </body>
