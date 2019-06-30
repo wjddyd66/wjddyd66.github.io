@@ -455,7 +455,7 @@ permalink: /about/
                 <div class="feedback-form">
                     <h2>Get in touch</h2>
     
-                    <form id="gform" action="https://script.google.com/macros/s/AKfycbynVqXIMfvnE-yeHETe5bPdX059_ydvmcyuVLJ-/exec" method="post">
+                    <form id="gform" onclick='send()'>
                         <div class="form-group">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
@@ -483,7 +483,8 @@ permalink: /about/
                         <div style="display:none" class="thankyou_message">
 <h2>
 	<em>Thanks</em>
-	확인하는 즉시 연락드리겠습니다.
+	확인하는 즉시 연락드리겠습니다.<br>
+	<button type="button" class="btn btn-link" onclick='https://wjddyd66.github.io/about/' >돌아가기</button>
 </h2>
 </div>
                     </form>
@@ -533,5 +534,23 @@ permalink: /about/
 
 <!-- Gmail -->
 <script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
+<script>
+function send(){
+    
+ var param = $("#gform").serialize();
 
+ $.ajax({   
+   type: "POST"  
+  ,url: "https://script.google.com/macros/s/AKfycbynVqXIMfvnE-yeHETe5bPdX059_ydvmcyuVLJ-/exec"
+  ,data: param
+
+  ,success:function(data){
+    alert("성공");
+  }
+  ,error:function(data){
+    alert("error");
+  }
+  });
+} 
+</script>
 </body>
