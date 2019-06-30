@@ -450,7 +450,7 @@ permalink: /about/
             </div>
         </div>
         <!--.row-->
-        <div class="row">
+        <div class="row" id='email'>
             <div class="col-md-12">
                 <div class="feedback-form">
                     <h2>Get in touch</h2>
@@ -479,16 +479,16 @@ permalink: /about/
     
                         <button type="submit" class="btn btn-primary" onclick='send()'>Submit</button>
           
-          <!--  결과 확인 -->
-                        <div style="display:none" class="thankyou_message">
+                    </form>
+                </div>
+<!--  결과 확인 -->
+<div style="display:none" id="thanks">
 <h2>
 	<em>Thanks</em>
 	확인하는 즉시 연락드리겠습니다.<br>
-	<button type="button" class="btn btn-link" onclick='https://wjddyd66.github.io/about/' >돌아가기</button>
-</h2>
+	<button type="button" class="btn btn-link" onclick='thanks()' >다시보내기</button>
+	</h2>
 </div>
-                    </form>
-                </div>
                 <!-- .feedback-form -->
 
 
@@ -538,19 +538,25 @@ permalink: /about/
 function send(){
     
  var param = $("#gform").serialize();
-
+ $('#email').hide();
+ $('#thanks').show();
  $.ajax({   
    type: "POST"  
   ,url: "https://script.google.com/macros/s/AKfycbynVqXIMfvnE-yeHETe5bPdX059_ydvmcyuVLJ-/exec"
   ,data: param
 
   ,success:function(data){
-    alert("성공");
+    
   }
   ,error:function(data){
-    alert("error");
+    
   }
   });
-} 
+}
+
+function thanks(){
+ $('#email').show();
+ $('#thanks').hide();
+}
 </script>
 </body>
