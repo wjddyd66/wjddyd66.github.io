@@ -216,6 +216,67 @@ permalink: /about/
 </section>
 <!-- Available Languages -->
 
+<!-- Project -->
+<section class="section-wrapper portfolio-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>Project</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a class="portfolio-item" href="https://wjddyd66.github.io/projects/spring-project2/">
+                    <div class="portfolio-thumb">
+                        <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/bomair_logo.png" alt="">
+                    </div>
+
+                    <div class="portfolio-info">
+                        <h3>Spring Project</h3>
+                        <small>Bom Air</small>
+                    </div>
+                    <!-- portfolio-info -->
+                </a>
+                <!-- .portfolio-item -->
+            </div>
+            <div class="col-md-6">
+                <a class="portfolio-item" href="https://wjddyd66.github.io/projects/paper/">
+                    <div class="portfolio-thumb">
+                        <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/NLP.PNG" alt="">
+                    </div>
+    
+                    <div class="portfolio-info">
+                        <h3>Paper</h3>
+                        <small>NLP</small>
+                    </div>
+                    <!-- portfolio-info -->
+                </a>
+                <!-- .portfolio-item -->
+            </div>
+            <div class="col-md-6">
+                <a class="portfolio-item" href="https://wjddyd66.github.io/projects/django-project/">
+                    <div class="portfolio-thumb">
+                        <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/bomair_logo.png" alt="">
+                    </div>
+    
+                    <div class="portfolio-info">
+                        <h3>Django Project</h3>
+                        <small>
+Bicycle storage location judgment</small>
+                    </div>
+                    <!-- portfolio-info -->
+                </a>
+                <!-- .portfolio-item -->
+            </div>
+    
+        </div>
+        <!-- /.row -->
+    </div>
+</section>
+<!-- Project -->
+
 <section class="expertise-wrapper section-wrapper gray-bg">
     <div class="container-fluid">
         <div class="row">
@@ -403,78 +464,6 @@ permalink: /about/
 </section>
 <!-- .section-publications -->
 
-<section class="section-wrapper portfolio-section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2>Portfolio</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <a class="portfolio-item" href="#">
-                    <div class="portfolio-thumb">
-                        <img src="img/portfolio-1.jpg" alt="">
-                    </div>
-
-                    <div class="portfolio-info">
-                        <h3>Creative concepts</h3>
-                        <small>domain.com</small>
-                    </div>
-                    <!-- portfolio-info -->
-                </a>
-                <!-- .portfolio-item -->
-            </div>
-            <div class="col-md-6">
-                <a class="portfolio-item" href="#">
-                    <div class="portfolio-thumb">
-                        <img src="img/portfolio-2.jpg" alt="">
-                    </div>
-    
-                    <div class="portfolio-info">
-                        <h3>Customer focused</h3>
-                        <small>domain.com</small>
-                    </div>
-                    <!-- portfolio-info -->
-                </a>
-                <!-- .portfolio-item -->
-            </div>
-            <div class="col-md-6">
-                <a class="portfolio-item" href="#">
-                    <div class="portfolio-thumb">
-                        <img src="img/portfolio-3.jpg" alt="">
-                    </div>
-    
-                    <div class="portfolio-info">
-                        <h3>Management methodology</h3>
-                        <small>domain.com</small>
-                    </div>
-                    <!-- portfolio-info -->
-                </a>
-                <!-- .portfolio-item -->
-            </div>
-            <div class="col-md-6">
-                <a class="portfolio-item" href="#">
-                    <div class="portfolio-thumb">
-                        <img src="img/portfolio-4.jpg" alt="">
-                    </div>
-    
-                    <div class="portfolio-info">
-                        <h3>Market research</h3>
-                        <small>domain.com</small>
-                    </div>
-                    <!-- portfolio-info -->
-                </a>
-                <!-- .portfolio-item -->
-            </div>
-    
-        </div>
-        <!-- /.row -->
-    </div>
-</section>
-<!-- .portfolio -->
 
 <section class="section-contact section-wrapper gray-bg">
     <div class="container-fluid">
