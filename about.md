@@ -477,7 +477,8 @@ permalink: /about/
                                       placeholder="Write message"></textarea>
                         </div>
     
-                        <button  class="btn btn-primary" type='submit'>Submit</button>
+                        <button  class="btn btn-primary">Submit</button>
+                        <div style='display:none;' id='thankyou_message'><h2>Thanks</h2></div>
                     </form>
                 </div>
                 <!-- .feedback-form -->
@@ -523,4 +524,7 @@ permalink: /about/
 <script src="/static/about/js/theia-sticky-sidebar.js"></script>
 <script src="/static/about/js/scripts.js"></script>
 
+<!-- Gmail -->
+<script data-cfasync="false" type="text/javascript"
+src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
 </body>
