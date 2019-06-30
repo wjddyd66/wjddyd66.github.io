@@ -396,27 +396,25 @@ Bicycle storage location judgment</small>
         <div class="row">
             <div class="col-md-12">
                 <div class="content-item">
-                    <small>2010 - 2012</small>
-                    <h3>MA Product Design</h3>
-                    <h4>University of California</h4>
+                    <small>2013 - 2019</small>
+                    <h3>한국외국어 대학교</h3>
+                    <h4>전공: 정보통신 공학과</h4>
 
-                    <p>United Kingdom, London</p>
+                    <p>부전공: 전자공학과</p>
                 </div>
                 <!-- .experience-item -->
                 <div class="content-item">
-                    <small>2007 - 2010</small>
-                    <h3>Business marketing course</h3>
-                    <h4>Royal Academy of Business</h4>
+                    <small>2019/01 - 2019/07</small>
+                    <h3>국비교육</h3>
+                    <h4>클라우드 기반 빅데이터분석 및 자바 딥러닝 개발자</h4>
     
                     <p>United Kingdom, London</p>
                 </div>
                 <!-- .experience-item -->
                 <div class="content-item">
-                    <small>2002 - 2006</small>
-                    <h3>BA (Hons) Design</h3>
-                    <h4>University of Michigan</h4>
-    
-                    <p>United Kingdom, London</p>
+                    <small>2019/06 - 2019/07</small>
+                    <h3>2019 머신러닝 스터디 잼 심화반</h3>
+                    
                 </div>
                 <!-- .experience-item -->
             </div>
@@ -486,24 +484,21 @@ Bicycle storage location judgment</small>
             <div class="col-md-12">
                 <address>
                     <strong>Address</strong><br>
-                    1355 Market Street, Suite 900<br>
-                    San Francisco, CA 94103
+                    서울시 성북구 길음로9길50<br>
+                    914동 2302호
 
                 </address>
                 <address>
                     <strong>Phone Number</strong><br>
-                    +61 3 8376 6284
+                    010 8947 2534
                 </address>
     
-                <address>
-                    <strong>Mobile Number</strong><br>
-                    987 654 321
-                </address>
+               
 
 
                 <address>
                     <strong>Email</strong><br>
-                    <a href="mailto:#">coffee@amelie.me</a>
+                    <a href="mailto:#">wjddyd66@naver.com</a>
                 </address>
             </div>
         </div>
