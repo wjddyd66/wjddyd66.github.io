@@ -276,96 +276,46 @@ Bicycle storage location judgment</small>
 </section>
 <!-- Project -->
 
-<section class="expertise-wrapper section-wrapper gray-bg">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2>Expertise</h2>
-                </div>
-            </div>
-        </div>
-        <!-- .row -->
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="expertise-item">
-                    <h3>Professionally drive</h3>
-    
-                    <p>
-                        Synergistically strategize customer directed resources rather than principle.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="expertise-item">
-                    <h3>Seamlessly leverage </h3>
-    
-                    <p>
-                        Quickly repurpose reliable customer service with orthogonal ideas. Competently.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="expertise-item">
-                    <h3>Interactively incubate</h3>
-    
-                    <p>
-                        Interactively myocardinate high standards in initiatives rather than next-generation.
-                    </p>
-                </div>
-            </div>
-    
-            <div class="col-md-6">
-                <div class="expertise-item">
-                    <h3>Globally streamline</h3>
-    
-                    <p>
-                        Dynamically initiate client-based convergence vis-a-vis performance based. </p>
-                </div>
-            </div>
-    
-        </div>
-
-
-    </div>
-</section>
-<!-- .expertise-wrapper -->
-
+<!-- Certificate -->
 <section class="section-wrapper section-experience gray-bg">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="section-title"><h2>Work Experience</h2></div>
+                <div class="section-title"><h2>Certificate</h2></div>
             </div>
         </div>
         <!--.row-->
         <div class="row">
             <div class="col-md-12">
                 <div class="content-item">
-                    <small>2015 - Present</small>
-                    <h3>Head of market research</h3>
-                    <h4>Computer & Motor Ltd.</h4>
+                    <small>2018/08/31</small>
+                    <h3>정보통신기사</h3>
+                    <h4>합격번호: 18-71-0155</h4>
 
-                    <p>United Kingdom, London</p>
+                    <p>한국방송통신전파진흥원</p>
+                </div>
+                <!-- .experience-item -->
+            <div class="content-item">
+                    <small>2018/05/25</small>
+                    <h3>정보처리기사</h3>
+                    <h4>합격번호: 18201230170A</h4>
+
+                    <p>한국산업인력공단</p>
                 </div>
                 <!-- .experience-item -->
                 <div class="content-item">
-                    <small>2012 - 2015</small>
-                    <h3>Media Analyst</h3>
-                    <h4>BizzNiss</h4>
-    
-                    <p>United Kingdom, London</p>
+                    <small>2018/05/25</small>
+                    <h3>ADSP</h3>
+                   
+                    <p>한국데이터산업진흥원</p>
                 </div>
-                <!-- .experience-item -->
-                <div class="content-item">
-                    <small>2010 - 2012</small>
-                    <h3>Budget Administrator</h3>
-                    <h4>Somsom LLC</h4>
-    
-                    <p>United Kingdom, London</p>
+               
+               <div class="content-item">
+                    <small>2018/02/10</small>
+                    <h3>TOEIC</h3>
+                    <h4>점수: 690</h4>
+
+                    <p>유효기간: 2021/02/10</p>
                 </div>
                 <!-- .experience-item -->
             </div>
@@ -375,8 +325,9 @@ Bicycle storage location judgment</small>
     <!-- .container-fluid -->
 
 </section>
-<!-- .section-experience -->
+<!-- Certificate -->
 
+<!-- Education -->
 <section class="section-wrapper section-education">
     <div class="container-fluid">
         <div class="row">
@@ -400,7 +351,7 @@ Bicycle storage location judgment</small>
                     <h3>국비교육</h3>
                     <h4>클라우드 기반 빅데이터분석 및 자바 딥러닝 개발자</h4>
     
-                    <p>United Kingdom, London</p>
+                    
                 </div>
                 <!-- .experience-item -->
                 <div class="content-item">
@@ -416,8 +367,9 @@ Bicycle storage location judgment</small>
     <!-- .container-fluid -->
 
 </section>
-<!-- .section-education -->
+<!-- Education -->
 
+<!-- Interest -->
 <section class="section-wrapper section-interest gray-bg">
     <div class="container-fluid">
         <div class="row">
@@ -432,18 +384,14 @@ Bicycle storage location judgment</small>
         <div class="row">
             <div class="col-md-12">
                 <div class="content-item">
-                    <h3>Books</h3>
+                    <h3>A.I</h3>
     
-                    <p>Proactively extend market-driven e-tailers rather than enterprise-wide supply chains.
-                        Collaboratively embrace 24/7 processes rather than adaptive users. Seamlessly monetize
-                        alternative e-business.</p>
+                    <p>A.I분야에 대해 관심이 많습니다. 수학적인 개념은 개인적인 공부(Googling, 서적, Youtube 등) 다양한 경로를 통하여 획득하고 있고, IDE 로서는 Tensorflow를 공부하고 있습니다. 구글 머신러닝 스터디잼 등 배울 기회가 있는 곳에 적극적으로 참여하려는 노력 중 입니다..</p>
                 </div>
                 <div class="content-item">
-                    <h3>Sports</h3>
+                    <h3>Big Data</h3>
     
-                    <p>Assertively grow optimal methodologies after viral technologies. Appropriately develop
-                        frictionless technology for adaptive functionalities. Competently iterate functionalized
-                        networks for best-of-breed services.</p>
+                    <p>A.I 의 Trainning Dataset 을 만들기 위하여 필수적인 과정이자 관심있는 분야 입니다. 통계적인 기초는 공부(Googling, 서적, Youtube 등) 다양한 경로를 통하여 획득하고 있고, IDE 로서는 R, Python을 공부하고 있습니다.</p>
     
                 </div>
                 <div class="content-item">
@@ -459,9 +407,9 @@ Bicycle storage location judgment</small>
     
     </div>
 </section>
-<!-- .section-publications -->
+<!-- Interest -->
 
-
+<!-- Contact -->
 <section class="section-contact section-wrapper gray-bg">
     <div class="container-fluid">
         <div class="row">
@@ -494,6 +442,7 @@ Bicycle storage location judgment</small>
                 </address>
             </div>
         </div>
+
         <!--.row-->
         <div class="row">
             <div class="col-md-12">
