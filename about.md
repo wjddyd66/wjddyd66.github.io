@@ -522,4 +522,15 @@ permalink: /about/
 <script src="/static/about/js/bootstrap.min.js"></script>
 <script src="/static/about/js/theia-sticky-sidebar.js"></script>
 <script src="/static/about/js/scripts.js"></script>
+
+<!-- Gmail -->
+<script data-cfasync="false" type="text/javascript"
+src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+
+<div stype='display:none;' id='thankyou_message'>
+<h2>
+	<em>Thanks</em>
+	확인하는 즉시 연락드리겠습니다.
+</h2>
+</div>
 </body>
