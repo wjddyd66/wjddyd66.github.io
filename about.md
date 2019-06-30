@@ -455,7 +455,7 @@ permalink: /about/
                 <div class="feedback-form">
                     <h2>Get in touch</h2>
     
-                    <form id="gform" onclick='send()'>
+                    <form id="gform">
                         <div class="form-group">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
@@ -477,7 +477,7 @@ permalink: /about/
                                       placeholder="Write message"></textarea>
                         </div>
     
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" onclick='send()'>Submit</button>
           
           <!--  결과 확인 -->
                         <div style="display:none" class="thankyou_message">
