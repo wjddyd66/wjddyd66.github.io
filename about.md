@@ -477,14 +477,7 @@ permalink: /about/
                                       placeholder="Write message"></textarea>
                         </div>
     
-                        <button  class="btn btn-primary">Submit</button>
-          
-          <!--  결과 확인 -->
-                       <div style="display:none" class="thankyou_message">
- <!-- You can customize the thankyou message by editing the code below -->
- <h2><em>Thanks</em> for contacting us! We will get back to you soon!
- </h2>
-</div>
+                        <button  class="btn btn-primary" type='submit'>Submit</button>
                     </form>
                 </div>
                 <!-- .feedback-form -->
@@ -530,6 +523,4 @@ permalink: /about/
 <script src="/static/about/js/theia-sticky-sidebar.js"></script>
 <script src="/static/about/js/scripts.js"></script>
 
-<!--  Gmail -->
-<script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
 </body>
