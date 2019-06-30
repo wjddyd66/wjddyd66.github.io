@@ -450,12 +450,12 @@ permalink: /about/
             </div>
         </div>
         <!--.row-->
-        <div class="row" id='email'>
+        <div class="row">
             <div class="col-md-12">
                 <div class="feedback-form">
                     <h2>Get in touch</h2>
     
-                    <form id="gform">
+                    <form id="gform" action="https://script.google.com/macros/s/AKfycbxATH2hvD5ouueT5UmmARk4n8lrCPYCD9kCixvU/exec" method="post">
                         <div class="form-group">
                             <label for="InputName">Name</label>
                             <input type="text" name="name" required="" class="form-control" id="InputName"
@@ -477,18 +477,18 @@ permalink: /about/
                                       placeholder="Write message"></textarea>
                         </div>
     
-                        <button type="submit" class="btn btn-primary" onclick='send()'>Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
           
+          <!--  결과 확인 -->
+                        <div style="display:none" class="thankyou_message">
+<h2>
+   <em>Thanks</em>
+   확인하는 즉시 연락드리겠습니다.<br>
+   <button type="button" class="btn btn-link" onclick='https://wjddyd66.github.io/about/' >돌아가기</button>
+</h2>
+</div>
                     </form>
                 </div>
-<!--  결과 확인 -->
-<div style="display:none" id="thanks">
-<h2>
-	<em>Thanks</em>
-	확인하는 즉시 연락드리겠습니다.<br>
-	<button type="button" class="btn btn-link" onclick='thanks()' >다시보내기</button>
-	</h2>
-</div>
                 <!-- .feedback-form -->
 
 
@@ -534,29 +534,5 @@ permalink: /about/
 
 <!-- Gmail -->
 <script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
-<script>
-function send(){
-    
- var param = $("#gform").serialize();
- $('#email').style.display = "none";
- $('#thanks').style.display = "block";
- $.ajax({   
-   type: "POST"  
-  ,url: "https://script.google.com/macros/s/AKfycbynVqXIMfvnE-yeHETe5bPdX059_ydvmcyuVLJ-/exec"
-  ,data: param
 
-  ,success:function(data){
-    
-  }
-  ,error:function(data){
-    
-  }
-  });
-}
-
-function thanks(){
- $('#email').style.display = "block";
- $('#thanks').style.display = "none";
-}
-</script>
 </body>
