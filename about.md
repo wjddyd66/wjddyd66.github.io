@@ -48,19 +48,11 @@ permalink: /about/
 <!-- Head -->
 <section class="section-wrapper section-interest gray-bg">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2>About</h2>
-                </div>
-            </div>
-        </div>
-        <!-- .row -->
 
         <div class="row">
             <div class="col-md-12">
                 <div class="content-item">
-                    <h3>A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다. 이 Page의 구성은 다음과 같습니다.</h3>
+                    <h3>A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다. <br>이 Page의 구성은 다음과 같습니다.</h3>
     
                     <p>
                     <ul class="list-group list-group-flush">
