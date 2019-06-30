@@ -40,19 +40,30 @@ permalink: /about/
 </div>
 
 <div class="columns-block container" style="width:100%">
-<div class="left-col-block blocks">
-    <header class="header theiaStickySidebar">
-        <div class="content">
-            <h1>황정용</h1>
-            <span class="lead">Programmer</span>
 
-            <div class="about-text">
-                <p>
-                    A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다. 이 Page의 구성은 다음과 같습니다.
-                </p>
-                
-                <p>
-                <ul class="list-group list-group-flush">
+
+<div class="right-col-block blocks">
+<div class="theiaStickySidebar">
+
+<!-- Head -->
+<section class="section-wrapper section-interest gray-bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>About</h2>
+                </div>
+            </div>
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-item">
+                    <h3>A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다. 이 Page의 구성은 다음과 같습니다.</h3>
+    
+                    <p>
+                    <ul class="list-group list-group-flush">
                 <li class="list-group-item">Available Languages</li>
                 <li class="list-group-item">Project</li>
                 <li class="list-group-item">Certificate</li>
@@ -61,18 +72,14 @@ permalink: /about/
                 <li class="list-group-item">Contact</li>
                 </ul>
                 </p>
-
+                </div>
             </div>
         </div>
+        <!-- .row -->
     
-    </header>
-    <!-- .header-->
-</div>
-<!-- .left-col-block -->
-
-
-<div class="right-col-block blocks">
-<div class="theiaStickySidebar">
+    </div>
+</section>
+<!-- Head -->
 
 <!-- Available Language -->
 <section class="section-wrapper skills-wrapper">
