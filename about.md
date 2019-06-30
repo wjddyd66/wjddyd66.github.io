@@ -480,8 +480,7 @@ permalink: /about/
       <button class="button-success pure-button button-xlarge">
         <i class="fa fa-paper-plane"></i>&nbsp;Send</button>
      <div class="thankyou_message" style="display:none;">
-      <h2><em>Thanks</em> for contacting us!
-        We will get back to you soon!</h2>
+      <h2><em>Mail 전송 완료!</em> 확인하는 즉시 답장 드리겠습니다.</h2>
     </div>
                     </form>
                 </div>
