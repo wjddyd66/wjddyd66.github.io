@@ -524,10 +524,9 @@ permalink: /about/
 <script src="/static/about/js/scripts.js"></script>
 
 <!-- Gmail -->
-<script data-cfasync="false" type="text/javascript"
-src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+<script data-cfasync="false" type="text/javascript" src="/static/about/js/form-submission-handler.js"></script>
 
-<div style='display:none;'  id='thankyou_message'>
+<div style="display:none" class="thankyou_message">
 <h2>
 	<em>Thanks</em>
 	확인하는 즉시 연락드리겠습니다.
