@@ -54,7 +54,7 @@ def Mbc():
 '''
 사용자 모듈
 mymod 라는 이름의 외부 Module 호출
-#Module.py
+Module.py
 '''
 kor = 100
 print("kor: ", kor)
