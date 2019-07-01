@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Python-Function2(클로저, 일급함수, 람다, 함수장식자)"
+title:  "Python-Function2(클로저, 일급함수, 람다, 함수장식자,재귀함수)"
 date:   2019-07-01 07:00:00 +0700
 categories: [Python]
 ---
@@ -148,6 +148,28 @@ print(hello2()) #HelloWorld황정용2
 ```
 <br>
 
+###  재귀함수(Recursive Call)
+계속해서 함수 자기자신을 호출하여 반복문과 같은 효과를 낼 수 있다.  
+계속 반복되므로 탈출 조건을 명시하여야 한다.  
+
+
+
+```python
+'''
+재귀함수(Recursive Call)
+계속해서 함수 자기자신을 호출하여 반복문과 같은 효과를 낼 수 있다.
+계속 반복되므로 탈출 조건을 명시하여야 한다.
+'''
+def countDown(n):
+    if n == 0 :
+        print("완료")
+    else :
+        print(n, end = " ")
+        countDown(n-1) #자기자신을 호출
+countDown(5) #5 4 3 2 1 완료
+
+```
+<br>
 <hr>
 참조:<https://github.com/wjddyd66/Python/tree/master/Function><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
