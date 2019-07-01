@@ -34,40 +34,6 @@ print(math.sin(math.radians(30))) #sin30˚의 값 0.49999999999999994
 ```
 <br>
 
-###  일급함수(first-class)
-일급 함수(first-class)는 객체 지향 프로그래밍(object-oriented programming) 중에서 파이썬을 포함한 몇몇 프로그래밍 언어에서 발견할 수 있는 개념  
-1. 함수를 변수에 할당 가능
-2. 다른 함수에서 해당 함수를 인자로 전달 가능
-3. 함수에서 함수를 반환 가능
-
-
-```python
-'''
-일급 함수(first-class)는 객체 지향 프로그래밍(object-oriented programming) 
-중에서 파이썬을 포함한 몇몇 프로그래밍 언어에서 발견할 수 있는 개념
-1. 함수를 변수에 할당 가능
-2. 다른 함수에서 해당 함수를 인자로 전달 가능
-3. 함수에서 함수를 반환 가능
-'''
-def fnc1(a, b):
-    return a+b
-
-fnc2 = fnc1
-print(fnc1(3, 4)) #7
-print(fnc2(3, 4)) #7
-
-print()
-def fnc3(fnc):
-    def fnc4():
-        print("나는 내부함수")
-    fnc4()
-    return fnc    
-
-mbc =  fnc3(fnc1) #인자로 fnc1의 주소를 넘긴다.
-print(mbc(3, 4)) #나는 내부함수 7
-
-```
-<br>
 사용자 모듈
 ```python
 #사용자 모듈: mymod선언
@@ -140,7 +106,7 @@ while True:
             sys.exit()
 ```
 <br>
-결과
+결과-제 3자 모듈(pygame)
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Module.PNG" height="250" width="600" /></div><br>
 <hr>
 참조:<https://github.com/wjddyd66/Python/tree/master/Module><br>
