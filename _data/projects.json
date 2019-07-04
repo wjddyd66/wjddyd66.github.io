@@ -7,7 +7,7 @@
 		"image": "bomair_logo.png",
 		"url": "#",
 		"date": "June 2019",
-		"tags": ["Spring"]
+		"tags": ["Spring, JAVA"]
 	},{
 		"slug": "paper",
 		"name": "Paper",
@@ -18,10 +18,10 @@
 	},{
 		"slug": "django-project",
 		"name": "Django-project",
-		"image": "logo.png",
+		"image": "logo2.PNG",
 		"url": "#",
 		"date": "June 2019",
-		"tags": ["Django"]
+		"tags": ["Django, Python, R, A.I"]
 	}
 
 
