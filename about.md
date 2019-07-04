@@ -87,7 +87,7 @@ permalink: /about/
         <div class="row">
             <div class="col-md-12">
                 <div class="progress-wrapper">
-					<!-- Java -->    
+    				<!-- Java -->    
                     <div class="progress-item">
                         <span class="progress-title">Java</span>
     
@@ -99,8 +99,8 @@ permalink: /about/
                         <!-- .progress -->
                     </div>
                     <!-- .skill-progress -->
-
-					<!-- R --> 
+    
+    				<!-- R --> 
                     <div class="progress-item">
                         <span class="progress-title">R</span>
     
@@ -112,8 +112,8 @@ permalink: /about/
                         <!-- /.progress -->
                     </div>
                     <!-- /.skill-progress -->
-
-					<!-- RDBMS -->
+    
+    				<!-- RDBMS -->
                     <div class="progress-item">
                         <span class="progress-title">RDBMS</span>
     
@@ -203,8 +203,9 @@ permalink: /about/
                         <!-- .progress -->
                     </div>
                     <!-- .skill-progress -->
-    
-    
+
+
+​    
                 </div>
                 <!-- /.progress-wrapper -->
             </div>
@@ -257,13 +258,13 @@ permalink: /about/
             <div class="col-md-6">
                 <a class="portfolio-item" href="https://wjddyd66.github.io/projects/django-project/">
                     <div class="portfolio-thumb">
-                        <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/bomair_logo.png" alt="">
+                        <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/logo2.PNG" alt="">
                     </div>
     
                     <div class="portfolio-info">
                         <h3>Django Project</h3>
                         <small>
-Bicycle storage location judgment</small>
+따릉이 적합도 평가</small>
                     </div>
                     <!-- portfolio-info -->
                 </a>
@@ -299,7 +300,7 @@ Bicycle storage location judgment</small>
                     <small>2018/05/25</small>
                     <h3>정보처리기사</h3>
                     <h4>합격번호: 18201230170A</h4>
-
+    
                     <p>한국산업인력공단</p>
                 </div>
                 <!-- .experience-item -->
@@ -314,7 +315,7 @@ Bicycle storage location judgment</small>
                     <small>2018/02/10</small>
                     <h3>TOEIC</h3>
                     <h4>점수: 690</h4>
-
+    
                     <p>유효기간: 2021/02/10</p>
                 </div>
                 <!-- .experience-item -->
@@ -350,8 +351,9 @@ Bicycle storage location judgment</small>
                     <small>2019/01 - 2019/07</small>
                     <h3>국비교육</h3>
                     <h4>클라우드 기반 빅데이터분석 및 자바 딥러닝 개발자</h4>
-    
-                    
+
+
+​                    
                 </div>
                 <!-- .experience-item -->
                 <div class="content-item">
@@ -426,8 +428,9 @@ Bicycle storage location judgment</small>
                     <strong>Phone Number</strong><br>
                     010 8947 2534
                 </address>
-    
-               
+
+
+​               
 
 
                 <address>
@@ -436,7 +439,7 @@ Bicycle storage location judgment</small>
                 </address>
             </div>
         </div>
-
+    
         <!--.row-->
         <div class="row">
             <div class="col-md-12">
