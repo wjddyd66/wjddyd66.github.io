@@ -201,7 +201,8 @@ for(i in 1:length(data2$count)){
 유동인구의 경우 정류서 1.5km 이내의 유동인구이다.  
 즉, 1.5km의 유동인구의 자료가 없는 경우 0의 값으로 자료가 생성된다.  
 이에 따라 각 구간의 3% 미만의 Data는 Data의 중위수로 치환하는 과정을 진행하였다.  
-<span style ="color: red">** 1036개의 Data중 10개의 Data값 변화 **</span>
+<span style ="color: red">**1036개의 Data중 10개의 Data값 변화**</span>
+<br>
 ```R
 for(i in 1:length(data$Count)){
   if(i<cen*1){
