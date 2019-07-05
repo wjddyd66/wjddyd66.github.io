@@ -8,7 +8,7 @@ categories: [Django,Python]
 ###  Model Parameter
 Model 분류값은 1~5의 5개의 Class로 분류 할 경우  
 2~5의 값을 가지는 Class를 판별할 때 많은 오차가 발생되는 것을 발견  
-<span style ="color: red">**상위  20% = “상” **</span>, <span style ="color: blue">**하위  10%  = “하”**</span>나머지는 ="중"으로서 3개의 Class로서 분류로 바꾸었다.  
+<span style ="color: blue">**상위  20%  = “상”**</span>, <span style ="color: blue">**하위  10%  = “하”**</span>나머지는 ="중"으로서 3개의 Class로서 분류로 바꾸었다.  
  - ‘상’   등급  :  지정  위치에  대여소  설치  추천
  - ‘중’   등급:  내부   검토에  의해   설치
  - ‘하’   등급:   설치  지양
@@ -119,5 +119,5 @@ joblib.dump(mlp, file_name)
 <br>
 
 <hr>
-참조:<https://github.com/wjddyd66/Python/tree/master/Condition%26Loop><br>
+참조:<https://github.com/wjddyd66/Project/tree/master/Django><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
