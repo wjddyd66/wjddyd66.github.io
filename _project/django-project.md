@@ -23,7 +23,7 @@ slug: "Django Project"
 
 ### 데이터 변수 설정
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django4.PNG" height="100%" width="100%" /></div>
-서울 시설공단 공공자전거운영처의 대여소 설치기준을 참고하여 <span style ="color: red">**유동인구, 대학교, 관광병소, 자전거도로**</span>를 변수로 설정  
+서울 시설공단 공공자전거운영처의 대여소 설치기준을 참고하여 <span style ="color: red">**유동인구, 대학교, 관광명소, 자전거도로**</span>를 변수로 설정  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django5.PNG" height="100%" width="100%" /></div>
 공공자전거 이용자수 상위 100개소를 지도에 표시한 결과 공원, 강 주변에 위치  
 <span style ="color: red">**공원, 강**</span>의 위치를 변수로 설정  
@@ -224,3 +224,4 @@ MLP Classifer 모델의 Parameter를 반복적으로 변경
 
 <hr>
 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
