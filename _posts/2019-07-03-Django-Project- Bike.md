@@ -10,13 +10,19 @@ categories: [Django,R]
 서울 열린 데이터 광장에서 따릉이 대여소의 위치와 사용량의 데이터를 가지고와서 합치는 작업을 하였다.  
 데이터 출처:<https://data.seoul.go.kr/search/newSearch.jsp?query=%EA%B3%B5%EA%B3%B5%EC%9E%90%EC%A0%84%EA%B1%B0><br>
 서울시 따릉이 대여소 사용량 Data  
-<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django12.PNG" height="300" width="600" /><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django12.PNG" height="200" width="400" /><br>
 서울시 따릉이 대여소 위치 Data  
-<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django13.PNG" height="300" width="600" /><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django13.PNG" height="200" width="400" /><br>
 서울시 따릉이 대여소 사용량과 위치 Data  
-<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django14.PNG" height="300" width="600" /><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django14.PNG" height="200" width="400" /><br>
+<br><br>
+위의 데이터를 활용하여 상위100개와 하위 100개의 대여소를 Map에 그려 확인하였다. 
+
 <br>
-위의 데이터를 활용하여 상위100개와 하위 100개의 대여소를 Map에 그려 확인하였다.  
+
+따릉이 데이터 전처리 과정
+
+<br>
 
 ```R
 library(ggplot2)
@@ -87,9 +93,7 @@ ggmap(seoul) + geom_point(data=min,aes(x=x,y=y),size=2.5,alpha=0.8,col='blue')
 	</tr>
 	<tr>
 		<td>공원</td>
-		<td><
-		https://www.tripadvisor.co.kr/
-		></td>
+		<td>https://www.tripadvisor.co.kr/</td>
 		<td>
 		<ul>
 			<li>상위 12개 선택</li>
@@ -111,21 +115,17 @@ ggmap(seoul) + geom_point(data=min,aes(x=x,y=y),size=2.5,alpha=0.8,col='blue')
 	</tr>
 	<tr>
 		<td>유동인구</td>
-		<td><
-		https://data.seoul.go.kr/
-		></td>
+		<td>https://data.seoul.go.kr/</td>
 		<td>
-		Google Map활용하여 길에대한 위도, 경도 값 찾음
-		</td>
-		<td>
-		이름이 같은 길 경우 지도에 그려본 뒤 제거
+        <ul>
+			<li>Google Map활용하여 길에대한 위도, 경도 값 찾음</li>
+			<li>이름이 같은 길 경우 지도에 그려본 뒤 제거</li>
+		</ul>
 		</td>
 	</tr>
 	<tr>
 		<td>관광명소</td>
-		<td><
-		https://www.tripadvisor.co.kr/
-		></td>
+		<td>https://www.tripadvisor.co.kr/</td>
 		<td>
 		<ul>
 			<li>상위 20개 선택</li>
@@ -159,21 +159,28 @@ ggmap(seoul) + geom_point(data=min,aes(x=x,y=y),size=2.5,alpha=0.8,col='blue')
 	</tr>
 </tbody>
 </table>
+
 <br>
 
 ###  데이터 1차가공 형태
 공원  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django15.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django15.PNG" height="200" width="400" /></div>
+
 강  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django16.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django16.PNG" height="200" width="400" /></div>
+
 유동인구  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django17.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django17.PNG" height="200" width="400" /></div>
+
 관광명소  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django18.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django18.PNG" height="200" width="400" /></div>
+
 대학교  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django19.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django19.PNG" height="200" width="400" /></div>
+
 자전거도로  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django20.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django20.PNG" height="200" width="400" /></div>
+
 <br>
 
 데이터 1차 가공 Data: <https://github.com/wjddyd66/Project/tree/master/Django/Data>
