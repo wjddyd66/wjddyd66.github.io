@@ -3,7 +3,6 @@ layout: project_single
 title:  "Django project"
 slug: "Django Project"
 ---
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/logo2.PNG" height="250px" width="100%" /></div>
 
 ### 따봉 Django Project
 따봉 Django Project는 실제 존재하는 따릉이 대여소와 기타 요인간의 상관관계분석을 통한 공공자전거 대여소 설치 구역 추천을 하는 시스템입니다.   
