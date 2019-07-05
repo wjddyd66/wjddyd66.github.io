@@ -193,6 +193,8 @@ categories: [Django,Python]
   </body>
 </html>
 ```
+<br>
+결과화면
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django26.PNG" height="400" width="650" /></div><br><br>
 
 ###  적합도 평가 Algorithm
