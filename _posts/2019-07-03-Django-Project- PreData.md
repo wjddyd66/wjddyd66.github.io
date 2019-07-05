@@ -167,16 +167,11 @@ for i in range(0, len(data_rental)):
             count=1
     
     people = sum/count
-    result1 = (people-0)/(412554-0)
-    result2 = (min1-0.03253)/(14.97119-0.03253)
-    result3 = (min2-0.06655)/(16.08754-0.06655)
-    result4 = (min4-0.04874)/(10.9346-0.04874)
-    result5 = (min3-0.03363)/(8.05676-0.03363)
-    result6 = (min5-0.14916)/(11.71905-0.14916)
+
     
-    print("대여소명: ", data_rental["name"][i], ", 근접공원: ", result1, ", 근접관광지: ", result2, 
-          ", 근접강가:", result3, ", 근접 자전거도로: ", result4, ", 근접대학교:", result5, ", 근접유동인구 평균: ", result6)
-    makeExcel(data_rental["name"][i], result1, result2, result3, result4, result5, result6)
+    print("대여소명: ", data_rental["name"][i], ", 근접공원: ", min1, ", 근접관광지: ", min2, 
+          ", 근접강가:", min3, ", 근접 자전거도로: ", min4, ", 근접대학교:", min5, ", 근접유동인구 평균: ",  people)
+    makeExcel(data_rental["name"][i], min1, min2, min3, min4, min5,  people)
 print("엑셀로 저장 완료")
 ```
 <br>
@@ -201,6 +196,36 @@ for(i in 1:length(data2$count)){
 ```
 결과  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django23.PNG" height="200" width="500" /></div><br>
+
+###  데이터 결측치 처리
+유동인구의 경우 정류서 1.5km 이내의 유동인구이다.  
+즉, 1.5km의 유동인구의 자료가 없는 경우 0의 값으로 자료가 생성된다.  
+이에 따라 각 구간의 3% 미만의 Data는 Data의 중위수로 치환하는 과정을 진행하였다.  
+<span style ="color: red">** 1036개의 Data중 10개의 Data값 변화 **</span>
+```R
+for(i in 1:length(data$Count)){
+  if(i<cen*1){
+    if(data$People[i]< quantile(data$People[data$Count==5],0.03))
+      data$People[i] <- mean(data$People[data$Count==5])
+  }
+  else if(i<cen*2){
+    if(data$People[i]< quantile(data$People[data$Count==4],0.03))
+      data$People[i] <- mean(data$People[data$Count==4])
+  }
+  else if(i<cen*3){
+    if(data$People[i]< quantile(data$People[data$Count==3],0.03))
+      data$People[i] <- mean(data$People[data$Count==3])
+  }
+  else if(i<cen*4){
+    if(data$People[i]< quantile(data$People[data$Count==2],0.03))
+      data$People[i] <- mean(data$People[data$Count==2])
+  }
+  else{
+    if(data$People[i]< quantile(data$People[data$Count==1],0.03))
+      data$People[i] <- mean(data$People[data$Count==1])
+  }
+}
+```
 
 ###  데이터 정규화
 알맞은 Model을 선택하기 위하여 Z 변환과 MIN-MAX Normalization 두개를 사용하여 정규화를 진행하였다.  
