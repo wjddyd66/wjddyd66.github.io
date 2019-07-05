@@ -17,7 +17,7 @@ categories: [Django,Python]
 ###  Main 화면
 시작하기 위한 Main 화면이다.  
 시작하기를 누를경우 사용자가 원하는 위치를 고를 수 있게 지도화면을 보여주게 구현하였다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django25.PNG" height="400" width="500" /></div><br><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django25.PNG" height="400" width="650" /></div><br><br>
 
 ###  원하는 위치 선택
 사용자가 원하는 위치를 고를 수 있게 지도화면을 보여주게 구현하였다.  
@@ -193,7 +193,7 @@ categories: [Django,Python]
   </body>
 </html>
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django26.PNG" height="400" width="500" /></div><br><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django26.PNG" height="400" width="650" /></div><br><br>
 
 ###  적합도 평가 Algorithm
 1. 사용자가 클릭한 곳의 좌표를 가져온 뒤, DB의 값과 <span style ="color: red">**Euclidean**</span>거리 계산 방식 이용하여 값을 구한다.  
@@ -377,7 +377,7 @@ function func(var1,var2,var3,var4,var5,var6){
   </script>
 ```
 결과
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django28.PNG" height="400" width="500" /></div><br><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django28.PNG" height="400" width="650" /></div><br><br>
 
 <br>
 시연영상  
