@@ -37,7 +37,7 @@ slug: "Django Project"
 <span style ="color: red">**Euclidean**</span>거리 계산 방식 이용  
 대여소로부터 1.5km내, 관측소들의 유동인구  평균을 도출  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django8.PNG" height="100%" width="100%" /></div>
-1. 연속형, 입력변수에<span style ="color: red">**MIN-MAX Normalization **</span>를 통해 0~1값으로 치환
+1. 연속형, 입력변수에<span style ="color: red">MIN-MAX Normalization</span>를 통해 0~1값으로 치환
 2. 필요에 따라 연속형 변수 => 범주형 변수로 변경 
 3. 결측치 처리: 구간별 중위수로 대체
 
