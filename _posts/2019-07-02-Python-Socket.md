@@ -7,8 +7,9 @@ categories: [Python]
 
 ###  Python Socket
 TCP 서버/클라이언트 함수 호출 관계  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Soc3.PNG" height="200" width="400" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Soc3.PNG" height="100%" width="100%" /></div>
 그림 출처:<http://blog.naver.com/PostView.nhn?blogId=cnfldidhd&logNo=20171560152>  
+<br><br>
 TCP 서버/클라이언트 함수 호출 순서  
 1. 서버, 클라이언트 소켓 생성
 2. 서버는 bind(), listen()함수를 호출하여 대기 상태
@@ -17,7 +18,8 @@ TCP 서버/클라이언트 함수 호출 순서
 5. 서버와 클라이언트는 서로 연결
 6. close()함수를 통해 연결 종료
 
-Socket 함수  
+<br><br>
+<span style ="color: red">**Socket 함수**</span><br> 
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
 	<tbody>
