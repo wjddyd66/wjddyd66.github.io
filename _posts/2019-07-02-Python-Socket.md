@@ -84,8 +84,7 @@ clientSock.close()
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Soc1.PNG" height="200" width="400" /></div>
 <br>
 ###  Python Echo Server
-클라이언트가 전송해주는 데이터를 그래도 되돌려 전송해 주는 기능의 서버
-DB 사용 대표 명령어  
+클라이언트가 전송해주는 데이터를 그래도 되돌려 전송해 주는 기능의 서버  
 Server
 ```python
 #soc2_server.py
