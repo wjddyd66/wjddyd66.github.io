@@ -2,7 +2,7 @@
 layout: post
 title:  "Spring-Project-렌트카"
 date:   2019-06-27 08:00:00 +0700
-categories: [Spring]
+categories: [Project]
 ---
 
 ###  렌트카-DB 구성

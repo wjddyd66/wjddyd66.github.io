@@ -2,7 +2,7 @@
 layout: post
 title:  "Spring-Project-회원가입 & ID,비밀번호 찾기"
 date:   2019-06-27 07:00:00 +0700
-categories: [Spring]
+categories: [Project]
 ---
 
 ###  회원가입-DB 구성

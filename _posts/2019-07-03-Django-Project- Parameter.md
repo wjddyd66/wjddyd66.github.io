@@ -2,7 +2,7 @@
 layout: post
 title:  "Django-Project-Model Parameter"
 date:   2019-07-03 10:00:00 +0700
-categories: [Django,Python]
+categories: [Project]
 ---
 
 ###  Model Parameter

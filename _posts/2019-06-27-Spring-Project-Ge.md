@@ -2,7 +2,7 @@
 layout: post
 title:  "Spring-Project-공지사항"
 date:   2019-06-27 07:30:00 +0700
-categories: [Spring]
+categories: [Project]
 ---
 
 ###  공지사항-DB 구성

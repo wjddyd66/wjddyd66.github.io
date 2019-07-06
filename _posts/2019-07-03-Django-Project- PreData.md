@@ -2,7 +2,7 @@
 layout: post
 title:  "Django-Project-데이터 전처리"
 date:   2019-07-03 09:30:00 +0700
-categories: [Django,Python]
+categories: [Project]
 ---
 
 ###  데이터 전처리

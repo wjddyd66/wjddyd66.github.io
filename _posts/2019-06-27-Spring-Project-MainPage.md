@@ -2,7 +2,7 @@
 layout: post
 title:  "Spring-Project-MainPage"
 date:   2019-06-27 06:30:00 +0700
-categories: [Spring]
+categories: [Project]
 ---
 
 ###  Spring-Project-MainPage

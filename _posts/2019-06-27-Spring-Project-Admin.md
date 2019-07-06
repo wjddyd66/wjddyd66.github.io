@@ -2,7 +2,7 @@
 layout: post
 title:  "Spring-Project-관리자"
 date:   2019-06-27 08:30:00 +0700
-categories: [Spring]
+categories: [Project]
 ---
 
 ###  관리자 권한

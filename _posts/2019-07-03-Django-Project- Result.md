@@ -2,7 +2,7 @@
 layout: post
 title:  "Django-Project-Result"
 date:   2019-07-03 10:30:00 +0700
-categories: [Django,Python]
+categories: [Project]
 ---
 
 ###  Web 구현

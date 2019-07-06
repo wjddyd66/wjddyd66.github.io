@@ -8,7 +8,7 @@ google_analytics: UA-XXXXXXXX-Y
 avatar_url: /static/img/programmer.png
 
 enableTags: true
-tagarray: [JAVA, Python, DB, NoSQL, Spring, Django, A.I, R]
+tagarray: [JAVA, Python, DB, NoSQL, Spring, Django, A.I, R, Project]
 
 collections:
   project:

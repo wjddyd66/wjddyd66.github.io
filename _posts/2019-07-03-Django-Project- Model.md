@@ -2,7 +2,7 @@
 layout: post
 title:  "Django-Project-Model 선정"
 date:   2019-07-03 09:50:00 +0700
-categories: [Django,Python]
+categories: [Project]
 ---
 
 ###  Model 선정

@@ -2,7 +2,7 @@
 layout: post
 title:  "Django-Project-데이터 변수 설정"
 date:   2019-07-03 09:00:00 +0700
-categories: [Django,R]
+categories: [Project]
 ---
 
 ###  따릉이 상위 대여소 파악
