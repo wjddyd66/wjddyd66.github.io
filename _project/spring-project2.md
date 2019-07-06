@@ -73,7 +73,7 @@ Main Page에서 바로 최근 공지사항을 보이도록 하였고 공지사�
 Project의 Main 기능인 항공권 예매와 렌트카 예매의 경우 바로 Main 화면에서 구매 가능하도록 구성하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo5.PNG" height="100%" width="100%" /></div>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo6.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/spring/2019/06/26/Spring-Project-MainPage.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/06/26/Spring-Project-MainPage.html>  
 <br>
 ### 회원가입
 회원 가입 같은 경우 회원의 ID를 Primary Key로서 사용하기 때문에 중복체크를 하여 확인하였다.  
@@ -83,7 +83,7 @@ Project의 Main 기능인 항공권 예매와 렌트카 예매의 경우 바로 
 ### ID, 비밀번호 찾기
 계정의 정보를 잃어버려 ID, 비밀번호 찾기를 해야 하는경우, ID는 바로 보여줘도 상관없지만, 비밀번호 같은 경우 중요한 정보이므로 가입되어있는 Mail로 발송하는 식으로 구현하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo8.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/Project/2019/06/27/Spring-Project-ID.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/06/27/Spring-Project-ID.html>  
 <br>
 ### 공지사항
 공지사항인 경우 Main Page에서 보여지는 부분은 Ajax로서 처리하였다.  
@@ -92,7 +92,7 @@ Project의 Main 기능인 항공권 예매와 렌트카 예매의 경우 바로 
 공지사항의 보여주는 부분을 일정하게 보여주기 위하여 Pagination을 적용하였다.  
 많은 공지사항일 경우 원하는 정보를 보기 위하여 검색기능을 넣었다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo9.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/Project/2019/06/27/Spring-Project-Ge.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/06/27/Spring-Project-Ge.html>  
 <br>
 ### 렌트카 등록
 관리자의 경우 렌트카의 정보를 입력한 뒤 DB에 저장하게 되었다.  
@@ -103,13 +103,13 @@ Project의 Main 기능인 항공권 예매와 렌트카 예매의 경우 바로 
 사용자의 경우 관리자가 등록한 렌트카를 예약할 수 있게 구성하였다.  
 예약을 하고 예약정보를 확인할 수 있게 구성하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo11.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/Project/2019/06/27/Spring-Project-Rent.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/06/27/Spring-Project-Rent.html>  
 <br>
 ### 관리자- 항공편 등록, 매출 확인
 관리자의 경우 게시판에서 특정한 작업원 권한을 부여받을 뿐 아니라, 항공편 생성 및 매출을 확인 가능하다.  
 매출의 경우 일단위는 달력 UI를 활용하여 한번에 볼 수 있게 구성하였고 매출에 대한 자세한 내용은 직접 들어가서 확인 가능하게 구성하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo12.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/Project/2019/06/27/Spring-Project-Admin.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/06/27/Spring-Project-Admin.html>  
 <br>
 ### 비행기 예약
 관리자가 비행기를 등록하고 나면, 등록되어있는 비행기를 사용자는 예약을 할 수 있다.  
@@ -126,13 +126,13 @@ Class(일반, 비지니스, VIP)안에서 좌석을 고를 수 있으면 체크�
 <br>
 티켓 확인 환면  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo15.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/Project/2019/06/27/Spring-Project-Check.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/06/27/Spring-Project-Check.html>  
 <br>
 ### 스케줄러
 비행기의 티켓의 정보는 비행기가 도착하고 나서는 쓸모없는 Data가 된다.  
 매일매일 생기는 이러한 쓸모없는 많은 정보를 관리자가 삭제하는 것이 아닌 일정 시간기준으로 자동으로 작업을 시키기 위하여 스케줄러를 사용하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo16.PNG" height="100%" width="100%" /></div>  
-자세한 내용:<https://wjddyd66.github.io/Project/2019/06/27/Spring-Project-Sche.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/06/27/Spring-Project-Sche.html>  
 
 <hr>
 참조:<https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final><br>

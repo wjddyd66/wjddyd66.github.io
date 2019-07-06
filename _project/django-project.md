@@ -27,7 +27,7 @@ slug: "Django Project"
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django5.PNG" height="100%" width="100%" /></div>
 공공자전거 이용자수 상위 100개소를 지도에 표시한 결과 공원, 강 주변에 위치  
 <span style ="color: red">**공원, 강**</span>의 위치를 변수로 설정  
-자세한 내용:<https://wjddyd66.github.io/Project/2019/07/03/Django-Project-Bike.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/07/03/Django-Project-Bike.html>  
 
 ### 데이터 전처리
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django6.PNG" height="100%" width="100%" /></div>
@@ -41,7 +41,7 @@ slug: "Django Project"
 2. 필요에 따라 연속형 변수 => 범주형 변수로 변경 
 3. 결측치 처리: 구간별 중위수로 대체
 
-자세한 내용:<https://wjddyd66.github.io/Project/2019/07/03/Django-Project-PreData.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/07/03/Django-Project-PreData.html>  
 
 ### 최종 데이터
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
@@ -141,7 +141,7 @@ MLPClassifier
 1. 모델 구조 및 가정에서 최소의 요구를 가지고 있는 광범위한 예측 모델과 근사
 2. 모델  해석 가능성이 낮지만 좋은 <span style ="color: red">**예측력**</span>을 확보할 수 있음  
 
-자세한 내용:<https://wjddyd66.github.io/Project/2019/07/03/Django-Project-Model.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/07/03/Django-Project-Model.html>  
 
 ### Model Parameter 선택
 <table class="table">
@@ -185,12 +185,12 @@ MLPClassifier
 MLP Classifer 모델의 Parameter를 반복적으로 변경  
 <span style ="color: red">**최적의 변수 값을 선정 (정확도: 61~72%)**</span><br>
 
-자세한 내용:<https://wjddyd66.github.io/Project/2019/07/03/Django-Project-Parameter.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/07/03/Django-Project-Parameter.html>  
 ### 분석결과
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django10.PNG" height="100%" width="100%" /></div><br><br>
 시연영상  
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/6cb454d359ad411ca786bb5d035f414f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
-자세한 내용:<https://wjddyd66.github.io/Project/2019/07/03/Django-Project-Result.html>  
+자세한 내용:<https://wjddyd66.github.io/project/2019/07/03/Django-Project-Result.html>  
 
 ### 결론
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django11.PNG" height="100%" width="100%" /></div><br>
