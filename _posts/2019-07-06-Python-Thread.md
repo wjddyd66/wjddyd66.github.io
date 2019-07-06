@@ -137,7 +137,7 @@ Bye
 <br>
 ###  Python Thread 공유자원과 동기화
 두개 이상의 Thread가 공유자원을 사용할 때 경쟁을 하며 충돌하는 현상이 발생할 수 있다.  
-이를 방지하기 위하여 <span style ="color: red">**ock.acquire()**</span>함수를 사용한다.  
+이를 방지하기 위하여 <span style ="color: red">**lock.acquire()**</span>함수를 사용한다.  
 
 ```python
 #thread4.py
@@ -260,7 +260,7 @@ while True:
 cs.close()    
 ```
 결과화면
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Thread.PNG" height="200" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Thread1.PNG" height="200" width="600" /></div>
 <br>
 <span style ="color: red">**한글을 사용하기 위해서는 utf-8로서 Encoding하는 작업이 필요하다.**</span><br>
 <hr>
