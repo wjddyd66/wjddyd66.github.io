@@ -70,7 +70,7 @@ joblib.dump(mlp, file_name)
 
 ###  Model Parameter 후보 및 최종 선택 결과
 
-<table class="table">
+<table class="table" style="width:100%">
 	<tbody>
 	<tr>
 		<td>Parameter</td><td>설명</td><td>후보</td><td>최종값</td>

@@ -93,7 +93,7 @@ ggmap(seoul) + geom_point(data=min,aes(x=x,y=y),size=2.5,alpha=0.8,col='blue')
 	</tr>
 	<tr>
 		<td>공원</td>
-		<td>https://www.tripadvisor.co.kr/</td>
+		<td><a href="https://www.tripadvisor.co.kr">tripadvisor</a></td>
 		<td>
 		<ul>
 			<li>상위 12개 선택</li>
@@ -115,7 +115,7 @@ ggmap(seoul) + geom_point(data=min,aes(x=x,y=y),size=2.5,alpha=0.8,col='blue')
 	</tr>
 	<tr>
 		<td>유동인구</td>
-		<td>https://data.seoul.go.kr/</td>
+		<td><a href="https://data.seoul.go.kr">서울 열린데이터 광장</a></td>
 		<td>
         <ul>
 			<li>Google Map활용하여 길에대한 위도, 경도 값 찾음</li>
@@ -125,7 +125,7 @@ ggmap(seoul) + geom_point(data=min,aes(x=x,y=y),size=2.5,alpha=0.8,col='blue')
 	</tr>
 	<tr>
 		<td>관광명소</td>
-		<td>https://www.tripadvisor.co.kr/</td>
+		<td><a href="https://www.tripadvisor.co.kr">tripadvisor</a></td>
 		<td>
 		<ul>
 			<li>상위 20개 선택</li>

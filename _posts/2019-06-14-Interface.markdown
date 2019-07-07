@@ -6,8 +6,8 @@ categories: [JAVA]
 ---
 
 ### 자바의 인터페이스: 공동 작업시 충돌을 방지하기 위하여 작성
-<br><br>
-<table align="center">
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
 
 	<tr bgcolor="silver">	
 		<th>Parent Type</th>

@@ -169,7 +169,7 @@ print("테스트 세트 정확도: {:.3f}".format(mlp.score(X_test2, y_test2)))
 ```
 
 결과  
-<table class="table">
+<table class="table" style="width:100%">
 	<tbody>
 	<tr>
 		<td>모델 명</td><td>정확도(Traing)</td><td>정확도(Test)</td><td>과적합 여부</td>

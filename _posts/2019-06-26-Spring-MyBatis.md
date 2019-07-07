@@ -486,7 +486,7 @@ public class MyAdvice {
 실행결과-selectDataEx2()  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/MyBatis5.JPG" height="250" width="600" /></div>
 <br>
-<span style ="color: red">**실행결과 AOP를 적용하여 "시작"을 찍은뒤 DB에 접근하고 그 뒤 "종료"를 출력하는 것을 볼 수 있다.**</span>
+<span style ="color: red">실행결과 AOP를 적용하여 "시작"을 찍은뒤 DB에 접근하고 그 뒤 "종료"를 출력하는 것을 볼 수 있다.</span>
 <br>
 <hr>
 참조:<a href="https://github.com/wjddyd66/Spring/tree/master/MyBatis">원본코드</a><br>

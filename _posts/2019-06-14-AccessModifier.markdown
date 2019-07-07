@@ -7,7 +7,8 @@ categories: [JAVA]
 
 ### 자바의 접근제어자: Member또는 Class에 해당되는 Member 또는 클래스를 외부에서 접근하지 못하도록 제한하는 역할을 함
 ### 자바의 접근 제어자
-<table align="center">
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
 
 	<tr bgcolor="silver">	
 		<th>접근 제어자</th>

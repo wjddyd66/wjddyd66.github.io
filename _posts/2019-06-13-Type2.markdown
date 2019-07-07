@@ -8,7 +8,8 @@ categories: [JAVA]
 ### 자바의 자료 구조: 하나의 데이터가 아닌 여러 데이터를 사용하는 것
 ### 자바의 자료 구조 타입
 데이터를 사용할 목적에 따라서 자료 구조를 선택하여 사용하게 된다. 각각의 구조는 서로 다른 특성을 가지게 된다.  
-<table align="center">
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
 
 	<tr bgcolor="silver">	
 		<th>자료 구조</th>
