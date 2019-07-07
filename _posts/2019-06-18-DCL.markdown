@@ -17,7 +17,7 @@ CDM 창을 통해 Scott 계정에서 user1, user2, user3 create및 grant, revoke
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/abs.PNG" height="300" width="600" /></div><br>
 
 user1에서 만든 테이블에 대해 system에서도 접근가능: select * from user1.kbs;  
-참조:<https://blog.naver.com/mint3081/221453982183>  
+참조:<a href="https://blog.naver.com/mint3081/221453982183">천프로 블로그</a>  
 <span style ="color: red">**추가: ROLE**</span><br>
 ROLE이란 사용자에게 허가 할 수 있는 권한들의 집합이다.  
 ROLE을 통해 권한 부여야 회수를 쉽게 할 수 있다.  
@@ -71,5 +71,5 @@ delete from trtest where jikwon_no=5;
 ```
 
 <hr>
-참조: <https://github.com/wjddyd66/DB/tree/master/DCL><br>
+참조: <a href="https://github.com/wjddyd66/DB/tree/master/DCL">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

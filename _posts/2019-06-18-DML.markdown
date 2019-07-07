@@ -63,7 +63,7 @@ select * from gogek where gogek_name like '__'; -- 두글자짜리만 반환
 -- 고객 중에 남자만 나오게 하기
 select * from gogek;
 select * from gogek where gogek_jumin like '%-1%' or gogek_jumin like '%-3%';
-``` 
+```
  - 문자함수, 숫자함수, 날짜함수, 데이터 형식 변환 함수
 
 ```sql
@@ -119,7 +119,7 @@ select jikwon_name, jikwon_jik, nullif(jikwon_jik,'대리') from jikwon;
 -- 직급과 '대리'를 비교 후 값이 다르면 직급 반환, '대리'면 null 반환
 ```
  - Order By: 가져온 데이터 정렬
-  -asc: 오름차순, desc: 내림차순
+    -asc: 오름차순, desc: 내림차순
 
 ```sql
 -- Order By
@@ -210,7 +210,7 @@ group by cube(buser_num, jikwon_jik);
   - 외래 키의 값은 참조 릴레이션의 어떤 투플의 기본 값과 같다.
   - 외래 키가 자신을 포함하고 있는 릴레이션의 기본 키를 구성하고 있지 않으면 널값을 가진다  
 
-참조: <https://vvshinevv.tistory.com/39>
+참조: <a href="https://vvshinevv.tistory.com/39">vvshinevv 블로그</a>
 ```sql
 -- 자료추가
 insert into test(no,name,tel,inwon,addr) values(1,'인사과','111-1111',5,'강남구 역삼동');
@@ -248,5 +248,5 @@ truncate table test; -- 이 경우, rollback 사용이 불가. 위험한 기능�
 ```
 
 <hr>
-참조: <https://github.com/wjddyd66/DB/tree/master/DML><br>
+참조: <a href="https://github.com/wjddyd66/DB/tree/master/DML">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

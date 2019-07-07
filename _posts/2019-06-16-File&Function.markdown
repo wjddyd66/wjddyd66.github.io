@@ -202,5 +202,5 @@ gugu_func(c(2,7))
 <br>
 
 <hr>
-참조: <https://github.com/wjddyd66/R/tree/master/File%26Function><br>
+참조: <a href="https://github.com/wjddyd66/R/tree/master/File%26Function">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

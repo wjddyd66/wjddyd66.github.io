@@ -151,7 +151,7 @@ write.csv(data,"./desc_report1.csv") #가공된 데이터로 저장하기로
 
 모집단이 정규분포를 할 때는 표본수가 커질수록 정규분포에 가까워지게 된다..  즉 표본수가 작을 때 정규분포를 하기 어려워지고 모집단이 정규분포를 따르는지를 알 수 없게 되기 때문에 이때 비모수 검정을 사용하게 된다.  
 측정 자료가 명목형(이산형)일 경우도 마찬가지로 정규분포를 하지 않죠.  예를 들어 얘기해서 남.녀의 수를 비교한다는 것은 정규분포를 할 수 없다.  
-참조: <https://m.blog.naver.com/PostView.nhn?blogId=nlboman&logNo=23354659&proxyReferer=https%3A%2F%2Fwww.google.com%2F>
+참조: <a href="https://m.blog.naver.com/PostView.nhn?blogId=nlboman&logNo=23354659&proxyReferer=https%3A%2F%2Fwww.google.com%2F">미래교육디자인연구소 블로그</a>
 ###  귀무가설, 대립가설, p-value
 귀무가설(H0): 관습적이고 보수적인 주장, 차이가 없다.  
 대립가설(H1): 적극적으로 입증하려는 주장, 차이가 있음을 통계적 근거를 통해 입증하고 하는 주장  
@@ -161,7 +161,8 @@ p-value(유의확률): 대립가설이 틀릴 확률
 <br>
 
 <span style ="color: red">**우리 R 환경에서는 귀무가설은 통상적인 이념이 아닌 "차이가 없다, 영향력이 없다, 연관성이 없다, 효과가 없다"로 생각하자.**</span><br>
-참조: <https://kkokkilkon.tistory.com/36>  
+참조: <a href="https://kkokkilkon.tistory.com/36">꼬깔콘의 분석일지 블로그</a>  
+
 ###  표본추출 방법
 1. 단순임의추출: 임의로 추출
 2. 계통추출: 표본 원소에 번호를 부여한 후 표본의 크기 K값 정함 => 난수표를 이용하여 K-1의 숫자중 하나를 선택하고 그 숫자에 K만큼 더해가며 개체를 선택
@@ -197,5 +198,5 @@ sampleBy(~Species,frac = 0.1,data=iris,replace = FALSE,systematic = T)
 <br>
 
 <hr>
-참조: <https://github.com/wjddyd66/R/tree/master/Statistics><br>
+참조: <a href="https://github.com/wjddyd66/R/tree/master/Statistics">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

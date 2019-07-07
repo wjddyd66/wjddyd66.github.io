@@ -11,7 +11,7 @@ categories: [JAVA]
 
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Polymorphism.PNG" height="300" width="600" />
 
-참조 :<https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=220979244668&proxyReferer=https%3A%2F%2Fwww.google.com%2F>
+참조 :<a href="https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=220979244668&proxyReferer=https%3A%2F%2Fwww.google.com%2F">JOKER 블로그</a>
 
 밑의 코드를 보게 되면 Car라는 하나의 Interface을 상속받는 Sonata와 Genesis가 존재한다. Car가 Interface이므로 Sonata와 Genesis가 같은 Method를 Override하지만 Method의 내용은 다르므로 다른 결과를 얻을 수 있다.
 
@@ -68,5 +68,5 @@ public class Polymorphism {
 {% endhighlight %}
 
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Polymorphism>
+참조: <a href="https://github.com/wjddyd66/JAVA/tree/master/Polymorphism">원본코드</a>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

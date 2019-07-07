@@ -152,5 +152,5 @@ wordcloud2(word_table,size=5,color="random-light",backgroundColor = 'black')
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/V3.PNG" height="350" width="600" /></div>
 <br>
 <hr>
-참조: <https://github.com/wjddyd66/R/tree/master/Visualization2><br>
+참조: <a href="https://github.com/wjddyd66/R/tree/master/Visualization2">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

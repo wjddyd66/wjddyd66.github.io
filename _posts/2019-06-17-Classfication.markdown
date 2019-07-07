@@ -9,7 +9,7 @@ categories: [R]
 소속 집단을 알고 있는 데이터를 이용하여 모형을 만들어서 소속집단을 모르는 데이터들의 집단을 결정하는 기법  
 <span style ="color: red">**Supervised Learning.**</span><br>
 1. 로지스틱 회귀  
-참조: <https://wjddyd66.github.io/r/2019/06/17/Regression.html>
+<a href="https://wjddyd66.github.io/r/2019/06/17/Regression.html">자세한내용</a>
 2. 의사결정 나무(Decision Tree)
 3. 랜덤 포레스트(Random Forest)
 4. 나이브베이즈 분류(Naive Bayes Classification)
@@ -19,7 +19,7 @@ categories: [R]
 
 ###  의사결정 나무(Dicision Tree)
 의사결정나무분석은 탐색과 모형화라는 두 가지 특징을 가지고 있다. 의사결정나무분석은 판별분석, 회귀분석 등과 같은 모수적(parameter) 모형을 분석하기 위해 사전에 이상치(outlier)를 검색하거나 분석에 필요한 변수 또는 모형에 포함되어야할 상호작용의 효과를 찾아내기 위해서 사용될 수도 있고, 의사결정나무 자체가 분류 또는 예측모형으로 사용될 수도 있다.  
-참조: <https://dreamlog.tistory.com/576>
+참조: <a href="https://dreamlog.tistory.com/576">dreamlog 블로그</a>
 
 ```R
 #DecisionTree
@@ -162,7 +162,7 @@ P(~비) = 13/20 이겠죠. 비가 오는지 안오는지 같이 둘 중 하나�
 P(비|맑은날) = P(맑은날|비) * P(비) / P(맑은날)  
 = (2/7) * 0.35 / 0.5 = 0.2  
 전체중에서 맑은날 이면서 비가올 확률은 20% 정도 된다고 볼 수 있다.  
-참조:<https://gomguard.tistory.com/69>  
+참조:<a href="https://gomguard.tistory.com/69">Gom Guard 블로그</a>  
 
 ```R
 #나이브베이지안(NaiveBayes Classfication)
@@ -211,8 +211,8 @@ t
 ###  SVM(Support Vector Machine)
 SVM이란 원 훈련(또는 학습)데이터를 비선형 매핑을 통해 고차원으로 변환한다. 이 새로운 차원에서 초평면(Hyperplane)을 최적으로 분리하는 찾는다. 즉, 최적의 Decision Boundary(의사결정 영역)을 찾는다  
 <span style ="color: red">**SVM의 목적은 Margin을 최대화 하는 Decision을 찾는 것. Margin: Hyperplne을 기준으로 plus-plane, minus-plane와의 거리.**</span><br>
-참조:<https://excelsior-cjh.tistory.com/66>  
-참조:<https://ratsgo.github.io/machine%20learning/2017/05/23/SVM/>  
+참조:<a href="https://excelsior-cjh.tistory.com/66">Excelsior-JH 블로그</a>  
+참조:<a href="https://ratsgo.github.io/machine%20learning/2017/05/23/SVM">Ratsgo 블로그</a>  
 
 ```R
 #SVM
@@ -251,10 +251,11 @@ K-NN 알고리즘은 지도학습(Supervised Learning)의 한 종류로 레이�
 <li>학습 데이터의 양이 많으면 분류 속도가 느려진다.</li> 
 <li>차원의 크기가 크면 계산량이 많아진다.</li>
 </ul>
-참조:<https://proinlab.com/archives/2125>  
+참조:<a href="https://proinlab.com/archives/2125">PROINLAB 블로그</a>  
 <span style ="color: red">**유클리디안 거리**</span><br>
+
 <div><img src="http://bbs.nicklib.com/files/attach/images/197/662/001/9e4cb5385ea79678f8e680fb22cc1601.png" height="150" width="600" /></div><br>
-참조:<http://bbs.nicklib.com/algorithm/1662>  
+참조:<a href="http://bbs.nicklib.com/algorithm/1662">Nick Lib</a>  
 
 
 ```R
@@ -319,5 +320,5 @@ Model 정확도:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/K-NN5.PNG" height="150" width="600" /></div><br>
 
 <hr>
-원본코드: <https://github.com/wjddyd66/R/tree/master/Classification><br>
+잠조: <a href="https://github.com/wjddyd66/R/tree/master/Classification">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

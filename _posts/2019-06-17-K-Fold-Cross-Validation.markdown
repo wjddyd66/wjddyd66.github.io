@@ -15,7 +15,7 @@ K 개의 fold를 만들어서 진행하는 교차 검증
 </ul>  
 <div><img src="https://www.researchgate.net/profile/B_Aksasse/publication/326866871/figure/fig2/AS:669601385947145@1536656819574/K-fold-cross-validation-In-addition-we-outline-an-overview-of-the-different-metrics-used.jpg" height="300" width="600" /></div><br>
 
-참조: <https://www.researchgate.net/figure/K-fold-cross-validation-In-addition-we-outline-an-overview-of-the-different-metrics-used_fig2_326866871>  
+참조: <a href="https://www.researchgate.net/figure/K-fold-cross-validation-In-addition-we-outline-an-overview-of-the-different-metrics-used_fig2_326866871">ResearchGate</a>  
 
 과정  
 
@@ -27,7 +27,7 @@ K 개의 fold를 만들어서 진행하는 교차 검증
 	<li>다음 Fold에서는 Validation 셋을 바꿔서 지정하고, 이전 Fold에서 Validation 역할을 했던 Set은 다시 Trainning set으로 활용한다.</li>
 	<li>이를 K번 반복한다.</li>
 </ul> 
-참조: <https://nonmeyet.tistory.com/entry/KFold-Cross-Validation%EA%B5%90%EC%B0%A8%EA%B2%80%EC%A6%9D-%EC%A0%95%EC%9D%98-%EB%B0%8F-%EC%84%A4%EB%AA%85>
+참조: <a href="https://nonmeyet.tistory.com/entry/KFold-Cross-Validation%EA%B5%90%EC%B0%A8%EA%B2%80%EC%A6%9D-%EC%A0%95%EC%9D%98-%EB%B0%8F-%EC%84%A4%EB%AA%85">nomeyet 블로그</a>
 
 ```R
 #K Fold Cross Validation
@@ -87,5 +87,5 @@ mean(acc)
 결과:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/K_Fold.PNG" height="150" width="600" /></div><br>
 <hr>
-원본코드: <https://github.com/wjddyd66/R/tree/master/K-Fold-Cross-Validation><br>
+참조: <a href="https://github.com/wjddyd66/R/tree/master/K-Fold-Cross-Validation">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

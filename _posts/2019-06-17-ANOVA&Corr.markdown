@@ -10,7 +10,7 @@ categories: [R]
 
 <span style ="color: red">**독립변수: 범주형, 종속변수: 연속형**</span><br>
 ANOVA 검정이란 통계학에서 두 개 이상 다수의 집단을 비교하고자 할 때 집단 내의 분산, 총평균과 각 집단의 평균의 차이에 의해 생긴 집단 간 분산의 비교를 통해 만들어진 F분포를 이용하여 가설검정을 하는 방법이다.  
-참조:<https://ko.wikipedia.org/wiki/%EB%B6%84%EC%82%B0_%EB%B6%84%EC%84%9D>
+참조:<a href="https://ko.wikipedia.org/wiki/%EB%B6%84%EC%82%B0_%EB%B6%84%EC%84%9D">위키백과</a>
 
 <span style ="color: red">**이번 코드에서는 이상치를 제거한다.**</span><br>
 <span style ="color: red">**이상치: 정상범주에서 크게 벗어난 값. 이상치가 포함되어있을 시, 분석 결과가 왜곡되므로 분석 전에 이상치 제거 작업 필요**</span><br>
@@ -115,7 +115,7 @@ oneway.test(score~method2,data = data2,var.equal = T) #p-value = 0.7012
 상관관계분석(correlation analysis)의 기본적인 목적은 변수간의 관계성을 파악하는 것이다. 예를 들어, 국어점수와 산수점수간의 관계성이 어떠한가를 알고자 할 때 대표적으로 상관관계분석을 수행하게 된다.  
 ANOVA가 변수간의 인과성을 검증하는 대표적인 방법이라면, 상관은 변수간의 관계성만을 파악하는 방법이다. 따라서 상관관계분석에서는 ‘국어점수는 원인변수이고 산수점수는 결과변수이다. 혹은 그 반대이다’와 같이 진술할 수 없다.  
 변수의 관계성 정도는 관계성의 ‘강도’라 할 수 있다. 보통 상관은 상관계수(correlation coefficient: r)로 표시되는데, 상관계수 r이 크다는 것은 두 변수가 강한 관계성을 가지고 있다는 의미이다.  
-출처:<https://m.blog.naver.com/ybkim0317/220403507563>
+출처:<a href="https://m.blog.naver.com/ybkim0317/220403507563">ABRUPTLY 블로그</a>
 
 <br>
 ```R
@@ -147,5 +147,5 @@ corrgram(result)
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/ANOVA4.PNG" height="150" width="600" /></div><br>
 
 <hr>
-참조: <https://github.com/wjddyd66/R/tree/master/ANOVA%26Corr><br>
+참조: <a href="https://github.com/wjddyd66/R/tree/master/ANOVA%26Corr">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

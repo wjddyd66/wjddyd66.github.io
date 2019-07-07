@@ -15,12 +15,12 @@ R 이란 통계 계산과 그래픽을 위해 특화된 프로그래밍 언어�
 4. 오픈소스 패키지의 집합 이기 때문에 필요한 부분을 가져다가 사용하면 된다.  
 
 R과 R Studio 설치는 아래 링크을 참조하였습니다.  
-참조: <https://backgomc.tistory.com/34>  
+참조: <a href="https://backgomc.tistory.com/34">백곰 블로그</a>  
 
 ###  통계에서 측정수준에 따른 변수
 측정수준: 측정의 수준은 측정 대상의 속성을 측정하는 방식을 말한다.  축정의 방식은 척도의 의미를 갖기 때문에 측정 척도라고 한다.  
 <div><img src="http://cfile260.uf.daum.net/image/99BFF7355CB593900297D0" height="300" width="600" /></div>
-<br>참조: <http://cafe.daum.net/flowlife/RlkF/32><br>
+<br>참조: <a href="http://cafe.daum.net/flowlife/RlkF/32">컴세상 만세 Cafe</a><br>
 
 ###  R에서 제공하는 자료구조
 1. Vector: 1차원 배열 형태의 자료구조, 같은 자료형의 데이터를 정해진 갯수만큼 모아놓음
@@ -31,8 +31,8 @@ R과 R Studio 설치는 아래 링크을 참조하였습니다.
 
 ###  R 실습용 Data 
 앞으로의 실습에서는 다양한 Type의 Data를 활용할 것 이다. 이를 위하여 미리 실습에 사용할 데이터를 다운받아 놓는 것을 추천한다.  
-실습용 Data 주소:  <https://github.com/wjddyd66/R/tree/master/Data><br>
-<span style ="color: red">Data의 원본은 https://github.com/pykwon/python/tree/master/testdata_utf8 에있습니다.</span><br>
+<a href="https://github.com/wjddyd66/R/tree/master/Data"></a>실습용 Data 주소<br>
+<span style ="color: red">Data의 원본은 <a href="https://github.com/pykwon/python/tree/master/testdata_utf8">pykwon 깃허브</a> 에있습니다.</span><br>
 
 ###  R 에서 Data Type 확인하기
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
@@ -67,7 +67,7 @@ R과 R Studio 설치는 아래 링크을 참조하였습니다.
 ###  R 에서 시각화
 데이터 시각화란 데이터를 그림이나 그래프를 통해 시각적으로 표현하는 모든 과정인다. 시각화는 단순히 예쁘게, 멋있게 만들어 주는 것 뿐만 아니라 데이터를 쉽게 이해할 수 있도록 도와준다.  
 <span style ="color: red">R에서 특히 시각화를 사용할때 사용자 계정이 한글이면 오류가 난다. 아래의 링크를 참조하여 이러한 현상을 해결하였다.</span>  
-참조: <https://rfriend.tistory.com/m/306>
+참조: <a href="https://rfriend.tistory.com/m/306">R Friend 블로그</a>
 
 ###  R 에서 Data Type 확인하기
 R에서는 Java에서 보지못한 특별한 값을 표현하는 방식이 있다.  
@@ -762,5 +762,5 @@ summarise(group_by(df,k1,k2),평균=mean(data1))
 ```
 
 <hr>
-원본코드: <https://github.com/wjddyd66/R/blob/master/R_Basic.R><br>
+참조: <a href="https://github.com/wjddyd66/R/blob/master/R_Basic.R">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

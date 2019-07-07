@@ -15,7 +15,7 @@ Thread를 사용함으로써 장점은 Thread를 여러개 선언하여 실행�
 
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Thread.PNG" height="300" width="600" />
 
-참조: <http://blog.naver.com/PostView.nhn?blogId=crom77x&logNo=50046897200><br>
+참조: <a href="http://blog.naver.com/PostView.nhn?blogId=crom77x&logNo=50046897200">파우스트 블로그</a><br>
 
 1. Runnable - 준비상태: CPU를 점유하지 않고 있다. CPU를 점유하기 위하여 대기 상태라고 할 수 있다.
 2. Running - 실행상태: Cpu를 점유하고 있는 상태이다. => Run Method를 실행하게 되는 단계 이다.
@@ -78,20 +78,20 @@ Thread를 사용함으로써 장점은 Thread를 여러개 선언하여 실행�
 
 
 ​	        
-	        for(int i=0; i<threads.size(); i++) {
-	            //ArrayList이므로 get으로서 ArrayList안의 thread 접근
-	        	Thread t = threads.get(i);
-	            try {
-	            	/*
-	            	Thread를 사용하여 동시에 처리하게 할 수 있다.
-	            	Join을 사용하여 Thread가 종료 된 후 다음 작업을 실행하게 할 수 있다.
-	            	*/
-	                t.join();
-	            }catch(Exception e) {
-	            	System.out.println("Error2"+e);
-	            }
-	        }
-	        
+​	        for(int i=0; i<threads.size(); i++) {
+​	            //ArrayList이므로 get으로서 ArrayList안의 thread 접근
+​	        	Thread t = threads.get(i);
+​	            try {
+​	            	/*
+​	            	Thread를 사용하여 동시에 처리하게 할 수 있다.
+​	            	Join을 사용하여 Thread가 종료 된 후 다음 작업을 실행하게 할 수 있다.
+​	            	*/
+​	                t.join();
+​	            }catch(Exception e) {
+​	            	System.out.println("Error2"+e);
+​	            }
+​	        }
+​	        
 	        //Main Thread종료를 알아보기 위한 Code
 	        System.out.println("Main Thread End.");
 	    }
@@ -101,5 +101,5 @@ Thread를 사용함으로써 장점은 Thread를 여러개 선언하여 실행�
 {% endhighlight %}  
 
 <hr>
-원본코드: <https://github.com/wjddyd66/JAVA/tree/master/Thread><br>
+원본코드: <a href="https://github.com/wjddyd66/JAVA/tree/master/Thread">원본크드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

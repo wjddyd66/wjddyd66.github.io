@@ -100,6 +100,6 @@ update vie9 set jikwon_name='손오공' where jikwon_no=1;
 ```
 
 <hr>
-내용 참조:<https://goddaehee.tistory.com/163><br>
-참조: <https://github.com/wjddyd66/DB/tree/master/Procedure><br>
+내용 참조:<a href="https://goddaehee.tistory.com/163">갓대희의 작은공간 블로그</a><br>
+참조: <a href="https://github.com/wjddyd66/DB/tree/master/Procedure">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

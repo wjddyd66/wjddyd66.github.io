@@ -167,5 +167,5 @@ db.programmer.find()
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Delete2.PNG" height="150" width="600" /></div><br>
 <span style ="color: red">**_id: Mongo에서 RDBMS의 PK와 같은 역할을 한다. Document생성시 자동으로 배정받고 Document끼리 중복되지 않는 값 이다.**</span>
 <hr>
-참조: <https://github.com/wjddyd66/NoSQL/tree/master/CRUD><br>
+참조: <a href="https://github.com/wjddyd66/NoSQL/tree/master/CRUD">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

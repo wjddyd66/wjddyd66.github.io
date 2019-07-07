@@ -119,6 +119,6 @@ select num, sangpum from pum2;
 ```
 
 <hr>
-그림 및 내용 참조: <https://clairdelunes.tistory.com/22><br>
-참조: <https://github.com/wjddyd66/DB/tree/master/Join><br>
+그림 및 내용 참조: <a href="https://clairdelunes.tistory.com/22">거꾸로 바라본 세상 블로그</a><br>
+참조: <a href="https://github.com/wjddyd66/DB/tree/master/Join">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

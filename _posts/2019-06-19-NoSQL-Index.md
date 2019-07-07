@@ -190,8 +190,8 @@ db.places.aggregate([
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/NoSQL/Geo1.PNG" height="150" width="600" /></div>
 <br>
 <hr>
-내용 참조: <https://docs.mongodb.com/manual/indexes/><br>
+내용 참조: <a href="https://docs.mongodb.com/manual/indexes">MongoDB 사이트</a><br>
 내용 참조: Namoosori-MongoDB(ver2.21) PDF<br>
-내용 참조: <https://blog.ull.im/engineering/2019/03/06/mongodb-geospatial-queries.html><br>
-참조: <https://github.com/wjddyd66/NoSQL/tree/master/Index><br>
+내용 참조: <a href="https://blog.ull.im/engineering/2019/03/06/mongodb-geospatial-queries.html">Reid 블로그</a><br>
+참조: <a href="https://github.com/wjddyd66/NoSQL/tree/master/Index">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

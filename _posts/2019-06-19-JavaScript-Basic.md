@@ -4,7 +4,7 @@ title:  "JavaScript-Basic"
 date:   2019-06-19 11:00:00 +0700
 categories: [Web]
 ---
-<span style ="color: red">**본 글은 <https://joshua1988.github.io/web-development/javascript/javascript-basic-summary/>을 보고 연습한 글입니다.**</span><br>
+<span style ="color: red">**본 글은 <a href="https://joshua1988.github.io/web-development/javascript/javascript-basic-summary">Captain Pangyo 블로그</a>을 보고 연습한 글입니다.**</span><br>
 
 ###  JavaScript
 HTML과 CSS는 정적인 언어이다. 정적이라는 것은 브라우저를 통해서 화면에 출력하는 것이지 그 값을 변경시킬 수 없다는 의미이다.  
@@ -694,11 +694,10 @@ func2(func1);
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/JavaScript/Js31.JPG" height="150" width="600" /></div>
 <br>
 
-
 <hr>
-내용 참조: <https://joshua1988.github.io/web-development/javascript/javascript-basic-summary/><br>
-내용 참조: <http://tcpschool.com/javascript/js_intro_basic><br>
-내용 참조: <https://jsfiddle.net/z48w2s6o/35/><br>
-내용 참조: <https://hyunseob.github.io/2016/08/30/javascript-closure/><br>
-내용 참조:<https://beomy.tistory.com/4><br>
+내용 참조: <a href="https://joshua1988.github.io/web-development/javascript/javascript-basic-summary">Captain Pangayo 블로그</a><br>
+내용 참조: <a href="http://tcpschool.com/javascript/js_intro_basic">TCP School</a><br>
+내용 참조: <a href="https://jsfiddle.net/z48w2s6o/35">Jsfiddle Code</a><br>
+내용 참조: <a href="https://hyunseob.github.io/2016/08/30/javascript-closure">DailyEngineering 블로그</a><br>
+내용 참조:<a href="https://beomy.tistory.com/4">버미노트 블로그</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

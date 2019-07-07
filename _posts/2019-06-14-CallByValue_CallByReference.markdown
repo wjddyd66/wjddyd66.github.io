@@ -10,7 +10,7 @@ CallByValue, CallByReference의 설명의 들어가기 앞서 컴퓨터의 값�
 
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Reference.PNG" height="300" width="600" />
 
-참조 :<https://dojang.io/mod/page/view.php?id=509>
+참조 :<a href="https://dojang.io/mod/page/view.php?id=509">코딩도장</a>
 
 1. 주소 - 저장되어있는 공간
 2.  값 - 저장되어있는 공간에 가지고 있는 값
@@ -88,6 +88,6 @@ static void ReferenceSwap(CallByValue_CallByReference ss1, CallByValue_CallByRef
 }
 {% endhighlight %}
 <hr>
-참조 사이트:<https://sleepyeyes.tistory.com/11><br>
-원본코드: <https://github.com/wjddyd66/JAVA/blob/master/Basic/CallByValue_CallByReference.java><br>
+참조 내용:<a href="https://sleepyeyes.tistory.com/11">sleepyeyes 블로그</a><br>
+참조: <a href="https://github.com/wjddyd66/JAVA/blob/master/Basic/CallByValue_CallByReference.java">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

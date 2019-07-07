@@ -79,7 +79,7 @@ plot(model)
 2. 독립성: 반응변수는 서로 독립적이여야 한다.
 3. 선형성: 종속변수와 독립변수가 선형관계에 있다면 잔차와 예측치 사이에 어떤 체계적인 관계가 있으면 안 된다.
 4. 등분산성: 분산인 일정하다는 가정을 만족한다면 왼쪽 아래의 그림에서 수평선 주위의 random band 형태로 나타나야 한다.  
-참초: <https://rstudio-pubs-static.s3.amazonaws.com/190997_40fa09db8e344b19b14a687ea5de914b.html><br>
+참초: <a href="https://rstudio-pubs-static.s3.amazonaws.com/190997_40fa09db8e344b19b14a687ea5de914b.html">Keon-Woong Moon 블로그</a><br>
 
 
 ### 다항 회귀 분석
@@ -111,9 +111,10 @@ par(mfrow=c(2,2))
 ### 다중 회귀 분석
 <span style ="color: red">다중회귀 분석에서는 독립변수의 개수가 많으므로 어떠한 변수를 선택하는 것에 따라 Model의 성능을 좌우하게 된다.</span><br>
 AIC 통계량: 여러 통계모델들의 성능을 서로 비교할 수 있게 해준다. 예를들어, 개인의 낮은 사회경제학적 지위에 기여하는 변수가 어떤 것인지, 그리고 이 변수들이 어떻게 그 지위에 영향을 주는 지 알 수 있게 해준다.  
+
 1. Forward: 변수들을 하나씩 증가시키면서 Model 성능 평가
 2. Backward: 모든 변수를 참여시키고 기여도가 낮은 것부터 제거하는 방법(변수의 개수가 너무 많으면 문제가 발생할 수 있다. 대부분 20개 미만을 사용한다.)  
-참조: <https://chukycheese.github.io/statistics/aic/>
+참조: <a href="https://chukycheese.github.io/statistics/aic">Kyoyoung Chu 블로그</a>
 
 <br>
 ```R
@@ -180,7 +181,7 @@ FPR :  False Positive Rate (=1-특이도, false accept rate)
 AUC = AUROC (the Area Under a ROC Curve) : ROC 커브의 밑면적을 구한 값이 바로 AUC. 이 값이 1에 가까울수록 성능이 좋다.  
 
 AUC 해석 : 1로 예측하는 기준을 쉽게 잡으면 민감도는 높아진다. 그대신 모든 경우를 1이라고 하므로 따라서 특이도가 낮아진다. 그러므로 이 두 값이 둘다 1에 가까워야 의미가 있다. 그래서 ROC커브를 그릴때 특이도를 1-특이도를 X축에 놓고, Y축에 민감도를 놓는다. 그러면 x=0일때 y가 1이면 가장 최고의 성능이고, 점점 우측 아래로 갈수록, 즉 특이도가 감소하는 속도에비해 얼마나 빠르게 민감도가 증가하는지를 나타냄.  
-출처: <https://newsight.tistory.com/53>
+출처: <a href="https://newsight.tistory.com/53">newsight 블로그</a>
 
 <br>
 ```R
@@ -249,5 +250,5 @@ P-value 낮은 변수 값을 선택한다.
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Regression14.PNG" height="150" width="600" /></div><br>
 <hr>
-참조: <https://github.com/wjddyd66/R/tree/master/Regression><br>
+참조: <a href="https://github.com/wjddyd66/R/tree/master/Regression">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

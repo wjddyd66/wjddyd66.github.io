@@ -126,6 +126,6 @@ db.user2.group({
 
 <hr>
 내용 참조: Namoosori-MongoDB(ver2.21) PDF<br>
-내용 참조: <https://cocomo.tistory.com/360><br>
-참조: <https://github.com/wjddyd66/NoSQL/tree/master/Total><br>
+내용 참조: <a href="https://cocomo.tistory.com/360">Cocomo Coding 블로그</a><br>
+참조: <a href="https://github.com/wjddyd66/NoSQL/tree/master/Total">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
