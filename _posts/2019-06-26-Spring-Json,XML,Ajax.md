@@ -37,7 +37,7 @@ XML(EXtensible Markup Language): HTML과 매우 비슷한 문자 기반의 마�
 <br>
 <br>
 Ajax( Asynchronous Javascript And Xml)  
-AJAX 참고:<https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html>  
+<a href="https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html">AJAX 참고</a>  
 Ajax통신에서 사용하는 Parameter  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
@@ -397,7 +397,7 @@ public class MyModel {
 <br>
 
 <hr>
-내용참조:<http://tcpschool.com/json/json_intro_xml><br>
-참조:<https://github.com/wjddyd66/Spring/tree/master/Json%2CAjax><br>
-참조:<https://github.com/wjddyd66/Spring/tree/master/XML><br>
+내용참조:<a href="http://tcpschool.com/json/json_intro_xml">TCP School</a><br>
+참조:<a href="https://github.com/wjddyd66/Spring/tree/master/Json%2CAjax">원본코드(Json)</a><br>
+참조:<a href="https://github.com/wjddyd66/Spring/tree/master/XML">원본코드(XML)</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

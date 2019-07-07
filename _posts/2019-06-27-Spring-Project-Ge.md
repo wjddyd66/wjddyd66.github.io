@@ -327,5 +327,5 @@ Controller를 거쳐 나온 변수를 가지고 페이징을 완성하는 코드
 <br>
 
 <hr>
-참조:<https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final><br>
+참조:<a href="https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

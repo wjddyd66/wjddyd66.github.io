@@ -98,7 +98,7 @@ Annotaion으로 인하여 AOP를 편리하게 구성할 수 있게 하며 실제
 		<td>@Repeatable</td><td>
 		<ul>
 			<li>연속적으로 어노테이션을 선언</li>
-			
+
 		</ul>
 		</td>
 	</tr>
@@ -159,7 +159,7 @@ Annotaion으로 인하여 AOP를 편리하게 구성할 수 있게 하며 실제
 		<ul>
 			<li>GET요청에 대해 매칭되는 request parameter값이 자동으로 들어감</li>
 			<li>URL 뒤의 문자열이 실제 전달되는 이름 값이다.</li>
-
+	
 		</ul>
 		</td>
 	</tr>
@@ -168,7 +168,7 @@ Annotaion으로 인하여 AOP를 편리하게 구성할 수 있게 하며 실제
 		<ul>
 			<li>HTTP 요청에 대해 매칭되는 request parameter값이 자동으로 들어감</li>
 			<li>URL 에서 각 구분자에 들어오는 값을 처리할 때 사용</li>
-
+	
 		</ul>
 		</td>
 	</tr>
@@ -219,7 +219,7 @@ JAVA에서는 다중상속이 불가능하기 때문에 AOP로서 한계를 극�
 </table>
 <br>
 <div><img src="https://t1.daumcdn.net/cfile/tistory/185DF4334FA8A1FD01" height="400" width="600" /></div>
-그림참조:<https://isstory83.tistory.com/90>
+그림참조:<a href="https://isstory83.tistory.com/90">I's Stroy 블로그</a>
 <br>
 
 ###  init.xml
@@ -408,9 +408,9 @@ public class OurAdvice {
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/AOP.JPG" height="150" width="600" /></div><br>
 <br>
 <hr>
-내용참조:<https://isstory83.tistory.com/90><br>
-내용참조:<https://elfinlas.github.io/2017/12/14/java-annotation/><br>
-내용참조:<https://gmlwjd9405.github.io/2018/12/02/spring-annotation-types.html><br>
-내용참조:<https://blog.naver.com/mint3081/221497953331><br>
-참조:<https://github.com/wjddyd66/Spring/tree/master/AOP><br>
+내용참조:<a href="https://isstory83.tistory.com/90">I's Story 블로그</a><br>
+내용참조:<a href="https://elfinlas.github.io/2017/12/14/java-annotation">MHLab 블로그</a><br>
+내용참조:<a href="https://gmlwjd9405.github.io/2018/12/02/spring-annotation-types.html">gmlwjd9405 블로그</a><br>
+내용참조:<a href="https://blog.naver.com/mint3081/221497953331">천프로 블로그</a><br>
+참조:<a href="https://github.com/wjddyd66/Spring/tree/master/AOP">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

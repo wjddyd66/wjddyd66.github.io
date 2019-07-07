@@ -23,7 +23,7 @@ categories: [Web]
 		<tr>
 		<td>Data Output</td><td>request.getAttribute</td><td>request.getParameter</td>
 	</tr>
-	
+
 	<tr>
 		<td>사용이유</td><td>객체 재상용, 공유</td><td>URL 변화</td>
 	</tr>
@@ -211,5 +211,5 @@ public class Redirect extends HttpServlet {
 <br>
 
 <hr>
-참조:<https://github.com/wjddyd66/Web/tree/master/Forward_Redirect><br>
+참조:<a href="https://github.com/wjddyd66/Web/tree/master/Forward_Redirect">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

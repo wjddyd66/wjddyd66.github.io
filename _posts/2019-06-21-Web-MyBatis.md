@@ -23,7 +23,7 @@ MyBatis를 이해하기 위한 기본은 DAO, DTO, Bean이다.
     2)Private로 변수를 선언하고 getter, setter Method로 접근한다.
 
 
-참조:<https://wjddyd66.github.io/java/2019/06/14/AccessModifier.html><br>
+<a href="https://wjddyd66.github.io/java/2019/06/14/AccessModifier.html">자세한 내용</a><br>
 
  - FormBean:DTO와 같지만 Client 에서 WebServer로 전달하는 Data 객채이다.
 
@@ -31,7 +31,7 @@ MyBatis를 이해하기 위한 기본은 DAO, DTO, Bean이다.
 DTO vs FormBean  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Web/dd.PNG" height="300" width="700" /></div>
 <br>
-그림참조:<https://blog.naver.com/mint3081/221480907154><br>
+그림참조:<a href="https://blog.naver.com/mint3081/221480907154">천프로 블로그</a><br>
 
 ###  MyBatis 설정
  - SqlSessionConfig.xml: MyBatis가 JDBC 코드를 실행하는데 필요한 전반에 걸친 환경 설정 파일이다.  
@@ -463,6 +463,6 @@ MyBatis에서는 DataMapper에서 많이 사용하는 구문을 include하여서
 ```
 <br>
 <hr>
-자료참조:<https://m.blog.naver.com/PostView.nhn?blogId=wwwkang8&logNo=220989381100&proxyReferer=https%3A%2F%2Fwww.google.com%2F><br>
-참조:<https://github.com/wjddyd66/Web/tree/master/mybatis_web><br>
+자료참조:<a href="https://m.blog.naver.com/PostView.nhn?blogId=wwwkang8&logNo=220989381100&proxyReferer=https%3A%2F%2Fwww.google.com%2F">강정호 블로그</a><br>
+참조:<a href="https://github.com/wjddyd66/Web/tree/master/mybatis_web">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

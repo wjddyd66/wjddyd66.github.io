@@ -101,7 +101,7 @@ display:none으로 되어있어 사용자에게 보이지 않고 value=''으로�
 ###  회원가입 주소
 회원가입 거주지 같은경우 KaKao에서 제공하는 우편번호 시스템을 사용하였다.  
 많은 양의 정보와 정확한 지리를 DB에 저장할 수 없는 상황이여서 이런 방법을 채택하게 되었다.  
-우편번호 서비스:<http://postcode.map.daum.net/guide>  
+<a href="http://postcode.map.daum.net/guide">우편번호 서비스</a>  
 이러한 KaKao 우편번호 서비스는 iframe에 띄워서 제공하는 방식으로 구성하였다.  
 ```js
 //다음 API
@@ -268,5 +268,5 @@ password=비밀번호
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/ID4.PNG" height="100%" width="100%" /></div><br>
 
 <hr>
-참조:<https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final><br>
+참조:<a href="https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

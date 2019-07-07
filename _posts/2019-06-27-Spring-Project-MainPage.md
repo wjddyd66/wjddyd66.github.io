@@ -187,5 +187,5 @@ MainPage 공지사항
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Spring/Gong2.PNG" height="250" width="600" /></div><br>
 <br>
 <hr>
-참조:<https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final><br>
+참조:<a href="https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

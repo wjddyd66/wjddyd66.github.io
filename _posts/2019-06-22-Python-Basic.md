@@ -245,7 +245,7 @@ print(a is b);#True
 ```
 <br>
 <hr>
-내용참조:<http://pythonstudy.xyz/python/article/9-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC-%EB%B0%94%EC%9D%B4%ED%8A%B8><br>
-내용참조:<http://pythonstudy.xyz/python/article/8-%EC%97%B0%EC%82%B0%EC%9E%90><br>
-참조:<https://github.com/wjddyd66/Python/tree/master/Basic><br>
+내용참조:<a href="http://pythonstudy.xyz/python/article/9-%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC-%EB%B0%94%EC%9D%B4%ED%8A%B8">예제로 배우는 Python 프로그래밍</a><br>
+내용참조:<a href="http://pythonstudy.xyz/python/article/8-%EC%97%B0%EC%82%B0%EC%9E%90">예제로 배우는 Python 프로그래밍</a><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/Basic">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

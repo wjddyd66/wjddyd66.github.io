@@ -81,7 +81,7 @@ HTTP 프로토콜은 Client -> Server: Request보냄, Server -> Client: Response
 <br>
 
 <hr>
-내용참조:<https://webclub.tistory.com/218><br>
-내용참조:<http://tcpschool.com/jquery/jq_event_delegation><br>
-내용참조:<https://coding-factory.tistory.com/143><br>
+내용참조:<a href="https://webclub.tistory.com/218">Web Club 블로그</a><br>
+내용참조:<a href="http://tcpschool.com/jquery/jq_event_delegation">TCP School</a><br>
+내용참조:<a href="https://coding-factory.tistory.com/143">코딩팩토리 블로그</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

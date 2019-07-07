@@ -84,7 +84,7 @@ hi.do라는 URL요청이 왔을 경우 처리하는 곳 이다.
  - Servlet 객체를 메모리에서 제거한다.
 <div><img src="https://gmlwjd9405.github.io/images/web/servlet-program.png" height="300" width="700" /></div>
 <br>
-출처: <https://gmlwjd9405.github.io/2018/10/28/servlet.html><br><br>
+출처: <a href="https://gmlwjd9405.github.io/2018/10/28/servlet.html">heejeong Kwon블로그</a><br><br>
 
 
 Servlet 코드
@@ -145,7 +145,7 @@ public class TestServlet extends HttpServlet {
 <br>
 
 <hr>
-내용참조: <https://mangkyu.tistory.com/14><br>
-내용참조: <https://gmlwjd9405.github.io/2018/10/28/servlet.html><br>
-참조:<https://github.com/wjddyd66/Web/tree/master/Servlet><br>
+내용참조: <a href="https://mangkyu.tistory.com/14">망나니개발자 블로그</a><br>
+내용참조: <a href="https://gmlwjd9405.github.io/2018/10/28/servlet.html">heejeong Kwon블로그</a><br>
+참조:<a href="https://github.com/wjddyd66/Web/tree/master/Servlet">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

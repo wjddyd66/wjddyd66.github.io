@@ -302,6 +302,6 @@ public class UploadController {
 순으로 구성되어있다.
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/b82de54f33954ff794cbd341873f7768" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 <hr>
-내용참조:<https://devbox.tistory.com/entry/Spring-%ED%8C%8C%EC%9D%BC%EC%97%85%EB%A1%9C%EB%93%9C-%EC%B2%98%EB%A6%AC>
-참조:<https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final><br>
+내용참조:<a href="https://devbox.tistory.com/entry/Spring-%ED%8C%8C%EC%9D%BC%EC%97%85%EB%A1%9C%EB%93%9C-%EC%B2%98%EB%A6%AC">devbox 블로그</a>
+참조:<a href="https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

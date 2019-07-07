@@ -80,9 +80,10 @@ bean을 사용하기 위하여 Mapping하는 방법은 3가지가 있다.
 ###  Bean Scope
 스프링은 기본적으로 bean을 하나의 Singletone객체로 설정한다.  
 bean의 Scope를 사용하여 다른 범위로 사용할 수 있다.  
-참조-SingleTon:<https://wjddyd66.github.io/others/2019/06/14/SingleTon.html>
+<a href="https://wjddyd66.github.io/others/2019/06/14/SingleTon.html">SingleTon 자세한 내용</a>
 <br>
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
 <table class="table">
 	<tbody>
 	<tr>
@@ -114,7 +115,7 @@ Spring은 인터페이스 기반의 설계를 하고, 어떤 클래스를 사용
 아래 그림은 Spring MVC 구조를 이해하기 위한 그림이다.  
 
 <div><img src="https://mblogthumb-phinf.pstatic.net/20160512_289/lakeni_1463025116804Q2uGQ_PNG/%B1%D7%B8%B21.png?type=w800" height="400" width="600" /></div>
-그림참조:<https://m.blog.naver.com/PostView.nhn?blogId=lakeni&logNo=220708587953&proxyReferer=https%3A%2F%2Fwww.google.com%2F>
+그림참조:<a href="https://m.blog.naver.com/PostView.nhn?blogId=lakeni&logNo=220708587953&proxyReferer=https%3A%2F%2Fwww.google.com%2F">도란비 블로그</a>
 <br>
 위와 같은 그림의 흐름을 약결합으로 인해 분리하고 유지보수가 쉽게 하기 위해서 MVC라는 패턴을 사용하는 것이다.   
 이러한 분리된 M,V,C를 DispatcherServlet을 활용하여 중앙 통제식 구조로 사용하게 된다.  
@@ -149,8 +150,8 @@ Maven이란 사용할 라이브러리뿐만 아니라 해당 라이브러리가 
 
 <br>
 <hr>
-내용참조:<https://12bme.tistory.com/157><br>
-내용참조:<https://limmmee.tistory.com/8><br>
-내용참조:<https://gmlwjd9405.github.io/2018/11/10/spring-beans.html><br>
-내용참조:<https://jerryjerryjerry.tistory.com/63><br>
+내용참조:<a href="https://12bme.tistory.com/157">12bme 블로그</a><br>
+내용참조:<a href="https://limmmee.tistory.com/8">dongdong_ 블로그</a><br>
+내용참조:<a href="https://gmlwjd9405.github.io/2018/11/10/spring-beans.html">gmlwjd9405 블로그</a><br>
+내용참조:<a href="https://jerryjerryjerry.tistory.com/63">쩨리쪠리 블로그</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

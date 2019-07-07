@@ -7,10 +7,10 @@ categories: [Spring]
 
 ###  Spring-MyBatis
 Spring 에서 DB에 접근하기 위하여 MyBatis를 활용하였다.  
-MyBatis 설명: <https://wjddyd66.github.io/web/2019/06/21/Web-MyBatis.html>  
+<a href="https://wjddyd66.github.io/web/2019/06/21/Web-MyBatis.html">MyBatis 설명</a>  
 DB와 MyBatis를 설정하기 위하여 pom.xml에 다음과 같은 dependency를 추가하여야 한다.  
 pom.xml이란 Maven(사용할 라이브러리뿐만 아니라 해당 라이브러리가 작동하는 필요한 다른 라이브러리들까지 관리하여 네트워크를 통해서 자동으로 다운받아주는 것)을 정리해 둔 곳이다.  
-Maven 설명:<https://wjddyd66.github.io/spring/2019/06/25/Spring-Basic.html>  
+<a href="https://wjddyd66.github.io/spring/2019/06/25/Spring-Basic.html">Maven 설명</a>  
 
 ```xml
 		<!-- Db -->
@@ -73,8 +73,9 @@ db.properties: DB 계정 정보 및 연결되는 DB정보
 SqlMapConfig: MyBatis가 JDBC 코드를 실행하는데 필요한 전반에 걸친 환경 설정 파일이다.  
 Mapper: SQL문과 관련된 설정을 하는 파일이다.  
 Configuration: Config와 Mapper를 연결시켜주는 작업이다.  
-참조: <https://wjddyd66.github.io/web/2019/06/21/Web-MyBatis.html>  
+<a href="https://wjddyd66.github.io/web/2019/06/21/Web-MyBatis.html">자세한 내용</a>  
 db.properties
+
 ```code
 driver=org.mariadb.jdbc.Driver
 url=jdbc:mysql://127.0.0.1:3306/test
@@ -488,5 +489,5 @@ public class MyAdvice {
 <span style ="color: red">**실행결과 AOP를 적용하여 "시작"을 찍은뒤 DB에 접근하고 그 뒤 "종료"를 출력하는 것을 볼 수 있다.**</span>
 <br>
 <hr>
-참조:<https://github.com/wjddyd66/Spring/tree/master/MyBatis><br>
+참조:<a href="https://github.com/wjddyd66/Spring/tree/master/MyBatis">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
