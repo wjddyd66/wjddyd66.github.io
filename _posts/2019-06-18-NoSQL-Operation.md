@@ -4,8 +4,6 @@ title:  "MongoDB 연산자"
 date:   2019-06-18 12:50:00 +0700
 categories: [DB,NoSQL]
 ---
-<span style ="color: red">**이번 실습을 위한 Data는 아래 참조 사이트에서 생성 뒤 실습 바랍니다.**</span><br>
-
 ###  비교 연산자
 문서를 입력된 값과 비교하여 조회하기 위한 연산자  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">

@@ -11,7 +11,7 @@ HTML과 CSS는 정적인 언어이다. 정적이라는 것은 브라우저를 �
 Web상에서 정적인 HTML과 CSS의 한계를 극복하기 위하여 사용하는 언어이다.  
 자바 스크립트는 객체기반의 스크립트 언어이다.  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
-<table class="table">
+<table class="table" style="width:100%">
 	<tbody>
 	<tr>
 		<td>HTML</td><td>뼈대</td>

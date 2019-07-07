@@ -9,7 +9,7 @@ categories: [Web]
 페이지의 요청을 처리하는 방식이다.  
 
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
-<table class="table">
+<table class="table" style="width:100%">
 	<tbody>
 	<tr>
 		<td></td><td>Forward</td><td>Redirect</td>
