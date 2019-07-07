@@ -109,5 +109,5 @@ while True:
 결과-제 3자 모듈(pygame)
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Module.PNG" height="250" width="600" /></div><br>
 <hr>
-참조:<https://github.com/wjddyd66/Python/tree/master/Module><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/Module">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

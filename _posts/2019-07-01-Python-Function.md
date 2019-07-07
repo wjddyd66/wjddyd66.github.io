@@ -170,7 +170,7 @@ print("실행4) a:{}, b:{}, c:{}".format(a, b, c))
 ```
 <br>
 <hr>
-내용참조:<https://suwoni-codelab.com/python%20%EA%B8%B0%EB%B3%B8/2018/03/05/Python-Basic-scope/><br>
-내용참조:<https://blog.naver.com/PostView.nhn?blogId=mint3081&logNo=221537426126&parentCategoryNo=&categoryNo=49&viewDate=&isShowPopularPosts=false&from=postList><br>
-참조:<https://github.com/wjddyd66/Python/tree/master/Function><br>
+내용참조:<a href="https://suwoni-codelab.com/python%20%EA%B8%B0%EB%B3%B8/2018/03/05/Python-Basic-scope">Suwoni-Codelab</a><br>
+내용참조:<a href="https://blog.naver.com/PostView.nhn?blogId=mint3081&logNo=221537426126&parentCategoryNo=&categoryNo=49&viewDate=&isShowPopularPosts=false&from=postList">천프로 블로그</a><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/Function">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

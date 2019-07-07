@@ -220,5 +220,5 @@ MLPClassifier
 1. 모델 구조 및 가정에서 최소의 요구를 가지고 있는 광범위한 예측 모델과 근사
 2. 모델  해석 가능성이 낮지만 좋은 <span style ="color: red">**예측력**</span>을 확보할 수 있음  
 <hr>
-참조:<https://github.com/wjddyd66/Project/tree/master/Django><br>
+참조:<a href="https://github.com/wjddyd66/Project/tree/master/Django">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

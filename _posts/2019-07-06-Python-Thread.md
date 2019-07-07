@@ -8,7 +8,7 @@ categories: [Python]
 ###  Python Thread
 Thread란 Main Process와 병렬로 수행되는 미니 Process이다.  
 Thread를 사용함으로 인하여 멀티태스킹이 가능해진다.  
-Thread 자세한 내용:<https://wjddyd66.github.io/java/2019/06/15/Thread.html>
+<a href="https://wjddyd66.github.io/java/2019/06/15/Thread.html">Thread 자세한 내용</a>
 <br><br>
 
 Thread 기본 예제
@@ -265,5 +265,5 @@ cs.close()
 <span style ="color: red">**한글을 사용하기 위해서는 utf-8로서 Encoding하는 작업이 필요하다.**</span><br>
 <hr>
 
-참조:<https://github.com/wjddyd66/Python/tree/master/Thread><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/Thread">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

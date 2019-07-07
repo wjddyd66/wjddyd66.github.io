@@ -386,5 +386,5 @@ function func(var1,var2,var3,var4,var5,var6){
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/6cb454d359ad411ca786bb5d035f414f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 <br>
 <hr>
-참조:<https://github.com/wjddyd66/Project/tree/master/Django/Project><br>
+참조:<a href="https://github.com/wjddyd66/Project/tree/master/Django/Project">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

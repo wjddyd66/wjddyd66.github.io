@@ -11,7 +11,7 @@ categories: [Python]
 
 <span style ="color: red">**XML, Json, HTML**</span>을 Web Scrapping,Crawling을 통하여 가져오고 가공하는 작업을 할 것이다.  
 3개의 Type은 DOM형식이므로 파일을 읽어오거나 ElementTree로서 가져올 수 있다.  
-DOM 자세한 내용:<https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html>  
+<a href="https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html">DOM 자세한 내용</a>
 
 ###  XML 자료 읽기
 Local에 있는 my.xml자료를 읽는 과정이다.  
@@ -117,7 +117,7 @@ ks2 고길동 010-111-2222
 ```
 <br>
 ###  XML 기상날씨 Scrapping
-Web상에 존재하는 XML파일(http://www.kma.go.kr/XML/weather/sfc_web_map.xml)을 Local File(ftest.xml)로 저장 한뒤 Fil의 내용을 읽는 과정이다.  
+Web상에 존재하는 <a href="http://www.kma.go.kr/XML/weather/sfc_web_map.xml">XML파일</a>을 Local File(ftest.xml)로 저장 한뒤 Fil의 내용을 읽는 과정이다.  
 
 ```python
 #scrap2.py
@@ -258,7 +258,7 @@ http://www.naver.com/index.htmlhttps://www.navercorp.com/
 
 <span style ="color: red">** 추가 요소**</span><br>
 1. 정규표현식: 정규표현식을 활용하여 원하는 정보를 Filterring 하여 가져올 수 있다.
- - 정규표현식: <https://wjddyd66.github.io/others/2019/06/16/RegularExpression.html>
+ - <a href="https://wjddyd66.github.io/others/2019/06/16/RegularExpression.html">정규표현식 자세한 내용</a>
 
 2. CSS Selector를 활용하여 원하는 정보 Filterring
 
@@ -605,5 +605,5 @@ if __name__ == "__main__":
 ```
 
 <br>
-참조:<https://github.com/wjddyd66/Python/tree/master/Scrapping%2CCrawling><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/Scrapping%2CCrawling">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

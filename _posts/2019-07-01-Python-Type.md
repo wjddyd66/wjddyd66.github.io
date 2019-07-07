@@ -24,7 +24,7 @@ categories: [Python]
 			<tr>
 		<td>Dict</td><td>X</td><td>{key:value}형식</td>
 	</tr>
-			
+
 	</tbody>
 </table>
 <br>
@@ -196,9 +196,9 @@ print(dic) #{}
 ```
 <br>
 <hr>
-내용참조:<https://blog.naver.com/PostView.nhn?blogId=mint3081&logNo=221533482749&parentCategoryNo=&categoryNo=49&viewDate=&isShowPopularPosts=false&from=postList><br>
-내용참조:<http://pythonstudy.xyz/python/article/13-%EC%BB%AC%EB%A0%89%EC%85%98--Tuple><br>
-내용참조:<http://pythonstudy.xyz/python/article/14-%EC%BB%AC%EB%A0%89%EC%85%98--Dictionary><br>
-내용참조:<http://pythonstudy.xyz/python/article/13-%EC%BB%AC%EB%A0%89%EC%85%98--Tuple><br>
-참조:<https://github.com/wjddyd66/Python/tree/master/Type><br>
+내용참조:<a href="https://blog.naver.com/PostView.nhn?blogId=mint3081&logNo=221533482749&parentCategoryNo=&categoryNo=49&viewDate=&isShowPopularPosts=false&from=postList">천프로 블로그</a><br>
+내용참조:<a href="http://pythonstudy.xyz/python/article/13-%EC%BB%AC%EB%A0%89%EC%85%98--Tuple">예제로 배우는 Python 프로그래밍</a><br>
+내용참조:<a href="http://pythonstudy.xyz/python/article/14-%EC%BB%AC%EB%A0%89%EC%85%98--Dictionary">예제로 배우는 Python 프로그래밍</a><br>
+내용참조:<a href="http://pythonstudy.xyz/python/article/13-%EC%BB%AC%EB%A0%89%EC%85%98--Tuple">예제로 배우는 Python 프로그래밍</a><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/Type">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

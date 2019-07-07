@@ -8,9 +8,10 @@ categories: [Python]
 ###  Python Socket
 TCP 서버/클라이언트 함수 호출 관계  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/Soc3.PNG" height="100%" width="100%" /></div>
-그림 출처:<http://blog.naver.com/PostView.nhn?blogId=cnfldidhd&logNo=20171560152>  
+그림 출처:<a href="http://blog.naver.com/PostView.nhn?blogId=cnfldidhd&logNo=20171560152">젤리 블로그</a>  
 <br><br>
 TCP 서버/클라이언트 함수 호출 순서  
+
 1. 서버, 클라이언트 소켓 생성
 2. 서버는 bind(), listen()함수를 호출하여 대기 상태
 3. 클라이언트는 connect()함수 호출을 통해 연결 요청
@@ -21,6 +22,7 @@ TCP 서버/클라이언트 함수 호출 순서
 <br><br>
 <span style ="color: red">**Socket 함수**</span><br> 
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
 <table class="table">
 	<tbody>
 	<tr>
@@ -148,5 +150,5 @@ clientSock.close()
 <br>
 <hr>
 
-참조:<https://github.com/wjddyd66/Python/tree/master/Socket><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/Socket">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

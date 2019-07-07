@@ -9,7 +9,9 @@ categories: [Python]
 Python은 Interpreter 언어이기 때문에 Compile언어보다 느리고 따라서 실시간 거래 시스템처럼 매우 짧은 응답시간을 필요로 하는데 사용할 수 없다.   
 다시 말해서 파이썬은 동시다발적인 멀티스레드를 처리하거나 CPU에 집중된 많은 스레드를 처리하는 데 적합하지 않다.  
 이는 바로 GIL(Global Interpreter Lock) 때문이다. 이 메커니즘은 인터프리터가 한 번에 하나의 바이크 코드명령만 실행하도록 하는 것을 말하는데  프로그래머는 만들고자 하는 프로그램의 대부분을 파이썬으로 만들 수 있지만 시스템 프로그래밍이나 하드웨어 제어와 같은 매우 복잡하고 반복 연산이 많은 프로그램은 만들 수 없는 것이 그 이유이다.  
-출처: https://wangin9.tistory.com/entry/pythonthreadGIL  
+출처: <a href="https://wangin9.tistory.com/entry/pythonthreadGIL">잉구블로그</a>  
+
+
 
 <span style ="color: red">**Python에서 Thread는 병렬 식이 아닌 일정 시간 동안 작동할 때는 다른 Thread의 작동이 멈춘다.**</span><br>
 <span style ="color: red">**Python에서 병렬처리를 원하면 Pool과 Process를 이용하여 병렬구조로 처리해야 한다.**</span><br>
@@ -104,5 +106,5 @@ num:4, result:14, process:32
 <span style ="color: red">**MultiProcessing을 통해 Process를 많이 쓸수록 속도가 빨라지나 CPU의 성능을 고려해서 사용할 Process의 개수를 조절하여 한다. (일반적으로는 3~5개)**</span><br>
 <hr>
 
-참조:<https://github.com/wjddyd66/Python/tree/master/MultiProcess><br>
+참조:<a href="https://github.com/wjddyd66/Python/tree/master/MultiProcess">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

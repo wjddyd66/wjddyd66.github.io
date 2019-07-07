@@ -8,7 +8,7 @@ categories: [Project]
 ###  따릉이 상위 대여소 파악
 따릉이 대여소의 사용량에 따라 상위 대여소와 하위 대여소의 특성을 알아보기 위하여 지도에 찍는 과정이다.  
 서울 열린 데이터 광장에서 따릉이 대여소의 위치와 사용량의 데이터를 가지고와서 합치는 작업을 하였다.  
-데이터 출처:<https://data.seoul.go.kr/search/newSearch.jsp?query=%EA%B3%B5%EA%B3%B5%EC%9E%90%EC%A0%84%EA%B1%B0><br>
+<a href="https://data.seoul.go.kr/search/newSearch.jsp?query=%EA%B3%B5%EA%B3%B5%EC%9E%90%EC%A0%84%EA%B1%B0">데이터 출처</a><br>
 서울시 따릉이 대여소 사용량 Data  
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/Django12.PNG" height="200" width="400" /><br>
 서울시 따릉이 대여소 위치 Data  
@@ -183,7 +183,8 @@ ggmap(seoul) + geom_point(data=min,aes(x=x,y=y),size=2.5,alpha=0.8,col='blue')
 
 <br>
 
-데이터 1차 가공 Data: <https://github.com/wjddyd66/Project/tree/master/Django/Data>
+<a href="https://github.com/wjddyd66/Project/tree/master/Django/Data">데이터 1차 가공 Data</a>
+
 <hr>
-참조:<https://github.com/wjddyd66/Project/commit/a90f557c4e952909c566f45851ab516e24f9a727><br>
+참조:<a href="https://github.com/wjddyd66/Project/commit/a90f557c4e952909c566f45851ab516e24f9a727">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
