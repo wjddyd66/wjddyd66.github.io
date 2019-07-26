@@ -75,7 +75,7 @@ Loss Function:
 <p>= -(y - \sigma(z))\sigma(z)(1-\sigma(z))</p>
 **Cross Entrophy  
 <p>{dJ \over dz} = {dJ \over da}{da \over dz}</p>  
-<p>{dJ \over da} = -{{y \over a}+({1-y \over 1-a})({1-a \over da})}</p>
+<p>{dJ \over da} = -{ {y \over a} + ({1-y \over 1-a}) ({1-a \over da}) }</p>
 <p>= -{{y \over \sigma(z)}-({1-y \over 1-\sigma(z)})}</p>  
 <p>{da \over dz} = \sigma(z)(1-\sigma(z))</p>  
 <p>{dJ \over dz} = -{{y \over \sigma(z)}-({1-y \over 1-\sigma(z)})}{\sigma(z)(1-\sigma(z))}</p>
