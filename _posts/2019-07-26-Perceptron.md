@@ -37,7 +37,7 @@ Perceptron은 다수의 신호(Input)을 입력받아서 하나의 신호(Output
 		<td>b</td><td>bias(편향)</td>
 	</tr>
 	<tr>
-		<td><span>$$ \sigma $$</span></td><td>Activatation Function(활성화 함수)</td>
+		<td>$$ \sigma $$</td><td>Activatation Function(활성화 함수)</td>
 	</tr>
 </table>
 <br>
@@ -65,5 +65,4 @@ XOR과 같이 선형분류가 아닌 exclusive 논리연산은 분류할 수 없
 그림출처<a href="https://upload.wikimedia.org/wikipedia/commons/b/b2/Perceptron_XOR.jpg">ecee.colorado.edu</a>  
 <br>
 <hr>
-참조: <a href="https://www.youtube.com/watch?v=iJ6Kj4XZBzA&list=PL1H8jIvbSo1q6PIzsWQeCLinUj_oPkLjc&index=24">Chanwoo Timothy Lee Youtube</a> <br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
