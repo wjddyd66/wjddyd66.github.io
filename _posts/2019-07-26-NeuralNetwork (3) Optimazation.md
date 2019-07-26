@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NeuralNetwork (3) Optimazation"
-date:   2019-07-11 09:30:00 +0700
+date:   2019-07-26 11:00:00 +0700
 categories: [AI]
 ---
 
@@ -66,22 +66,22 @@ $$W(update)=w-a\frac{\partial f_c(x)}{\partial W}$$
 앞으로 많이 사용하게 될 공식을 실제로 미분으로서 유도하는 과정을 가져보자.  
 Activation Function: a = $$ \sigma(z) , Sigmoid Function$$  
 Loss Function:  
-(1) MSE: M = $$ {1 \over 2} (y - \sigma(z))^2$$  
+(1) MSE: M = $$ \frac{1}{2} (y - \sigma(z))^2$$  
 (2) Cross Entrophy: J = $$ -{yln(\sigma(z)) + (1-y)ln(1-\sigma(z))} $$  
 위와같은 가정을 하였을때 Loss Function을 각각 미분을 해보자.  
 **MSE**  
-<p>{1 \over 2}{(y - \sigma(z))^2 \over dz}</p>
-<p>= -(y - \sigma(z))(\sigma(z))\prime</p>
-<p>= -(y - \sigma(z))\sigma(z)(1-\sigma(z))</p>
+<p>$${1 \over 2}{(y - \sigma(z))^2 \over dz}$$</p>
+<p>$$= -(y - \sigma(z))(\sigma(z))\prime$$</p>
+<p>$$= -(y - \sigma(z))\sigma(z)(1-\sigma(z))$$</p>
 **Cross Entrophy  
-<p>{dJ \over dz} = {dJ \over da}{da \over dz}</p>  
-<p>{dJ \over da} = -{y \over a} + ({1-y \over 1-a}) ({1-a \over da})</p>
-<p>= -{y \over \sigma(z)}-({1-y \over 1-\sigma(z)})</p>  
-<p>{da \over dz} = \sigma(z)(1-\sigma(z))</p>  
-<p>{dJ \over dz} = -{y \over \sigma(z)}-({1-y \over 1-\sigma(z)})}{\sigma(z)(1-\sigma(z))</p>
-<p>= -{y(1-\sigma(z))-\sigma(z)(1-y)}</p>
-<p>= -(y-y\sigma(z)-\sigma(z)+y\sigma(z)))</p>
-<p>= \sigma(z)-y</p>  
+<p>$${dJ \over dz} = {dJ \over da}{da \over dz}$$</p>  
+<p>$${dJ \over da} = -{y \over a} + ({1-y \over 1-a}) ({1-a \over da})$$</p>
+<p>$$= -{y \over \sigma(z)}-({1-y \over 1-\sigma(z)})$$</p>  
+<p>$${da \over dz} = \sigma(z)(1-\sigma(z))$$</p>  
+<p>$${dJ \over dz} = -{y \over \sigma(z)}-({1-y \over 1-\sigma(z)})}{\sigma(z)(1-\sigma(z))$$</p>
+<p>$$= -{y(1-\sigma(z))-\sigma(z)(1-y)}$$</p>
+<p>$$= -(y-y\sigma(z)-\sigma(z)+y\sigma(z)))$$</p>
+<p>$$= \sigma(z)-y$$</p>  
 
 ### Optimazation 고려사항
 Optimazation을 하기 위한 고려사항은 크게 3가지가 있다.  

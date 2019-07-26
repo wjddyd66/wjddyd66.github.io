@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Backpropagation"
-date:   2019-07-13 10:00:00 +0700
+title:  "NeuralNetwork (4) Backpropagation"
+date:   2019-07-26 11:30:00 +0700
 categories: [AI]
 ---
 

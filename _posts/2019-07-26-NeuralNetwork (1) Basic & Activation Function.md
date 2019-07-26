@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NeuralNetwork (1) Basic & Activation Function"
-date:   2019-07-11 09:00:00 +0700
+date:   2019-07-26 10:10:00 +0700
 categories: [AI]
 ---
 
@@ -9,7 +9,7 @@ categories: [AI]
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 Neural Network는 아래와 같은 그림으로 이루워져 있다.  
 
-<div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/300px-Colored_neural_network.svg.png" height=300 width=300 /></div>
+<div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/300px-Colored_neural_network.svg.png" height="300" width="300" /></div>
 
 왼쪽부터 Input(입력층), Hidden(은닉층),Output(출력층)으로 표현할 수 있다.  
 
@@ -35,8 +35,8 @@ Neural Network는 다음과 같은 중요한 개념은 크개5개로서 이루�
 
 ### 활성화 함수(Activation Function)
 **1. 시그모이드**  
-식: <span> $\sigma(x) = {1 \over e^{-x}}$ </span><br>
-미분식: <span> $\sigma\prime(x) = \sigma(x)(1-\sigma(x))$ </span>
+식: <span> $$\sigma(x) = {1 \over e^{-x}}$$ </span><br>
+미분식: <span> $$\sigma\prime(x) = \sigma(x)(1-\sigma(x))$$ </span>
 <br>
 범위:[0,1]  
 시그모이드 함수 그래프  
@@ -73,7 +73,7 @@ ReLU 함수 그래프
 
 <br>
 **4. 소프트맥스**  
-식: <span> $y = \frac{e^{wx_i}}{\sum_{i=0}^n e^{wx_i}}$ </span><br>
+식: <span> $$y = \frac{e^{wx_i}}{\sum_{i=0}^n e^{wx_i}}$$ </span><br>
 입력받은 값을 출력으로 0~1사이의 값으로 모두 <span style ="color: red">**정규화**</span>하며 <span style ="color: red">**출력 값들의 총합은 항상 1이 되는 특성**</span>을 가진 함수이다.  
 분류하고 싶은 클래수의 수 만큼 출력으로 구성한다.  
 아래 그림을 보게 되면 Sigmoid와 차이를 알 수 있다.  

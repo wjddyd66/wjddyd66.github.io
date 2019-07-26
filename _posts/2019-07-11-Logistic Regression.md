@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A.I-Logistic Regression"
+title:  "Logistic Regression"
 date:   2019-07-11 10:00:00 +0700
 categories: [AI]
 ---

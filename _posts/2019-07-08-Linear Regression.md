@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A.I-Linear Regression"
+title:  "Linear Regression"
 date:   2019-07-08 10:00:00 +0700
 categories: [AI]
 ---
