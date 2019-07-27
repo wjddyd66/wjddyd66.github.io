@@ -229,22 +229,18 @@ plt.show()
 
 <span style ="color: red">**위의 대표적인 활성화함수 4개를 살펴보게 되면 전부 Linear 하지 않은 특성을 가지고 있다.**</span>  
 **아래 예시를 보게 되면 왜 활성화 함수는 Linear 하지 않아야 하는지 알 수 있다.**  
-**선형 함수인 h(x)=cx를 활성 함수**로 사용한 3층 네트워크를 떠올려 보세요. 이를 식으로 나타내면 **y(x)=h(h(h(x)))**가 됩니다. 이 계산은 y(x)=c∗c∗c∗x처럼 세번의 곱셈을 수행하지만 실은 **y(x)=ax와 똑같은 식**입니다. a=c3이라고만 하면 끝이죠. 즉 히든레이어가 없는 네트워크로 표현할 수 있습니다. 그래서 **층을 쌓는 혜택을 얻고 싶다면 활성함수로는 반드시 비선형함수를 사용**해야 합니다.
+**선형 함수인 h(x)=cx를 활성 함수**로 사용한 3층 네트워크를 떠올려 보세요. 이를 식으로 나타내면 **y(x)=h(h(h(x)))**가 됩니다. 이 계산은 y(x)=c∗c∗c∗x처럼 세번의 곱셈을 수행하지만 실은 **y(x)=ax와 똑같은 식**입니다. a=c3이라고만 하면 끝이죠. 즉 히든레이어가 없는 네트워크로 표현할 수 있습니다. 그래서 **층을 쌓는 혜택을 얻고 싶다면 활성함수로는 반드시 비선형함수를 사용**해야 합니다.  
 
 
 
 **참고사항**  
-
 각각의 활성함수에 대해서 알아보았을때 각자 장 단점이 존재한다는 것을 알 수 있다.  다음은 주로 활성화 함수를 사용할 경우에 대해서 알아보자  
-
 회귀 : 항등함수(출력값을 그대로 반환하는 함수) indentity function  
-
 분류(0/1): Sigmoid Function  
-
-분류(multiple): Softmax Function
+분류(multiple): Softmax Function  
 
 <hr>
-참조:<a href="https://github.com/wjddyd66/Tensorflow/blob/master/Activation%20Function.ipynb">원본코드</a>
+참조:<a href="https://github.com/wjddyd66/Tensorflow/blob/master/Activation%20Function.ipynb">원본코드</a><br>
 참조: <a href="https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/">ratsgo 블로그</a> <br>
 참조: 밑바닥 부터 시작하는 딥러닝<br>
 참조:<a href="https://sacko.tistory.com/37?category=632408">문과생도 이해하는 딥러닝</a><br>
