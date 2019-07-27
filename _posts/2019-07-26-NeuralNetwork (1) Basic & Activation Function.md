@@ -35,15 +35,51 @@ Neural Network는 다음과 같은 중요한 개념은 크개5개로서 이루�
 
 ### 활성화 함수(Activation Function)
 **1. 시그모이드**  
-식: <span> $$\sigma(x) = {1 \over e^{-x}}$$ </span><br>
+식: <span> $$\sigma(x) = {1 \over 1+e^{-x}}$$ </span><br>
 미분식: <span> $$\sigma\prime(x) = \sigma(x)(1-\sigma(x))$$ </span>
 <br>
 범위:[0,1]  
+위와 같은 시그모이드는 아래 코드로서 구현될 수 있다.  
+```python
+#sigmoid 함수 선언
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
+#sigmoid 미분 함수 선언
+def sigmoid_(x):
+    return sigmoid(x)*(1-sigmoid(x))
+```
+Sigmoid 그래프를 확인하기 위하여 아래 코드를 실행  
+```python
+#Sigmoid 그래프로서 표현하기
+x = np.arange(-7.0,7.0,0.1)
+y = sigmoid(x)
+
+plt.plot(x,y)
+plt.plot([0,0],[1.0,0.0],':')
+plt.ylim(-0.1,1.1)
+plt.title('Sigmoid Function')
+plt.show()
+```
 시그모이드 함수 그래프  
 
-<div><img src="http://i.imgur.com/HpSpWal.png" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/30.PNG" height="250" width="600" /></div>
+<br><br>
+Sigmoid 미분 그래프를 확인하기 위하여 아래 코드를 실행  
+```python
+#Sigmoid 미분그래프로서 표현하기
+x = np.arange(-7.0,7.0,0.1)
+y = sigmoid_(x)
+
+plt.plot(x,y)
+plt.plot([0,0],[0.5,0.0],':')
+plt.ylim(-0.1,0.5)
+plt.title('Sigmoid Differential Function')
+plt.show()
+```
 시그모이드 미분 그래프  
-<div><img src="http://i.imgur.com/WpKD6kW.png" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/31.PNG" height="250" width="600" /></div>
+<br><br>
+
 <span style ="color: red">**-5 보다 작거나 5 보다 클 경우**</span>Gradient값이 지나치게 작아지고 exp연산때문에 느려지는 단점이 생기게 된다.<br>
 <span style ="color: red">**항상 0이상의 값**</span>을 가지기 때문에 Gradient Decent로 w를 학습시 허용되는 방향에 제약이 가해져 학습속도가 늦거나 수렴이 어렵게 된다.  
 <br>
@@ -52,10 +88,47 @@ Neural Network는 다음과 같은 중요한 개념은 크개5개로서 이루�
 미분식: <span> $$\tanh\prime(x) = 1-\tanh^2(x)$$ </span>
 <br>
 범위:[-1,1]  
-하이퍼 볼릭 탄젠트 함수 그래프  
-<div><img src="http://i.imgur.com/xaQpDt4.png" height="100%" width="100%" /></div>
-하이퍼 볼릭 탄젠트 미분 그래프  
-<div><img src="http://i.imgur.com/0mVuW9h.png" height="100%" width="100%" /></div>
+위와 같은 하이퍼 볼릭 탄젠트는 아래 코드로서 구현될 수 있다.  
+```python
+#tanh 함수 선언
+def tanh(x):
+    return (np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x))
+#tanh 미분 함수 선언
+def tanh_(x):
+    return 1-(tanh(x)*tanh(x))
+```
+tanh 그래프를 확인하기 위하여 아래 코드를 실행  
+```python
+#tanh 그래프로서 표현하기
+x = np.arange(-7.0,7.0,0.1)
+y = tanh(x)
+
+plt.plot(x,y)
+plt.plot([0,0],[1.0,-1.0],':')
+plt.ylim(-1.1,1.1)
+plt.title('tanh Function')
+plt.show()
+```
+tanh 함수 그래프  
+
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/32.PNG" height="250" width="600" /></div>
+<br><br>
+tanh 미분 그래프를 확인하기 위하여 아래 코드를 실행  
+```python
+#tanh 미분그래프로서 표현하기
+x = np.arange(-7.0,7.0,0.1)
+y = tanh_(x)
+
+plt.plot(x,y)
+plt.plot([0,0],[2.0,0.0],':')
+plt.ylim(-0.1,2.0)
+plt.title('tanh Differential Function')
+plt.show()
+```
+tanh 미분 그래프  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/33.PNG" height="250" width="600" /></div>
+<br><br>
+
 <span style ="color: red">**-5 보다 작거나 5 보다 클 경우**</span>Gradient값이 0으로 가까워 진다는 단점이 존재하게 된다.<br>
 <span style ="color: red">**0을 기준으로 대칭되는 값**</span>을 가지기 때문에 Gradient Decent로 w를 학습시 허용되는 방향에 제약이없어져 시그모이드보다 학습속도가 빠르고 수렴이 쉽게 된다.  
 <br>
@@ -67,8 +140,53 @@ Neural Network는 다음과 같은 중요한 개념은 크개5개로서 이루�
 
 
 범위:0이상의 양수  
+위와 같은 ReLU는 아래 코드로서 구현될 수 있다.  
+```python
+#ReLU 함수 선언
+def relu(x):
+    return np.maximum(0,x)
+#ReLU 미분 함수 선언
+def relu_(x):
+    result =[]
+    for i in x:
+        if(i>=0):
+            result.append(1)
+        else:
+            result.append(0)
+    return result
+```
+ReLU 그래프를 확인하기 위하여 아래 코드를 실행  
+```python
+#ReLU 그래프로서 표현하기
+x = np.arange(-7.0,7.0,0.1)
+y = relu(x)
+
+plt.plot(x,y)
+plt.plot([0,0],[8.0,-0.5],':')
+plt.ylim(-0.3,8.1)
+plt.title('ReLU Function')
+plt.show()
+```
 ReLU 함수 그래프  
-<div><img src="http://i.imgur.com/SAxRPcy.png" height="100%" width="100%" /></div>
+
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/34.PNG" height="250" width="600" /></div>
+<br><br>
+ReLU 미분 그래프를 확인하기 위하여 아래 코드를 실행  
+```python
+#ReLU 미분그래프로서 표현하기
+x = np.arange(-7.0,7.0,0.1)
+y = relu_(x)
+
+plt.plot(x,y)
+plt.plot([0,0],[1.5,-0.5],':')
+plt.ylim(-0.5,1.5)
+plt.title('ReLU Differential Function')
+plt.show()
+```
+ReLU 미분 그래프  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/35.PNG" height="250" width="600" /></div>
+<br><br>
+
 <span style ="color: red">**5 보다 클 경우**</span>Gradient값이 0으로 가까워 진다는 단점을 극복하였으나 <span style ="color: red">**0 보다 작을 경우**</span>모든 값을 0이 된다는 단점이 존재하게 된다.<br>
 
 <br>
@@ -79,9 +197,35 @@ ReLU 함수 그래프
 아래 그림을 보게 되면 Sigmoid와 차이를 알 수 있다.  
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/12.PNG" height="250" width="600" /></div>
-<br>
+<br><br>
 **Sigmoid 사용할 경우** Output 1을 위한 Weight를 Update시키게 되면 위의 그림에서 빨간선 3개만 Update의 대상이 된다.  
 하지만 **Softmax를 사용하게 되면** Output1 + Output2 + Output3 =1 이 되므로 Output 1을 위한 Weight를 Update 시키게 되면 자동적으로 Output2, Output3까지 모두 영향을 받게 되므로 <span style ="color: red">**학습의 과속화**</span>가 진행되어 많이 사용하게 된다.  
+
+**Softmax는 항상 똑같은 값**으로서표현 될 수 없으므로 그래프가 아닌 다음과 같은 과정으로서 확인하여 보였다.  
+Softmax 함수 선언  
+```python
+def softmax(a):
+    max = np.max(a)
+    value = np.exp(a)
+    sum = np.sum(value)
+    result = value/sum
+    return result
+```
+Softmax값 확인  
+```python
+#Softmax그래프로서 표현하기
+x = np.array([100,200,300])
+y = softmax(x)
+
+plt.scatter(x,y)
+plt.ylim(-0.1,1.1)
+plt.title('Softmax Result')
+plt.show()
+```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/36.PNG" height="250" width="600" /></div>
+<br><br>
+**위의 결과를 확인하면 y의 총합은 1이되는 것을 알 수 있고, 특정 한개의 값은 1 나머지의 값은 0으로서 값이 출력되는 것을 확인할 수 있다.**  
+<br><br>
 
 <span style ="color: red">**위의 대표적인 활성화함수 4개를 살펴보게 되면 전부 Linear 하지 않은 특성을 가지고 있다.**</span>  
 **아래 예시를 보게 되면 왜 활성화 함수는 Linear 하지 않아야 하는지 알 수 있다.**  
@@ -100,6 +244,8 @@ ReLU 함수 그래프
 분류(multiple): Softmax Function
 
 <hr>
+참조:<a href="https://github.com/wjddyd66/Tensorflow/blob/master/Activation%20Function.ipynb">원본코드</a>
 참조: <a href="https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/">ratsgo 블로그</a> <br>
 참조: 밑바닥 부터 시작하는 딥러닝<br>
+참조:<a href="https://sacko.tistory.com/37?category=632408">문과생도 이해하는 딥러닝</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
