@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "File & Function"
+title:  "R-File & Function"
 date:   2019-06-16 10:30:20 +0700
 categories: [R]
 ---
