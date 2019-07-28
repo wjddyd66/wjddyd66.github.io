@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 Thread"
+title:  "JAVA-Thread"
 date:   2019-06-15 11:30:20 +0700
 categories: [JAVA]
 ---
@@ -92,10 +92,10 @@ Thread를 사용함으로써 장점은 Thread를 여러개 선언하여 실행�
 ​	            }
 ​	        }
 ​	        
-	        //Main Thread종료를 알아보기 위한 Code
-	        System.out.println("Main Thread End.");
-	    }
-	
+​	        //Main Thread종료를 알아보기 위한 Code
+​	        System.out.println("Main Thread End.");
+​	    }
+​	
 	}
 
 {% endhighlight %}  

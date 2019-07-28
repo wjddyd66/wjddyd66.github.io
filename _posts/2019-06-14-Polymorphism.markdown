@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 Polymorphism"
+title:  "JAVA-Polymorphism"
 date:   2019-06-14 12:57:20 +0700
 categories: [JAVA]
 ---

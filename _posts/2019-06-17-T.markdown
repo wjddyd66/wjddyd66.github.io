@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "T검정"
+title:  "R-T검정"
 date:   2019-06-17 09:45:20 +0700
 categories: [R]
 ---

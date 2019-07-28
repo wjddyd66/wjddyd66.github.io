@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "ANOVA검정,상관관계분석"
+title:  "R-ANOVA검정,상관관계분석"
 date:   2019-06-17 09:55:20 +0700
 categories: [R]
 ---

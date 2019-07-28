@@ -100,6 +100,7 @@ Q는 P에 근사하도록 만들고 싶은, 모델이 예측하는 분포를 나
 <p>$$ -P(x)log(Q(x)) = \begin{bmatrix} -1 && 0 \end{bmatrix} \begin{bmatrix} log0 \\ log1 \end{bmatrix} = -(-\infty +0) = \infty$$ </p>
 
 <hr>
+참조:<a href="https://github.com/wjddyd66/Tensorflow/blob/master/Loss%20Function.ipynb">원본코드</a>
 참조: <a href="https://ratsgo.github.io/deep%20learning/2017/09/24/loss/">ratsgo 블로그</a> <br>
 참조:<a href="http://blog.naver.com/PostView.nhn?blogId=qbxlvnf11&logNo=221386519587&categoryNo=52&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search&userTopListOpen=true&userTopListCount=5&userTopListManageOpen=false&userTopListCurrentPage=1">예비계발자 블로그</a><br>
 참조: 밑바닥 부터 시작하는 딥러닝<br>

@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "MongoDB MapReduce"
+title:  "MongoDB-MapReduce"
 date:   2019-06-19 08:00:00 +0700
-categories: [DB,NoSQL]
+categories: [NoSQL]
 ---
 
 ###  MapReduce

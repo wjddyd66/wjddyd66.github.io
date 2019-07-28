@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "시각화, 그룹화"
+title:  "R-시각화,그룹화"
 date:   2019-06-16 11:30:20 +0700
 categories: [R]
 ---

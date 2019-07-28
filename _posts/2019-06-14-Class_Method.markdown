@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 클래스와 메소드"
+title:  "JAVA-클래스와 메소드"
 date:   2019-06-14 09:45:20 +0700
 categories: [JAVA]
 ---

@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "DB Procedure"
+title:  "DB-Procedure"
 date:   2019-06-18 11:00:00 +0700
-categories: [DB,RDBMS]
+categories: [DB]
 ---
 
 ###  Procedure

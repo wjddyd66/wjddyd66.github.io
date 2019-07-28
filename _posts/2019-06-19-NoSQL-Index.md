@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "MongoDB Index"
+title:  "MongoDB-Index"
 date:   2019-06-19 08:40:00 +0700
-categories: [DB,NoSQL]
+categories: [NoSQL]
 ---
 
 ###  Index

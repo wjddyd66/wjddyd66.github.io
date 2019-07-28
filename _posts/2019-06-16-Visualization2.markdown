@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "시각화 심화"
+title:  "R-시각화 심화"
 date:   2019-06-16 11:40:20 +0700
 categories: [R]
 ---

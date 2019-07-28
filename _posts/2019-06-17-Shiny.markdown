@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "R Shiny"
-date:   2019-06-17 11:30:20 +0700
-categories: [R,others]
+title:  "R-Shiny"
+date:   2019-06-17 12:50:20 +0700
+categories: [R]
 ---
 
 ###  Shiny

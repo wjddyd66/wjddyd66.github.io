@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "DB DDL"
+title:  "DB-DDL"
 date:   2019-06-17 12:50:20 +0700
-categories: [DB,RDBMS]
+categories: [DB]
 ---
 
 ###  DDL

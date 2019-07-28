@@ -28,7 +28,7 @@ $$y= a X + b$$
 <p>$$\begin{bmatrix} A \end{bmatrix}^{-1} \begin{bmatrix} Y \end{bmatrix} = C(상수)\begin{bmatrix} E \end{bmatrix}(기본행렬) \begin{bmatrix} a \\ b \end{bmatrix}$$</p>  
 <span style ="color: red">**이러한 a 와 b를 구하긴 위해서는 [X 1]의 행렬을 정방행렬(n x n크기의 행렬)로 바꿔야지 역행렬을 구할 수 있다.**</span>  
 
-정방행렬 로 바꾸기 위하여 <span>$\begin{bmatrix} X \end{bmatrix}^{T}$ </span> 행렬을 양변에 곱하게 되면  
+정방행렬 로 바꾸기 위하여 <span>$$begin{bmatrix} X \end{bmatrix}^{T}$$ </span> 행렬을 양변에 곱하게 되면  
 <p>$$\begin{bmatrix} X \end{bmatrix}^{T}\begin{bmatrix} y_1\\y_2\\y_3\\...\\y_n \end{bmatrix} = \begin{bmatrix} X \end{bmatrix}^{T}\begin{bmatrix} x_1 & 1\\x_2 & 1\\x_3 & 1\\...\\x_n & 1 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix}$$</p>  
 <br><br>
 위의 식을 간단히 표현하면 아래 식과 같다.  
@@ -57,6 +57,7 @@ $$W(update)=w-a\frac{\partial f_c(x)}{\partial W}$$
 계속하여 W를 갱신하여 Cost값이 최소가 되는(미분값이 0 인) 곳을 찾는다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/4.PNG" height="250" width="600" /></div>
 <br>
+
 **Gradinet 와 Normal Eq 비교**  
 정규방정식(Normal equation 혹은 경사하강법(Gradient Decent)은 통계학에서 선형 회귀상에서 **알지 못하는 값(parameter)를 예측**하기 위한 방법론이다.  
 **경사 하강법**이 수학적 최적화 알고리즘으로서 **적절한 학습비율(learning rate)를 설정**해야하고 **많은 연산량**이 필요하지만 아무리 많은 피쳐가 존재하더라도 **일정한 시간 내에 해법**을 찾는 것이 가능  

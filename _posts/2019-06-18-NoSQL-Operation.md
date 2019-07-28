@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "MongoDB 연산자"
+title:  "MongoDB-연산자"
 date:   2019-06-18 12:50:00 +0700
-categories: [DB,NoSQL]
+categories: [NoSQL]
 ---
 ###  비교 연산자
 문서를 입력된 값과 비교하여 조회하기 위한 연산자  

@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "DB Join,Union"
+title:  "DB-Join,Union"
 date:   2019-06-18 10:00:00 +0700
-categories: [DB,RDBMS]
+categories: [DB]
 ---
 
 ###  Join - Cross Join, Self Join, Outer Join, Inner Join

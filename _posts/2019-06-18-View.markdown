@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "DB View"
+title:  "DB-View"
 date:   2019-06-18 10:30:00 +0700
-categories: [DB,RDBMS]
+categories: [DB]
 ---
 
 ###  View

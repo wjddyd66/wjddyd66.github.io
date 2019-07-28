@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "통계 기초"
+title:  "R-통계 기초"
 date:   2019-06-16 11:50:20 +0700
 categories: [R]
 ---

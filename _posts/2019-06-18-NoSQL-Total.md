@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "MongoDB 집계"
+title:  "MongoDB-집계"
 date:   2019-06-18 12:55:00 +0700
-categories: [DB,NoSQL]
+categories: [NoSQL]
 ---
 
 ###  Count

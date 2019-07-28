@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 상속"
+title:  "JAVA-상속"
 date:   2019-06-14 12:45:20 +0700
 categories: [JAVA]
 ---

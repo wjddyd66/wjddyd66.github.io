@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 내부클래스, 익명클래스"
+title:  "JAVA-내부클래스, 익명클래스"
 date:   2019-06-15 10:15:20 +0700
 categories: [JAVA]
 ---

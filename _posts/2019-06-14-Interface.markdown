@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 Interface"
+title:  "JAVA-Interface"
 date:   2019-06-14 12:50:20 +0700
 categories: [JAVA]
 ---

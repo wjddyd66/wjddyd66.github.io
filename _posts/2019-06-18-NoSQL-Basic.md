@@ -2,7 +2,7 @@
 layout: post
 title:  "NoSQL 개념"
 date:   2019-06-18 12:00:00 +0700
-categories: [DB,NoSQL]
+categories: [NoSQL]
 ---
 
 <span style ="color: red">본 글은 NoSQL Post는 Namoosori-MongoDB(ver2.21) PDF자료를 참조하여 정리하였습니다.</span>  

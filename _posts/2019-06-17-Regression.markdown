@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "회귀분석"
+title:  "R-회귀분석"
 date:   2019-06-17 11:20:20 +0700
 categories: [R]
 ---

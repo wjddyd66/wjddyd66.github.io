@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 CallByValue, CallByReference"
+title:  "JAVA-CallByValue, CallByReference"
 date:   2019-06-14 12:10:20 +0700
 categories: [JAVA]
 ---
@@ -88,6 +88,6 @@ static void ReferenceSwap(CallByValue_CallByReference ss1, CallByValue_CallByRef
 }
 {% endhighlight %}
 <hr>
-참조 내용:<a href="https://sleepyeyes.tistory.com/11">sleepyeyes 블로그</a><br>
 참조: <a href="https://github.com/wjddyd66/JAVA/blob/master/Basic/CallByValue_CallByReference.java">원본코드</a><br>
+참조:<a href="https://sleepyeyes.tistory.com/11">sleepyeyes 블로그</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바의 접근제어자"
+title:  "JAVA-접근제어자"
 date:   2019-06-14 08:45:20 +0700
 categories: [JAVA]
 ---

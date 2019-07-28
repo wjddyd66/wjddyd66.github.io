@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "MongoDB CRUD"
+title:  "MongoDB-CRUD"
 date:   2019-06-18 12:40:00 +0700
-categories: [DB,NoSQL]
+categories: [NoSQL]
 ---
 
 ###  생성하기(Insert)
