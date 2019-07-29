@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "ML-카이제곱 검정"
-date:   2019-07-29 11:00:00 +0700
-categories: [R]
+date:   2019-07-29 11:30:00 +0700
+categories: [ML]
 ---
 
 ###  카이제곱 검정방법
@@ -29,111 +29,113 @@ categories: [R]
 <table class="table">
 	<tbody>
 	<tr>
-		<td>귀무가설</td><td>공부와 합격은 상관이 없다.</td>
+		<td>귀무가설</td><td>주사위의 나올 확률을 모두 같다.</td>
 	</tr>
 
 	<tr>
-		<td>대립가설</td><td>공부와 합격은 상관이 있다.</td>
+		<td>대립가설</td><td>주사위의 나올 확률을 다르다.</td>
 	</tr>
 	
 	<tr>
-		<td>결과</td><td>p-value(0.083) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택  </td>
+		<td>결과</td><td>p-value(0.014) < 
+		0.05(95% 신뢰확률에서의 유의수준) => 대립가설 채택  </td>
 	</tr>
 	</tbody>
 </table>
 
 <br>
-```R
-#카이제곱분석(교차분석) 기본이해
+```python
+data = [4, 6, 17, 16, 8, 9]
+print(sp.stats.chisquare(data))
+```
+<br>
+```code
+Power_divergenceResult(statistic=14.200000000000001, pvalue=0.014387678176921308)
+```
 
-#카이제곱을 위한 패키지 설치
-install.packages("gmodels")
-library(gmodels)
-#데이터 불러오기
-study<-read.csv("C:/git/R/Data/pass_cross.csv")
-head(study)
-#데이터 가공 및 카이제곱 결과 확인
-table(study$공부함,study$합격)
-table(study$공부안함,study$불합격)
-CrossTable(study$공부함,study$합격,chisq=T)
+###  독립성 검사
+동일 집단의 두 변인을 대상으로 관련성이 있는지를 판단한다.  
+데이터 불러오기  
+```python
+data = pd.read_csv("https://raw.githubusercontent.com/wjddyd66/R/master/Data/smoke.csv")
+print(data.head(3))
+```
+<br>
+```code
+   education  smoking
+0          1        1
+1          1        1
+2          1        1
+```
+<br>
+학력 수준별 인원수를 normalization을 한다.  
+**normalization=True**로서 비율로서 표현할 수 있다.  
+```python
+#학력 수준별 흡연 인원수
+ctab = pd.crosstab(index=data["education"], columns=data["smoking"],\
+                   normalize=True)
+#normalize=True => 비율로서 표현한다.
+ctab.index = ["대졸", "고졸", "중졸"]
+ctab.columns = ["과흡연", "보통", "비흡연"]
+print(ctab)
+
+result = stats.chi2_contingency(ctab)
+print(result)
+```
+<br>
+```code
+         과흡연        보통       비흡연
+대졸  0.143662  0.259155  0.191549
+고졸  0.061972  0.059155  0.025352
+중졸  0.121127  0.078873  0.059155
+(0.05327018518268719, 0.9996515220162085, 4, array([[0.19421543, 0.23607221, 0.16407856],
+       [0.04786352, 0.05817893, 0.04043642],
+       [0.08468161, 0.10293196, 0.07154136]]))
 ```
 <br>
 
-출력결과
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare1.PNG" height="150" width="600" /></div><br>
-
-###  카이제곱 기본 이해
 <table class="table">
 	<tbody>
 	<tr>
-		<td>귀무가설</td><td>현재 사용중인 주사위는 게임에 적합하다.(1~6까지의 나오는 확률이 비슷하다.)</td>
+		<td>귀무가설</td><td>학력 수준과 흡연은 관계가 없다.</td>
 	</tr>
 
 	<tr>
-		<td>대립가설</td><td>현재 사용중인 주사위는 게임에 적합하지 않다.(1~6까지의 나오는 확률이 다르다..)</td>
+		<td>대립가설</td><td>학력 수준과 흡연은 관계가 있다.</td>
 	</tr>
 	
 	<tr>
-		<td>결과</td><td>p-value(0.01439)
-	    <
-	    0.05(95% 신뢰확률에서의 유의수준)  =>귀무가설 채택  </td>
+		<td>결과</td><td>p-value(0.99) > 
+		0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택  </td>
 	</tr>
 	</tbody>
 </table>
 
 <br>
-```R
-#주사이 카지에곱 검정
-#내가 생각하는 주사위는 나올확률이 동일하다.
-chisq.test(c(4,6,17,16,8,9))
+```python
+#귀무가설: 학력 수준과 흡연은 관계가 없다.
+#대립가설: 학력 수준과 흡연은 관계가 있다.
+chi2, p, dof, expected = stats.chi2_contingency(ctab)
+msg = "chi2:{}, p-value:{}, df:{}"
+print(msg.format(chi2, p, dof))
+print(expected)
+#p-value(0.99) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택
 ```
 <br>
-
-출력결과
-
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare2.PNG" height="150" width="600" /></div><br>
-
-###  카이제곱 독립성 검정
-<table class="table">
-	<tbody>
-	<tr>
-		<td>귀무가설</td><td>부모의 학력수준과 자녀의 대학진학여부 간의 관련이 없다.</td>
-	</tr>
-
-	<tr>
-		<td>대립가설</td><td>부모의 학력수준과 자녀의 대학진학여부 간의 관련이 있다.</td>
-	</tr>
-	
-	<tr>
-		<td>결과</td><td>p-value(0.2507057) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택</td>
-	</tr>
-	</tbody>
-</table>
-
-<br>
-```R
-#독립성(관련성): 두 속성 간의 관계검정
-data<-read.csv("C:/git/R/Data/cleanDescriptive.csv",header = T,fileEncoding = "UTF-8")
-head(data)
-
-#부모의 학력수준과 자녀의 대학여부 간 관련성 검정
-x<-data$level2 #부모의 학력수준(독립변수:영향줌)
-y<-data$pass2 #자녀의 대학진학여부(종속변수:영향받음)
-
-result<-data.frame(level=x,pass=y)
-dim(result)
-table(result)
-
-chisq.test(x,y,correct = F) #correct = F : 연속성 보정 미적용(기본값:T-연속성보정 적용)
+```code
+chi2:0.05327018518268719, p-value:0.9996515220162085, df:4
+[[0.19421543 0.23607221 0.16407856]
+ [0.04786352 0.05817893 0.04043642]
+ [0.08468161 0.10293196 0.07154136]]
 ```
-<br>
 
-출력결과
+###  동질성 검사
+두 집간의 분포가 동일한지를 검증하는 방법이다.  
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare3.PNG" height="150" width="600" /></div><br>
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
-###  카이제곱 동질성 검정
 <table class="table">
 	<tbody>
 	<tr>
@@ -145,67 +147,45 @@ chisq.test(x,y,correct = F) #correct = F : 연속성 보정 미적용(기본값:
 	</tr>
 	
 	<tr>
-		<td>결과</td><td>p-value(0.5865) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택</td>
+		<td>결과</td><td>p-value(0.58) > 
+		0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택  </td>
 	</tr>
 	</tbody>
 </table>
 
 <br>
-```R
-#부모의 학력수준과 자녀의 대학여부 간 관련성 검정
-x<-data$level2 #부모의 학력수준(독립변수:영향줌)
-y<-data$pass2 #자녀의 대학진학여부(종속변수:영향받음)
-
-result<-data.frame(level=x,pass=y)
-dim(result)
-table(result)
-
-chisq.test(x,y,correct = F) #correct = F : 연속성 보정 미적용(기본값:T-연속성보정 적용)
-
-
-#동질성 검정 : 집단 간 분포 동일여부 검정
-rm(list=ls())
-gc()
-data<-read.csv("C:/git/R/Data/homogenity.csv",header = T)
-head(data)
-
-#교육방법에 따른 교육생들의 만족도 차이가 있는지 검정
+```python
+#동질성 검정
 #귀무가설: 교육방법에 따른 교육생들의 만족도 차이가 없다.
 #대립가설: 교육방법에 따른 교육생들의 만족도 차이가 있다.
-str(data)
+data = pd.read_csv("https://raw.githubusercontent.com/wjddyd66/R/master/Data/survey_method.csv")
+print(data.head(5))
 
-data<-subset(data,!is.na(survey),c(method,survey))
-data
-table(data$method)
-table(data$survey)
-
-data$method2[data$method==1]<-"방법1"
-data$method2[data$method==2]<-"방법2"
-data$method2[data$method==3]<-"방법3"
-head(data)
-
-data$survey2[data$survey==1]<-"매우만족"
-data$survey2[data$survey==2]<-"만족"
-data$survey2[data$survey==3]<-"보통족"
-data$survey2[data$survey==4]<-"불만족"
-data$survey2[data$survey==5]<-"매우불만족"
-head(data)
-
-table(data$method2,data$survey2) #각 집단별 길이가 같아야 한다.
-chisq.test(data$method2,data$survey2) 
-#X-squared = 6.5447, df = 8, p-value = 0.5865
-#해석: p-value(0.5865)>0.05 -> 귀무가설 채택
-#결론: 교육방법에 따른 교육생들의 만족도 차이가 없다.
-
-CrossTable(data$method2,data$survey2,chisq = T)
+ctab = pd.crosstab(index=data["method"], columns=data["survey"])
+print(ctab)
+chi2, p, dof, expected = stats.chi2_contingency(ctab)
+msg = "chi2:{}, p-value:{}, df:{}"
+print(msg.format(chi2, p, dof))
+#p-value(0.58) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택
 ```
 <br>
+```code
+   no  method  survey
+0   1       1       1
+1   2       2       2
+2   3       3       3
+3   4       1       4
+4   5       2       5
+survey  1   2   3   4  5
+method                  
+1       5   8  15  16  6
+2       8  14  11  11  6
+3       8   7  11  15  9
+chi2:6.544667820529891, p-value:0.5864574374550608, df:8
+```
 
-출력결과
-
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/R/Chisquare4.PNG" height="150" width="600" /></div><br>
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/R/tree/master/Chisquare">원본코드</a><br>
+참조: <a href="https://github.com/wjddyd66/ML/blob/master/Chisquare.ipynb">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 

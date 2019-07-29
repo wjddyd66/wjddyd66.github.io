@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "ML-Statistics"
-date:   2019-07-29 09:00:00 +0700
+date:   2019-07-29 11:00:00 +0700
 categories: [ML]
 ---
 

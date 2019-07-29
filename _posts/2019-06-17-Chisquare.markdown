@@ -15,6 +15,8 @@ categories: [R]
 1. 독립성 검정: 두 변수는 서로 연관성이 있는가 없는가?
 2. 적합성 검정: 실제 표본이 내가 생각하는 분포와 같은가 다른가?
 3. 동일성 검정: 두 집단의 분포가 동일한가? 다른 분포인가? 
+
+
 참조: <a href="https://m.blog.naver.com/PostView.nhn?blogId=leerider&logNo=100189714605&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F">leerider 블로그</a>  
 
 ###  카이제곱 기본 이해
