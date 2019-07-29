@@ -20,7 +20,7 @@ categories: [ML]
 **일원 카이제곱 검정**은 하나의 범주를 대상으로 한다. -> 적합성 검정  
 **이원 카이제곱 검정**은 두개 이상의 범주 대상으로 검정 한다. -> 독립성, 동일성 검정  
 참조: <a href="https://m.blog.naver.com/PostView.nhn?blogId=leerider&logNo=100189714605&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F">leerider 블로그</a>  
-
+참조:<a href="https://wjddyd66.github.io/r/2019/06/17/Chisquare.html">카이제곱 자세한 내용</a>  
 ###  적합성 검사
 적합성 검사 이므로 1원 카이제곱을 사용한다.  
 
