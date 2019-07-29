@@ -122,18 +122,18 @@ O   0.250  0.428571  0.333333
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 **평균**은 모든 데이터의 값을 더하고, 데이터의 개수로 나눈 값이다. **중심성향**에 대한 추정량을 계산할 때 사용한다.  
 이러한 **평균**은 아래의 식으로서 나타낼 수 있다.  
-<p>$$ mean(x) = frac{1}{n} \sum_{i=1}^{n}x_i $$</p>
+<p>$$ mean(x) = \frac{1}{n} \sum_{i=1}^{n}x_i $$</p>
 표준 편차에 대해서 알기전에 **편차**에 대해서 알아야 한다.  
 **편차**란 하나의 데이터 값이 평균에서 얼마나 떨어져있는지에 대한 값이다.  
 이러한 **편차**들은 양수와 음수의 값을 가지고 있기 때문에 평균값에서 실제값이 얼마나 오류가 있는지 판단할 수 없다.  
 이러한 편차들의 합을 양수화 하기 위해 제곱을 사용한다.  
 **분산**은 이러한 편차들의 제곱의 합을 계산한 것이다.  
 이러한 **분산**은 아래의 식으로서 나타낼 수 있다.  
-<p>$$ var(x) = frac{1}{n}\sum_{i=1}^{n}(x_i-mean(x))^2 $$</p>
+<p>$$ var(x) = \frac{1}{n}\sum_{i=1}^{n}(x_i-mean(x))^2 $$</p>
 **분산**은 **편차들의 제곱의 합**이므로 실제 값에서 너무 떨어지게 된다. 따라서 이러한 오차의 값을 구하기 위해서 **제곱근에 루트**를 씌워준 값이 **표준편차**가 된다.  
 즉, **표준편차**는 **평균으로부터 원래 데이터에 대한 오차범위의 근사값 = 흩어진 정도에 대한 척도**가 된다.  
 이러한 **표준편차**는 아래의 식으로서 나타낼 수 있다.  
-<p>$$ std(x) = var(x)^{frac{1}{2}} $$</p>
+<p>$$ std(x) = var(x)^{\frac{1}{2}} $$</p>
 
 아래 예시는 실제 표준편차에 따라서 Data의 분포를 알아보는 예시이다.  
 ```python
@@ -166,8 +166,10 @@ for i in range(3):
             data_2[i], "*", color = col[i])
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/40.PNG" height="250" width="800" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/40.PNG" height="100%" width="100%" /></div>
+
 <br>
+
 <hr>
 참조: <a href="https://github.com/wjddyd66/ML/blob/master/Statistics.ipynb">원본코드</a> <br>
 참초:<a href="https://ourcstory.tistory.com/126">ocurcstory 블로그</a><br>
