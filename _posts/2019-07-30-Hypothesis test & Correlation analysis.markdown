@@ -9,7 +9,7 @@ categories: [DataAnalysis]
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 양측검정과 단측검정에 대해서 간단히 말하면  
 <p>$$ 대립가설 \neq 이면 양측검정 $$</p>
-<p>$$ 대립가설 \less or \gtr 이면 양측검정 $$</p>
+<p>$$ 대립가설 > or < 이면 양측검정 $$</p>
 그렇다면 우리가 공부해왔던 **카이제곱과 T검정은 양측검정인가?**라는 의문이 든다.  
 이것에 대한 해답은 카이제곱과 T분포 그래프를 보면 이해하기 쉽다.  
 **카이제곱 그래프**  
