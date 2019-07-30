@@ -1,0 +1,792 @@
+---
+layout: post
+title:  "ML-모수검정과 비모수검정"
+date:   2019-07-30 09:45:20 +0700
+categories: [ML]
+---
+
+###  모수검정과 비모수검정
+
+모수검정과 비모수검정은 아래 표를 보면 이해할 수 있다.  
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>구분</td><td>모수</td><td>비모수</td>
+	</tr>
+
+	<tr>
+		<td>사용시기</td>
+		<td>
+		<ul>
+		<li>검정의 가정을 만족할때</li>
+		<li>가정: 모집단의 정규성</li>
+		</ul>
+		</td>
+		<td>
+		<ul>
+		<li>가정 불만족</li>
+		<li>작은 샘플 사이즈</li>
+		<li>순위로만 된 데이터</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>통계량</td><td>평균</td><td>중위수</td>
+	</tr>
+	<tr>
+		<td>1 sample</td><td>1 sample t-test</td>
+		<td>wilcoxon test</td>
+	</tr>
+	<tr>
+		<td>independent 2 sample</td><td>independent t-test</td><td>mann-whitney u test</td>
+		<td>비모수</td>
+	</tr>
+	<tr>
+		<td>paired 2 sample</td><td>paired t-test</td>
+		<td>wilcoxon test</td>
+	</tr>
+	<tr>
+		<td>more than 3samples</td><td>ANOVA</td>
+		<td>kruskal-wallis test</td>
+	</tr>
+</tbody>
+</table>
+<br>
+
+T검정에 대한 자세한 내용:<a href="https://wjddyd66.github.io/r/2019/06/17/T.html">T 검정</a>  
+위의 Link를 타고가면 모수검정이 T검정에 대한 이론이 잘 나와있다.  
+Python에서의 T검정을 실습한다.  
+
+
+### 모수검정
+#### 1 sample t-test  
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>어느 남성 집단의 평군 키 검정하기</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>어느 남성 집단의 평균 키는 177이다. (모수)</li>
+		<li>어느 남성 집단의 평균 키는 167이다. (모수)</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>어느 남성 집단의 평균 키는 177 이 아니다. </li>
+		<li>어느 남성 집단의 평균 키는 167 이 아니다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.925) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택 </li>
+		<li>p-value(0.010) < 
+		0.05(95% 신뢰확률에서의 유의수준) => 대립가설 채택</li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+
+```python
+#One-Sample T-test
+#귀무가설: 모수와 같다.
+#대립가설: 모수와 다르다.
+
+#예1) 어느 남성 집단의 평균 키 검정하기
+
+one_sample = [177.0, 182.7, 169.6, 176.8, 180.0]
+print("one_sample 평균: ", np.array(one_sample).mean())
+
+'''
+귀무: 어느 남성 집단의 평균 키는 177이다. (모수)
+대립: 어느 남성 집단의 평균 키는 177 이 아니다. 
+'''
+result1 = stats.ttest_1samp(one_sample, popmean=177)
+# popmean=177 -> 예상평균 값
+
+'''
+귀무: 어느 남성 집단의 평균 키는 167이다. (모수)
+대립: 어느 남성 집단의 평균 키는 167 이 아니다. 
+'''
+result2 = stats.ttest_1samp(one_sample, popmean=167)
+# popmean=167 -> 예상평균 값
+
+print("result1 결과) statistic: %.3f, pvalue: %.3f"%result1)
+# pvalue: 0.925 > 0.05 이므로 귀무 채택 -> 177이 맞다!
+print("result2 결과) statistic: %.3f, pvalue: %.3f"%result2)
+# pvalue: 0.010 < 0.05 이므로 대립 채택 -> 167이 아니다!
+```
+<br>
+```code
+one_sample 평균:  177.21999999999997
+result1 결과) statistic: 0.100, pvalue: 0.925
+result2 결과) statistic: 4.664, pvalue: 0.010
+```
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>어느 집단의 평균 검정</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>모수의 평균은 0이다.</li>
+		<li>모수의 평균은 0이 아니다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>모수의 평균은 0.7이다.</li>
+		<li>모수의 평균은 0.7이 아니다. </li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.529) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택 </li>
+		<li>p-value(0.043) < 
+		0.05(95% 신뢰확률에서의 유의수준) => 대립가설 채택</li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+
+```python
+#예2) 한 집단의 평균 검정
+np.random.seed(123)
+mu = 0 
+n = 10
+
+x = stats.norm(mu).rvs(n)
+# 정규분포를 따르는 난수 10개가 생성된다.
+print(x)
+sns.distplot(x, kde = False, fit = stats.norm)
+plt.show()
+
+'''
+귀무: 모수의 평균은 0이다.
+대립: 모수의 평균은 0이 아니다. 
+'''
+result3 = stats.ttest_1samp(x, popmean = 0)
+print("result3의 결과) ",result3)
+#  pvalue=0.529 > 0.05 이므로 귀무 채택
+
+'''
+귀무: 모수의 평균은 0.7이다.
+대립: 모수의 평균은 0.7이 아니다. 
+'''
+result4 = stats.ttest_1samp(x, popmean = 0.7)
+print("result4의 결과) ",result4)
+#  pvalue=0.043 < 0.05 이므로 대립 채택
+```
+<br>
+```code
+[-1.0856306   0.99734545  0.2829785  -1.50629471 -0.57860025  1.65143654
+ -2.42667924 -0.42891263  1.26593626 -0.8667404 ]
+ 
+result3의 결과)  Ttest_1sampResult(statistic=-0.6540040368674593, pvalue=0.5294637946339893)
+result4의 결과)  Ttest_1sampResult(statistic=-2.3526142804366375, pvalue=0.043120011586159794)
+```
+Data 그려보기  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/44.PNG" height="100%" width="100%" /></div>
+<br>
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>어느 학생 집단의 평균 국어점수 구하기</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>학생들의 국어 점수 평균은 80이다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>학생들의 국어 점수 평균은 80이아니다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.199) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택 </li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+
+```python
+#예3) 어느 학생 집단의 평균 국어점수 검정하기
+data = pd.read_csv("https://raw.githubusercontent.com/wjddyd66/R/master/Data/student.csv")
+print(data.head(5))
+
+'''
+귀무: 학생들의 국어 점수 평균은 80이다.
+대립: 학생들의 국어 점수 평균은 80이아니다.
+'''
+result5 = stats.ttest_1samp(data["국어"], popmean=80)
+print("result5 결과) statistic: %.3f, pvalue: %.3f"%result5)
+#  pvalue=0.199 > 0.05 이므로 귀무 채택
+```
+<br>
+```code
+    이름  국어  영어  수학
+0  박치기  90  85  55
+1  홍길동  70  65  80
+2  김치국  92  95  76
+3  임꺽정  76  89  88
+4  신선해  97  87  83
+result5 결과) statistic: -1.332, pvalue: 0.199
+```
+
+#### independent t-test
+서로 독립인 두 집단의 평균 차이 검정  
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>남녀 집단 간 파이썬 시험의 평균 차이 검정</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>남녀 두 집단 간 파이썬 시험의 평균에 차이가 없다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>남녀 두 집단 간 파이썬 시험의 평균에 차이가 있다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.25) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택 </li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+
+```python
+#independent samples t-test
+#예1) 남녀 집단 간 파이썬 시험의 평균 차이 검정
+
+'''
+귀무: 남녀 두 집단 간 파이썬 시험의 평균에 차이가 없다.
+대립: 남녀 두 집단 간 파이썬 시험의 평균에 차이가 있다.
+'''
+male = [75, 85, 100, 72.5, 86.5]
+female = [63.2, 76, 52, 100, 70]
+
+two_sample = stats.ttest_ind(male, female)
+print(two_sample)
+#  pvalue=0.25 > 0.05 이므로 귀무 채택
+print(np.mean(male))
+print(np.mean(female))
+```
+<br>
+```code
+Ttest_indResult(statistic=1.233193127514512, pvalue=0.2525076844853278)
+83.8
+72.24
+```
+
+
+**stats.shapiro()**를 통하여 정규성을 확인할 수 있다.  
+pvalue > 0.5 => 정규성 만족  
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>두 가지 교육방법에 따른 평균시험 점수에 대한 검정 수행</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>교육방법에 따른 시험점수는 차이가 없다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>교육방법에 따른 시험점수는 차이가 있다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.25) > 0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택 </li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+
+```python
+#예2) 두 가지 교육방법에 따른 평균시험 점수에 대한 검정 수행
+
+'''
+귀무: 교육방법에 따른 시험점수는 차이가 없다.
+대립: 교육방법에 따른 시험점수는 차이가 있다.
+'''
+data = pd.read_csv("https://raw.githubusercontent.com/wjddyd66/R/master/Data/two_sample.csv")
+print(data.head(2))
+
+result = data[["method", "score"]]
+print(result.head())
+
+m1 = result[result["method"]==1]
+m2 = result[result["method"]==2]
+
+score1 = m1["score"]
+score2 = m2["score"]
+
+sco1 = score1.fillna(score1.mean())
+sco2 = score2.fillna(score2.mean())
+print(sco1)
+
+sns.distplot(sco1, fit=stats.norm)
+plt.show()
+sns.distplot(sco2, fit=stats.norm)
+plt.show()
+
+print(stats.shapiro(sco1)) # 0.36 > 0.05
+print(stats.shapiro(sco2)) # 0.67 > 0.05
+
+
+result = stats.ttest_ind(sco1, sco2)
+print("t 검정 통계량: %.5f, p값: %.5f"%result)
+# pvalue=0.84 > 0.05 귀무 채택
+```
+<br>
+```code
+   no  gender  method  survey  score
+0   1       1       1       1    5.1
+1   2       1       2       0    NaN
+   method  score
+0       1    5.1
+1       2    NaN
+2       1    4.7
+3       2    NaN
+4       1    5.4
+0     5.1
+2     4.7
+
+...
+
+(0.965552806854248, 0.3679903745651245)
+(0.9621098637580872, 0.6714189648628235)
+t 검정 통계량: -0.19649, p값: 0.84505
+KruskalResult(statistic=0.15994494025967548, pvalue=0.6892072139847867)
+MannwhitneyuResult(statistic=261.0, pvalue=0.3483878790262923)
+WilcoxonResult(statistic=66.5, pvalue=0.6358467122075273)
+```
+sco 그려보기  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/45.PNG" height="100%" width="100%" /></div>
+<br>
+
+#### paired samples t-test
+동일한 관찰대상으로부터 처리 이전과 이후를 1:1로 대응시킨 두 집단 표본을 이용해 t 검정을 실시한다.  
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>복부 수술 전 9명의 몸무게와 복부 수술 후 몸무게 변화</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>변화에 차이가 없다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>변화에 차이가 있다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.00632) < 
+		0.05(95% 신뢰확률에서의 유의수준) => 대립가설 채택 </li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+
+```python
+#paired samples t-test
+#동일한 관찰대상으로부터 처리 이전과 이후를 1:1로 대응시킨 두 집단 표본을 이용해 t 검정을 실시한다.
+
+'''
+예)복부 수술 전 9명의 몸무게와 복부 수술 후 몸무게 변화
+귀무: 변화에 차이가 없다.
+대립: 변화에 차이가 있다.
+'''
+baseline = [67.2, 67.4, 71.5, 77.6, 86.0, 89.1, 59.5, 81.9, 105.5]
+follow_up = [62.4, 64.6, 70.4, 62.6, 80.1, 73.2, 58.2, 71.0, 101.0]
+paired_result = stats.ttest_rel(baseline, follow_up)
+print(paired_result) 
+# pvalue=0.00632 < 0.05 대립 채택
+```
+<br>
+```code
+Ttest_relResult(statistic=3.6681166519351103, pvalue=0.006326650855933662)
+```
+
+#### ANOVA
+세 집단 이상의 평균차이 검정  
+종속변수의 분산과 독립변수의 분산간의 관계를 사용하여 선형회귀 분석의 성능평가 모형으로 사용 가능  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>세 가지 교육방법을 적용하여 1개월 동안 교육받은 교육생 80명을 대상으로 실기시험을 실시</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>교육방법(세 집단)에 따른 시험점수 차이가 없다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>교육방법(세 집단)에 따른 시험점수 차이가 있다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.29) > 
+		0.05(95% 신뢰확률에서의 유의수준) => 귀무가설 채택 </li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+
+**이상치 확인**  
+```python
+#ANOVA: 세 집단 이상의 평균차이 검정
+#종속변수의 분산과 독립변수의 분산간의 관계를 사용하여 
+#선형회귀 분석의 성능평가 모형으로 사용 가능
+
+'''
+예) 세 가지 교육방법을 적용하여 1개월 동안 교육받은 교육생 80명을 대상으로 실기시험을 실시한다.
+귀무: 교육방법(세 집단)에 따른 시험점수 차이가 없다.
+대립: 교육방법(세 집단)에 따른 시험점수 차이가 있다.
+'''
+
+url = "https://raw.githubusercontent.com/wjddyd66/R/master/Data/three_sample.csv"
+data = pd.read_csv(url)
+print(data.head(3))
+print(len(data)) # 80
+print(data.describe()) # outlier 발견
+
+plt.grid()
+plt.subplot(121)
+plt.boxplot(data.score)
+plt.subplot(122)
+plt.hist(data.score)
+plt.ylim(0,100)
+plt.show()
+```
+<br>
+```code
+   no  method  survey  score
+0   1       1       1     72
+1   2       3       1     87
+2   3       2       1     78
+80
+            no     method     survey       score
+count  80.0000  80.000000  80.000000   80.000000
+mean   40.5000   1.962500   0.650000   78.212500
+std    23.2379   0.802587   0.479979   64.886404
+min     1.0000   1.000000   0.000000   33.000000
+25%    20.7500   1.000000   0.000000   58.000000
+50%    40.5000   2.000000   1.000000   65.000000
+75%    60.2500   3.000000   1.000000   79.500000
+max    80.0000   3.000000   1.000000  500.000000
+```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/46.PNG" height="100%" width="100%" /></div>
+<br>
+
+**이상치 제거 후 정규성 확인**  
+```python
+#Outlier제거
+data = data.query("score <= 100")
+print(len(data)) # 78
+plt.hist(data.score)
+plt.show()
+print(stats.shapiro(data.score))
+#pvalue 0.2986918091773987>0.05 정규성 만족
+```
+<br>
+```code
+(0.9810646176338196, 0.2986918091773987)
+```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/47.PNG" height="100%" width="100%" /></div>
+<br>
+
+**이상치 제거후 ANOVA검정**  
+```python
+# 교차표
+data2 = pd.crosstab(index = data["method"], columns = "count")
+data2.index = ["방법1", "방법2", "방법3"]
+print("data2: \n", data2)
+
+# 교차표: 교육방법 별 만족여부 건 수
+data3 = pd.crosstab(index = data["method"], columns = data["survey"])
+data3.index = ["방법1", "방법2", "방법3"]
+data3.columns = ["만족", "불만족"]
+print("data3: \n", data3)
+
+print("-"*30)
+
+import statsmodels.formula.api as smf
+reg = smf.ols("data['score'] ~ data['method']", data=data).fit()
+#단일회귀 모델
+
+table = sm.stats.anova_lm(reg, type=2)
+print(table)
+```
+
+```code
+data2: 
+ col_0  count
+방법1       26
+방법2       28
+방법3       24
+data3: 
+      만족  불만족
+방법1   9   17
+방법2  10   18
+방법3   8   16
+------------------------------
+                  df        sum_sq     mean_sq         F    PR(>F)
+data['method']   1.0     27.980888   27.980888  0.122228  0.727597
+Residual        76.0  17398.134497  228.922822       NaN       NaN
+```
+### 비모수 검정
+비모수 검정은 아래 표를 보면 사용방법을 간편히 알 수 있다.  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>구분</td><td>Test방법</td><td>사용방법</td>
+	</tr>
+	<tr>
+		<td>1 sample</td><td>wilcoxon test</td>
+		<td><code>scipy.stats.wilcoxon(x-예상값, zero_method='wilcox', correction=False, alternative='two-sided')</code></td>
+	</tr>
+	<tr>
+		<td>independent 2 sample</td><td>mann-whitney u test</td>
+		<td>scipy.stats.mannwhitneyu(x, y, use_continuity=True, alternative=None)</td>
+	</tr>
+	<tr>
+		<td>paired 2 sample</td><td>wilcoxon test</td>
+		<td>scipy.stats.wilcoxon(x, y=None, zero_method='wilcox', correction=False, alternative='two-sided')</td>
+	</tr>
+	<tr>
+		<td>more than 3samples</td><td>kruskal-wallis test</td>
+		<td>scipy.stats.kruskal(*args, **kwargs)</td>
+	</tr>
+</tbody>
+</table>
+<br>
+각 방법에대한 Parameter 및 설명은 아래 링크에 자세히 나와있다.  
+1. <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html">wilcoxon test</a>
+2. <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html#scipy.stats.mannwhitneyu">mann-whitney u test</a>
+3. <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kruskal.html#scipy.stats.kruskal">kruskal-wallis test</a>
+
+참조:<a href="">Scipy.org</a>
+<br>
+비모수 검정은 아래와 같은 조건을 만족할 때 실시한다.  
+1. 정규성 불만족
+2. 작은 샘플 사이즈
+3. 순위로만 된 데이터
+
+2,3의 경우에는 **비모수 검정**을 실시해야 한다.  
+1의 경우에는 **이상치 제거, 결측치 변환**등을 통하여 정규성을 만족하면 **모수 검정**  
+**이상치 제거, 결측치 변환**등을 실시하였는데에도 정규성을 만족하지 않으면 **비모수 검정**을 실시하게 된다.  
+
+아래 예시는 **비모수 검정 중 1 sample wilcoxon test**를 실시한 예제이다.  
+
+<table class="table">
+	<tbody>
+	<tr>
+		<td>예시</td><td>여아 신생아 몸무게의 평균 검정 수행</td>
+	</tr>
+
+	<tr>
+		<td>귀무가설</td>
+		<td>
+		<ul>
+		<li>여신생아의 몸무게 평균은 2800g이다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>대립가설</td>
+		<td>
+		<ul>
+		<li>여신생아의 몸무게 평균은 2800g이 아니다.</li>
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>결과</td>
+		<td>
+		<ul>
+		<li>p-value(0.035) < 
+		0.05(95% 신뢰확률에서의 유의수준) => 대립가설 채택 </li>
+		</ul>
+		</td>
+		
+	</tr>
+	</tbody>
+</table>
+<br>
+```python
+#비모수 검정
+
+#예) 여아 신생아 몸무게의 평균 검정 수행
+data = pd.read_csv("https://raw.githubusercontent.com/wjddyd66/R/master/Data/babyboom.csv")
+print(data.head(5))
+print(data.describe())
+
+girl_data = data[data["gender"]==1]
+print(girl_data.head(5))
+
+# 정규성 확인
+print("정규성 확인:", stats.shapiro(girl_data.iloc[:, 2])) 
+#0.017 < 0.05 이므로 정규성을 띄지 않고 있다.
+
+
+sns.distplot(girl_data.iloc[:, 2], fit = stats.norm)
+plt.show() # QQ-plot
+
+'''
+귀무: 여신생아의 몸무게 평균은 2800g이다.
+대립: 여신생아의 몸무게 평균은 2800g이 아니다.
+'''
+result6 = stats.wilcoxon(girl_data["weight"]-2800)
+print("result6 결과) statistic: %.3f, pvalue: %.3f"%result6)
+#  pvalue=0.035 < 0.05 이므로 대립 채택
+print("평균: ", np.array(girl_data["weight"]).mean())
+```
+
+```code
+   time  gender  weight  minutes
+0     5       1    3837        5
+1   104       1    3334       64
+2   118       2    3554       78
+3   155       2    3838      115
+4   257       2    3625      177
+              time     gender       weight      minutes
+count    44.000000  44.000000    44.000000    44.000000
+mean   1296.000000   1.590909  3275.954545   788.727273
+std     690.704561   0.497350   528.032458   416.066931
+min       5.000000   1.000000  1745.000000     5.000000
+25%     792.750000   1.000000  3141.500000   482.750000
+50%    1406.500000   2.000000  3404.000000   846.500000
+75%    1918.500000   2.000000  3571.750000  1158.500000
+max    2355.000000   2.000000  4162.000000  1435.000000
+    time  gender  weight  minutes
+0      5       1    3837        5
+1    104       1    3334       64
+5    405       1    2208      245
+6    407       1    1745      247
+12   814       1    2576      494
+정규성 확인: (0.8702831864356995, 0.017984945327043533)
+
+result6 결과) statistic: 37.000, pvalue: 0.035
+평균:  3132.4444444444443
+```
+**정규성 확인 그래프**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/48.PNG" height="100%" width="100%" /></div>
+<br>
+<hr>
+참조: <a href="https://github.com/wjddyd66/ML/blob/master/ParametricTest%26NonparametricTest.ipynb">원본코드</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
