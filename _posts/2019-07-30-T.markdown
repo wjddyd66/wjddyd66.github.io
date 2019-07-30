@@ -41,7 +41,6 @@ categories: [ML]
 	</tr>
 	<tr>
 		<td>independent 2 sample</td><td>independent t-test</td><td>mann-whitney u test</td>
-		<td>비모수</td>
 	</tr>
 	<tr>
 		<td>paired 2 sample</td><td>paired t-test</td>
@@ -216,7 +215,7 @@ result3의 결과)  Ttest_1sampResult(statistic=-0.6540040368674593, pvalue=0.52
 result4의 결과)  Ttest_1sampResult(statistic=-2.3526142804366375, pvalue=0.043120011586159794)
 ```
 Data 그려보기  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/44.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/44.PNG" height="80%" width="100%" /></div>
 <br>
 
 <table class="table">
@@ -442,7 +441,7 @@ MannwhitneyuResult(statistic=261.0, pvalue=0.3483878790262923)
 WilcoxonResult(statistic=66.5, pvalue=0.6358467122075273)
 ```
 sco 그려보기  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/45.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/45.PNG" height="80%" width="100%" /></div>
 <br>
 
 #### paired samples t-test
@@ -588,7 +587,7 @@ min     1.0000   1.000000   0.000000   33.000000
 75%    60.2500   3.000000   1.000000   79.500000
 max    80.0000   3.000000   1.000000  500.000000
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/46.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/46.PNG" height="80%" width="100%" /></div>
 <br>
 
 **이상치 제거 후 정규성 확인**  
@@ -605,7 +604,7 @@ print(stats.shapiro(data.score))
 ```code
 (0.9810646176338196, 0.2986918091773987)
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/47.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/47.PNG" height="80%" width="100%" /></div>
 <br>
 
 **이상치 제거후 ANOVA검정**  
@@ -660,15 +659,15 @@ Residual        76.0  17398.134497  228.922822       NaN       NaN
 	</tr>
 	<tr>
 		<td>independent 2 sample</td><td>mann-whitney u test</td>
-		<td>scipy.stats.mannwhitneyu(x, y, use_continuity=True, alternative=None)</td>
+		<td><code>scipy.stats.mannwhitneyu(x, y, use_continuity=True, alternative=None)</code></td>
 	</tr>
 	<tr>
 		<td>paired 2 sample</td><td>wilcoxon test</td>
-		<td>scipy.stats.wilcoxon(x, y=None, zero_method='wilcox', correction=False, alternative='two-sided')</td>
+		<td><code>scipy.stats.wilcoxon(x, y=None, zero_method='wilcox', correction=False, alternative='two-sided')</code></td>
 	</tr>
 	<tr>
 		<td>more than 3samples</td><td>kruskal-wallis test</td>
-		<td>scipy.stats.kruskal(*args, **kwargs)</td>
+		<td><code>scipy.stats.kruskal(*args, **kwargs)</code></td>
 	</tr>
 </tbody>
 </table>
@@ -785,7 +784,7 @@ result6 결과) statistic: 37.000, pvalue: 0.035
 평균:  3132.4444444444443
 ```
 **정규성 확인 그래프**  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/48.PNG" height="100%" width="100%" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/48.PNG" height="80%" width="100%" /></div>
 <br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/ML/blob/master/ParametricTest%26NonparametricTest.ipynb">원본코드</a><br>
