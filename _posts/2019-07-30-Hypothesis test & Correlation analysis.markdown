@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "DataAnalysis-Hypothesis test & Correlation analysis"
+title:  "DataAnalysis-양측검정,상관분석"
 date:   2019-07-30 10:00:00 +0700
 categories: [DataAnalysis]
 ---

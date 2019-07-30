@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "DataAnalysis-회귀분석"
-date:   2019-06-17 11:20:20 +0700
+date:   2019-07-30 11:20:20 +0700
 categories: [DataAnalysis]
 ---
 
