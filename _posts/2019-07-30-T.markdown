@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "ML-모수검정과 비모수검정"
+title:  "DataAnalysis-모수검정과 비모수검정"
 date:   2019-07-30 09:45:20 +0700
-categories: [ML]
+categories: [DataAnalysis]
 ---
 
 ###  모수검정과 비모수검정
@@ -787,5 +787,5 @@ result6 결과) statistic: 37.000, pvalue: 0.035
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/48.PNG" height="80%" width="100%" /></div>
 <br>
 <hr>
-참조: <a href="https://github.com/wjddyd66/ML/blob/master/ParametricTest%26NonparametricTest.ipynb">원본코드</a><br>
+참조: <a href="https://github.com/wjddyd66/DataAnalysis/blob/master/ParametricTest%26NonparametricTest.ipynb">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

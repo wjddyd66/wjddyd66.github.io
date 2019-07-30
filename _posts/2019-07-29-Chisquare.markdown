@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "ML-카이제곱 검정"
+title:  "DataAnalysis-카이제곱 검정"
 date:   2019-07-29 11:30:00 +0700
-categories: [ML]
+categories: [DataAnalysis]
 ---
 
 ###  카이제곱 검정방법
@@ -186,6 +186,6 @@ chi2:6.544667820529891, p-value:0.5864574374550608, df:8
 
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/ML/blob/master/Chisquare.ipynb">원본코드</a><br>
+참조: <a href="https://github.com/wjddyd66/DataAnalysis/blob/master/Chisquare.ipynb">원본코드</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 

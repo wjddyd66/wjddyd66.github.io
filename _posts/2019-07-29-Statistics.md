@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "ML-Statistics"
+title:  "DataAnalysis-Statistics"
 date:   2019-07-29 11:00:00 +0700
-categories: [ML]
+categories: [DataAnalysis]
 ---
 
 ### Statistics
@@ -171,6 +171,6 @@ plt.show()
 <br>
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/ML/blob/master/Statistics.ipynb">원본코드</a> <br>
+참조: <a href="https://github.com/wjddyd66/DataAnalysis/blob/master/Statistics.ipynb">원본코드</a> <br>
 참초:<a href="https://ourcstory.tistory.com/126">ocurcstory 블로그</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
