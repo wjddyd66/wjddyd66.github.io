@@ -271,6 +271,7 @@ Test  정확도는  80.0 % 입니다
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/60.PNG" height="80%" width="100%" /></div><br>
 
 ### 최종결과
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
 	<tbody>
 	<tr>
@@ -339,7 +340,7 @@ Test  정확도는  80.0 % 입니다
 </table>
 <br>
 
-위의 결과표를 참조하면 **SVM**이 가장 적절한 Model이라는 것을 판단할 수 있다.  
+위의 결과표를 참조하면 **SVM, Logistic Regression, Naive Bayes Classification**이 가장 적절한 Model이라는 것을 판단할 수 있다.  
 하지만 위에서의 Code는 **조정 가능한 Parameter**를 바꿔가면서 비교한 것이 아니다.  
 **실제 Model을 만들고 적용할 떄는 조정 가능한 Parameter를 조정해가면서 최적의 Model을 찾는 것**이 필요하다.  
 <hr>
