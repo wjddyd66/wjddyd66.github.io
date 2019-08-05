@@ -57,12 +57,164 @@ XOR과 같이 선형분류가 아닌 exclusive 논리연산은 분류할 수 없
 <div><img src="http://ecee.colorado.edu/~ecen4831/lectures/xor2.gif" height="250" width="800" /></div>
 
 그림출처<a href="http://ecee.colorado.edu/~ecen4831/lectures/NNet3.html">ecee.colorado.edu</a>  
+**AND Gate 진리표**  
+<table class="table">
+
+	<tr bgcolor="silver">	
+		<th>X1</th>
+		<th>X2</th>
+		<th>Y</th>
+	</tr>
+	
+	<tr>
+		<td>0</td><td>0</td><td>0</td>
+	</tr>
+	
+	<tr>
+		<td>0</td><td>1</td><td>0</td>
+	</tr>
+	<tr>
+		<td>1</td><td>0</td><td>0</td>
+	</tr>
+	<tr>
+		<td>1</td><td>1</td><td>1</td>
+	</tr>
+</table>
 <br>
-위와 같이 <span style ="color: red">**선형분류만 가능**</span>하다는 한계점을 극복하기 위하여 다층 퍼셈트론을 이용하여 한계를 극복하였다.  
-다층 Perceptron이란 여러개의 Perceptron으로 인하여 비선형 영역을 분리할 수 없다는 한계를 해결한 것이다.  
+**AND Gate 구현**  
+```python
+#AND
+def AND(x1,x2):
+    x = np.array([x1,x2])
+    w = np.array([0.5,0.5])
+    b = -0.7
+    tmp = np.sum(w*x) + b
+    if tmp<0:
+        return 0
+    else:
+        return 1
+```
+**AND Gate 결과 확인**  
+```python
+#AND 확인
+print(AND(0,0))
+print(AND(0,1))
+print(AND(1,0))
+print(AND(1,1))
+```
+```code
+0
+0
+0
+1
+```
+
+**OR Gate 진리표**  
+<table class="table">
+
+	<tr bgcolor="silver">	
+		<th>X1</th>
+		<th>X2</th>
+		<th>Y</th>
+	</tr>
+	
+	<tr>
+		<td>0</td><td>0</td><td>0</td>
+	</tr>
+	
+	<tr>
+		<td>0</td><td>1</td><td>1</td>
+	</tr>
+	<tr>
+		<td>1</td><td>0</td><td>1</td>
+	</tr>
+	<tr>
+		<td>1</td><td>1</td><td>1</td>
+	</tr>
+</table>
+<br>
+**OR Gate 구현**  
+```python
+#OR
+def OR(x1,x2):
+    x = np.array([x1,x2])
+    w = np.array([0.5,0.5])
+    b = -0.2
+    tmp = np.sum(w*x) + b
+    if tmp<0:
+        return 0
+    else:
+        return 1
+```
+**OR Gate 결과 확인**  
+```python
+#OR 확인
+print(OR(0,0))
+print(OR(0,1))
+print(OR(1,0))
+print(OR(1,1))
+```
+```code
+0
+1
+1
+1
+```
+<br>
+위와 같이 <span style ="color: red">**선형분류만 가능**</span>하다는 한계점을 극복하기 위하여 **다층 퍼셉트론**을 이용하여 한계를 극복하였다.  
+다층 Perceptron이란 **여러개의 Perceptron**으로 인하여 **비선형 영역을 분리할 수 없다는 한계를 해결**한 것이다.  
 <div><img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Perceptron_XOR.jpg" height="250" width="800" /></div>
 
 그림출처<a href="https://upload.wikimedia.org/wikipedia/commons/b/b2/Perceptron_XOR.jpg">ecee.colorado.edu</a>  
 <br>
+**XOR Gate 진리표**  
+<table class="table">
+
+	<tr bgcolor="silver">	
+		<th>X1</th>
+		<th>X2</th>
+		<th>Y</th>
+	</tr>
+	
+	<tr>
+		<td>0</td><td>0</td><td>0</td>
+	</tr>
+	
+	<tr>
+		<td>0</td><td>1</td><td>1</td>
+	</tr>
+	<tr>
+		<td>1</td><td>0</td><td>1</td>
+	</tr>
+	<tr>
+		<td>1</td><td>1</td><td>0</td>
+	</tr>
+</table>
+<br>
+**XOR Gate 구현**  
+```python
+#MLP
+#XOR
+def XOR(x1,x2):
+    s1 = lambda x1,x2:1 if AND(x1,x2) == 0 else 0
+    s2 = OR(x1,x2)
+    y = AND(s1(x1,x2),s2)
+    return y
+```
+**XOR Gate 결과 확인**  
+```python
+#XOR 확인
+print(XOR(0,0))
+print(XOR(0,1))
+print(XOR(1,0))
+print(XOR(1,1))
+```
+```code
+0
+1
+1
+0
+```
 <hr>
+참조: <a href="https://github.com/wjddyd66/DL/blob/master/Perceptron.ipynb">원본코드</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
