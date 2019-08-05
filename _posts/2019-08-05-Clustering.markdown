@@ -238,44 +238,8 @@ pred:  [1 0 0 0 1 0 0 1 2 0 1 2 2 0 0 2 2 1 2 1 0 1 0 0 2 1 1 0 2 1 2 2 2 2 0 1 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/65.PNG" height="80%" width="100%" /></div><br>
 
 
-**K(3)-Means-Clustering**  
-```python
-#Kmeans Clustering
-init_centroid = "random" # 초기 클러스터 중심을 임의적
-#init_centroid = "k-means++" # 기본값
-
-kmodel = KMeans(n_clusters = 3, init = init_centroid, random_state = 0)
-print(kmodel)
-pred = kmodel.fit_predict(x)
-print("pred: ", pred)
-plt.scatter(x[pred == 0, 0], x[pred == 0, 1], marker = "o", s = 50, c = "red", label = "cluster1")
-plt.scatter(x[pred == 1, 0], x[pred == 1, 1], marker = "s", s = 50, c = "green", label = "cluster2")
-plt.scatter(x[pred == 2, 0], x[pred == 2, 1], marker = "v", s = 50, c = "blue", label = "cluster3")
-
-plt.scatter(kmodel.cluster_centers_[:,0], kmodel.cluster_centers_[:,1],
-            marker = "+", s = 80, c = "black", label = "center")
-plt.legend()
-plt.grid()
-plt.show()
-```
-<br>
-```code
-KMeans(algorithm='auto', copy_x=True, init='random', max_iter=300, n_clusters=3,
-       n_init=10, n_jobs=None, precompute_distances='auto', random_state=0,
-       tol=0.0001, verbose=0)
-pred:  [1 0 0 0 1 0 0 1 2 0 1 2 2 0 0 2 2 1 2 1 0 1 0 0 2 1 1 0 2 1 2 2 2 2 0 1 1
- 1 0 0 2 2 0 1 1 1 2 0 2 0 1 0 0 1 1 2 0 1 2 0 2 2 2 2 0 2 0 1 0 0 0 1 1 0
- 1 0 0 2 2 0 1 1 0 0 1 1 1 2 2 1 1 0 1 0 1 0 2 2 1 1 1 1 2 1 1 0 2 0 0 0 2
- 0 1 2 0 2 0 0 2 2 0 1 0 0 1 1 2 1 2 2 2 2 1 2 2 2 0 2 1 2 0 0 1 1 2 2 2 2
- 1 1]
-```
-<br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/65.PNG" height="80%" width="100%" /></div><br>
-
-
 **n-cluster를 알아내기 위한 방법**  
-**1 엘보우 기법: 클러스터 내 오차제곱합이 최소가 되도록 클러스터의 중심을 결정해 나가는 방법
-**  
+**1. 엘보우 기법: 클러스터 내 오차제곱합이 최소가 되도록 클러스터의 중심을 결정해 나가는 방법**  
 ```python
 #n-clusters를 알기위한 방법
 #1 엘보우 기법: 클러스터 내 오차제곱합이 최소가 되도록 클러스터의 중심을 결정해 나가는 방법
@@ -302,8 +266,7 @@ elbow(x)
 <br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/66.PNG" height="80%" width="100%" /></div><br>
 
-**2. 실루엣 기법: 클러스터링의 품질을 정량적으로 계산해 주는 방법
-**  
+**2. 실루엣 기법: 클러스터링의 품질을 정량적으로 계산해 주는 방법**  
 ```python
 #2. 실루엣 기법: 클러스터링의 품질을 정량적으로 계산해 주는 방법
 def plotSilhouette(x, pred):
