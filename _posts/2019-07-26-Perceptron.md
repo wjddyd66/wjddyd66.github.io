@@ -2,7 +2,7 @@
 layout: post
 title:  "Perceptron"
 date:   2019-07-26 09:00:00 +0700
-categories: [AI]
+categories: [DL]
 ---
 
 ### Perceptron
@@ -216,5 +216,5 @@ print(XOR(1,1))
 0
 ```
 <hr>
-참조: <a href="https://github.com/wjddyd66/DL/blob/master/Perceptron.ipynb">원본코드</a><br>
+참조: <a href="https://github.com/wjddyd66/DeepLearning/blob/master/Perceptron.ipynb">원본코드</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

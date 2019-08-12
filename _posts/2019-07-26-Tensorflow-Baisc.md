@@ -2,7 +2,7 @@
 layout: post
 title:  "Tensorflow-Basic"
 date:   2019-07-26 10:00:00 +0700
-categories: [AI]
+categories: [DL]
 ---
 
 ### Tensorflow
@@ -168,6 +168,6 @@ feed_dict = {ph1: value1, ph2: value2, ph3: value3}의 명령어를 통해 place
 <br>
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/Tensorflow/blob/master/Basic.ipynb">원본코드</a><br>
+참조: <a href="https://github.com/wjddyd66/DeepLearning/blob/master/Basic.ipynb">원본코드</a><br>
 참조: <a href="https://bcho.tistory.com/1150">bcho 블로그</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

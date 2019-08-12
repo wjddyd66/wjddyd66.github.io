@@ -2,7 +2,7 @@
 layout: post
 title:  "NeuralNetwork (2) Loss Function"
 date:   2019-07-26 10:30:00 +0700
-categories: [AI]
+categories: [DL]
 ---
 
 ### Loss Function
@@ -35,8 +35,8 @@ y2 = np.random.rand(10)
 error1 = MSE(data,y1)
 error2 = MSE(data,y2)
 
-print('Error1: ',error1) #Error1:  2.1434971942835075
-print('Error2: ',error2) #Error2:  2.0271222025788003
+print('Error1: ',error1) #Error1:  1.682444310915726
+print('Error2: ',error2) #Error2:  1.4036396123384067
 ```
 MSE와 절대값 손실함수는 주로 <span style ="color: red">**회귀에서 사용**</span>  
 
@@ -79,8 +79,8 @@ def CE(y,y_):
 error1 = CE(np.array(data),y1)
 error2 = CE(np.array(data),y2)
 
-print('Error1: ',error1) #Error1:  6.447238200383332
-print('Error2: ',error2) #Error2:  14.50628607586249
+print('Error1: ',error1) #Error1:  57.14002307803014
+print('Error2: ',error2) #Error2:  55.90310988187259
 ```
 <br><br>
 **크로스엔트로피계산 예시**
@@ -99,9 +99,60 @@ Q는 P에 근사하도록 만들고 싶은, 모델이 예측하는 분포를 나
 
 <p>$$ -P(x)log(Q(x)) = \begin{bmatrix} -1 && 0 \end{bmatrix} \begin{bmatrix} log0 \\ log1 \end{bmatrix} = -(-\infty +0) = \infty$$ </p>
 
+### One-Hot-Encoding
+위에서 사용한 Data는 One-Hot-Encoding된 데이터이다.  
+One-Hot-Encoding이란 **Data의 크기를 벡터의 차원으로 하고, 정답인 인덱스에 1의 값을 부여하고, 다른 인덱스에는 0을 부여하는 방법 이다.**  
+이러한 One-Hot-Encoding을 사용하게 되면 다음과 같은 장 단점이 생기게 된다.  
+**장점:Error을 구하게 될 시 Cross Entrophy에서 정답이 아닌 Label에 대한 오차는 0 이므로 계산 수월**  
+**단점:  
+1)벡터의 차원이 늘어날 수록 벡터를 저장하기 위해 필요한 공간이 계속 늘어난다는 단점
+2)NLP에서 단어를 One-Hot-Encoding으로 표현 시 단어의 유사성을 표현하지 못함**  
+단점에 대한 다음과 같은 예시가 있다.  
+늑대, 호랑이, 강아지, 고양이라는 4개의 단어에 대해서 원-핫 인코딩을 해서 각각, [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]이라는 원-핫 벡터를 부여받았다고 합시다. 이 때 이 원-핫 벡터 표현 방법을 통해서는 강아지와 늑대가 유사하고, 호랑이와 고양이가 유사하다는 것을 표현할 수가 없습니다. 좀 더 극단적인 예를 들어보겠습니다. 원-핫 벡터로는 유사성을 표현할 수 없기 때문에, 강아지와 개라는 단어 유사 정도나 강아지와 냉장고라는 뜬금없는 유사 관계나 차이를 알아볼 수가 없습니다.  
+
+**One-Hot-Encoding Data (Batch) Cross Entrophy**  
+```python
+#Cross Entropy Batch선언(One-Hot-Encoding)
+def BCE(y,y_):
+    delta = 1e-7
+    batch_size = y.shape[0]
+    return -np.sum(y_*np.log(y+delta))/batch_size
+    
+error1 = BCE(np.array(data),y1)
+error2 = BCE(np.array(data),y2)
+
+print('Error1: ',error1) #Error1:  5.714002307803014
+print('Error2: ',error2) #Error2:  5.590310988187259
+```
+
+**Label Data (Batch) Cross Entrophy**  
+```python
+#Cross Entropy Batch선언(Label)
+def BCE2(y,y_):
+    delta = 1e-7
+    batch_size = y.shape[0]
+    if y.ndim == 1:
+        y_ = y_.reshape(1,y_.shape[0])
+        y = y.reshape(1,y.shape[0])
+    
+    
+    return -np.sum(np.log([y+1e-7,y_+1e-7]))/batch_size
+    
+data = np.array([1,2,3,4])
+y1 =  np.array([6,7,1,2])
+y2 = np.array([3,4,1,2])
+
+error1 = BCE2(np.array(data),y1)
+error2 = BCE2(np.array(data),y2)
+
+print('Error1: ',error1) #Error1:  -1.90221775461924
+print('Error2: ',error2) #Error2:  -1.589027019340636
+```
+<br>
 <hr>
-참조:<a href="https://github.com/wjddyd66/Tensorflow/blob/master/Loss%20Function.ipynb">원본코드</a>
+참조:<a href="https://github.com/wjddyd66/DeepLearning/blob/master/Loss%20Function.ipynb">원본코드</a>
 참조: <a href="https://ratsgo.github.io/deep%20learning/2017/09/24/loss/">ratsgo 블로그</a> <br>
 참조:<a href="http://blog.naver.com/PostView.nhn?blogId=qbxlvnf11&logNo=221386519587&categoryNo=52&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search&userTopListOpen=true&userTopListCount=5&userTopListManageOpen=false&userTopListCurrentPage=1">예비계발자 블로그</a><br>
+참조: <a href="https://wikidocs.net/22647">딥 러닝을 이용한 자연어 처리 입문</a> <br>
 참조: 밑바닥 부터 시작하는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

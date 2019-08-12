@@ -2,7 +2,7 @@
 layout: post
 title:  "NeuralNetwork (1) Basic & Activation Function"
 date:   2019-07-26 10:10:00 +0700
-categories: [AI]
+categories: [DL]
 ---
 
 ### NeuralNetwork
@@ -391,7 +391,7 @@ Accuracy:0.9352
 ```
 <br>
 <hr>
-참조:<a href="https://github.com/wjddyd66/DL/tree/master/Activation%20Function">원본코드</a><br>
+참조:<a href="https://github.com/wjddyd66/DeepLearning/tree/master/Activation%20Function">원본코드</a><br>
 참조: <a href="https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/">ratsgo 블로그</a> <br>
 참조: 밑바닥 부터 시작하는 딥러닝<br>
 참조:<a href="https://sacko.tistory.com/37?category=632408">문과생도 이해하는 딥러닝</a><br>
