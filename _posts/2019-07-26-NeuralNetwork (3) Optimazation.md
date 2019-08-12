@@ -2,7 +2,7 @@
 layout: post
 title:  "NeuralNetwork (3) Optimazation"
 date:   2019-07-26 11:00:00 +0700
-categories: [AI]
+categories: [ML]
 ---
 
 ### Optimazation
@@ -85,97 +85,389 @@ Loss Function:
 <p>$$= -(y-y\sigma(z)-\sigma(z)+y\sigma(z)))$$</p>
 <p>$$= \sigma(z)-y$$</p>  
 
-### Optimazation 고려사항
-Optimazation을 하기 위한 고려사항은 크게 3가지가 있다.  
-1. Local Minima
-2. Plateau
-3. Zigzag
+### Gradient Descent 구현
+Gradient Descent를 구현하기 위해서는 **실제 함수의 기울기**를 구할 수 있어야 한다.  
+**실제 함수의 기울기**를 알기 위해서는 **실제 함수의 미분**값을 구하면 된다.  
 
-**Local Minima**
-Local minima 문제는 에러를 최소화시키는 최적의 파라미터를 찾는 문제에 있어서 아래 그림처럼 파라미터 공간에 수많은 지역적인 홀(hole)들이 존재하여 이러한 local minima에 빠질 경우 전역적인 해(global minimum)를 찾기 힘들게 되는 문제를 일컫는다.  
-
-<div><img src="https://t1.daumcdn.net/cfile/tistory/9965444D5B627B4412" height="200" width="600" />
-</div>
-그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
-<span style ="color: red">**실제 딥러닝 모델에서는 Weight가 수도없이 많으며, 그 수많은 Weight가 모두 Local minima에 빠져야 Weight Update가 정지되기 때문에**</span> 불가능하다. Local Minima을 해결하기 위하여 Optimization을 할 이유는 없다.  
-
-**Plateau**
-Gradient Descent를 타고 Global Optima를 향해서 나아가는데, 평지(Plateau)가 생겨 loss가 업데이트 되지 않는 현상이 발생한다. 이러한 것을 Plateau현상 이라고 한다. 또한 Local Minima에 비해 일어날 확률이 매우 높다.  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/9933BB4C5B627B4514" height="200" width="600" />
-</div>
-그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
-
-**ZigZag현상**
-Weight를 Update 시키기 위한 BackPropagation을 Chain Rule에 적용시킨 결론은 아래와 같았다.  
-<p>$$\delta(n-1) = \delta ng\prime(x) W$$</p>
-<a href="https://wjddyd66.github.io/ai/2019/07/13/A.I-Backpropagation.html">BackPropagation 자세한 내용</a>  
-**Active Function을 Sigmoid나 Relu**를 사용하게 되면, <span>$$\delta n$$</span>(output: 0~1) 및 <span>$$g\prime(x)$$</span>(Sigmoid의 편미분)이 모두 양수이므로 Weight업데이트량은 언제나 + or -가 나오며, 업데이트 방향을 잡을 때, 비효율적으로 ZigZag현상이 발생하여, 업데이트 현상이 느려진다.  
-
-우리가 지금까지 사용해온<span style ="color: red">**Gradient Descent 로서는**</span>  
-1. Local Minima
-2. Plateau
-3. ZigZag현상
-
-위의 3개를 해결할 수 없다.  
-
-### Optimazation 방법
-**Gradient Descent**로서 해결할 수 없던 문제를 해결하는 다른 방법에 대해 알아보자.  
+**함수 미분**  
+```python
+#미분 - Parameter: f(함수),x(input_value)
+def numerical_gradient(f,x):
+    h = 1e-4
+    grad = np.zeros_like(x)
+    
+    for idx in range(x.size):
+        
+        tmp_val = x[idx]
+        
+        x[idx] = tmp_val + h
+        fxh1 = f(x)
+        
+        x[idx] = tmp_val - h
+        fxh2 = f(x)
+        
+        grad[idx] = (fxh1-fxh2) /(2*h)
+        x[idx] = tmp_val
+    
+    return grad
+```
 <br>
-**Momentum**  
-Local Minima에 덜 빠지기 위해 Learning Rate에게 일종의 관성이라 할 수 있는 Momentum을 둔다. 직전에 나온 방향성 즉, <span style ="color: red">**직전에 계산된 기울기를 고려하여 새로 계산된 기울기와 일정한 비율로 계산**</span>을 하는 것이다. 이렇게 하면 기울기가 갑자기 양수에서 음수로, 음수에서 양수로 바뀌는 경우가 줄어 들게 되고, 완만한 경사를 더 쉽게 타고 넘을 수 있게 된다.  
-하지만 **ZigZag 현상**을 완벽히 해결하지는 못한다.  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/9929D1405B629B7635" height="200" width="600" />
-</div>
-그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
-위의 그림은 아래 수식으로서 간단히 표현할 수 있다.  
-<p>$$v \leftarrow \alpha v -  \beta \frac{\partial L}{\partial \theta}$$</p>
-<p>$$\theta \leftarrow \theta + v$$</p>
-새로운 하이퍼 파라미터인 <span>$$\alpha , v$$</span>가 새롭게 추가되 미분값이 계속하여 v에 더해져서 더욱 큰 값을 갖게되어 Plateau나 뭉뚱한 부분에서느림, Local Minima의 3가지를 해결할 수 있다.  
+함수 미분을 활용하여 GradientDescent를 구현하면 아래와 같다.  
+**Gradient Descent Parameter**  
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
 
+	<tr bgcolor="silver">	
+		<th>Parameter</th>
+		<th>의미</th>
+	</tr>
+	
+	<tr>
+		<td>f</td><td>해당 함수</td>
+	</tr>
+	<tr>
+		<td>init_x</td><td>Input Value</td>
+	</tr>
+
+	<tr>
+		<td>lr</td><td>Learning Rate</td>
+	</tr>
+
+	<tr>
+		<td>step_num</td><td>반복횟수</td>
+	</tr>
+</table>
 <br>
-**AdaGrad**  
-Adagrad(Adaptive Gradinet)는 변수들을 update할 때 각각의 변수마다 step size를 다르게 설정해서 이동하는 방식이다.  
-<span style ="color: red">**'지금까지 많이 변화하지 않은 변수들은' step size를 크게**</span> 하고,  
-<span style ="color: red">**'지금까지 많이 변화한 변수들은' step size를 작게 하자'**</span>는 것 이다.  
-즉, 자주 등장하거나 변화를 많이한 변수들의 경우 optimum에 가까이 있을 확률이 높기 때문에 작은 크기로 이동하면서 세밀한 값을 조정하고, 적게 변화한 변수들은 optimum값에 도달하기 위해서는 많이 이동해야 하므로 빠르게 loss값을 줄이는 방향으로 이동하는 방식이다.  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/99A5C94C5B629B7A0A" height="200" width="600" />
-</div>
-그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
-위의 그림은 아래 수식으로서 간단히 표현할 수 있다.  
-<p>$$G_t = G_{t-1} + (\nabla_{\theta}J(\theta_t))^{2}$$</p>
-<p>$$\theta_{t+1} =\theta_{t} - \frac{\alpha}{\sqrt{G_t + \beta}} \bullet  \nabla_{\theta}J(\theta_t)$$</p>
-<span>$$G_t$$</span>는 time step t까지 각 변수가 이동한 gradinet의 sum of squeares를 저장한다.  
-<span style ="color: red">**계속해서 값을 누적하는 형태이므로 나누어주는 수(<span>$$G_t$$</span>)가 결국에는 커져 w업데이트가 너무 느려진다.**</span>  
-<span>$$\alpha$$ </span>는 <span>$$G_t$$</span>루트값에 반비례한 크기로 이동을 진행하여, 지금까지 많이 변화한 변수일 수록 적게 이동, 지금까지 많이 이동한 변수일수록 적게 이동을 하게 곱해주게 된다.  
-<span style ="color: red">**즉, 모든 Weight들은 업데이트량이 비슷해지는 효과가 발생하게 된다.**</span>  
-<span>$$\beta$$ </span>는 <span>$$10^{-4} ~ 10^{-8}$$</span>정도의 작은 값으로서 0으로 나누는 것을 방지하기 위한 작은 값이다.  
-
+**Gradient Descent Code**  
+```python
+#GradientDescent
+def gradient_descent(f,init_x,lr=0.01,step_num=100):
+    x=init_x
+    
+    for i in range(step_num):
+        grad = numerical_gradient(f,x)
+        x = x-lr*grad
+    return x
+```
 <br>
-**RMS Prop**  
-Adagrad의 단점을 해결하기 위한 방법이다.  
-<span>$$G_t$$</span>부분을 <span style ="color: red">**합이 아니라 지수평균**</span>으로 바꾸어서 대처한 방법이다.  
-이렇게 대체를 할 경우 Adagrad처럼 <span>$$G_t$$</span>가 무한정 커지지는 않으면서 최근 변화량의 변수간 상대적인 크기 차이는 유지할 수 있다.  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/99BE71425B629B7A09" height="200" width="600" />
-</div>
-그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
-위의 그림은 아래 수식으로서 간단히 표현할 수 있다.  
-<p>$$G = \alpha G + (1 - \alpha)(\nabla_{\theta}J(\theta_t))^{2}$$</p>
-<p>$$\theta =\theta - \frac{\alpha}{\sqrt{G + \beta}} \bullet  \nabla_{\theta}J(\theta_t)$$</p>
+Gradient Descent를 활용하여 기울기의 변화를 살펴보는 코드이다.  
+**plot_gradient_descent**는 **x_history**라는 변수를 추가하여 실제 x값의 변화를 저장해놓는 parameter이다.  
+```python
+#GradientDescent 예시
+#함수선언
+def function_2(x):
+    return x[0]**2 + x[1]**2
 
+#그리기 위한 Gradient_Descent
+#x_history를 통하여 값의 변화를 저장
+def plot_gradient_descent(f, init_x, lr=0.01, step_num=100):
+    x = init_x
+    x_history = []
+
+    for i in range(step_num):
+        x_history.append( x.copy() )
+
+        grad = numerical_gradient(f, x)
+        x -= lr * grad
+
+    return x, np.array(x_history)
+
+init_x = np.array([-3.0, 4.0])    
+
+lr = 0.1
+step_num = 20
+x, x_history = plot_gradient_descent(function_2, init_x, lr=lr, step_num=step_num)
+
+plt.plot( [-5, 5], [0,0], '--b')
+plt.plot( [0,0], [-5, 5], '--b')
+plt.plot(x_history[:,0], x_history[:,1], 'o')
+
+plt.xlim(-3.5, 3.5)
+plt.ylim(-4.5, 4.5)
+plt.xlabel("X0")
+plt.ylabel("X1")
+plt.show()
+```
 <br>
-**Adam**  
-Adam (Adaptive Moment Estimation)은 RMSProp과 Momentum 방식을 합친 것 같은 알고리즘이다. 이 방식에서는 Momentum 방식과 유사하게 지금까지 계산해온 기울기의 지수평균을 저장하며, RMSProp과 유사하게 기울기의 제곱값의 지수평균을 저장한다.  
+**실제 결과**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/70.PNG" height="250" width="600" /></div>
+<br>
+**Gradient Descent**는 **Normal Equation**에 비해 장점이 많지만 **Learning Rate**를 직접 선언해야 하는 단점이 생긴다.  
+아래 코드는 **Learning Rate값을 너무 크거나 작은 경우**를 보여준다.  
+**1)Learning Rate이 매우 큰 경우(발산)**
+```python
+#1. 학습률이 매우 큰 예(발산)
+init_x = np.array([-3.0,4.0])
+print(gradient_descent(function_2,init_x = init_x, lr=10.0, step_num=100)) #[-2.58983747e+13 -1.29524862e+12]
+````
+<br>
 
-<div><img src="https://t1.daumcdn.net/cfile/tistory/997ADD3F5B629B7B04" height="200" width="600" />
-</div>
-그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
-위의 그림은 아래 수식으로서 간단히 표현할 수 있다.  
-<p>$$m_t = \beta_1 m_{t-1} + (1 - \beta_1)\nabla_{\theta}J(\theta)$$</p>
-<p>$$v_t = \beta_2 v_{t-1} + (1 - \beta_2)(\nabla_{\theta}J(\theta))^{2}$$</p>
+**2)Learning Rate이 매우 작은 경우(수렴 X)**
+```python
+#2. 학습률이 매우 작은 예(수렴X)
+init_x = np.array([-3.0,4.0])
+print(gradient_descent(function_2,init_x = init_x, lr=1e-10, step_num=100)) #[-2.99999994  3.99999992]
+````
+<br>
 
-<span style ="color: red">**다만 m과 v가 처음에 0으로 초기화되어있기 때문에 초기 w업데이트 속도가 느리다는 단점이 생기게 된다.**</span>  
+### Two Layer Network
+**GradientDescent**를 활용하기 위한 2층 Layer를 선언하는 과정이다.  
+**Two Layer Network Method**  
+<table class="table">
+
+	<tr bgcolor="silver">	
+		<th>Method</th>
+		<th>의미</th>
+	</tr>
+	
+	<tr>
+		<td>__init__</td><td>Parameter 초기값 설정</td>
+	</tr>
+	<tr>
+		<td>predict</td><td>예측값(Softmax활용)</td>
+	</tr>
+
+	<tr>
+		<td>loss</td><td>Loss Function(Cross Entrophy)</td>
+	</tr>
+
+	<tr>
+		<td>accuracy</td><td>정확도(Output이 softmax이므로 argmax활용)</td>
+	</tr>
+	
+	<tr>
+		<td>numerical_gradien</td><td>미분</td>
+	</tr>
+	
+	<tr>
+		<td>gradient</td><td>Gradient Descent</td>
+	</tr>
+	
+	<tr>
+		<td>cross_entropy_error</td><td>Cross Entrophy</td>
+	</tr>
+</table>
+<br>
+**Two Layer Network Code**  
+```python
+#2층 Layer 선언
+class TwoLayerNet:
+
+    #Parameter 초기화
+    def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):
+        # 가중치 초기화
+        self.params = {}
+        self.params['W1'] = weight_init_std * np.random.randn(input_size, hidden_size)
+        self.params['b1'] = np.zeros(hidden_size)
+        self.params['W2'] = weight_init_std * np.random.randn(hidden_size, output_size)
+        self.params['b2'] = np.zeros(output_size)
+
+    #예측값
+    def predict(self, x):
+        W1, W2 = self.params['W1'], self.params['W2']
+        b1, b2 = self.params['b1'], self.params['b2']
+    
+        a1 = np.dot(x, W1) + b1
+        z1 = sigmoid(a1)
+        a2 = np.dot(z1, W2) + b2
+        y = softmax(a2)
+        
+        return y
+        
+    # x : 입력 데이터, t : 정답 레이블
+    def loss(self, x, t):
+        y = self.predict(x)
+        
+        return cross_entropy_error(y, t)
+    
+    def accuracy(self, x, t):
+        y = self.predict(x)
+        y = np.argmax(y, axis=1)
+        t = np.argmax(t, axis=1)
+        
+        accuracy = np.sum(y == t) / float(x.shape[0])
+        return accuracy
+        
+    # x : 입력 데이터, t : 정답 레이블
+    def numerical_gradient(self, x, t):
+        loss_W = lambda W: self.loss(x, t)
+        
+        grads = {}
+        grads['W1'] = numerical_gradient(loss_W, self.params['W1'])
+        grads['b1'] = numerical_gradient(loss_W, self.params['b1'])
+        grads['W2'] = numerical_gradient(loss_W, self.params['W2'])
+        grads['b2'] = numerical_gradient(loss_W, self.params['b2'])
+        
+        return grads
+        
+    def gradient(self, x, t):
+        W1, W2 = self.params['W1'], self.params['W2']
+        b1, b2 = self.params['b1'], self.params['b2']
+        grads = {}
+        
+        batch_num = x.shape[0]
+        
+        # forward
+        a1 = np.dot(x, W1) + b1
+        z1 = sigmoid(a1)
+        a2 = np.dot(z1, W2) + b2
+        y = softmax(a2)
+        
+        # backward
+        dy = (y - t) / batch_num
+        grads['W2'] = np.dot(z1.T, dy)
+        grads['b2'] = np.sum(dy, axis=0)
+        
+        da1 = np.dot(dy, W2.T)
+        dz1 = sigmoid_grad(a1) * da1
+        grads['W1'] = np.dot(x.T, dz1)
+        grads['b1'] = np.sum(dz1, axis=0)
+
+        return grads
+    
+    def cross_entropy_error(y, t):
+        if y.ndim == 1:
+            t = t.reshape(1, t.size)
+            y = y.reshape(1, y.size)
+        
+        # 훈련 데이터가 원-핫 벡터라면 정답 레이블의 인덱스로 반환
+        if t.size == y.size:
+            t = t.argmax(axis=1)
+             
+        batch_size = y.shape[0]
+        return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
+```
+<br>
+
+**Activation Function 선언**  
+```python
+#사용할 함수 선언
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))    
+
+
+def sigmoid_grad(x):
+    return (1.0 - sigmoid(x)) * sigmoid(x)
+
+def softmax(x):
+    if x.ndim == 2:
+        x = x.T
+        x = x - np.max(x, axis=0)
+        y = np.exp(x) / np.sum(np.exp(x), axis=0)
+        return y.T 
+
+    x = x - np.max(x) # 오버플로 대책
+    return np.exp(x) / np.sum(np.exp(x))
+
+def cross_entropy_error(y, t):
+    if y.ndim == 1:
+        t = t.reshape(1, t.size)
+        y = y.reshape(1, y.size)
+        
+    # 훈련 데이터가 원-핫 벡터라면 정답 레이블의 인덱스로 반환
+    if t.size == y.size:
+        t = t.argmax(axis=1)
+             
+    batch_size = y.shape[0]
+    return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
+```
+<br>
+
+### Two Layer Network 구현
+이전 NerualNetwork (1) Basic & Activation Function에서는 Model을 만들지 못하여 Pickle로 구현되어있는 Model을 가져와서 사용하였다.  
+하지만 이제 Optimazation까지 구현하였으므로 실제 Model을 선언하고 Weight를 Update하는 Code를 구현하였다.  
+```python
+# coding: utf-8
+import sys, os
+sys.path.append(os.pardir)  # 부모 디렉터리의 파일을 가져올 수 있도록 설정
+import numpy as np
+import matplotlib.pyplot as plt
+from dataset.mnist import load_mnist
+
+# 데이터 읽기
+(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
+
+network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
+
+# 하이퍼파라미터
+iters_num = 10000  # 반복 횟수를 적절히 설정한다.
+train_size = x_train.shape[0]
+batch_size = 100   # 미니배치 크기
+learning_rate = 0.1
+
+train_loss_list = []
+train_acc_list = []
+test_acc_list = []
+
+# 1에폭당 반복 수
+iter_per_epoch = max(train_size / batch_size, 1)
+
+for i in range(iters_num):
+    # 미니배치 획득
+    batch_mask = np.random.choice(train_size, batch_size)
+    x_batch = x_train[batch_mask]
+    t_batch = t_train[batch_mask]
+    
+    # 기울기 계산
+    #grad = network.numerical_gradient(x_batch, t_batch)
+    grad = network.v(x_batch, t_batch)
+    
+    # 매개변수 갱신
+    for key in ('W1', 'b1', 'W2', 'b2'):
+        network.params[key] -= learning_rate * grad[key]
+    
+    # 학습 경과 기록
+    loss = network.loss(x_batch, t_batch)
+    train_loss_list.append(loss)
+    
+    # 1에폭당 정확도 계산
+    if i % iter_per_epoch == 0:
+        train_acc = network.accuracy(x_train, t_train)
+        test_acc = network.accuracy(x_test, t_test)
+        train_acc_list.append(train_acc)
+        test_acc_list.append(test_acc)
+        print("train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
+
+# 그래프 그리기
+markers = {'train': 'o', 'test': 's'}
+x = np.arange(len(train_acc_list))
+plt.plot(x, train_acc_list, label='train acc')
+plt.plot(x, test_acc_list, label='test acc', linestyle='--')
+plt.xlabel("epochs")
+plt.ylabel("accuracy")
+plt.ylim(0, 1.0)
+plt.legend(loc='lower right')
+plt.show()
+```
+<br>
+```code
+train acc, test acc | 0.09871666666666666, 0.098
+train acc, test acc | 0.78615, 0.793
+train acc, test acc | 0.8761666666666666, 0.8794
+train acc, test acc | 0.8976, 0.9008
+train acc, test acc | 0.9065, 0.911
+train acc, test acc | 0.9135333333333333, 0.9183
+train acc, test acc | 0.91925, 0.9208
+train acc, test acc | 0.9226166666666666, 0.9246
+train acc, test acc | 0.92715, 0.9289
+train acc, test acc | 0.9302666666666667, 0.9311
+train acc, test acc | 0.9331, 0.9328
+train acc, test acc | 0.9365666666666667, 0.9369
+train acc, test acc | 0.9385833333333333, 0.9377
+train acc, test acc | 0.9415833333333333, 0.9412
+train acc, test acc | 0.9433, 0.9408
+train acc, test acc | 0.9450666666666667, 0.944
+train acc, test acc | 0.9460833333333334, 0.9454
+```
+<br>
+
+**구현 결과 그래프로 확인**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/70.PNG" height="250" width="600" /></div>
+<br>
+
 <hr>
+참조: <a href="https://github.com/wjddyd66/DeepLearning/blob/master/Optimazation/Optimazation.ipynb">원본코드</a> <br>
 참조: <a href="https://www.youtube.com/watch?v=M9Gsi3VBTYM&list=PL1H8jIvbSo1q6PIzsWQeCLinUj_oPkLjc&index=22">Chanwoo Timothy Lee Youtube</a> <br>
 참조: <a href="https://ko.wikipedia.org/wiki/%EC%A0%95%EA%B7%9C%EB%B0%A9%EC%A0%95%EC%8B%9D">나무위키</a> <br>
-
+참조: 밑바닥부터 시작하는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

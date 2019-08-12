@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Tensorflow-Basic"
-date:   2019-07-26 10:00:00 +0700
+date:   2019-08-10 10:00:00 +0700
 categories: [DL]
 ---
 
