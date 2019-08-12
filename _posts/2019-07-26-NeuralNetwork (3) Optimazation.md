@@ -28,7 +28,7 @@ $$y= a X + b$$
 <p>$$\begin{bmatrix} A \end{bmatrix}^{-1} \begin{bmatrix} Y \end{bmatrix} = C(상수)\begin{bmatrix} E \end{bmatrix}(기본행렬) \begin{bmatrix} a \\ b \end{bmatrix}$$</p>  
 <span style ="color: red">**이러한 a 와 b를 구하긴 위해서는 [X 1]의 행렬을 정방행렬(n x n크기의 행렬)로 바꿔야지 역행렬을 구할 수 있다.**</span>  
 
-정방행렬 로 바꾸기 위하여 <span>$$begin{bmatrix} X \end{bmatrix}^{T}$$ </span> 행렬을 양변에 곱하게 되면  
+정방행렬 로 바꾸기 위하여 <span>$$\begin{bmatrix} X \end{bmatrix}^{T}$$</span> 행렬을 양변에 곱하게 되면  
 <p>$$\begin{bmatrix} X \end{bmatrix}^{T}\begin{bmatrix} y_1\\y_2\\y_3\\...\\y_n \end{bmatrix} = \begin{bmatrix} X \end{bmatrix}^{T}\begin{bmatrix} x_1 & 1\\x_2 & 1\\x_3 & 1\\...\\x_n & 1 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix}$$</p>  
 <br><br>
 위의 식을 간단히 표현하면 아래 식과 같다.  
