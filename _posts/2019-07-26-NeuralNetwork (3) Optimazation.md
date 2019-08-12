@@ -2,7 +2,7 @@
 layout: post
 title:  "NeuralNetwork (3) Optimazation"
 date:   2019-07-26 11:00:00 +0700
-categories: [ML]
+categories: [DL]
 ---
 
 ### Optimazation
@@ -128,11 +128,11 @@ def numerical_gradient(f,x):
 	<tr>
 		<td>init_x</td><td>Input Value</td>
 	</tr>
-
+	
 	<tr>
 		<td>lr</td><td>Learning Rate</td>
 	</tr>
-
+	
 	<tr>
 		<td>step_num</td><td>반복횟수</td>
 	</tr>
@@ -226,11 +226,11 @@ print(gradient_descent(function_2,init_x = init_x, lr=1e-10, step_num=100)) #[-2
 	<tr>
 		<td>predict</td><td>예측값(Softmax활용)</td>
 	</tr>
-
+	
 	<tr>
 		<td>loss</td><td>Loss Function(Cross Entrophy)</td>
 	</tr>
-
+	
 	<tr>
 		<td>accuracy</td><td>정확도(Output이 softmax이므로 argmax활용)</td>
 	</tr>
