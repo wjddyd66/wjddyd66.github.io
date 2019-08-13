@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Git"
-date:   2019-08-13 09:00:00 +0700
+date:   2019-08-13 12:51:20 +0700
 categories: [others]
 ---
 
@@ -61,7 +61,7 @@ Git을 사용하기 위해서는 아래 링크를 참조하면 된다.
 		<td>
 		<ul>
 		<li>Index(Staging 영역)에 저장</li>
-        <li>Working Dir에서 원하는 특정 파일만 Index에 추가 가능</li>
+	    <li>Working Dir에서 원하는 특정 파일만 Index에 추가 가능</li>
 		</td>
 	</tr>
 	
