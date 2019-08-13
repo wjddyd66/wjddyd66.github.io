@@ -62,6 +62,7 @@ Git을 사용하기 위해서는 아래 링크를 참조하면 된다.
 		<ul>
 		<li>Index(Staging 영역)에 저장</li>
 	    <li>Working Dir에서 원하는 특정 파일만 Index에 추가 가능</li>
+	    </ul>
 		</td>
 	</tr>
 	
