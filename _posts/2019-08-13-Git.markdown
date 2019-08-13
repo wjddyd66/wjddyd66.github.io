@@ -1,0 +1,127 @@
+---
+layout: post
+title:  "Git"
+date:   2019-08-13 09:00:00 +0700
+categories: [others]
+---
+
+###  Git
+Git은 프로그램 등의 **소스 코드 관리를 위한 분산 버전 관리 시스템**이다.
+
+분산 버전 관리 시스템이란 여러명의 사용자가 특정 프로젝트를 자신의 컴퓨터로 협업하여 개발하면서 버전을 관리할 수 있는 시스템이다.
+
+Git은 중앙 서버 컴퓨터와 여러개의 컴퓨터들이 연결되어 모두 **같은 버전의 데이터베이스**를 유지한다.
+
+이 버전은 업데이트가 될 때마다 자동으로 갱신된다.
+
+따라서 이 파일들은 최신 버전으로 모든 컴퓨터에서 유지 될 수 있다.
+
+위에서 설명한 **Git의 Working Flow**를 살펴보게 되면 아래 그림과 같다.  
+<div><img src="https://t1.daumcdn.net/cfile/tistory/2171D43E56ADC9F018" height="200" width="600" />
+</div>
+1. Working Directory: 실제 파일들로 구성된 저장 공간
+2. Index: 준비 영역(Staging Area)
+3. HEAD: 최종 확정본(Commit)
+
+그림 참조: <a href="https://webclub.tistory.com/317">webclub 블로그</a>  
+
+Git을 사용하기 위해서는 아래 링크를 참조하면 된다.  
+<a href="https://coding-factory.tistory.com/245">코딩팩토리-Git 설치하기</a>  
+
+
+
+**Git을 사용하는 방법**은 크게 2가지 이다.  
+1. CLI(Command Line Interface, 명령 줄 인터페이스)란 Windows운영체제에서의 CMD, Linux 에서의 Terminal 등에서 명령어를 통해 제공되는 여러가지 기능을 담은 SoftWare이다.
+2. GUI(Graphic User Interface, 그래픽 사용자 인터페이스)란 CLI의 명령어를 간단한 클릭으로서 프로그램을 작동시키를 컴퓨터 환경이다.  
+사용자가 사용하기 편하다는 장점이 존재하나, **CLI에 비해 제한된 기능만을 제공한다는 단점**이 존재한다.
+
+
+###  Git 기본명령어
+
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
+
+	<tr bgcolor="silver">	
+		<th>명령어</th>
+		<th>의미</th>
+	</tr>
+	
+	<tr>
+		<td><code>git init</code></td>
+		<td>
+		<ul>
+		<li>원하는 폴더(Working Dir)에서 Git 초기화</li> 
+		<li>.git이라는 숨겨진 폴더(로컬 저장소)가 만들어진다.</li>
+	    </ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><code>git add</code></td>
+		<td>
+		<ul>
+		<li>Index(Staging 영역)에 저장</li>
+        <li>Working Dir에서 원하는 특정 파일만 Index에 추가 가능</li>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><code>git commit -m '프로젝트 변경 사항'</code></td>
+		<td>
+		<ul>
+		<li>Index의 파일을 HEAD로 이동</li> 
+	    </ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><code>git log</code></td>
+		<td>
+		<ul>
+		<li>Commit History 살펴보기</li> 
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><code>git remote add</code></td>
+		<td>
+		<ul>
+		<li>새로운 원격 저장소 추가하기</li> 
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><code>git push [리모트 저장소 이름] [브랜치 이름]</code></td>
+		<td>
+		<ul>
+		<li>Commit 사항을 원격 저장소에 올림</li> 
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><code>git clone [url]</code></td>
+		<td>
+		<ul>
+		<li>서버에 있는 모든 데이터를 복사</li> 
+		</ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><code>git pull [리모트 저장소 이름] [브랜치 이름]</code></td>
+		<td>
+		<ul>
+		<li>업데이트 된 내용을 가져올 수 있다.</li> 
+		</ul>
+		</td>
+	</tr>
+</table>
+<br>
+
+
+<hr>
+참조: <a href="https://medium.com/@joongwon/git-git-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC-c25b421ecdbd">joongwon 블로그</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
