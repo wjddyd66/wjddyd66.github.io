@@ -2,7 +2,7 @@
 layout: post
 title:  "TensorFlow-Linear Regression"
 date:   2019-07-08 10:00:00 +0700
-categories: [TensorFlow]
+categories: [Tensorflow]
 ---
 
 ### Linear Regression
@@ -67,7 +67,7 @@ Linear Regression을 실제로 구현하기 전에 구현하기 위하여 사용
 	<tr>
 		<td>Model</td><td>$$y= W x + b$$</td>
 	</tr>
-	
+
 	<tr>
 		<td>Loss Function</td><td>MSE</td>
 	</tr>
@@ -145,7 +145,7 @@ sess.close()
 	<tr>
 		<td>실제 값</td><td>예측 값</td><td>차이</td>
 	</tr>
-	
+
 	<tr>
 		<td>7</td><td>7.0019174</td><td>0.0019174</td>
 	</tr>
