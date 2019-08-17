@@ -65,7 +65,7 @@ Linear Regression을 실제로 구현하기 전에 구현하기 위하여 사용
 <table class="table">
 	<tbody>
 	<tr>
-		<td>Model</td><td>$$y= W x + b$$</td>
+		<td>Model</td><td>y= 2 x</td>
 	</tr>
 
 	<tr>
@@ -84,6 +84,8 @@ Linear Regression을 실제로 구현하기 전에 구현하기 위하여 사용
 - b: 바이어스
 - x: 입력값
 - y: 출력값
+
+
 ```python
 W = tf.Variable(tf.random_normal(shape=[1]))
 b = tf.Variable(tf.random_normal(shape=[1]))
@@ -166,7 +168,7 @@ sess.close()
 <br>
 
 **TensorBoard Loss 결과**  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/76.svg" height="200" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/76.PNG" height="200" width="600" /></div>
 <br>
 
 
