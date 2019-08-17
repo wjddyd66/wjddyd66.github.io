@@ -2,7 +2,7 @@
 layout: post
 title:  "Tensorflow-Basic"
 date:   2019-08-10 10:00:00 +0700
-categories: [Tensorflow]
+categories: [DL]
 ---
 
 ### Tensorflow
@@ -167,46 +167,7 @@ feed_dict = {ph1: value1, ph2: value2, ph3: value3}의 명령어를 통해 place
 	</table>
 <br>
 
-### TensorBoard
-텐서플로 라이브러리는 학습 결과를 시각화해서 보여주는 강력한 도구인 텐서보드(Tensorboard)를 제공한다.  
-이를 통하여 학습이 **올바른 방향으로 진행되고 있는지를 측정**하거나 **실험결과를 분석**하는데 많은 도움을 준다.  
-아래 예시는 Tensorboard에서 가장많이 활용되는 예시 2개이다.  
-**TensorBoard의 활용 예시**  
-1. tf.summary.scalar API를 이용한 step 마다 손실함수 출력
-2. 계산 그래프 시각화
-
-위와 같은 **TensorBoard**를 활용하기 위한 과정은 크게 3가지로 나눌 수 있다.  
-**TensorBoard 과정**  
-1. 무엇을 보고 싶은가?
-2. 어디에 기록하고 싶은가?
-3. 언제마다 기록하고 싶은가?
-
-
-**1. 무엇을 보고 싶은가**  
-- Scalar값을 보기 위한 Code  
-<code>tf.summary.scalar(name,scalar)</code>  
-- Image값을 보기 위한 Code  
-<code>tf.summary.image(name,image)</code>  
-- Histogram을 보기 위한 Code  
-<code>tf.summary.histogram(name,histogram)</code>  
-
-**2. 어디에 기록하고 싶은가**  
-- 모든 summary값을 통합  
-<code>tf.summary.merge_all()</code>  
-- 원하는 summary값을 통합  
-<code>tf.summary.merge(summaries)</code>  
-- 어느폴더에서 기록할 것인가  
-<code>tf.summary.FileWriter(log_dir,graph)</code>  
-
-**3. 언제마다 기록하고 싶은가**  
-- merge를 실행  
-<code>summary = sess.run(merge)</code>  
-- summary값을 직접 입력  
-<code>tensorboard_writer.add_summary(summary,global_step)</code>  
-
-
 <hr>
-참조: <a href="https://github.com/wjddyd66/Tensorflow/blob/master/Basic.ipynb">원본코드</a><br>
+참조: <a href="https://github.com/wjddyd66/DeepLearning/blob/master/Basic.ipynb">원본코드</a><br>
 참조: <a href="https://bcho.tistory.com/1150">bcho 블로그</a><br>
-참조: <a href="https://medium.com/trackin-datalabs/tensorboard-%EA%B0%84%EB%8B%A8%ED%9E%88-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-18a4fda2efb1">medium 블로그</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
