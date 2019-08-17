@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "TensorFlow-Linear Regression"
-date:   2019-07-08 10:00:00 +0700
+date:   2019-08-17 10:00:00 +0700
 categories: [Tensorflow]
 ---
 
