@@ -6,12 +6,13 @@ categories: [DL]
 ---
 
 ### Optimazation 고려사항
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 Optimazation을 하기 위한 고려사항은 크게 3가지가 있다.  
 1. Local Minima
 2. Plateau
 3. Zigzag
 
-**Local Minima**
+**Local Minima**  
 Local minima 문제는 에러를 최소화시키는 최적의 파라미터를 찾는 문제에 있어서 아래 그림처럼 파라미터 공간에 수많은 지역적인 홀(hole)들이 존재하여 이러한 local minima에 빠질 경우 전역적인 해(global minimum)를 찾기 힘들게 되는 문제를 일컫는다.  
 
 <div><img src="https://t1.daumcdn.net/cfile/tistory/9965444D5B627B4412" height="200" width="600" />
@@ -19,14 +20,13 @@ Local minima 문제는 에러를 최소화시키는 최적의 파라미터를 �
 그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
 <span style ="color: red">**실제 딥러닝 모델에서는 Weight가 수도없이 많으며, 그 수많은 Weight가 모두 Local minima에 빠져야 Weight Update가 정지되기 때문에**</span> 불가능하다. Local Minima을 해결하기 위하여 Optimization을 할 이유는 없다.  
 
-**Plateau**
+**Plateau**  
 Gradient Descent를 타고 Global Optima를 향해서 나아가는데, 평지(Plateau)가 생겨 loss가 업데이트 되지 않는 현상이 발생한다. 이러한 것을 Plateau현상 이라고 한다. 또한 Local Minima에 비해 일어날 확률이 매우 높다.  
 <div><img src="https://t1.daumcdn.net/cfile/tistory/9933BB4C5B627B4514" height="200" width="600" />
 </div>
 그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
 
-**ZigZag현상**
-<p>$$\delta (n-1) = \delta ng\prime(x) W$$</p>
+**ZigZag현상**  
 Weight를 Update 시키기 위한 BackPropagation을 Chain Rule에 적용시킨 결론은 아래와 같았다.  
 <p>$$\delta (n-1) = \delta ng\prime(x) W$$</p>
 <a href="https://wjddyd66.github.io/ai/2019/07/13/A.I-Backpropagation.html">BackPropagation 자세한 내용</a>  

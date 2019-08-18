@@ -10,9 +10,9 @@ categories: [DL]
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 Backpropagation을 알기전에 Chain Rule이라는 것을 먼저 알아야 한다.  
 **Chain Rule**은 합성함수의 미분법이다.  
-n변수 함수 <span>$f(x_1,x_2,x_3,...,x_n)$</span>에 대해  
-<span>$x_k = g_k(t_1,t_2,t_3,...,t_m) (k=1,2,3,...,n)$</span>이면  
-<span>$\frac{\partial f}{\partial t_i}=\frac{\partial f}{\partial x_1}\frac{\partial x_1}{\partial t_i}+\frac{\partial f}{\partial x_2}\frac{\partial x_2}{\partial t_i}+...+\frac{\partial f}{\partial x_n}\frac{\partial x_n}{\partial t_i} (i=1,2,3,...,m)$</span>이다.  
+n변수 함수 <span>$$f(x_1,x_2,x_3,...,x_n)$$</span>에 대해  
+<span>$$x_k = g_k(t_1,t_2,t_3,...,t_m) (k=1,2,3,...,n)$$</span>이면  
+<span>$$\frac{\partial f}{\partial t_i}=\frac{\partial f}{\partial x_1}\frac{\partial x_1}{\partial t_i}+\frac{\partial f}{\partial x_2}\frac{\partial x_2}{\partial t_i}+...+\frac{\partial f}{\partial x_n}\frac{\partial x_n}{\partial t_i} (i=1,2,3,...,m)$$</span>이다.  
 Chain Rule에대한 자세한 내용:<a href="http://blog.naver.com/PostView.nhn?blogId=mindo1103&logNo=90103548178">Nenyaffle 블로그</a>  
 
 **계산 그래프(computational graph)**는 계산과정을 그래프로 나타낸 것이다.  
@@ -34,7 +34,7 @@ Chain Rule에대한 자세한 내용:<a href="http://blog.naver.com/PostView.nhn
 	<tr>
 		<td>Edge</td><td>값</td>
 	</tr>
-    
+	
 	<tr>
 		<td>초록선</td>
 		<td>
