@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Logistic Regression"
+title:  "Tensorflow-Logistic Regression"
 date:   2019-08-18 10:00:00 +0700
 categories: [Tensorflow]
 ---
@@ -81,7 +81,7 @@ a에 따른 Cost Function의 식은 아래와 같다.
 	</tr>
 	
 	<tr>	
-		<td>n</td><td>분류해야할 범주 수</td>
+		<td>$$n$$</td><td>분류해야할 범주 수</td>
 	</tr>
 	
 	<tr>	
@@ -101,7 +101,7 @@ a에 따른 Cost Function의 식은 아래와 같다.
 - Softmax 출력값  
 <p>$$p_i = \frac{exp(a_i)}{\sum_n exp(a_n)}$$</p>
 - Cross Entropy Loss(L) 값  
-- <p>$$L = \sum_j y_j logp_j (y_j:Output값)$$</p>  
+<p>$$L = -\sum_j y_j logp_j (y_j:Output값)$$</p>  
 
 
 **Softmax-with-Loss 역전파**  
@@ -236,7 +236,7 @@ print('정확도(Accuracy): %f'%sess.run(accuracy,feed_dict={x:mnist.test.images
 
 sess.close()
 ```
-정확도(Accuracy): 0.918800
+**정확도(Accuracy): 0.918800**
 <br><br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/Tensorflow/blob/master/LogisticRegression.ipynb">원본코드</a> <br>

@@ -236,7 +236,7 @@ Softmax의 미분을 알아보기 위하여 먼저 **Parameter**들을 아래와
 	</tr>
 	
 	<tr>	
-		<td>n</td><td>분류해야할 범주 수</td>
+		<td>$$n$$</td><td>분류해야할 범주 수</td>
 	</tr>
 	
 	<tr>	
@@ -246,7 +246,7 @@ Softmax의 미분을 알아보기 위하여 먼저 **Parameter**들을 아래와
 	<tr>	
 		<td>$$p_i$$</td><td>Softmax의 i 번째 출력값</td>
 	</tr>
-	
+
 
 </table>
 <br>
