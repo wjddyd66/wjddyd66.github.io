@@ -226,7 +226,47 @@ plt.show()
 <br><br>
 **위의 결과를 확인하면 y의 총합은 1이되는 것을 알 수 있고, 특정 한개의 값은 1 나머지의 값은 0으로서 값이 출력되는 것을 확인할 수 있다.**  
 <br><br>
+**Softmax 미분**  
+Softmax의 미분을 알아보기 위하여 먼저 **Parameter**들을 아래와 같이 정의하였다.  
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
 
+	<tr>	
+		<td>Parameter</td><td>의미</td>
+	</tr>
+	
+	<tr>	
+		<td>n</td><td>분류해야할 범주 수</td>
+	</tr>
+	
+	<tr>	
+		<td>$$a_i$$</td><td>Softmax의 i 번째 입력값</td>
+	</tr>
+	
+	<tr>	
+		<td>$$p_i$$</td><td>Softmax의 i 번째 출력값</td>
+	</tr>
+	
+
+</table>
+<br>
+
+위와 같이 **Parameter**를 정의하게 되면 Softmax의 식은 아래와 같이 나타낼 수 있다.  
+<p>$$p_i = \frac{exp(a_i)}{\sum_n exp(a_n)}$$</p>
+
+위와 같이 선언하였을때 Softmax의 미분은 2가지 경우에 따라서 값이 다르게 나온다.  
+**1. $$i=j$$의 경우**  
+<p>$$\frac{\partial p_i}{\partial a_i} = \frac{\partial \frac{exp(a_n)}{\sum_n exp(a_n)}}{\partial a_i}$$</p>
+<p>$$ = \frac{exp(a_i)\sum_n exp(a_n) - exp(a_i)exp(a_i)}{(\sum_n exp(a_n))^2}$$</p>
+<p>$$ = \frac{exp(a_i)[\sum_n exp(a_n) - exp(a_i)]}{(\sum_n exp(a_n))^2}$$</p>
+<p>$$ = \frac{exp(a_i)}{\sum_n exp(a_n)} \frac{\sum_n exp(a_n) - exp(a_i)}{\sum_n exp(a_n)}$$</p>
+<p>$$ = \frac{exp(a_i)}{\sum_n exp(a_n)} (1-\frac{exp(a_i)}{\sum_n exp(a_n)})$$</p>
+<p>$$ = p_i(1-p_i)$$</p>
+**2. $$i \neq j$$의 경우**  
+<p>$$\frac{\partial p_i}{\partial a_i} = \frac{0 - exp(a_i)exp(a_j)}{(\sum_n exp(a_n))^2}$$</p>
+<p>$$ = -\frac{exp(a_i)}{\sum_n exp(a_n)} \frac{exp(a_j)}{\sum_n exp(a_n)}$$</p>
+<p>$$ = -p_ip_j$$</p>
+<br><br>
 **Softmax 구현시 주의사항**  
 exp함수를 사용함으로써 **입력 값의 증가에 따라 Return 값이 무한정으로 커지는 단점**이 존재한다.  
 컴퓨터는 8bit 이므로 **8bit 이상으로 표현되는 숫자는 Overflow**가 발생하는 문제가 생기게 된다.  
