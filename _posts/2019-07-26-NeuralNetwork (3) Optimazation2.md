@@ -6,6 +6,7 @@ categories: [DL]
 ---
 
 ### Optimazation 고려사항
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 Optimazation을 하기 위한 고려사항은 크게 3가지가 있다.  
 1. Local Minima
 2. Plateau

@@ -13,7 +13,7 @@ categories: [Tensorflow]
 1. <a href="https://wjddyd66.github.io/dl/2019/07/26/Perceptron.html">Perceptron</a>
 2. <a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(1)-Basic-&-Activation-Function.html">MLP(NeuralNetwork)</a>
 
-위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 MLP를 구현**해보자**  
+위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 MLP를 구현**해보자  
 
 ### MLP 구현
 **MLP** 또한 앞선 Post에서 다룬 내용 **Linear Regression, Logistic Regression**과 같이 **MNIST Data**를 분리하는 예제를 사용한다.  
@@ -27,6 +27,7 @@ categories: [Tensorflow]
 	
 	<tr>	
 		<td>Optimazation</td><td>Adam</td>
+	</tr>
 </table>
 <br>
 **MLP 구현**  
