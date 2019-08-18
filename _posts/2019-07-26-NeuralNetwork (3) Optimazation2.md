@@ -26,8 +26,9 @@ Gradient Descent를 타고 Global Optima를 향해서 나아가는데, 평지(Pl
 그림출처:<a href="https://nittaku.tistory.com/271">nittaku 블로그</a><br>
 
 **ZigZag현상**
+<p>$$\delta (n-1) = \delta ng\prime(x) W$$</p>
 Weight를 Update 시키기 위한 BackPropagation을 Chain Rule에 적용시킨 결론은 아래와 같았다.  
-<p>$$\delta(n-1) = \delta ng\prime(x) W$$</p>
+<p>$$\delta (n-1) = \delta ng\prime(x) W$$</p>
 <a href="https://wjddyd66.github.io/ai/2019/07/13/A.I-Backpropagation.html">BackPropagation 자세한 내용</a>  
 **Active Function을 Sigmoid나 Relu**를 사용하게 되면, <span>$$ \delta n $$</span>(output: 0~1) 및 <span>$$ g\prime(x) $$</span>(Sigmoid의 편미분)이 모두 양수이므로 Weight업데이트량은 언제나 + or -가 나오며, 업데이트 방향을 잡을 때, 비효율적으로 ZigZag현상이 발생하여, 업데이트 현상이 느려진다.  
 
