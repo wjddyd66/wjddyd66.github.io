@@ -536,21 +536,21 @@ ListMonster(address_monster)
 <br>
 **실행 결과**  
 ```code
-('Monster pos: ', 10.0, 20.0, 30.0)
-('Monster mana:', 10)
-('Monster hp:', 20)
-('Monster name:', u'monster1')
-('Monster friendly:', True)
+Monster pos:  10.0 20.0 30.0
+Monster mana: 10
+Monster hp: 20
+Monster name: monster1
+Monster friendly: True
 Monster inventory: 
 1
 2
 3
-('Monster color: ', 0)
+Monster color:  0
 Monster weapon: 
-('Name: ', u'w1')
-('Damage: ', 10)
-('Name: ', u'w2')
-('Damage: ', 20)
+Name:  w1
+Damage:  10
+Name:  w2
+Damage:  20
 Monster equipped
 name: "w1"
 damage: 10
@@ -567,21 +567,21 @@ x: 3.0
 y: 2.0
 z: 1.0
 
-('Monster pos: ', 100.0, 200.0, 300.0)
-('Monster mana:', 100)
-('Monster hp:', 200)
-('Monster name:', u'monster2')
-('Monster friendly:', True)
+Monster pos:  100.0 200.0 300.0
+Monster mana: 100
+Monster hp: 200
+Monster name: monster2
+Monster friendly: True
 Monster inventory: 
 3
 2
 1
-('Monster color: ', 1)
+Monster color:  1
 Monster weapon: 
-('Name: ', u'w3')
-('Damage: ', 10)
-('Name: ', u'w4')
-('Damage: ', 20)
+Name:  w3
+Damage:  10
+Name:  w4
+Damage:  20
 Monster equipped
 name: "w3"
 damage: 10
@@ -597,6 +597,7 @@ z: 30.0
 x: 30.0
 y: 20.0
 z: 10.0
+
 
 ```
 <br>
