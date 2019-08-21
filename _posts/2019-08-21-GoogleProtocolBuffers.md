@@ -246,7 +246,13 @@ _sym_db.RegisterMessage(AddressMonster)
 
 ```
 ### Writing a Message
-Protocol Buffer Class를 사용하여서 Monster를 등록하는 과정이다.  
+1) monster_pb2.Monster() 로서 monster 객체 생성  
+2) 객체의 입력받은 값 넣기  
+3) monster_pb2.AddressMonster()로서 monster추가  
+4) SerializeToString()을 통하여 문자열을 직렬화  
+
+아래 코드는 Protocol Buffer Class를 사용하여서 Monster를 등록하는 과정이다.  
+
 ```python
 #!/usr/bin/env python
 # coding: utf-8
@@ -482,7 +488,8 @@ with open(sys.argv[1], "wb") as f:
 **실행 결과 Binary File로서 저장되는 것을 알 수 있다.**  
 
 ### Reading a Message
-만들어진 Binary File을 읽는 과정이다.  
+ParseFromString()을 통하여 문자열을 객체로서 접근 가능하게 한다.  
+아래 코드는 만들어진 Binary File을 읽는 과정이다.  
 ```python
 #!/usr/bin/env python
 # coding: utf-8

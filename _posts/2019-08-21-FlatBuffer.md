@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "FlatBuffer"
-date:   2019-08-21 09:00:00 +0700
+date:   2019-08-21 10:00:00 +0700
 categories: [others]
 ---
 
@@ -32,11 +32,11 @@ categories: [others]
 **1) Zero Copy**  
 Zero Copy는 Network에서 Read/Write할때 걸리는 불필요한 Copy과정을 최소화 하자는 것이다.  
 아래 그림을 살펴보게 되면 기존의 데이터 복사 과정이다.  
-<div><img src=""https://t1.daumcdn.net/cfile/tistory/157B27414F0D32FE12" height="100%" width="100%" /></div><br>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/157B27414F0D32FE12" height="100%" width="100%" /></div><br>
 **Application buffer**를 거쳐가므로 4번의 과정이 필요하다는 것을 알 수 있다.  
 
 아래 그림은 **Zero Copy**의 과정이다.  
-<div><img src=""https://t1.daumcdn.net/cfile/tistory/147B27414F0D330013" height="100%" width="100%" /></div><br>
+<div><img src="https://t1.daumcdn.net/cfile/tistory/147B27414F0D330013" height="100%" width="100%" /></div><br>
 **Application buffer**를 거쳐지 않으므로 2번의 과정이라는 것을 알 수 있다.  
 
 **2) Random-access-reads**  
