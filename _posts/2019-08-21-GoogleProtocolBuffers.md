@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Tensorflow-ANN"
-date:   2019-08-18 11:00:00 +0700
+title:  "Google Protocol Buffer3"
+date:   2019-08-21 09:00:00 +0700
 categories: [others]
 ---
 
@@ -18,7 +18,12 @@ Google Protocol Buffer3를 사용하기 이전에는 다음과 같은 방법과 
 	</tr>
 	
 	<tr>	
-		<td>Python pickling</td><td>다른 언어와의 호환이 잘 안됨</td>
+		<td>Python pickling</td>
+		<td>
+		<ul>
+		<li>다른 언어와의 호환이 잘 안됨</li>
+		</ul>		
+		</td>
 	</tr>
 
 	<tr>	
@@ -51,8 +56,8 @@ Getter 와 Setter를 제공하고 프로토콜 버퍼를 단위로 읽고 쓰는
 프로토콜 버퍼를 사용하기 위해서는 저장하기 위한 **데이터형**을 proto file이라는 형태로 정의한다.  
 **proto file**의 특징은 **특정 언어에 종속성이 없는 형태**로 데이터 타입을 정의한다는 것이다.  
 이렇게 정의된 데이터 타입을 프로그래밍 언어에 사용하려면, **해당 언어에 맞는 클래스**로 생성해야 한다.  
-**protoc 컴파일러로 proto file을 컴파일 하면, **각 언어에 맞는 형태의 데이터 클래스 파일을 생성**해 준다.  
-<div><img src="https://bcho.tistory.com/1182" height="100%" width="100%" /></div><br>
+**protoc 컴파일러로 proto file을 컴파일 하면, 각 언어에 맞는 형태의 데이터 클래스 파일을 생성**해 준다.  
+<div><img src="https://t1.daumcdn.net/cfile/tistory/233E2635594F907222" height="100%" width="100%" /></div><br>
 
 
 ### Proto file
@@ -104,15 +109,15 @@ message AddressMonster{
 ```
 <br>
 **.proto file 정의 방법**  
-1. Package: 다른 프로젝트 간의 이름 충돌 방지  
+1) Package: 다른 프로젝트 간의 이름 충돌 방지  
 **Python 에서 패키지는 일반적으로 디렉토리 구조에 영향을 받으니 파이썬이 아닌 언어에서 Name Space충돌을 피하기 위하여 선언**
-2. Message: Field의 집합
-3. Type  
+2) Message: Field의 집합
+3) Type  
 <table class="table">
 
-	<th>	
+	<tr>	
 		<td>.proto Type</td><td>Python Type</td>
-	</th>
+	</tr>
 
 	<tr>	
 		<td>double</td><td>float</td>
@@ -179,11 +184,11 @@ message AddressMonster{
 	</tr>
 </table>
 <br>
-4. "=1", "=2", ...  
+4) "=1", "=2", ...  
 Unique한 Tag를 Field에 대입하는 과정이다.  
 - 1~15: Commonly used or repeate elements
 - 16이상: loss-commonly used
-5. Annotation of filed  
+5) Annotation of filed  
 - required: 반드시 Value필요
 - optional: Value는 필요 없으면, Value를 정의안하면 Default value사용
 - repeated: Scalar가아닌 Vector로서 표현
@@ -193,8 +198,8 @@ Unique한 Tag를 Field에 대입하는 과정이다.
 
 ### protoc(Compling Protocol Buffers)
 .proto file을 **해당 언어에 맞는 클래스**로 Compile하는 과정  
-1. Compiler 설치: <a href="https://developers.google.com/protocol-buffers/docs/downloads">Download the Package</a>
-2. Compiler 실행:  
+1) Compiler 설치: <a href="https://developers.google.com/protocol-buffers/docs/downloads">Download the Package</a>
+2) Compiler 실행:  
 <code>protoc -I=$SRC_DIR --python_out=$DST_DIR $SRC_DIR/addressbook.proto</code>  
 option을 활용하여 **해당 언어어 맞는 클래스**로서 Compile가능
 
@@ -468,7 +473,7 @@ with open(sys.argv[1], "wb") as f:
 <br>
 
 **실행 결과**  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/googleprotocol.png" height="200" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/googleprotocol.png" height="400" width="600" /></div>
 <br>
 **실행 결과 Binary File로서 저장되는 것을 알 수 있다.**  
 
