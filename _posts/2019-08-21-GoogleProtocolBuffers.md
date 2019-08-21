@@ -8,7 +8,7 @@ categories: [others]
 ### Google Protocol Buffer3
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 Google Protocol Buffer3에 대해 자세히 알아보기 전에 한가지 문제에 대해 알아보자.  
-**Structured Data**를 어떻게 Serilalize 하고 Retrueve할수 있을까?  
+**Structured Data**를 어떻게 Serilalize 하고 Retrieve할수 있을까?  
 Google Protocol Buffer3를 사용하기 이전에는 다음과 같은 방법과 그러한 방법에 대한 단점이 있다.  
 **기존 방식 3가지**  
 <table class="table">
@@ -604,5 +604,5 @@ z: 10.0
 <br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/others/tree/master/Project/google_protocol_buffer_3">원본코드</a><br> 
-참조: <a href="">조대협의 블로그</a><br>
+참조: <a href="https://bcho.tistory.com/1182">조대협의 블로그</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
