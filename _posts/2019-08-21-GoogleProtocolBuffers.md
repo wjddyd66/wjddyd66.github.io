@@ -110,8 +110,8 @@ message AddressMonster{
 <br>
 **.proto file 정의 방법**  
 1) Package: 다른 프로젝트 간의 이름 충돌 방지  
-**Python 에서 패키지는 일반적으로 디렉토리 구조에 영향을 받으니 파이썬이 아닌 언어에서 Name Space충돌을 피하기 위하여 선언**
-2) Message: Field의 집합
+**Python 에서 패키지는 일반적으로 디렉토리 구조에 영향을 받으니 파이썬이 아닌 언어에서 Name Space충돌을 피하기 위하여 선언**  
+2) Message: Field의 집합  
 3) Type  
 <table class="table">
 
@@ -188,17 +188,21 @@ message AddressMonster{
 Unique한 Tag를 Field에 대입하는 과정이다.  
 - 1~15: Commonly used or repeate elements
 - 16이상: loss-commonly used
+
+<br>
 5) Annotation of filed  
 - required: 반드시 Value필요
 - optional: Value는 필요 없으면, Value를 정의안하면 Default value사용
 - repeated: Scalar가아닌 Vector로서 표현
+
+<br>
 
 참조: <a href="https://developers.google.com/protocol-buffers/docs/proto">.proto Type자세한 내용</a>  
 
 
 ### protoc(Compling Protocol Buffers)
 .proto file을 **해당 언어에 맞는 클래스**로 Compile하는 과정  
-1) Compiler 설치: <a href="https://developers.google.com/protocol-buffers/docs/downloads">Download the Package</a>
+1) Compiler 설치: <a href="https://developers.google.com/protocol-buffers/docs/downloads">Download the Package</a>  
 2) Compiler 실행:  
 <code>protoc -I=$SRC_DIR --python_out=$DST_DIR $SRC_DIR/addressbook.proto</code>  
 option을 활용하여 **해당 언어어 맞는 클래스**로서 Compile가능
