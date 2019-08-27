@@ -130,8 +130,7 @@ plt.plot(data)
 plt.show()
 ```
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/1.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/1.PNG" height="50%" width="50%" /></div><br>
 #### 여러 그래프 그리기
 **plt.subplot("행", "열", "순서")**  
 ```python
@@ -139,8 +138,7 @@ plt.subplot(1,2,1)
 plt.subplot(1,2,2)
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/2.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/2.PNG" height="50%" width="50%" /></div><br>
 **Data 준비하기**  
 
 ```python
@@ -158,8 +156,7 @@ plt.subplot(2,2,3)
 plt.scatter(scat_data,np.arange(30) +3 )
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/3.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/3.PNG" height="50%" width="50%" /></div><br>
 #### 그래프 선 옵션
 그래프를 그릴 때 표시되는 색이나 마커 패턴을 바꾸는 것을 확인  
 - 색상: b(파란색), g(초록색), r(빨간색), c(청록색), y(노란색), k(검은색), w(흰색)
@@ -170,15 +167,12 @@ plt.show()
 plt.plot(data,'g^')
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/4.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/4.PNG" height="50%" width="50%" /></div><br>
 ```python
 plt.plot(data,'+')
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/5.PNG" height="100%" width="100%" /></div><br>
-
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/5.PNG" height="50%" width="50%" /></div><br>
 #### 그래프 사이즈 조절
 plt.figure 안에 figsize를 이용하여 가로, 세로 길이 조절 가능(inch 단위)  
 subplot과 같이 사용 시 맨 위에 있어야 전부다 적용 가능  
@@ -187,8 +181,7 @@ plt.figure(figsize=(10,5))
 plt.plot(data,'k+')
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/6.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/6.PNG" height="50%" width="50%" /></div><br>
 여러 그래프를 그리고 그에 대한 크기 조절  
 ```python
 plt.figure(figsize=(10,5))
@@ -200,8 +193,7 @@ plt.subplot(2,2,3)
 plt.scatter(scat_data,np.arange(30) +3 )
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/7.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/7.PNG" height="50%" width="50%" /></div><br>
 #### 그래프 겹치기  + legend 달기
 ```python
 data = np.random.randn(30).cumsum()
@@ -211,8 +203,7 @@ plt.plot(data, 'k--',drawstyle='steps-post', label='steps-post')
 plt.legend()
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/8.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/8.PNG" height="50%" width="50%" /></div><br>
 #### 이름 달기
 ```python
 plt.plot(np.random.randn(1000).cumsum())
@@ -221,8 +212,7 @@ plt.xlabel('Steps')
 plt.ylabel('Values')
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/9.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/9.PNG" height="50%" width="50%" /></div><br>
 #### 종합
 ```python
 plt.title('Graph')
@@ -233,8 +223,7 @@ plt.plot(np.random.randn(1000).cumsum(),'r^',label='three')
 plt.legend()
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/10.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/10.PNG" height="50%" width="50%" /></div><br>
 #### 그래프 저장하기
 ```python
 plt.savefig('saved_graph.svg')
@@ -271,17 +260,13 @@ np.min(image), np.max(image)
 plt.hist(image.ravel(),256,[0,256])
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/11.PNG" height="100%" width="100%" /></div><br>
-
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/11.PNG" height="50%" width="50%" /></div><br>
 #### 그림 나타내기
 ```python
 plt.imshow(image)
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/12.PNG" height="100%" width="100%" /></div><br>
-
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/12.PNG" height="50%" width="50%" /></div><br>
 #### 이미지 흑백으로 열기
 Image.convert("L")을 통하여 회색으로 변환시키는 것이다.
 ```python
@@ -290,50 +275,41 @@ image_bw = np.array(image_pil)
 plt.imshow(image_bw, 'gray')
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/13.PNG" height="100%" width="100%" /></div><br>
-
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/13.PNG" height="50%" width="50%" /></div><br>
 #### 이미지 다른 색상으로 열기
 **RdBu**
 ```python
 plt.imshow(image_bw,'RdBu')
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/14.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/14.PNG" height="50%" width="50%" /></div><br>
 **jet**
 ```python
 plt.imshow(image_bw,'jet')
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/15.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/15.PNG" height="50%" width="50%" /></div><br>
 **Colorbar 추가하기**
 ```python
 plt.imshow(image_bw,'jet')
 plt.colorbar()
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/16.PNG" height="100%" width="100%" /></div><br>
-
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/16.PNG" height="50%" width="50%" /></div><br>
 #### 이미지 사이즈 조절
 ```python
 plt.figure(figsize=(10,10))
 plt.imshow(image)
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/17.PNG" height="100%" width="100%" /></div><br>
-
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/17.PNG" height="50%" width="50%" /></div><br>
 #### 이미지에 제목 추가
 ```python
 plt.title('Programmers')
 plt.imshow(image)
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/18.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/18.PNG" height="50%" width="50%" /></div><br>
 #### 두번째 이미지 열기 및 이미지 크기 변환
 ```python
 path2 = './bomair_logo.png'
@@ -351,16 +327,14 @@ image3.shape, image.shape
 ```code
 ((512, 512, 4), (512, 512, 4))
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/19.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/19.PNG" height="50%" width="50%" /></div><br>
 #### 이미지 합치기
 ```python
 plt.imshow(image)
 plt.imshow(image3, alpha=0.5)
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/20.PNG" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/20.PNG" height="50%" width="50%" /></div><br>
 #### 이미지에 Subplot
 ```python
 plt.figure(figsize=(10,10))
@@ -374,8 +348,8 @@ plt.imshow(image3)
 
 plt.show()
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Pyrthon/21.PNG" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/21.PNG" height="50%" width="50%" /></div><br>
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/DataAnalysis/blob/master/Scipy.ipynb">원본코드</a> <br>
+참조: <a href="https://github.com/wjddyd66/DataAnalysis/tree/master/Matplotlib">원본코드</a> <br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
