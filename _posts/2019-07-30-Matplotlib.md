@@ -131,6 +131,7 @@ plt.show()
 ```
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/1.PNG" height="50%" width="50%" /></div><br>
+
 #### 여러 그래프 그리기
 **plt.subplot("행", "열", "순서")**  
 ```python
@@ -173,6 +174,7 @@ plt.plot(data,'+')
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/5.PNG" height="50%" width="50%" /></div><br>
+
 #### 그래프 사이즈 조절
 plt.figure 안에 figsize를 이용하여 가로, 세로 길이 조절 가능(inch 단위)  
 subplot과 같이 사용 시 맨 위에 있어야 전부다 적용 가능  
@@ -261,12 +263,14 @@ plt.hist(image.ravel(),256,[0,256])
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/11.PNG" height="50%" width="50%" /></div><br>
+
 #### 그림 나타내기
 ```python
 plt.imshow(image)
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/12.PNG" height="50%" width="50%" /></div><br>
+
 #### 이미지 흑백으로 열기
 Image.convert("L")을 통하여 회색으로 변환시키는 것이다.
 ```python
@@ -276,6 +280,7 @@ plt.imshow(image_bw, 'gray')
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/13.PNG" height="50%" width="50%" /></div><br>
+
 #### 이미지 다른 색상으로 열기
 **RdBu**
 ```python
@@ -296,6 +301,7 @@ plt.colorbar()
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/16.PNG" height="50%" width="50%" /></div><br>
+
 #### 이미지 사이즈 조절
 ```python
 plt.figure(figsize=(10,10))
@@ -303,6 +309,7 @@ plt.imshow(image)
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/17.PNG" height="50%" width="50%" /></div><br>
+
 #### 이미지에 제목 추가
 ```python
 plt.title('Programmers')
@@ -349,7 +356,6 @@ plt.imshow(image3)
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Python/21.PNG" height="50%" width="50%" /></div><br>
-
 <hr>
-참조: <a href="https://github.com/wjddyd66/DataAnalysis/tree/master/Matplotlib">원본코드</a> <br>
+참조: <a href="https://github.com/wjddyd66/DataAnalysis/blob/master/Scipy.ipynb">원본코드</a> <br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
