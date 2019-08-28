@@ -12,18 +12,18 @@ categories: [Tensorflow]
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F996C93475BDC97C00AE328" height="100%" width="100%" /></div><br>
 
 **Hidden Layer**의 뉴런 수를 **Input Layer 와 Output Layer**의 뉴런 수보다 적게 설정하여 입력받은 원본 데이터에서 불필요한 특징들을 제거한 압축된 특징을 학습하게 되는것이 특징이다.  
-즉, Trainning 과정에서 불필요한 특징들을 자동적으로 제거하고 필요한 특징들만 남아있게 된다.
-**대표적인 예**와 그에 **해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
+즉, Trainning 과정에서 불필요한 특징들을 자동적으로 제거하고 필요한 특징들만 남아있게 된다.  
 
 이러한 **AutoEncoder**의 특징으로 인하여 AutoEncoder의 핵심은 재구축된 출력층의 출력값이 아니라, 은닉층의 출력값 이다.
 
 이번 Post에서 구현한 **AutoEncoder**의 경우 크게 두가지로 구별할 수 있게 된다.  
-**Stacked AutoEncoder**  
+
+### Stacked AutoEncoder
 Stacked AutoEncoder는 여러개의 히든 레이어를 가지는 Auto Encoder이며, 레잉어를 추가할수록 AutoEncoder가 더 복잡한 코딩을 학습할 수 있다.  
 Stacked AutoEncoder는 아래의 그림과 같이 가운데 히든레이어를 기준으로 대칭인 구조를 가진다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F99F1DE4A5BDC983D09BAED" height="100%" width="100%" /></div><br>
 
-**Stacked AutoEncoder를 이용한 비지도 사전학습**
+### Stacked AutoEncoder를 이용한 비지도 사전학습
 먼저 전체 데이터를 사용해 Stacked AutoEncoder를 학습시킨다.  
 그런 다음 AutoEncoder의 하위 레이어를 재사용해 분류와 같은 실제 문제를 해결하기 위한 신경망을 만들고 레이블된 데이터를 사용해 학습시킬 수 있다.  
 이러한 학습된 Layer에 parameter를 복사하여 사용하는 기술을 **파이튜닝(Fine-Tuning) 혹은 전이학습(Transfer learning)**이라고 불린다.  
@@ -97,7 +97,7 @@ def build_autoencoder(x):
     return reconstructed_x
 ```
 
-실제 ANN Model 선언  
+실제 AutoEncoder Model 선언  
 Target Data선언(input data와 같다.)  
 ```python
 y_pred = build_autoencoder(x)
@@ -184,6 +184,15 @@ hidden2_size = 64
 ```
 
 인풋 데이터와 타겟 데이터를 받을 플레이스홀더를 정의  
+```python
+x = tf.placeholder(tf.float32, shape=[None, input_size])
+y = tf.placeholder(tf.float32, shape = [None, 10])
+```
+
+Model 선언  
+- AutoEncoder: 784 -> 128 -> 64(압축된 특징)
+- SoftmaxClassifier: 64(압축된 특징) -> 10(MNIST 숫자 개수)
+
 
 ```python
 #AutoEncoder 선언
@@ -238,14 +247,6 @@ pretraining_train_step = tf.train.RMSPropOptimizer(learning_rate_RMSProp).minimi
 #Fine-Tuning: MNIST 데이터 분류를 목적으로 하는 손실 함수와 옵티마이저를 정의
 finetuning_loss = tf.reduce_mean(-tf.reduce_sum(y*tf.log(y_pred_softmax), reduction_indices=[1]))
 finetuning_train_step = tf.train.GradientDescentOptimizer(learning_rate_GradientDescent).minimize(finetuning_loss)
-```
-- Loss Function: MSE
-- Optimazer: RMSProp
-
-
-```python
-loss = tf.reduce_mean(tf.pow(y_true - y_pred,2))
-train_step = tf.train.RMSPropOptimizer(learning_rate).minimize(loss)
 ```
 
 세션을 열어서 그래프를 실행하고 학습된 모델의 정확도를 출력  
