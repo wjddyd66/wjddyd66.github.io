@@ -80,7 +80,7 @@ plt.show()
 Activation Function을 Sigmoid를 사용하였다.  
 Sigmoid를 사용하면 **-5보다 5보다 클 경우** Gradient값이 지나치게 작아지는 단점을 가지고 있다.  
 즉, WX의 값이 클 경우 가중치의 초기값이 클 경우 1 혹은 0으로서 극단적인 값에 집중적으로 치우치게 되는 현상이 발생하게 된다.  
-이러한 0 혹은 1에 Activation Function의 값이 집중적으로 치우치는 현상이 발생하게 되면 SIgmoid의 미분식을 살펴보았을때 y(1-y)식에서 y에 0 혹은 1을 대입하게 되어서 BackPropagation의 기울기 값이 점점 작아지다가 사라지게 되는 **Gradient Vanishing **이 발생하게 된다.  
+이러한 0 혹은 1에 Activation Function의 값이 집중적으로 치우치는 현상이 발생하게 되면 SIgmoid의 미분식을 살펴보았을때 y(1-y)식에서 y에 0 혹은 1을 대입하게 되어서 BackPropagation의 기울기 값이 점점 작아지다가 사라지게 되는 **Gradient Vanishing**이 발생하게 된다.  
 
 **2. 표준편차가 0.01인 경우(w = np.random.randn(node_num, node_num) * 0.01)**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/84.PNG" height="250" width="600" /></div>
@@ -98,8 +98,10 @@ Xavier Glorot & Yoshua Bengio의 논문에서 권장하는 가중치의 초기�
 sigmoid 와 tanh함수는 좌우 대칭인 함수이다.  
 하지만 ReLU는 0이상의 값은 그대로이고 0이하의 값은 모두 0으로 출력값을 출력하기 때문에 ReLU는 Xavier가 아닌 다른 초기값을 추천한다.  
 ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천한다.  
-**Xavier**: <sapn>$$\sqrt{\frac{1}{n}}$$</span><br>
-**He**: <sapn>$$\sqrt{\frac{2}{n}}$$</span><br>
+**Xavier**  
+<p>$$ \sqrt{\frac{1}{n}} $$</p>
+**He**:  
+<p>$$ \sqrt{\frac{2}{n}} $$</p>
 아래 결과는 각각의 가중치를 어떻게 초기화 하였는지에 대한 결과 값이다.  
 
 **std = 0.01**  
@@ -125,10 +127,10 @@ ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천
 
 위의 그림으로서 데이터의 분포가 평균이 0, 분산이 1이 되도록 정규화를 한다.  
 수식으로는 아래와 같이 나타낼 수 있다.  
-<p>$$ \mu_B \leftarrow \frac{1}{m}\sim_{i=1}^m x_i$$</p>
-<p>$$ \sigma_B^2 \leftarrow \frac{1}{m}\sim_{i=1}^m (x_i-\mu_B)^2$$</p>
+<p>$$ \mu_B \leftarrow \frac{1}{m}\sum_{i=1}^m x_i$$</p>
+<p>$$ \sigma_B^2 \leftarrow \frac{1}{m}\sum_{i=1}^m (x_i-\mu_B)^2$$</p>
 <p>$$ \hat{x_i} \leftarrow \frac{x_i-\mu_B}{\sqrt{\sigma_B^2 + \varepsilon}}$$</p>
-<p>B = {x_1, x_2, ... , x_m}</p>
+<p>$$ B = {x_1, x_2, ... , x_m} $$</p>
 위의 식에서 알 수 있듯이 m개의 입력 데이터의 집합에 대해 평균 <span>$$ \mu_B$$</span>와 분산<span>$$ \sigma_B^2$$</span>를 구한다.  
 그리고 입력 데이터를 평균이 0, 분산이 1이 되게 정규화를 실시한다.  
 <span>$$ \varepsilon $$</span>는 매우 작은 값으로서 <span>$$\frac{x_i-\mu_B}{\sqrt{\sigma_B^2 + \varepsilon}} $$</span>의 값이 inf가 되는 것을 방지한다.  
