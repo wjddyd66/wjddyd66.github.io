@@ -31,7 +31,7 @@ class AddLayr:
         dy = dout * 1
         return dx, dy
 ```
-
+<br><br>
 #### 곱셈 노드의 역전파
 곱셈 노드의 역전파는 입력값의 위치를 서로 바꾼 다음 곱해서 흘려보낸다. 이를 보고 gradient switcher부른다.  
 <p>$$z = xy$$</p>
@@ -58,6 +58,7 @@ class MulLayer:
         
         return dx,dy
 ```
+<br><br>
 **간단한 신경망 구성**  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F99499E4E5B98F6C10EBEA5" height="200" width="600" /></div>
 위와 같은 그림으로서 간단한 신경망이 구성되어있을때  
@@ -96,7 +97,7 @@ print("%d, %.1f, %.1f, %d, %d" % (dapple_num, dapple, dorange, dorange_num, dtax
 715
 110, 2.2, 3.3, 165, 650
 ```
-
+<br><br>
 #### Activation Function 계층 구현하기
 Activation Function에 대한 사전지식은 아래 링크를 참조  
 <a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(1)-Basic-&-Activation-Function.html">Activation Function 자세한 내용</a>
@@ -104,7 +105,7 @@ Activation Function에 대한 사전지식은 아래 링크를 참조
 이를 활용하여 Activation Function에 Forward 와 Backward를 실제 구현해보자.  
 
 **ReLU**  
-식: <span> $f(x) = max(0,x)$ </span><br>
+식: <span> $$f(x) = max(0,x)$$ </span><br>
 미분식:
 
 - x > 0 : 1
@@ -132,26 +133,29 @@ class Relu:
         return dx
 ```
 mask는 True/False로 구선된 Numpy배열로, 순전파의 입력인 x의 원소값이 0이하인 Index는 True, 그 외는 False로 유지한다.  
-
+<br><br>
 **Sigmoid**  
-식: <span> $\sigma(x) = {1 \over 1+e^{-x}}$ </span><br>
-미분식: <span> $\sigma\prime(x) = \sigma(x)(1-\sigma(x))$ </span>  
+식: <span> $$\sigma(x) = {1 \over 1+e^{-x}}$$ </span><br>
+미분식: <span> $$\sigma\prime(x) = \sigma(x)(1-\sigma(x))$$ </span>  
 
 Sigmoid의 경우 ReLu보다 식이 복잡하여 아래그림과 같이 Sigmoid계산 과정을 쭉 펼쳐서 생각해 보자.
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F99E517485B98F6E504DB20" height="200" width="600" /></div>
-
+<br>
 **1. / 과정**  
 <p>$$\frac{\partial y}{\partial x} = -\frac{1}{x^2} = -y^2$$</p>
 역전파 때 상류에서 흘러온 값에 제곱 후 - 를 곱하여 보낸다.  
+<br>
 **2. + 과정**  
 +의 경우 위에서 증명하였듯이 그냥 흘려보낸다.  
+<br>
 **3. exp 과정**  
 <p>$$\frac{\partial y}{\partial x} = exp(x)$$</p>
 exp(x)는 미분하여도 값이 똑같다.  
 상류에서 흘러온 값에 exp(x)를 곱하여 흘려보내 준다.  
+<br>
 **4. x 과정**  
 x 의 경우 위에서 증명하였듯이 입력값의 위치를 서로 바꾼 다음 곱해서 흘려 보낸다.  
-
+<br>
 최종적인 식을 정리하면 아래와 같다.  
 <p>$$\frac{\partial L}{\partial y} y^2 exp(-x)$$</p>
 <p>$$= \frac{\partial L}{\partial y} \frac{1}{(1+exp(-x))^2} exp(-x)$$</p>
@@ -178,7 +182,7 @@ class Relu:
         
         return dx
 ```
-
+<br><br>
 #### Affine 계층 구현하기
 신경망의 순전파 때 수행하는 행렬의 곱은 기하학에서는 **Affine Transformation** 어파인 변환 이라고 한다.  
 **Affine Transformation**의 Backpropagation의 가장 중요하게 생각해야 하는 점은 행렬의 차원을 맞춰주는 작업이 필요하다는 것이다.  
@@ -201,7 +205,7 @@ Y = WX + B의 식에서 각각의 행렬은 다음과 같다.
 위와 같은 문제를 하기 위하여 W 행렬을 전치행렬로서 바꾸어서 계산하게 된다.  
 <p>$$\frac{\partial L}{\partial X}(1,2) = \frac{\partial L}{\partial Y}(1,3) W^T(3,2)$$</p>
 따라서 Affine 연산에서는 **dot**연산에서 행렬을 전치하여 곱해줘야 한다는 것을 알 수 있다.  
-
+<br><br>
 #### 배치용 Affine 계층 구현하기
 위의 Affine 계층과 달라진 것은 입력과 출력의 차원이 1차원에서 N차원으로 늘어난 것 밖에 없다. 이러한 배치용 Affine 계층은 아래와 같은 그림으로서 나타낼 수 있다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F994510365B98F75122F136" height="200" width="600" /></div>
@@ -236,7 +240,7 @@ class Affine:
         
         return dx
 ```
-
+<br><br>
 #### Softmax-with-Loss 계층
 딥러닝에서는 학습과 추론 두 가지가 있다. 일반적으로 추론일 때는 Softmax 계층(layer)을 사용하지 않는다. Softmax 계층 앞의 Affine 계층의 출력을 점수(score)라고 하는데, 딥러닝의 추론에서는 답을 하나만 예측하는 경우에는 가장 높은 점수만 알면 되므로 Softmax 계층이 필요없다. 반면, 딥러닝을 학습할 때는 Softmax 계층이 필요하다.  
 이러한 Softmax를 통하여 분류하는 Network는 아래와 같은 그림으로서 나타낼 수 있다.  
@@ -269,6 +273,7 @@ class SoftmaxWithLoss:
 ```
 
 <hr>
+참조:<a href="https://github.com/wjddyd66/DeepLearning/blob/master/Backpropagation.ipynb">원본코드</a><br>
 참조: <a href="https://excelsior-cjh.tistory.com/171">excelsior-cjh 블로그</a> <br>
 참조: 밑바닥부터 시작하는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
