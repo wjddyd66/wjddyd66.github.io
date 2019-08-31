@@ -15,7 +15,7 @@ categories: [DL]
 <p>$$z = x+y$$</p>
 <p>$$\frac{\partial z}{\partial x} = 1$$</p>
 <p>$$\frac{\partial z}{\partial y} = 1$$</p>
-<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F99FB57455B98F67407FADD" height="200" width="600" />
+<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F99FB57455B98F67407FADD" height="200" width="600" /></div>
 위의 <span>$$z = x + y$$</span>계산은 전체 그래프의 중간 어딘가에 존재한다고 가정했기 때문에, 이 계산 그래프의 앞부분에서 부터 <span>\frac{\partial L}{\partial z}</span>가 전해졌다고 가정한다.  
 위의 그림은 아래와 같은 Code로서 간단히 구현될 수 있다.  
 ```python
@@ -37,7 +37,7 @@ class AddLayr:
 <p>$$z = xy$$</p>
 <p>$$\frac{\partial z}{\partial x} = y$$</p>
 <p>$$\frac{\partial z}{\partial y} = x$$</p>
-<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F99E3EF435B98F69309175D" height="200" width="600" />
+<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F99E3EF435B98F69309175D" height="200" width="600" /></div>
 위의 <span>$$z = x + y$$</span>계산은 전체 그래프의 중간 어딘가에 존재한다고 가정했기 때문에, 이 계산 그래프의 앞부분에서 부터 <span>\frac{\partial L}{\partial z}</span>가 전해졌다고 가정한다.  
 위의 그림은 아래와 같은 Code로서 간단히 구현될 수 있다.  
 ```python
