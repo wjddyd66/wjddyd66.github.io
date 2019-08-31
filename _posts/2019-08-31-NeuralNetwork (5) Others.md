@@ -141,9 +141,64 @@ ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천
 
 <br><br>
 
+#### Overfitting
+Overfitting 이란 문자 그대로 너무 과도하게 데이터에 대해 모델을 learning을 한 경우를 의미한다.  
+너무 과도하게 데이터에 대해 모델을 learning하게 되는 경우 새로운 Data가 Input으로 들어오게 되었을때 예측하지 못하는 결과를 초래할 수 있다.  
+즉, 제대로 설명을 못하는 Model(Traing Dataset에만 특화된)이 생기는 현상을 Overfitting이라고 얘기한다.  
+이러한 Overfitting된 Model의 결과를 보게 되면 아래그림과 같다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/91.PNG" height="250" width="600" /></div>
+Train Data에 대한 결과 예측력은 매우 높지만 새로운 데이터인 Test Data에 대한 결과 예측은 안좋은 모습을 보이는 것을 확인 할 수 있다.  
+
+이러한 Overfitting 방지 방법으로는 대표적으로 2가지가 존재하게 된다.  
+
+**1. 가중치감소**  
+가중치 감소란 학습 과정에서 큰 가중치에 대해서는 그에 상응하는 큰 패널티를 부과하여 오버피팅을 억제하는 방법이다.  
+**매우 큰 가중치가 존재**한다고 생각하면 **그 하나의 가중치에 의해서 Model이 결정**되므로 Overfitting된다고 생각할 수 있기 때문이다.  
+이러한 가중치 감소는 크게 2가지로 나뉘어 질 수 있다.  
+**1) L2 Regularization**: 가장 일반적인 regulization 기법입니다. 기존 손실함수(Lold)에 모든 학습파라메터의 제곱을 더한 식을 새로운 손실함수로 씁니다. 아래 식과 같습니다. 여기에서 1/2이 붙은 것은 미분 편의성을 고려한 것이고, λ는 패널티의 세기를 결정하는 사용자 지정 하이퍼파라메터입니다. 이 기법은 큰 값이 많이 존재하는 가중치에 제약을 주고, 가중치 값을 가능한 널리 퍼지도록 하는 효과를 냅니다.
+<p>$$W = [w_1, w_2, ... , w_n]$$</p>
+<p>$$L_{new} = L_{old} + \frac{\lambda}{2}(w_1^2 + w_2^2 + ... + w_n^2)$$</p>
+**2) L1 Regularization**: 기존 손실함수에 학습파라메터의 절대값을 더해 적용합니다. 이 기법은 학습파라메터를 sparse하게(거의 0에 가깝게) 만드는 특성이 있습니다.
+<p>$$L_{new} = L_{old} + \lambda (\left| w_1 \right| + \left| w_2 \right| + ... + \left| w_n \right|)$$</p>
+위의 공통된 식을 살펴보게 되면 **가중치가 큰 곳에 더 큰 Loss를 더해주는 것**이 핵심이다.  
+**Loss 가 커지게 되면** Gradinet Descent 를 생각하였을 때 더욱 더 빨리 최소값에 수렴하게 되고 빨리 수렴하게 되면 무한정으로 커지는 것을 막을 수 있다.  
+아래 그림은 **가중치 감소**를 적용하였을때의 그래프 이다.
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/92.PNG" height="250" width="600" /></div>
+
+**2. DropOut**
+Dropout은 **Overfitting**을 막기위한 방법으로 뉴럴 네트워크가 학습중일때, 랜덤하게 뉴런을 꺼서 학습함으로써, 학습이 학습용 데이터로 치우치는 현상을 막아준다.  
+
+<div><img src="https://t1.daumcdn.net/cfile/tistory/224A3941583ED6B109" height="250" width="600" /></div>
+
+그림출처:<a href="https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/dropout_layer.html">leonardoaraujosantos</a><br>
+
+위와 같은 DeopOut은 아래의 코드로서 간단히 구현 될 수 있다.  
+```python
+class Dropout:
+    def __init__(self, dropout_ratio=0.5):
+        self.dropout_ratio = dropout_ratio
+        self.mask = None
+    
+    def forward(self, x, train_flg=True):
+        if train_flg:
+            self.mask = np.random.rand(*x.shape) > self.dropout_ratio
+            return x * self.mask
+        else:
+            return x * (1.0 - self.dropout_ratio)
+    
+    def backward(self,dout):
+        return dout * self.mask
+```
+여기서 주목해야 하는 점은 **훈련 시에는 순전파 때마다 self.mask에 삭제할 뉴런을 False로 표시하는 것**이다.  
+**또한 순전파 때 신호를 통과시키는 뉴런은 역전파 때도 신호를 그대로 통과시키고, 순전파 때 통과시키지 않은 뉴런은 역전파 때도 신호를 차단한다.**  
+아래 그림은 **가중치 감소**를 적용하였을때의 그래프 이다.
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/93.PNG" height="250" width="600" /></div>
+이러한 Dropout기법은 **앙상블 기법**이라고도 불리게 된다.  
+앙상블 학습은 개별적으로 학습시킨 여러 모델의 출력을 평균을 내어 추론하는 방식이다.  
 
 <hr>
 참조:<a href="https://github.com/wjddyd66/DeepLearning/blob/master/Others.ipynb">원본코드</a><br>
+참조:<a href="https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/">ratsgo's 블로그</a>
 참조: <a href="https://sacko.tistory.com/43">sacko 블로그</a> <br>
 참조: 밑바닥부터 시작하는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
