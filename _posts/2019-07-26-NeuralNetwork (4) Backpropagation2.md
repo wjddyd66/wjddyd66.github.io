@@ -179,7 +179,94 @@ class Relu:
         return dx
 ```
 
+#### Affine 계층 구현하기
+신경망의 순전파 때 수행하는 행렬의 곱은 기하학에서는 **Affine Transformation** 어파인 변환 이라고 한다.  
+**Affine Transformation**의 Backpropagation의 가장 중요하게 생각해야 하는 점은 행렬의 차원을 맞춰주는 작업이 필요하다는 것이다.  
+아래와 같은 그림의 Affine계층의 Backpropagation을 살펴보자.  
+<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F994002375B98F73E0590F4" height="200" width="600" /></div>
+위에서의 + 는 행렬이 아닌 일반적인 상황에서도 같으나 주목해야 하는 계산은 **dot**이다.  
+**dot**은 행렬을 곱하는 계산이므로 차원을 생각해야 한다.  
+Y = WX + B의 식에서 각각의 행렬은 다음과 같다.  
+- Y: (1,3)
+- W: (2,3)
+- X: (1,2)
+- B: (1,3)
 
+따라서 WX의 차원은 (1,2) x (2,3) 으로서 (1,3)이 되어 Y의 차원과 같은 것을 알 수 있다.  
+여기서의 주목해야 하는 점은 **dot 연산의 BackPropagation**이다.  
+기존의 x 연산의 backpropagation을 생각하면 입력값의 위치를 서로 바꾼 다음 곱해서 흘려 보낸다.  
+위와 같은 연산을 생각해서 차원을 계산해보면  
+<p>$$\frac{\partial L}{\partial X}(1,2) = \frac{\partial L}{\partial Y}(1,3) W(2,3)$$</p>
+위와 같이 행렬의 차원이 맞지 않아서 연산을 할 수 없는 일이 발생하게 된다.  
+위와 같은 문제를 하기 위하여 W 행렬을 전치행렬로서 바꾸어서 계산하게 된다.  
+<p>$$\frac{\partial L}{\partial X}(1,2) = \frac{\partial L}{\partial Y}(1,3) W^T(3,2)$$</p>
+따라서 Affine 연산에서는 **dot**연산에서 행렬을 전치하여 곱해줘야 한다는 것을 알 수 있다.  
+
+#### 배치용 Affine 계층 구현하기
+위의 Affine 계층과 달라진 것은 입력과 출력의 차원이 1차원에서 N차원으로 늘어난 것 밖에 없다. 이러한 배치용 Affine 계층은 아래와 같은 그림으로서 나타낼 수 있다.  
+<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F994510365B98F75122F136" height="200" width="600" /></div>
+
+위에서 설명한 Affine 계층과 달라진 것은 없지만 주의해야 하는 점은 Bias를 계산할 때이다.  
+Bias의 행렬은 그대로 (1,3)을 유지하게 된다.  
+이러한 Bias의 Backpropagation을 진행하게 되면 다음과 같다.  
+<p>$$\frac{\partial L}{\partial B}(1,3) = \frac{\partial L}{\partial Y}(N,3)$$</p>
+
+위의 식을 보게 되면 Batch 용 Affine 계산시 Bias backpropagation을 진행하게 되면 행렬의 차원이 맞지 않는 것을 확인할 수 있다.  
+이러한 문제점은 **np.sum(dY, axis=0)**으로서 행렬의 차원을 (1, 3)으로서 N차원의 차원을 1차원으로 축소시키는 것을 통하여 해결하게 된다.  
+이러한 배치용 Affine 계층은 아래와 같은 코드로서 간단히 구현될 수 있다.  
+```python
+class Affine:
+    def __init__(self, W, b):
+        self.W = W
+        self.b = b
+        self.x = None
+        self.dW = None
+        self.db = None
+        
+    def forward(self, x):
+        self.x = x
+        out = np.dot(x, self.W) + self.b
+        
+        return out
+    
+    def backward(self, dout):
+        dx = np.dot(dout, self.W.T)
+        self.dW = np.dot(self.x.T, dout)
+        self.db = np.sum(dout, axis=0)
+        
+        return dx
+```
+
+#### Softmax-with-Loss 계층
+딥러닝에서는 학습과 추론 두 가지가 있다. 일반적으로 추론일 때는 Softmax 계층(layer)을 사용하지 않는다. Softmax 계층 앞의 Affine 계층의 출력을 점수(score)라고 하는데, 딥러닝의 추론에서는 답을 하나만 예측하는 경우에는 가장 높은 점수만 알면 되므로 Softmax 계층이 필요없다. 반면, 딥러닝을 학습할 때는 Softmax 계층이 필요하다.  
+이러한 Softmax를 통하여 분류하는 Network는 아래와 같은 그림으로서 나타낼 수 있다.  
+<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F995A16395B98F76820FB40" height="200" width="600" /></div>
+
+이러한 Softmax계층을 구현할때, 손실함수인 Cross Entropy를 포함하여 아래와 같이 Softmax-with_Loss 계층을 구현한다.  
+<div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F99EBF5395B98F7792B42CE" height="200" width="600" /></div>
+Softmax-with-Loss의 개념과 미분방법은 아래 링크를 참조하면 된다.  
+<a href="https://wjddyd66.github.io/tensorflow/2019/08/18/Logistic-Regression.html">Softmax-with-Loss</a><br>
+위의 링크에서도 알 수 있듯이 정답 레이블이 (0,1,0)일 경우 예측값이 (0.3,0.2,0.5)를 출력하게 되면 Backpropagation으로서 (0.3,-0.8(0.2-1),0.5)를 전달하게 되어 Parameter의 Update를 빠르게 진행 할 수 있는 것을 알 수 있다.  
+이러한 Softmax-with-Loss의경우 아래와 같은 Code로서 간단히 구현 될 수 있다.  
+```python
+class SoftmaxWithLoss:
+    def __init__(self):
+        self.loss = None  # 손실
+        self.y = None  # softmax의 출력
+        self.t = None  # 정답 레이블(one-hot)
+        
+    def forward(self, x, t):
+        self.t = t
+        self.y = softmax(x)
+        self.loss = cross_entropy_error(self.y, self.t)
+        return self.loss
+    
+    def backward(self, dout=1):
+        batch_size = self.shape[0]
+        dx = (self.y - self.t) / batch_size
+        
+        return dx
+```
 
 <hr>
 참조: <a href="https://excelsior-cjh.tistory.com/171">excelsior-cjh 블로그</a> <br>
