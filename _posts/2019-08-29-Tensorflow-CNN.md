@@ -1,37 +1,25 @@
 ---
 layout: post
-title:  "CNN"
-date:   2019-09-01 11:00:00 +0700
-categories: [DL]
+title:  "Tensorflow-CNN"
+date:   2019-08-29 11:00:00 +0700
+categories: [Tensorflow]
 ---
 
 ### CNN
+
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-CNN(Convolutional Neural Network)을 알기 전에 우선적으로 Convolution이란 무엇인지 알아야 한다.  
+**CNN** 은 딥러닝 이미지 처리 사용하는 인공신경망(Artificial Neural Network)이다.  
+**CNN에 해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
 
-### Convolution  
-Convolution이란 합성 곱이다. Convolution의 식은 아래와 같다.  
-<p>$$x(t) \ast h(t) = \int_{- \infty}^\infty x( \tau)t(x - \tau)d\tau$$</p>
-<div><img  src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Convolution_of_spiky_function_with_box2.gif" width="500" height="300"></div>
-그림출처:<a href="https://en.wikipedia.org/wiki/Convolution">위키피디아</a>  
-이러한 Convolution은 추력값이 어떠한 한 시점에만 영향을 받는 것이 아니라, 이전의 입력 값들에도 영향을 받기 때문에 단순한 곱셈이 아닌 합성곱 형태로 나타내는 것이다.  
-<span style ="color: red">**또한 결과값이 클 수록 서로 같은 성분을 많이 가지고 있는것을 위의 그림에서 알 수 있다.**</span>  
+1. <a href="https://wjddyd66.github.io/dl/2019/07/26/Perceptron.html">CNN이란</a>
+2. <a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(1)-Basic-&-Activation-Function.html">대표적인 CNN 종류</a>
 
-### CNN 구성
-위의 개념인 Convolution을 활용하여 Neural Network를 어떻게 구성하는 지에 대해 알아보자.  
+위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 CNN를 구현**해보자  
+<br><br>
 
-**(1) Kernel**  
-Image(Input)에 Weigth를 곱하는 과정에서 Convolution이 일어나게 된다.  
-CNN에서는 이러한 Weight를 **Kernel**이라고 한다.  
-대표적으로 많이 사용되는 Kernel은 아래와 같다.  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/99EC29495C5D8ACF1C?download" height="500" width="600" /></div>
-출처<a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">위키피디아</a><br>
-Image(Input) 28 x 28 이 망을 통과하는 과정을 살펴보자.  
-Kernel의 크기는 5 x 5라고 가정을 하게 되면  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/18.PNG" height="250" width="600" /></div>
-위의 이미지처럼 28 x 28 Image에 5x5의 Kernel를 1칸씩 Sliding하면서 Fetch 의 범위안의 값들을 서로 곱한뒤 더해주는 과정이 일어나게 된다.  
-이러한 과정을 **Convolution**이라고 불리게 된다.  
-<span style ="color: red">**Kernel이 몇칸씩 이동하는 지는 사용자가 지정할 수 있고 이러한 이동하는 간격은 Stride라고 한다.**</span>  
+### CNN Tnesorflow API
+CNN을 Tensorflow에서 구현하기 전에 CNN에서 사용하는 Tensorflow API에 대해 먼저 알아보자.  
+**1. Convolution**  
 Convolution연산은 아래와 같은 Tensorflow API로서 진행된다.  
 **Convolution Tensorflow API**  
 ```python
@@ -46,53 +34,7 @@ tf.nn.conv2d( input, filter, strides, padding, dilations=[1,1,1,1], name=None )
 - dilation: Dilation Factor
 
 
-<br><br>
-
-**(2) Activation map**  
-Convolution을 최종적으로 마친 값은 아래 그림과 같다.  
-이러한 결과를 **Activation map**이라고 불리게 된다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/19.PNG" height="250" width="600" /></div>
-28 x 28의 Image가 Convolution을 통해 최종적인 24 x 24의 Image로 축소하게 된다.  
-<span style ="color: red">**이미지가 축소되는 것을 방지하기 위하여 이미지 둘레에 특정 값을 둘러쌀 수 가 있는데 이를 Padding이라고 불리게 된다.**</span>  
-<br><br>
-하나의 Weight가 아닌 모든 Weight를 적용하게 된다면 아래 그림과 같이 일어나게 된다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/20.PNG" height="250" width="600" /></div>
- - 원본 Image: 28 x 28  
- - Weiht: 5 x 5 x 5(Weight의 개수)
- - Sliding: 1칸씩
- - 처리 결과: 24(28-5+1) x 28 x 5(Weight개수)
-
-<br><br>
-**(3) ReLU**  
-Feature Map에서 양의 값만을 활성화시키는 레이어이다.  
-Feature Map에서 특히나 두드러지는 특징을 다시 추출하는 역할을 한다.  
-Convolution의 특성을 위에서 이렇게 정의하였다.  
-<span style ="color: red">**결과값이 클 수록 서로 같은 성분을 많이 가지고 있는것을 위의 그림에서 알 수 있다.**</span>  
-즉, 큰 값일 수록 중요하기 때문에 5이상의 값에서 Gradinet값이 0으로 가까워지는 단점을 극복한 ReLU를 사용한다.  
-<a href="https://wjddyd66.github.io/ai/2019/07/11/A.I-Active-Function.html">ReLU 사용이유</a>  
-
-<br><br>
-**(4) Pooling**  
-위의 과정을 거친 다음 Pooling을 통해 값을 Reduce하는 과정이 일어난다.  
-
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/21.PNG" height="250" width="600" /></div>
- - 처리결과: 24 x 24  
- - Pooling: 2 x 2
- - Sliding: 2칸씩
- - 처리 결과: 12(24/2) x 12
-
-Pooling을 통해 24 x 24를 12 x 12인 반으로 Reduce하는 과정이 일어나게 된다.  
-Pooling의 종류로는 최댓값을 뽑아내는 max pooling, 평균값을 뽑아내는 mean pooling등 다양한 종류가 존재한다.  
-<span style ="color: red">**Pooling의 사용이유 크게 3가지로 나눌 수 있다.**</span>  
-1. 정발 꼭 필요한 데이터만 뽑아낼 수 있다.
-2. 데이터의 양이 작아진다.
-3. Feature가 많아질 경우 Overfitting발생을 예방하기 위해서이다.
-
-<br><br>
-이러한 최종적인 과정을 그림으로서 표현하면 아래와 같다.  
-
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/22.PNG" height="250" width="600" /></div>
-
+**2. Pooling**  
 Pooling연산은 아래와 같은 Tensorflow API로서 진행된다.  
 **Pooling Tensorflow API**  
 **Max Pooling**  
@@ -111,17 +53,7 @@ tf.nn.avg_pool;( value, ksize, strides, name=None )
 - ksize: Max Pooling 연산에 적용할 필터이며 [batch_filter,height_filter, width_filter, channel_filter]형태의 4-D Tensor만 가능
 - strides: 몇 Pixel씩 넘어갈지 지정
 
-
-**(5) Dropout**  
-Dropout은 **Overfitting**을 막기위한 방법으로 뉴럴 네트워크가 학습중일때, 랜덤하게 뉴런을 꺼서 학습함으로써, 학습이 학습용 데이터로 치우치는 현상을 막아준다.  
-
-<div><img src="https://t1.daumcdn.net/cfile/tistory/224A3941583ED6B109" height="250" width="600" /></div>
-그림출처:<a href="https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/dropout_layer.html">leonardoaraujosantos</a>  
-일반적으로 CNN에서는 이 Dropout Layer를 **Fully connected Network(모든 Filter 와 Pooling 작업을  한 과정) 뒤에 놓지만, 상황에 따라서는 Pooling Layer뒤**에 놓기도 한다.  
-아래 그림은 Dropout 적용과 적용하지 않은 Model사이의 예측 정확도를 비교한 결과이다.  
-
-<div><img src="https://t1.daumcdn.net/cfile/tistory/262B4941583ED6B20C" height="250" width="600" /></div><br>
-
+**3. Dropout**  
 Dropout연산은 아래와 같은 Tensorflow API로서 진행된다.  
 **Dropout Tensorflow API**  
 ```python
@@ -132,17 +64,6 @@ tf.nn.dropout( x, keep_prob, name=None )
 
 
 <br><br>
-
-**(6) Output(Softmax Function)**  
-최종적인 결과를 확인하기 위해서 **Softmax Function으로서 Classification**을하게 된다.  
-<a href="https://wjddyd66.github.io/ai/2019/07/11/A.I-Active-Function.html">Softmax자세한 내용</a><br>
-최종적인 CNN의 그림은 아래와 같다.  
-
-<div><img src="https://t1.daumcdn.net/cfile/tistory/23630641583ED6B01E" height="250" width="600" /></div><br>
-그림출처:<a href="https://bcho.tistory.com/1149">bcho 블로그</a>
-
-<br><br>  
-
 ### CNN BackPropagation
 CNN을 아래와 같은 그림으로 같단히 나타내어 보자.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/23.PNG" height="250" width="600" /></div>
@@ -160,6 +81,7 @@ SizeScaling같은 경우 Kronecker Product를 통하여 이루어지게 된다.
 위의 **Kronecker Product** 과정을 up()으로 간단하게 표현하게 되고 다시 식으로서 나타내게 되면 아래와 같다.  
 <p>$$\delta^{n} = W \ast \delta^{n+1} \circ up(g\prime(x))$$</p>
 
+<br><br>
 ### CNN 실제 구현
 텐퍼플로 라이브러리를 임포트
 ```python
@@ -618,10 +540,5 @@ Model 정확도: 0.984500
 
 <hr>
 참조:<a href="https://github.com/wjddyd66/Tensorflow/blob/master/CNN.ipynb">원본코드</a><br>
-참조: <a href="https://www.youtube.com/watch?v=cyPwxarw3XY&list=PL1H8jIvbSo1q6PIzsWQeCLinUj_oPkLjc&index=2">Chanwoo Timothy Lee Youtube</a> <br>
-참조: <a href="http://blog.naver.com/PostView.nhn?blogId=wisdom0719&logNo=221269493798&parentCategoryNo=&categoryNo=33&viewDate=&isShowPopularPosts=true&from=search">냠냠 블로그</a><br>
-참조:<a href="https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/dropout_layer.html">leonardoaraujosantos</a><br>
-참조: <a href="https://www.youtube.com/watch?v=HfPDfGv0ggI&list=PL1H8jIvbSo1q6PIzsWQeCLinUj_oPkLjc&index=5">Chanwoo Timothy Lee Youtube</a> <br>
-참조:<a href="https://bcho.tistory.com/1149">bcho 블로그</a><br>
 참조:텐서플로로 배우는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
