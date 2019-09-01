@@ -11,8 +11,9 @@ categories: [Tensorflow]
 **CNN** 은 딥러닝 이미지 처리 사용하는 인공신경망(Artificial Neural Network)이다.  
 **CNN에 해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
 
-1. <a href="https://wjddyd66.github.io/dl/2019/07/26/Perceptron.html">CNN이란</a>
-2. <a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(1)-Basic-&-Activation-Function.html">대표적인 CNN 종류</a>
+1. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(1)-CNN%EC%9D%B4%EB%9E%80.html">CNN이란</a>
+2. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(2)-CNN%EC%A2%85%EB%A5%98.html">CNN종류</a>
+3. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(3)-CNN%EA%B5%AC%ED%98%84.html">CNN구현</a>
 
 위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 CNN를 구현**해보자  
 <br><br>
@@ -64,24 +65,7 @@ tf.nn.dropout( x, keep_prob, name=None )
 
 
 <br><br>
-### CNN BackPropagation
-CNN을 아래와 같은 그림으로 같단히 나타내어 보자.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/23.PNG" height="250" width="600" /></div>
-위와 같은 CNN에서 ReLU와 Polling과정을 하나의 Hidden Layer라고 생각을 하면 다음과 같은 식을 얻을 수 있다.  
-<p>$$\delta^{n} = W \delta^{n+1} \ast g\prime(x) $$</p>
-하지만 Weigt를 곱해주는 것은 Convolution을 통하여 이루어지기 때문에 위의 식은 아래와 같이 표현할 수 있다.  
-<p>$$\delta^{n} = W \ast \delta^{n+1} \circ g\prime(x)   (g(x): ReLu Function)$$</p>
-<span style ="color: red">**CNN에서는 Pooling과정을 커치기 때문에 서로 Size가 달라서 SizeScaling 과정이 필요하게 된다.**</span>  
-SizeScaling같은 경우 Kronecker Product를 통하여 이루어지게 된다.  
-아래 과정은 **Kronecker Product**의 과정이다.  
-<p>$$\begin{bmatrix} 1 & 2\\3 & 4 \end{bmatrix} x  \begin{bmatrix} 4 & 5\\6 & 7 \end{bmatrix} = \begin{bmatrix} 1x4 & 2x4 & 1x5 & 2x5 \\ 3x5 & 4x5 & 3x5 & 4x5 \\ 1x6 & 2x6 & 1x6 & 2x6 \\ 1x7 & 2x7 & 1x7 & 2x7  \end{bmatrix}$$</p>
-이 된다.  
-이러한 **Kronecker Product**을 CNN에서 사용할때 1의 원소를 가지고 있는 행렬로서 SizeScaling을 하게 되면 아래와 같은 식이 된다.  
-<p>$$\begin{bmatrix} a & b\\c & d \end{bmatrix} x  \begin{bmatrix} 1 & 1\\1 & 1 \end{bmatrix} = \begin{bmatrix} a & a & a & a \\ b & b & b & b \\ c & c & c & c \\ d & d & d & d  \end{bmatrix}$$</p>
-위의 **Kronecker Product** 과정을 up()으로 간단하게 표현하게 되고 다시 식으로서 나타내게 되면 아래와 같다.  
-<p>$$\delta^{n} = W \ast \delta^{n+1} \circ up(g\prime(x))$$</p>
 
-<br><br>
 ### CNN 실제 구현
 텐퍼플로 라이브러리를 임포트
 ```python

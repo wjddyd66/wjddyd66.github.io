@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "RNN"
+title:  "Tensorflow-RNN"
 date:   2019-08-29 12:00:00 +0700
 categories: [Tensorflow]
 ---
