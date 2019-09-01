@@ -195,7 +195,7 @@ class Dropout:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/93.PNG" height="250" width="600" /></div>
 이러한 Dropout기법은 **앙상블 기법**이라고도 불리게 된다.  
 앙상블 학습은 개별적으로 학습시킨 여러 모델의 출력을 평균을 내어 추론하는 방식이다.  
-
+<br><br>
 #### 적절한 하이퍼파라미터 값 찾기
 기본적인 신경망에는 하이퍼파라미터가 다수 등장한다.  
 하이퍼파라미터란 뉴런 수, 배치 크기, 매개변수 갱신 시의 학습률과 가중치 감소등 신경망에서 정해져있는 값이 아닌 사용자가 직접 값을 넣어야 하는 변수를 의미한다.  
@@ -225,7 +225,7 @@ class Dropout:
 
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/94.PNG" height="250" width="600" /></div>
-위의 그림으로서는 가중치 감소 계수의 범위를 <span>$$10^{-8} ~ 10^{-4}$$</span>, 학습률의 범위를 <span>$$10^{-6} ~ 10^{-2}$$</span>로 하여 실험한 결과이다.  
+위의 그림으로서는 가중치 감소 계수의 범위를 <span>$$10^{-8}$$</span> ~ <span>$$10^{-4}$$</span>, 학습률의 범위를 <span>$$10^{-6}$$</span> ~ <span>$$10^{-2}$$</span>로 하여 실험한 결과이다.  
 
 위의 그림에 대한 Best5를 뽑게되면 아래와 같다.  
 ```code
@@ -240,7 +240,7 @@ Best-5(val acc:0.77) | lr:0.008334498605369918, weight decay:4.621838061557274e-
 
 <hr>
 참조:<a href="https://github.com/wjddyd66/DeepLearning/blob/master/Others.ipynb">원본코드</a><br>
-참조:<a href="https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/">ratsgo's 블로그</a>
+참조:<a href="https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/">ratsgo's 블로그</a><br>
 참조: <a href="https://sacko.tistory.com/43">sacko 블로그</a> <br>
 참조: 밑바닥부터 시작하는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
