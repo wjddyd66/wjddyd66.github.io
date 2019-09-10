@@ -31,11 +31,9 @@ categories: [DL]
 이러한 One-hot-Encoding은 하나의 원소만 1이고 나머지의 원소는 0이므로 Sparse하다고 표현된다.  
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/81.PNG" height="250" width="600" /></div>
-
 이러한 Sparse한 표현 형태를 Dense한 **임베딩 행렬**을 곱해서 아래와 같이 나타낼 수 있다.  
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/82.PNG" height="250" width="600" /></div>
-
 이러한 Dense한 Embedding은 다음과 같은 3가지의 장점을 가지게 된다.  
 
 1. 데이터의 표현 형태를 Sparse한 형태에서 Dense한 형태로 바꿔서더욱 효율적인 학습이 가능하도록 만들어 준다.
@@ -132,7 +130,6 @@ Loss Function을 미분하는 과정은 아래와 같다.
 <p>$$ = -t\frac{1}{y}y(1-y) + (1-t)\frac{1}{1-y}y(1-y)$$</p>
 <p>$$= -t(1-y) + (1-t)y$$</p>
 <p>$$= y-t$$</p>
-
 위의 과정만으로 Loss를 측정해서 학습을 진행할 경우 Sigmoid의 Parameter라 긍정적인 예인 "say"에 대해서만 학습하게 된다.  
 
 정확한 분류를 위해서는 긍정적인인 예 "say"에 대해서는 출력을 1에 가깝게 만들고 "say"외의 모든 단어에 대해서는 0 으로서 출력값이 나오게 학습을 하는것이 목표이다.  
@@ -347,17 +344,83 @@ class CBOW:
 <br>
 **Model Train**  
 ```python
+# 학습을 위한 함수
+import numpy
+import time
+import matplotlib.pyplot as plt
+from common import config
+import pickle
+from common.util import clip_grads
+from common.trainer import Trainer
+from common.optimizer import Adam
+from common.util import create_contexts_target, to_cpu, to_gpu
+from dataset import ptb
+config.GPU=True
 
+# 하이퍼 파라미터 설정
+window_size = 5
+hidden_size = 100
+batch_size = 100
+max_epoch = 10
+
+# 데이터 읽기 + target, contexts 만들기
+corpus, word_to_id, id_to_word = ptb.load_data('train')
+vocab_size = len(word_to_id)
+
+contexts, target = create_contexts_target(corpus, window_size)
+
+# 모델 등 생성 - CBOW or SkipGram
+model = CBOW(vocab_size, hidden_size, window_size, corpus)
+# model = SkipGram(vocab_size, hidden_size, window_size, corpus)
+optimizer = Adam()
+trainer = Trainer(model,optimizer)
+
+# 학습 시작
+trainer.fit(contexts, target, max_epoch, batch_size, eval_interval = 3000) # eval_interval=500
+trainer.plot()
+
+# 나중에 사용할 수 있도록 필요한 데이터 저장
+word_vecs = model.word_vecs
+if config.GPU:
+    word_vecs = to_cpu(word_vecs)
+params = {}
+params['word_vecs'] = word_vecs.astype(np.float16)
+params['word_to_id'] = word_to_id
+params['id_to_word'] = id_to_word
+pkl_file = 'cbow_params.pkl'  # or 'skipgram_params.pkl'
+with open(pkl_file, 'wb') as f:
+    pickle.dump(params, f, -1)
 ```
 
 **Model 평가**  
 ```python
+from common.util import most_similar, analogy
 
+pkl_file = 'cbow_params.pkl'
+
+with open(pkl_file, 'rb') as f:
+    params = pickle.load(f)
+    word_vecs = params['word_vecs']
+    word_to_id = params['word_to_id']
+    id_to_word = params['id_to_word']
+
+# 가장 비슷한(most similar) 단어 뽑기
+querys = ['you', 'year', 'car', 'toyota']
+for query in querys:
+    most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
+
+# 유추(analogy) 작업
+print('-'*50)
+analogy('king', 'man', 'queen',  word_to_id, id_to_word, word_vecs)
+analogy('take', 'took', 'go',  word_to_id, id_to_word, word_vecs)
+analogy('car', 'cars', 'child',  word_to_id, id_to_word, word_vecs)
+analogy('good', 'better', 'bad',  word_to_id, id_to_word, word_vecs)
 ```
 ```code
 
 ```
 <hr>
-참조: <a href="https://github.com/wjddyd66/DeepLearning2/blob/master/word2vec.ipynb">원본코드</a> <br>
+참조: <a href="https://github.com/wjddyd66/DeepLearning2/blob/master/Fast_word2vec.ipynb">원본코드</a> <br>
 참조: <a href="https://taeu.github.io/nlp/ch4_word2vec_faster_np/">taeu 블로그</a><br>
+참조: 밑바닥부터 시작하는 딥러닝2
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
