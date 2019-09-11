@@ -7,141 +7,20 @@ categories: [Tensorflow]
 
 ### RNN
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-RNN(Recurrent Neural Network)이란 **순차적인 정보**를 처리하는 데 있다.  
-즉, 이전 까지 반복하였던 **상관없는 두 변수간의 값으로 인한 정보를 처리하는 것이 아닌 한 정보에 대한 특정 Domain의 값을 나타내는 정보를 처리하는 것** 이다.  
-예를 들어, 문장에서 다음에 나올 단어를 추측하고 싶다면 이전에 나온 단어들을 아는 것이 큰 도움이 될 것이다.  
-또한 집의 가격이 어떻게 변할지에 대하여 한 집의 가격을 계속 관찰하게 되면 집의 가격이 **시간(Domain)에 따라 어떻게 변하는지 예측**할 수 있을 것이다.  
-위의 예시가 가능한 이유는 동일한 Task에 대하여 **하나의 Hidden Layer**를 계속하여 Trainning 하기 떄문이다.  
-출력 결과는 이전의 계산 결과에 영향을 받기 때문에 RNN은 현재지 계산된 결과에 대한 "메모리" 정보를 갖고 있다고 볼 수도 있다.  
-RNN의 구조는 아래와 같이 나타낸다.  
-<div><img  src="http://www.wildml.com/wp-content/uploads/2015/09/rnn.jpg" width="100%" height="100%"></div>
-- <span>$$x_t$$</span>는 시간 스텝(time step) t 에서의 입력값이다.
-- <span>$$x_t$$</span>는 시간 스텝(time step) t 에서의 Hidden state이다. 네트워크의 "메모리" 부분으로서, 이전 시간의 스텝의 hidden state 값과 현재 시간 스텝의 입력값에 의해 계산된다.  
-<span>$$s_t = f(Ux_t + Ws_{t-1}) \text{   f는 tanh or ReLU}$$</span>
-- <span>$$o_t$$</span>는 시간 스텝(time step)에서의 출력값이다. 예를 들어 다음 단어를 추축하고 싶다면 단어 수만큼의 차원의 확률 벡터가 될 것이다. <span>$$o_t = softmax(Vs_t)$$</span>
+**RNN** 은 딥러닝 자연어 처리 사용하는 인공신경망(Artificial Neural Network)이다.  
+**RNN에 해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
 
-몇 가지 짚어두고 넘어갈 점이 있다.  
-- Hidden state s_t는 네트워크의 메모리라고 생각할 수 있다. - s_t는 과거의 시간 스텝들에서 일어난 일들에 대한 정보를 전부 담고 있고, 출력값 o_t는 오로지 현재 시간 스텝 t의 메모리에만 의존한다. 하지만 위에서 잠깐 언급했듯이, 실제 구현에서는 너무 먼 과거에 일어난 일들은 잘 기억하지 못한다.  
-- 각 layer마다의 파라미터 값들이 전부 다 다른 기존의 deep한 신경망 구조와 달리, RNN은 모든 시간 스텝에 대해 파라미터 값을 전부 공유하고 있다 (위 그림의 U, V, W). 이는 RNN이 각 스텝마다 입력값만 다를 뿐 거의 똑같은 계산을 하고 있다는 것을 보여준다. 이는 학습해야 하는 파라미터 수를 많이 줄여준다.  
-- 위 다이어그램에서는 매 시간 스텝마다 출력값을 내지만, 문제에 따라 달라질 수도 있다. 예를 들어, 문장에서 긍정/부정적인 감정을 추측하고 싶다면 굳이 모든 단어 위치에 대해 추측값을 내지 않고 최종 추측값 하나만 내서 판단하는 것이 더 유용할 수도 있다. 마찬가지로, 입력값 역시 매 시간 스텝마다 꼭 다 필요한 것은 아니다. RNN에서의 핵심은 시퀀스 정보에 대해 어떠한 정보를 추출해 주는 hidden state이기 때문이다.  
-출처: <a href="http://aikorea.org/blog/rnn-tutorial-1/">aikorea</a><br>
+1. <a href="hhttps://wjddyd66.github.io/dl/2019/09/05/%EC%9E%90%EC%97%B0%EC%96%B4%EC%99%80-%EB%8B%A8%EC%96%B4%EC%9D%98-%EB%B6%84%EC%82%B0-%ED%91%9C%ED%98%84.html">자연어와 단어의 분산 표현</a>
+2. <a href="https://wjddyd66.github.io/dl/2019/09/05/word2vec.html">word2vec</a>
+3. <a href="https://wjddyd66.github.io/dl/2019/09/06/Fast-word2vec.html">Fast word2vec</a>
+4. <a href="https://wjddyd66.github.io/dl/2019/09/09/RNN.html">RNN</a>
 
+위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 RNN를 구현**해보자  
+<br><br>
 
-
-### RNN BackPropagation  
-RNN을 아래와 같은 그림으로 같단히 나타내어 보자.  
-<div><img src="http://www.wildml.com/wp-content/uploads/2015/10/rnn-bptt1.png" height="250" width="600" /></div><br>
-
-위와 같은 그림에서 다음과 같은 식을 정의하고 가자  
-Activation Function: tanh  
-Classifier: Softmax  
-<p>$$s_t = tanh(Ux_t + Ws_{t-1})$$</p>
-<p>$$\hat{y_t} = softmax(Vs_t) $$</p>
-<p>$$y_t \text{: 시간 스텝 t 에서 실제 단어, } \hat{y_t} \text{: 예측값}$$</p>
-Loss Function: Cross Entropy  
-<p>$$E(y_t,\hat{y_t}) = -y_t log(\hat{y_t})$$</p>
-<p>$$E(y,\hat{y}) = -\sum_t{E(y_t,\hat{y_t})}$$</p>
-<p>$$= -\sum_t{-y_t log(\hat{y_t})}$$</p>
-
-**Parameter U, V, W 에 대한 Error 의 Gradient 를 계산하고 SGD를 이용하여 Parameter를 최적화 하여 Loss를 적게 만드는 것이 목표이다.**  
-
-**1. Parameter V**  
-<p>$$\frac{\partial E_3}{\partial V} = \frac{\partial E_3}{\partial \hat{y_3}} \frac{\partial \hat{y_3}}{\partial V}$$</p>
-<p>$$= \frac{\partial E_3}{\partial \hat{y_3}} \frac{\partial \hat{y_3}}{\partial z_3} \frac{\partial z_3}{\partial V} $$</p>
-<p>$$= (\hat{y_3} - y_3) \bigotimes s_3$$</p>
-<p>$$ z_3 = Vs_3$$</p>
-위의 식에서 <span>$$\frac{\partial E_3}{\partial \hat{y+3}} \frac{\partial \hat{y_3}}{\partial z_3}$$</span>의 경우 Softmax-with-Loss의 역전파로서 계산 과정을 건너 뛰었다.  
-<a href="https://wjddyd66.github.io/tensorflow/2019/08/18/Logistic-Regression.html">Softmax-with-Loss의 역전파</a><br>
-
-위의 식에서 주목해야 할 점은 **<span>$$\frac{\partial E_3}{\partial V}$$</span>은 현재 시간 스탭의 <span>$$\hat{y_3}, y_3, s_3$$</span>**에만 의존한다는 것이다.  
-즉 **V Parameter를 갱신하는 것은 현재 시간 스탭의 값만 알아도 수행할 수 있다는 점** 이다.  
-
-**2. Parameter W, U**  
-**W, U**에 대해서 정리하면 **V**처럼 **현재 시간 스탭의 값만 알아도 수행할 수 없다는 것**을 알 수 있다.  
-아래의 식으로서 살펴보자  
-<p>$$\frac{\partial E_3}{\partial W} = \frac{\partial E_3}{\partial \hat{y_3}} \frac{\partial \hat{y_3}}{\partial s_3} \frac{\partial s_3}{\partial W}$$</p>
-여기서 <span>$$s_t = tanh(Ux_t + Ws_{t-1})$$</span>이므로
-<span>$$s_3$$</span>는 <span>$$s_2$$</span>에 의존하고 <span>$$s_2$$</span>는 <span>$$s_1$$</span>에 의존하는 현상이 발생하게 된다.  
-이러한 상황으로 인하여 **Chain Rule**이 계속해서 이어지는 것을 알 수 있다.  
-
-아래 식을 살펴보게 되면 **Chain Rule**을 적용한 식을 알 수 있다.  
-<p>$$\frac{\partial E_3}{\partial W} = \sum_{k=0}^{3} \frac{\partial E_3}{\partial \hat{y_3}} \frac{\partial \hat{y_3}}{\partial s_3} \frac{\partial s_3}{\partial s_k} \frac{\partial s_k}{\partial W} $$</p>
-위의 식을 살펴보게 되면 **각 시간 스텝이 gradient에 기여**하는 것을 전부 더해준다.  
-즉, W는 우리가 현재 처리중인 출력 부분까지의 모든 시간 스템에서 사용되기 때문에, t=3 부터 t=0 까지 gradient들을 전부 backpropagat해 주어야 한다.  
-<div><img src="http://www.wildml.com/wp-content/uploads/2015/10/rnn-bptt-with-gradients.png" height="250" width="600" /></div><br>
-위를 살펴보게 되면 기존 Neural Network에서 적용되는 backpropagate의 과정과 같은 것을 알 수 있다.  
-<p>$$z_t = Ux_t + WS_{t-1} \text{이라고 치환}$$</p>
-<p>$$\delta_3^3 = \frac{\partial E_3}{\partial z_3}$$</p>
-<p>$$ = \frac{\partial E_3}{\partial \hat{y_3}} \frac{\partial \hat{y_3}}{\partial z_3}$$</p>
-<p>$$\text{softmax_with_crossentropy backpropagation을 적용하면}$$</p>
-<p>$$ = (\hat{y_3} - y_3)s_3$$</p>  
-
-<p>$$\delta_2^3 = \frac{\partial E_3}{\partial z_2}$$</p>
-<p>$$ = \frac{\partial E_3}{\partial z_3} \frac{\partial z_3}{\partial s_2} \frac{\partial s_2}{\partial z_2}$$</p>  
-<p>$$= \delta_3^3 \frac{\partial z_3}{\partial s_2} \frac{\partial s_2}{\partial z_2}$$</p>  
-
-<p>$$\delta_1^3 = \frac{\partial E_3}{\partial z_1}$$</p>
-<p>$$ = \frac{\partial E_3}{\partial z_2} \frac{\partial z_2}{\partial s_1} \frac{\partial s_1}{\partial z_1}$$</p>  
-<p>$$= \delta_2^3 \frac{\partial z_2}{\partial s_1} \frac{\partial s_1}{\partial z_1}$$</p>  
-
-위의 식을 유도하였으면 아래와 같은 식을 최종적으로 얻어 낼 수 있다.  
-i 는 특정 시간 스탭이라고 하면  
-<p>$$\frac{\partial E_3}{\partial U} = \delta_i^3 x_i^{T}$$</p>
-<p>$$\frac{\partial E_3}{\partial W} = \delta_i^3 s_{i-1}^{T}$$</p>
-RNN이므로 계산된 값을 모두 더해주는 것을 말고는 Neural Network의 Backpropagation과 같은 식이 유도되는 것을 알 수 있다.  
-
-### Long Term Dependency
-RNN의 장점 중 하나는 이전 정보를 현재 작업으로 연결할 수 있다는 점 이다.(Memory 사용)  
-하지만 이러한 장점으로 인한 단점이 생기게 되는 것이 **Long Term Dependency**이다.  
-첫번째의 예를 생각해보자.  
-우리가 현재 시점의 뭔가를 얻기 위해서 멀지 않은 최근의 정보만 필요로 할 때도 있다. 예를 들어 이전 단어들을 토대로 다음에 올 단어를 예측하는 언어 모델을 생각해 보자. 만약 우리가 "the clouds are in the sky"에서의 마지막 단어를 맞추고 싶다면, 저 문장 말고는 더 볼 필요도 없다. 마지막 단어는 sky일 것이 분명하다. 이 경우처럼 필요한 정보를 얻기 위한 시간 격차가 크지 않다면, RNN도 지난 정보를 바탕으로 학습할 수 있다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/79.PNG" height="250" width="600" /></div>
-<br>
-두번째의 예를 생각해보자.  
-하지만 반대로 더 많은 문맥을 필요로 하는 경우도 있다. "I grew up in France... I speak fluent French"라는 문단의 마지막 단어를 맞추고 싶다고 생각해보자. 최근 몇몇 단어를 봤을 때 아마도 언어에 대한 단어가 와야 될 것이라 생각할 수는 있지만, 어떤 나라 언어인지 알기 위해서는 프랑스에 대한 문맥을 훨씬 뒤에서 찾아봐야 한다. 이렇게 되면 필요한 정보를 얻기 위한 시간 격차는 굉장히 커지게 된다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/80.PNG" height="250" width="600" /></div>
-<br>
-이러한 장기 의존성의 문제를 해결하기 위해 나온 RNN을 활용한 Model이 **LSTM**이다.
-<br><br>  
-
-### LSTM
-RNN이 많이 사용되는 자연어 처리에서의 예를 들어보자.  
-먼저 텍스트 데이터는 이미지와는 다르게 서로 인접한 단어와 Discrete 하다는 특성을 갖는다. 이는 특정단어또는 문장이 주변부 단어 또는 문장과 연관성이 높을 수도 있고 낮을 수도 있음을 의미하며 생성형 요약을 구현하기 위해서는 문장의 길이가 길어져도 각각의 정보를 오래 기억할 수 있어야한다.  
-예를 들어“나는 학교에서 밥을 영희와 먹었다.”라는 문장에서 주어인 ‘나’와 ‘영희’는 위치적으로서로가장 떨어져 먼 거리에 위치해있다.  
-그런데 주어인 나와 영희의 관계가 가족이라면 나머지 단어들 ‘학교’, ‘밥’ 등 보다 ‘나’는 ‘영희’와 연관성이 더 높다.  
-신경망은 이 문장을 받아들일때 ‘나’ 라는 정보를 멀리 떨어진 ‘영희’ 라는 정보와 연관 지을 수있어야한다.  
-이러한 텍스트가 갖는 특징에대한 방안으로 Hidden Layer에 LSTM 을 사용하게 된다.  
-이러한 LSTM은 아래와 같은 그림으로서 표현할 수 있다.  
-<div><img src="http://i.imgur.com/jKodJ1u.png" height="100%" width="100%" /></div>
-
-**LSTM 은 장기 의존성을 해결하기 위한 방안이다. LSTM 은 Forget gate와 Input gate가 특징으로 Forget gate는 과거 정보를 잊기 위한 게이트이다. Input gate 는 현재 정보를 기억하기 위한 게이트이다.**  
-두 게이트 모두 앞에 σ(시그모이드)를곱하여 0~1사이에값을 가지게 된다.  
-σ(시그모이드)를 곱한 Forget gate 와Input gate를 통해 과거의 정보와 현재의 정보를 얼마나 기억할 것인가를 정하여 장기 의존성의 문제를 해결한다.  
-이러한 Forget gate와 Input gate는 아래와 같은 그림으로서 나타낼 수 있다.  
-<div><img src="http://i.imgur.com/MPb3OvZ.png" height="100%" width="100%" /></div>
-- Forget gate: <span>$$f_t = \sigma (W_{xh_f}x_t +W_{hh_f}h_{t-1} + b_{h_f})$$</span>
-- Input gate: <span>$$i_t = \sigma (W_{xh_i}x_t +W_{hh_i}h_{t-1} + b_{h_i})$$</span>
-<br><br>  
-
-### 임베딩(Embedding)
-**Embedding**이란 Machine Learning Algorithm에서 자연어 처리 문제를 다룰 떄 널리 사용되는 기법이다. 
-이전 까지 사용하였던 방법은 One-hot-Encoding 이다.  
-**One-hot-Encoding**이란 단어 집합의 크기를 벡터의 차원으로 하고, 표현하고 싶은 단어의 인덱스에 1의 값을 부여하고, 다른 인덱스에는 0을 부여하는 단어의 벡터 표현 방식이다.  
-이러한 방식은 크게 2가지의 단점이 생기게 된다.  
-1. 단어의 개수가 늘어날 수록, 벡터를 저장하기 위해 필요한 공간이 계속 늘어난다.
-2. 단어의 유사성을 전혀 표현하지 못한다.
-
-이러한 One-hot-Encoding은 하나의 원소만 1이고 나머지의 원소는 0이므로 Sparse하다고 표현된다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/81.PNG" height="250" width="600" /></div>
-
-이러한 Sparse한 표현 형태를 Dense한 **임베딩 행렬**을 곱해서 아래와 같이 나타낼 수 있다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/82.PNG" height="250" width="600" /></div>
-이러한 Dense한 Embedding은 다음과 같은 3가지의 장점을 가지게 된다.  
-1. 데이터의 표현 형태를 Sparse한 형태에서 Dense한 형태로 바꿔서더욱 효율적인 학습이 가능하도록 만들어 준다.
-2. 데이터의 차원을 축소해서 연산량을 감소시킨다.
-3. 단어 사이의 유사성을 표현할 수 있다.
-
-위와 같은 Embedding의 과정은 아래의 Tensorflow API로서 구현될 수 있다.  
+### Tensorflow API(임베딩(Embedding))
+**Embedding**이란 Machine Learning Algorithm에서 자연어 처리 문제를 다룰 떄 널리 사용되는 기법이다.  
+Embedding의 과정은 아래의 Tensorflow API로서 구현될 수 있다.  
 **Embedding Tensorflow API**  
 ```python
 tf.nn.embedding_lookup(params, ids, name=None)
@@ -246,7 +125,6 @@ Char-RNN은 하나의 글자를 RNN의 입력값으로 받고, RNN은 다음에 
 Char-RNN의 출력값 형태는 학습에 사용하는 전체문자 집합에 대한 SOftmax 출력값이 된다.  
 
 <div><img src="http://tommymullaney.com/img/google-hangouts-feature.png" height="250" width="600" /></div>
-
 <br>
 먼저 Data 전처리를 위한 과정인 **utils.py**를 살펴보자  
 
@@ -726,10 +604,5 @@ Canto: n
 ```
 <hr>
 참조:<a href="https://github.com/wjddyd66/Tensorflow/tree/master/RNN">원본코드</a><br>
-참조: <a href="https://www.youtube.com/watch?v=4jgHzgxBnGY&list=PL1H8jIvbSo1q6PIzsWQeCLinUj_oPkLjc&index=15">Chanwoo Timothy Lee Youtube</a> <br>
-참조: <a href="http://aikorea.org/blog/rnn-tutorial-1/">aikorea</a><br>
-참조: <a href="https://docs.google.com/document/d/1M25vrmJHp21lK-C8Xhg42zFzXke9_NrvhHBqH2qISfY/edit#">Colah Blog</a>
-참조:<a href="https://ratsgo.github.io/natural%20language%20processing/2017/03/09/rnnlstm/">ratsgo Blog</a><br>
-참조:<a href="https://dreamgonfly.github.io/machine/learning,/natural/language/processing/2017/08/16/word2vec_explained.html">dreamgonfly Blog</a><br>
 참조:텐서플로로 배우는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
