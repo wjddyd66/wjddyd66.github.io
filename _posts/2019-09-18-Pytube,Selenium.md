@@ -98,17 +98,17 @@ if __name__ == "__main__":
 
 - Youtube Download: python3 Crawling.py [URL] [Destination] [--1 or Youtube]
 위의 코드로서 명령어를 실행하게 되면 Destination에 URL의 Youtube 동영상이 .mp4형식으로 저장된다.  
-Example) <code>python3 Crawling.py https://www.youtube.com/watch?v=KS_u69yEP00 ./youtube_download --1</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/1_result.PNG" height="100" width="400" /></div>
+Example) <code>python3 Crawling.py https://www.youtube.com/watch?v=KS_u69yEP00 ./youtube_download --1</code><br><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/1_result.PNG" height="100" width="400" />
 <br>
 
 - Vscode MarketPlace Download: python3 Crawling.py [URL] [Destination] [--2 or VscodeMarketplace]
 위의 코드로서 명령어를 실행하게 되면 Destination에 URL의 Vscode MarketPlace에서 제공하는 API가 다운 가능하다.  
-Example) <code>python3 Crawling.py https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker ./docker_download --2</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2_result.PNG" height="100" width="400"/></div>
+Example) <code>python3 Crawling.py https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker ./docker_download --2</code><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2_result.PNG" height="100" width="400"/>
 <br>
 
 - Download images by keyword: python3 Crawling.py [Keyword] [Destination] [--3 or Download images by keyword]
 위의 코드로서 명령어를 실행하게 되면 Destination에 명령어로 입력한 Keyword에 관한 Image가 Naver 와 Google에서 Crawling하여 가져온다.  
-Example) <code>python3 Crawling.py smile ./image_download --3</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="300" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="300" /></div>
+Example) <code>python3 Crawling.py smile ./image_download --3</code><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="300" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="300" />
 
 
 - GoogleDrive Download: python3 Crawling.py [URL]  [--4 or GoogleDrive]  
@@ -119,7 +119,7 @@ Example) <code>python3 Crawling.py http://bit.ly/2U7ttYT  --4</code>
 
 - Auto Login: python3 Crawling.py [URL(Naver or Google)] [ID] [Passward] [--5 or Auto Login]
 위의 코드로서 명령어를 실행하게 되면 Naver or Google에 입력한 계정으로 접속할 수 있다.  
-Example) <code>python3 Crawling.py https://www.naver.com ID Passward --5</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="100" width="400" /></div>
+Example) <code>python3 Crawling.py https://www.naver.com ID Passward --5</code><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="100" width="400" />
 
 <br><br>
 ### Pytube
@@ -236,8 +236,8 @@ driver.save_screenshot('image.png')
 Vscode MarketPlace Download를 받기위하여 https://marketplace.visualstudio.com/ 에 접속하여 받고싶은 API를 다운받기 위하여 Install을 누르면 다운이 안되는것을 확인할 수 있다.  
 직접 다운받을수 있는 Link를 알기 위하여 아래와 같은 작업이 필요하다.  
 1. Vscode Market Place접속후 API검색
-2. 해당 Page의 More Info, API 이름 가져오기<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs1.PNG" height="400" width="500" /></div>
-3. More Info에서 원하는 정보 가져오기<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs2.PNG" height="400" width="500" /></div>
+2. 해당 Page의 More Info, API 이름 가져오기<br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs1.PNG" height="400" width="500" />
+3. More Info에서 원하는 정보 가져오기<br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs2.PNG" height="400" width="500" />
 4. Unique Identifier를 . 을 기준으로 나누어서 publisher . extensionname으로서 구별하기
 5. Download URL아래와 같이 재조합
 ```code
@@ -302,8 +302,8 @@ Keyword와 Destination을 입력받고 해당 Keyword의 이미지를 가져오�
 Image를 받는 사이트의 경우 한국에서 유명한 **네이버**와 전세계적으로 유명한 **Google** 두 사이트를 사용하였다.  
 
 **네이버 Image Crawling 과정**  
-1. Naver 접속후 Keyword 검색<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver1.PNG" height="400" width="500" /></div>
-2. Xpath를 사용하므로 다음과 같이 이미지 DIV 의 위치가 바뀔수 있는것 생각하여 선택<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver2.PNG" height="400" width="500" /></div>
+1. Naver 접속후 Keyword 검색<br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver1.PNG" height="400" width="500" />
+2. Xpath를 사용하므로 다음과 같이 이미지 DIV 의 위치가 바뀔수 있는것 생각하여 선택<br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver2.PNG" height="400" width="500" />
 3. 많은 사진을 가져오기 위하여 스크롤 작업
 4. 해당 페이지내의 image 주소 검색 후 저장
 5. urllib을 통하여 image Download
@@ -433,8 +433,8 @@ GoogleDrive에 접속하여 해당 URL의 전체 File을 가져오는 작업이�
 **현재 작성한 방식은 매우 느리고 부하가 많이 걸린다는 단점이 생겨서 다른 방식에 대해서 알아봐야 한다.**  
 
 GoogleDriver를 받기 위한 과정을 아래 그림과 같다.  
-1. GoogleDriver접속 후 전체 다운로드 클릭<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google1.PNG" height="400" width="500" /></div>
-2. 현재 상황을 알 수 있게 Print하여 상황 출력<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google2.PNG" height="400" width="500" /></div>
+1. GoogleDriver접속 후 전체 다운로드 클릭<br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google1.PNG" height="400" width="500" />
+2. 현재 상황을 알 수 있게 Print하여 상황 출력<br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google2.PNG" height="400" width="500" />
 3. 일정시간 마다 Alert창 확인 하여 accpt대기 및 상황 변화 감시  
 **이 부분이 계속하여 Alert을 확인하고 Accept을 해야 하는 부분이므로 자원 낭비이자 부하가 많이 걸리는 작업으로 생각된다.**  
 **또한 Alert 창이 뜨는 경우도 있고 없는 경우도 존재하기 때문에 보편성에서 부족하다고 할 수 있다.**  
@@ -499,7 +499,7 @@ driver.execute_script("document.getElementsByName('id')[0].value=\'" + t_id + "\
 **Google Auto Login 과정**  
 Google의 경우 Naver와 비슷하지만 Google Image Crawling와 같이 Header에 Bot이 아니라는 것을 명시해야지 정상적으로 작동하는 것을 알 수 있다.  
 위의 Google Image Crawling과 다르게 Driver Option자체에 추가하였다.  
-```pyhtno
+```python
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
 
 ```
@@ -564,8 +564,6 @@ def auto_login(target_url, t_id, t_pwd):
         print('Please Check Your URL for example) https://www.naver.com')
     driver.close()
 ```
-<br>
-<br>
 
 <hr>
 참조: <a href="https://github.com/wjddyd66/Python/blob/master/Crawling.py">원본코드</a><br> 
