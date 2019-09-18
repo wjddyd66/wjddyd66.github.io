@@ -93,41 +93,43 @@ if __name__ == "__main__":
 
 **사용방법**  
 
-1. 현재 python 파일에서는 요구되는 argument가 3, 4, 5 이고 argument 수가 맞지 않으면 Error 발생
+- 현재 python 파일에서는 요구되는 argument가 3, 4, 5 이고 argument 수가 맞지 않으면 Error 발생
+<br>
 
-2. Youtube Download: python3 Crawling.py [URL] [Destination] [--1 or Youtube]
+- Youtube Download: python3 Crawling.py [URL] [Destination] [--1 or Youtube]
 위의 코드로서 명령어를 실행하게 되면 Destination에 URL의 Youtube 동영상이 .mp4형식으로 저장된다.  
 Example) python3 Crawling.py https://www.youtube.com/watch?v=KS_u69yEP00 ./youtube_download --1
 **결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/1_result.PNG" height="200" width="200" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/1_result.PNG" height="100" width="400" /></div>
+<br>
 
-3. Vscode MarketPlace Download: python3 Crawling.py [URL] [Destination] [--2 or VscodeMarketplace]
+- Vscode MarketPlace Download: python3 Crawling.py [URL] [Destination] [--2 or VscodeMarketplace]
 위의 코드로서 명령어를 실행하게 되면 Destination에 URL의 Vscode MarketPlace에서 제공하는 API가 다운 가능하다.  
 Example) python3 Crawling.py https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker ./docker_download --2
 **결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2_result.PNG" height="200" width="200" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2_result.PNG" height="100" width="400" style="position:absoulte;width:100%;height:100%;" /></div>
+<br>
 
-
-4. Download images by keyword: python3 Crawling.py [Keyword] [Destination] [--3 or Download images by keyword]
+- Download images by keyword: python3 Crawling.py [Keyword] [Destination] [--3 or Download images by keyword]
 위의 코드로서 명령어를 실행하게 되면 Destination에 명령어로 입력한 Keyword에 관한 Image가 Naver 와 Google에서 Crawling하여 가져온다.  
 Example) python3 Crawling.py smile ./image_download --3
 **결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="200" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="200" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="300" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="300" /></div>
 
 
-5. GoogleDrive Download: python3 Crawling.py [URL]  [--4 or GoogleDrive]
+- GoogleDrive Download: python3 Crawling.py [URL]  [--4 or GoogleDrive]
 위의 코드로서 명령어를 URL의 GoogleDrive파일을 모두 다운로드 가능하다.  
 **이 명령어는 후에 Update가 필요하다. 일반적으로 받는 방법보다 매우 느리고, 저장 경로를 현재 지정할 수 없다는 단점이 존재하기 때문이다.(권장하지 않는다.)**  
 Example) python3 Crawling.py http://bit.ly/2U7ttYT  --4
 
 
-6. Auto Login: python3 Crawling.py [URL(Naver or Google)] [ID] [Passward] [--5 or Auto Login]
+- Auto Login: python3 Crawling.py [URL(Naver or Google)] [ID] [Passward] [--5 or Auto Login]
 위의 코드로서 명령어를 실행하게 되면 Naver or Google에 입력한 계정으로 접속할 수 있다.  
 Example) python3 Crawling.py https://www.naver.com ID Passward --5
 **결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="200" width="200" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="100" width="400" /></div>
 
-
+<br><br>
 ### Pytube
 **Pytube**는 Python에서 Youtube 영상을 간단하게 다운로드 받을 수 있도록 만들어진 Module이다.  
 아래 PyPi를 사용하는 명령어로 쉽게 pytube를 다운받을 수 있다.
@@ -201,7 +203,7 @@ from selenium import webdriver
 현재 Ubuntun Server는 CLI 로서 GUI기능이 없기 때문에 일반적으로 selenium으로서 사용하는 창을 띄워서 브라우징이 불가능 하다.  
 따라서 '화면'이 존재하지 않게 selenium을 사용하기 위하여 Option설정 및 추가가 필요하다.  
 Option을 추가한 뒤 webdriver를 불러오기 위하여 위에서 다운받은 webdriver의 위치를 알고 적용시켜야 한다.  
-또한 암묵적으로 모든 자원이 로드될때 까지 기다리게 시간을 직접 <code>,implicitly_wait()</code>으로 설정 가능하다.  
+또한 암묵적으로 모든 자원이 로드될때 까지 기다리게 시간을 직접 <code>.implicitly_wait()</code>으로 설정 가능하다.  
 **Option 설정 및 객체 생성**
 ```python
 chrome_options = webdriver.ChromeOptions()
@@ -242,19 +244,16 @@ driver.save_screenshot('image.png')
 Vscode MarketPlace Download를 받기위하여 https://marketplace.visualstudio.com/ 에 접속하여 받고싶은 API를 다운받기 위하여 Install을 누르면 다운이 안되는것을 확인할 수 있다.  
 직접 다운받을수 있는 Link를 알기 위하여 아래와 같은 작업이 필요하다.  
 1. Vscode Market Place접속후 API검색
-2. 해당 Page의 More Info, API 이름 가져오기  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs1.PNG" height="200" width="200" /></div>
-3. More Info에서 원하는 정보 가져오기  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs2.PNG" height="200" width="200" /></div>
+2. 해당 Page의 More Info, API 이름 가져오기<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs1.PNG" height="400" width="500" /></div>
+3. More Info에서 원하는 정보 가져오기<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/vs2.PNG" height="400" width="500" /></div>
 4. Unique Identifier를 . 을 기준으로 나누어서 publisher . extensionname으로서 구별하기
-5. Download URL아래와 같이 재조합  
-https://${publisher}.gallery.vsassets.io/_apis/public/gallery/publisher/${publisher}/extension/${extensionname}/${version}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
-
+5. Download URL아래와 같이 재조합<div>https://${publisher}.gallery.vsassets.io/_apis/public/gallery/publisher/${publisher}/extension/${extensionname}/${version}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage</div>
 6. wget으로서 해당 URL 요청및 파일이름 변경
 7. wget 요청시 SSL connection error 가 발생하므로 --no-check-certificate Option 추가
 
 
 아래 코드는 Vscode MarketPlace에서 제공하는 API를 위의 순서대로 실행하는 Code이다.
+
 ```python
 def vscode_download(id, destination):
     
@@ -308,11 +307,9 @@ Keyword와 Destination을 입력받고 해당 Keyword의 이미지를 가져오�
 Image를 받는 사이트의 경우 한국에서 유명한 **네이버**와 전세계적으로 유명한 **Google** 두 사이트를 사용하였다.  
 
 **네이버 Image Crawling 과정**  
-1. Naver 접속후 Keyword 검색  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver1.PNG" height="200" width="200" /></div>
-2. Xpath를 사용하므로 다음과 같이 이미지 DIV 의 위치가 바뀔수 있는것 생각하여 선택  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver2.PNG" height="200" width="200" /></div>
-3. 많은 사진을 가져오기 위하여 스크롤 작업  
+1. Naver 접속후 Keyword 검색<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver1.PNG" height="400" width="500" /></div>
+2. Xpath를 사용하므로 다음과 같이 이미지 DIV 의 위치가 바뀔수 있는것 생각하여 선택<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/naver2.PNG" height="400" width="500" /></div>
+3. 많은 사진을 가져오기 위하여 스크롤 작업
 4. 해당 페이지내의 image 주소 검색 후 저장
 5. urllib을 통하여 image Download
 
@@ -441,10 +438,8 @@ GoogleDrive에 접속하여 해당 URL의 전체 File을 가져오는 작업이�
 **현재 작성한 방식은 매우 느리고 부하가 많이 걸린다는 단점이 생겨서 다른 방식에 대해서 알아봐야 한다.**  
 
 GoogleDriver를 받기 위한 과정을 아래 그림과 같다.  
-1. GoogleDriver접속 후 전체 다운로드 클릭  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google1.PNG" height="200" width="200" /></div>
-2. 현재 상황을 알 수 있게 Print하여 상황 출력  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google2.PNG" height="200" width="200" /></div>
+1. GoogleDriver접속 후 전체 다운로드 클릭<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google1.PNG" height="400" width="500" /></div>
+2. 현재 상황을 알 수 있게 Print하여 상황 출력<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/google2.PNG" height="400" width="500" /></div>
 3. 일정시간 마다 Alert창 확인 하여 accpt대기 및 상황 변화 감시  
 **이 부분이 계속하여 Alert을 확인하고 Accept을 해야 하는 부분이므로 자원 낭비이자 부하가 많이 걸리는 작업으로 생각된다.**  
 **또한 Alert 창이 뜨는 경우도 있고 없는 경우도 존재하기 때문에 보편성에서 부족하다고 할 수 있다.**  
