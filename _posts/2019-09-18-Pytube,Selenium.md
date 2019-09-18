@@ -98,23 +98,17 @@ if __name__ == "__main__":
 
 - Youtube Download: python3 Crawling.py [URL] [Destination] [--1 or Youtube]
 위의 코드로서 명령어를 실행하게 되면 Destination에 URL의 Youtube 동영상이 .mp4형식으로 저장된다.  
-Example) <code>python3 Crawling.py https://www.youtube.com/watch?v=KS_u69yEP00 ./youtube_download --1</code>  
-**결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/1_result.PNG" height="100" width="400" /></div>
+Example) <code>python3 Crawling.py https://www.youtube.com/watch?v=KS_u69yEP00 ./youtube_download --1</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/1_result.PNG" height="100" width="400" /></div>
 <br>
 
 - Vscode MarketPlace Download: python3 Crawling.py [URL] [Destination] [--2 or VscodeMarketplace]
 위의 코드로서 명령어를 실행하게 되면 Destination에 URL의 Vscode MarketPlace에서 제공하는 API가 다운 가능하다.  
-Example) <code>python3 Crawling.py https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker ./docker_download --2</code>  
-**결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2_result.PNG" height="100" width="400"/></div>
+Example) <code>python3 Crawling.py https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker ./docker_download --2</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2_result.PNG" height="100" width="400"/></div>
 <br>
 
 - Download images by keyword: python3 Crawling.py [Keyword] [Destination] [--3 or Download images by keyword]
 위의 코드로서 명령어를 실행하게 되면 Destination에 명령어로 입력한 Keyword에 관한 Image가 Naver 와 Google에서 Crawling하여 가져온다.  
-Example) <code>python3 Crawling.py smile ./image_download --3</code>  
-**결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="300" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="300" /></div>
+Example) <code>python3 Crawling.py smile ./image_download --3</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="300" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="300" /></div>
 
 
 - GoogleDrive Download: python3 Crawling.py [URL]  [--4 or GoogleDrive]  
@@ -125,9 +119,7 @@ Example) <code>python3 Crawling.py http://bit.ly/2U7ttYT  --4</code>
 
 - Auto Login: python3 Crawling.py [URL(Naver or Google)] [ID] [Passward] [--5 or Auto Login]
 위의 코드로서 명령어를 실행하게 되면 Naver or Google에 입력한 계정으로 접속할 수 있다.  
-Example) <code>python3 Crawling.py https://www.naver.com ID Passward --5</code>  
-**결과**
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="100" width="400" /></div>
+Example) <code>python3 Crawling.py https://www.naver.com ID Passward --5</code><br>**결과**<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="100" width="400" /></div>
 
 <br><br>
 ### Pytube
@@ -495,15 +487,11 @@ ID와 Passward을 입력받고 해당 URL에 로그인을 하는 과정이다.
 
 **네이버 Auto Login 과정**  
 1. Naver 접속 후 Login Click
-2. ID 입력
-<br>**네이버의 경우 ID와 Passward에 빠르게 입력하는 것을 Bot이라고 생각해서 보안문자를 입력하게 적용된다. 따라서 아래 Code와 같이 Script에 직접 값을 입력하여 Login을 해야 한다.**
-
-
+2. ID 입력<br>**네이버의 경우 ID와 Passward에 빠르게 입력하는 것을 Bot이라고 생각해서 보안문자를 입력하게 적용된다. 따라서 아래 Code와 같이 Script에 직접 값을 입력하여 Login을 해야 한다.**
 ```python
 driver.execute_script("document.getElementsByName('id')[0].value=\'" + t_id + "\'")
         driver.execute_script("document.getElementsByName('pw')[0].value=\'" + t_pwd + "\'")
 ```
-
 3. 많은 사진을 가져오기 위하여 스크롤 작업  
 4. 해당 페이지내의 image 주소 검색 후 저장
 5. urllib을 통하여 image Download
