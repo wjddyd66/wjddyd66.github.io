@@ -108,7 +108,7 @@ Example) <code>python3 Crawling.py https://marketplace.visualstudio.com/items?it
 
 - Download images by keyword: python3 Crawling.py [Keyword] [Destination] [--3 or Download images by keyword]
 위의 코드로서 명령어를 실행하게 되면 Destination에 명령어로 입력한 Keyword에 관한 Image가 Naver 와 Google에서 Crawling하여 가져온다.  
-Example) <code>python3 Crawling.py smile ./image_download --3</code><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="300" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="300" />
+Example) <code>python3 Crawling.py smile ./image_download --3</code><br><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_1.PNG" height="200" width="300" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3_result_2.PNG" height="200" width="300" />
 
 
 - GoogleDrive Download: python3 Crawling.py [URL]  [--4 or GoogleDrive]  
@@ -119,7 +119,7 @@ Example) <code>python3 Crawling.py http://bit.ly/2U7ttYT  --4</code>
 
 - Auto Login: python3 Crawling.py [URL(Naver or Google)] [ID] [Passward] [--5 or Auto Login]
 위의 코드로서 명령어를 실행하게 되면 Naver or Google에 입력한 계정으로 접속할 수 있다.  
-Example) <code>python3 Crawling.py https://www.naver.com ID Passward --5</code><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="100" width="400" />
+Example) <code>python3 Crawling.py https://www.naver.com ID Passward --5</code><br><b>결과</b><br><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/5_naver.PNG" height="100" width="400" />
 
 <br><br>
 ### Pytube
@@ -231,7 +231,7 @@ CLI에서는 불가능 하므로 다음 명령어를 사용하자.
 driver.save_screenshot('image.png')  
 위의 명령어를 통하여 상황이 어떻게 진행되는지 image파일로 저장하고 확인할 수 있다.  
 
-
+<br><br>
 ### Vscode MarketPlace Download
 Vscode MarketPlace Download를 받기위하여 https://marketplace.visualstudio.com/ 에 접속하여 받고싶은 API를 다운받기 위하여 Install을 누르면 다운이 안되는것을 확인할 수 있다.  
 직접 다운받을수 있는 Link를 알기 위하여 아래와 같은 작업이 필요하다.  
@@ -501,7 +501,6 @@ Google의 경우 Naver와 비슷하지만 Google Image Crawling와 같이 Header
 위의 Google Image Crawling과 다르게 Driver Option자체에 추가하였다.  
 ```python
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-
 ```
 
 아래 Code는 Naver혹은 Google에 Auto Login하는 과정이다.  
