@@ -537,7 +537,48 @@ model.save_params()
 
 ...
 
-
+| 에폭 10 |  반복 341 / 351 | 시간 130[s] | 손실 0.00
+Q 10/15/94                     
+T 1994-10-15
+☑ 1994-10-15
+---
+Q thursday, november 13, 2008  
+T 2008-11-13
+☑ 2008-11-13
+---
+Q Mar 25, 2003                 
+T 2003-03-25
+☑ 2003-03-25
+---
+Q Tuesday, November 22, 2016   
+T 2016-11-22
+☑ 2016-11-22
+---
+Q Saturday, July 18, 1970      
+T 1970-07-18
+☑ 1970-07-18
+---
+Q october 6, 1992              
+T 1992-10-06
+☑ 1992-10-06
+---
+Q 8/23/08                      
+T 2008-08-23
+☑ 2008-08-23
+---
+Q 8/30/07                      
+T 2007-08-30
+☑ 2007-08-30
+---
+Q 10/28/13                     
+T 2013-10-28
+☑ 2013-10-28
+---
+Q sunday, november 6, 2016     
+T 2016-11-06
+☑ 2016-11-06
+---
+정확도 100.000%
 ```
 <br>
 **위의 3가지 Model에 대한 결과는 다음과 같다.**  
@@ -548,6 +589,6 @@ model.save_params()
 참조: <a href="https://github.com/wjddyd66/DeepLearning2/tree/master/seq2seq">원본코드</a> <br>
 참조: <a href="https://www.youtube.com/watch?v=6aouXD8WMVQ">십분 딥러닝 Youtube</a> <br>
 참조: <a href="https://ratsgo.github.io/from%20frequency%20to%20semantics/2017/10/06/attention/">ratsgo's blog</a> <br>
-참조: <a href="https://wikidocs.net/22893">위키독스</a>
+참조: <a href="https://wikidocs.net/22893">위키독스</a><br>
 참조: 밑바닥부터 시작하는 딥러닝2<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
