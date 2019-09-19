@@ -14,6 +14,7 @@ categories: [DL]
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/105.PNG" height="250" width="600" /></div>
 <br>
+
 위의  **개선된 seq2seq Model**을 보게 되면 한계점이 존재한다.  
 **Context Vector의 크기가 항상 고정**된다는 문제점이다.  
 즉 예를 들어 아래 두 문장이 Input Data로서 들어간다고 생각해보자.  
@@ -423,7 +424,125 @@ c = self.attention.forward(enc_hs, dec_hs)
 out = np.concatenate((c, dec_hs), axis=2)
 ```
 즉 Softmax를 통하여 예측값을 뽑기 전에 Attention Value(<span>$$a_t$$</span>)와 <span>$$s_{t-1}$$</span>이 합쳐진 <span>$$v_t$$</span>가 사용된다는 것 이다.  
+<br><br>
 
+### Attention 구현
+실질적인 Attention seq2seq를 위해 앞에서 설명한 Encoder를 Code로 나타내면 다음과 같다.
+```python
+class AttentionEncoder(Encoder):
+    def forward(self, xs):
+        xs = self.embed.forward(xs)
+        hs = self.lstm.forward(xs)
+        return hs
+
+    def backward(self, dhs):
+        dout = self.lstm.backward(dhs)
+        dout = self.embed.backward(dout)
+        return dout
+```
+<br>
+
+앞서 구현한 Decoder와 Encoder를 사용하여 최종적인 Attention Layer를 구성하면 다음과 같다.
+```python
+class AttentionSeq2seq(Seq2seq):
+    def __init__(self, vocab_size, wordvec_size, hidden_size):
+        args = vocab_size, wordvec_size, hidden_size
+        self.encoder = AttentionEncoder(*args)
+        self.decoder = AttentionDecoder(*args)
+        self.softmax = TimeSoftmaxWithLoss()
+
+        self.params = self.encoder.params + self.decoder.params
+        self.grads = self.encoder.grads + self.decoder.grads
+```
+
+**Attention의 성가를 평가하기 위하여 구성한 Attention, seq2seq, 개선된 seq2seq를 같은 Data로서 Trainning하고 정확도를 시각화 하여 확인한다.**  
+
+위에서 설명한 각 상황에 대하여 날짜 형식 변환을 구현하는 것을 목표로 한다.  
+먼저 Dataset을 살펴보면 아래와 같다.  
+
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/117.PNG" height="250" width="600" /></div>
+
+Input Data의 Format을 보게 되면 다양한 형태를 가진다.
+1. september 27, 1994
+2. JUN 17, 2013
+3. 2/10/94
+
+각각의 Input Data에 대한 OutputData의 Format은 다음과 같다.
+1. 1994-09-27
+2. 2013-06-17
+3. 1993-02-10
+
+
+
+위의 DataSet을 통해 최종적으로 구현하고자 하는 Model은 각각의 다른 형태의 Input Data를 동일한 형태의 OutputData로 형식을 통일시키고 알맞은 값을 넣는 것 이다.  
+최종적인 Trainning Code는 아래와 같다.
+```python
+import matplotlib.pyplot as plt
+from dataset import sequence
+from common.optimizer import Adam
+from common.trainer import Trainer
+from common.util import eval_seq2seq
+from seq2seq.peeky_seq2seq import PeekySeq2seq
+
+
+# 데이터 읽기
+(x_train, t_train), (x_test, t_test) = sequence.load_data('date.txt')
+char_to_id, id_to_char = sequence.get_vocab()
+
+# 입력 문장 반전
+x_train, x_test = x_train[:, ::-1], x_test[:, ::-1]
+
+# 하이퍼파라미터 설정
+vocab_size = len(char_to_id)
+wordvec_size = 16
+hidden_size = 256
+batch_size = 128
+max_epoch = 10
+max_grad = 5.0
+
+model = AttentionSeq2seq(vocab_size, wordvec_size, hidden_size)
+# model = Seq2seq(vocab_size, wordvec_size, hidden_size)
+# model = PeekySeq2seq(vocab_size, wordvec_size, hidden_size)
+
+optimizer = Adam()
+trainer = Trainer(model, optimizer)
+
+acc_list = []
+print('-'*20,'Attention Trainning','-'*20)
+for epoch in range(max_epoch):
+    trainer.fit(x_train, t_train, max_epoch=1,
+                batch_size=batch_size, max_grad=max_grad)
+
+    correct_num = 0
+    for i in range(len(x_test)):
+        question, correct = x_test[[i]], t_test[[i]]
+        verbose = i < 10
+        correct_num += eval_seq2seq(model, question, correct,
+                                    id_to_char, verbose, is_reverse=True)
+
+    acc = float(correct_num) / len(x_test)
+    acc_list.append(acc)
+    print('정확도 %.3f%%' % (acc * 100))
+
+
+model.save_params()
+```
+```code
+-------------------- Attention Trainning --------------------
+| 에폭 1 |  반복 1 / 351 | 시간 0[s] | 손실 4.08
+| 에폭 1 |  반복 21 / 351 | 시간 7[s] | 손실 3.09
+| 에폭 1 |  반복 41 / 351 | 시간 14[s] | 손실 1.90
+| 에폭 1 |  반복 61 / 351 | 시간 21[s] | 손실 1.72
+| 에폭 1 |  반복 81 / 351 | 시간 29[s] | 손실 1.46
+
+...
+
+
+```
+<br>
+**위의 3가지 Model에 대한 결과는 다음과 같다.**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/118.PNG" height="250" width="600" /></div>
+<br>
 
 <hr>
 참조: <a href="https://github.com/wjddyd66/DeepLearning2/tree/master/seq2seq">원본코드</a> <br>
