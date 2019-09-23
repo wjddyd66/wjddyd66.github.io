@@ -115,7 +115,6 @@ test_loader = DataLoader(mnist_test,batch_size=batch_size,shuffle=True,num_worke
 하나의 Class로서 CNN Model을 만든다.  
 **Conv2d Parameter**  
 <div><code>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')</code></div>  
-
 Tensorflow 와 다르거나 추가된 부분만 알아보자.  
 
 - in_channels: input channel의 값
@@ -128,9 +127,8 @@ Tensorflow 와 다르거나 추가된 부분만 알아보자.
 <img src="https://cdn-images-1.medium.com/max/1200/1*SVkgHoFoiMZkjy54zM_SUw.gif"></p>
 
 위의 식은 아래와 같이 정의 된다.  
-$$input size = (N, C_in, H, W)$$
-$$output size = (N, C_out, H_out, W_out)$$
-
+$$input size = (N, C_in, H, W)$$<br>
+$$output size = (N, C_out, H_out, W_out)$$<br>
 $$out(N_i,C_{out_j}) = bias(C_{out_j}) + \sum_{k=0}^{C_in - 1}weight(C_{out_j}, k) * input(N_i,k)$$
 
 아래 식에서 중요한 함수는 view함수가 있다.  

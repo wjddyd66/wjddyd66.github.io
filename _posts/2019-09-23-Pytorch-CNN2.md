@@ -78,10 +78,9 @@ root/cat/123.png
 
 root/cat/nsdf3.png
 
-                    
+
 **ImageFolder**  
 <div><code>torchvision.datasets.ImageFolder(root, transform=None, target_transform=None, loader=function default_loader, is_valid_file=None) </code></div>  
-
 **transform.Compose**  
 <div><code>torchvision.transforms.Compose(transforms)</code></div>
 - tranforms: list of Transform object
@@ -179,7 +178,6 @@ for i, [data,label] in enumerate(train_loader):
 
 <p>$$OH = \frac{H + 2P - FH}{S} + 1$$</p>
 <p>$$OW = \frac{W + 2P - FW}{S} + 1$$</p>
-
 위에서 Filter의 크기는 (3,3) 이므로 FH, FW 에 3을 대입하고 Stride에 1을 대입하게 되면  
 Padding = 1로 해주어야지 Input 과 Output의 Size가 같다는 것을 알 수 있다.  
 또한 위에서 Pooling 과정에서 Image의 Size가 1/2로 줄어들게 하기 위하여 Filter의 Size는 (2,2) Stride = 2로서 Size를 1/2로 줄인 것을 알 수 있다.
@@ -374,7 +372,6 @@ GoogleNet은 2014년 우승을 차지한 Model
 Inception Model이라고도 불린다.
 
 <div><img  src="https://user-images.githubusercontent.com/25279765/35002702-d5dccb60-fb2d-11e7-88ac-e29d0319f32b.png" width="500" height="300"></div>
-
 참조: <a href="https://www.cs.unc.edu/~wliu/papers/GoogLeNet.pdf">Going Deeper with Convolutions</a>
 
 Inception Model이라고 불리는 이융는 위의 Model에서 빨간색 동그라미가 쳐져있는 부분은 Inception 모듈을 사용하였기 때문이다.
@@ -414,7 +411,6 @@ much of the computation is wasted.
 - 3x3 맥스풀링 ->1x1 컨볼루션
 
 <div><img  src="https://user-images.githubusercontent.com/25279765/35002517-441c8166-fb2d-11e7-9b40-b4216256cbb0.jpg" width="500" height="300"></div>
-
 위의 그림은 다음과 같은 특징을 가지게 된다.
 
 **Sparse한 구조**<br>위에서 지적한 문제점 "1.Convolution Layer를 연속으로 연결"을 Sparse한 형태로서 해결하게 되었다.
@@ -838,7 +834,6 @@ GoogleNet을 보면 위와 같은 중간중간 분류기가 계속적으로 존�
 <br><br>
 
 <div><img  src="https://norman3.github.io/papers/images/google_inception/f04.png" width="500" height="300"></div>
-
 중간중간 분류기를 두어서 Loss에 더함으로 인하여 Gradinet Vanishing 문제를 해결하고자 하였다.
 >By adding auxiliary classifiers connected to these intermediate layers, discrimination
 in the lower stages in the classifier was expected.
@@ -907,8 +902,8 @@ and all information is always passed through, with additional residual functions
 기존 Neural Network는 다음과 같다고 가정하자.
 - Input Data: x
 - Output Data: y
-- Model Output: $H(x)$
-- Loss Function: $H(x)$-y
+- Model Output: <span>$$H(x)$$</span>
+- Loss Function: <span>$$H(x)$$</span>-y
 
 즉 위와 같은 일반적인 NeuralNetwork는 Model의 Output과 Target Data가 같아 지는 것을 목표로 하고 Model을 Trainning을 하게 된다.
 
@@ -918,7 +913,7 @@ and all information is always passed through, with additional residual functions
 
 즉 위와 같은 가정을 하게 되면 $F(x) = H(x)$-x이라는 $F(x)$을 추가하게 되면 결과적인 식은 다음과 같다.
 
-$F(x) + x = H(x)$
+$$F(x) + x = H(x)$$
 
 즉 **Model의 Output과 Model에 들어가는 Input을 더하여 Model의 Output으로 최종적으로 산출한다는 것** 이다.
 
@@ -1172,7 +1167,7 @@ plt.show()
 <br>
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/Pytorch/blob/master/CNN/CNN.ipynb">원본코드</a> <br>
+참조: <a href="https://github.com/wjddyd66/Pytorch/blob/master/CNN/CNN2.ipynb">원본코드</a> <br>
 참조:<a href="https://datascienceschool.net/view-notebook/958022040c544257aa7ba88643d6c032/">데이터 사이언스 스쿨</a><br>
 참조: 파이토치 첫걸음<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
