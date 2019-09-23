@@ -41,6 +41,8 @@ epochs = 1000
 #### Input Data생성 및 Vocab 설정
 - InputData: string
 - Vocab: chars
+
+
 ```python
 # 사용하는 문자는 영어 소문자 및 몇가지 특수문자로 제한했습니다.
 # alphabet(0-25), space(26), ... , start(0), end(1)
@@ -403,6 +405,8 @@ ex)
 - Parameter: pytorch
 - Input: pytorc
 - Target: ytorch
+
+
 ```python
 def random_training_set():    
     chunk = random_chunk()
@@ -484,6 +488,8 @@ model = RNN(input_size=n_characters,
 **3) Define Loss Function & Optimizer**  
 - LossFunction: CrossEntropy
 - Optimizer: Adam
+
+
 ```python
 optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 loss_func = nn.CrossEntropyLoss()
@@ -592,12 +598,12 @@ NO
 <code>torch.nn.LSTM(*args, **kwargs)</code>
 - σ(시그모이드): 0 ~ 1의 범위를 가지게 출력형태를 바꿔주며 데이터를 얼마만큼 통과시킬지를 정하는 비율
 - tanh(하이퍼 볼릭 탄젠트): -1 ~ 1의 범위를 가지게 출력형태를 바꿔주며 실질적인 정보의 비율
-- Output gate: <span>$o = \sigma (W_{xh_o}x_t +W_{hh_o}h_{t-1} + b_{h_o})$</span>: 다음 시간의 Hidden Layer에서 얼만큼 중요한가를 나타내는 상수
-- Forget gate: <span>$f_t = \sigma (W_{xh_f}x_t +W_{hh_f}h_{t-1} + b_{h_f})$</span>: 과거 정보를 잊기 위한 게이트(0 ~ 1사이의 값을 가지는 Scalar로서 얼만큼 잊을지 비율로서 표현)
-- <span>$g$</span>: <span>$tanh(W_{xh_g}x_t +W_{hh_g}h_{t-1} + b_{h_g})$</span>: tanh를 사용하여 현재 LSTM Layer에서의 실질적인 정보의 비율
-- Input gate: <span>$i_t = \sigma (W_{xh_i}x_t +W_{hh_i}h_{t-1} + b_{h_i})$</span>: 현재 정보를 기억하기 위한 게이트(0 ~ 1사이의 값을 가지는 Scalar로서 얼만큼 기억할 비율로서 표현)
-- <span>$c_t$</span>: 기억 셀로서 과거로부터 시각 t까지에 필요한 모든 정보가 저장된 Cell, <span>$c_t = f \odot c_{t-1} + g \odot i $</span>
-- <span>$h_t$</span>: <span>$o \odot tanh(c_t)$</span>: Hidden Layer의 출력 o가 Sigmoid의 Output으로서 상수이므로 <span>$\odot$ </span>사용
+- Output gate: <span>$$o = \sigma (W_{xh_o}x_t +W_{hh_o}h_{t-1} + b_{h_o})$$</span>: 다음 시간의 Hidden Layer에서 얼만큼 중요한가를 나타내는 상수
+- Forget gate: <span>$$f_t = \sigma (W_{xh_f}x_t +W_{hh_f}h_{t-1} + b_{h_f})$$</span>: 과거 정보를 잊기 위한 게이트(0 ~ 1사이의 값을 가지는 Scalar로서 얼만큼 잊을지 비율로서 표현)
+- <span>$$g$$</span>: <span>$$tanh(W_{xh_g}x_t +W_{hh_g}h_{t-1} + b_{h_g})$$</span>: tanh를 사용하여 현재 LSTM Layer에서의 실질적인 정보의 비율
+- Input gate: <span>$$i_t = \sigma (W_{xh_i}x_t +W_{hh_i}h_{t-1} + b_{h_i})$$</span>: 현재 정보를 기억하기 위한 게이트(0 ~ 1사이의 값을 가지는 Scalar로서 얼만큼 기억할 비율로서 표현)
+- <span>$$c_t$$</span>: 기억 셀로서 과거로부터 시각 t까지에 필요한 모든 정보가 저장된 Cell, <span>$$c_t = f \odot c_{t-1} + g \odot i $$</span>
+- <span>$$h_t$$</span>: <span>$$o \odot tanh(c_t)$$</span>: Hidden Layer의 출력 o가 Sigmoid의 Output으로서 상수이므로 <span>$$\odot$$ </span>사용
 
 **nn.RNN과 Parameter는 같으나 return값이 Hidden과 Cell이 출력된다는 것 이다.**
 ```python
