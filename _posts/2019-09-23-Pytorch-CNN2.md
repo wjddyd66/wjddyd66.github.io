@@ -80,23 +80,23 @@ root/cat/nsdf3.png
 
                     
 **ImageFolder**  
-<code>torchvision.datasets.ImageFolder(root, transform=None, target_transform=None, loader=function default_loader, is_valid_file=None) </code>  
+<div><code>torchvision.datasets.ImageFolder(root, transform=None, target_transform=None, loader=function default_loader, is_valid_file=None) </code></div>  
 
 **transform.Compose**  
-<code>torchvision.transforms.Compose(transforms)</code>
+<div><code>torchvision.transforms.Compose(transforms)</code></div>
 - tranforms: list of Transform object
 
 image Tranformation을 chained together할 수 있게 해준다.
 
 **transform.Resize**  
-<code>torchvision.transforms.Resize(size, interpolation=2)</code>
+<div><code>torchvision.transforms.Resize(size, interpolation=2)</code></div>
 - size: 변경하고자 하는 image 크기
 - interpolation: Desired interpolation. Default is PIL.Image.BILINEAR
 
 Image 크기 변경.
 
 **transform.RandomResizedCrop**  
-<code>torchvision.transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 1.3333333333333333), interpolation=2)</code>
+<div><code>torchvision.transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 1.3333333333333333), interpolation=2)</code></div>
 - size: 샘플링할 Image 크기
 - scale: 원본 Image에서 자를 크기
 - ratio: 원본 Image에서 자른 크기에서 참조할 비율
@@ -105,7 +105,7 @@ Image 크기 변경.
 랜덤한 위치에서 샘플링.
 
 **transform.RandomHorizontalFlip**  
-<code>torchvision.transforms.RandomHorizontalFlip(p=0.5)</code>
+<div><code>torchvision.transforms.RandomHorizontalFlip(p=0.5)</code></div>
 - p: 확률(image 좌우 반전 시킬 확률)
 
 
@@ -152,7 +152,7 @@ for i, [data,label] in enumerate(train_loader):
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/127.PNG" height="250" width="600" /></div>
 <br>
-
+<br><br>
 ### VGGNet Implementation
 
 **구현할 VGG Net 구조**  
@@ -368,7 +368,7 @@ tensor(0.6910, device='cuda:0', grad_fn=<NllLossBackward>)
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/126.PNG" height="250" width="600" /></div>
 <br>
-
+<br><br>
 ### GoogleNet Implementation
 GoogleNet은 2014년 우승을 차지한 Model
 Inception Model이라고도 불린다.
@@ -423,9 +423,7 @@ much of the computation is wasted.
 >A fundamental way of solving both of these issues would
 be to introduce sparsity and replace the fully connected layers by the sparse ones, even inside the convolutions
 
-<br><br>
-
-
+<br>
 **Dense한 구조**<br>그 뒤의 Filter concatenation을 연결하는 것으로서 다시 Dense한 Data의 형태로서 합치는 작업을 한다. Dense한 Data의 형태로서 바꾸는 것은 Computer의 연산이 이러한 형태가 빠르기 때문이다.
 >Unfortunately, today’s computing infrastructures are
 very inefficient when it comes to numerical calculation on
@@ -434,9 +432,7 @@ arithmetic operations is reduced by 100×, the overhead of
 lookups and cache misses would dominate: switching to
 sparse matrices might not pay off.
 
-<br><br>
-
-
+<br>
 **1 x 1 Convolution**<br>VGG Model에서는 1 x 1 Convolution Layer를 Model의 비선형을 향상시키기 위하여 사용하였다고 하였다.
 하지만 GoogleNet은 "2. Model의 성능을 향상시키기 위하여 Depth 증가" 이유때문에 사용하였다.
 
@@ -451,9 +447,7 @@ se limit the size of our networks. This allows for not
 just increasing the depth, but also the width of our networks
 without a significant performance penalty
 
-
-<br><br>
-
+<br>
 **작은 사이즈의 Filter(1 x 1, 3 x 3, 5 x 5)사용**<br>
 더욱더 많은 정보가 담긴 Output을 추출하기 위하여 작은 크기의 Filter 사용
 (연산량도 적어지는 효과가 추가로 있다.)
@@ -466,8 +460,7 @@ patch-alignment issues, current incarnations of the Inception architecture are r
 5×5; this decision was based more on convenience rather
 than necessity.
 
-<br><br>
-
+<br>
 ```python
 def conv_1(in_dim,out_dim):
     model = nn.Sequential(
@@ -856,7 +849,7 @@ This was thought to combat the vanishing gradient problem while providing regula
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/119.PNG" height="300" width="500" /></div>
 <br>
-
+<br><br>
 ### Residual Networks
 
 ResNet은 2015년 우승을 차지한 Model 이다.
@@ -931,15 +924,15 @@ $F(x) + x = H(x)$
 
 이러한 Skip Connection을 수식으로 정리하면 다음과 같다.
 
-$y = F(x,{W_i})+x - (1)$
+$$y = F(x,{W_i})+x - (1)$$
 
-$F = W_2\sigma(W_1x)$
+$$F = W_2\sigma(W_1x)$$
 
 그러나 위의 식으로서 생각을 하게 된다면 만약 weight Layer를 통하여 나온 Output의 행렬이 다르게 된다면 행렬이 크기를 맞춰줄 필요가 있다.
 이러한 행렬의 Dimension을 해결하기 위하여 Square Matrix인 $W_s$를 사용한다.
 최종적인 식을 아래와 같다.
 
-$y = F(x,{W_i})+W_sx - (2)$
+$$y = F(x,{W_i})+W_sx - (2)$$
 
 Square Matrix는 행렬의 차원을 맞춰줄 때(Channel의 크기가 변할때)사용한다.
 
@@ -963,7 +956,7 @@ and thus Ws is only used when matching dimensions.
 위의 그림은 ResNet으로서 확인한 결과이다.
 기존망은 망이 깊어질 수록 Error율이 향상되는 것을 볼 수 있지만, ResNet으로서 구성한 망은 망을 깊게 쌓아도 Error율이 오히려 낮아지는 것을 확인할 수 있다.
 
-<table>
+<table class="table">
 
 <tr>
     <td></td><td>Plain</td><td>ResNet</td>
@@ -978,7 +971,7 @@ and thus Ws is only used when matching dimensions.
 </tr>
 
 </table>
-
+<br>
 
 **Deeper Bootleneck Architecture**
 위에 GoogleNet에서 **1 x 1 Convolution**을 사용하여 여러 문제를 해결하였다.

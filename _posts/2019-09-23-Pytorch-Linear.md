@@ -46,13 +46,12 @@ torch.nn.Linear(in_features, out_features, bias=True)
 torch.nn.L1Loss(size_average=None, reduce=None, reduction='mean')
 reduction을 *mean* 으로 할것이냐 *sum*으로 할것이냐에 따라서 식이 달라진다.  
 
-
 **mean**
-$loss(x,y) = \frac{1}{n} \sum |x_i-y_i|$
+$$loss(x,y) = \frac{1}{n} \sum |x_i-y_i|$$
 
 
 **sum**
-$loss(x,y) = \sum |x_i-y_i|$
+$$loss(x,y) = \sum |x_i-y_i|$$
 
 Data 분포 확인
 ```python
@@ -62,7 +61,6 @@ plt.axis([-12, 12, -25, 25])
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/122.PNG" height="250" width="600" /></div>
-
 Model Loss선언
 ```python
 model = nn.Linear(1,1)
@@ -120,7 +118,6 @@ plt.axis([-10, 10, -30, 30])
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/123.PNG" height="250" width="600" /></div>
-
 <br>
 
 <hr>

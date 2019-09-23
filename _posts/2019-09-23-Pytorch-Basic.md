@@ -24,7 +24,9 @@ Pytorch와 Tensorflow의 가장 큰 차이점은 작동 방싱에서 있다. 아
 
 실질적인 비교를 위해서 Code로서 Pytorch 설치부터 Python, Tensorflow, Pytorch의 구동시간을 각각 비교해보자.  
 
-#### Installation
+<br><br>
+
+### Installation
 - 파이썬 버젼 체크 (Python version Check)
 - 파이토치 설치 (PyTorch Installation)
 - 쿠다 및 CuDNN 체크 (Cuda & CuDNN Check)
@@ -126,8 +128,8 @@ cpu_tensor_back
 tensor([[0., 0., 0.],
         [0., 0., 0.]])
 ```
-
-#### Framework Comparison
+<br><br>
+### Framework Comparison
 
 - Python vs Tensorflow vs PyTorch
 - 같은 연산이 각각 어떻게 구동이 되는지 알아보고 속도 역시 비교해보도록 하겠습니다.
@@ -277,8 +279,8 @@ tensor([[1., 1., 1., 1.],
 ```
 
 간단한 예제를 통하여 작동시간은 **Python < Pytorch < Tensorflow**를 확인 가능하다.  
-
-#### Pytorch 기본 동작 방법
+<br><br>
+### Pytorch 기본 동작 방법
 X라는 변수에 파이토치 텐서를 하나 생성해서 지정, shape = (2,3)  
 텐서에는 임의의 난수가 들어간다.
 ```python

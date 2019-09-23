@@ -46,7 +46,7 @@ learning_rate = 0.0002
 num_epoch = 10
 ```
 dest.MNIST: MNIST Dataset을 불러온다.  
-torchvision.datasets.MNIST(root, train=True, transform=None, target_transform=None, download=False)
+<div><code>torchvision.datasets.MNIST(root, train=True, transform=None, target_transform=None, download=False)</code></div>
 - root: Root directory
 - train: train Dataset(True) or test Dataset(False)
 - donwload: Download(True), Not Dowload(False) and load by root file
@@ -98,11 +98,11 @@ torch.Size([1, 28, 28]) 10000
 60000 10000
 ```
 **torch.utils.data.DataLoader Parameter**  
-<code>torch.utils.data.DataLoader(
+<div><code>torch.utils.data.DataLoader(
 imagenet_data,
 batch_size=4,
 shuffle=True,
-num_workers=args.nThreads)</code>  
+num_workers=args.nThreads)</code></div>  
 위에서 설명하였듯이 데이터를 배치로 보내기 위해서 사용하므로 batch인수 존재  
 중요한것은 Tensorflow에는 없었던 shuffle을 지원한다는 것이다.  
 Neural Network에서 마지막에 들어간 Data에 맞게 조금 더 조정되는 경향을 보이므로 Data의 순서도 생각하여 랜덤으로 섞이게 들어가게 하는 것이 조금 더 정확도를 높은 결과를 보여준다.
@@ -114,7 +114,7 @@ test_loader = DataLoader(mnist_test,batch_size=batch_size,shuffle=True,num_worke
 ```
 하나의 Class로서 CNN Model을 만든다.  
 **Conv2d Parameter**  
-<code>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')</code>  
+<div><code>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')</code></div>  
 
 Tensorflow 와 다르거나 추가된 부분만 알아보자.  
 
@@ -126,7 +126,7 @@ Tensorflow 와 다르거나 추가된 부분만 알아보자.
 - dilation: dilation convolution은 필터 내부에 zero padding을 추가해 강재로 receptive field를 늘리는 방법이다. 아래 그림에서 진한 파란 부분만 weight가 있고 나머지 부분은 0으로 채워진다.이러한 방법의 특징은 pooling을 수행하지도 않고도 receptive field를 크게 가져갈 수 있기 때문에 spatial dimension 손실이 적고 대부분의 weight가 0이기 때문에 연산의 효율이 좋다.
 <p>
 <img src="https://cdn-images-1.medium.com/max/1200/1*SVkgHoFoiMZkjy54zM_SUw.gif"></p>
-    
+
 위의 식은 아래와 같이 정의 된다.  
 $$input size = (N, C_in, H, W)$$
 $$output size = (N, C_out, H_out, W_out)$$
