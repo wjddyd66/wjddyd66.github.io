@@ -909,9 +909,9 @@ and all information is always passed through, with additional residual functions
 
 **Skip Connection**의 핵심아이디어는 일반적인 NeuralNetwork와 달리 **y는 x를 대표하는 값이라고 생각할 수 있다**이다.
 
-위와 같은 생각으로 인하여 **Loss Function을 $H(x)$-y 로 잡는 것이 아닌 $H(x)$-x로 생각하는 것이 핵심**이다.
+위와 같은 생각으로 인하여 **Loss Function을 $$H(x)$$-y 로 잡는 것이 아닌 $$H(x)$$-x로 생각하는 것이 핵심**이다.
 
-즉 위와 같은 가정을 하게 되면 $F(x) = H(x)$-x이라는 $F(x)$을 추가하게 되면 결과적인 식은 다음과 같다.
+즉 위와 같은 가정을 하게 되면 $$F(x) = H(x)$$-x이라는 $$F(x)$$을 추가하게 되면 결과적인 식은 다음과 같다.
 
 $$F(x) + x = H(x)$$
 
@@ -924,7 +924,7 @@ $$y = F(x,{W_i})+x - (1)$$
 $$F = W_2\sigma(W_1x)$$
 
 그러나 위의 식으로서 생각을 하게 된다면 만약 weight Layer를 통하여 나온 Output의 행렬이 다르게 된다면 행렬이 크기를 맞춰줄 필요가 있다.
-이러한 행렬의 Dimension을 해결하기 위하여 Square Matrix인 $W_s$를 사용한다.
+이러한 행렬의 Dimension을 해결하기 위하여 Square Matrix인 $$W_s$$를 사용한다.
 최종적인 식을 아래와 같다.
 
 $$y = F(x,{W_i})+W_sx - (2)$$

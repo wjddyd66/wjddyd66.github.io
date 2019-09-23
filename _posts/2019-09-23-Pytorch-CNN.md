@@ -127,9 +127,9 @@ Tensorflow 와 다르거나 추가된 부분만 알아보자.
 <img src="https://cdn-images-1.medium.com/max/1200/1*SVkgHoFoiMZkjy54zM_SUw.gif"></p>
 
 위의 식은 아래와 같이 정의 된다.  
-$$input size = (N, C_in, H, W)$$<br>
-$$output size = (N, C_out, H_out, W_out)$$<br>
-$$out(N_i,C_{out_j}) = bias(C_{out_j}) + \sum_{k=0}^{C_in - 1}weight(C_{out_j}, k) * input(N_i,k)$$
+$$input size = (N, C_{in}, H, W)$$<br>
+$$output size = (N, C_{out}, H_{out}, W_{out})$$<br>
+$$out(N_i,C_{out_j}) = bias(C_{out_j}) + \sum_{k=0}^{C_{in - 1}}weight(C_{out_j}, k) * input(N_i,k)$$
 
 아래 식에서 중요한 함수는 view함수가 있다.  
 nn.Linear에 값을 전달하기 위하여 Convolution의 결과의 행렬의 크기를 맞춰주어야 한다.  
