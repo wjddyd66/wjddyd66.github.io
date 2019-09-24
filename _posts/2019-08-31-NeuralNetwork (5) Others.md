@@ -204,6 +204,12 @@ Train Data에 대한 결과 예측력은 매우 높지만 새로운 데이터인
 <p>$$L_{new} = L_{old} + \frac{\lambda}{2}(w_1^2 + w_2^2 + ... + w_n^2)$$</p>
 **2) L1 Regularization**: 기존 손실함수에 학습파라메터의 절대값을 더해 적용합니다. 이 기법은 학습파라메터를 sparse하게(거의 0에 가깝게) 만드는 특성이 있습니다.
 <p>$$L_{new} = L_{old} + \lambda (\left| w_1 \right| + \left| w_2 \right| + ... + \left| w_n \right|)$$</p>
+
+각각의 방식을 그래프로 표현하게 되면 다음과 같다.  
+<div><img src="https://miro.medium.com/max/602/1*o6H_R3Do1zpch-3MZk_fjQ.png" height="250" width="600" /></div>
+
+즉, **L1 Regularization에서 Sparse하다는 것은 Weight가 0으로 될 확률이 높다는 것이다.**  
+**Sparse**: 전체 w중 0이 많은 경우  
 위의 공통된 식을 살펴보게 되면 **가중치가 큰 곳에 더 큰 Loss를 더해주는 것**이 핵심이다.  
 **Loss 가 커지게 되면** Gradinet Descent 를 생각하였을 때 더욱 더 빨리 최소값에 수렴하게 되고 빨리 수렴하게 되면 무한정으로 커지는 것을 막을 수 있다.  
 아래 그림은 **가중치 감소**를 적용하였을때의 그래프 이다.
@@ -284,5 +290,7 @@ Best-5(val acc:0.77) | lr:0.008334498605369918, weight decay:4.621838061557274e-
 참조:<a href="https://github.com/wjddyd66/DeepLearning/blob/master/Others.ipynb">원본코드</a><br>
 참조:<a href="https://ratsgo.github.io/deep%20learning/2017/04/22/NNtricks/">ratsgo's 블로그</a><br>
 참조: <a href="https://sacko.tistory.com/43">sacko 블로그</a> <br>
+참조: <a href="https://untitledtblog.tistory.com/143">untitledtblog 블로그</a><br>
+참조: <a href="https://nittaku.tistory.com/289">nittaku 블로그</a><br>
 참조: 밑바닥부터 시작하는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
