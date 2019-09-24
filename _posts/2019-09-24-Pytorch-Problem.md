@@ -72,7 +72,7 @@ class CNN(nn.Module):
 위의 Code에서 weight_decay=0.1로 설정한다는 것은  
 L2 Regularization 식에서  
 <p>$$L_{new} = L_{old} + \frac{\lambda}{2}(w_1^2 + w_2^2 + ... + w_n^2)$$</p>
-$\lambda$ = 0.1로 설정한다는 것 이다.
+$$\lambda$$ = 0.1로 설정한다는 것 이다.
 #### 2) Loss func & Optimizer
 ```python
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -590,10 +590,11 @@ tensor(0.0032, grad_fn=<AddBackward0>)
 tensor(0.0021, grad_fn=<AddBackward0>)
 tensor(0.0016, grad_fn=<AddBackward0>)
 ```
+<br><br>
 ### Normalization
 정규화의 종류로는 크게 2가지가 존재한다.
-- 표준 정규화: $\hat{x} = \frac{x - m}{\alpha}$
-- 최소극대화 정규화: $x = (x - min(x))/(max(x) - min(x))$
+- 표준 정규화: <span>$$\hat{x} = \frac{x - m}{\alpha}$$ </span>
+- 최소극대화 정규화: <span>$$x = (x - min(x))/(max(x) - min(x))$$ </span>
 
 **정규화의 문제로는 너무 작거나 큰 이상치가 있는 경우에는 오히려 학습에 방해가 되는 경우도 발생한다.**  
 
@@ -714,9 +715,9 @@ with torch.no_grad():
 <p>$$ \hat{x_i} \leftarrow \frac{x_i-\mu_B}{\sqrt{\sigma_B^2 + \varepsilon}}$$</p>
 <p>$$ B = {x_1, x_2, ... , x_m} $$</p>
 
-위의 식에서 알 수 있듯이 m개의 입력 데이터의 집합에 대해 평균 <span>$ \mu_B$</span>와 분산<span>$ \sigma_B^2$</span>를 구한다.  
+위의 식에서 알 수 있듯이 m개의 입력 데이터의 집합에 대해 평균 <span>$$ \mu_B$$</span>와 분산<span>$$ \sigma_B^2$$</span>를 구한다.  
 그리고 입력 데이터를 평균이 0, 분산이 1이 되게 정규화를 실시한다.  
-<span>$ \varepsilon $</span>는 매우 작은 값으로서 <span>$\frac{x_i-\mu_B}{\sqrt{\sigma_B^2 + \varepsilon}} $</span>의 값이 inf가 되는 것을 방지한다.  
+<span>$$ \varepsilon $$</span>는 매우 작은 값으로서 <span>$$\frac{x_i-\mu_B}{\sqrt{\sigma_B^2 + \varepsilon}} $$</span>의 값이 inf가 되는 것을 방지한다.  
 
 Pytorch에서는 nn.BatchNorm()으로서 구성한다.  
 또한 **DropOut기법과 똑같이 Train에서는 BatchNormalization을 실시하고 평가할때는 model.eval()을 통하여 BatchNormalization을 실시하지 않는다.**  
