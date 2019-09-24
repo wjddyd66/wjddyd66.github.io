@@ -11,8 +11,7 @@ categories: [Pytorch]
 **Model 구성 시 성능향상을 위해 고려해야 하는 사항**에 대해서 알아보자.  
 아래 링크는 현재 Post에서 구현할 개념을 다룬 내용이다.<br>
 <a href="https://wjddyd66.github.io/dl/2019/08/31/NeuralNetwork-(5)-Others.html">NeuralNetwork (5) 학습 관련 기술들</a>
-
-<br><br>
+<br>
 ### 정형화 
 
 **매우 큰 가중치가 존재**한다고 생각하면 **그 하나의 가중치에 의해서 Model이 결정**되므로 Overfitting된다고 생각할 수 있기 때문이다.  
@@ -835,6 +834,6 @@ Pytorch에서는 torch.optim에서 이러한 종류를 구현하여서 제공하
 <br><br>
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/Pytorch/blob/master/RNN%26LSTM/RNN%26LSTM.ipynb">원본코드</a> <br>
+참조: <a href="https://github.com/wjddyd66/Pytorch/blob/master/Problem.ipynb">원본코드</a> <br>
 참조: 파이토치 첫걸음<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
