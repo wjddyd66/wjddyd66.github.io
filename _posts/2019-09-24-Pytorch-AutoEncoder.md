@@ -418,6 +418,6 @@ for i in range(2):
 
 <br>
 <hr>
-참조: <a href="https://github.com/wjddyd66/Pytorch/blob/master/CNN/CNN.ipynb">원본코드</a> <br>
+참조: <a href="https://github.com/wjddyd66/Pytorch/blob/master/Autoencoder.ipynb">원본코드</a> <br>
 참조: 파이토치 첫걸음<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
