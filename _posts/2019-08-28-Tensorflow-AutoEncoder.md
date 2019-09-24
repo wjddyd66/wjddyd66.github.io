@@ -7,10 +7,8 @@ categories: [Tensorflow]
 
 ### AutoEncoder
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 **AutoEncoder** 은 아래의 그림과 같이 단순히 입력을 출력으로 복사하는 신경 망(비지도 학습) 이다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F996C93475BDC97C00AE328" height="100%" width="100%" /></div><br>
-
 **Hidden Layer**의 뉴런 수를 **Input Layer 와 Output Layer**의 뉴런 수보다 적게 설정하여 입력받은 원본 데이터에서 불필요한 특징들을 제거한 압축된 특징을 학습하게 되는것이 특징이다.  
 즉, Trainning 과정에서 불필요한 특징들을 자동적으로 제거하고 필요한 특징들만 남아있게 된다.  
 
@@ -19,16 +17,14 @@ categories: [Tensorflow]
 이번 Post에서 구현한 **AutoEncoder**의 경우 크게 두가지로 구별할 수 있게 된다.  
 
 ### Stacked AutoEncoder
-Stacked AutoEncoder는 여러개의 히든 레이어를 가지는 Auto Encoder이며, 레잉어를 추가할수록 AutoEncoder가 더 복잡한 코딩을 학습할 수 있다.  
+Stacked AutoEncoder는 여러개의 히든 레이어를 가지는 Auto Encoder이며, 레이어를 추가할수록 AutoEncoder가 더 복잡한 코딩을 학습할 수 있다.  
 Stacked AutoEncoder는 아래의 그림과 같이 가운데 히든레이어를 기준으로 대칭인 구조를 가진다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F99F1DE4A5BDC983D09BAED" height="100%" width="100%" /></div><br>
-
 ### Stacked AutoEncoder를 이용한 비지도 사전학습
 먼저 전체 데이터를 사용해 Stacked AutoEncoder를 학습시킨다.  
 그런 다음 AutoEncoder의 하위 레이어를 재사용해 분류와 같은 실제 문제를 해결하기 위한 신경망을 만들고 레이블된 데이터를 사용해 학습시킬 수 있다.  
 이러한 학습된 Layer에 parameter를 복사하여 사용하는 기술을 **파이튜닝(Fine-Tuning) 혹은 전이학습(Transfer learning)**이라고 불린다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F99866E4F5BDC99170978C8" height="100%" width="100%" /></div><br>
-
 그외에 다양한 AutoEncoder에 관한 자세한 내용은 아래 링크를 참조  
 <a href="https://excelsior-cjh.tistory.com/187">AutoEncoder 의 종류과 설명</a>  
 
