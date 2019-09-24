@@ -503,7 +503,6 @@ loss_func = nn.CrossEntropyLoss()
 **<code>output_dist = output.data.view(-1).div(0.8).exp()</code>**  
 위의 Code는 확률적인 문장 생성을 위한 Code이다.  
 0.8로서 나눔으로 인하여 문장의 확률을 조금 Normalization하는 효과가 있다.  
-즉, 0.8보다 높은 확률은 낮추고, 0.8보다 낮은 확률은 높이는 방식
 
 **<code>torch.multinomial(output_dist, 1)[0]</code>**  
 위의 결과로 얻어진 확률분포를 통하여 확률적으로 단어를 선택하게 하는 Code이다.  

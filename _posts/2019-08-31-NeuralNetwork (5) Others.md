@@ -110,7 +110,6 @@ ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/87.PNG" height="250" width="600" /></div>
 **He**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/86.PNG" height="250" width="600" /></div>
-
 <br><br>
 
 
@@ -124,7 +123,6 @@ ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천
 
 배치 정규화의 과정은 아래와 같은 그림으로 나타낼 수 있다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F994586445BBE000E15CC3D" height="250" width="600" /></div>
-
 위의 그림으로서 데이터의 분포가 평균이 0, 분산이 1이 되도록 정규화를 한다.  
 수식으로는 아래와 같이 나타낼 수 있다.  
 <p>$$ \mu_B \leftarrow \frac{1}{m}\sum_{i=1}^m x_i$$</p>
@@ -141,10 +139,56 @@ ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천
 
 <br><br>
 
-#### Overfitting
-Overfitting 이란 문자 그대로 너무 과도하게 데이터에 대해 모델을 learning을 한 경우를 의미한다.  
-너무 과도하게 데이터에 대해 모델을 learning하게 되는 경우 새로운 Data가 Input으로 들어오게 되었을때 예측하지 못하는 결과를 초래할 수 있다.  
-즉, 제대로 설명을 못하는 Model(Traing Dataset에만 특화된)이 생기는 현상을 Overfitting이라고 얘기한다.  
+#### 오버피팅과 언터피팅
+아래 그림은 오버피팅과 언더피팅에 대한 그림이다.  
+
+<div><img src="//t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/Jr9/image/SbI5NgVY5ZLzvG6QCT8hUcC00lA.jpg" height="250" width="600" /></div>
+위의 그림을 살펴보게 되면 오버피팅과 언더피팅을 정의할 수 있다.  
+**Underfitting**: 합습 오차가 큰 경우  
+**Overfitting**: 학습 오차는 작은데 테스트 오차가 큰 경우  
+
+위와 같은 Overfitting과 Underfitting을 수식으로서 알아보면 다음과 같다.  
+- x: Input Data
+- t: Target Data
+- f: Model
+- ϵ: Noise
+
+위와 같이 Parameter가 정의되어 있으면 Target Data는 아래처럼 표현 할 수 있다.  
+$$t = f(x) + ϵ$$
+
+Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은 <span>$E\{(t-y)^2\}$</span>으로서 표현 할 수 있다.  
+Loss Function을 조금 더 풀어보면 다음과 같다.  
+
+$$E\{(t-y)^2\} = E\{(t-f+f-y)^2\}$$
+$$= E\{(t-f)^2\} + E\{(f-y)^2\} + 2E\{(f-y)(t-f)\}$$
+$$= E\{ϵ^2\} + E\{(f-y)^2\} + 2[E\{ft\} - E\{f^2\} - E\{yt\} + E\{yf\}]$$
+$$= E\{(f - E\{y\} + E\{y\} - y)^2\} + E\{ϵ^2\}$$
+<br>
+$$(\because t = f + ϵ 이므로 ft - f^2 - yt + yf$$
+$$f(f + ϵ) - f^2 - y(f + ϵ) + yf = fϵ - yϵ = 0)$$
+<br>
+$$= E\{(f-E\{y\})^2\} + E\{(E\{y\}-y)^2\} + 2E\{(E\{y\}-y)(f-E\{y\})\} + E\{ϵ^2\}$$
+$$= E\{(f-E\{y\})^2\} + E\{(E\{y\}-y)^2\} + E\{ϵ^2\}$$
+<br>
+$$(\because 2E\{(E\{y\}-y)(f-E\{y\})\} =0 )$$
+<br>
+
+최종적인 식을 살펴보게 되면 각각을 의미하는 것은 다음과 같다.  
+- <span>$$E\{(f-E\{y\})^2\}$$ </span>: Bias(편차)의 제곱
+- <span>$$E\{(E\{y\}-y)^2\}$$ </span>: Variance(분산)
+- <span>$$E\{ϵ^2\}$$ </span>: Noise
+
+최종적인 식에서 <span>$$E\{ϵ^2\}$$ </span>은 독립적인 값이므로 최소화를 할 수 없으므로 Bias의 제곱과, Variance가 최소가 되는 Model을 찾는것이 결국 목표이다.
+
+각각의 Variance와 Bias에 따른 예측값의 분포를 살펴보면 다음 그림과 같다.  
+<div><img src="https://t1.daumcdn.net/cfile/tistory/99A4944A5B76CC9832" height="250" width="600" /></div>
+위의 그림으로서 살펴보게 되면 결론적으로 Overfitting과 Underfitting은 다음과 같은 현상일 때 나타난다.  
+**Overfitting은 분산은 작으나 편차가 클 경우 발생(High Bias)**  
+**Underfitting은 분산이 큰 경우 발생(High Variance)**  
+**위에서 말하는 분산은 Model에 적용시키면 Feature라고 할 수 있다.**  
+아래 그림은 Feature에 따른 Underfit과 Overfit에 관한 그림이다.  
+<div><img src="https://t1.daumcdn.net/cfile/tistory/9994AF495B76CC9B0F" height="250" width="600" /></div>
+위의 그림에서도 알 수 있듯이 적정수의 Feature의 수가 Model에서 Underfitting과 Overfitting을 안일어나게 할 수 있다.  
 이러한 Overfitting된 Model의 결과를 보게 되면 아래그림과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/91.PNG" height="250" width="600" /></div>
 Train Data에 대한 결과 예측력은 매우 높지만 새로운 데이터인 Test Data에 대한 결과 예측은 안좋은 모습을 보이는 것을 확인 할 수 있다.  
@@ -164,12 +208,10 @@ Train Data에 대한 결과 예측력은 매우 높지만 새로운 데이터인
 **Loss 가 커지게 되면** Gradinet Descent 를 생각하였을 때 더욱 더 빨리 최소값에 수렴하게 되고 빨리 수렴하게 되면 무한정으로 커지는 것을 막을 수 있다.  
 아래 그림은 **가중치 감소**를 적용하였을때의 그래프 이다.
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/92.PNG" height="250" width="600" /></div>
-
 **2. DropOut**
 Dropout은 **Overfitting**을 막기위한 방법으로 뉴럴 네트워크가 학습중일때, 랜덤하게 뉴런을 꺼서 학습함으로써, 학습이 학습용 데이터로 치우치는 현상을 막아준다.  
 
 <div><img src="https://t1.daumcdn.net/cfile/tistory/224A3941583ED6B109" height="250" width="600" /></div>
-
 그림출처:<a href="https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/dropout_layer.html">leonardoaraujosantos</a><br>
 
 위와 같은 DeopOut은 아래의 코드로서 간단히 구현 될 수 있다.  
