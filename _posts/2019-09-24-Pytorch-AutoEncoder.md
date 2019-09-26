@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Pytorch-Autoencoder"
-date:   2019-09-23 10:30:00 +0700
+date:   2019-09-24 11:30:00 +0700
 categories: [Pytorch]
 ---
 
@@ -10,7 +10,6 @@ categories: [Pytorch]
 
 AutoEncoder 은 아래의 그림과 같이 단순히 입력을 출력으로 복사하는 신경 망(비지도 학습) 이다. 
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F996C93475BDC97C00AE328" height="100%" width="100%" /></div><br>
-
 아래 링크는 AutoEncoder에 관한 개념 설명이 나와있다.  
 <a href="https://wjddyd66.github.io/tensorflow/2019/08/28/Tensorflow-AutoEncoder.html">Auto Encoder</a>
 
@@ -54,7 +53,6 @@ Stacked AutoEncoder는 여러개의 히든 레이어를 가지는 Auto Encoder�
 Stacked AutoEncoder는 아래의 그림과 같이 가운데 히든레이어를 기준으로 대칭인 구조를 가진다.  
 
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F99F1DE4A5BDC983D09BAED" height="100%" width="100%" /></div><br>
-
 이번 Model은 MNIST를 분류하는 Stacked AutoEncoder를 구현하는 것 이다.  
 <br>
 **Encoder:** [batch_size,1,28,28] -> x.view(batch_size,-1) -> [batch_size,784] -> nn.Linear(28 * 28, 20) -> [batch_size,20]  
@@ -175,7 +173,6 @@ Pytorch는 이러한 연산을 **ConvTranspose2d**을 통하여 지원한다.
 <p>$$H_{out}=(H_{in}−1)×stride[0]−2×padding[0]+dilation[0]×(kernel_size[0]−1)+output_padding[0]+1$$</p>
 <p>$$W_{out}=(W_{in}−1)×stride[0]−2×padding[0]+dilation[0]×(kernel_size[0]−1)+output_padding[0]+1$$</p>
 
-
 좀 더 명확히 알아보기 위하여 그림으로서 알아보자.  
 아래 그림의 Parameter는 다음과 같다.
 - input size: 2 x 2
@@ -194,12 +191,6 @@ Pytorch는 이러한 연산을 **ConvTranspose2d**을 통하여 지원한다.
 
 #### Input data
 ```python
-
-```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/133.PNG" height="250" width="600" /></div>
-
-#### Input data
-```python
 # 입력으로 1로 채워진 텐서를 생성합니다.
 img = torch.ones(1,1,3,3)
 print(img)
@@ -211,7 +202,6 @@ transpose = nn.ConvTranspose2d(in_channels=1, out_channels=1, kernel_size=3, str
 init.constant_(transpose.weight.data,1)
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/134.PNG" height="250" width="600" /></div>
-
 #### Kernel Size=3, stride=1, padding=0, output_padding=0
 ```python
 out = transpose(img)
@@ -221,7 +211,6 @@ plt.imshow(out.detach().numpy()[0,0,...],vmin=0)
 plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/135.PNG" height="250" width="600" /></div>
-
 #### Kernel Size=3, stride=2, padding=0, output_padding=0
 
 Stride증가시 Output Size 커짐
@@ -234,7 +223,6 @@ print(out,out.size())
 plt.imshow(out.detach().numpy()[0,0,...],vmin=0)
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/136.PNG" height="250" width="600" /></div>
-
 #### Kernel Size=3, stride=2, padding=1, output_padding=0
 
 Padding 추가시 결과값에서 Outline padding크기만큼 제거
@@ -247,7 +235,6 @@ print(out,out.size())
 plt.imshow(out.detach().numpy()[0,0,...],vmin=0)
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/137.PNG" height="250" width="600" /></div>
-
 ## Kernel Size=3, stride=2, padding=0, output_padding=1
 
 out_padding 추가시 out_padding크기만큼 결과값 width, height증가
@@ -260,7 +247,6 @@ print(out,out.size())
 plt.imshow(out.detach().numpy()[0,0,...],vmin=0)
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/138.PNG" height="250" width="600" /></div>
-
 #### 1) Model
 
 Encoder: 기존에 사용하던 Convolution으로서 Input Size보다 작아지게 구성  
@@ -390,7 +376,6 @@ for i in range(2):
     plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/139.PNG" height="250" width="600" /></div>
-
 #### 5) Check with Train Image
 ```python
 with torch.no_grad():
@@ -415,7 +400,6 @@ for i in range(2):
     plt.show()
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/140.PNG" height="250" width="600" /></div>
-
 <br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/Pytorch/blob/master/Autoencoder.ipynb">원본코드</a> <br>
