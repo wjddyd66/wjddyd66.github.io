@@ -524,7 +524,8 @@ for i in range(5):
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/142.PNG" height="100%" width="97%" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/143.PNG" height="100%" width="100%" />
 <br>
 현재 U-Net의 **Loss Function을 논문에서 제시한 Weight Cross Entropy가 아닌 MSE로 구현하였기 때문에 Loss는 적어도 만족하지 못한 결과를 얻었다.**
-OpenCv를 공부 후 Image처리를 통하여 다시 Loss Function을 구현 후 확인해 봐야하는 사항이다.  
+OpenCv를 공부 후 Image처리를 통하여 다시 Loss Function을 구현 후 확인해 봐야하는 사항이다.
+<br>
 <br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/Pytorch/tree/master/U-Net">원본코드</a> <br>
