@@ -8,7 +8,7 @@ categories: [Pytorch]
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 ### U-Net
 <br>
-<img width="600" height="600" role="presentation" src="https://miro.medium.com/max/902/1*O2NbipwBOdTMtj7ThBNTPQ.png">
+<img width="100%" height="100%" role="presentation" src="https://miro.medium.com/max/902/1*O2NbipwBOdTMtj7ThBNTPQ.png">
 
 논문 링크: <a href="https://arxiv.org/pdf/1505.04597.pdf">U-net</a><br>
 
@@ -23,7 +23,7 @@ U-Net의 대표적인 특징은 3가지 이다.
 
 <br><br>
 ### Overlap Tile Strategy
-<img width="600" height="600" role="presentation" src="https://miro.medium.com/max/557/1*GNB3UkI-hErQwvL-jDLU7A.png">
+<img width="100%" height="100%" role="presentation" src="https://miro.medium.com/max/557/1*GNB3UkI-hErQwvL-jDLU7A.png">
 
 Overlap Tile Strategy는 unpaddes convolution을 실행함으로서 Output Size는 Input Size보다 작아지게 된다.  
 따라서 DownSizing 과 Upsampling시 Ovelap tile을 사용하게 된다.  
@@ -35,7 +35,7 @@ Image를 Patch 단위로 가져오기 위해서 가장자리 부분을 **Mirrori
 
 <br>
 Boundary는 부자연 하므로 Patch에서 일정 부분만 Segmentation으로서 사용한다. 또한 Overlap이라고 불리는 이유는 아래와 같이 Tile이 겹쳐서 뽑아내기 때문이다. 
-<img width="600" height="600" role="presentation" src="https://modulabs-biomedical.github.io/assets/images/posts/2018-04-02-U_Net/u-net_fig_2_overlap.png">
+<img width="100%" height="100%" role="presentation" src="https://modulabs-biomedical.github.io/assets/images/posts/2018-04-02-U_Net/u-net_fig_2_overlap.png">
 <br><br>
 ### Data Augmentaion
 현재 논문에서 강조하는 Model의 성능향상을 종합해보면 크게 2가지라 할 수 있다.
@@ -48,12 +48,12 @@ Boundary는 부자연 하므로 Patch에서 일정 부분만 Segmentation으로�
 따라서 이러한 부족한 수의 DataSet을 늘리는 방법을 **Data Augmentaion**이라 한다.  
 현재 사용하고 있는 Data의 Augmentaion을 Elastic Deformation을 사용하였다.  
 **Elastic Deformation** 
-<img width="600" height="600" role="presentation" src="https://miro.medium.com/max/488/1*tKP4KxFTzQZiIBdANn1PVA.png">
+<img width="100%" height="100%" role="presentation" src="https://miro.medium.com/max/488/1*tKP4KxFTzQZiIBdANn1PVA.png">
 
-위와 같이 Elastic Deformation을 사용한 이유도 **Biomedical Image의 특성**때문인데 전문적인 분야가 아니라서 자세히는 모르겠다.  
+위와 같이 Elastic Deformation을 사용한 이유도 **Biomedical Image의 특성**때문이다.  
+**Boundary를 직사각형으로 균등하게 자르는 경우 Boundary안에 정확한 Cell이 존재하지 않을 확률이 높다.**  
+따라서 **Elastic Deformation을 통하여 Boundary안에 Cell이 최대한 많이 분포하기 위해 처리해주는 과정이다.**  
 <a href="https://en.wikipedia.org/wiki/Transformation_matrix">Transformation Matrix자세한 내용</a><br>
-
-
 현재 전문적인 지식이 필요한 부분으로 인하여 미리 정제되어 있는 DataSet을 가져와 사용하였다.  
 아래 링크는 Data의 Input 과 Label을 DataAugmentaion을 하여 사용하는 과정까지 자세히 나와있는 링크이다.  
 아래 링크에서 Data Augmentaion된 Data를 활용하여 Model을 학습하였다.  
@@ -354,8 +354,8 @@ Biomedical Image의 특성상 Cell이 서로 인접하여서 구분하기 힘든
 각각의 Cell과 배경은 잘 구분되는 특징은 있지만, 각각의 Cell이 구분되지 않는 특징이 존재하게 된다.  
 
 이러한 특성 때문에 서로 붙어있는 물체를 쉽게 합치고 떨어뜨리기 위하여, Weight map을 추가하여 Network의 Output을 결정하게 된다.
-- $d_1(x)$: 가장 근접한 Cell의 경계와의 거리
-- $d_2(x)$: 두번째로 근접한 Cell의 경계와의 거리
+- <span>$$d_1(x)$$</span>: 가장 근접한 Cell의 경계와의 거리
+- <span>$$d_2(x)$$</span>: 두번째로 근접한 Cell의 경계와의 거리
 $$w(x) = w_c(x) + w_0 * exp(-\frac{(d_1(x) + d_2(x))^2}{2\alpha^2})$$
 
 이러한 Weight Map을 통하여 Loss Function을 정의하게 되면 Cross Entropy를 사용할 시 다음과 같이 나타낼 수 있다.
@@ -366,7 +366,75 @@ $$E = \sum_{x \in \Omega}w(x)log(p_{l(x)}(x))$$
 
 **위의 사진에서도 알 수 있듯이 Cell이 인접해 있으면, 각 셀과 배경을 구분하도록 둘 사이에 배경으로 인식할 틈을 만들겠다는 의미이다.**
 
-현재 **Biomedical Image Segmentation이 목표가 아닌 U-Net의 성능을 확인하는 것이므로 Loss Function을 논문에서 사용한 방법이 아닌 간단한 MSE로서 구성하였습니다.**
+#### 간단한 $w_c(x)$ 확인
+```python
+def imshow2(tensor, title=None):
+    image = tensor.cpu().clone()  # 텐서의 값에 변화가 적용되지 않도록 텐서를 복제합니다
+    image = image.squeeze(0)      # 페이크 배치 차원을 제거 합니다
+    image = unloader(image)
+    return image
+
+img = imshow2(label[0])
+img_numpy = np.array(img)
+print('img_numpy Check')
+print(img_numpy)
+
+
+kernel = np.ones((3,3),np.uint8)
+result = cv2.morphologyEx(img_numpy/255, cv2.MORPH_TOPHAT, kernel)
+
+print('After Kernel Check')
+print(result)
+
+plt.subplot(131),plt.imshow(img),plt.title('Original')
+plt.xticks([]), plt.yticks([])
+plt.subplot(132),plt.imshow(result),plt.title('Feature Map')
+plt.xticks([]), plt.yticks([])
+plt.subplot(133),plt.imshow(img+result),plt.title('Feature Map + Original')
+plt.xticks([]),plt.yticks([])
+plt.show()
+```
+```code
+img_numpy Check
+[[255 255 255 ... 255 255 255]
+ [255 255 255 ... 255 255 255]
+ [255 255 255 ... 255 255 255]
+ ...
+ [255   0   0 ... 255 255 255]
+ [  0   0   0 ... 255 255 255]
+ [  0   0   0 ... 255 255 255]]
+After Kernel Check
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/144.PNG" height="250" width="400" /></div>
+
+#### Hyper Parameter 및 Model, Loss 선언
+
+원래 Loss는 아래와 같다.
+**Weight Map**  
+- <span>$$d_1(x)$$</span>: 가장 근접한 Cell의 경계와의 거리
+- <span>$$d_2(x)$$</span>: 두번째로 근접한 Cell의 경계와의 거리
+
+$$w(x) = w_c(x) + w_0 * exp(-\frac{(d_1(x) + d_2(x))^2}{2\alpha^2})$$
+
+**Loss Function**  
+이러한 Weight Map을 통하여 Loss Function을 정의하게 되면 Cross Entropy를 사용할 시 다음과 같이 나타낼 수 있다.
+$$E = \sum_{x \in \Omega}w(x)log(p_{l(x)}(x))$$
+
+현재 **Weight Map**에서 가장 인접한 Cell과의 거리를 어떻게 해야할 지 몰라서 간단한 **Weight Map**만 구하였다.  
+즉 식은 아래와 같이 바뀌게 된다.  
+$$w(x) = w_c(x) + w_0 * exp(-\frac{(d_1(x) + d_2(x))^2}{2\alpha^2})$$
+
+또한 Loss Function도 MSE를 사용하여 아래와 같이 식이 변하게 된다.  
+$$E = \sum{(y - (\hat{y} + w_c(x)))^2}$$
+
+**나중에 OpenCV를 공부후 각각의 Cell사이의 거리를 구할 수 있게 되면 다시 구현하는 것을 목표로 한다.**  
 
 ```python
 img_size = 256
@@ -405,9 +473,9 @@ for i in range(num_epoch):
 ```
 
 ```code
-0.2555044889450073
-0.07216542959213257
-0.0248354971408844
+0.3214595317840576
+0.07401763647794724
+0.03947801887989044
 
 ...
 
@@ -446,9 +514,14 @@ for i in range(5):
 0.0001578749215696007
 0.0001578749215696007
 0.0001578749215696007
+
+...
+
+0.003879855154082179
+0.0062858411110937595
+0.01764284074306488
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/142.PNG" height="250" width="600" /></div>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/143.PNG" height="250" width="600" /></div>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/142.PNG" height="250" width="630" /><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/143.PNG" height="250" width="600" />
 <br>
 현재 U-Net의 **Loss Function을 논문에서 제시한 Weight Cross Entropy가 아닌 MSE로 구현하였기 때문에 Loss는 적어도 만족하지 못한 결과를 얻었다.**
 OpenCv를 공부 후 Image처리를 통하여 다시 Loss Function을 구현 후 확인해 봐야하는 사항이다.  
