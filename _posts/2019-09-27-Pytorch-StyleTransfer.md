@@ -62,7 +62,7 @@ Style과 Content를 각각 Reconstruction하기 위한 수식을 알아보기 �
 
 <br>
 **Content Reconstruction**  
-$$L_{content}(p,x,l) = \frac{1}{2}\sum_{ij}(F_{ij}^{l}-P_{ij}^{l})^2$$
+<p>$$L_{content}(p,x,l) = \frac{1}{2}\sum_{ij}(F_{ij}^{l}-P_{ij}^{l})^2$$</p>
 즉, p와x에 대해 각각 Feature map을 구하고 이 둘의 차이를 MSE로서 LossFunction을 선택한 것 이다.  
 이에 관하여 Content Reconsturction을 한다고 가정하면 다음과 같다.  
 <p>$$x^l = argmax_{x}L_{content}(p,x,l)$$</p>
