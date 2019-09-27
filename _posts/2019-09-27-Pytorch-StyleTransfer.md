@@ -35,7 +35,7 @@ categories: [Pytorch]
 이러한 이유는 **Style Layer는 Input Data를 Correlation을 통하여 GramMatrix로서 변환하여 대입하기 때문이다.**  
 
 **GramMatrix**를 수식으로 표현하면 아래와 같다.  
-$$G_{ij} = \begin{bmatrix} <v_1,v_1> & <v_1,v_2> & <v_1,v_3> \\ <v_2,v_1> & <v_2,v_2> & <v_2,v_3> \\ <v_3,v_1> & <v_3,v_2> & <v_3,v_3> \\ \end{bmatrix} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} \begin{bmatrix} v_1 & v_2 & v_3 \end{bmatrix}$$
+<p>$$ G_{ij} = \begin{bmatrix} <v_1,v_1> & <v_1,v_2> & <v_1,v_3> \\ <v_2,v_1> & <v_2,v_2> & <v_2,v_3> \\ <v_3,v_1> & <v_3,v_2> & <v_3,v_3> \\ \end{bmatrix} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} \begin{bmatrix} v_1 & v_2 & v_3 \end{bmatrix} $$</p>
 
 위와 같은 과정을 Style Image에 적용시키면 다음 그림과 같다.
 
@@ -51,7 +51,6 @@ $$G_{ij} = \begin{bmatrix} <v_1,v_1> & <v_1,v_2> & <v_1,v_3> \\ <v_2,v_1> & <v_2
 $$x = argmax_{x} \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$
 
 즉 Loss에 관하여 Result Image가 최대화 되는 곳을 찾으므로서 Result Image를 구성할 수 있다.  
-
 <br><br>
 
 ### Reconstruction
@@ -68,11 +67,12 @@ $$L_{content}(p,x,l) = \frac{1}{2}\sum_{ij}(F_{ij}^{l}-P_{ij}^{l})^2$$
 이에 관하여 Content Reconsturction을 한다고 가정하면 다음과 같다.  
 $$x^l = argmax_{x}L_{content}(p,x,l)$$
 
-위와 같은 식을 풀기위하여 최초의 $x^l$을 Random Image로 Initialize한다면 다음과 같다.  
-$$\frac{\partial argmax_{x}L_{content}(p,x,l)}{\partial F_{ij}^l} = \begin{cases} (F_{ij}^l - P_{ij}^{l})_{ij}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases}$$
+위와 같은 식을 풀기위하여 최초의 <span>$$x^l$$</span>을 Random Image로 Initialize한다면 다음과 같다.  
+<p>$$ \frac{\partial argmax_{x}L_{content}(p,x,l)}{\partial F_{ij}^l} = \begin{cases} (F_{ij}^l - P_{ij}^{l})_{ij}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases} $$</p>
 
 위와 같은 식을 사용함으로써 전체 Gradient를 Back-propagation알고리즘을 사용해 간단하게 계산할 수 있다.  
 <br>
+
 **Style Reconstruction**  
 Style은 Content Reconsturction과 달리 위에서 언급한 Correlation부터 계산하여야 한다.  
 Correlation을 계산한 Gram matrix를 식으로서 표현하면 아래와 같다.  
@@ -91,7 +91,7 @@ $$E_l = \frac{1}{4N_l^2 M_l^2}\sum_{i,j}(G_{ij}^l-A_{ij}^l)^2$$
 $$L_{style}(a,x) = \sum_{l=0}^L w_l E_l$$
 
 각 Layer의 Loss인 $E_l$에 대하여 미분하게 된다면 다음과 같은 식을 얻을 수 있다.
-$$\frac{\partial E_l}{\partial F_{ij}^l} = \begin{cases} \frac{1}{N_l^2 M_l^2}((F^l)^T(G^l - A^l))_{ji}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases} $$
+<p>$$\frac{\partial E_l}{\partial F_{ij}^l} = \begin{cases} \frac{1}{N_l^2 M_l^2}((F^l)^T(G^l - A^l))_{ji}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases} $$</p>
 <br>
 <br>
 **Total Loss**  
@@ -395,7 +395,7 @@ LBFGS에 기본이 되는 Newton's Method부터 살펴보자.
 
 Newton's Method는 위의 그림과 같다.  
 결론 부터 얘기하자면  
-어떤 <span>$$x$에 대한 함수 <span>$$f(x)$$</span>가 존재한다고 가정하자.  
+어떤 <span>$$x$$</span>에 대한 함수 <span>$$f(x)$$</span>가 존재한다고 가정하자.  
 <span>$$f(x) = 0$$</span>인점을 찾는 것이 목적이다.  
 이러한 목적을 위해서 한 점 <span>$$x_t$$</span>에서의 값을 <span>$$f(x_t)$$</span>라고 한다면  
 <span>$$f\prime(x_t)$$</span>와 x축과의 접점을 <span>$$x_{t+1}$$</span>이라고 하자  
