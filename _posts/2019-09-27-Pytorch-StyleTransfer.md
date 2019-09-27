@@ -56,10 +56,10 @@ $$x = argmax_{x} \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$
 
 ### Reconstruction
 Style과 Content를 각각 Reconstruction하기 위한 수식을 알아보기 전에 공통적인 Parameter를 정의하고 가자.
-- $S_l$: Style Input의 l번째 Layer의 Feature Map
-- $P_l$: Content Input의 l번째 Layer의 Feature Map
-- $F_l$: Result Input의 l번째 Layer의 Feature Map
-- $x^l$: l번째 Layer에서 복원한 Image
+- <span>$$S_l$$</span>: Style Input의 l번째 Layer의 Feature Map
+- <span>$$P_l$$</span>: Content Input의 l번째 Layer의 Feature Map
+- <span>$$F_l$$</span>: Result Input의 l번째 Layer의 Feature Map
+- <span>$$x^l$$</span>: l번째 Layer에서 복원한 Image
 
 
 **Content Reconstruction**  
@@ -84,10 +84,10 @@ Correlation을 계산한 Gram matrix를 식으로서 표현하면 아래와 같�
 $$G_{ij}^l = \sum_{k}F_{ik}^{l}F_{kj}^l$$
 또한 **Style Reconsturction의 경우 모든 Layer에서의 Feature Map을 사용한다. 즉 'Texture'를 표현하기 위하여 전체적인 분위기서 부터 좁은 영역의 분위기까지 모두 사용하겠다는 의미이다.**  
 따라서 모든 Feature Map을 사용함으로 인하여 최종적인 Loss를 세우기 위한 추가적인 Parameter는 다음과 같다.  
-- $A^l$: Style Feature Map Inner Product(Gram Vector of a) at Layer l
-- $G^l$: Result Feature Map Inner Product(Gram Vector of a) at Layer l
-- $N_l$: Feature Maps at Layer l
-- $M_l$: Height x width of Feature Maps at Layer l
+- <span>$$A^l$$</span>: Style Feature Map Inner Product(Gram Vector of a) at Layer l
+- <span>$$G^l$$</span>: Result Feature Map Inner Product(Gram Vector of a) at Layer l
+- <span>$$N_l$$</span>: Feature Maps at Layer l
+- <span>$$M_l$$</span>: Height x width of Feature Maps at Layer l
 
 즉 위의 Parameter를 활용하여 각 레이어 l에서의 style loss는 아래와 같이 정의된다.  
 $$E_l = \frac{1}{4N_l^2 M_l^2}\sum_{i,j}(G_{ij}^l-A_{ij}^l)^2$$
@@ -107,7 +107,7 @@ $$
 **Total Loss**  
 위의 Content Reconstruction에서 정리한 식과 Style Reconsturction에서 정리한 식을 통하여 전체적인 Loss를 구하게 된다면 식은 아래와 같다.  
 $$L_{total}(p,a,x) = \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$
-위의 식에서 $\alpha, \beta$의 가중치의 적용을 어떻게 하냐에 따라서 다음과 같은 결과물을 얻을 수 있다.  
+위의 식에서 <span>$$\alpha, \beta$$ </span>의 가중치의 적용을 어떻게 하냐에 따라서 다음과 같은 결과물을 얻을 수 있다.  
 <img src="https://www.popit.kr/wp-content/uploads/2018/05/gatys_weighting_factor_for_loss.png" height="100%" width="100%" />
 <br><br>
 ### Model 구현
@@ -172,13 +172,13 @@ def image_preprocess(img_dir):
 - 후처리 함수
 - 위에서 Input Image를 정규화 상태로 진행하였기 때문에 원본 Image를 보기 뒤해서는 뺏던 값들을 다시 더해주는 과정이 필요하다.
 
-위에서 Normalization 식 $y = \frac{x-m}{\alpha}$을 통하여 나타내었다.  
+위에서 Normalization 식 <span>$$y = \frac{x-m}{\alpha}$$</span>을 통하여 나타내었다.  
 이러한 식을 다시 원상복구 시키기 위한 작업이 필요하다.  
 $$y = \frac{x-m}{\alpha}$$
 $$\alpha y = x-m$$
 $$x = \alpha(y+\frac{m}{\alpha})$$
 
-따라서 위에서 mean = $m$, std = $\alpha$로 정의하였으므로 되돌리기 위해서는  
+따라서 위에서 mean = <span>$$m$$</span>, std = <span>$$\alpha$$ </span>로 정의하였으므로 되돌리기 위해서는  
 $$mean = -\frac{m}{\alpha}, std = \frac{1}{\alpha}$$
 이 되어야 한다.
 
@@ -350,7 +350,7 @@ plt.show()
 ##### 2) Set Targets & Style Weights
 - style_target: Correlation으로서 GramMatrix를 사용하여 나타내고 모든 요소에서 뽑아내므로 Target은 for구문으로서 List로 연결
 - content_target: 특정 Layer의 결과값만 사용하므 resnet의 특정 Output 1개만을 사용한다.
-- style_weight: $L_{style}(a,x) = \sum_{l=0}^L w_l E_l$에서 $w_l$의 초기값을 설정하는 것 이다. Resnet Model에서 6개의 out_0 ~ out_6을 뽑아내므로 6개 선언
+- style_weight: <span>$$L_{style}(a,x) = \sum_{l=0}^L w_l E_l$$</span>에서 <span>$$w_l$$</span>의 초기값을 설정하는 것 이다. Resnet Model에서 6개의 out_0 ~ out_6을 뽑아내므로 6개 선언
 
 
 ```python
@@ -362,9 +362,9 @@ style_weight = [1/n**2 for n in [64,64,256,512,1024,2048]]
 ```
 ##### 3) Train
 
-- style_loss: $L_{style}(a,x)$
-- content_loss: $L_{content}(p,x)$
-- total_loss: $L_{total}(p,a,x) = \alpha L_{content}(p,x) + \beta L_{style}(a,x)$  
+- style_loss: <span>$$L_{style}(a,x)$$</span>
+- content_loss: <span>$$L_{content}(p,x)$$</span>
+- total_loss: <span>$$L_{total}(p,a,x) = \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$</span>  
 
 Optimizer로서는 처음보는 LBFGS를 사용하였다.  
 **<code>torch.optim.LBFGS(params, lr=1, max_iter=20, max_eval=None, tolerance_grad=1e-05, tolerance_change=1e-09, history_size=100, line_search_fn=None)</code>**  
@@ -393,10 +393,10 @@ LBFGS에 기본이 되는 Newton's Method부터 살펴보자.
 
 Newton's Method는 위의 그림과 같다.  
 결론 부터 얘기하자면  
-어떤 $x$에 대한 함수 $f(x)$가 존재한다고 가정하자.  
-$f(x) = 0$인점을 찾는 것이 목적이다.  
-이러한 목적을 위해서 한 점 $x_t$에서의 값을 $f(x_t)$라고 한다면  
-$f\prime(x_t)$와 x축과의 접점을 $x_{t+1}$이라고 하자  
+어떤 <span>$$x$에 대한 함수 <span>$$f(x)$$</span>가 존재한다고 가정하자.  
+<span>$$f(x) = 0$$</span>인점을 찾는 것이 목적이다.  
+이러한 목적을 위해서 한 점 <span>$$x_t$$</span>에서의 값을 <span>$$f(x_t)$$</span>라고 한다면  
+<span>$$f\prime(x_t)$$</span>와 x축과의 접점을 <span>$$x_{t+1}$$</span>이라고 하자  
 그렇다면 식은 아래와 같이 적용 될 수 있다.  
 $$f\prime(x_t) = \frac{f(x_t)-0}{x_t-x_{t+1}}$$
 $$x_t - x_{t+1} = \frac{f(x_t)}{f\prime(x_t)}$$
@@ -407,9 +407,9 @@ $$f\prime\prime(x_t) = \frac{f\prime(x_t)-0}{x_t-x_{t+1}}$$
 $$x_t - x_{t+1} = \frac{f\prime(x_t)}{f\prime\prime(x_t)}$$
 $$x_{t+1} = x_t - \frac{f\prime(x_t)}{f\prime\prime(x_t)}$$
 
-즉 계속 반복하다 보면 $f\prime(x_t) = 0$인 지점 찾을 수 있다는 방식이 **Newton's Method**이다.  
+즉 계속 반복하다 보면 <span>$$f\prime(x_t) = 0$$</span>인 지점 찾을 수 있다는 방식이 **Newton's Method**이다.  
 
-위와 같이 2차 미분 값을 얻기 위한 $f\prime\prime(x_t)$는 시간이 $O(n^3)$이나 걸리므로 이 값을 근사하는 방식으로 바꿔서 연산 속도를 높인 방식이 바로 **BFGS**이다.  
+위와 같이 2차 미분 값을 얻기 위한 <span>$$f\prime\prime(x_t)$$</span>는 시간이 <span>$$O(n^3)$$</span>이나 걸리므로 이 값을 근사하는 방식으로 바꿔서 연산 속도를 높인 방식이 바로 **BFGS**이다.  
 **BFGS**에서 최근 m개의 1차 미분 값만을 사용해서 더 적은 메모리를 사용하게 변형한 방법이 바로 **L-BFGS**이다.  
  
 <a href="https://www.cs.ubc.ca/~schmidtm/Software/minFunc.html">L-BGFS 자세한 내용</a>
