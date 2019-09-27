@@ -65,7 +65,7 @@ Style과 Content를 각각 Reconstruction하기 위한 수식을 알아보기 �
 $$L_{content}(p,x,l) = \frac{1}{2}\sum_{ij}(F_{ij}^{l}-P_{ij}^{l})^2$$
 즉, p와x에 대해 각각 Feature map을 구하고 이 둘의 차이를 MSE로서 LossFunction을 선택한 것 이다.  
 이에 관하여 Content Reconsturction을 한다고 가정하면 다음과 같다.  
-$$x^l = argmax_{x}L_{content}(p,x,l)$$
+<p>$$x^l = argmax_{x}L_{content}(p,x,l)$$</p>
 
 위와 같은 식을 풀기위하여 최초의 <span>$$x^l$$</span>을 Random Image로 Initialize한다면 다음과 같다.  
 <p>$$ \frac{\partial argmax_{x}L_{content}(p,x,l)}{\partial F_{ij}^l} = \begin{cases} (F_{ij}^l - P_{ij}^{l})_{ij}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases} $$</p>
@@ -76,7 +76,7 @@ $$x^l = argmax_{x}L_{content}(p,x,l)$$
 **Style Reconstruction**  
 Style은 Content Reconsturction과 달리 위에서 언급한 Correlation부터 계산하여야 한다.  
 Correlation을 계산한 Gram matrix를 식으로서 표현하면 아래와 같다.  
-$$G_{ij}^l = \sum_{k}F_{ik}^{l}F_{kj}^l$$
+<p>$$G_{ij}^l = \sum_{k}F_{ik}^{l}F_{kj}^l$$</p>
 또한 **Style Reconsturction의 경우 모든 Layer에서의 Feature Map을 사용한다. 즉 'Texture'를 표현하기 위하여 전체적인 분위기서 부터 좁은 영역의 분위기까지 모두 사용하겠다는 의미이다.**  
 따라서 모든 Feature Map을 사용함으로 인하여 최종적인 Loss를 세우기 위한 추가적인 Parameter는 다음과 같다.  
 - <span>$$A^l$$</span>: Style Feature Map Inner Product(Gram Vector of a) at Layer l
@@ -85,18 +85,18 @@ $$G_{ij}^l = \sum_{k}F_{ik}^{l}F_{kj}^l$$
 - <span>$$M_l$$</span>: Height x width of Feature Maps at Layer l
 
 즉 위의 Parameter를 활용하여 각 레이어 l에서의 style loss는 아래와 같이 정의된다.  
-$$E_l = \frac{1}{4N_l^2 M_l^2}\sum_{i,j}(G_{ij}^l-A_{ij}^l)^2$$
+<p>$$E_l = \frac{1}{4N_l^2 M_l^2}\sum_{i,j}(G_{ij}^l-A_{ij}^l)^2$$</p>
 
 위의 각 Layer l에서의 Style Loss를 모두 더한 최종적인 Style Loss는 아래 식과 같다.  
-$$L_{style}(a,x) = \sum_{l=0}^L w_l E_l$$
+<p>$$L_{style}(a,x) = \sum_{l=0}^L w_l E_l$$</p>
 
-각 Layer의 Loss인 $E_l$에 대하여 미분하게 된다면 다음과 같은 식을 얻을 수 있다.
+각 Layer의 Loss인 <span>$$E_l$$</span>에 대하여 미분하게 된다면 다음과 같은 식을 얻을 수 있다.
 <p>$$\frac{\partial E_l}{\partial F_{ij}^l} = \begin{cases} \frac{1}{N_l^2 M_l^2}((F^l)^T(G^l - A^l))_{ji}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases} $$</p>
 <br>
 <br>
 **Total Loss**  
 위의 Content Reconstruction에서 정리한 식과 Style Reconsturction에서 정리한 식을 통하여 전체적인 Loss를 구하게 된다면 식은 아래와 같다.  
-$$L_{total}(p,a,x) = \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$
+<p>$$L_{total}(p,a,x) = \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$</p>
 위의 식에서 <span>$$\alpha, \beta$$ </span>의 가중치의 적용을 어떻게 하냐에 따라서 다음과 같은 결과물을 얻을 수 있다.  
 <img src="https://www.popit.kr/wp-content/uploads/2018/05/gatys_weighting_factor_for_loss.png" height="100%" width="100%" />
 <br><br>
@@ -143,7 +143,7 @@ style_dir = "./image/style/2.jpg"
 <br>
 
 **Normalization 식**
-$$y = \frac{x-m}{\alpha}$$
+<p>$$y = \frac{x-m}{\alpha}$$</p>
 
 ```python
 # 이미 학습된 ResNet 모델이 이미지넷으로 학습된 모델이기 때문에 이에 따라 정규화해줍니다.
@@ -167,12 +167,12 @@ def image_preprocess(img_dir):
 
 위에서 Normalization 식 <span>$$y = \frac{x-m}{\alpha}$$</span>을 통하여 나타내었다.  
 이러한 식을 다시 원상복구 시키기 위한 작업이 필요하다.  
-$$y = \frac{x-m}{\alpha}$$
-$$\alpha y = x-m$$
-$$x = \alpha(y+\frac{m}{\alpha})$$
+<p>$$y = \frac{x-m}{\alpha}$$</p>
+<p>$$\alpha y = x-m$$</p>
+<p>$$x = \alpha(y+\frac{m}{\alpha})$$</p>
 
 따라서 위에서 mean = <span>$$m$$</span>, std = <span>$$\alpha$$ </span>로 정의하였으므로 되돌리기 위해서는  
-$$mean = -\frac{m}{\alpha}, std = \frac{1}{\alpha}$$
+<p>$$mean = -\frac{m}{\alpha}, std = \frac{1}{\alpha}$$</p>
 이 되어야 한다.
 
 **img.clamp(0,1)**  
@@ -400,14 +400,14 @@ Newton's Method는 위의 그림과 같다.
 이러한 목적을 위해서 한 점 <span>$$x_t$$</span>에서의 값을 <span>$$f(x_t)$$</span>라고 한다면  
 <span>$$f\prime(x_t)$$</span>와 x축과의 접점을 <span>$$x_{t+1}$$</span>이라고 하자  
 그렇다면 식은 아래와 같이 적용 될 수 있다.  
-$$f\prime(x_t) = \frac{f(x_t)-0}{x_t-x_{t+1}}$$
-$$x_t - x_{t+1} = \frac{f(x_t)}{f\prime(x_t)}$$
-$$x_{t+1} = x_t - \frac{f(x_t)}{f\prime(x_t)}$$
+<p>$$f\prime(x_t) = \frac{f(x_t)-0}{x_t-x_{t+1}}$$</p>
+<p>$$x_t - x_{t+1} = \frac{f(x_t)}{f\prime(x_t)}$$</p>
+<p>$$x_{t+1} = x_t - \frac{f(x_t)}{f\prime(x_t)}$$</p>
 
 위의 식의 과정을 아래와 같은 식에 다시 적용시킨다고 하면  
-$$f\prime\prime(x_t) = \frac{f\prime(x_t)-0}{x_t-x_{t+1}}$$
-$$x_t - x_{t+1} = \frac{f\prime(x_t)}{f\prime\prime(x_t)}$$
-$$x_{t+1} = x_t - \frac{f\prime(x_t)}{f\prime\prime(x_t)}$$
+<p>$$f\prime\prime(x_t) = \frac{f\prime(x_t)-0}{x_t-x_{t+1}}$$</p>
+<p>$$x_t - x_{t+1} = \frac{f\prime(x_t)}{f\prime\prime(x_t)}$$</p>
+<p>$$x_{t+1} = x_t - \frac{f\prime(x_t)}{f\prime\prime(x_t)}$$</p>
 
 즉 계속 반복하다 보면 <span>$$f\prime(x_t) = 0$$</span>인 지점 찾을 수 있다는 방식이 **Newton's Method**이다.  
 
