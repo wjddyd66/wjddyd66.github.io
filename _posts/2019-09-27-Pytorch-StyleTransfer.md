@@ -61,7 +61,7 @@ Style과 Content를 각각 Reconstruction하기 위한 수식을 알아보기 �
 - <span>$$F_l$$</span>: Result Input의 l번째 Layer의 Feature Map
 - <span>$$x^l$$</span>: l번째 Layer에서 복원한 Image
 
-
+<br>
 **Content Reconstruction**  
 $$L_{content}(p,x,l) = \frac{1}{2}\sum_{ij}(F_{ij}^{l}-P_{ij}^{l})^2$$
 즉, p와x에 대해 각각 Feature map을 구하고 이 둘의 차이를 MSE로서 LossFunction을 선택한 것 이다.  
@@ -69,14 +69,9 @@ $$L_{content}(p,x,l) = \frac{1}{2}\sum_{ij}(F_{ij}^{l}-P_{ij}^{l})^2$$
 $$x^l = argmax_{x}L_{content}(p,x,l)$$
 
 위와 같은 식을 풀기위하여 최초의 $x^l$을 Random Image로 Initialize한다면 다음과 같다.  
-$$\frac{\partial argmax_{x}L_{content}(p,x,l)}{\partial F_{ij}^l} = 
-\begin{cases}
-(F_{ij}^l - P_{ij}^{l})_{ij}  & \mbox{if } F_{ij}^l > 0 \\
-0 & \mbox{if } F_{ij}^l < 0
-\end{cases}
-$$
+$$\frac{\partial argmax_{x}L_{content}(p,x,l)}{\partial F_{ij}^l} = \begin{cases} (F_{ij}^l - P_{ij}^{l})_{ij}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases}$$
 
-위와 같은 식을 사용함으로써 전체 Gradient를 Back-propagation알고리즘을 사용해 간단하게 계산할 수 있다.
+위와 같은 식을 사용함으로써 전체 Gradient를 Back-propagation알고리즘을 사용해 간단하게 계산할 수 있다.  
 <br>
 **Style Reconstruction**  
 Style은 Content Reconsturction과 달리 위에서 언급한 Correlation부터 계산하여야 한다.  
@@ -96,14 +91,9 @@ $$E_l = \frac{1}{4N_l^2 M_l^2}\sum_{i,j}(G_{ij}^l-A_{ij}^l)^2$$
 $$L_{style}(a,x) = \sum_{l=0}^L w_l E_l$$
 
 각 Layer의 Loss인 $E_l$에 대하여 미분하게 된다면 다음과 같은 식을 얻을 수 있다.
-$$\frac{\partial E_l}{\partial F_{ij}^l} = 
-\begin{cases}
-\frac{1}{N_l^2 M_l^2}((F^l)^T(G^l - A^l))_{ji}  & \mbox{if } F_{ij}^l > 0 \\
-0 & \mbox{if } F_{ij}^l < 0
-\end{cases}
-$$
+$$\frac{\partial E_l}{\partial F_{ij}^l} = \begin{cases} \frac{1}{N_l^2 M_l^2}((F^l)^T(G^l - A^l))_{ji}  & \mbox{if } F_{ij}^l > 0 \\ 0 & \mbox{if } F_{ij}^l < 0 \end{cases} $$
 <br>
-
+<br>
 **Total Loss**  
 위의 Content Reconstruction에서 정리한 식과 Style Reconsturction에서 정리한 식을 통하여 전체적인 Loss를 구하게 된다면 식은 아래와 같다.  
 $$L_{total}(p,a,x) = \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$
@@ -134,12 +124,14 @@ content_layer_num = 2
 image_size = 512
 epoch = 10000
 ```
+<br><br>
 #### 2. Data
 ##### 1) Directory
 ```python
 content_dir = "./image/content/1.JPG"
 style_dir = "./image/style/2.jpg"
 ```
+<br>
 ##### 2) Prepocessing Function
 - 전처리 함수
 - 이미 학습된 ResNet Model은 ImageNet으로 학습된 Model이기 때문에 이에 따라 정규화가 필요하다.
@@ -168,6 +160,7 @@ def image_preprocess(img_dir):
     img = transform(img).view((-1,3,image_size,image_size))
     return img
 ```
+<br>
 ##### 3) Post processing Function
 - 후처리 함수
 - 위에서 Input Image를 정규화 상태로 진행하였기 때문에 원본 Image를 보기 뒤해서는 뺏던 값들을 다시 더해주는 과정이 필요하다.
@@ -210,7 +203,7 @@ def image_postprocess(tensor):
     img = torch.transpose(img,1,2)
     return img
 ```
-
+<br><br>
 #### 3. Model & Loss Function
 ##### 1) Resnet
 <code>resnet.named_children()</code>을 통하여 ResNet Model의 직속 자식 Node들을 불러올 수 있다.
@@ -233,7 +226,7 @@ layer4
 avgpool
 fc
 ```
-
+<br>
 ##### 2) Delete Fully Connected Layer
 
 resnet.childern()으로서 자식 Node들을 불러오되 이름은 빼고 Module만 불러온다.  
@@ -271,14 +264,15 @@ class Resnet(nn.Module):
         out_5 = self.layer5(out_4)
         return out_0, out_1, out_2, out_3, out_4, out_5
 ```
+<br>
 ##### 3) Gram Matrix Function
 
 **GramMatrix**를 수식으로 표현하면 아래와 같다.  
-$$G_{ij} = \begin{bmatrix} <v_1,v_1> & <v_1,v_2> & <v_1,v_3> \\ <v_2,v_1> & <v_2,v_2> & <v_2,v_3> \\ <v_3,v_1> & <v_3,v_2> & <v_3,v_3> \\ \end{bmatrix} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} \begin{bmatrix} v_1 & v_2 & v_3 \end{bmatrix}$$
+<p>$$ G_{ij} = \begin{bmatrix} <v_1,v_1> & <v_1,v_2> & <v_1,v_3> \\ <v_2,v_1> & <v_2,v_2> & <v_2,v_3> \\ <v_3,v_1> & <v_3,v_2> & <v_3,v_3> \\ \end{bmatrix} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} \begin{bmatrix} v_1 & v_2 & v_3 \end{bmatrix} $$</p>
 
 위와 같은 과정을 Style Image에 적용시키면 다음 그림과 같다.
-
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/145.PNG" height="100%" width="100%" />
+
 ```python
 # 그람 행렬을 생성하는 클래스 및 함수를 정의합니다. 
 # [batch,channel,height,width] -> [b,c,h*w]
@@ -291,6 +285,9 @@ class GramMatrix(nn.Module):
         G = torch.bmm(F, F.transpose(1,2)) 
         return G
 ```
+
+<br>
+
 ##### 4) Model on GPU
 **Pre Trainned된 Resnet Parameter를 변화시키지 않기 위하여 resnet의 parameter전부를 바꾸지 않는 작업이다.**  
 <code>param.requires_grad = False</code>을 통하여 Parameter가 변하는 것을 방지한다.
@@ -306,6 +303,7 @@ for param in resnet.parameters():
 ```code
 cuda:0
 ```
+<br>
 ##### 5) Gram Matrix Loss
 
 **Style Image는 GramMatrix로 변환 후 Loss를 계산해야 하므로 따로 정의하였다.**
@@ -318,6 +316,8 @@ class GramMSELoss(nn.Module):
         out = nn.MSELoss()(GramMatrix()(input), target)
         return out
 ```
+<br><br>
+
 #### 4. Train
 ##### 1) Prepare Images
 
@@ -346,6 +346,7 @@ plt.imshow(gen_img)
 plt.show()
 ```
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/146.PNG" height="100%" width="97%" />
+<br>
 
 ##### 2) Set Targets & Style Weights
 - style_target: Correlation으로서 GramMatrix를 사용하여 나타내고 모든 요소에서 뽑아내므로 Target은 for구문으로서 List로 연결
@@ -360,6 +361,7 @@ style_target = list(GramMatrix().to(device)(i) for i in resnet(style))
 content_target = resnet(content)[content_layer_num]
 style_weight = [1/n**2 for n in [64,64,256,512,1024,2048]]
 ```
+<br>
 ##### 3) Train
 
 - style_loss: <span>$$L_{style}(a,x)$$</span>
@@ -453,6 +455,7 @@ tensor(0.5251, device='cuda:0', grad_fn=<AddBackward0>)
 tensor(0.5243, device='cuda:0', grad_fn=<AddBackward0>)
 tensor(0.5236, device='cuda:0', grad_fn=<AddBackward0>)
 ```
+<br><br>
 #### 5. Check Results
 ```python
 # 학습된 결과 이미지를 확인합니다.
