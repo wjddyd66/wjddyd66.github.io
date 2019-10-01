@@ -1,0 +1,38 @@
+---
+layout: post
+title:  "Docker을 사용한 코드에 의한 서버 구축"
+date:   2019-10-01 10:00:20 +0700
+categories: [Docker]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### Docker을 사용한 구성 관리
+
+<br><br>
+
+### Dockerfile의 빌드와 이미지 레이어
+
+<br><br>
+
+### 멀티스테이지 빌드를 사용한 애플리케이션 개발
+
+<br><br>
+
+### 명령 및 데몬 실행
+
+<br><br>
+
+### 환경 및 네트워크 설정
+
+<br><br>
+
+
+
+### 파일 설정
+
+<br>
+
+<hr>
+참조: 완벽한 IT 인프라 구축을 위한 Docker
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+

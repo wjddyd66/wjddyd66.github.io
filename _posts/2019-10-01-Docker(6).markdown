@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Docker 이미지 공개"
+date:   2019-10-01 11:00:20 +0700
+categories: [Docker]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### Docker 이미지의 자동 생성 및 공개
+
+<br><br>
+
+### Docker Registry를 사용한 프라이빗 레지스트리 구축
+
+<br><br>
+
+### 클라우드 서비스를 사용한 프라이빗 레지스트리 구축
+
+<br>
+
+<hr>
+참조: 완벽한 IT 인프라 구축을 위한 Docker
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+

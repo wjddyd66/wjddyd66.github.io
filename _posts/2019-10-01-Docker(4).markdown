@@ -1,0 +1,1052 @@
+---
+layout: post
+title:  "Docker 명령"
+date:   2019-10-01 09:00:20 +0700
+categories: [Docker]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### Docker 이미지 조작
+**Docker Hub**  
+Docker Hub는 GitHub나 Bitbucket과 같은 소스코드 관리 툴과 연계하여 코드를 빌드하는 기능이나 실행 가능한 애플리케이션의 이미지를 관리하는 기능을 갖춘 Docker의공시 리포지토리 서비스 이다.  
+Docker Hub를 사용하여 물리 서버든, 가상 머신이든, 클라우드든 Docker 이미지를 배포할 수 있다.  
+<a href="https://hub.docker.com/">Docker Hub Site</a>  
+이미지 검색 가능  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/3.PNG" height="250" width="600" /></div>
+<br>
+이미지 상세 정보  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/4.PNG" height="250" width="600" /></div>
+<br>
+Docker 이미지 상세 정보가 표시된다.  
+리포지토리에서 공개되어 있는 버전 정보나 주의사항, 지원하는 Docker의 버전 등과 같은 정보가 기재되어 있다.  
+
+이미지 Tags  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/5.PNG" height="250" width="600" /></div>
+<br>
+**Docker 이미지 지정**  
+<code>이미지명 [: 태그명]</code><br>
+latest는 리포지토리에 공개되어 있는 최신판 이미지이다.  
+따로 태그명을 직접 주어서 Version을 명시해서 이미지를 가져올 수 있다.  
+<br>
+
+**이미지 다운로드**  
+<code>docker image pull [Option] 이미지명 [: 태그명]</code><br>
+```code
+docker image pull centos:7
+```
+Tag = 7인 Centos image를 다운받는 명령어 이다.  
+
+**Option**  
+- a: 모든 태그를 취득할 수 있다.
+
+이미지명 같은 경우 URL로 지정 가능하다.
+<br>
+
+**이미지 목록 표시**  
+**명령어**  
+<code>docker image ls [Option] [리포지토리 명]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>Option</td>
+		<td>설명</td>
+	</tr>
+
+	<tr>
+		<td>IMAGE</td>
+		<td>nginx</td>
+	</tr>
+	
+	<tr>
+		<td>-all, -a</td>
+		<td> 모든 이미지를 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--digests</td>
+		<td> 다이제스트(이미지를 고유하게 식별하기 위한)를 표시할지 말지</td>
+	</tr>
+	
+	<tr>
+		<td>--no-trunc</td>
+		<td>결과를 모두 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--quiet, -q</td>
+		<td>Docker 이미지 ID만 표시</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+**실행 결과**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>REPOSITORY</td>
+		<td>이미지 이름</td>
+	</tr>
+
+	<tr>
+		<td>TAG</td>
+		<td>이미지 태그명</td>
+	</tr>
+	
+	<tr>
+		<td>IMAGE ID</td>
+		<td> 이미지 ID</td>
+	</tr>
+	
+	<tr>
+		<td>CREATED</td>
+		<td>작성일</td>
+	</tr>
+	
+	<tr>
+		<td>SIZE</td>
+		<td>이미지 크기</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+<br>
+
+
+**이미지 상세 정보 확인**  
+<code>docker image inspect [Image 이름]</code><br>
+Image의 상세 정보를 확인할 수 있다.  
+ID, 작성일, Docker 버전, CPU 아키텍쳐 등 다양한 정보가 **JSON 형태로 Return**된다.  
+따라서 Json format 형식을 맞춰서 Filtering 가능 하다.  
+```code
+docker image inspect --format="{{ .Os}}" nginx
+linux
+```
+<br>
+
+**이미지 태그 설정**  
+<code>docker image tag [image 이름] [설정할 이름: [태그명]]</code><br>
+```code
+docker image tag nginx wjddyd66/webserver:1.0
+docker image ls
+```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/6.PNG" height="250" width="600" /></div>
+<br>
+확인 결과 새롭게 설정된 이미지 Tag와 복사한 Image의 ID가 같은 것을 알 수 있다.  
+**즉, 이미지에 별명을 붙일 뿐 이미지 자체를 복사하거나 이름을 바꾼 것이 아니다**  
+<br>
+
+
+**이미지 검색**  
+**명령어**  
+<code>docker search [Option] [검색 키워드]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--no-trunc</td>
+		<td>결과를 모두 표시</td>
+	</tr>
+
+	<tr>
+		<td>--limit</td>
+		<td>n건의 검색 결과를 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--filter=stars=n</td>
+		<td> 즐겨찾기의 수(n 이상)를 지정</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+**실행 결과**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>Name</td>
+		<td>이미지 이름</td>
+	</tr>
+
+	<tr>
+		<td>DESCRIPTION</td>
+		<td>이미지 설명</td>
+	</tr>
+	
+	<tr>
+		<td>STARS</td>
+		<td>즐겨찾기 수</td>
+	</tr>
+	
+	<tr>
+		<td>OFFICIAL</td>
+		<td>공식 이미지인지 아닌지</td>
+	</tr>
+	
+	<tr>
+		<td>AUTOMATED</td>
+		<td>Dockerfile을 바탕으로 자동 생성된 이미지인지 아닌지</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+인기있는 이미지 검색  
+```code
+$ docker search --filter=stars=1000 nginx
+NAME  DESCRIPTION              STARS OFFICIAL  ...
+nginx Official build of Nginx. 12008  [OK]     ...
+```
+<br>
+
+
+**Docker 이미지 삭제**  
+<code>docker image rm [Option] 이미지명 [이미지명]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--force, -f</td>
+		<td>이미지를 강제로 삭제</td>
+	</tr>
+
+	<tr>
+		<td>--no-prune</td>
+		<td>중간 이미지를 삭제하지 않음</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+**중간 이미지**: 이미지를 빌드하는 과정에서 생기는 모든 이미지  
+
+**사용하지 않는 이미지 삭제**  
+<code>docker image prune [Option]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--all, -a</td>
+		<td>사용하지 않는 이미지를 모두 삭제</td>
+	</tr>
+
+	<tr>
+		<td>--force, -f</td>
+		<td>이미지를 강제로 삭제</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+사용하지 않는 Docker 이미지는 디스크 용량을 쓸데없이 차지하기 때문에 정기적으로 삭제하는 것이 권장  
+<br>
+
+**Docker Hub에 로그인**  
+<code>docker login [Option] [Server]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--password, -p</td>
+		<td>비밀번호</td>
+	</tr>
+
+	<tr>
+		<td>--username, -u</td>
+		<td>사용자명</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+<br>
+
+**Docker Hub에 로그아웃**  
+<code>docker logout [Server]</code><br>
+서버명을 지정하지 않았을 때는 Docker Hub에 엑세스 한다.  
+<br><br>
+
+### Docker 컨테이너 생성/시작/정지
+**Container Life Cycle**  
+<img id="mug_obj_201901290920229081" data-image-id="2_2" data-type="image" data-json="%7B%22src%22%3A%22%2FMjAxOTAxMjlfMjA0%2FMDAxNTQ4NzIxMjIxNzk4.LNJr8zJulRHRXm452UPHmOHZmnqztmFg0dWviVsnHpYg.5ZWqP9uo6Km3PYcBzaahnoGyK_3YL_5qCs2pvM90oHMg.JPEG%2Fmug_obj_201901290920229081.jpg%22%2C%22alt%22%3A%2201.jpg%22%2C%22data-recm-area%22%3Anull%2C%22width%22%3A%22100%25%22%2C%22data-width%22%3A%22100%25%22%2C%22data-width-type%22%3Anull%7D" class="img_attachedfile thumb" data-realimagepath="https://post-phinf.pstatic.net/MjAxOTAxMjlfMjA0/MDAxNTQ4NzIxMjIxNzk4.LNJr8zJulRHRXm452UPHmOHZmnqztmFg0dWviVsnHpYg.5ZWqP9uo6Km3PYcBzaahnoGyK_3YL_5qCs2pvM90oHMg.JPEG/mug_obj_201901290920229081.jpg" onclick="jQuery(this).next().toggle();" src="https://post-phinf.pstatic.net/MjAxOTAxMjlfMjA0/MDAxNTQ4NzIxMjIxNzk4.LNJr8zJulRHRXm452UPHmOHZmnqztmFg0dWviVsnHpYg.5ZWqP9uo6Km3PYcBzaahnoGyK_3YL_5qCs2pvM90oHMg.JPEG/mug_obj_201901290920229081.jpg?type=w1080" data-src="https://post-phinf.pstatic.net/MjAxOTAxMjlfMjA0/MDAxNTQ4NzIxMjIxNzk4.LNJr8zJulRHRXm452UPHmOHZmnqztmFg0dWviVsnHpYg.5ZWqP9uo6Km3PYcBzaahnoGyK_3YL_5qCs2pvM90oHMg.JPEG/mug_obj_201901290920229081.jpg?type=w1080" alt="01.jpg" style="width: 100%; max-width: 879px;" data-width="100%">
+<br>
+**컨테이너 생성**  
+<code>docker container create</code><br>
+이미지로부터 컨테이너를 생성  
+Linux의 작동에 필요한 /etc, /bin등과 같은디렉토리 및 파일들의 스냅샷을 취한다.  
+**스냅샷**: 스토리지 안에 존재하는 파일과 디렉토리를 특정 타이밍에서 취하는 것  
+<br>
+
+**컨테이너 생성 및 시작**  
+<code>docker container run [Option] 이미지명[: 태그명] [인수]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--attach, -a</td>
+		<td>표준입력(STDIN), 표준출력(STDOUT), 표준 오류 출력(STDERR)에 어태치</td>
+	</tr>
+
+	<tr>
+		<td>--cidfile</td>
+		<td>컨테이너 ID를 파일로 출력</td>
+	</tr>
+	
+	<tr>
+		<td>--detach, -d</td>
+		<td>컨테이너를 생성하고 백그라운드에서 실행한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--interactive, -i</td>
+		<td>컨테이너 표준을 출력</td>
+	</tr>
+	
+	<tr>
+		<td>--tty, -t</td>
+		<td>단말기 디바이스를 사용</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+```code
+docker container run -it --name "test1" centos /cin/cal
+    October 2019
+Su Mo Tu We Th Fr Sa
+       1  2  3  4  5
+ 6  7  8  9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 31
+```
+<br>
+
+**컨테이너 백그라운드 실행**  
+<code>docker container run [Option] 이미지명[: 태그명] [인수]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--detach, -d</td>
+		<td>컨테이너를 생성하고 백그라운드에서 실행한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--user, -u</td>
+		<td>사용자명을 지정</td>
+	</tr>
+
+	<tr>
+		<td>--restart=[no | on-failure | onfailure: 횟수n | always | unless-stopped]</td>
+		<td>명령의 실행 결과에 따라 재시작을 하는 옵션</td>
+	</tr>
+	
+
+	
+	<tr>
+		<td>--rm</td>
+		<td>명령 실행 완료 후에 컨테이너를 자동으로 삭제</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**restart Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>no</td>
+		<td>재시작하지 않는다.</td>
+	</tr>
+	
+	<tr>
+		<td>on-failure</td>
+		<td>종료 스테이터스가 0이 아닐 때 재시작한다.</td>
+	</tr>
+
+	<tr>
+		<td>onfailure: 횟수n</td>
+		<td>종료 스테이터스가 0이 아닐 때 n번 재시작한다.</td>
+	</tr>
+    
+	<tr>
+		<td>always</td>
+		<td>항상 재시작한다.</td>
+	</tr>
+	
+	<tr>
+		<td>unless-stopped</td>
+		<td>최근 컨테이너가 정지 상태가 아니라면 항상 재시작한다.</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+**백그라운드 컨테이너 로그 확인**  
+<code>docker container logs -t [Container ID]</code><br>
+```code
+docker container logs -t 77eb88a965d5
+root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입니다."
+2019-09-18T03:15:25.490026619Z 안녕하세요! 여기는 우분투 컨테이너입니다.
+2019-09-18T03:15:28.257840559Z root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입니다."
+2019-09-18T03:15:28.258025222Z 안녕하세요! 여기는 우분투 컨테이너입니다.
+```
+<br>
+
+**자원을 지정하여 컨테이너 생성 및 실행**  
+<code>docker container run [자원 Option] 이미지명[: 태그명] [인수]</code><br>
+**네트워크 Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--cpu-share, -c</td>
+		<td>COU의 사용 배분</td>
+	</tr>
+	
+	<tr>
+		<td>--memory, -m</td>
+		<td>사용할 메모리를 제한하여 실행</td>
+	</tr>
+
+	<tr>
+		<td>--volume=[호스트의 디렉토리]:[컨테이너의 디렉토리], -v</td>
+		<td>호스트와 컨테이너의 디렉토리를 공유</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**컨테이너를 생성 및 시작하는 환경을 지정**  
+<code>docker container run [환경 Option] 이미지명[: 태그명] [인수]</code><br>
+**환경 Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--env=[환경변수], -e</td>
+		<td>환경변수를 설정한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--env-file=[파일명]</td>
+		<td>환경변수를 파일로부터 설정한다.</td>
+	</tr>
+
+	<tr>
+		<td>--read-only=[true | false]</td>
+		<td>컨테이너의 파일 시스템을 읽기 전용으로 만든다.</td>
+	</tr>
+	
+	<tr>
+		<td>--workdir=[패스], -w</td>
+		<td>컨테이너의 작업 디렉토리를 지정한다.</td>
+	</tr>
+	
+	<tr>
+		<td>-u, --user=[사용자명]</td>
+		<td>사용자명 또는 UID를 지정한다.</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**가동 컨테이너 목록 표시**  
+<code>docker container ls [Option]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--all, -a</td>
+		<td>실행 중/정지 중인 것도 포함하여 모든 컨테이너를 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--filter, -f</td>
+		<td>표시할 컨테이너의 필터링</td>
+	</tr>
+
+	<tr>
+		<td>--format</td>
+		<td>표시 포맷을 지정</td>
+	</tr>
+	
+	<tr>
+		<td>--last, -n</td>
+		<td>마지막으로 실행된 n건의 컨테이너만 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--latest, -l</td>
+		<td>마지막으로 실행된 컨테이너만 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--no-trunc</td>
+		<td>정보를 생략하지 않고 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--quiet, -q</td>
+		<td>컨테이너 ID만 표시</td>
+	</tr>
+	
+	<tr>
+		<td>--size, -s</td>
+		<td>파일 크기 표시</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+**Format Option**  
+JSON 형태로서 대입  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>.ID</td>
+		<td>컨테이너 ID</td>
+	</tr>
+	
+	<tr>
+		<td>.Image</td>
+		<td>이미지 ID</td>
+	</tr>
+
+	<tr>
+		<td>.Command</td>
+		<td>실행 명령</td>
+	</tr>
+	
+	<tr>
+		<td>.CreatedAt</td>
+		<td>컨테이너가 작성된 시간</td>
+	</tr>
+	
+	<tr>
+		<td>.RunningFor</td>
+		<td>컨테이너 가동 시간</td>
+	</tr>
+	
+	<tr>
+		<td>.Ports</td>
+		<td>공개 포트</td>
+	</tr>
+	
+	<tr>
+		<td>.Status</td>
+		<td>컨테이너 상태</td>
+	</tr>
+	
+	<tr>
+		<td>.Size</td>
+		<td>컨테이너 디스크 크기</td>
+	</tr>
+	
+	<tr>
+		<td>.Names</td>
+		<td>컨테이너 명</td>
+	</tr>
+	
+	<tr>
+		<td>.Mounts</td>
+		<td>볼륨 마운트</td>
+	</tr>
+	
+	<tr>
+		<td>.Networks</td>
+		<td>네트워크 명</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**명령어 결과**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>CONTAINER ID</td>
+		<td>컨테이너의 ID</td>
+	</tr>
+	
+	<tr>
+		<td>IMAGE</td>
+		<td>컨테이너의 바탕이 된 이미지</td>
+	</tr>
+
+	<tr>
+		<td>COMMAND</td>
+		<td>컨테이너 안에서 실행되고 있는 명령</td>
+	</tr>
+	
+	<tr>
+		<td>CREATED</td>
+		<td>컨테이너 작성 후 경과 시간</td>
+	</tr>
+	
+	<tr>
+		<td>STATUS</td>
+		<td>컨테이너의 상태</td>
+	</tr>
+	
+	<tr>
+		<td>PORTS</td>
+		<td>할당된 포트</td>
+	</tr>
+	
+	<tr>
+		<td>NAMES</td>
+		<td>컨테이너 이름</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+```code
+docker container ls
+CONTAINER ID  IMAGE  COMMAND  CREATED     STATUS        ...
+77eb88a965d5  ubuntu "bash"   13 days ago  Up 13 days   ...             
+```
+```code
+docker container ls --format "{{.Names}}:{{.Status}}"
+clever_hamilton: Up 13 days
+gallant_lamarr: Up 2 weeks
+recursing_beaver: Up 2 weeks
+```
+<br>
+
+**컨테이너 가동 확인**  
+<code>docker container stats [컨테이너 식별자]</code><br>
+**출력 결과**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>CONTAINER ID</td>
+		<td>컨테이너 식별자</td>
+	</tr>
+	
+	<tr>
+		<td>NAME</td>
+		<td>컨테이너명</td>
+	</tr>
+
+	<tr>
+		<td>CPU%</td>
+		<td>CPU 사용률</td>
+	</tr>
+	
+	<tr>
+		<td>MEM USAGE/LIMIT</td>
+		<td>메모리 사용량/컨테이너에서 사용할 수 있는 메모리 제한</td>
+	</tr>
+	
+	<tr>
+		<td>MEM %</td>
+		<td>메모리 사용률</td>
+	</tr>
+	
+	<tr>
+		<td>NET I/O</td>
+		<td>네트워크 I/O</td>
+	</tr>
+	
+	<tr>
+		<td>BLOCK I/O</td>
+		<td>블록 I/O</td>
+	</tr>
+	
+	<tr>
+		<td>PIDS</td>
+		<td>PID</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+```code
+sudo docker container stats 77eb88a965d5
+CONTAINER ID     NAME              CPU %     MEM USAGE / LIMIT   ...
+77eb88a965d5     clever_hamilton   0.00%     2.195MiB / 31.33GiB ...
+```
+<br>
+**컨테이너 안의 프로세스 확인**  
+<code>docker container top [프로세스 명]</code>
+```code
+docker container top 77eb88a965d5
+UID    PID    PPID   C ...             
+root   13947  13927  0 ...
+```
+<br>
+
+**컨테이너 시작**  
+<code>docker container start [Option] [컨테이너 식별자]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--attach, -a</td>
+		<td>표준출력, 표준 오류 출력을 연다.</td>
+	</tr>
+	
+	<tr>
+		<td>--interactive, -i</td>
+		<td>컨테이너의 표준 출력을 연다.</td>
+	</tr>
+</tbody>
+</table>
+<br>
+
+**컨테이너 재시작**  
+<code>docker container restart [Option] [컨테이너 식별자]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--time, -t</td>
+		<td>컨테이너의 재시작 시간을지정(기본값은 10초)</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**컨테이너 삭제**  
+<code>docker container rm [Option] [컨테이너 식별자]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--force, -f</td>
+		<td>실행중인 컨테이너를 강제로 삭제</td>
+	</tr>
+	
+	<tr>
+		<td>--volumes, -v</td>
+		<td>할당한 볼륨을 삭제</td>
+	</tr>
+</tbody>
+</table>
+<br>
+
+**컨테이너 중단/재개**  
+<code>docker container pause [컨테이너 식별자]</code><br>
+실행중인 컨테이너에서 작동 중인 프로세스를 모두 중단  
+
+<br><br>
+
+### Docker 컨테이너 네트워크
+**네트워크 목록 표시**  
+<code>docker network [Option]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>-f, --filter=[]</td>
+		<td>출력을 필터링한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--no-trunc</td>
+		<td>상세 정보를 출력한다.</td>
+	</tr>
+	
+	<tr>
+		<td>-q, --quiet</td>
+		<td>네트워크 ID만 표시한다.</td>
+	</tr>
+</tbody>
+</table>
+<br>
+
+**Filter Key**  
+필터링을 할때는 key=value형식으로 지정할 수 있다.  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>driver</td>
+		<td>드라이버 지정</td>
+	</tr>
+	
+	<tr>
+		<td>id</td>
+		<td>네트워크 ID</td>
+	</tr>
+	
+	<tr>
+		<td>label</td>
+		<td>네트워크에 설정된 label</td>
+	</tr>
+	
+	<tr>
+		<td>name</td>
+		<td>네트워크명</td>
+	</tr>
+	
+	<tr>
+		<td>scope</td>
+		<td>네트워크 스코프</td>
+	</tr>
+	
+	<tr>
+		<td>type</td>
+		<td>네트워크의 타입</td>
+	</tr>
+</tbody>
+</table>
+<br>
+```code
+sudo docker network ls -q --filter driver=bridge
+fa2634bde6c
+```
+<br>
+
+**네트워크 작성**  
+<code>docker network create [Option] [네트워크]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--driver, -d</td>
+		<td>네트워크 브리지 또는 오버레이</td>
+	</tr>
+	
+	<tr>
+		<td>--ip-range</td>
+		<td>컨테이너에 할당하는 IP 주소의 범위를 지정</td>
+	</tr>
+	
+	<tr>
+		<td>--subnet</td>
+		<td>서브넷 CIDR 형식으로 지정</td>
+	</tr>
+	
+	<tr>
+		<td>--ipv6</td>
+		<td>IPv6 네트워크를 유효화할지 말지</td>
+	</tr>
+	
+	<tr>
+		<td>--label</td>
+		<td>네트워크에 설정하는 라벨</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**네트워크 연결**  
+<code>docker network connect [Option] [네트워크] [컨테이너]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--ip</td>
+		<td>IPv4 주소</td>
+	</tr>
+	
+	<tr>
+		<td>--ip6</td>
+		<td>IPv6 주소</td>
+	</tr>
+	
+	<tr>
+		<td>--alias</td>
+		<td>앨리어스명</td>
+	</tr>
+	
+	<tr>
+		<td>--link</td>
+		<td>다른 컨테이너에 대한 링크</td>
+	</tr>
+	
+	<tr>
+		<td>--label</td>
+		<td>네트워크에 설정하는 라벨</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**네트워크 상세 정보 확인**  
+<code>docker network inspect [Option] [네트워크]</code>
+<br>
+
+**네트워크 삭제**  
+<code>docker network rm [Option] [네트워크]</code>
+**단, 네트워크를삭제하려면 docker network disconnet 명령을 사용하여 연결 중인 모든 컨테이너와의 연결을 해제해야 한다.**  
+
+<br><br>
+
+### 가동중인 Docker 컨테이너 조작
+**가동 컨테이너 연결**  
+<code>docker container attach </code>
+<br>
+
+**가동 컨테이너에서 프로세스 실행**  
+실행중인 컨테이너 안의 프로세스 실행시  
+<code>docker container exec [Option] [컨테이너 식별자] [실행할 명령] [인수]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--detatch, -d</td>
+		<td>명령을 백그라운드에서 실행한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--interactive, -i</td>
+		<td>컨테이너의 표준 입력을 연다.</td>
+	</tr>
+	
+	<tr>
+		<td>--tty, -t</td>
+		<td>tty(단말 디바이스)를 사용한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--user, -u</td>
+		<td>사용자명을 지정한다.</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**가동 컨테이너의 프로세스 확인**  
+<code>docker container top [컨테이너 이름]</code><br>
+<br>
+
+**가동 컨테이너의 포트 전송 확인**  
+<code>docker container port [컨테이너 이름]</code><br>
+<br>
+
+**컨테이너의 이름 변경**  
+<code>docker container rename [Old 컨테이너 이름] [New 컨테이너 이름]</code><br>
+<br>
+
+**컨테이너안의 파일을 복사**  
+- 컨테이너에서 호스트로 파일 복사
+
+
+<code>docker container cp [컨테이너 식별자]:[컨테이너 안의 파일 경로] [호스트의 디렉토리 경로]</code><br>
+- 호스트에서 컨테이너로 파일 복사
+
+<code>docker container cp [호스트의 디렉토리 경로] [컨테이너 식별자]:[컨테이너 안의 파일 경로]</code><br>
+
+**컨테이너 조작의 차분 확인**  
+컨테이너 안에서 어떤 조작을 하여 컨테이너가 이미지로부터 생성되었을 때와 달라진 점(차분)을 확인  
+<code>docker container diff [컨테이너 식별자]</code><br>
+**변경의 구분**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>A</td>
+		<td>파일 추가</td>
+	</tr>
+	
+	<tr>
+		<td>D</td>
+		<td>파일 삭제</td>
+	</tr>
+	
+	<tr>
+		<td>C</td>
+		<td>파일 수정</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+```code
+docker container diff b03d885b68f0
+
+...
+
+A /home/theia/.local/lib/python3.6/site-packages/numpy/core/tests/__pycache__/test_errstate.cpython-36.pyc
+A /home/theia/.local/lib/python3.6/site-
+
+...
+
+```
+<br><br>
+
+### Docker 이미지 생성
+**컨테이너로부터 이미지 작성**  
+<code>docker container commit [Option] [컨테이너 식별자] [이미지명[: 태그명]]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--author, -a</td>
+		<td>작성자를 지정한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--message, -m</td>
+		<td>메세지를 지정한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--change, -c</td>
+		<td>커미트 시 Dockerfile 명령을 지정한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--pause, -p</td>
+		<td>컨테이너를 일시 정지하고 커미트한다.</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+**컨테이너를 tar 파일로 출력**  
+<code>docker container export [컨테이너 식별자] 
+>
+ [파일이름.tar]
+</code><br>
+
+**tar 파일로부터 이미지 작성**  
+<code>docker image import [파일 또는 URL] | - [이미지명[: 태그명]] </code><br>
+
+**이미지 저장**  
+<code>docker image save [Option] [저장파일명] [이미지명] </code><br>
+
+**이미지 읽어 들이기**  
+tar 이미지로부터 이미지를 읽어 들일 수 있다.  
+<code>docker image load [Option]</code><br>
+
+**불필요한 이미지/컨테이너를 일괄 삭제**  
+사용하지 않는 리소스를 모두 삭제할 수 있기 떄문에 쓸 데 없는 디스크 영역 낭비를 줄일 수 있다.  
+<code>docker system prune [Option]</code><br>
+**Option**  
+<table class="table">
+	<tbody>
+	<tr>
+		<td>--all, -a</td>
+		<td>사용하지 않는 리소스를 모두 삭제한다.</td>
+	</tr>
+	
+	<tr>
+		<td>--force, -f</td>
+		<td>강제적으로 삭제한다.</td>
+	</tr>
+	
+</tbody>
+</table>
+<br>
+
+
+<br>
+<hr>
+참조: 완벽한 IT 인프라 구축을 위한 Docker
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
