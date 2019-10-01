@@ -9,13 +9,14 @@ categories: [Docker]
 
 ### 컨테이너 기술의 개요
 **컨테이너**  
-<img class="media-element file-default img-align-right" alt="컨테이너란" title="컨테이너란" src="https://www.redhat.com/cms/managed-files/what-is-a-container.png" width="440" height="369">
+<img class="media-element file-default img-align-right" alt="컨테이너란" title="컨테이너란" src="https://www.redhat.com/cms/managed-files/what-is-a-container.png" width="440" height="369"><br>
+
 컨테이너란 호스트 OS상에 논리적인 구획을 만들고, 애플리케이션을 작동시키기 위해 필요한 라이브러리나 애플리케이션 등을 하나로 모아, 마치 별도의 서버인 것처럼 사용할 수 있게 만든 것.  
 호스트 OS의 리소스를 논리적으로 분리시키고, 여러 개의 컨테이너가 공유하여 사용한다.  
 오베헤드가 적기 때문에 가볍고 고속으로 작동한다.  
 **컨테이너를 기술을 사용하면 OS나 디렉터리, IP 주소 등과 같은 시스템 자원을 마치 각 애플리케이션이 점유하고 있는 것처럼 보이게 가능하다.**  
 이러한 컨테이너의 특징으로 인하여 개발 단계에서 테스트, 프로덕션에 이르기까지 이식성과 일관성을 유지할 수 있다.  
-
+<br>
 **가상화 VS 컨테이너**  
 <img src="https://subicura.com/assets/article_images/2017-01-19-docker-guide-for-beginners-1/vm-vs-docker.png" alt="가상머신과 도커">
 - **가상화: 단일 하드웨어 시스템에서 여러 운영 체제가 동시에 실행될 수 있도록 한다. 하이퍼바이저를 사용하여 하드웨어를 애뮬레이션하고 이를 여러 운영체제를 동시에 실행하게되는데, 별도의 OS가 작동하므로 오버헤드가 크다.**
@@ -96,7 +97,8 @@ cgroups는 프로세스와 스레드를 그룹화하여, 그 그룹안에 존재
 계층구조를 사용하여 프로세스를 그룹화하여 관리할 수 있다. 각 그룹에 CPU 사용량을 할당할 수 있다.  
 
 **네트워크 구성**  
-<img src="https://t1.daumcdn.net/cfile/tistory/995D1B3A5B2BDF4631" style="cursor: pointer;max-width:100%;height:auto" width="500" height="297" filename="evernote_image_1.png" filemime="image/png">
+<img src="https://t1.daumcdn.net/cfile/tistory/995D1B3A5B2BDF4631" style="cursor: pointer;max-width:100%;height:auto" width="500" height="297" filename="evernote_image_1.png" filemime="image/png">  
+<br>
 각 컨테이너 마다 가상 NIC(vethxxx)가 생기고 가상 bridge(docker0, 172.17.0.0/16) subnet mask인 private IP가 eth0으로 자동으로 할당된다.  
 Docker에서는 하나의 IP 주소를 여러 컴퓨터가 공유하는 기술 NAPT(Network Address Port Translation)을 사용하여 네트워크를 구성한다.  
 

@@ -69,6 +69,7 @@ Hello world
 만약 Image를 가지고 있지 않는다면 Pull request로 Image요청후 명령어가 실행된다.  
 <br>
 **docker version 확인**  
+<code>docker version</code>
 ```code
 docker version
 ```
@@ -95,6 +96,7 @@ Server: Docker Engine - Community
 <br>
 
 **docker 실행환경 확인**  
+<code>docker system info</code>
 ```code
 docker system info
 ```
@@ -102,6 +104,7 @@ Container수, Docker 버전, 스토리지 드라이버 정보, OS 종류, 아키
 <br>
 
 **docker 디스크 이용 상황**  
+<code>docker system df</code>
 ```code
 docker system df
 ```
@@ -120,6 +123,7 @@ Ngix는 대량의 요청을 처리하는 대규모 사이트에서 주로 이용
 
 **Docker Image 다운로드**  
 Docker 컨테이너의 바탕이 되는 Docker 이미지 다운로드  
+<code>docker pull [Image 이름]</code>
 ```code
 docker pull nginx
 ```
@@ -134,8 +138,8 @@ Status: Downloaded newer image for nginx:latest
 ```
 <br>
 
-**Docker Image 확인**  
-다운받은 Docker 이미지 확인  
+**Docker Container 실행**  
+<code>docker container run --name [Container 이름 지정] -d -p [외부 접속 Port: 내부 연결 Port] [Image 이름]</code>
 ```code
 docker container run --name webserver -d -p 80:80 nginx
 ```
@@ -150,9 +154,9 @@ Container 생성시 Container를 고유하게 식별하기 위하여 Container I
 <br>
 **실제 접속시**
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/1.PNG" height="250" width="600" /></div>
-<br>
 
 **Container 상태 확인**  
+<code>docker container ps</code>
 ```code
 docker container ps
 ```
@@ -186,7 +190,7 @@ docker container ps
 </tbody>
 </table>
 <br>
-webserver라는 이름의 Docker 컨테이너에서 Nginx 서버 프로세스가 시작되어, 컨테이너의 80번 포트를 정송하고 있다.
+webserver라는 이름의 Docker 컨테이너에서 Nginx 서버 프로세스가 시작되어, 컨테이너의 80번 포트를 정송하고 있다.  
 <br>
 **특정 Container 상태 확인**  
 <code>docker container stats [Container 이름]</code>
