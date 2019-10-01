@@ -22,7 +22,7 @@ Docker 이미지 상세 정보가 표시된다.
 
 이미지 Tags  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/5.PNG" height="250" width="600" /></div>
-<br>
+<br><br>
 **Docker 이미지 지정**  
 <code>이미지명 [: 태그명]</code><br>
 latest는 리포지토리에 공개되어 있는 최신판 이미지이다.  
@@ -39,7 +39,7 @@ Tag = 7인 Centos image를 다운받는 명령어 이다.
 **Option**  
 - a: 모든 태그를 취득할 수 있다.
 
-이미지명 같은 경우 URL로 지정 가능하다.
+이미지명 같은 경우 URL로 지정 가능하다.  
 <br>
 
 **이미지 목록 표시**  
@@ -80,7 +80,6 @@ Tag = 7인 Centos image를 다운받는 명령어 이다.
 
 </tbody>
 </table>
-<br>
 **실행 결과**  
 <table class="table">
 	<tbody>
@@ -162,7 +161,6 @@ docker image ls
 
 </tbody>
 </table>
-<br>
 **실행 결과**  
 <table class="table">
 	<tbody>
@@ -193,7 +191,6 @@ docker image ls
 
 </tbody>
 </table>
-<br>
 인기있는 이미지 검색  
 ```code
 $ docker search --filter=stars=1000 nginx
@@ -220,9 +217,8 @@ nginx Official build of Nginx. 12008  [OK]     ...
 
 </tbody>
 </table>
-<br>
 **중간 이미지**: 이미지를 빌드하는 과정에서 생기는 모든 이미지  
-
+<br>
 **사용하지 않는 이미지 삭제**  
 <code>docker image prune [Option]</code><br>
 **Option**  
@@ -240,7 +236,6 @@ nginx Official build of Nginx. 12008  [OK]     ...
 
 </tbody>
 </table>
-<br>
 사용하지 않는 Docker 이미지는 디스크 용량을 쓸데없이 차지하기 때문에 정기적으로 삭제하는 것이 권장  
 <br>
 
@@ -312,7 +307,6 @@ Linux의 작동에 필요한 /etc, /bin등과 같은디렉토리 및 파일들�
 
 </tbody>
 </table>
-<br>
 ```code
 docker container run -it --name "test1" centos /cin/cal
     October 2019
@@ -354,8 +348,6 @@ Su Mo Tu We Th Fr Sa
 	
 </tbody>
 </table>
-<br>
-
 **restart Option**  
 <table class="table">
 	<tbody>
@@ -503,7 +495,6 @@ root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입�
 	
 </tbody>
 </table>
-<br>
 **Format Option**  
 JSON 형태로서 대입  
 <table class="table">
@@ -565,8 +556,6 @@ JSON 형태로서 대입
 	
 </tbody>
 </table>
-<br>
-
 **명령어 결과**  
 <table class="table">
 	<tbody>
@@ -607,8 +596,6 @@ JSON 형태로서 대입
 	
 </tbody>
 </table>
-<br>
-
 ```code
 docker container ls
 CONTAINER ID  IMAGE  COMMAND  CREATED     STATUS        ...
@@ -669,7 +656,6 @@ recursing_beaver: Up 2 weeks
 	
 </tbody>
 </table>
-<br>
 ```code
 sudo docker container stats 77eb88a965d5
 CONTAINER ID     NAME              CPU %     MEM USAGE / LIMIT   ...
@@ -763,8 +749,6 @@ root   13947  13927  0 ...
 	</tr>
 </tbody>
 </table>
-<br>
-
 **Filter Key**  
 필터링을 할때는 key=value형식으로 지정할 수 있다.  
 <table class="table">
@@ -800,7 +784,6 @@ root   13947  13927  0 ...
 	</tr>
 </tbody>
 </table>
-<br>
 ```code
 sudo docker network ls -q --filter driver=bridge
 fa2634bde6c
@@ -877,7 +860,7 @@ fa2634bde6c
 
 **네트워크 상세 정보 확인**  
 <code>docker network inspect [Option] [네트워크]</code>
-<br>
+<br><br>
 
 **네트워크 삭제**  
 <code>docker network rm [Option] [네트워크]</code>
@@ -888,7 +871,7 @@ fa2634bde6c
 ### 가동중인 Docker 컨테이너 조작
 **가동 컨테이너 연결**  
 <code>docker container attach </code>
-<br>
+<br><br>
 
 **가동 컨테이너에서 프로세스 실행**  
 실행중인 컨테이너 안의 프로세스 실행시  
@@ -943,7 +926,8 @@ fa2634bde6c
 
 **컨테이너 조작의 차분 확인**  
 컨테이너 안에서 어떤 조작을 하여 컨테이너가 이미지로부터 생성되었을 때와 달라진 점(차분)을 확인  
-<code>docker container diff [컨테이너 식별자]</code><br>
+<code>docker container diff [컨테이너 식별자]</code><br><br>
+
 **변경의 구분**  
 <table class="table">
 	<tbody>
@@ -964,7 +948,6 @@ fa2634bde6c
 	
 </tbody>
 </table>
-<br>
 ```code
 docker container diff b03d885b68f0
 
@@ -1009,20 +992,17 @@ A /home/theia/.local/lib/python3.6/site-
 <br>
 
 **컨테이너를 tar 파일로 출력**  
-<code>docker container export [컨테이너 식별자] 
->
- [파일이름.tar]
-</code><br>
+<code>docker container export [컨테이너 식별자] > [파일이름.tar] </code><br><br>
 
 **tar 파일로부터 이미지 작성**  
-<code>docker image import [파일 또는 URL] | - [이미지명[: 태그명]] </code><br>
+<code>docker image import [파일 또는 URL] | - [이미지명[: 태그명]] </code><br><br>
 
 **이미지 저장**  
-<code>docker image save [Option] [저장파일명] [이미지명] </code><br>
+<code>docker image save [Option] [저장파일명] [이미지명] </code><br><br>
 
 **이미지 읽어 들이기**  
 tar 이미지로부터 이미지를 읽어 들일 수 있다.  
-<code>docker image load [Option]</code><br>
+<code>docker image load [Option]</code><br><br>
 
 **불필요한 이미지/컨테이너를 일괄 삭제**  
 사용하지 않는 리소스를 모두 삭제할 수 있기 떄문에 쓸 데 없는 디스크 영역 낭비를 줄일 수 있다.  
@@ -1044,8 +1024,6 @@ tar 이미지로부터 이미지를 읽어 들일 수 있다.
 </table>
 <br>
 
-
-<br>
 <hr>
 참조: 완벽한 IT 인프라 구축을 위한 Docker
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

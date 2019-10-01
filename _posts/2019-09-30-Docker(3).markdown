@@ -70,6 +70,7 @@ Hello world
 <br>
 **docker version 확인**  
 <code>docker version</code>
+
 ```code
 docker version
 ```
@@ -101,10 +102,11 @@ Server: Docker Engine - Community
 docker system info
 ```
 Container수, Docker 버전, 스토리지 드라이버 정보, OS 종류, 아키텍쳐등 Docker 실행 환경의 상세 설정이 표시
-<br>
+<br><br>
 
 **docker 디스크 이용 상황**  
 <code>docker system df</code>
+
 ```code
 docker system df
 ```
@@ -121,9 +123,12 @@ Build Cache         0                   0                   0B
 오픈소스 웹 서버인 Nginx 환경을 구축  
 Ngix는 대량의 요청을 처리하는 대규모 사이트에서 주로 이용하고 있으며, 리버스 프록시나 로드밸런서와 같은 기능도 갖고 있다.  
 
+<br>
+
 **Docker Image 다운로드**  
 Docker 컨테이너의 바탕이 되는 Docker 이미지 다운로드  
 <code>docker pull [Image 이름]</code>
+
 ```code
 docker pull nginx
 ```
@@ -154,7 +159,6 @@ Container 생성시 Container를 고유하게 식별하기 위하여 Container I
 <br>
 **실제 접속시**
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/1.PNG" height="250" width="600" /></div>
-
 **Container 상태 확인**  
 <code>docker container ps</code>
 ```code
@@ -223,7 +227,7 @@ docker container stats webserver
 		<td>PIDS</td>
 		<td> 2</td>
 	</tr>
-	
+
 
 </tbody>
 </table>
