@@ -1,0 +1,246 @@
+---
+layout: post
+title:  "Docker 설치와 튜토리얼"
+date:   2019-09-30 10:10:20 +0700
+categories: [Docker]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### Docker 설치와 작동 확인(Linux)
+**설치 사전 준비**  
+apt 피키지 리스트를 업데이트  
+```python
+sudo apt update
+```
+<br>
+
+HTTPS를 경유하여 리포지토리를 사용할 수 있도록 명령어 실행  
+```python
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+```
+<br>
+
+Docker의 공식 GPG 키를 추가  
+```python
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+<br>
+
+GPG 키 확인  
+```python
+sudo apt-key fingerprint 0EBFCD88
+```
+```code
+pub   rsa4096 2017-02-22 [SCEA]
+      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid           [ unknown] Docker Release (CE deb) <docker@docker.com>
+sub   rsa4096 2017-02-22 [S]
+```
+<br>
+
+Docker의 리포지토리를 추가  
+```python
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+```
+<br>
+
+apt 피키지 리스트를 업데이트  
+```python
+sudo apt udocpdate
+```
+<br>
+
+**Docker 설치하기**  
+```python
+sudo apt-get install docker-ce
+```
+<br><br>
+### Docker 작동 확인
+**docker container run 명령**  
+<code>docker container run [Docker 이미지명] [실행할 명령어] </code><br>
+```code
+docker container run ubuntu:latest /bin/echo 'Hello world'
+```
+```code
+Hello world
+```
+**참고사항**  
+현재 Docker에서 ubuntu:latest 가 깔려있기 때문에 Pull request가 요청되지는 않는다.  
+만약 Image를 가지고 있지 않는다면 Pull request로 Image요청후 명령어가 실행된다.  
+<br>
+**docker version 확인**  
+```code
+docker version
+```
+```code
+Client:
+ Version:           18.09.6
+ API version:       1.39
+ Go version:        go1.10.8
+ Git commit:        481bc77
+ Built:             Sat May  4 02:35:57 2019
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          18.09.6
+  API version:      1.39 (minimum version 1.12)
+  Go version:       go1.10.8
+  Git commit:       481bc77
+  Built:            Sat May  4 01:59:36 2019
+  OS/Arch:          linux/amd64
+  Experimental:     false
+```
+<br>
+
+**docker 실행환경 확인**  
+```code
+docker system info
+```
+Container수, Docker 버전, 스토리지 드라이버 정보, OS 종류, 아키텍쳐등 Docker 실행 환경의 상세 설정이 표시
+<br>
+
+**docker 디스크 이용 상황**  
+```code
+docker system df
+```
+```code
+TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
+Images              3                   2                   5.711GB             81.74MB (1%)
+Containers          36                  3                   9.425GB             2.644GB (28%)
+Local Volumes       14                  2                   3.221GB             3.221GB (100%)
+Build Cache         0                   0                   0B       
+```
+**상세 내용 확인의 경우 -v 옵션을 지정**  
+<br><br>
+### 웹 서버 작동
+오픈소스 웹 서버인 Nginx 환경을 구축  
+Ngix는 대량의 요청을 처리하는 대규모 사이트에서 주로 이용하고 있으며, 리버스 프록시나 로드밸런서와 같은 기능도 갖고 있다.  
+
+**Docker Image 다운로드**  
+Docker 컨테이너의 바탕이 되는 Docker 이미지 다운로드  
+```code
+docker pull nginx
+```
+```code
+Using default tag: latest
+latest: Pulling from library/nginx
+b8f262c62ec6: Pull complete
+e9218e8f93b1: Pull complete
+7acba7289aa3: Pull complete
+Digest: sha256:aeded0f2a861747f43a01cf1018cf9efe2bdd02afd57d2b11fcc7fcadc16ccd1
+Status: Downloaded newer image for nginx:latest
+```
+<br>
+
+**Docker Image 확인**  
+다운받은 Docker 이미지 확인  
+```code
+docker container run --name webserver -d -p 80:80 nginx
+```
+이미지 nginx를 사용하여 webserver라는 이름의 Docker 컨테이너를 기동시키는 명령어  
+80:80: 앞의 Port number는 외부에서 들어오는 Port 번호  
+뒤의 Port number는 연결한 Port 번호  
+
+```code
+796f8884473420a81073492f5b4ebfbe23dbf89d6e3e8ac2f811c63459dc91d1
+```
+Container 생성시 Container를 고유하게 식별하기 위하여 Container ID 부여
+<br>
+**실제 접속시**
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/1.PNG" height="250" width="600" /></div>
+<br>
+
+**Container 상태 확인**  
+```code
+docker container ps
+```
+<table class="table">
+	<tbody>
+	<tr>
+		<td>CONTAINER ID</td>
+		<td>796f88844734</td>
+	</tr>
+
+	<tr>
+		<td>IMAGE</td>
+		<td>nginx</td>
+	</tr>
+	
+	<tr>
+		<td>COMMAND</td>
+		<td> "nginx -g 'daemon of…"</td>
+	</tr>
+	
+	<tr>
+		<td>CREATED</td>
+		<td> minutes ago</td>
+	</tr>
+	
+	<tr>
+		<td>PORTS</td>
+		<td>0.0.0.0:80->80/tcp</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+webserver라는 이름의 Docker 컨테이너에서 Nginx 서버 프로세스가 시작되어, 컨테이너의 80번 포트를 정송하고 있다.
+<br>
+**특정 Container 상태 확인**  
+<code>docker container stats [Container 이름]</code>
+```code
+docker container stats webserver
+```
+<table class="table">
+	<tbody>
+	<tr>
+		<td>CONTAINER ID</td>
+		<td>796f88844734</td>
+	</tr>
+
+	<tr>
+		<td>Name</td>
+		<td>webserver</td>
+	</tr>
+	
+	<tr>
+		<td>CPU %</td>
+		<td> 0.00%</td>
+	</tr>
+	
+	<tr>
+		<td>...</td>
+		<td>...</td>
+	</tr>
+	
+	<tr>
+		<td>PIDS</td>
+		<td> 2</td>
+	</tr>
+	
+
+</tbody>
+</table>
+<br>
+
+**Container 정지**  
+<code>docker stop [Container 이름]</code>
+```code
+docker stop webserver
+```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/2.PNG" height="250" width="600" /></div>
+<br>
+
+**Container 재시작**  
+<code>docker start [Container 이름]</code>
+```code
+docker start webserver
+```
+
+<br>
+<hr>
+참조: 완벽한 IT 인프라 구축을 위한 Docker
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+

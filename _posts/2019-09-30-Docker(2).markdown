@@ -1,0 +1,111 @@
+---
+layout: post
+title:  "컨테이너 기술과 Docker의 개요"
+date:   2019-09-30 10:00:20 +0700
+categories: [Docker]
+---
+
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### 컨테이너 기술의 개요
+**컨테이너**  
+<img class="media-element file-default img-align-right" alt="컨테이너란" title="컨테이너란" src="https://www.redhat.com/cms/managed-files/what-is-a-container.png" width="440" height="369">
+컨테이너란 호스트 OS상에 논리적인 구획을 만들고, 애플리케이션을 작동시키기 위해 필요한 라이브러리나 애플리케이션 등을 하나로 모아, 마치 별도의 서버인 것처럼 사용할 수 있게 만든 것.  
+호스트 OS의 리소스를 논리적으로 분리시키고, 여러 개의 컨테이너가 공유하여 사용한다.  
+오베헤드가 적기 때문에 가볍고 고속으로 작동한다.  
+**컨테이너를 기술을 사용하면 OS나 디렉터리, IP 주소 등과 같은 시스템 자원을 마치 각 애플리케이션이 점유하고 있는 것처럼 보이게 가능하다.**  
+이러한 컨테이너의 특징으로 인하여 개발 단계에서 테스트, 프로덕션에 이르기까지 이식성과 일관성을 유지할 수 있다.  
+
+**가상화 VS 컨테이너**  
+<img src="https://subicura.com/assets/article_images/2017-01-19-docker-guide-for-beginners-1/vm-vs-docker.png" alt="가상머신과 도커">
+- **가상화: 단일 하드웨어 시스템에서 여러 운영 체제가 동시에 실행될 수 있도록 한다. 하이퍼바이저를 사용하여 하드웨어를 애뮬레이션하고 이를 여러 운영체제를 동시에 실행하게되는데, 별도의 OS가 작동하므로 오버헤드가 크다.**
+- **컨테이너: 동일한 운영 체제 커널을 공유하고 시스템의 나머지 부분으로부터 애플리케이션 프로세스를 격리시켜서 이식성이 매우 뛰어나고 오버헤드가 없지만 기본 시스템과 호환되어야 한다.**
+
+
+<br><br>
+
+### 이미지
+<img src="https://subicura.com/assets/article_images/2017-01-19-docker-guide-for-beginners-1/docker-image.png" alt="Docker image">
+이미지는 **컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것**으로 상태값을 가지지 않고 변하지 않는다(Immutable)  
+컨테이너는 이미지를 실행한 상태라고 볼 수 있고 추가되거나 변하는 값은 컨테이너에 저장된다.  
+**같은 이미지에서 여러개의 컨테이너를 생성할 수 있고 컨테이너의 상태가 바뀌거나 컨테이너가 삭제되더라도 이미지는 변하지 않고 그대로 남아있다.**  
+따라서 하나의 이미지를 만들어놓고 배포를 하게 되면 더 이상 의존성 파일을 컴파일하고 설치할 필요없이 테스트한 환경과 동일하게 설정가능 하다.  
+참고사항  
+Docker이미지는 겹쳐서 사용가능하다.  
+예를 들어 OS용 이미지에 웹 애플리케이션용 이미지를 겹쳐서 다른 새로운 이미지를 만들 수 있다.
+<br><br>
+
+### Docker의 개요
+**Docker**는 애플리케이션의 실행에 필요한 환경을 하나의 이미지로 모아두고, 그 이미지를 사용하여 다양한 환경에서 애플리케이션 실행 환경을 구축 및 운용하기 위한 오픈소스 플랫폼이다.  
+즉 미리 만들어 놓은 이미지를 다운받고 컨테이너를 생성만 하게 되면 기존에 사용하던 환경과 같은 환경으로 배포 가능한 것이다.  
+이러한 장점으로 인하여 지속적 딜리버리를 가능하게 하고, 변화에 강한 시스템을 구축할 수 있다.
+<br><br>
+
+### Docker의 기능
+**Docker 이미지를 만드는 기능(Build)**  
+Docker는 애플리케이션의 실행에 필요한 프로그램 본체, 라이브러리, 미들웨어, OS나 네트워크 설정 등을 하나로 모아서 Docker 이미지를 만든다.  
+Docker이미지는 Docker의 명령을 사용하여 수동으로 만들 수도 있으며, Dockerfile이라는 설정 파일을 만들어 그것을 바탕으로 자동으로 이미지를 만들 수도 있다.  
+<br>
+**Docker 이미지를 공유하는 기능(Ship)**  
+Docker 이미지는 Docker 레지스트리에서 공유할 수 있다.  
+Docker의 공식 레지스트리인 <a href="https://hub.docker.com/">Docker Hub</a>에서는 Ubuntu나 CentOS와 같은 Linux 배포판의 기본 기능을 제공하는 베이스의 이미지를 배포하고 있다.  
+이러한 베이스 이미지에 미들웨어나 라이브러리, 전개할 애플리케이션 등을 넣은 이미지를 겹쳐서 독자적인 Docker 이미지를 만들어 간다.  
+또한 공식 이미제 외에도 개인이 작성한 이미지를 Docker Hub에서 자유롭게 공개하여 공유 가능하다.  
+Docker Hub은 GitHub나 Bitbucket와 연계하여 Dockerfile을 관리하고 거기서 Docker 이미지를 자동생성하여 Docker Hub에서 공개하는 것도 가능하다. 이러한 자동 생성 기능을 **Automated Build**라고 한다.  
+<br>
+**Docker 컨테이너를 작동시키는 기능(Run)**  
+Docker는 Linux상에서 컨테이너 단위로 서버 기능을 작동시킨다.  
+Docker 이미지만 있으면 Docker가 설치된 환경이라면 어디서든지 컨테이너를 작동 가능하다.  
+Docker는 하나의 Linux에서 여러개의 컨테이너를 가지고 있다.  
+여러개의 컨터에너 안에서 작동하는 프로세스를 하나의 그룹으로 관리하고, 그룹마다 각각 파일 시스템이나 호스트명, 네트워크 등을 할당하고 있다.  
+<br><br>
+
+### Docker의 컴포넌트
+<img src="https://i0.wp.com/kimstar.kr/blog/wp-content/uploads/2017/05/docker-products.png?w=700" alt="Docker Component" width="579" height="308">
+
+**Docker Engine(Docker의 핵심 기능)**  
+Docker 이미지를 생성하고 컨테이너를 가동시키기 위한 Docker의 핵심 기능. Docker명령의 실행이나 Dockerfile에 의한 이미지도 생성한다.  
+
+**Docker Registry(이미지 공개 및 공유)**  
+컨테이너의 바탕이 되는 Docker 이미지를 공개 및 공유하기 위한 레지스트리 기능  
+Docker의 공식 레지스트리 서비스인 Docker Hub도 Docker Registry사용  
+
+**Docker Compose(컨테이너 일원 관리)**  
+여러 개의 컨테이너 구성 정보를 코드로 정의하고, 명령을 실행합으로써 애플리케이션의 실행 환경을 구성하는 컨테이너들을 일원 관리하기 위한 툴  
+
+**Docker Machine(Docker 실행 환경 구축)**  
+로컬 호스트용인 VirtualBox를 비롯하여 AWS 같은 클라우드 환경에 Docker의 실행 환경을 명령으로 자동 생성하기 위한 툴  
+
+**Docker Swarm(클러스터 관리)**  
+여러 Docker 호스트를 클러스터화하기 위한 툴이다. Docker Swarm에서는 클러스터를 관리하거나 API를 제공하는 역할은 Manager가, Docker 컨테이너를 실행하는 역할은 Node가 담당. (오픈소스 Kubernetes 사용 가능)  
+<br><br>
+
+### Docker의 작동 구조
+**namespane**  
+Linux 커널의 namespace 기능을 사용하여 독립적으로 실행
+- PID namespace: 각 프로세스에 할당된 고유한 ID, namespace가 다른 프로세스끼리는 서로 액세스 불가능
+- Network namespace: 네트워크 디바이스, IP 주소, 포트 번호, 라우팅 테이블, 필터링 테이블 등과 같이 네트워크 리소스를 격리된 namespace마다 독립적으로 가질 수 있다.
+- UID namespace: UID(사용자 ID), GID(Group ID)를 namespace별로 독립적으로 가질 수 있다.
+- MOUNT namespace: 기기와 저장장치를 namespace내의 파일 시스템 트리에 구성
+- UTS namespace: namespace별로 호스트명이나 도메인명을 독자적으로 가질 수 있다.
+- IPC namespace: 프로세스 간의 통신(IPC) 오브젝트를 namespace별로 독립적으로 가질 수 있다.
+
+**cgroups**  
+cgroups는 프로세스와 스레드를 그룹화하여, 그 그룹안에 존재하는 프로세스와 스레드에 대한 관리를 수행하기 위한 기능  
+호스트 OS의 CPU나 메모리와 같은 자원에 대해 그룹별로 제한 가능  
+계층구조를 사용하여 프로세스를 그룹화하여 관리할 수 있다. 각 그룹에 CPU 사용량을 할당할 수 있다.  
+
+**네트워크 구성**  
+<img src="https://t1.daumcdn.net/cfile/tistory/995D1B3A5B2BDF4631" style="cursor: pointer;max-width:100%;height:auto" width="500" height="297" filename="evernote_image_1.png" filemime="image/png">
+각 컨테이너 마다 가상 NIC(vethxxx)가 생기고 가상 bridge(docker0, 172.17.0.0/16) subnet mask인 private IP가 eth0으로 자동으로 할당된다.  
+Docker에서는 하나의 IP 주소를 여러 컴퓨터가 공유하는 기술 NAPT(Network Address Port Translation)을 사용하여 네트워크를 구성한다.  
+
+
+<br>
+
+<hr>
+참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
+참조: <a href="https://www.redhat.com/ko/topics/containers/whats-a-linux-container">redhat</a><br>
+참조: <a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html">subicura</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
