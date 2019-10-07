@@ -206,13 +206,13 @@ permalink: /about/
 
 
 ​    
-                </div>
-                <!-- /.progress-wrapper -->
-            </div>
-        </div>
-        <!--.row -->
-    </div>
-    <!-- .container-fluid -->
+​                </div>
+​                <!-- /.progress-wrapper -->
+​            </div>
+​        </div>
+​        <!--.row -->
+​    </div>
+​    <!-- .container-fluid -->
 </section>
 <!-- Available Languages -->
 
@@ -354,12 +354,12 @@ permalink: /about/
 
 
 ​                    
-                </div>
-                <!-- .experience-item -->
-                <div class="content-item">
-                    <small>2019/06 - 2019/07</small>
-                    <h3>2019 머신러닝 스터디 잼 심화반</h3>
-                    
+​                </div>
+​                <!-- .experience-item -->
+​                <div class="content-item">
+​                    <small>2019/06 - 2019/07</small>
+​                    <h3>2019 머신러닝 스터디 잼 심화반</h3>
+​                    
                 </div>
                 <!-- .experience-item -->
             </div>
@@ -514,14 +514,11 @@ permalink: /about/
 
 <!-- jquery -->
 <script src="/static/about/js/jquery-2.1.4.min.js"></script>
-
 <!-- Bootstrap -->
 <script src="/static/about/js/bootstrap.min.js"></script>
 <script src="/static/about/js/theia-sticky-sidebar.js"></script>
 <script src="/static/about/js/scripts.js"></script>
-
 <!-- Gmail -->
 <script src="/static/about/js/gmail.js"></script>
 <script src="/static/about/js/form-submission-handler.js"></script>
-
 </body>
