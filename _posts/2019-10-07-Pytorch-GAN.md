@@ -88,7 +88,7 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 그러한 과정을 위하여 먼저 선수 과정으로 알아야 하는 수식에 대해서 알아보자.  
 
  
-
+<br>
 #### 사전지식
 
 본격적인 수식에 들어가기 전에 수식을 이해하기 위한 사전지식이 요구된다.  
@@ -208,7 +208,7 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 위에서 증명한 식을 사용하여 이제 실질적인 main theorem을 증명해 보자.  
 
 <br>
-
+<br>
 **Theorem 1.** The global minimum of the virtual training criterion C(G) is achieved if and only if <span>$$p_g = p_{data}$$</span> At that point, C(G) achieves the value -log4
 
  
@@ -259,7 +259,7 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
 참조:<a href="http://jaejunyoo.blogspot.com/2017/01/generative-adversarial-nets-2.html">jaejunyoo 블로그</a><br>
 
-
+<br><br>
 #### Convergence of Algorithm1
 
 **Proposition 2.** If G and D have enough capacity, and at each step of Algorithm1, the discriminator is allowed to reach its optimum given G, and <span>$$p_g$$</span> is updated so as to improve the criterion  
@@ -287,7 +287,7 @@ Log 함수는 **Concave**하다는 것을 알 수 있다.
 
 <span>$$U(p_g,D) \text{ is Convex in } p_g$$</span>가 **Convex**하다는 가정을 하고 아래와 같이 수식을 치환한다고 하면    
 <p>$$\partial(sup_DU(p_g,D)) = \partial f$$</p>
-<p>$$sup: \text{supremum(상한) 또는 최소 상계(least upper bound)로서 집합의 모든 상계 z에 대해 z0≤z를 만족하는 값. 즉, min(z)를 의미한다.}$$</p>
+<span>$$sup:$$</span> supremum(상한) 또는 최소 상계(least upper bound)로서 집합의 모든 상계 z에 대해 z0≤z를 만족하는 값. 즉, min(z)를 의미한다.  
 <p>$$\partial f_{D^*(p_g)} \in \partial f$$</p>
 위의 식을 만족하게 된다.  
 즉 <span>$$U(p_g,D) \text{ is Convex in } p_g$$</span>가 **Convex**하기 때문에 <span>$$\underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</span>에서 <span>$$\underset{G}{min}$$</span>을 수행하여 만족하는 <span>$$p_g$$</span>을 구할 수 있다.
@@ -296,7 +296,7 @@ Log 함수는 **Concave**하다는 것을 알 수 있다.
 에서 **Global Optima**는 1개라는 정의를 하였으므로  
 <span>$$p_g$$</span>를 Update하여 <span>$$p_g -> p_{data}$$</span>을 만족시킬 수 있는 것을 알 수 있다.
 <br>
-
+<br>
 #### 참고사항(Convex)
 Convex function은 convex한 function을 의미한다. 이때의 convex는 한국어로 옮기면 볼록 이라는 의미를 가지게 된다.  
 Convex function의 조건은 다음과 같다.  
@@ -307,7 +307,7 @@ Convex function이 좋은 이유는 반드시 optimal한 값이 하나 밖에 �
 **Concave**의 경우 Convex와 반대의 성질을 가지고 있다.  
 <a href="https://hwiyong.tistory.com/7?category=805068">Convex의 자세한 내용</a><br>
 <br>
-
+<br>
 ### Model 구현
 #### 1. Import required libraries
 ```python
@@ -327,11 +327,6 @@ from collections import OrderedDict
 ```
 <br>
 
-#### 1. Import required libraries
-```python
-
-```
-<br>
 
 #### 2. Hyperparameter setting
 ```python
@@ -459,12 +454,6 @@ module.layer2.fc2.bias
 ```
 <br>
 
-#### 1. Import required libraries
-```python
-
-```
-<br>
-
 #### 8. Set Loss function & Optimizer
 - Loss Function: MSE
 - Optimizer: Adam
@@ -509,13 +498,13 @@ except:
 Generator에서 Input Data를 받는것이 아니라 Noise를 Input으로 받는다는 가정을 하였기 때문에 Input Data -> Noise로 변환하여 Generator에 Input으로 넣는 과정이 필요하다.  
 <code>z = init.normal_(torch.Tensor(batch_size,z_size),mean=0,std=0.1).to(device)</code><br>
 **최종적인 식**  
-$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$
+<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 
 **구분자**  
-$$ \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$
+<p>$$ \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 
 **생성자**
-$$ \underset{G}{max}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$
+<p>$$ \underset{G}{max}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$</p>
 을 각각 적용한다.
 
 ```python
