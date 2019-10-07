@@ -35,29 +35,29 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 최종적인 목적은 D(G(z)) = 1 로서 만들어진 데이터를 1로서 판별되는 것을 목표로 한다.  
 
 **D(G(z))에 대하여 2개의 Network가 상반되는 목표를 가지는 것을 알 수 있다.**  
-
+<br><br>
 ### Adversarial Nets
 위의 설명은 다음과 같이 정의 될 수 있다.  
-$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$
-$$\mathbb{E}: \text{기대값}$$
-$$x\text{~}P_{data}(x): \text{x를 실제 data의 분포에서 샘플링}$$
-$$z\text{~}P_{z}(z): \text{z를 Noise의 분포에서 샘플링}$$
+<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$\mathbb{E}: \text{기대값}$$</p>
+<p>$$x\text{~}P_{data}(x): \text{x를 실제 data의 분포에서 샘플링}$$</p>
+<p>$$z\text{~}P_{z}(z): \text{z를 Noise의 분포에서 샘플링}$$</p>
 
 위에서 쓰여진 식을 D, G에 관해 나누어서 생각해보자  
 
 **구분자**  
-$$ \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$
+<p>$$ \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 위에서 정의한 구분자의 목적은 실제 데이터는 1, 만들어진 데이터는 0 으로서 판별되는 것이다.  
 이에 연관되어 <span>$$\underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</span>에 넣어서 생각을 해보게 되면 D(x) = 1, D(G(z)) = 0, 으로서 학습되는 것이다.  
 
 **생성자**  
-$$ \underset{G}{min}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$
+<p>$$ \underset{G}{min}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 위에서 정의한 생성자의 목적은 만들어진 데이터를 1로서 판별되는 것 이다. 
 위의 목적에 맞게 다시 식을 작성하면 다음과 같다.  
-$$ \underset{G}{min}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$
+<p>$$ \underset{G}{min}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 이에 연관되어 <span>$$\underset{G}{min}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</span>에 넣어서 생각을 해보게 되면 D(G(z)) = 1 으로서 학습되는 것이다.  
 **참고사항**으로서 **구분자와 생성자의 식을 분리하게 됨으로서 식을 다음과 같이 바꿀 수 있다.**  
-$$ \underset{G}{max}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$
+<p>$$ \underset{G}{max}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$</p>
 위와 같이 식을 바꾸는 이유는 다음과 같다.  
 처음 Noise로서 생성하는 Image는 Random한 Image로서 구분자가 너무 쉽게 Real Image와 구별할 수 있게 되어서 값이 너무 작게 나와서 Trainning의 시간이 매우 길어지게 된다.  
 하지만 위와 같이 식을 바꿈으로 인하여 Fixed Point를 얻게 되면서도 Gradint의 값을 크게 줄 수 있다는 장점이 생기게 된다.  
@@ -76,7 +76,7 @@ $$ \underset{G}{max}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$
 (d): Trainning의 최종적인 Distribution의 모양은 <span>$$p_{data} = p_{g}$$</span>으로서 <span>$$D(x) = \frac{1}{2}$$</span>의 값을 가지는 것을 알 수 있다.  
 
 최종적인 목적으로서 앞에서 정의한 식  
-$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$
+<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 의 해결하기 위해서는 **<span>$$p_{data} = p_{g}$$</span>으로서 <span>$$D(x) = \frac{1}{2}$$</span>의 값을 가지는 것**을 찾는 문제로서 생각할 수 있다.
 
 ### Theoretical Results
@@ -101,7 +101,7 @@ $$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}
 
 정보량이란 확률 p를 가지는 사건 A의 정보를 정의한다.  
 
-$$I(m) = log(\frac{1}{p(m)}) = - log(p(m))$$
+<p>$$I(m) = log(\frac{1}{p(m)}) = - log(p(m))$$</p>
 
 <br>
 
@@ -113,11 +113,11 @@ $$I(m) = log(\frac{1}{p(m)}) = - log(p(m))$$
 
 **(1) Discrete**  
 
-$$H(M) = E\text{[}I(M)\text{[} = \sum_{m \in M}p(m)I(m) = -\sum_{m \in M}p(m)log p(m)$$
+<p>$$H(M) = E\text{[}I(M)\text{[} = \sum_{m \in M}p(m)I(m) = -\sum_{m \in M}p(m)log p(m)$$</p>
 
 **(2) Continuous**  
 
-$$H(X) = E\text{[}I(M)\text{[} = \int p(x)I(x)dx = - \int p(x)log(p(x))dx$$
+<p>$$H(X) = E\text{[}I(M)\text{[} = \int p(x)I(x)dx = - \int p(x)log(p(x))dx$$</p>
 
  
 
@@ -137,13 +137,13 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
 **즉 두 확률분포의 Cross Entropy의 값과 자기자신의 Entropy의 값이 같으면 두 확률분포는 같다는 Idea에서 시작하는 수식이다.**  
 
-$$D_{KL}(p||q) = H(p,q) - H(p)$$
+<p>$$D_{KL}(p||q) = H(p,q) - H(p)$$</p>
 
-$$= -\sum_{x \in X}p(x)log(q(x)) - (-\sum_{x \in X}p(x)log(p(x)))$$
+<p>$$= -\sum_{x \in X}p(x)log(q(x)) - (-\sum_{x \in X}p(x)log(p(x)))$$</p>
 
-$$= \sum_{x \in X}p(x)(log(p(x)) - log(q(x)))$$
+<p>$$= \sum_{x \in X}p(x)(log(p(x)) - log(q(x)))$$</p>
 
-$$= \sum_{x \in X}p(x)log\frac{p(x)}{q(x)}$$  
+<p>$$= \sum_{x \in X}p(x)log\frac{p(x)}{q(x)}$$ </p> 
 
 참조:<a href="https://reniew.github.io/17/">reniew 블로그</a><br>
 
@@ -157,37 +157,37 @@ $$= \sum_{x \in X}p(x)log\frac{p(x)}{q(x)}$$
 
 **Proposition 1.** for G fixed, the optimal discriminator D is  
 
-$$D_G^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}$$
+<p>$$D_G^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}$$</p>
 
  
 
 위의 결과는 아래와 같은 과정으로서 이루워 진다.  
 
-$$V(G,D) = \mathbb{E}_{x \text{~} p_{data}(x)}\text{[}logD(x)\text{]} + \mathbb{E}_{x \text{~} p_{z}(z)}\text{[}1 - logD(G(z))\text{]}$$
+<p>$$V(G,D) = \mathbb{E}_{x \text{~} p_{data}(x)}\text{[}logD(x)\text{]} + \mathbb{E}_{x \text{~} p_{z}(z)}\text{[}1 - logD(G(z))\text{]}$$</p>
 
-$$= \int_x p_{data}(x) log(D(x)) dx + \int_z p_{z}(x) log(1 - D(G(z))) dz$$
+<p>$$= \int_x p_{data}(x) log(D(x)) dx + \int_z p_{z}(x) log(1 - D(G(z))) dz$$</p>
 
-$$= \int_x p_{data}(x) log(D(x)) dx + p_g log(1-D(x))$$
+<p>$$= \int_x p_{data}(x) log(D(x)) dx + p_g log(1-D(x))$$</p>
 
 위의 식을 간단히 하기 위하여 다음과 같이 치환하여 생각을 해보자.  
 
-$$y = alog(y) + blog(1-y)$$
+<p>$$y = alog(y) + blog(1-y)$$</p>
 
-$$y\prime = \frac{a}{y} - \frac{b}{1-y} = \frac{a}{y} = \frac{b}{y - 1}$$
+<p>$$y\prime = \frac{a}{y} - \frac{b}{1-y} = \frac{a}{y} = \frac{b}{y - 1}$$</p>
 
-$$= \frac{a(y-1) + by}{y(y-1)}$$
+<p>$$= \frac{a(y-1) + by}{y(y-1)}$$</p>
 
-$$= \frac{ay -a + by}{y(y-1)}$$
+<p>$$= \frac{ay -a + by}{y(y-1)}$$</p>
 
 위의 조건에서 만약 <span>$$y \neq 0,1$$</span>이라면 <span>$$y\prime = 0$$</span>의 조건은  
 
-$$ay - a + by = 0 $$
+<p>$$ay - a + by = 0 $$</p>
 
-$$y = \frac{a}{a+b}$$
+<p>$$y = \frac{a}{a+b}$$</p>
 
 위에서 얻은 식에 <span>$$a = p_{data}, b=p_g$$</span>를 대입하게 되면
 
-$$D_G^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}$$
+<p>$$D_G^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}$$</p>
 
 위에서 선언한 식을 알 수 있다.  
 
@@ -195,13 +195,13 @@ $$D_G^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}$$
 
 최종적으로 얻고자 하는 global minumum을 <span>$$C(G)$$</span>라 하면 다음과 같은 식을 유도할 수 있다.  
 
-$$C(G) = \underset{D}{max}V(G,D)$$
+<p>$$C(G) = \underset{D}{max}V(G,D)$$</p>
 
-$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{z \text{~} p_{z}}\text{[}1 - logD^{*}_{G}(G(z))\text{]}$$
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{z \text{~} p_{z}}\text{[}1 - logD^{*}_{G}(G(z))\text{]}$$</p>
 
-$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_{g}}\text{[}1 - logD^{*}_{G}(x)\text{]}$$
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_{g}}\text{[}1 - logD^{*}_{G}(x)\text{]}$$</p>
 
-$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}1 - log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}1 - log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 
  
 
@@ -217,31 +217,31 @@ $$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + 
 
 이러한 값을 **Proposition 1 에서 얻은 최종적인 값**에 대입하게 되면 다음과 같다.  
 
-$$C(G) = \mathbb{E}_{x \text{~} p_{data}}\text{[}-log(2)\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}-log(2)\text{]} = -log(4)$$
+<p>$$C(G) = \mathbb{E}_{x \text{~} p_{data}}\text{[}-log(2)\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}-log(2)\text{]} = -log(4)$$</p>
 
 위의 식의 결과를 좀더 정리하면 다음과 같다.  
 
-$$C(G) = C(G) + log(4) - log(4)$$
+<p>$$C(G) = C(G) + log(4) - log(4)$$</p>
 
-$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4)$$
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4)$$</p>
 
-$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4) +log(2) + log(2) - log(4)$$
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4) +log(2) + log(2) - log(4)$$</p>
 
-$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</p>
 
 위의 식에서 <span>$$\mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</span>과 <span>$$\mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</span>에 각각 **KL-Divergence**를 적용하면 다음과 같은 수식이 나오게 된다.  
 
-$$C(G) = KL(p_{data} || \frac{p_{data}+p_g}{2}) + KL(p_{g} || \frac{p_{data}+p_g}{2}) - log(4)$$
+<p>$$C(G) = KL(p_{data} || \frac{p_{data}+p_g}{2}) + KL(p_{g} || \frac{p_{data}+p_g}{2}) - log(4)$$</p>
 
-$$= 2JSD(p_{data}||p_g) - log(4)$$
+<p>$$= 2JSD(p_{data}||p_g) - log(4)$$</p>
 
-$$\because JSD(P||Q) = \frac{1}{2}D_{KL}(P||M) + \frac{1}{2}D_{KL}(Q||M)$$
+<p>$$\because JSD(P||Q) = \frac{1}{2}D_{KL}(P||M) + \frac{1}{2}D_{KL}(Q||M)$$</p>
 
  
 
-$$C(G) = -log(4) = -log(4) + 2JSD(p_{data}||p_g)$$
+<p>$$C(G) = -log(4) = -log(4) + 2JSD(p_{data}||p_g)$$</p>
 
-$$\therefore JSD(p_{data}||p_g) = 0$$
+<p>$$\therefore JSD(p_{data}||p_g) = 0$$</p>
 
 위의 식에서 **KL-Divergence**에서도 얘기하였지만 KL-Divergence는 그 값이 작을 수록 두 분포가 유사하다는 의미를 가지고 0이되면 두 분포가 같다는 의미를 가진다.  
 
@@ -264,7 +264,7 @@ $$\therefore JSD(p_{data}||p_g) = 0$$
 
 **Proposition 2.** If G and D have enough capacity, and at each step of Algorithm1, the discriminator is allowed to reach its optimum given G, and <span>$$p_g$$</span> is updated so as to improve the criterion  
 
-$$\mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log(1 - D^{*}_{G}(x))\text{]}$$  
+<p>$$\mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log(1 - D^{*}_{G}(x))\text{]}$$  </p>
 
 then <span>$$p_g$$</span> converges to <span>$$p_{data}$$</span>
 
@@ -272,23 +272,23 @@ then <span>$$p_g$$</span> converges to <span>$$p_{data}$$</span>
 
 즉 <span>$$U(p_g,D)$$</span>가 <span>$$p_g$$</span>에 대하여 Convex하다는 것이 가장 중요시 된다.  
 위의 식을 살펴보게 되면 다음과 같다.  
-$$V(G,D) = U(p_g,D) = \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_{g}(x)}{p_{data}(x) + p_g(x)}\text{]}$$
+<p>$$V(G,D) = U(p_g,D) = \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_{g}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 위의 식을 <span>$$p_g$$</span>에 나타내기 위하여 <span>$$p_{data}$$</span>를 상수로 잠시 치환하자면 다음과 같은 식이 나오게 된다.  
-$$U(p_g,D) = \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{\alpha}{\alpha + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_g(x)}{\alpha + p_g(x)}\text{]}$$
+<p>$$U(p_g,D) = \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{\alpha}{\alpha + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_g(x)}{\alpha + p_g(x)}\text{]}$$</p>
 
 로그함수의 그래프를 살펴보면 아래와 같다.  
 <img src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Logarithms.svg/315px-Logarithms.svg.png"/>
 <br>
 Log 함수는 **Concave**하다는 것을 알 수 있다.  
 따라서 다음과 같은 식이 성립한다는 것을 알 수 있다.  
-$$\frac{\alpha}{\alpha + p_g(x + t)} > \frac{\alpha}{\alpha + p_g(x)}$$
-$$p_g(x) > p_g(x + t)$$
-$$\therefore U(p_g,D) \text{ is Convex in } p_g$$
+<p>$$\frac{\alpha}{\alpha + p_g(x + t)} > \frac{\alpha}{\alpha + p_g(x)}$$</p>
+<p>$$p_g(x) > p_g(x + t)$$</p>
+<p>$$\therefore U(p_g,D) \text{ is Convex in } p_g$$</p>
 
 <span>$$U(p_g,D) \text{ is Convex in } p_g$$</span>가 **Convex**하다는 가정을 하고 아래와 같이 수식을 치환한다고 하면    
-$$\partial(sup_DU(p_g,D)) = \partial f$$
-$$sup: \text{supremum(상한) 또는 최소 상계(least upper bound)로서 집합의 모든 상계 z에 대해 z0≤z를 만족하는 값. 즉, min(z)를 의미한다.}$$
-$$\partial f_{D^*(p_g)} \in \partial f$$
+<p>$$\partial(sup_DU(p_g,D)) = \partial f$$</p>
+<p>$$sup: \text{supremum(상한) 또는 최소 상계(least upper bound)로서 집합의 모든 상계 z에 대해 z0≤z를 만족하는 값. 즉, min(z)를 의미한다.}$$</p>
+<p>$$\partial f_{D^*(p_g)} \in \partial f$$</p>
 위의 식을 만족하게 된다.  
 즉 <span>$$U(p_g,D) \text{ is Convex in } p_g$$</span>가 **Convex**하기 때문에 <span>$$\underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</span>에서 <span>$$\underset{G}{min}$$</span>을 수행하여 만족하는 <span>$$p_g$$</span>을 구할 수 있다.
 최종적인 결과 로서 위에  
@@ -300,7 +300,7 @@ $$\partial f_{D^*(p_g)} \in \partial f$$
 #### 참고사항(Convex)
 Convex function은 convex한 function을 의미한다. 이때의 convex는 한국어로 옮기면 볼록 이라는 의미를 가지게 된다.  
 Convex function의 조건은 다음과 같다.  
-$$f(tx + (1-t)y) <= tf(x) + (1-t)f(y)$$
+<p>$$f(tx + (1-t)y) <= tf(x) + (1-t)f(y)$$</p>
 <img src="http://sanghyukchun.github.io/images/post/63-1.png"/>
 <br>
 Convex function이 좋은 이유는 반드시 optimal한 값이 하나 밖에 존재하지 않는 다는 것 이다.  
