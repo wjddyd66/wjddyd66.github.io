@@ -60,3 +60,14 @@ author:
     #twitter:  <hide>
     #weibo:    <hide>
     email:     mailto:wjddyd66@naver.com
+
+# Navigation (2nd level links supported)
+nav:
+  Home:
+    - '/'
+  Contents:
+    - '/contents/'
+  Categories:
+    - '/category/JAVA'
+  About:
+    - '/about/'
