@@ -8,7 +8,7 @@ google_analytics: UA-XXXXXXXX-Y
 avatar_url: /static/img/programmer.png
 
 enableTags: true
-tagarray: [JAVA, Python, DB, NoSQL, Spring, Django, A.I, R, Project, ML]
+tagarray: [JAVA, Python, DB, NoSQL, Spring, Django, A.I, R, Project, ML, DataAnalysis, DL, Docker, others, Pytorch, Tensorflow, Web]
 
 collections:
   project:
@@ -16,14 +16,6 @@ collections:
     permalink: /projects/:path/
 
 social:
-    - icon: fa-facebook
-      link: "#"
-    - icon: fa-twitter
-      link: "#"
-    - icon: fa-linkedin
-      link: "#"
-    - icon: fa-stack-exchange
-      link: "#"
     - icon: fa-github
       link: "https://github.com/wjddyd66"
 
@@ -55,3 +47,16 @@ compress_html:
   endings: all
   ignore:
     envs: ['development']
+
+# About/contact
+author:
+  name: Cornor
+  description: <strong>Hwang Jeong Yong</strong>
+  gravatar: 151e8b962331c0d58121cbc3fba1b2e6
+  contact:
+    #linkedin:  <hide>
+    github:    https://github.com/wjddyd66
+    #facebook:  https://www.facebook.com/people/%EC%A1%B0%EC%A4%91%ED%98%84/100001883067095
+    #twitter:  <hide>
+    #weibo:    <hide>
+    email:     mailto:wjddyd66@naver.com
