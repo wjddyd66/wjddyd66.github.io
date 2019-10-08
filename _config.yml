@@ -48,26 +48,3 @@ compress_html:
   ignore:
     envs: ['development']
 
-# About/contact
-author:
-  name: Cornor
-  description: <strong>Hwang Jeong Yong</strong>
-  gravatar: 151e8b962331c0d58121cbc3fba1b2e6
-  contact:
-    #linkedin:  <hide>
-    github:    https://github.com/wjddyd66
-    #facebook:  https://www.facebook.com/people/%EC%A1%B0%EC%A4%91%ED%98%84/100001883067095
-    #twitter:  <hide>
-    #weibo:    <hide>
-    email:     mailto:wjddyd66@naver.com
-
-# Navigation (2nd level links supported)
-nav:
-  Home:
-    - '/'
-  Contents:
-    - '/contents/'
-  Categories:
-    - '/category/JAVA'
-  About:
-    - '/about/'
