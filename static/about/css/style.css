@@ -86,16 +86,6 @@ h6 {
     padding     : 15px 30px;
     }
 
-/*btn-primary*/
-.btn-primary {
-    background-color : #FFC107;
-    }
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active:focus {
-    background : #ff9800;
-    }
 
 /*btn-default*/
 .btn-default {
@@ -503,7 +493,6 @@ button:focus,
 
 #status,
 .status-mes {
-    background-image    : url(../img/preloader.svg);
     background-position : center;
     background-repeat   : no-repeat;
     height              : 200px;
