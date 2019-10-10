@@ -13,7 +13,6 @@ Docker Hub에는 버전 관리 툴인 GitHub 및 Bitbucket과 연결하여 Docke
 **GitHub 공개하기**  
 작성한 Dockerfile을 GitHub에서 공개한다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/7.PNG" height="250" width="600" /></div>
-<br>
 **주의해야 할 점은 반드시 Dockerfile이라는 파일로 리포지토리에 공개하여야 한다.**  
 <br>
 **Docker Hub의 링크 설정**  
@@ -21,7 +20,7 @@ Login -> Account Setting -> Linked Accounts -> Connect
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/8.PNG" height="250" width="600" /></div>
 <br>
 GitHub 계정 연결 승인  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/9.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/9.PNG" height="500" width="600" /></div>
 <br>
 연결확인  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/10.PNG" height="250" width="600" /></div>
@@ -41,13 +40,13 @@ Login -> Create -> 레파지토리 생성 -> 연결된 GitHub의 레파지토리
 
 생성된 레파지토리 -> Builds -> Automated Builds -> Trigger  
 위의 과정 시 빌드 시작  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/12.PNG" height="500" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/12.PNG" height="250" width="600" /></div>
 <br>
 빌드 시작시 Build Status라 BUilding 이라고 바뀌면서 Build과정 확인 가능  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/13.PNG" height="500" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/13.PNG" height="250" width="600" /></div>
 <br>
 성공시에 GitHub상의 Dockerfile을 바탕으로 Docker이미지가 만들어지고, Docker Hub상에 공개된다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/14.PNG" height="500" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/14.PNG" height="250" width="600" /></div>
 <br><br>
 
 **Docker Image 확인**  
@@ -91,7 +90,7 @@ Docker 이미지를 일원 관리하기 위한 레지스트리를 로컬 환경�
 <br>
 **로컬 환경에 Docker 레지스트리 구축하기**  
 Docker 레지스트리를 프라이빗 네트워크 안에서 구축하려면 Docker Store에 공개되어있는 공식 이미지인 registry를 사용한다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/15.PNG" height="500" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/15.PNG" height="250" width="600" /></div>
 <br>
 registry 검색  
 ```code
@@ -241,15 +240,10 @@ Executing the command: jupyter notebook
 ...
 
 ```
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/16.PNG" height="500" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/16.PNG" height="250" width="600" /></div>
 <br>
-<br><br>
-
-### 클라우드 서비스를 사용한 프라이빗 레지스트리 구축
-
 <br>
 
 <hr>
 참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
-
