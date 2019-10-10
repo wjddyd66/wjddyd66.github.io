@@ -328,24 +328,24 @@ Su Mo Tu We Th Fr Sa
 		<td>--detach, -d</td>
 		<td>컨테이너를 생성하고 백그라운드에서 실행한다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>--user, -u</td>
 		<td>사용자명을 지정</td>
 	</tr>
-
+	
 	<tr>
 		<td>--restart=[no | on-failure | onfailure: 횟수n | always | unless-stopped]</td>
 		<td>명령의 실행 결과에 따라 재시작을 하는 옵션</td>
 	</tr>
-	
 
-	
+
+​	
 	<tr>
 		<td>--rm</td>
 		<td>명령 실행 완료 후에 컨테이너를 자동으로 삭제</td>
 	</tr>
-	
+
 </tbody>
 </table>
 **restart Option**  
@@ -355,17 +355,17 @@ Su Mo Tu We Th Fr Sa
 		<td>no</td>
 		<td>재시작하지 않는다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>on-failure</td>
 		<td>종료 스테이터스가 0이 아닐 때 재시작한다.</td>
 	</tr>
-
+	
 	<tr>
 		<td>onfailure: 횟수n</td>
 		<td>종료 스테이터스가 0이 아닐 때 n번 재시작한다.</td>
 	</tr>
-    
+	
 	<tr>
 		<td>always</td>
 		<td>항상 재시작한다.</td>
@@ -375,7 +375,7 @@ Su Mo Tu We Th Fr Sa
 		<td>unless-stopped</td>
 		<td>최근 컨테이너가 정지 상태가 아니라면 항상 재시작한다.</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -399,17 +399,17 @@ root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입�
 		<td>--cpu-share, -c</td>
 		<td>COU의 사용 배분</td>
 	</tr>
-	
+
 	<tr>
 		<td>--memory, -m</td>
 		<td>사용할 메모리를 제한하여 실행</td>
 	</tr>
-
+	
 	<tr>
 		<td>--volume=[호스트의 디렉토리]:[컨테이너의 디렉토리], -v</td>
 		<td>호스트와 컨테이너의 디렉토리를 공유</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -423,12 +423,12 @@ root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입�
 		<td>--env=[환경변수], -e</td>
 		<td>환경변수를 설정한다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>--env-file=[파일명]</td>
 		<td>환경변수를 파일로부터 설정한다.</td>
 	</tr>
-
+	
 	<tr>
 		<td>--read-only=[true | false]</td>
 		<td>컨테이너의 파일 시스템을 읽기 전용으로 만든다.</td>
@@ -443,7 +443,7 @@ root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입�
 		<td>-u, --user=[사용자명]</td>
 		<td>사용자명 또는 UID를 지정한다.</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -457,12 +457,12 @@ root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입�
 		<td>--all, -a</td>
 		<td>실행 중/정지 중인 것도 포함하여 모든 컨테이너를 표시</td>
 	</tr>
-	
+
 	<tr>
 		<td>--filter, -f</td>
 		<td>표시할 컨테이너의 필터링</td>
 	</tr>
-
+	
 	<tr>
 		<td>--format</td>
 		<td>표시 포맷을 지정</td>
@@ -492,7 +492,7 @@ root@77eb88a965d5:/# echo "안녕하세요! 여기는 우분투 컨테이너입�
 		<td>--size, -s</td>
 		<td>파일 크기 표시</td>
 	</tr>
-	
+
 </tbody>
 </table>
 **Format Option**  
@@ -503,12 +503,12 @@ JSON 형태로서 대입
 		<td>.ID</td>
 		<td>컨테이너 ID</td>
 	</tr>
-	
+
 	<tr>
 		<td>.Image</td>
 		<td>이미지 ID</td>
 	</tr>
-
+	
 	<tr>
 		<td>.Command</td>
 		<td>실행 명령</td>
@@ -553,7 +553,7 @@ JSON 형태로서 대입
 		<td>.Networks</td>
 		<td>네트워크 명</td>
 	</tr>
-	
+
 </tbody>
 </table>
 **명령어 결과**  
@@ -563,12 +563,12 @@ JSON 형태로서 대입
 		<td>CONTAINER ID</td>
 		<td>컨테이너의 ID</td>
 	</tr>
-	
+
 	<tr>
 		<td>IMAGE</td>
 		<td>컨테이너의 바탕이 된 이미지</td>
 	</tr>
-
+	
 	<tr>
 		<td>COMMAND</td>
 		<td>컨테이너 안에서 실행되고 있는 명령</td>
@@ -593,7 +593,7 @@ JSON 형태로서 대입
 		<td>NAMES</td>
 		<td>컨테이너 이름</td>
 	</tr>
-	
+
 </tbody>
 </table>
 ```code
@@ -618,12 +618,12 @@ recursing_beaver: Up 2 weeks
 		<td>CONTAINER ID</td>
 		<td>컨테이너 식별자</td>
 	</tr>
-	
+
 	<tr>
 		<td>NAME</td>
 		<td>컨테이너명</td>
 	</tr>
-
+	
 	<tr>
 		<td>CPU%</td>
 		<td>CPU 사용률</td>
@@ -653,7 +653,7 @@ recursing_beaver: Up 2 weeks
 		<td>PIDS</td>
 		<td>PID</td>
 	</tr>
-	
+
 </tbody>
 </table>
 ```code
@@ -680,7 +680,7 @@ root   13947  13927  0 ...
 		<td>--attach, -a</td>
 		<td>표준출력, 표준 오류 출력을 연다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>--interactive, -i</td>
 		<td>컨테이너의 표준 출력을 연다.</td>
@@ -698,7 +698,7 @@ root   13947  13927  0 ...
 		<td>--time, -t</td>
 		<td>컨테이너의 재시작 시간을지정(기본값은 10초)</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -712,7 +712,7 @@ root   13947  13927  0 ...
 		<td>--force, -f</td>
 		<td>실행중인 컨테이너를 강제로 삭제</td>
 	</tr>
-	
+
 	<tr>
 		<td>--volumes, -v</td>
 		<td>할당한 볼륨을 삭제</td>
@@ -737,7 +737,7 @@ root   13947  13927  0 ...
 		<td>-f, --filter=[]</td>
 		<td>출력을 필터링한다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>--no-trunc</td>
 		<td>상세 정보를 출력한다.</td>
@@ -757,7 +757,7 @@ root   13947  13927  0 ...
 		<td>driver</td>
 		<td>드라이버 지정</td>
 	</tr>
-	
+
 	<tr>
 		<td>id</td>
 		<td>네트워크 ID</td>
@@ -799,7 +799,7 @@ fa2634bde6c
 		<td>--driver, -d</td>
 		<td>네트워크 브리지 또는 오버레이</td>
 	</tr>
-	
+
 	<tr>
 		<td>--ip-range</td>
 		<td>컨테이너에 할당하는 IP 주소의 범위를 지정</td>
@@ -819,7 +819,7 @@ fa2634bde6c
 		<td>--label</td>
 		<td>네트워크에 설정하는 라벨</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -833,7 +833,7 @@ fa2634bde6c
 		<td>--ip</td>
 		<td>IPv4 주소</td>
 	</tr>
-	
+
 	<tr>
 		<td>--ip6</td>
 		<td>IPv6 주소</td>
@@ -853,7 +853,7 @@ fa2634bde6c
 		<td>--label</td>
 		<td>네트워크에 설정하는 라벨</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -883,7 +883,7 @@ fa2634bde6c
 		<td>--detatch, -d</td>
 		<td>명령을 백그라운드에서 실행한다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>--interactive, -i</td>
 		<td>컨테이너의 표준 입력을 연다.</td>
@@ -898,7 +898,7 @@ fa2634bde6c
 		<td>--user, -u</td>
 		<td>사용자명을 지정한다.</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -935,7 +935,7 @@ fa2634bde6c
 		<td>A</td>
 		<td>파일 추가</td>
 	</tr>
-	
+
 	<tr>
 		<td>D</td>
 		<td>파일 삭제</td>
@@ -945,7 +945,7 @@ fa2634bde6c
 		<td>C</td>
 		<td>파일 수정</td>
 	</tr>
-	
+
 </tbody>
 </table>
 ```code
@@ -971,7 +971,7 @@ A /home/theia/.local/lib/python3.6/site-
 		<td>--author, -a</td>
 		<td>작성자를 지정한다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>--message, -m</td>
 		<td>메세지를 지정한다.</td>
@@ -986,7 +986,7 @@ A /home/theia/.local/lib/python3.6/site-
 		<td>--pause, -p</td>
 		<td>컨테이너를 일시 정지하고 커미트한다.</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -1014,17 +1014,17 @@ tar 이미지로부터 이미지를 읽어 들일 수 있다.
 		<td>--all, -a</td>
 		<td>사용하지 않는 리소스를 모두 삭제한다.</td>
 	</tr>
-	
+
 	<tr>
 		<td>--force, -f</td>
 		<td>강제적으로 삭제한다.</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
 
 <hr>
-참조: 완벽한 IT 인프라 구축을 위한 Docker
+참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 

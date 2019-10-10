@@ -11,15 +11,8 @@ permalink: /about/
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Resumex - Professional HTML CSS Resume Website Template</title>
 
-    <!-- web-fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
-    
-    <!-- font-awesome -->
-    <link href="/static/about/css/font-awesome.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap -->
-    <link href="/static/about/css/bootstrap.min.css" rel="stylesheet">
-    
+
+
     <!-- Style CSS -->
     <link href="/static/about/css/style.css" rel="stylesheet">
     
@@ -29,48 +22,19 @@ permalink: /about/
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+현재 계속하여 Machine Learning 과 Deep Learning을 공부중인 Programmer입니다.
 </head>
+
 <body id="page-top" data-spy="scroll" data-target=".navbar">
 <div id="main-wrapper">
 <!-- Page Preloader -->
-<div id="preloader">
-    <div id="status">
-        <div class="status-mes"></div>
-    </div>
-</div>
-
-<div class="columns-block container" style="width:100%">
 
 
 <div class="right-col-block blocks">
-<div class="theiaStickySidebar">
+
 
 <!-- Head -->
-<section class="section-wrapper section-interest gray-bg">
-    <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="content-item">
-                    <h3>A.I와 BigData 를 활용한 데이터 사이언티스트 혹은 ML 개발자를 위하여 노력하고 있는 Programmer 입니다. <br>이 Page의 구성은 다음과 같습니다.</h3>
-    
-                    <p>
-                    <ul class="list-group list-group-flush">
-                <li class="list-group-item">Available Languages</li>
-                <li class="list-group-item">Project</li>
-                <li class="list-group-item">Certificate</li>
-                <li class="list-group-item">Education</li>
-                <li class="list-group-item">Interest</li>
-                <li class="list-group-item">Contact</li>
-                </ul>
-                </p>
-                </div>
-            </div>
-        </div>
-        <!-- .row -->
-    
-    </div>
-</section>
 <!-- Head -->
 
 <!-- Available Language -->
@@ -203,16 +167,14 @@ permalink: /about/
                         <!-- .progress -->
                     </div>
                     <!-- .skill-progress -->
-
-
-​    
-​                </div>
-​                <!-- /.progress-wrapper -->
-​            </div>
-​        </div>
-​        <!--.row -->
-​    </div>
-​    <!-- .container-fluid -->
+    
+               </div>           
+               <!-- /.progress-wrapper -->
+            </div>
+        </div>
+        <!--.row -->
+    </div>
+    <!-- .container-fluid -->
 </section>
 <!-- Available Languages -->
 
@@ -336,37 +298,30 @@ permalink: /about/
                 <div class="section-title"><h2>Education</h2></div>
             </div>
         </div>
-        <!--.row-->
+
         <div class="row">
             <div class="col-md-12">
                 <div class="content-item">
                     <small>2013 - 2019</small>
                     <h3>한국외국어 대학교</h3>
                     <h4>전공: 정보통신 공학과</h4>
-
+    
                     <p>부전공: 전자공학과</p>
                 </div>
-                <!-- .experience-item -->
+                
                 <div class="content-item">
                     <small>2019/01 - 2019/07</small>
                     <h3>국비교육</h3>
                     <h4>클라우드 기반 빅데이터분석 및 자바 딥러닝 개발자</h4>
-
-
-​                    
-​                </div>
-​                <!-- .experience-item -->
-​                <div class="content-item">
-​                    <small>2019/06 - 2019/07</small>
-​                    <h3>2019 머신러닝 스터디 잼 심화반</h3>
-​                    
+                </div> 
+                <div class="content-item">
+                  <small>2019/06 - 2019/07</small>
+                 <h3>2019 머신러닝 스터디 잼 심화반</h3>
                 </div>
-                <!-- .experience-item -->
-            </div>
+           </div>
         </div>
-        <!--.row-->
-    </div>
-    <!-- .container-fluid -->
+   </div>
+   <!-- .container-fluid -->
 
 </section>
 <!-- Education -->
@@ -418,25 +373,23 @@ permalink: /about/
         <!--.row-->
         <div class="row">
             <div class="col-md-12">
-                <address>
-                    <strong>Address</strong><br>
-                    서울시 성북구 길음로9길50<br>
-                    914동 2302호
+                <div class="content-item">
+                    <h3>Address</h3>
+                    <p>서울시 성북구 길음로9길50 914동 2302호</p>
 
-                </address>
-                <address>
-                    <strong>Phone Number</strong><br>
-                    010 8947 2534
-                </address>
-
-
-​               
+                </div>
+                <div class="content-item">
+                    <h3>Phone Number</h3>
+                    <p>010 8947 2534</p>
+                </div>
 
 
-                <address>
-                    <strong>Email</strong><br>
-                    <a href="mailto:#">wjddyd66@naver.com</a>
-                </address>
+
+
+                <div class="content-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:#">wjddyd66@naver.com</a></p>
+                </div>
             </div>
         </div>
     
@@ -487,35 +440,15 @@ permalink: /about/
 </section>
 <!--.section-contact-->
 
-<footer class="footer">
-    <div class="copyright-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copytext">&copy; Resumex. All rights reserved | Design By: <a
-                            href="https://themehippo.com">themehippo</a></div>
-                </div>
-            </div>
-            <!--.row-->
-        </div>
-        <!-- .container-fluid -->
-    </div>
-    <!-- .copyright-section -->
-</footer>
-<!-- .footer -->
 </div>
 <!-- Sticky -->
-</div>
-<!-- .right-col-block -->
-</div>
-<!-- .columns-block -->
+
 </div>
 <!-- #main-wrapper -->
 
 <!-- jquery -->
+
 <script src="/static/about/js/jquery-2.1.4.min.js"></script>
-<!-- Bootstrap -->
-<script src="/static/about/js/bootstrap.min.js"></script>
 <script src="/static/about/js/theia-sticky-sidebar.js"></script>
 <script src="/static/about/js/scripts.js"></script>
 <!-- Gmail -->

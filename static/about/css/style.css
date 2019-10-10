@@ -16,11 +16,10 @@ Author: themehippo.com
 
 body {
     font-family : 'Hind', sans-serif;
-    font-size   : 15px;
     line-height : 1.8em;
     color       : #3d3d50;
-    font-weight : 300;
-    background  : url("../img/pattern-bg.png") fixed;
+    font-weight : 400;
+    font-weight-bold: 700;
     }
 
 /* --------------------------------------
@@ -67,41 +66,6 @@ h6 {
     line-height : 1.5em;
     }
 
-/* --------------------------------------
- * LINK STYLE
- *------------------------------------------*/
-a {
-    color              : #FFC107;
-    text-decoration    : none;
-    -webkit-transition : all 0.3s ease 0s;
-    -moz-transition    : all 0.3s ease 0s;
-    -o-transition      : all 0.3s ease 0s;
-    transition         : all 0.3s ease 0s;
-    }
-
-a,
-a:active,
-a:focus,
-a:active {
-    text-decoration : none;
-    outline         : none
-    }
-
-a:hover,
-a:focus {
-    text-decoration : none;
-    color           : #ff9800;
-    }
-
-p {
-    margin-bottom : 20px;
-    }
-
-ul {
-    margin     : 0;
-    padding    : 0;
-    list-style : none;
-    }
 
 /*------------------
  * Button Style
@@ -389,6 +353,8 @@ button:focus,
     background-color : #FFC107;
     box-shadow       : none;
     text-align       : right;
+    float            : left;
+    height           : 100%;
     }
 
 .progress-item .progress-percent {
@@ -398,6 +364,7 @@ button:focus,
     top              : 5px;
     padding          : 0 8px;
     border-radius    : 3px;
+    color: white;
     }
 
 .progress-item .progress-percent::before {
@@ -408,6 +375,18 @@ button:focus,
     border-top   : 6px solid #313131;
     border-right : 8px solid transparent;
     }
+
+
+/*-------------------
+ * Project image
+ *-------------------*/
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
 
 /*-------------------
  * Portfolio
@@ -423,6 +402,7 @@ button:focus,
     height    : 200px;
     display   : block;
     max-width : 100%;
+    width     : 100%;
     }
 
 .portfolio-item .portfolio-info {
@@ -507,32 +487,6 @@ button:focus,
     box-shadow : none;
     }
 
-/* --------------------------------------------
- *   Footer
- *---------------------------------------------- */
-
-/* Copyright */
-
-.footer {
-    padding : 30px 50px;
-    }
-
-.footer .copyright-section {
-    font-size : 13px;
-    color     : #888888;
-
-    }
-
-.footer .copyright-section .copytext {
-    font-weight : 400;
-    display     : block;
-    }
-
-@media (max-width : 480px) {
-    .footer {
-        padding : 10px 20px;
-        }
-    }
 
 /* ---------------------------------------------- /*
  * Preloader
@@ -567,3 +521,35 @@ button:focus,
     text-align : center;
     top        : 65%;
     }
+
+
+/* ---------------------------------------------- /*
+ * Contact Me
+/* ---------------------------------------------- */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    height: 50px;
+    padding: 0 20px;
+    font-size: 13px;
+    line-height: 50px;
+    color: #969595;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
