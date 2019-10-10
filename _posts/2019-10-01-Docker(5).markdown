@@ -134,7 +134,9 @@ Docker Image digests확인
 ```code
 docker image ls --digests nginx
 
-REPOSITORY    TAG      DIGEST                                     ...    nginx         latest   sha256:aeded0f2a861747f43a01cf1018cf9efe2bd...
+REPOSITORY    TAG      DIGEST                                      ...
+
+nginx         latest   sha256:aeded0f2a861747f43a01cf1018cf9efe2bd ...
 ```
 <br><br>
 
@@ -290,7 +292,7 @@ greet         latest        71a3c97379bd        55 seconds ago 5.77MB
 busybox       latest        19485c79a9bb        5 weeks ago    1.22MB
 golang        1.8.4-jessie  c43e4acbfaba        24 months ago  712MB
 ```
-개발 환경용 이미지인 'golang:1.8.4-jessie'는 712MB이지만, 제품 환경용인 'greet'은 겨우 4.19MB이다. 이 용량은 'busybox'의 1.13MB에 애플리케이션의 실행에 필요한 모듈만을 추가한 정도이다.  
+개발 환경용 이미지인 'golang:1.8.4-jessie'는 712MB이지만, 제품 환경용인 'greet'은 겨우 5.77MB이다. 이 용량은 'busybox'의 1.22MB에 애플리케이션의 실행에 필요한 모듈만을 추가한 정도이다.  
 <br>
 **Docker 컨테이너의 시작**  
 제품 환경용 Docker 이미지 greet를 사용하여 컨테이너를 실행  
@@ -360,7 +362,7 @@ RUN yum -y install httpd\
 **데몬 실행(CMD 명령)**  
 컨테이너 안에서 명령을 실행하려면 CMD명령어를 사용한다.  
 Dockerfile안에서는 하나의 CMD명령어만 가능하고 여러개를 지정하면 마지막 명령만 유효하다.  
-<code>CMD [명령하고 싶은 명령]</code>
+<code>CMD [명령하고 싶은 명령]</code><br>
 RUN 명령어와 같이 Exec, Shell 형식으로 기술할 수 있고 추가적으로 ENTRYPOINT 명령의 파라미터로서 기술 할 수 있다.  
 **1. Dockerfile 작성**  
 ```code
@@ -400,7 +402,8 @@ ENRTYPOINT nginx -g 'daemon off;'
 <br>
 
 **Run, CMD, ENTRYPOINT 차이**  
-- RUN: 새로운 레이어에서 명령어를 실행하고, 새로운 이미지를 생성한다. 보통 패키지 설치 등에 사용된다. ex) apt-get
+- RUN: 새로운 레이어에서 명령어를 실행하고, 새로운 이미지를 생성한다. 보통 패키지 설치 등에 사용된다.  
+ex) apt-get
 - CMD: default 명령이나 파라미터를 설정한다. docker run 실행히 실행할 커맨드를 주지 않으면 이 default 명령이 실행된다. **CMD의 주 용도는 컨테이너를 실행할 때 사용할 default를 설정**
 - ENTRYPOINT: 컨테이너를 실행할 수 있게 설정한다.
 
@@ -515,7 +518,7 @@ ENV myName="Hwang Jeong Yong"\
 ```
 이미지 1개 생성  
 
-**작업 디렉토리 지정** 
+**작업 디렉토리 지정**  
 Dockerfile안에서 여러 번 사용될 수 있으며 상대 경로로 지정하는 경우 이전 WORKDIR 명령의 경로에 대한 상대 경로가 된다.  
 <code>WORKDIR [작업 디렉토리 경로]</code><br>
 ```code
@@ -528,7 +531,7 @@ WORKDIR Hello
 ```
 <br>
 
-**사용자명 지정** 
+**사용자명 지정**  
 특정 사용자를 지정할 수 있다.  
 <code>USER [사용자명/UID]</code><br>
 ```code
@@ -540,15 +543,15 @@ RUN["whoami"]
 ```
 <br>
 
-**라벨 지정** 
-이밍지에 대한 버전 정보나 작성자 정보, 코멘트 등과 같은 정보를 제공할 때는 LALBEL 명령어 사용  
+**라벨 지정**  
+이미지에 대한 버전 정보나 작성자 정보, 코멘트 등과 같은 정보를 제공할 때는 LALBEL 명령어 사용  
 <code>LABEL [키 명] = [값]</code><br>
 
-**포트 설정** 
+**포트 설정**  
 컨테이너의 공개 포트 번호를 지정  
 <code>EXPOSE [포트 번호]</code><br>
 
-**변수 지정** 
+**변수 지정**  
 DOckerfile안에서 사용할 변수를 정의  
 <code>ARG [이름][=기본값]</code><br>
 ```code
@@ -558,7 +561,7 @@ RUN echo $YOURNAME
 ```
 <br>
 
-**기본 쉔 설정** 
+**기본 쉔 설정**  
 쉘 형식으로 명령을 실행할 때 기볼 쉘을 설정  
 <code>SHELL ["쉘의 경로","파라미터"]</code><br>
 ```code
