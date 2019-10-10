@@ -7,32 +7,596 @@ categories: [Docker]
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
 ### Docker을 사용한 구성 관리
+**Dockerfile 이란**  
+Docker file이란 Docker 상에서 작동시킬 컨테이너의 구성 정보를 기술하기 위한 파라미터 이다.  
+- 베이스가 될 Docker 이미지
+- Docker 컨테이너 안에서 수행한 조작(명령)
+- 환경변수 등의 설정
+- Docker 컨테이너 안에서 작동시켜둘 데몬 실행
 
+만약 Ruby Application Dockerfile이라면 다음과 같다.  
+<div><img src="https://subicura.com/assets/article_images/2017-02-10-docker-guide-for-beginners-create-image-and-deploy/dockerfile.png" height="250" width="600" /></div>
+그림참조: <a href="https://subicura.com/2017/02/10/docker-guide-for-beginners-create-image-and-deploy.html">subicura 블로그</a><br>
+위의 그림과 같이 **Dockerfile을 통하여 Build과정을 거쳐 Docker Image를 생성하게 되고 Docker Image를 통하여 Docker Container를 생성하게 된다.**  
+<br>
+**Dockerfile의 기본 구문**  
+Dockerfile은 텍스트 형식의 파일로서 확장자는 필요 없으며, 'Dockerfile'이라는 이름의 파일에 인프라의 구성 정보를 기술한다.  
+**Docker file 명령**  
+Docker 명령은 대문자든 소문자든 상관없지만 관례적으로 대문자로 통일하여 사용한다.  
+<code>명령 인수</code>
+<table class="table">
+	<tbody>
+	<tr>
+		<td>명령</td>
+		<td>설명</td>
+	</tr>
+
+	<tr>
+		<td>FROM</td>
+		<td>베이스 이미지 지정</td>
+	</tr>
+	
+	<tr>
+		<td>RUN</td>
+		<td>명령 실행</td>
+	</tr>
+	
+	<tr>
+		<td>CMD</td>
+		<td>컨테이너 실행 명령</td>
+	</tr>
+	
+	<tr>
+		<td>LABEL</td>
+		<td>라벨 설정</td>
+	</tr>
+	
+	<tr>
+		<td>EXPOSE</td>
+		<td>포트 익스포트</td>
+	</tr>
+	
+	<tr>
+		<td>ENV</td>
+		<td>환경 변수</td>
+	</tr>
+	
+	<tr>
+		<td>ADD</td>
+		<td>파일/디렉토리 추가</td>
+	</tr>
+	
+	<tr>
+		<td>COPY</td>
+		<td>파일 복사</td>
+	</tr>
+	
+	<tr>
+		<td>ENTRYPOINT</td>
+		<td>컨테이너 실행 명령</td>
+	</tr>
+	
+	<tr>
+		<td>VOLUME</td>
+		<td>볼륨 마운트</td>
+	</tr>
+	
+	<tr>
+		<td>USER</td>
+		<td>사용자 지정</td>
+	</tr>
+	
+	<tr>
+		<td>WORKDIR</td>
+		<td>작업 디렉토리</td>
+	</tr>
+	
+	<tr>
+		<td>ARG</td>
+		<td>Dockerfile 안의 변수</td>
+	</tr>
+	
+	<tr>
+		<td>ONBUILD</td>
+		<td>빌드 완료 후 실행되는 명령</td>
+	</tr>
+	
+	<tr>
+		<td>STOPSIGNAL</td>
+		<td>시스템 콜 시그널 설정</td>
+	</tr>
+	
+	<tr>
+		<td>HEALTHCHECK</td>
+		<td>컨테이너의 헬스 체크</td>
+	</tr>
+	
+	<tr>
+		<td>SHELL</td>
+		<td>기본 쉘 설정</td>
+	</tr>
+
+</tbody>
+</table>
+<br>
+<br>
+**Dockerfile 작성**  
+Dockerfile에는 Docker 컨테이너를 어떤 Docker 이미지로부터 생성할지 정보를 반드시 기술해야 한다.  
+```code
+FROM [이미지명]
+FROM [이미지명]:[태그명]
+FROM [이미지명]@[다이제스트]
+```
+태그명 생략시 최신 버전 적용  
+**다이제스트**는 이미지를 고유하게 특정하는 식별자이다. Docker Hub에 업로드하면 자동으로 부여된다.  
+Docker Image digests확인  
+<code>docker image ls --digests [이미지명]</code>
+```code
+docker image ls --digests nginx
+
+REPOSITORY    TAG      DIGEST                                     ...    nginx         latest   sha256:aeded0f2a861747f43a01cf1018cf9efe2bd...
+```
 <br><br>
 
 ### Dockerfile의 빌드와 이미지 레이어
+**Dockerfile 로부터 Docker 이미지 만들기**  
+<code>docker build -t [생성할 이미지명]:[태그명] [Dockerfile의 위치]</code>
+```code
+docker build -t sample:1.0 /home/docker/sample
 
+Sending build context to Docker daemon  2.048kB
+Step 1/1 : FROM centos:centos7
+centos7: Pulling from library/centos
+Digest: sha256:307835c385f656ec2e2fec602cf093224173c51119bbebd602c53c3653a3d6eb
+Status: Downloaded newer image for centos:centos7
+ ---> 67fa590cfc1c
+Successfully built 67fa590cfc1c
+Successfully tagged sample:1.0
+```
+위의 명령어로 인하여 Dockerfil로부터 sample이라는 이름의 Docker이미지가 생성된다.  
+```code
+docker image ls
+
+REPOSITORY   TAG      IMAGE ID         CREATED             SIZE
+nginx        latest   f949e7d76d63     2 weeks ago         126MB
+...
+centos       centos7  67fa590cfc1c     7 weeks ago         202MB
+sample       1.0      67fa590cfc1c     7 weeks ago         202MB
+```
+**위의 결과를 확인하게 되면 베이스 이미지 centos:centos7와 작성한 이미지의 ID가 똑같다는 것 이다. 이것은 이미지로서는 각각 다른 이름이 붙어 있지만 그 실체는 모두 동일한 이미지라는 것 이다.**  
+
+만약 file의 이름이 Dockerfile이 이니면 다음과 같은 명령어로 수행된다.  
+<code>docker build -t [이미지명]:[태크명] -f [Dockerfile 이름] [Dockerfile의 위치]</code>
+```code
+docker build -t sample -f Dockerfile.base .
+Sending build context to Docker daemon  3.584kB
+Step 1/1 : FROM centos:centos7
+ ---> 67fa590cfc1c
+Successfully built 67fa590cfc1c
+Successfully tagged sample:latest
+```
+**단 Dockerfile이외의 이름인 경우는 Docker Hub에서 이미지의 자동 생성 기능을 사용할 수 없다.**  
+<br>
+**Docker 이미지의 레이어 구조**  
+Dockerfile을 빌드하여 Docker 이미지를 작성하면 Dockerfile의 명령별로 이미지를 작성하게 된다.  
+작성된 여러개의 이미지는 레이어 구조로 되어있다.  
+**dockerfile(webap)**  
+```code
+FROM ubuntu
+LABEL maintainer "darkrasid@gmail.com"
+RUN touch /tmp/test_file && touch /tmp/test_file2 && touch /tmp/test_file3
+CMD ["/bin/bash"]
+```
+**Docker file build**  
+```code
+docker build -t webap -f webap .
+
+Step 1/4 : FROM ubuntu
+ ---> a2a15febcdf3
+Step 2/4 : LABEL maintainer "darkrasid@gmail.com"
+ ---> Running in 0f61758240cd
+Removing intermediate container 0f61758240cd
+ ---> bc99e8ff6719
+Step 3/4 : RUN touch /tmp/test_file && touch /tmp/test_file2 && touch /tmp/test_file3
+ ---> Running in a84500af827d
+Removing intermediate container a84500af827d
+ ---> 312338faf04b
+Step 4/4 : CMD ["/bin/bash"]
+ ---> Running in 60f70080c200
+Removing intermediate container 60f70080c200
+ ---> de831015449f
+```
+위에서  실행결과를 살펴보게 되면 **Dockerfile의 명령 한 줄마다 이미지가 작성되는 것을 알 수 있다**  
+위의 결과를 살펴보게 되면 다음과 같은 과정을 거치는 것을 알 수 있다.  
+1. 임시 컨테이너 생성
+2. 명령어 수행
+3. 이미지로 저장
+4. 임시컨테이너 삭제
+5. 새로 만든 이미지 기반 임시 컨테이너 생성
+6. 명령어 수행
+7. 이미지로 저장
+8. 임시컨테이너 삭제
+
+**위와 같인 이미지를 쌓아 올리는 레이어의 구조를 가지고 있으므로 공통되는 이미지는 이미지를 겹침으로써 디스크의 용량을 효율적으로 이용하는 것을 알 수 있다.**  
+(Docker file이 변경되지 않으면 기존에 저장된 이미지를 그대로 캐시처럼 사용한다.)  
 <br><br>
 
 ### 멀티스테이지 빌드를 사용한 애플리케이션 개발
+애플리케이션 개발 시에 개발 환경에서 사용한 라이브러리나 개발 지원 툴이 제품 환경에서 반드시 사용되는 것은 아니다.  
+제품 환경에는 애플리케이션을 실행하기 위해 최소한으로 필요한 실행 모듈만 배치하는 것이 바람직하다.  
+
+**Dockerfile만들기**  
+```code
+# 1. Build Image
+FROM golang AS builder
+
+# Install dependencies
+WORKDIR /go/src/github.com/asashiho/dockertext-greet
+RUN go get -d -v github.com/urfave/cli
+
+# Build modules
+COPY main.go .
+RUN GOOS=linux go build -a -o greet .
+
+# ------------------------------
+# 2. Production Image
+FROM busybox
+WORKDIR /opt/greet/bin
+
+# Deploy modules
+COPY --from=builder /go/src/github.com/asashiho/dockertext-greet/ .
+ENTRYPOINT ["./greet"]
+```
+**개발 환경용 Imgae**  
+Go의 버전 1.8.4를 Base로 하고 builder라는 별명을 부여  
+go build를 통하여 greet이라는 실행 가능 바이너리 파일 생성  
+**제품 환경용 Imgae**  
+Docker의 이미지 베이스로 busybox(Linux의 명령어를 모아둔 파일)사용  
+builder라는 이미지 에서 빌드한 실행 가능 바이너리 파일 greet을 복사  
+greet 파일 실행  
+<br>
+
+**Docker 이미지의 빌드**  
+```code
+docker build -t greet .
+
+latest: Pulling from library/golang
+4a56a430b2ba: Pull complete
+4b5cacb629f5: Pull complete
+14408c8d4f9a: Pull complete
+ea67eaa7dd42: Pull complete
+
+...
+
+Step 8/9 : COPY --from=builder /go/src/github.com/asashiho/dockertext-greet/ .
+ ---> 088b41a512ec
+Step 9/9 : ENTRYPOINT ["./greet"]
+ ---> Running in f31fbc301d9b
+Removing intermediate container f31fbc301d9b
+ ---> 71a3c97379bd
+Successfully built 71a3c97379bd
+Successfully tagged greet:latest
+```
+
+**docker 이미지 확인**  
+```code
+docker image ls
+
+REPOSITORY    TAG           IMAGE ID            CREATED        SIZE
+greet         latest        71a3c97379bd        55 seconds ago 5.77MB
+
+...
+
+busybox       latest        19485c79a9bb        5 weeks ago    1.22MB
+golang        1.8.4-jessie  c43e4acbfaba        24 months ago  712MB
+```
+개발 환경용 이미지인 'golang:1.8.4-jessie'는 712MB이지만, 제품 환경용인 'greet'은 겨우 4.19MB이다. 이 용량은 'busybox'의 1.13MB에 애플리케이션의 실행에 필요한 모듈만을 추가한 정도이다.  
+<br>
+**Docker 컨테이너의 시작**  
+제품 환경용 Docker 이미지 greet를 사용하여 컨테이너를 실행  
+```code
+docker container run -it -rm greet asa
+
+```
+제품 환경용으로 만든 저용량 이미지인 greet만으로 작동한다.  
+
+**참고사항 Build란?**  
+- 컴파일: 사용자가 작성한 코드를 컴퓨터가 이해할 수 있는 언어로 변환
+- 빌드: 컴파일된 코드를 실제 실행할 수 있는 상태로 만드는 일
+- 배포: 빌드가 완성된 실행 가능한 파일을 사용자가 접근할 수 있는 환경에 배치하는 일
+
+커파일을부터 배포하는 모든 과정을 '빌드 한다'라고 표현하기도 한다.  
+예를들면 다음과  같다.  
+JAVA 코딩을 한다고 할 때  
+- Code작성후 Run: 컴파일 + 실행  
+- War 파일로 뽑는 것: 빌드
+- 웹서버에 War 파일 올림: 배포
+
 
 <br><br>
 
 ### 명령 및 데몬 실행
+**데몬(daemon) 이란**  
+데몬이란 리눅스 시스템이 처음 가동될 때 실행되는 백그라운드 프로세스의 일종이며, 사용자의 요청을 기다리고 있다가 요청이 발생하면 이에 적절히 대응하는 리ㅅ너와 같은 역할을 한다. 즉, 메모리에 상주하면서 특정 요청이 오면 즉시 대응할 수 있도록 대기중인 프로세스를 말한다.  
+Docker는 이미지로부터 컨테이너를 생성했을 때 서버 프로세스 등을 데몬으로서 작동시킬 필요가 있다.  
+<br>
+**명령 실행(RUN 명령)**  
+FROm명령에서 지정한 베이스 이미지에 대해 애플리케이션/미들웨어를 설치 및 설정한다.  
+<code>RUN [실행하고 싶은 명령]</code>  
+- Shell 형식으로 기술: 쉔에서 실행하는 형식으로 기술하는 방법이다.  
+```code
+RUN apt-get install -y nginx
+```
+Docker컨테이너 안에서 /bin/sh -c를 사용하여 명령을 실행했을 때와 똑같이 작동한다.  
+- Exec 형식으로 기술: 쉘을 경유하지 않고 직접 실행하는 것. 따라서 명령 인수에 $HOME과 같은 환경변수를 지정할 수 없다.  
+```code
+RUN ["bin/bash","-c","apt-get install -y nginx"]
+```
 
+Run명령은 기술된 내용에 따라 순차적으로 실행된다.  
+**참고사항**  
+Docker는 명령어 한 줄 실행마다 Image를 생성하게 된다.  
+따라서 여러개의 공통된 작업을 실시할 때는 묶어서 Image의 생성을 줄이는 작업이 필요하다.  
+**Image 4개 생성**  
+```code
+RUN yum -y install httpd
+RUN yum -y install php
+RUN yum -y install php-mbstring
+RUN yum -y install php-pear
+```
+**Image 1개 생성**  
+```code
+RUN yum -y install httpd php php-mbstring php-pear
+```
+**Image 1개 생성(가독성 향상)**  
+```code
+RUN yum -y install httpd\
+				   php\
+				   php-mbstring\
+				   php-pear
+```
+<br><br>
+
+**데몬 실행(CMD 명령)**  
+컨테이너 안에서 명령을 실행하려면 CMD명령어를 사용한다.  
+Dockerfile안에서는 하나의 CMD명령어만 가능하고 여러개를 지정하면 마지막 명령만 유효하다.  
+<code>CMD [명령하고 싶은 명령]</code>
+RUN 명령어와 같이 Exec, Shell 형식으로 기술할 수 있고 추가적으로 ENTRYPOINT 명령의 파라미터로서 기술 할 수 있다.  
+**1. Dockerfile 작성**  
+```code
+#베이스 이미지 설정
+FROM ubuntu:16.04
+
+#Nginx 설치
+RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y install nginx
+
+#포트 지정
+EXPOSE 80
+
+#서버 실행(CMD 명령어로 데몬 실행)
+CMD ["nginx","-g","daemon off;"]
+```
+**2. Docker image 생성**  
+```code
+docker build -t cmd-sample .
+```
+**3. 컨테이너 실행**  
+```code
+docker container run -p 80:80 -d cmd-sample
+```
+<br><br>
+
+**데몬 실행(ENTRYPOINT)**  
+RUN과 같이 Exec 형식과 Shell 형식으로 기술할 수 있다.  
+- Exec 형식:  
+```code
+ENTRYPOINT ["nginx","-g","daemon off;"]
+```
+- Shell 형식:  
+```code
+ENRTYPOINT nginx -g 'daemon off;'
+```
+<br>
+
+**Run, CMD, ENTRYPOINT 차이**  
+- RUN: 새로운 레이어에서 명령어를 실행하고, 새로운 이미지를 생성한다. 보통 패키지 설치 등에 사용된다. ex) apt-get
+- CMD: default 명령이나 파라미터를 설정한다. docker run 실행히 실행할 커맨드를 주지 않으면 이 default 명령이 실행된다. **CMD의 주 용도는 컨테이너를 실행할 때 사용할 default를 설정**
+- ENTRYPOINT: 컨테이너를 실행할 수 있게 설정한다.
+
+간단한 예를 들면 다음과 같은 Docker File이 존재할 경우  
+```code
+FROM ubuntu
+ENTRYPOINT ["/bin/echo", "Hello"]
+CMD ["world"]
+```
+각각의 명령어는 다음과 같은 결과가 나온다.  
+```code
+$ docker run -it --rm <image-name>
+Hello world
+$ docker run -it --rm <image-name> ME
+Hello ME
+```
+<br><br>
+**빌드 완료 후에 실행되는 명령(ONBUILD 명령)**  
+ONBUILD 명령은 그 다음 빌드에서 실행할 명령을 이미지 안에 설정하기 위한 명령이다.  
+즉 최초의 ONBUILD를 사용한 상태에서는 아무 명령도 실행되지 않으나 다음번에 이미지가 FROM으로 사용될 때 실행할 명령을 예약가능하다.  
+<code>ONBUILD [실행하고 싶은 명령]</code><br>
+**1. 베이스 이미지 작성**  
+```code
+#  베이스 이미지 설정
+FROM ubuntu:17.10
+
+# Nginx 설치
+RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y install nginx
+
+#  포트 지정
+EXPOSE 80
+
+# Web 콘텐츠 배치
+ONBUILD ADD website.tar /var/www/html/
+
+# Nginx 실행
+CMD ["nginx", "-g", "daemon off;"]
+```
+**3. 웹 콘텐츠 제작**  
+HTML, CSS, JS 파일 등을 작성하여 하나의 web.tar 파일로 만든다.  
+**4. 웹 서버용 이미지 작성**  
+```code
+# Docker 이미지 취득
+FROM web-base
+```
+**5. 웹 서버용 이미지 빌드**  
+```code
+# ADD website.tar /var/www/html 실행
+docker buildt -t photoview-image .
+```
+
+**6. 서버용 컨테이너 시작**  
+```code
+docker container run -d -p 80:80 photoview-image
+```
+**참고사항**  
+ONBUILD명령이 설정되어있는지 아닌지는 docker image inspect 명령으로 확인할 수 있다.  
+<br>
+
+**시스템 콜 시그널의 설정**  
+컨테이너 종료할 때에 송신하는 시그널 설정  
+<code>STOPSIGNAL [시그널]</code><br>  
+
+**컨테이너의 헬스 체크 명령**  
+컨테이너안에 프로세스가 정상적으로 작동하고 있는지를 체크  
+<code>HEALTHCHECK [옵션] CMD [실행할 명령어]</code><br>  
+<table class="table">
+<tr>
+<td>옵션</td>
+<td>설명</td>
+<td>기본값</td>
+</tr>
+
+<tr>
+<td>--interval=n</td>
+<td>헬스 체크 간격</td>
+<td>30s</td>
+</tr>
+
+<tr>
+<td>--timeout=n</td>
+<td>헬스 체크 타임아웃</td>
+<td>30s</td>
+</tr>
+
+<tr>
+<td>--retries=N</td>
+<td>타임아웃 횟수</td>
+<td>3</td>
+</tr>
+
+</table>
 <br><br>
 
 ### 환경 및 네트워크 설정
+**환경 변수 설정**  
+Dockerfile안에서 환경변수를 설정하고 싶을 때는 ENV명령어 사용  
+ENV명령으로 지정한 환경변수는 컨테이너 실행 시의 docker container run 명령의 --env옵션을 사용하면 변경 가능  
+- key value 형태로 지정  
+```code
+ENV myName "Hwang Jeong Yong"
+ENV myHome "Girum"
+ENV myNickName "wjddyd66"
+```
+이미지 3개 생성
+- key=value 형태로 지정  
+```code
+ENV myName="Hwang Jeong Yong"\
+    myHome="Girum"\
+   myNickName="wjddyd66"
+```
+이미지 1개 생성  
+
+**작업 디렉토리 지정** 
+Dockerfile안에서 여러 번 사용될 수 있으며 상대 경로로 지정하는 경우 이전 WORKDIR 명령의 경로에 대한 상대 경로가 된다.  
+<code>WORKDIR [작업 디렉토리 경로]</code><br>
+```code
+#wjddyd
+WORKDIR /wjddyd
+#wjddyd/Blog
+WORKDIR Blog
+#wjddyd/Blog/Hello
+WORKDIR Hello
+```
+<br>
+
+**사용자명 지정** 
+특정 사용자를 지정할 수 있다.  
+<code>USER [사용자명/UID]</code><br>
+```code
+#root
+RUN ["whoami"]
+USER asa
+#asa
+RUN["whoami"]
+```
+<br>
+
+**라벨 지정** 
+이밍지에 대한 버전 정보나 작성자 정보, 코멘트 등과 같은 정보를 제공할 때는 LALBEL 명령어 사용  
+<code>LABEL [키 명] = [값]</code><br>
+
+**포트 설정** 
+컨테이너의 공개 포트 번호를 지정  
+<code>EXPOSE [포트 번호]</code><br>
+
+**변수 지정** 
+DOckerfile안에서 사용할 변수를 정의  
+<code>ARG [이름][=기본값]</code><br>
+```code
+ARG YOURNAME = "asa"
+#asa
+RUN echo $YOURNAME
+```
+<br>
+
+**기본 쉔 설정** 
+쉘 형식으로 명령을 실행할 때 기볼 쉘을 설정  
+<code>SHELL ["쉘의 경로","파라미터"]</code><br>
+```code
+SHELL ["/bin/bash","-c"]
+#RUN 명령 실행
+RUN echo hello
+```
+<br>
 
 <br><br>
 
-
-
 ### 파일 설정
+**파일 및 디렉토리 추가(ADD)**  
+호스트상의 파일이나 디렉토리, 원격 파일을 Docker 이미지 안으로 복사  
+<code>ADD [호스트의 파일 경로] [Docker 이미지의 파일 경로]</code><br>
+<code>ADD ["호스트의 파일 경로","Docker 이미지의 파일 경로"]</code><br>
 
+**불필요한 파일 제외**  
+Docker에서 빌드를하면 빌드를 실행한 디렉토리 아래에 있는 모든 파일이 Docker 데몬으로 전송된다.  
+따라서 제외하고 싶은 파일이 있는 경우에는 **.dockerignore**이름의 파일 안에 해당 파일명을 기술하여야 한다.  
+
+**파일 복사(Copy)**  
+이미지에 호스트상의 파일이나 디렉토리를 복사하는 경우  
+ADD는 원격 파일의 다운로드나 아카이브의 압축 해제 등과 같은 기능이 있지만 파일복사의 경우 호스트상의 파일을 이미지 안으로 '복사하는'처리만 한다.  
+<code>COPY [호스트의 파일 경로] [Docker 이미지의 파일 경로]</code><br>
+<code>COPY ["호스트의 파일 경로","Docker 이미지의 파일 경로"]</code><br>
 <br>
 
+**볼륨 마운트(VOLUME)**  
+이미지에 볼륨을 할당하려면 VOLUME명령을 사용한다.  
+<code>VOLUME ["/마운트 포인트"]</code><br>
+컨테이너는 영구 데이터를 저장하는 데는 적합하지 않다.  따라서 영구 저장이 필요한 데이터는 컨테이너 밖의 스토리지에 저장하는 것이 좋다.  
+영구 데이터는 Docker의 호스트 머신상의 볼륨에 마운트 하거나 공유 스토리지를 볼륨으로 마운트 하는 것이 가능하다.  
+
+<br>
 <hr>
+참조:<a href="https://subicura.com/2017/02/10/docker-guide-for-beginners-create-image-and-deploy.html">subicura 블로그</a><br>
+참조:<a href="https://blog.leocat.kr/notes/2017/01/08/docker-run-vs-cmd-vs-entrypoint">leocat 블로그</a><br>
 참조: 완벽한 IT 인프라 구축을 위한 Docker
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
