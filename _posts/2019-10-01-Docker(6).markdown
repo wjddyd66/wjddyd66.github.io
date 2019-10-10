@@ -7,11 +7,242 @@ categories: [Docker]
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
 ### Docker 이미지의 자동 생성 및 공개
-
+**Automated Build의 흐름**  
+Docker Hub에는 버전 관리 툴인 GitHub 및 Bitbucket과 연결하여 Dockerfile로부터 Docker 이미지를 자동으로 생성한는 'Automated Build'기능이 있다.  
+<br>
+**GitHub 공개하기**  
+작성한 Dockerfile을 GitHub에서 공개한다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/7.PNG" height="250" width="600" /></div>
+<br>
+**주의해야 할 점은 반드시 Dockerfile이라는 파일로 리포지토리에 공개하여야 한다.**  
+<br>
+**Docker Hub의 링크 설정**  
+Login -> Account Setting -> Linked Accounts -> Connect  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/8.PNG" height="250" width="600" /></div>
+<br>
+GitHub 계정 연결 승인  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/9.PNG" height="250" width="600" /></div>
+<br>
+연결확인  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/10.PNG" height="250" width="600" /></div>
 <br><br>
 
-### Docker Registry를 사용한 프라이빗 레지스트리 구축
+**Dockerfile의 빌드**  
+GitHub상의 Dockerfile을 바탕으로 하여 Docker Hub에서 이미지를 생성  
+Login -> Create -> 레파지토리 생성 -> 연결된 GitHub의 레파지토리 선택  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/11.PNG" height="500" width="600" /></div>
+<br>
+**레파지토리 입력사항**  
+- Name: Docker 이미지의 이름공간이 된다. 영어 소문자와 숫자, 또는 _ ,-, . 을 사용할 수 있다.
+- Visibility
+ - Public: 누구나 사용가능
+ - Private: 한정된 멤버만 이용 가능
+- Description: 이미지에 대한 간단한 설명을 기술
 
+생성된 레파지토리 -> Builds -> Automated Builds -> Trigger  
+위의 과정 시 빌드 시작  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/12.PNG" height="500" width="600" /></div>
+<br>
+빌드 시작시 Build Status라 BUilding 이라고 바뀌면서 Build과정 확인 가능  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/13.PNG" height="500" width="600" /></div>
+<br>
+성공시에 GitHub상의 Dockerfile을 바탕으로 Docker이미지가 만들어지고, Docker Hub상에 공개된다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/14.PNG" height="500" width="600" /></div>
+<br><br>
+
+**Docker Image 확인**  
+wjddyd66 계정으로 docker_automated_build라는 이름으로 이미지를 생성하였으므로 실제로 다운되는지 확인  
+이미지 다운로드  
+```code
+docker image pull wjddyd66/docker_automated_build
+
+Using default tag: latest
+latest: Pulling from wjddyd66/docker_automated_build
+5b7339215d1d: Already exists
+14ca88e9f672: Already exists
+a31c3b1caad4: Already exists
+b054a26005b7: Already exists
+
+...
+
+```
+<br>
+Building하는 동안 Local에서 작업한 뒤 다운받으니 같은 Image가 존재하여 다운받지 않는 Docker의 효율성을 보여줄 수 있다.  
+
+이미지 확인  
+```code
+docker image ls
+
+REPOSITORY                        TAG     IMAGE ID      CREATED       
+wjddyd66/docker_automated_build   latest  2b6f9e8fba49  17 minutes ago   
+```
+<br>
+이미지 상세 정보 확인  
+```code
+docker image inspect --format="{{ .RepoTags}}" wjddyd66/docker_automated_build
+
+
+[wjddyd66/docker_automated_build:latest]
+```
+<br><br>
+### Docker Registry를 사용한 프라이빗 레지스트리 구축
+Docker 이미지에는 인터넷상에 공개하고 싶지 않은 정보가 포함되는 경우도 있다.  
+Docker 이미지를 일원 관리하기 위한 레지스트리를 로컬 환경에 구축하고 관리함으로서 인터넷 상에 공개 안할 수 있다.  
+<br>
+**로컬 환경에 Docker 레지스트리 구축하기**  
+Docker 레지스트리를 프라이빗 네트워크 안에서 구축하려면 Docker Store에 공개되어있는 공식 이미지인 registry를 사용한다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/15.PNG" height="500" width="600" /></div>
+<br>
+registry 검색  
+```code
+docker search registry
+
+NAME        DESCRIPTION                                    STARS ...
+registry    The Docker Registry 2.0 implementation for s…  2715  ...
+...
+
+```
+<br>
+registry 다운로드  
+```code
+docker image pull registry
+
+Using default tag: latest
+latest: Pulling from library/registry
+c87736221ed0: Pull complete
+1cc8e0bb44df: Pull complete
+54d33bcb37f5: Pull complete
+e8afc091c171: Pull complete
+b4541f6d3db6: Pull complete
+Digest: sha256:8004747f1e8cd820a148fb7499d71a76d45ff66bac6a29129bfdbfdc0154d146
+Status: Downloaded newer image for registry:latest
+```
+<br>
+
+registry 컨테이너 시작  
+```code
+docker container run -d -p 5000:5000 --name registry registry
+
+
+014a5c9ca87218abfa02f6c311286d540fab7074fa576302830c503e4866b41e
+```
+<br>
+registry 컨테이너 확인  
+```code
+docker container ls
+
+CONTAINER ID   IMAGE    ...  NAMES
+014a5c9ca872   registry ...  registry
+```
+<br><br>
+
+**Docker 이미지 업로드(Local)**  
+Dockerfile 작성  
+```code
+# Base Image
+FROM jupyter/base-notebook
+
+# Configure environment
+ENV CONDA_DIR=/opt/conda \
+    NB_USER=jovyan
+    
+# Install Jupyter Notebook and Hub
+RUN conda install --quiet --yes \
+    'numpy=1.13.*' \
+    'scipy=0.19.*' \
+    'sympy=1.1.*' \
+    'matplotlib=2.1.*' \
+    && conda clean -tipsy && \
+    fix-permissions $CONDA_DIR
+
+# Install Sample Notebook
+COPY sample_notebook/CavityFlow_with_Navier-Stokes.ipynb /home/$NB_USER/
+```
+<br>
+Dockerfile 빌드  
+```code
+docker build -t docke-science
+
+Sending build context to Docker daemon  715.3kB
+Step 1/4 : FROM jupyter/base-notebook
+latest: Pulling from jupyter/base-notebook
+
+...
+
+Step 4/4 : COPY sample_notebook/CavityFlow_with_Navier-Stokes.ipynb /home/$NB_USER/
+ ---> 557ed0556df4
+Successfully built 557ed0556df4
+Successfully tagged docker-science:latest
+```
+<br>
+**프라이빗 네트워크 안의 Docker 레지스트리에 업로드하려면 다음 규칙을 사용하여 이미지에 태그를 붙여야 한다.**  
+<code>docker image tag [로컬의 이미지명] [업로드할 레지스트리의 주소: 포트 번호]/[이미지명]</code><br>
+```code
+docker image tag docker-science localhost:5000/docker-jupyter
+docker image ls
+
+REPOSITORY       TAG     IMAGE ID      CREATED              SIZE
+docker-science   latest  557ed0556df4  About a minute ago   1.65GB
+```
+<br>
+docker image push 명령을 사용하여 프라이빗 레지스트리에 업로드  
+```code
+docker image push localhost:5000/docker-jupyter
+
+The push refers to repository [localhost:5000/docker-jupyter]
+375c0db9f95b: Pushed
+ebb3bd1f493e: Pushed
+df7f60569757: Pushed
+0f1753ef528d: Pushed
+
+...
+
+```
+<br>
+이미지 업로드 완료 후 로컬에 있는 이미지 삭제  
+```code
+docker image rm localhost:5000/docker-jupyter
+docker image rm docker-science
+```
+<br>
+<br>
+**Docker 이미지 다운로드와 작동 확인**  
+이미지 다운로드
+```code
+docker image pull localhost:5000/docker-jupyter
+
+latest: Pulling from docker-jupyter
+5b7339215d1d: Already exists
+14ca88e9f672: Already exists
+a31c3b1caad4: Already exists
+
+...
+
+```
+<br>
+이미 사용중인 Container와 Image가 비슷하여 필요한 것만 다운로드 받게 되었다.  
+**다운받은 이미지 확인**  
+```code
+docker image ls
+REPOSITORY                      TAG     IMAGE ID       CREATED    
+localhost:5000/docker-jupyter   latest  557ed0556df4   21 minutes ago
+```
+<br>
+**작동 확인**  
+```code
+docker container run -it -p 8892:8888 localhost:5000/docker jupyter
+
+Executing the command: jupyter notebook
+[I 09:19:01.272 NotebookApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 09:19:01.408 NotebookApp] JupyterLab extension loaded from /opt/conda/lib/python3.7/site-packages/jupyterlab
+[I 09:19:01.408 NotebookApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 09:19:01.410 NotebookApp] Serving notebooks from local directory: /home/jovyan
+
+...
+
+```
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/16.PNG" height="500" width="600" /></div>
+<br>
 <br><br>
 
 ### 클라우드 서비스를 사용한 프라이빗 레지스트리 구축
