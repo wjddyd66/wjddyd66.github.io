@@ -25,9 +25,9 @@ Docker는 컨테이너를 사용하여 서버 기능을 제공한다.
 따라서 애플리케이션의 실행 모듈이나 각종 라이브러리의 모듈, 미들웨어의 설정 팡리 등은 서버 프로세스가 작동하는 컨테이너 안에 저장하고, 시스템 가동 후에 생성되는 영구 데이터에 대해서는 별도의 인프라 아키텍처를 검토하는 것이 바람직하다.  
 <br>
 **Docker Compose**  
-<img src="../content/images/2017/03/docker-compose-yml.png" alt="">
+<img src="http://postfiles11.naver.net/MjAxOTAyMThfMjcy/MDAxNTUwNDYwMzEzMjAx.LtaaknaVaOu_ofOxthNbg3ytzbdEWhhT3qBSPytCrmIg.JIjqjGmDNl26plG28QRNLyp2j4GwtBzIZ1yn22YJO1sg.PNG.jevida/021819_0325_DockerCompo1.png?type=w580" />
 <br>
-그림참조:<a href="http://raccoonyy.github.io/docker-usages-for-dev-environment-setup/"></a>raccoonyy 블로그<br>
+그림참조:<a href="http://blog.naver.com/PostView.nhn?blogId=jevida&logNo=221468557041&categoryNo=131&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search">SQL Server Story 블로그</a><br>
 웹 시스템에서는 여러개의 Docker 컨테이너가 협력하면서 작동한다.  
 Docker Compose는 여러 컨테이너를 모아서 관리하기 위한 툴 이다.  
 Compose 정의 파일은 앱 애플리케이션의 의존관계(데이터 베이스, 큐, 캐시, 애플리케이션 등)를 모아서 설정할 수 있다.  
@@ -228,7 +228,7 @@ version은 Docker Engine에 따라서 바뀌게 된다.
 		<td>1.0</td>
 		<td>1.9.1</td>
 	</tr>
-	
+
 </tbody>
 </table>
 <br>
@@ -261,7 +261,7 @@ build:
 entrypoint:
   -  [변수]
   -  [변수]
-  ...
+    ...
 </code><br>
 
 **컨테이너 간 연결(links)**  
@@ -282,7 +282,7 @@ link:
 주의할 점은 depends_on은 컨테이너의 시작 순서만 제어할 뿐 **컨테이너상의 애플리케이션이 이용가능핼 질 때까지 기다리고 제어를 하지 않는다. 즉, 의존관계에 있는 데이터베이스 서비스의 준비가 끝날 때까지 기다리는 것은 아니기 때문에 애플리케이션 측에서 이에 대한 대책을 세울 필요가 있다.**  
 <code>
 [서비스명]:
-  depends_on:
+    depends_on:
     -  [서비스명]
     -  [서비스명]
     ...
@@ -294,14 +294,14 @@ link:
 ports:
   - "[호스트 머신의 포트 번호:컨테이너의 포트 번호]"
   - "[호스트 머신의 포트 번호:컨테이너의 포트 번호]"
-  ...
+    ...
 </code><br>
 
 <code>
 expose:
   - "[컨테이너의 포트 번호]"
   - "[컨테이너의 포트 번호]"
-  ...
+    ...
 </code><br>
 
 **컨테이너 환경변수 지정(environment/env_file)**  
@@ -311,14 +311,14 @@ expose:
 environment:
   - [변수명] = [변수 값]
   - [변수명] : [변수 값]
-  ...
+    ...
 </code><br>
 변수명이 많아서 다른 파일에 환경변수를 정의하고 그 파일을 읽어들일 수 있다.  
 <code>
 env_file:
   - [커렌트 디렉토리 기준 환경변수 파일]
   - [커렌트 디렉토리 기준 환경변수 파일]
-  ...
+    ...
 </code><br>
 
 **컨테이너 정보 설정**  
@@ -339,7 +339,7 @@ labels:
 volumes:
   - [컨테이너의 디렉토리 경로]
   - [호스트의 디렉토리 경로]:[컨테이너의 디렉토리 경로]
-  ...
+    ...
 </code><br>
 다른 컨테이너로부터 모든 볼륨을 마운트할 때는 volumes_form에 컨테이너 명을 지정한다.  
 <code>
