@@ -6,7 +6,7 @@ categories: [Docker]
 ---
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_3.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_3.PNG" height="200" width="200" /></div>
 
 ### Docker 여러 컨테이너 관리의 개요
 **웹 3계층 시스템 아키텍처**  

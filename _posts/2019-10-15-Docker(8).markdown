@@ -5,7 +5,8 @@ date:   2019-10-15 09:00:20 +0700
 categories: [Docker]
 ---
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_4.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_4.PNG" height="200" width="200" /></div>
+
 ### 멀티호스트 환경에서 컨테이너 관리의 개요
 
 <br><br>
