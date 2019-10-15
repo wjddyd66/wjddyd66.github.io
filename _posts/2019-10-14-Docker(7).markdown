@@ -6,6 +6,8 @@ categories: [Docker]
 ---
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_3.PNG" height="250" width="600" /></div>
+
 ### Docker 여러 컨테이너 관리의 개요
 **웹 3계층 시스템 아키텍처**  
 - 프론트 서버: 클라이언트의 웹 브라우저가 보낸 HTTP 요청을 받아, HTTP 응답을 반환하는 서버 기능을 가진다.  
@@ -174,7 +176,10 @@ YAML은 Python과 같이 들여쓰기로 데이터의 계층 구조를 나타낸
 YAML에서는 데이터의 맨 앞에 '-'를 붙이면 배열은 나타낼 수 있다. '-'다음에는 반드시 반각 스페이스를 넣어야 한다.  
 <br>
 **Version**  
-<code>version: "[version 이름]"</code><br>
+```code
+version: "[version 이름]"
+```
+<br>
 Docker compose 제일 앞에는 version을 정의해야 한다.  
 version은 Docker Engine에 따라서 바뀌게 된다.  
 <table class="table">

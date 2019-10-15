@@ -6,6 +6,8 @@ categories: [Docker]
 ---
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_1.PNG" height="250" width="600" /></div>
+
 ### Docker 이미지 조작
 **Docker Hub**  
 Docker Hub는 GitHub나 Bitbucket과 같은 소스코드 관리 툴과 연계하여 코드를 빌드하는 기능이나 실행 가능한 애플리케이션의 이미지를 관리하는 기능을 갖춘 Docker의공시 리포지토리 서비스 이다.  
@@ -341,10 +343,10 @@ Su Mo Tu We Th Fr Sa
 
 
 ​	
-	<tr>
-		<td>--rm</td>
-		<td>명령 실행 완료 후에 컨테이너를 자동으로 삭제</td>
-	</tr>
+​	<tr>
+​		<td>--rm</td>
+​		<td>명령 실행 완료 후에 컨테이너를 자동으로 삭제</td>
+​	</tr>
 
 </tbody>
 </table>

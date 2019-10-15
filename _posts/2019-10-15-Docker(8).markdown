@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Docker 멀티호스트 환경에서 Docker 실행 환경 구축"
+date:   2019-10-15 09:00:20 +0700
+categories: [Docker]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_4.PNG" height="250" width="600" /></div>
+### 멀티호스트 환경에서 컨테이너 관리의 개요
+
+<br><br>
+
+### 웹 애플리케이션을 서비스 공개해 보자
+
+<br><br>
+
+### Docker Machine을 사용한 실행 환경 구축
+
+<br>
+<hr>
+참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

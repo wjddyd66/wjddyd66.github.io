@@ -6,6 +6,8 @@ categories: [Docker]
 ---
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_1.PNG" height="250" width="600" /></div>
+
 ### Docker 설치와 작동 확인(Linux)
 **설치 사전 준비**  
 apt 피키지 리스트를 업데이트  
@@ -161,6 +163,7 @@ Container 생성시 Container를 고유하게 식별하기 위하여 Container I
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/1.PNG" height="250" width="600" /></div>
 **Container 상태 확인**  
 <code>docker container ps</code>
+
 ```code
 docker container ps
 ```

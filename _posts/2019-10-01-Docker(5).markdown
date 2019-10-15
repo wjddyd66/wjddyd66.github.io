@@ -6,6 +6,8 @@ categories: [Docker]
 ---
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_1.PNG" height="250" width="600" /></div>
+
 ### Docker을 사용한 구성 관리
 **Dockerfile 이란**  
 Docker file이란 Docker 상에서 작동시킬 컨테이너의 구성 정보를 기술하기 위한 파라미터 이다.  
