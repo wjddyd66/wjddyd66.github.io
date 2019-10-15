@@ -35,8 +35,10 @@ categories: [Docker]
 ### Install Docker Machine
 <a href="https://docs.docker.com/machine/install-machine/">Docker Machine 정식 홈페이지</a>의 순서에 따라서 Machine 설치 및 확인 작업을 한다.  
 Linux 기반에 설치하였다.  
-- Install <a href="https://docs.docker.com/install/">Docker</a>
-- Download the Docker Machine binary and extract it to your PATH  
+
+**Install <a href="https://docs.docker.com/install/">Docker</a>**  
+<br>
+**Download the Docker Machine binary and extract it to your PATH**  
 ```code
 base=https://github.com/docker/machine/releases/download/v0.16.0 &&
 curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
@@ -50,7 +52,9 @@ chmod +x /usr/local/bin/docker-machine
 100 26.8M  100 26.8M    0     0  2703k      0  0:00:10  0:00:10 --:--:-- 3551k
 
 ```
-- Check the installation by displaying the Machine version  
+<br>
+
+**Check the installation by displaying the Machine version**  
 ```code
 docker-machine version
 
@@ -62,7 +66,7 @@ docker-machine version 0.16.0, build 702c267f
 ### Docker Machine의 기본 명령
 <code>docker-machine --[옵션]</code><br>
 **옵션**  
-<table claee="table">
+<table class="table">
 
 <tr>
 	<td>서브 명령</td>
@@ -143,7 +147,7 @@ Docker Machine은 Amazon Web Service, MS Azure, Google COmpute Engine 등의 주
 **실행 환경 작성(create)**  
 <code>docker-machine create --driver [드라이버 명] [작성할 Docker 머신명]</code><br>
 **드라이버 명**  
-<table claee="table">
+<table class="table">
 
 <tr>
 	<td>드라이버명</td>
@@ -229,7 +233,7 @@ docker-machine create -d virtualbox Yong
 Docker Machine에서 관리하고 있는 실행 환경의 목록을 표시  
 <code>docker-machine ls [옵션]</code><br>
 **옵션**  
-<table claee="table">
+<table class="table">
 
 <tr>
 	<td>--quiet, -q</td>
@@ -245,7 +249,7 @@ Docker Machine에서 관리하고 있는 실행 환경의 목록을 표시
 <br>
 
 **docker-machine ls 명령의 표시 항목**  
-<table claee="table">
+<table class="table">
 
 <tr>
 	<td>항목</td>
