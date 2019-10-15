@@ -6,18 +6,517 @@ categories: [Docker]
 ---
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_4.PNG" height="200" width="200" /></div>
-
 ### 멀티호스트 환경에서 컨테이너 관리의 개요
+**멀티호스트 환경과 클러스터링**  
+이전까지의 Post는 동일 호스트상에 Docker를 설치하고, 그 위에서 몇 개의 컨테이너를 가동시켜 서버를 작동시켰다.  
+이미지의 작성이나 컨테이너의 시작 등은 호스트 머신에 설치된 Docker가 수행하고, 여러개의 Docker를 일원 관리할 떄는 Docker Compose를 사용하여 애플리케이션의 실행 환경을 구축하였다.  
+**따라서 이 호스트에서 장애가 발생하면 서비스가 정지되는 단점이 생긴다.**  
+이러한 단점을 개선하는 기술로서 **클러스터링**을 사용한다.  
+**클러스터링은 여러 대의 서버나 하드웨어를 모아서 한 대처럼 보이게 하는 기술을 말한다.**  
+클러스터링을 사용하면 다음과 같은 2가지의 장점이 생기게 된다.  
+1. 가용성: 서버의 오류나 하드웨어의 고장 등이 발생해도 다른 정상적인 서버나 하드웨어가 대신하여 처리를 계속 함으로써 높은 신뢰성을 얻을 수 있다.
+2. 확장성: 여러 대의 호스트 머신 상에서 Docker를 작동시켜서 높은 가용성과 확장성을 가진 애플리케이션 실행 환겨을 구출할 수 있다.
 
 <br><br>
 
-### 웹 애플리케이션을 서비스 공개해 보자
+### Docker Machine
+**Docker Machine이란?**  
+이전 Pose <a href="https://wjddyd66.github.io/docker/2019/09/30/Docker(2).html">컨테이너 기술과 Docker의 개요</a>에서 Docker Machine은 다음과 같이 정의하였다.  
+**Docker Machine(Docker 실행 환경 구축)**
+로컬 호스트용인 VirtualBox를 비롯하여 AWS 같은 클라우드 환경에 Docker의 실행 환경을 명령으로 자동 생성하기 위한 툴  
+즉, 하나의 호스트 머신이 아닌 여러대의 호스트 머신에서 Docker의 실행 환경을 명령으로 자동 생성하기 위한 툴 이다.  
+이러한 Docker Machine을 자세히 살펴보게 되면 다음과 같은 기능이 존재한다.  
+1. Docker Engine을 사용자 앞의 기계가 아닌 클라우드 컴퓨팅 VM을 비롯한 원격지의 서버에 설치
+2. 명령 하나로 아직 존재하지 않는 기계를 새로 만들어서 Engine까지 한방에 설치
+3. 원격지에 위치한 다수의 Docker Node를 손쉽게 규정하고 관리
 
 <br><br>
 
-### Docker Machine을 사용한 실행 환경 구축
+### Install Docker Machine
+<a href="https://docs.docker.com/machine/install-machine/">Docker Machine 정식 홈페이지</a>의 순서에 따라서 Machine 설치 및 확인 작업을 한다.  
+Linux 기반에 설치하였다.  
+1. Install <a href="https://docs.docker.com/install/">Docker</a>
+2. Download the Docker Machine binary and extract it to your PATH <br>
+```code
+base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+sudo mv /tmp/docker-machine /usr/local/bin/docker-machine &&
+chmod +x /usr/local/bin/docker-machine
+  
+  
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   617    0   617    0     0   1438      0 --:--:-- --:--:-- --:--:--  1438
+100 26.8M  100 26.8M    0     0  2703k      0  0:00:10  0:00:10 --:--:-- 3551k
 
+```
+3. Check the installation by displaying the Machine version<br>
+```code
+docker-machine version
+
+docker-machine version 0.16.0, build 702c267f
+```
+
+<br><br>
+
+### Docker Machine의 기본 명령
+<code>docker-machine --[옵션]</code><br>
+**옵션**  
+<table claee="table">
+
+<tr>
+	<td>서브 명령</td>
+	<td>설명</td>
+</tr>
+
+<tr>
+	<td>create</td>
+	<td>실행 환경 작성</td>
+</tr>
+
+<tr>
+	<td>ls</td>
+	<td>실행 환경 목록 표시</td>
+</tr>
+<tr>
+	<td>status</td>
+	<td>실행 환경 상태 표시</td>
+</tr>
+<tr>
+	<td>url</td>
+	<td>실행 환경 URL 표시</td>
+</tr>
+
+<tr>
+	<td>ssh</td>
+	<td>실행 환경에 대한 SSH 연결</td>
+</tr>
+<tr>
+	<td>start</td>
+	<td>실행 환경 시작</td>
+</tr>
+
+<tr>
+	<td>stop</td>
+	<td>실행 환경 정지</td>
+</tr>
+
+<tr>
+	<td>restart</td>
+	<td>실행 환경 재시작</td>
+</tr>
+
+<tr>
+	<td>scp</td>
+	<td>실행 환경에서 파일 다운로드</td>
+</tr>
+
+<tr>
+	<td>rm</td>
+	<td>실행 환경 삭제</td>
+</tr>
+
+<tr>
+	<td>kill</td>
+	<td>실행 환경 강제 정지</td>
+</tr>
+
+<tr>
+	<td>ip</td>
+	<td>실행 환경 IP 주소 확인</td>
+</tr>
+
+<tr>
+	<td>inspect</td>
+	<td>실행 환경 정보 확인</td>
+</tr>
+
+</table>
 <br>
+
+### Docker Machine 사용
+Docker Machine을 설치하였다면 Docker Node를 다른 호스트상에 설치할 수 있다.  
+Docker Machine은 Amazon Web Service, MS Azure, Google COmpute Engine 등의 주요 클라우드 컴퓨팅 시스템을 비롯해서, VMware, Virtual Box등의 설치형 가상환경에 이르는 다양한 환경을 지원한다.  
+이러한 환경은 각각에 대한 Driver를 통해서 제공된다.  
+최조의 Node를 생성할 때에만 이 Driver를 지정해주면 되고, 각각의 환경에 따른 API를 사용하여 VM을 만들고 나면, SSH를 통하여 시스템을 제어하거나 Docker API를 이용하여 Docker의 기능을 활용할 수 있다.  
+
+**실행 환경 작성(create)**  
+<code>docker-machine create --driver [드라이버 명] [작성할 Docker 머신명]</code><br>
+**드라이버 명**  
+<table claee="table">
+
+<tr>
+	<td>드라이버명</td>
+	<td>작성할 환경</td>
+	<td>공식 사이트</td>
+</tr>
+
+<tr>
+	<td>amazonec2 </td>
+	<td>Amazon Web Services</td>
+	<td>https://docs.docker.com/machine/drivers/aws/</td>
+</tr>
+
+<tr>
+	<td>azure</td>
+	<td>Microsoft Azure</td>
+	<td>https://docs.docker.com/machine/drivers/azure/</td>
+</tr>
+
+<tr>
+	<td>digitalocean</td>
+	<td>DigitalOcean </td>
+	<td>https://docs.docker.com/machine/drivers/digital-ocean/</td>
+</tr>
+
+<tr>
+	<td>exoscale</td>
+	<td>Exoscale</td>
+	<td>https://docs.docker.com/machine/drivers/exoscale/</td>
+</tr>
+
+<tr>
+	<td>... </td>
+	<td>...</td>
+	<td>...</td>
+</tr>
+
+</table>
+<br>
+사용가능한 Driver와 Driver에서 사용할 수 있는 옵션에 관한 자세한 내용은 아래 공식 사이트에서 참조할 수 있다.  
+<a href="https://docs.docker.com/machine/drivers/">Docker Machine Driver 정식 홈페이지</a><br>
+또는 Docker Machine 드라이버의 헬프 확인으로서도 가능하다.  
+```code
+docker-machine verate --driver 
+
+Usage: docker-machine create [OPTIONS] [arg...]
+
+Create a machine
+
+Description:
+   Run 'docker-machine create --driver name --help' to include the create flags f                                     or that driver in the help text.
+
+Options:
+
+   --driver, -d "virtualbox"                                                    D                                     river to create machine with. [$MACHINE_DRIVER]
+   --engine-env [--engine-env option --engine-env option]                       S                                     pecify environment variables to set in the engine
+   --engine-insecure-registry [--engine-insecure-registry option --engine-insecur                                     e-registry option]      Specify insecure registries to allow with the created eng                                     ine
+
+...
+
+```
+<br>
+
+현재 Docker Machine을 드라이버 Virtual Box를 활용하여 각각의 이름을 Hwang, Jeong, Yong으로 하고 Option을 Default를 통하여 만들었다.  
+```code
+docker-machine create -d virtualbox Hwang
+
+Running pre-create checks...
+(Hwang) Image cache directory does not exist, creating it at /root/.docker/machine/cache...
+(Hwang) No default Boot2Docker ISO found locally, downloading the latest release...
+(Hwang) Latest release for github.com/boot2docker/boot2docker is v19.03.3
+...
+
+docker-machine create -d virtualbox Jeong
+...
+
+docker-machine create -d virtualbox Yong
+...
+
+```
+<br>
+**실행 환경 목록 표시**  
+Docker Machine에서 관리하고 있는 실행 환경의 목록을 표시  
+<code>docker-machine ls [옵션]</code><br>
+**옵션**  
+<table claee="table">
+
+<tr>
+	<td>--quiet, -q</td>
+	<td>머신명만 표시한다.</td>
+</tr>
+
+<tr>
+	<td>--filter</td>
+	<td>표시할 머신을 필터링 한다.</td>
+</tr>
+
+</table>
+<br>
+
+**docker-machine ls 명령의 표시 항목**  
+<table claee="table">
+
+<tr>
+	<td>항목</td>
+	<td>설명</td>
+</tr>
+
+<tr>
+	<td>NAME</td>
+	<td>머신명</td>
+</tr>
+
+<tr>
+	<td>ACTIVE</td>
+	<td>상태</td>
+</tr>
+<tr>
+	<td>DRIVE</td>
+	<td>사용 중인 드라이버</td>
+</tr>
+<tr>
+	<td>STATE</td>
+	<td>스테이터스(Running | Paused ....)</td>
+</tr>
+
+<tr>
+	<td>URL</td>
+	<td>엑세스 URL</td>
+</tr>
+<tr>
+	<td>SWARM</td>
+	<td>Docker Swarm의 매니저명</td>
+</tr>
+
+<tr>
+	<td>DOCKER</td>
+	<td>Docker 버전</td>
+</tr>
+
+<tr>
+	<td>ERRORS</td>
+	<td>오류</td>
+</tr>
+
+</table>
+<br>
+
+```code
+docker-machine ls --filter driver=virtualbox --filter state=Running
+
+NAME    ACTIVE   DRIVER       STATE     URL                       ...
+Hwang   -        virtualbox   Running   tcp://192.168.99.100:2376 ...   
+Jeong   -        virtualbox   Running   tcp://192.168.99.101:2376 ...   
+Yong    -        virtualbox   Running   tcp://192.168.99.102:2376 ...   
+```
+<br>
+
+**스테이터스 확인**  
+<code>docker-machine status [머신 명]</code><br>
+```code
+docker-machine status Hwang
+
+Running
+```
+<br>
+
+**URL 확인**  
+<code>docker-machine url [머신 명]</code><br>
+```code
+docker-machine url Hwang
+
+tcp://192.168.99.100:2376
+```
+<br>
+
+**실행 환경에 대한 SSH 연결**  
+<code>docker-machine ssh [머신명]</code><br>
+```code
+docker-machine ssh Hwang
+
+   ( '>')
+  /) TC (\   Core is distributed with ABSOLUTELY NO WARRANTY.
+ (/-_--_-\)           www.tinycorelinux.net
+
+docker@Hwang:~$
+```
+<br>
+연결을 해지하려면 exit 명령을 실행
+```code
+exit
+
+logout
+exit status 130
+```
+<br>
+기본적으로 ssh로 연결이 가능하다.(단, docker-machine ssh [머신명]으로서 접속하여 비밀번호를 설정하는 과정을 거쳐야 한다.)  
+```code
+ssh docker@192.168.99.100
+docker@192.168.99.100's password:
+   ( '>')
+  /) TC (\   Core is distributed with ABSOLUTELY NO WARRANTY.
+ (/-_--_-\)           www.tinycorelinux.net
+```
+<br>
+
+**실행 환경 시작/정지/재시작**  
+실행환경 정지  
+<code>docker-machine stop [머신명]</code><br>
+```code
+docker-machine stop Hwang
+
+
+Stopping "Hwang"...
+Machine "Hwang" was stopped.
+```
+<br>
+결과 확인  
+```code
+docker-machine status Hwang
+
+Stopped
+```
+<br>
+
+실행환경 시작  
+<code>docker-machine start [머신명]</code><br>
+```code
+docker-machine start Hwang
+
+
+Starting "Hwang"...
+(Hwang) Check network to re-create if needed...
+(Hwang) Waiting for an IP...
+...
+
+
+```
+<br>
+결과 확인  
+```code
+docker-machine status Hwang
+
+Running
+```
+<br>
+
+실행환경 재시작  
+<code>docker-machine restart [머신명]</code><br>
+```code
+docker-machine restart Hwang
+
+Restarting "Hwang"...
+
+...
+
+Restarted machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+```
+<br>
+결과 확인  
+```code
+docker-machine status Hwang
+
+Running
+```
+<br>
+**현재 확인 결과 192.168.99.100으로서 IP가 동일하나 Docker-machine restart Message의 내용대로 IP가 바뀔수도 있으니 주의하여야 한다.**  
+<br>
+
+**실행 환경으로부터 파일 다운로드**  
+실행환경 안의 파일을 다운로드하는 SCP는 Secure Copy Protocol로, 인증 정보와 데이터를 암호화하여 네트뤄크로 전송하는 명령어 이다.  
+원격 네트워크로부터 파일을 받을 경우(원격 머신 -> 현재 머신)  
+<code>docker-machine scp [머신명]:[디렉토리명] [받을 디렉토리 명]</code><br>
+```code
+#원격 머신 Hwang에서 Hello의 파일을 현재 디렉토리로 복사하는 명령어
+docker-machine scp Hwang:/home/docker/Hello .
+
+Hello        100%    6     4.4KB/s   00:00
+
+```
+원격 네트워크로부터 파일을 주는 경우(현재 머신 -> 원격 머신)  
+<code>docker-machine scp [받을 디렉토리 명] [머신명]:[디렉토리명]</code><br>
+```code
+#현재 디렉토리의 Hello2의 파일을 원격 머신 Hwang로 복사하는 명령어
+docker-machine scp ./Hello2 Hwang:/home/docker
+
+Hello2        100%    7     6.1KB/s   00:00
+
+```
+<br>
+
+**실행 환경 삭제**  
+실행 환경 삭제  
+작성한 실행 환경을 삭제하려면 docker-machine rm 명령어를 사용한다. Running중인 실행 환경을 강제로 삭제할 때는 -f 옵션을 사용한다.  
+<code>docker-machine rm -f [머신명]</code><br>
+```code
+docker-machine rm -f Hwang
+
+About to remove Hwang
+WARNING: This action will delete both local reference and remote instance.
+Successfully removed Hwang
+```
+<br>
+삭제 확인  
+```code
+docker-machine ls -q
+
+Jeong
+Yong
+```
+<br>
+실행 환경 중지  
+**docker-machine stop 명령으로 정지못시키는 머신을 강제로 정지시키는 방법이다.**  
+<code>docker-machine kill [머신명]</code><br>
+```code
+docker-machine kill Jeong
+
+Killing "Jeong"...
+Machine "Jeong" was killed.
+```
+<br>
+결과 확인  
+```code
+docker-machine status Jeong
+
+Stopped
+```
+<br>
+
+**실행 환경 정보 확인**  
+실행 환경의 ip주소를 확인  
+<code>docker-machine ip [머신명]</code><br>
+```code
+docker-machine ip Yong
+
+192.168.99.102
+```
+<br>
+메모리나 CPU등과 같은 구성의 상세 정보를 알고 싶은 경우  
+출력 결과는 JSON 배열 형식으로 표신된다.  
+<code>docker-machine inspect [옵션] [머신명]</code><br>
+```code
+docker-machine inspect Yong
+
+{
+    "ConfigVersion": 3,
+    "Driver": {
+        "IPAddress": "192.168.99.102",
+        "MachineName": "Yong",
+        "SSHUser": "docker",
+        "SSHPort": 38741,
+        "SSHKeyPath": "/root/.docker/machine/machines/Yong/id_rsa",
+        "StorePath": "/root/.docker/machine",
+        "SwarmMaster": false,
+
+...
+
+
+```
+<br>
+옵션으로서는 --format을 사용하여 출력 포멧을 지정할 수 있다.  
+```code
+docker-machine inspect \
+--format='{{.Driver.IPAddress}}:{{.Driver.SSHUser}}' \
+Yong
+
+192.168.99.102:docker
+```
+<br>
+
+
 <hr>
 참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
+참조:<a href="https://www.sauru.so/blog/provision-docker-node-with-docker-machine/">sauru 블로그</a><br>
+참조:<a href="https://www.sauru.so/blog/little-more-about-docker-machine/">sauru 블로그</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
