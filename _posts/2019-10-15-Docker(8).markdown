@@ -35,8 +35,8 @@ categories: [Docker]
 ### Install Docker Machine
 <a href="https://docs.docker.com/machine/install-machine/">Docker Machine 정식 홈페이지</a>의 순서에 따라서 Machine 설치 및 확인 작업을 한다.  
 Linux 기반에 설치하였다.  
-1. Install <a href="https://docs.docker.com/install/">Docker</a>
-2. Download the Docker Machine binary and extract it to your PATH <br>
+- Install <a href="https://docs.docker.com/install/">Docker</a>
+- Download the Docker Machine binary and extract it to your PATH  
 ```code
 base=https://github.com/docker/machine/releases/download/v0.16.0 &&
 curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
@@ -50,7 +50,7 @@ chmod +x /usr/local/bin/docker-machine
 100 26.8M  100 26.8M    0     0  2703k      0  0:00:10  0:00:10 --:--:-- 3551k
 
 ```
-3. Check the installation by displaying the Machine version<br>
+- Check the installation by displaying the Machine version  
 ```code
 docker-machine version
 
