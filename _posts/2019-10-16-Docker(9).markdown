@@ -488,6 +488,7 @@ CMD bundle exec ruby app.rb -o 0.0.0.0
 이러한 방식은 단순하게 한 대씩 재시작한다.  
 다만, **코드 변경에 따른 side effect**가 발생할 수 있다.  
 이러한 side effect를 해결하기 위해서는 **블루 그린 배포**를 사용한다.  
+**(참고로 블루 그린 배포는 Kubernetes에서 지원한다.)**  
 <a href="https://knight76.tistory.com/entry/%EB%B0%B0%ED%8F%AC-%EB%B0%A9%EC%8B%9D-%EC%B9%B4%EB%82%98%EB%A6%AC%EB%B8%94%EB%A3%A8-%EA%B7%B8%EB%A6%B0%EB%A1%A4%EB%A7%81-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%EB%B0%B0%ED%8F%AC-%EB%B0%A9%EC%8B%9D">배포방식 자세한 내용</a><br>
 위와같은 Service의 업데이트는 <code>docker service update</code>를 통하여 이루워 질 수 있다.  
 ```code
@@ -574,7 +575,7 @@ core@core-01 ~ $ docker run --rm -it \
 <br>
 **참고사항**  
 **--rm**은 일시적으로 컨테이너를 생성하는 방법이다.  
-**- i**은 interactive라는 뜻으로 컨테이너와 상호적으로 주고받고 하겠다는 뜻  
+**-i**은 interactive라는 뜻으로 컨테이너와 상호적으로 주고받고 하겠다는 뜻  
 **-t**은 tty를 사용하겠다는 의미이다.  
 <br>
 
@@ -775,7 +776,7 @@ core@core-01 ~ $ docker exec $(docker ps --filter name=secret -q) cat /run/secre
 
 #확인 결과 비밀키 파일은 존재하나 읽을 수 없는 것을 확인할 수 있다.
 ```
-
+<br><br>
 **8. 비밀키 제거**: 비밀키를 사용중인 Service와 비밀키의 관계를 없앴음으로 비밀키 제거 가능  
 ```code
 #비밀키 제거
@@ -788,13 +789,6 @@ ID                  NAME                DRIVER              CREATED             
 ```
 <br><br>
 
-### Docker proxy Server
-
-<br><br>
-
-### Docker Monitoring
-
-<br>
 <hr>
 참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
 참조:<a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br>
