@@ -36,9 +36,10 @@ categories: [Docker]
 <a href="https://docs.docker.com/machine/install-machine/">Docker Machine 정식 홈페이지</a>의 순서에 따라서 Machine 설치 및 확인 작업을 한다.  
 Linux 기반에 설치하였다.  
 
-**Install <a href="https://docs.docker.com/install/">Docker</a>**  
+**1. Install <a href="https://docs.docker.com/install/">Docker</a>**  
 <br>
-**Download the Docker Machine binary and extract it to your PATH**  
+**2. Download the Docker Machine binary and extract it to your PATH**  
+
 ```code
 base=https://github.com/docker/machine/releases/download/v0.16.0 &&
 curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
@@ -54,7 +55,7 @@ chmod +x /usr/local/bin/docker-machine
 ```
 <br>
 
-**Check the installation by displaying the Machine version**  
+**3. Check the installation by displaying the Machine version**  
 ```code
 docker-machine version
 
@@ -191,7 +192,7 @@ Docker Machine은 Amazon Web Service, MS Azure, Google COmpute Engine 등의 주
 <a href="https://docs.docker.com/machine/drivers/">Docker Machine Driver 정식 홈페이지</a><br>
 또는 Docker Machine 드라이버의 헬프 확인으로서도 가능하다.  
 ```code
-docker-machine verate --driver 
+docker-machine create --driver-help 
 
 Usage: docker-machine create [OPTIONS] [arg...]
 
@@ -384,7 +385,6 @@ Starting "Hwang"...
 (Hwang) Waiting for an IP...
 ...
 
-
 ```
 <br>
 결과 확인  
@@ -426,7 +426,6 @@ Running
 docker-machine scp Hwang:/home/docker/Hello .
 
 Hello        100%    6     4.4KB/s   00:00
-
 ```
 원격 네트워크로부터 파일을 주는 경우(현재 머신 -> 원격 머신)  
 <code>docker-machine scp [받을 디렉토리 명] [머신명]:[디렉토리명]</code><br>
@@ -435,7 +434,6 @@ Hello        100%    6     4.4KB/s   00:00
 docker-machine scp ./Hello2 Hwang:/home/docker
 
 Hello2        100%    7     6.1KB/s   00:00
-
 ```
 <br>
 
@@ -504,7 +502,6 @@ docker-machine inspect Yong
         "SwarmMaster": false,
 
 ...
-
 
 ```
 <br>

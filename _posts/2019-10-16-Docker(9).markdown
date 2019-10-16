@@ -1,0 +1,295 @@
+---
+layout: post
+title:  "클라우드를 사용한 Docker 실행 환경 구축"
+date:   2019-10-15 09:00:20 +0700
+categories: [Docker]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Docker/d_5.PNG" height="200" width="200" /></div>
+Post에 앞서 이번 Post의 내용과 실습은<a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a>의 내용과 개념을 그대로 따라해본 것 입니다. <br>
+
+### 분산 환경에서의 컨테이너 운용 관리
+이전 Post에서는 <a href="https://wjddyd66.github.io/docker/2019/10/15/Docker(8).html">멀티호스트 환경과 클러스터링</a>에 대해서 얘기하였다.  
+이제 더 나아가서 멀티호스트로 구성된 실제 환경을 클러스터 구성으로 가동시키려면 **컨테이너의 시작 및 정지와 같은 조작뿐만 아니라 호스트 간의 네트워크 연결이나 스토리지 관리, 컨테이너를 어떤 호스트에서 가동할지와 같은 스케줄링, 컨테이너가 정상적으로 작동하고 있는지 아닌지를 감시할 장치도 필요하다.**  
+이러한 기능을 갖추고 컨테이너를 통합 관리할 수 있는 툴을 컨테이너 오케스트레이션 툴 이라고 한다.  
+**컨테이너 오케스트레이션 툴 종류**  
+1. Kubenetes: Google의 엔지니어를 중심으로 하는 커뮤니티에서 개발 진행  
+제공하는 기능도 풍부하고 개발 속도도 빠르며, 대규모 시스템에서의 도입 실적도 풍부하다.  
+컨테이너 오케스트레이션 툴의 실질적 스탠드라고 할 수 있다.  
+**(Kubernete에 관련되서는 따로 공부해서 하나의 Category로서 Post할 생각입니다.)**
+2. Docker Engine(Swarm): Docker에서 클러스터링 기능을 제공하는 Swarm모드 이다.  
+여러개의 컨테이너를 멀티호스트 환경에서 작동시키고, 그 컨테이너들을 모아서 하나의 명령으로 조작할 수 있다.  
+**(현재 Post에서는 Swarm을 오케스트레이션 툴로서 선정하고 실습한다.)**
+3. Apache Mesos, Marathon: 여서 호스트의CPU나 메모리, 디스크를 추상화하여 하나의 리소스 풀로서 다룰 수 있는 것이 특징이다.  
+단, Mesos를 사용하여 컨테이너 오케스트레이션을 가동시키려면 별도의 컨테이너 고나리용 프레임워크가 필요하다.  
+이러한 대표적인 프레임워크로는 Marathon이 있고, 이름 그대로 장기간에 걸쳐 계속 작동하는 애플리케이션의 실행이나 모니터링이 가능하다.
+
+<br>
+**참고사항: 용어 정리**  
+컨테이너 오케스트레이션의 기능에 대해서 정확한 개념과 용어의 의미가 부족해서 찾아본 결과이다.  
+**스케줄링**: 컨테이너를 적당한 서버에 배포해 주는 작업입니다. 툴에 따라서 지원하는 전략이 조금씩 다른데 여러 대의 서버 중 가장 할일 없는 서버에 배포하거나 그냥 차례대로 배포 또는 아예 랜덤하게 배포할 수도 있습니다. 컨테이너 개수를 여러 개로 늘리면 적당히 나눠서 배포하고 서버가 죽으면 실행 중이던 컨테이너를 다른 서버에 띄워주기도 합니다.
+<br>
+**클러스터링**: 여러 개의 서버를 하나의 서버처럼 사용할 수 있습니다. 클러스터에 새로운 서버를 추가할 수도 있고 제거할 수도 있습니다. 작게는 몇 개 안 되는 서버부터 많게는 수천 대의 서버를 하나의 클러스터로 만들 수 있습니다. 여기저기 흩어져 있는 컨테이너도 가상 네트워크를 이용하여 마치 같은 서버에 있는 것처럼 쉽게 통신할 수 있습니다.
+<br>
+**서비스 디스커버리**: 말 그대로 서비스를 찾아주는 기능입니다. 클러스터 환경에서 컨테이너는 어느 서버에 생성될지 알 수 없고 다른 서버로 이동할 수도 있습니다. 따라서 컨테이너와 통신을 하기 위해서 어느 서버에서 실행중인지 알아야 하고 컨테이너가 생성되고 중지될 때 어딘가에 IP와 Port같은 정보를 업데이트해줘야 합니다. 키-벨류 스토리지에 정보를 저장할 수도 있고 내부 DNS 서버를 이용할 수도 있습니다.
+<br>
+**로깅, 모니터링**: 여러 대의 서버를 관리하는 경우 로그와 서버 상태를 한곳에서 관리하는게 편합니다. 툴에서 직접 지원하는 경우도 있고 따로 프로그램을 설치해야 하는 경우도 있습니다. ELK와 prometheus등 다양한 툴이 있습니다.
+<br>
+<br><br>
+
+### Docker Swarm 용어 정리
+Docker Swarm에 들어가기 앞서 Docker Swarm에서 사용하는 용어에 대해 정리하고 실습을 하자.  
+<table class="table">
+
+<tr>
+	<td>용어</td>
+	<td>설명</td>
+</tr>
+
+<tr>
+	<td>스웜(Swarm)</td>
+	<td>군중이라는 의미로서 스웜 클러스터 자체를 스웜이라 한다.(스웜을 만들다 = 클러스터를 만들다, 스웜에 가입하다 = 클러스테어 가입하다.)</td>
+</tr>
+
+<tr>
+	<td>노드(Node)</td>
+	<td>스웜 클러스터에 속한 도커 서버의 단위이다. 보통 한 서버에 하나의 도커데몬만 실행하므로 서버가 곧 노드이다. 노드의 종류는 매니저 노드와 워커 노드가 있다.</td>
+</tr>
+<tr>
+	<td>매니저노드(Manage Node)</td>
+	<td>스웜 클러스터 상태를 관리하는 노드. 매니저 노드는 곧 워커노드가 될 수 있으나, 워커노드와의 차이점은 <b>스웜 명령어는 매니저 노드에서만 실행된다.</b></td>
+</tr>
+<tr>
+	<td>워커노드(Worker Node)</td>
+	<td>매니저 노드의 명령을 받아 컨테이너를 생성하고 상태를 체크하는 노드</td>
+</tr>
+
+<tr>
+	<td>서비스(Service)</td>
+	<td>기본적인 배포 단위, 하나의 서비스는 하나의 이미지를 기반으로 생성하고 동일한 컨테이너를 한개 이상 실행할 수 있다.</td>
+</tr>
+<tr>
+	<td>테스크(Task)</td>
+	<td>컨테이너 배포 단위, 하나의 서비스는 여러개의 테스크를 실행할 수 있고 각각의 테스크가 컨테이너를 관리</td>
+</tr>
+</table>
+<br>
+
+<br><br>
+
+### Docker Swarm 기능 정리
+위에서 컨테이너 오케스트레이션의 기능으로서 크게 스케줄링, 클러스터링, 서비스 디스커버리, 로깅, 모니터링 으로서 나누었다.  
+이러한 기능이 Docker Swarm에서는 어떻게 적용되는지 알아보고 추가적으로 다른 기능에 대해서도 알아보자.  
+
+**스케줄링(Scheduling)**: 서비스를 만들면 컨테이너를 워커노드에 배포한다. 노드에 라벨을 지정하면 특정 노드에만 배포할 수 있고 모든 서버에 한 대씩 배포하는 기능도 제공한다. 서비스별로 CPU, Memory사용량을 미리 정의할 수 있다.  
+
+**고가용성(High Available)**: 여러개의 매니저 노드를 운영할 수 있다. 만약 3대의 매니저 노드를 사용하면 1대가 죽어도 클러스터는 정상적으로 동작하며 매니저 노드를 지정하는 방법은 간단하므로 쉽게 관리할 수 있다.  
+
+**멀티 호스트 네트워크(Multi Host Network)**: Overlay network로 불리는 SDN(Software Defined Network)를 지원하며 여러 노드에 분산된 컨테이너를 하나의 네트워크로 묶을 수 있다. 컨테이너마다 독립된 IP가 생기고 서로 다른 노드에 있어도 할당된 IP로 통신할 수 있다.  
+
+**서비스 디스커버리(Service Discovery)**: 자체 DNS 서버를 가지고 컨테이너를 생성하면 서비스명과 동일한 도메인을 등록하고 컨테이너가 멈추면 도메인을 제거한다. 여러 노드에 분산된 컨테이너가 멀티호스트 네트워크로 묶이기 때문에 DNS를 가지고 바로 접근할 수 있다.  
+
+**순차적 업데이트(Rolling Update)**: 서비스를 새로운 이미지로 업데이트 하는 경우 하나하나 차례대로 업데이트 한다. 동시에 업데이트하는 작업의 개수와 업데이트 간격 시간을 조정 가능하다.  
+
+**상태체크(Health Check)**: 서비스가 정상적으로 실행되었는지 확인하기 위해 컨테이너 실행 여부 뿐 특정 쉘 스크립트가 정상적으로 실행됐는지 여부를 추가로 체크 가능. 컨테이너 실행 여부로만 체크한 경우 아직 서버가 실행 되지 않아 접속시 오류가 날 수 있는 미묘한 타이밍을 잡는데 효과적이다.  
+
+**비밀값 저장(Secret Management)**: 비밀번호를 스웜 어딘가에 생성하고 컨테이너에서 읽을 수 있다. 비밀 값을 관리하기 위한 외부 서비스를 설치하지 않고 쉽게 이용 가능하다.  
+
+**로깅(Logging)**: 같은 노드에서 실행 중인 컨테이너뿐 아니라 다른 노드에서 실행 중인 서비스의 로그를 한곳에서 볼 수 있다. 특정 서비스의 로그를 보려면 어느 노드에서 실행 중인지 알 필요도 없고 일일이 접속하지 않아도 된다.  
+
+**모니터링(Monitoring)**: 리소스 모니터링 기능은 제공하지 않는다. 3rd party 서비스(<a href="https://prometheus.io/">prometheus</a>, <a href="https://grafana.com/">grafana</a>)를 사용해야 한다  
+
+<br><br>
+### Docker Swarm 준비
+현재 Linux기반의 Ubuntu(CLI)에서 실습 환경을 구축하였습니다.  
+**1. VritualBox 설치**  
+```code
+#VirtualBox 설치
+apt-get install virtual box
+
+#VirtualBox 설치 확인
+vboxmanage --version
+
+5.2.32_Ubuntur132056
+```
+<br>
+
+**2. Vagrant  설치**  
+Vagrant 는 VirtualBox, VMWare, Parallels같은 가상머신을 쉽게 만들고 관리해주는 툴 이다.  
+```code
+#Vagrant 설치
+wget -c https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+sudo dpkg -i vagrant_2.2.4_x86_64.deb
+
+#Vagrant 설치 확인
+vagrant -v
+
+Vagrant 2.2.4
+```
+<br>
+
+**3. vargrant-hostsupdater  설치**  
+vargrant-hostsupdater는 <code>vargrant up</code>할때 **yml파일에 정의된 ip와 host명을 자동으로 hosts파일에 추가**하고, <code>vargrant halt</code>하면 자동으로 삭제 해주는 플러그인 이다.  
+```code
+#vargrant-hostsupdater 설치
+vagrant plugin install vagrant-hostsupdater
+
+Installing the 'vagrant-hostsupdater' plugin. This can take a few minutes...
+Fetching: vagrant-hostsupdater-1.1.1.160.gem (100%)
+```
+<br>
+
+**4. 데모 파일 다운로드**  
+<a href="https://github.com/subicura/docker-swarm-demo">subicura Git</a>에 접속하여 Docker swarm demo파일 다운로드  
+```code
+git clone https://github.com/subicura/docker-swarm-demo.git
+
+cd docker-swarm-demo
+```
+<br>
+**5. 데모 파일 다운로드**  
+vargrant-hostsupdater로 인하여 DockerFile에 정의된 ip와 host명을 자동으로 할당하여 Dockerfile에 정의된 Machine을 만들게 된다.  
+```code
+#Dockerfile을 기반으로 Machine 생성
+vagrant up
+Bringing machine 'core-01' up with 'virtualbox' provider...
+Bringing machine 'core-02' up with 'virtualbox' provider...
+Bringing machine 'core-03' up with 'virtualbox' provider...
+==> core-01: Box 'coreos-alpha' could not be found. Attempting to find and install...
+    core-01: Box Provider: virtualbox
+    core-01: Box Version: >= 0
+    
+...
+
+#상태 확인
+vagrant status
+
+Current machine states:
+
+core-01                   running (virtualbox)
+core-02                   running (virtualbox)
+core-03                   running (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+```
+<br><br>
+
+### Docker Swarm 클러스터
+현재 core-01 ~ core-03까지의 3개의 가상머신이 생성되었다.  
+하나의 매니저 노드와 매니저 노드가 생성한 토큰을 가지고 워커 노드에서 매니저 노드로 접속하면 된다.  <br>
+
+**1. 매니저 노드 ip address알아오기**  
+현재 core-01을 매니저 노드로 지정하기 위하여 ip address를 알아야 한다.  
+<code>vagrant ssh core-01</code>을 통하여 core-01에 접속한 뒤 ifconfig를 통하여 ip address를 알아온다.  
+
+```code
+core@core-01 ~ $ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
+
+...
+
+eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.8.101  netmask 255.255.255.0  broadcast 172.17.8.255
+
+...
+
+```
+<br>
+<br>
+
+**2. core-01 서버를 매니저 노드로 설정**  
+<code>swarm init</code>명령어를 사용하여 core-01 서버를 매니저 노드로 설정  
+```code
+core@core-01 ~ $ docker swarm init --advertise-addr 172.17.8.101
+
+Swarm initialized: current node (mgf0nk5ez63v5eltq08q0h1kr) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+docker swarm join --token SWMTKN-1-11b1y84rzrw6ceaw0kwuq9r2aule3pge3jn1d60zsm8lul7bfl-cldzdrz4sjilc4uqsfkd3irum 172.17.8.101:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+```
+<br>
+<br>
+**3. core-02,core-03 서버를 워크 노드로 설정**  
+core-02, core-03에 ssh로 접속하여 <code>docker swarm join --tocken [토큰] [IP Address]</code>을 통하여 매니저 노드에 join한다. 이러한 join과정을 통하여 각각의 서버는 워크 노드가 된다.  
+```code
+#core-02접속 후 실행
+core@core-02 ~ $docker swarm join --token SWMTKN-1-11b1y84rzrw6ceaw0kwuq9r2aule3pge3jn1d60zsm8lul7bfl-cldzdrz4sjilc4uqsfkd3irum 172.17.8.101:2377
+
+This node joined a swarm as a worker.
+
+#core-03접속 후 실행
+core@core-03 ~ $docker swarm join --token SWMTKN-1-11b1y84rzrw6ceaw0kwuq9r2aule3pge3jn1d60zsm8lul7bfl-cldzdrz4sjilc4uqsfkd3irum 172.17.8.101:2377
+This node joined a swarm as a worker.
+
+This node joined a swarm as as worker.
+```
+<br><br>
+
+**4. 클러스터 상태 확인**  
+<code>docker node ls</code>명령어를 토애 워커노드와 매니저 노드가 정상적으로 만들어 졌는지 확인 가능하다.  
+```code
+core@core-01 ~ $ docker node ls
+```
+<br>
+<table class="table">
+
+<tr>
+	<td>ID</td>
+	<td>HOSTNAME</td>
+	<td>STATUS</td>
+	<td>AVAILBILITY</td>
+	<td>MANAGER STATUS</td>
+	<td>ENGINE VERSION</td>
+</tr>
+
+<tr>
+	<td>mgf0nk5ez63v5eltq08q0h1kr *</td>
+	<td>core-01</td>
+	<td>Ready</td>
+	<td>Active</td>
+	<td>Leader</td>
+	<td>18.06.3-ce</td>
+</tr>
+
+<tr>
+	<td>meq50fs2ab6vitw7xiaz7begu</td>
+	<td>core-02</td>
+	<td>Ready</td>
+	<td>Active</td>
+	<td> </td>
+	<td>18.06.3-ce</td>
+</tr>
+
+<tr>
+	<td>kyjx0pfd5n62yoijec66ei6lm</td>
+	<td>core-03</td>
+	<td>Ready</td>
+	<td>Active</td>
+	<td> </td>
+	<td>18.06.3-ce</td>
+</tr>
+
+</table>
+<br>
+
+**참고사항**  
+매니저 Node가 관리하는 config files는 /var/lib/docker/swarm에 저장된다.  
+
+위와 같은 구성이 끝나면 아래와 같은 사진으로서 표현할 수 있는 Cluster가 설정된 것 이다.  
+<img src="https://subicura.com/assets/article_images/2017-02-25-container-orchestration-with-docker-swarm/create-virtual-machine.png" alt="virtual machines">
+그림출처: <a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br>
+<br><br>
+
+
+<hr>
+참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
+참조:<a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br>
+참조:<a href="https://www.sauru.so/blog/little-more-about-docker-machine/">sauru 블로그</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
