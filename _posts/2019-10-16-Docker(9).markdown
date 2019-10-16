@@ -465,7 +465,7 @@ Loab Balacer란여러 대의 Server에게 균등하게 Traffic을 분산시켜�
 
 ### HEALTHCHECK
 <img src="https://subicura.com/assets/article_images/2017-02-25-container-orchestration-with-docker-swarm/healthcheck.png">
-그림출처: <a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br>
+그림출처: <a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br><br>
 Docker Swarm은 컨테이너가 실행되면 ingress에서 해당 컨테이너로 요청을 보내기 시작하는데 웹 서버가 부팅되는 동안 문제가 발생한다.  
 ingress는 컨테이너가 실행되면 요청을 보내기 때문에 문제가 없을 것이라고 판단하지만 컨테이너가 실행되고 웹 서버가 완전히 실행되기 전에 요청을 보내면 서버를 찾을 수 없다는 메세지를 볼 수 있고 이러한 문제를 해결하기 위해 좀 더 자세한 상태 체크 방식이 필요하다.  
 <br>
@@ -549,7 +549,7 @@ bf03ff81e303        none                null                local
 
 **redis 생성**  
 <img src="https://subicura.com/assets/article_images/2017-02-25-container-orchestration-with-docker-swarm/overlay-network-redis.png">
-그림출처: <a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br>
+그림출처: <a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br><br>
 생성한 네트워크와 연결하는 redis Service를 생성한다.  
 ```code
 core@core-01 ~ $ docker service create --name redis \
@@ -574,13 +574,14 @@ core@core-01 ~ $ docker run --rm -it \
 <br>
 **참고사항**  
 **--rm**은 일시적으로 컨테이너를 생성하는 방법이다.  
-** - i**은 interactive라는 뜻으로 컨테이너와 상호적으로 주고받고 하겠다는 뜻  
-** -t**은 tty를 사용하겠다는 의미이다.  
+**- i**은 interactive라는 뜻으로 컨테이너와 상호적으로 주고받고 하겠다는 뜻  
+**-t**은 tty를 사용하겠다는 의미이다.  
 <br>
 
 **애플리케이션 설정**  
 <img src="https://subicura.com/assets/article_images/2017-02-25-container-orchestration-with-docker-swarm/overlay-network-redis-counter.png">
 그림출처: <a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br>
+<br>
 다음과 같은 명령어로서 Redis와 Counter라는 Service가 Backend Overlay Network를 통하여 통신하도록 설정  
 ```code
 core@core-01 ~ $ docker service create --name counter \
@@ -632,8 +633,171 @@ abd752828052 > 2
 
 <br><br>
 
+### Docker의 기밀정보로 민감한 데이터 관리
+Docker Swarm 서비스와 관련하여 암호, SSH 개인 키, SSL 인증서 또는 네트워크를 통해 전송되거나 Dockerfile이나 응용프로그램에 암호화되지 않은 다른 데이터 조각과 같은 데이터 묶음이다.  
+Docker 1.13이상에서는 **Docker secret**를 사용하여 이 데이터를 중앙에서 관리하고 엑세스 권한이 필요한 컨테이너에게만 안전하게 전송할 수 있다.  
+
+**Docker secret예제**  
+**1. Docker에게 비밀키 생성**: <code>docker secret create</code>명령은 파일을 나타내는 마지막 인수가 - 로 설정되어 있기 때문에 표준 입력을 읽는다.  
+```code
+core@core-01 ~ $ echo "this is my password!" | docker secret create my-password -
+
+2d2lgydukbe0q93g0kfmmo9n8
+```
+<br>
+**위의 Code의 결과로 인하여 my-passward라는 이름의 비밀키에 this is my password!라는 내용을 저장하게 되었다.**  
+<br>
+**2. secret 서비스 생성**: 서비스를 생성하고 <code>--secret</code>옵션을 활용하여 비밀키에 대한 엑세스 권한 부여  
+```code
+core@core-01 ~ $ docker service create --name secret \
+  --secret my-password \
+  -p 4569:4567 \
+  -e SECRET_PATH=/run/secrets/my-password \
+  subicura/secret
+  
+p0ncqotfh3754jrmk5mj7dk2c
+overall progress: 1 out of 1 tasks
+1/1: running   [==================================================>]
+verify: Service converged
+```
+<br>
+<code>--secret</code>옵션을 활용하여 service를 생성하게 되면 **run/secrest**디렉토리 밑에 키 이름의 파일로 마운트 된다.  
+<br>
+
+**3. secret service 생성 확인**: <code>docker service ps</code>를 통하여 생성된 secret service를 확인한다.  
+```code
+core@core-01 ~ $ docker service ps secret
+ID                  NAME                IMAGE                    NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
+zpurg7z73gza        secret.1            subicura/secret:latest   core-01             Running             Running 2 minutes ago
+```
+<br>
+
+**4. 실제 디렉토리 에서 내용 읽어오기**  
+- <code>docker ps</code>를 사용하여 container의 ID를 가져온다.
+
+
+```code
+core@core-01 ~ $ docker ps --filter name=secret -q
+
+a9889d17676c
+```
+<br>
+
+- <code>docker exec</code>를 사용하여 외부에서 컨테이너 안의 명령을 실행한다. 실제 **/run/secrets**디렉토리 안에 비밀키가 생성되었는지 확인한다.
+
+
+```code
+core@core-01 ~ $ docker exec $(docker ps --filter name=secret -q) ls -l /run/secrets
+total 4
+-r--r--r--    1 root     root            21 Oct 16 06:58 my-password
+```
+<br>
+
+- <code>docker exec</code>를 사용하여 외부에서 컨테이너 안의 명령을 실행한다. 실제 **/run/secrets**디렉토리 안에 my-passward라는 파일의 내용을 읽어온다.
+
+
+```code
+core@core-01 ~ $ docker exec $(docker ps --filter name=secret -q) cat /run/secrets/my-password
+
+this is my password!
+```
+<br>
+
+**참고사항**  
+현재 생성한 subicura/secret라는 Service는 외부 포트 4569를 통하여 위의 과정과 같은 결과를 알 수 있다.  
+```code
+core@core-01 ~ $ curl core-01:4569
+
+this is my password!
+```
+<br>
+<br>
+
+**5. 컨테이너의 변경 사항을 새로운 이미지로 저장뒤 비밀키에 접근**: <code>docker commit</code>으로 새로운 이미지를 생성 후 /run/secrets/my-password에 접근하여 파일을 읽어 온다.  
+- 새로운 이미지 생성
+
+
+```code
+core@core-01 ~ $ docker commit $(docker ps --filter name=secret -q) committed_secret
+sha256:f8fc38021d238f006d13f76b0af232f79be3a7c4efaaec417e5f52457ecb9445
+```
+<br>
+
+- 서비스 컨테이너 생성 후 **/run/secrets/my-password**에 접근하여 비밀 키 내용 읽어오기
+
+```code
+#비밀 키 파일 확인
+core@core-01 ~ $ docker run --rm -it committed_secret ls /run/secrets/
+
+my-password
+
+#비밀 키 내용 읽어오기
+core@core-01 ~ $ docker run --rm -it committed_secret cat /run/secrets/my-password
+
+#실행 결과 아무것도 안나오는 것을 알 수 있다.
+```
+<br>
+<br>
+
+**6. 비밀 키 제거**: 비밀 키 목록 확인 후 비밀키 제거  
+```code
+#비밀키 목록 확인
+core@core-01 ~ $ docker secret ls
+
+ID                          NAME                DRIVER              CREATED             UPDATED
+2d2lgydukbe0q93g0kfmmo9n8   my-password                             44 minutes ago      44 minutes ago
+
+#비밀키 제거
+core@core-01 ~ $ docker secret rm my-password
+
+Error response from daemon: rpc error: code = InvalidArgument desc = secret 'my-password' is in use by the following service: secret
+```
+<br>
+현재 secret에서 my-password 비밀키를 사용중이므로 삭제할 수 없다.  
+<br>
+
+**7. Service에서 비밀 키 제거**: my-password비밀키를 사용중인 Service에서 비밀키 사용 해제  
+```code
+#Service(Secret)에서 my-passward 비밀 키 삭제
+core@core-01 ~ $ docker service update --secret-rm my-password secret
+
+secret
+overall progress: 1 out of 1 tasks
+1/1: running   [==================================================>]
+verify: Service converged
+
+#삭제 확인
+core@core-01 ~ $ docker exec $(docker ps --filter name=secret -q) ls /run/secrets/
+
+my-password
+
+core@core-01 ~ $ docker exec $(docker ps --filter name=secret -q) cat /run/secrets/my-password
+
+#확인 결과 비밀키 파일은 존재하나 읽을 수 없는 것을 확인할 수 있다.
+```
+
+**8. 비밀키 제거**: 비밀키를 사용중인 Service와 비밀키의 관계를 없앴음으로 비밀키 제거 가능  
+```code
+#비밀키 제거
+core@core-01 ~ $ docker secret rm my-password
+my-password
+
+#제거 확인
+core@core-01 ~ $ docker secret ls
+ID                  NAME                DRIVER              CREATED             UPDATED
+```
+<br><br>
+
+### Docker proxy Server
+
+<br><br>
+
+### Docker Monitoring
+
+<br>
 <hr>
 참조: 완벽한 IT 인프라 구축을 위한 Docker<br>
 참조:<a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a><br>
 참조:<a href="https://www.sauru.so/blog/little-more-about-docker-machine/">sauru 블로그</a><br>
+참조:<a href="https://code-examples.net/ko/docs/docker~17/engine/swarm/secrets/index">code-examples</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
