@@ -4,7 +4,7 @@ title:  "Tensorflow-GAN"
 date:   2019-10-17 09:00:00 +0700
 categories: [Tensorflow]
 ---
-
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 ### GAN
 
 GAN이란 상대적 적대 신경망으로서 Generative Adversarial Network이다.  
@@ -17,7 +17,7 @@ GAN이란 상대적 적대 신경망으로서 Generative Adversarial Network이�
 이번 Post에서는 Tensorflow로서 같은 작업을 해보며 성능 비교 및 결과를 확인하는 것을 목표로 한다.
 <br><br>
 ### GAN 구현
-
+<br>
 #### 필요한 라이브러리 임포트
 ```python
 import tensorflow as tf
@@ -66,8 +66,6 @@ gridspec로서 사용한 Parameter중 사용한 Parameter만 알아본다.
 	<td>The amount of height reserved for space between subplots</td>
 </tr>
 </table>
-<br>
-
 ```python
 # MNIST 데이터를 다운로드하고 불러옵니다.
 from tensorflow.examples.tutorials.mnist import input_data
@@ -143,15 +141,14 @@ def my_image_filter(input_images):
         strides=[1, 1, 1, 1], padding='SAME')
     return tf.nn.relu(conv2 + conv2_biases)
 ```
-여러분이 쉽게 상상할 수 있듯이, 모델은 이것보다 훨씬 더 복잡하며, 여기에도 이미 4개의 다른 변수가 있습니다: conv1_weights, conv1_biases, conv2_weights, 그리고 conv2_biases.
-문제는 이 모델을 다시 사용하고자 할 때 발생합니다. 2개의 다른 이미지, image1과 image2를 여러분의 이미지 필터에 적용하기를 원한다고 가정하십시오. 여러분은 같은 파라미터로 같은 필터에서 처리된 이미지가 필요합니다. my_image_filter()를 두 번 호출할 수 있지만, 이것은 두 세트의 변수를 생성합니다 :
-#### First call creates one set of variables.
+>여러분이 쉽게 상상할 수 있듯이, 모델은 이것보다 훨씬 더 복잡하며, 여기에도 이미 4개의 다른 변수가 있습니다: conv1_weights, conv1_biases, conv2_weights, 그리고 conv2_biases.
+문제는 이 모델을 다시 사용하고자 할 때 발생합니다. 2개의 다른 이미지, image1과 image2를 여러분의 이미지 필터에 적용하기를 원한다고 가정하십시오. 여러분은 같은 파라미터로 같은 필터에서 처리된 이미지가 필요합니다. my_image_filter()를 두 번 호출할 수 있지만, 이것은 두 세트의 변수를 생성합니다 
+
+**First call creates one set of variables**  
 result1 = my_image_filter(image1)
-#### Another set is created in the second call.
-result2 = my_image_filter(image2)
-
+**Another set is created in the second call**  
+result2 = my_image_filter(image2)  
 즉 지속적인 변수 생성을 막아 메모리를 효율적으로 사용하고 변수의 범위를 지정해줄 수 있는 Tensorflow의 기능이라고 생각하면 된다.  
-
 자세한 사항은 아래 링크 참조  
 <a href="https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/how_tos/variable_scope/">tensorflowkorea 사용 예시</a><br>
 
@@ -399,6 +396,6 @@ for i in range(10):
 <br><br>
 
 <hr>
-참조:<a href="https://github.com/wjddyd66/Tensorflow/tree/master/RNN">원본코드</a><br>
+참조:<a href="https://github.com/wjddyd66/Tensorflow/tree/master/GAN">원본코드</a><br>
 참조:텐서플로로 배우는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
