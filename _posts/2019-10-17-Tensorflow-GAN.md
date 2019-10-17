@@ -225,7 +225,7 @@ D_fake, D_fake_logits = build_discriminator(G)  # D(G(z))
 ```
 <br><br>
 
-### LossFunction 정의
+#### LossFunction 정의
 
 <p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 <p>$$\mathbb{E}: \text{기대값}$$</p>
