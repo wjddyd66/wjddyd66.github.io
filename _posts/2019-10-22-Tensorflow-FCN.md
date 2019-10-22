@@ -25,6 +25,6 @@ categories: [Tensorflow]
 <br>
 
 <hr>
-참조:<a href="https://github.com/wjddyd66/Tensorflow/tree/master/GAN">원본코드</a><br>
+참조:<a href="https://github.com/wjddyd66/Tensorflow/tree/master/FCN">원본코드</a><br>
 참조:텐서플로로 배우는 딥러닝<br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
