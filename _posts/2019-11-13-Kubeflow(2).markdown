@@ -29,38 +29,38 @@ Kubeflow는 Kubernetes + mlflow로서 Kubernetes기반으로 Machine Learning의
 **Kubeflow 구성요소**  
 <br>
 **Jupyter Notebook**  
-<img src="https://www.kubeflow.org/logos/Jupyter.png" width="30%">
+<img src="https://www.kubeflow.org/logos/Jupyter.png" width="30%"><br>
 Kubeflow는 Jupyter Notebook을 IDE로서 사용할 수 있다.  
 이러한 Notebook은 Kustomize를 통하여 개인의 취향대로 Customize가 가능하다.  
 Jupyter Nobebook은 Workspace를 생성할때 GPU지원 여부나 Tensorflow 버전등을 손쉽게 선택이 가능하다.  
 <br>
 
 **TensorFlow model training**  
-<img src="https://www.kubeflow.org/logos/TensorFlow.png" width="30%">
+<img src="https://www.kubeflow.org/logos/TensorFlow.png" width="30%"><br>
 Kubeflow는 Model Training Job Operator를 제공한다.  
 이러한 과정은 **TFJob**을 통하여 이루워진다.  
 **TFJob**이란 Kubernetes가 Tensorflow Trainning과정에서 어떻게 Model을 Trainning시킬 것인가에 대하여 미리 .yaml File로서 작성하고 적용시킬 수 있다.  
-**참조**: <a href="https://www.kubeflow.org/docs/components/training/tftraining/">TFJob</a><br>
 <br>
 
 **Model serving**  
-<img src="https://www.kubeflow.org/logos/Models.png" width="30%">
+<img src="https://www.kubeflow.org/logos/Models.png" width="30%"><br>
 Kubeflow는 Model serving을 다양한 형태로 지원해준다.  
 예를들어 Tensorflow로서 Coding하고 하나의 Model을 Trainning하여 최종결과물을 얻었어도 Jetson Nano Board에서 Test할 수 없었다.  
 Jetson Nano Board에 올리기위하여 NVDIA TensorRT로서 Serving하였어야 하는데 이러한 번거로운 과정을 Kubeflow에서는 손쉽게 처리 가능하다.  
 <br>
 
 **Pipelines**  
-<img src="https://www.kubeflow.org/logos/Pipeline.png" width="30%">
+<img src="https://www.kubeflow.org/logos/Pipeline.png" width="30%"><br>
 Kubeflow는 Pipelines를 지원한다.  
 실질적인 하나의 Model을 만든다는것은 Model.py로서 하나를 만든다고 끝나는 것이 아니다.  
 예를들어 Data를 얼만큼 가져올 것인지에 대한 .py File을 작성할 것이고 이러한 Trainning과정에서 Validation은 어떻게 할 것인가 또 최종적인 결과는 어떻게 출력할 것인가에 대한 Coding을 .py File로서 하나하나 작성할 것이다.  
+<br>
 **Kubeflow는 이러한 서로 다른 과정을 UI로서 연결하여 작동하는 Pipeline을 제공한다.**  
-<img src="https://www.kubeflow.org/docs/images/pipelines-xgboost-graph.png">
+<img src="https://www.kubeflow.org/docs/images/pipelines-xgboost-graph.png"><br>
 <br>
 
 **Multi-framework**  
-<img src="https://www.kubeflow.org/logos/MultiPlatform.png" width="30%">
+<img src="https://www.kubeflow.org/logos/MultiPlatform.png" width="30%"><br>
 Kubeflow는 Tensorflow뿐만아니라 PyTorch, MXNey, Chainer등 다양한 Framework를 지원한다.  
 <br>
 
