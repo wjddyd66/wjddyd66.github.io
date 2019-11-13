@@ -206,10 +206,10 @@ kubectl describe nodes minikube
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/5.PNG" height="250" width="600" /></div>
 <br>
 Network 정보 확인  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/6.PNG" height="150" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/6.PNG" height="100" width="600" /></div>
 <br>
 용량 정보 확인  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/7.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/7.PNG" height="300" width="600" /></div>
 <br>
 System 정보 확인  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/8.PNG" height="250" width="600" /></div>
