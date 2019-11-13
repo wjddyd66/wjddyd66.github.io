@@ -1,0 +1,204 @@
+---
+layout: post
+title:  "Kubeflow 설치"
+date:   2019-11-13 11:00:20 +0700
+categories: [Kubeflow]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### Kubeflow 설치
+Minikube와 Nvidia Docker를 활용하여 Localhost에서 GPU기반으로 돌아가는 Minikube를 Cluster로 사용하여 Kubeflow를 구축하는 것을 목표로 한다.  
+
+**사전사항**
+- Docker-CE ( ≥ 18.09)
+- Nvidia-Docker( ≥ 2.03)
+
+<br>
+**1. Kubectl 설치**  
+```code
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+sudo apt-key add - && \
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | \
+sudo tee /etc/apt/sources.list.d/kubernetes.list && \
+sudo apt-get update -q && \
+sudo apt-get install kubectl=1.15.4-00
+```
+<br>
+<code>kubectl version</code>으로서 1.15.0 Version인지 확인<br>
+
+**2.Minikube 설치**  
+```code
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.2.0/minikube-linux-amd64
+chmod +x minikube
+sudo mv minikube /usr/local/bin/
+```
+<br>
+<code>minikube version</code>으로서 Minikube Version확인<br>
+
+**3.Minikube 실행**  
+1)/etc/docker/daemon.json 파일에서 default-runtime을 nvidia로 변경한다.
+```code
+{
+    "default-runtime": "nvidia",
+
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+```
+<br>
+2)Docker 재시작
+```code
+sudo service docker restart
+```
+<br>
+3)Minikube 실행
+```code
+sudo -E minikube start --vm-driver=none --apiserver-ips 127.0.0.1 --apiserver-name localhost --docker-opt default-runtime=nvidia --feature-gates=DevicePlugins=true --kubernetes-version v1.15.0
+```
+<br>
+Minikube를 GPU기반으로 돌리기 위하여 특정 조건을 걸어서 Setting하였습니다.  
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
+	<tr>
+		<td>name</td><td>description</td>
+	</tr>
+	
+	<tr>
+		<td>—docker-opt default-runtime=nvidia</td><td>미니쿠베의 기본 도커를 엔비디아 도커로 설정한다</td>
+	</tr>
+	<tr>
+		<td>—feature-gates=DevicePlugins=true</td><td>GPU 지원은 쿠버네티스에서 알바/베타 단계에 속한다. 따라서 이를 사용하기 위해서는 feature-gates 옵션을 이용해서 GPU 사용 옵션을 변경해줘야한다</td>
+	</tr>
+	<tr>
+		<td>—kubernetes-version v1.15.0</td><td>NVIDIA 드라이버를 쿠버네티스와 연결해주는 k8s-device-plugin은 1.10이상의 쿠버네티스 버전을 요구한다</td>
+	</tr>
+	<tr>
+		<td>--vm-driver=none</td><td>현재 정식 홈페이지에서 사용하는 Driver kmv2 같은 경우 GPU연동을 위하여 많은 제약사항이 존재하여 Driver를 None으로서 사용</td>
+	</tr>
+
+</table>
+<br>
+
+**4. Minikube Nvidia Driver Pod 설치**  
+1) 설치
+```code
+kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v1.12/nvidia-device-plugin.yml --validate=false
+```
+<br>
+2)확인
+```code
+kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"
+```
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/20.PNG" height="250" width="600" /></div><br><br>
+
+**5. Kubeflow 설치**  
+1) https://github.com/kubeflow/kubeflow/releases/tag/v0.7.0에서 linux.tar.gz 다운
+2) 압축 해제
+```code
+tar -xvf kfctl_v0.7.0_<platform>.tar.gz
+```
+<br>
+
+**6. 환경 변수 설정**  
+```code
+export PATH=$PATH:"/home/jyhwang"
+export KF_NAME="my-kubeflow"
+export BASE_DIR="/home/jyhwang"
+export KF_DIR=${BASE_DIR}/${KF_NAME}
+export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_k8s_istio.yaml"
+```
+<br>
+<table class="table">
+	<tr>
+		<td>name</td><td>description</td>
+	</tr>
+	
+	<tr>
+		<td>KF_NAME</td><td>생성할 Folder 명 지정</td>
+	</tr>
+	<tr>
+		<td>BASE_DIR</td><td>생성할 Directory 지정</td>
+	</tr>
+	<tr>
+		<td>KF_DIR</td><td>위의 두 변수를 활용하여 작업 폴더 지정</td>
+	</tr>
+
+</table>
+<br>
+**7. pv 생성**  
+1) PV File 작성 (pv.yaml, pv2.yaml, pv3.yaml, pv4.yaml, pv5.yaml)
+```code
+#pv.yaml
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+        name: kubeflow-volume
+spec:
+        capacity:
+                storage: 20Gi
+        accessModes:
+                - ReadWriteOnce
+        hostPath:
+                path: "/storage/kubeflowstorage"
+
+```
+<br>
+**참고사항**
+Kubeflow의 Version에 따라서 PVC가 4~5개가 생깁니다. 5개를 만들어 두로 Kubeflow설치 후 PVC가 4개인경우 1개를 삭제하는 방법이 제일 안전합니다.  
+또한, Kubeflow의 몇몇 Version인 경우에는 특별한 StorageClass를 사용합니다. 그러는 경우 StorageClass를 따로 선언한뒤 apply해야 합니다.  
+PV 에서 선언한 Path에 Directory생성및 권한을 접근 가능하게 바꿔줘야 합니다.  
+
+2) PV File apply
+```code
+kubectl apply -f pv.yaml
+kubectl apply -f pv2.yaml
+kubectl apply -f pv3.yaml
+kubectl apply -f pv4.yaml
+kubectl apply -f pv5.yaml
+```
+<br>
+
+**8. Kubeflow 설치**  
+```code
+mkdir -p ${KF_DIR}
+cd ${KF_DIR}
+kfctl apply -V -f ${CONFIG_FILE}
+```
+<br>
+
+**9. PortForwarding**  
+```code
+export NAMESPACE=istio-system
+kubectl port-forward -n istio-system svc/istio-ingressgateway 8080:80
+```
+<br>
+
+**10. 접속 화면**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/21.PNG" height="250" width="600" /></div><br><br>
+
+**참조사항(Minikube 재설치)**  
+중간중간 설치가 잘못되어 재설치를 해야하는 경우 **특정 설정 파일을 삭제해야 한다. 그렇지 않으면 이전에 설정들이 같이 따라와서 이전 작업에서 발생한 에러가 그대로 발생하는 경우가 있다.**  
+
+1) 설정 파일 삭제
+```code
+minikube stop
+minikube delete
+rm -r /root/.kube
+rm -r /root/.minikube
+rm -r /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+```
+<br>
+2) PV에서 지정한 Directory안에 모든 File을 지워야 한다. 만약 재설치시 원래 설치한 PV와 PVC가 맞지 않으면 DB가 달라 읽지 못하는 Error가 발생한다.
+<br>
+
+<hr>
+참조:<a href="https://ssaru.github.io/2019/07/25/20190725-Connect_GPU_to_Minikube/">Minikube GPU 연동</a><br>
+참조:<a href="https://www.kubeflow.org/docs/other-guides/virtual-dev/getting-started-minikube/">Minikube 설치 사이트</a><br>
+참조:<a href="https://www.kubeflow.org/docs/started/k8s/kfctl-k8s-istio/">Kubeflow 설치 사이트</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
