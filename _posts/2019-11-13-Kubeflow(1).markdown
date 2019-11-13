@@ -50,7 +50,7 @@ Kubernetes는 다양한 클라우드 환경을 제공한다.(Google이 만들었
 Kubernetes는 부하에 따라 자동으로 서버를 늘리는 기능 AutoScaling이 있고 IP를 할당받아 로드밸런스를 사용할 수 있다.  
 이러한 기능은 Cloud에서 환경을 적용시켜 손쉽게 이루워질 수 있다.  
 (하지만, 비용 문제 때문에 앞으로의 실습환경은 Local에서 Minikube를 사용합니다.)
-<br>
+<br><br>
 
 **RBAC(role-based access control)**  
 <img src="https://subicura.com/assets/article_images/2019-05-19-kubernetes-basic-1/rbac.png"/><br>
@@ -168,15 +168,15 @@ API통신을 위하여 사용하는 명령줄 도구인 **Kubectl**을 통하여
 <br>
 
 **클러스터 상태 확인**  
-- Kubectl 버전 확인  
+Kubectl 버전 확인  
 ```code
 kubectl version
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/1.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/1.PNG" height="150" width="600" /></div>
 <br>
 
-- Master 확인  
+Master 확인  
 ```code
 kubectl get componentstatus
 ```
@@ -186,15 +186,15 @@ kubectl get componentstatus
 <br>
 
 **Node 확인**  
-- Node 확인  
+Node 확인  
 ```code
 kubectl get nodes
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/3.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/3.PNG" height="150" width="600" /></div>
 <br>
 
-- Node 상세 정보 확인  
+Node 상세 정보 확인  
 ```code
 kubectl describe nodes minikube
 ```
@@ -206,7 +206,7 @@ kubectl describe nodes minikube
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/5.PNG" height="250" width="600" /></div>
 <br>
 Network 정보 확인  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/6.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/6.PNG" height="150" width="600" /></div>
 <br>
 용량 정보 확인  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/7.PNG" height="250" width="600" /></div>
@@ -220,21 +220,21 @@ Pod 정보 확인
 <br>
 
 **클러스터 구성 요소**  
-- Kubenetes proxy  
+Kubenetes proxy  
 **namespace를 사용하여 지정한 namespace에 지정할 수 있는 것을 볼 수 있다.**  
 ```code
 kubectl get daemonSets --namespace=kube-system kube-proxy
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/10.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/19.PNG" height="100" width="600" /></div>
 <br>
 
-- Kubernetes DNS  
+Kubernetes DNS  
 ```code
 kubectl get svc --namespace=kube-system kube-dns
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/11.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/11.PNG" height="100" width="600" /></div>
 <br>
 
 **Object 생성 업데이트 삭제**  
@@ -258,7 +258,7 @@ kubectl delete -f <Object Spec(.yaml or .json)>
 <br>
 
 **디버깅 명령**  
-- 컨테이너 로그 확인  
+컨테이너 로그 확인  
 describe로서 확인하였으나 더 자세한 내용을 살펴보기 위하여 log 출력  
 ```code
 kubectl logs <pod name>
@@ -267,14 +267,14 @@ kubectl logs <pod name>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/12.PNG" height="250" width="600" /></div>
 <br>
 
-- 동작 중인 컨테이너에서 다른 명령을 실행  
+동작 중인 컨테이너에서 다른 명령을 실행  
 **Docker와 같은 방식으로 작동**  
 ```code
 kubectl exec -it <포드 이름> --bash
 ```
 <br>
 
-- 컨테이너에서 Local 혹은 컨테이너로 파일 복사  
+컨테이너에서 Local 혹은 컨테이너로 파일 복사  
 ```code
 kubectl cp <포드 이름>:/path/to/remote/file /path/to/local/file
 ```
@@ -282,7 +282,7 @@ kubectl cp <포드 이름>:/path/to/remote/file /path/to/local/file
 <br>
 
 **명령어 확인**  
-- Kubectl 도움말  
+Kubectl 도움말  
 ```code
 kubectl help
 ```
@@ -290,7 +290,7 @@ kubectl help
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/13.PNG" height="250" width="600" /></div>
 <br>
 
-- Kubectl 명령어 도움말  
+Kubectl 명령어 도움말  
 ```code
 kubectl help <명령 이름>
 ```
@@ -305,6 +305,7 @@ Kubernetes는 Stateless Application을 사용한다.
 따라서 Volume을 통하여 Localhost 혹은 Cloud상에 저장소를 만들어두고 저장하는 방식을 사용한다.  
 또한, Kubernetes는 **PV, PVC를 활용하여 자동으로 데이터가 있는 볼륨이 컨테이너가 새로 시작한 노드에 옮겨 붙여서 쌓아뒀던 데이터를 그대로 활용해서 사용할 수 있다.**  
 사용가능한 Volume의 종류는 다음과 같다.  
+<br>
 awsElasticBlockStore  
 azureDisk  
 azureFile  
