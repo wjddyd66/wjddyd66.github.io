@@ -66,7 +66,7 @@ Minikube를 GPU기반으로 돌리기 위하여 특정 조건을 걸어서 Setti
 	<tr>
 		<td>name</td><td>description</td>
 	</tr>
-	
+
 	<tr>
 		<td>—docker-opt default-runtime=nvidia</td><td>미니쿠베의 기본 도커를 엔비디아 도커로 설정한다</td>
 	</tr>
@@ -94,7 +94,7 @@ kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v1.
 kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/20.PNG" height="250" width="600" /></div><br><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/20.PNG" height="150" width="600" /></div><br><br>
 
 **5. Kubeflow 설치**  
 1) https://github.com/kubeflow/kubeflow/releases/tag/v0.7.0에서 linux.tar.gz 다운
@@ -117,7 +117,7 @@ export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/k
 	<tr>
 		<td>name</td><td>description</td>
 	</tr>
-	
+
 	<tr>
 		<td>KF_NAME</td><td>생성할 Folder 명 지정</td>
 	</tr>
@@ -181,7 +181,6 @@ kubectl port-forward -n istio-system svc/istio-ingressgateway 8080:80
 
 **10. 접속 화면**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/21.PNG" height="250" width="600" /></div><br><br>
-
 **참조사항(Minikube 재설치)**  
 중간중간 설치가 잘못되어 재설치를 해야하는 경우 **특정 설정 파일을 삭제해야 한다. 그렇지 않으면 이전에 설정들이 같이 따라와서 이전 작업에서 발생한 에러가 그대로 발생하는 경우가 있다.**  
 

@@ -1,0 +1,290 @@
+---
+layout: post
+title:  "JupyterNotebook"
+date:   2019-11-14 09:00:20 +0700
+categories: [Kubeflow]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### Why use Jupyter Notebooks in Kubeflow
+Kubeflow에서 Jupyter Notebooks를 사용하는 이유를 다음과 같은 2가지 이유로 설명하고 있다.  
+>Integrating well with the rest of the infrastructure with respect to authentication and access control.
+
+인증 및 엑세스 제어와 관련하여 나머지 인프로와 잘 통합된다.  
+<br>
+
+>Enabling easier notebook sharing across the organization. Users can create notebook containers or pods directly in the cluster, rather than locally on their workstations. Admins can provide standard notebook images for their organization, and set up role-based access control (RBAC), Secrets and Credentials to manage which teams and individuals can access the notebooks.
+
+**관리자는 Kubernetes의 RBAC를 통하여 쉽게 Access 제어**를 할 수 있다.  
+또한 User는 cluster의 pod이나 container에 자신의 환경에 맞게 개별적으로 Notebook환경을 설정할 수 있다.  
+**즉, 사용자마다 Python, Tensorflow등 Version이 다르게 구축할 수 있고 이러한 환경과 Code를 사용자 전체와 공유**할 수 있다는 장점이 발생한다.  
+<br>
+
+>When you bundle Jupyter Notebooks in Kubeflow, you can use the Fairing library to submit training jobs using TFJob
+
+또한 Jupyter Notebooks는 Kubeflow가 지원하는 TFJob을 통하여 Trainning시킬 수 있다.  
+<br><br>
+
+### Multi-user Isolation
+본격적인 Jupyter Notebooks를 알아보기 이전에 사용하고자 하는 곳이 회사나 다른 조직이라고 생각하였을 때 다수의 사용자를 등록시켜야 하는 일이 발생한다.  
+먼저 처음 Kubeflow에 접속하게 되면 임의의 User를 생성할 수 있다.  
+**간단한 profile을 소개한다.**  
+<img src="https://www.kubeflow.org/docs/images/auto-profile1.png"><br>
+**User는 이름을 지정하고 등록할 수 있다.**  
+<img src="https://www.kubeflow.org/docs/images/auto-profile2.png"><br>
+
+**초창기 이후의 User는 관리자를 통하여 등록시킬 수 있다.**  
+먼저 Object Spec을 정의한다.  
+```code
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+        name: wjddyd1
+spec:
+        owner:
+                kind: User
+                name: wjddyd1@naver.com
+---
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+        name: wjddyd2
+spec:
+        owner:
+                kind: User
+                name: wjddyd2@naver.com
+```
+<br>
+위의 변수들은 말 그대로 Profile의 Object를 생성하는데 각각의 User에 대한 name과 email을 생성하여 지정한다.  
+<br>
+kubectl명령어를 통하여 Object Spec의 명시한 대로 Object를 생성한다.  
+```code
+kubectl create -f profile.yaml
+```
+<br>
+```code
+profile.kubeflow.org/wjddyd1 created
+profile.kubeflow.org/wjddyd2 created
+```
+<br>
+
+생성한 profile객체를 확인할 수 있다.  
+```code
+kubectl get profiles
+```
+<br>
+```code
+NAME      AGE
+jyhwang   24h
+wjddyd1   40s
+wjddyd2   40s
+```
+<br>
+초창기에 생성한 jyhwang과 추가한 User wjddyd1, wjddyd2가 생성된것을 확인할 수 있다.  
+<br>
+
+더 자세한 내용을 알기위한 describe도 지원한다.  
+```code
+kubectl describe profile wjddyd1
+```
+<br>
+```code
+Name:         wjddyd1
+Namespace:
+Labels:       <none>
+Annotations:  <none>
+API Version:  kubeflow.org/v1beta1
+Kind:         Profile
+Metadata:
+  Creation Timestamp:  2019-11-14T01:23:49Z
+  Finalizers:
+    profile-finalizer
+  Generation:        2
+  Resource Version:  495520
+  Self Link:         /apis/kubeflow.org/v1beta1/profiles/wjddyd1
+  UID:               55cac053-49a0-43bc-83b0-6d40cf83be00
+Spec:
+  Owner:
+    Kind:  User
+    Name:  wjddyd1@naver.com
+  Resource Quota Spec:
+Events:  <none>
+
+```
+<br>
+
+등록한 Profile은 관리자가 삭제할 수 도 있다.  
+```code
+kubectl delete profile <profileName>
+```
+<br>
+
+실제 Kubeflow에 들어가서 확인결과 User가 모두 정상등록된 것을 알 수 있다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/22.PNG" height="150" width="600" /></div><br>
+<br><br>
+
+### Set Up Your Notebooks
+먼저 왼쪽 상단에 존재하는 **Notebook Servers** 클릭  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/23.PNG" height="100%" width="100%" /></div><br>
+<br>
+Name space 선택 후 Nerwerver 선택  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/24.PNG" height="100%" width="100%" /></div><br>
+<br>
+Notebook 환경 설정  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/25.PNG" height="100%" width="100%" /></div><br>
+<br>
+위와 같은 환경에서 다양한 환경을 지정할 수 있다.  
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+<table class="table">
+	<tr>
+		<td>변수</td>
+		<td>설명</td>
+	</tr>
+    <tr>
+		<td>Name</td>
+		<td>Notebook Server Name(문자나 숫자 가능, 공백 X)</td>
+	</tr>
+	<tr>
+		<td>Namespace</td>
+		<td>User의 이름과 동일하게 정해진다. Namespace를 통하여 서로 접근가능</td>
+	</tr>
+	<tr>
+		<td>image</td>
+		<td>Image는 Docker Image로서 Pull해서 넣은 Image의 목록이 나온다. 주의해야 하는 점은 GPU를 사용하는 Tensorflow나 다른 환경을 지정하기 위해서는 GPU를 사용 가능해야 한다.</td>
+	</tr>
+	<tr>
+		<td>Custom</td>
+		<td>Customize한 Jupyter의 Image사용 가능</td>
+	</tr>
+	<tr>
+		<td>CPU, GPU</td>
+		<td>사용가능한 CPU, GPU설정 (1이상도 가능)</td>
+	</tr>
+	<tr>
+		<td>Memory</td>
+		<td>RAM</td>
+	</tr>
+	<tr>
+		<td>workspace volume</td>
+		<td>
+		<ul>
+			<li>실제 Jupyter Notebook의 데이터를 저장할 위치, 만약 지정을 안하면 Notebook 삭제시 데이터도 모두 삭제</li>
+			<li>Size: 크기</li>
+			<li>Mount path: 실제 저장 장소</li>
+			<li>Acess mode: pv, pvc와 동일</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Data Volumes</td>
+		<td>하나 이상의 Data에 접근하기위한 장소, 즉 공용으로 사용하는 Dataset은 하나의 Path에 모아두고 링크를 걸면 각각의 Jupyter Notebooks에서 접근 가능하다.</td>
+	</tr>
+
+</table>
+<br>
+
+**주의사항**  
+먼저 JupyterNotebooks를 할당하기 위해서는 2가지의 사전사항이 필요하다.  
+**1. Default StorageClass Object를 생성해야 한다.**  
+StorageClass를 할당하는 이유는 JupyterNotebook의 저장소를 연결하기 위해서이다.  
+**Default StorageClass를 통하여 JupyterNotebook이 생성하는 PVC와 PV를 연결할 수 있게 된다.**  
+```code
+#StorageClass.yaml
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+          name: jupyter
+          annotations:
+                  storageclass.beta.kubernetes.io/is-default-class: "true"
+provisioner: io.k8s.api.storage.v1.StorageClass
+volumeBindingMode: WaitForFirstConsumer
+
+```
+<br>
+위의 Code에서 가장 중요한 것은 **storageclass.beta.kubernetes.io/is-default-class: "true"**이다.  
+이 명령어로 인하여 생성된 StorageClass는 Default로서 선언될 수 있다.  
+<code>kubectl apply -f StorageClass.yaml</code>을 실행하게 되면 다음 화면을 확인할 수 있다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/26.PNG" height="100%" width="100%" /></div><br><br>
+
+**2. JupyterNotebook과 연결할 PV를 선언하여야 한다.**  
+마찬가지로 Object Spec을 정의하고 Object를 생성하도록 한다.  
+```code
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+        name: jupyter-volume3
+spec:
+        storageClassName: jupyter
+        capacity:
+                storage: 20Gi
+        accessModes:
+                - ReadWriteOnce
+        hostPath:
+                path: "/home/jovyan"
+```
+<br>
+위에서 중요한 것은 2가지 이다.  
+- storageClassName: jupyter로서 Default Storageclass랑 같아야 PVC가 자동으로 연결될 수 있다.
+- path: "/home/jovyan"으로서 지정하였다. JupyterNotebook을 생성할때 처음 Default 저장소이기 때문이다.
+
+**위와 같은 사실로인하여 실제 Kubeflow를 실제 Service에 배포하여도 사용자에게 CPU, GPU, 저장소 등을 관리자가 원하는대로 할당할 수 있다는 것을 의미한다.**  
+<br>
+생성하게되면 최종적인 화면은 다음과 같이 나오게 된다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/27.PNG" height="100%" width="100%" /></div><br><br>
+
+### Jupyter Notebooks 실행
+다음과 같은 간단한 예제를 돌려보자.  
+```code
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+import tensorflow as tf
+
+x = tf.placeholder(tf.float32, [None, 784])
+
+W = tf.Variable(tf.zeros([784, 10]))
+b = tf.Variable(tf.zeros([10]))
+
+y = tf.nn.softmax(tf.matmul(x, W) + b)
+
+y_ = tf.placeholder(tf.float32, [None, 10])
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))
+
+train_step = tf.train.GradientDescentOptimizer(0.05).minimize(cross_entropy)
+
+sess = tf.InteractiveSession()
+tf.global_variables_initializer().run()
+
+for _ in range(1000):
+  batch_xs, batch_ys = mnist.train.next_batch(100)
+  sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
+
+correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+print("Accuracy: ", sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+```
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/28.PNG" height="100%" width="100%" /></div><br>
+Warning이여도 잘 작동하는 것을 확인할 수 있다.  
+그렇다면 다운로드 받은 MNIST File도 직접 Access할 수 있는지 확인해 보자.  
+```code
+import os
+print(os.getcwd())
+```
+<br>
+/home/jovyan  
+위의 Code를 실행하면 아까 JupyterNotebook에서 지정한 Directory랑 같은 것을 확인할 수 있다.  
+실제 Local에서 확인해보면 잘 있는것을 확인할 수 있다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/29.PNG" height="100%" width="100%" /></div><br>
+
+마지막으로 GPU와 CPU를 둘 다 사용하는지 알아보기 위하여 다음과 같은 Code를 실행해 보자.  
+```code
+from tensorflow.python.client import device_lib
+print(device_lib.list_local_devices())
+```
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/30.PNG" height="100%" width="100%" /></div><br>
+확인결과 다행이 CPU, GPU Device를 둘다 잘 잡아서 사용하는 것을 확인할 수 있다.  
+<br>
+<hr>
+참조:<a href="https://www.kubeflow.org/docs/notebooks/why-use-jupyter-notebook/">Kubeflow-JupyterNotebooks</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
