@@ -1,0 +1,54 @@
+---
+layout: post
+title:  "SDK"
+date:   2019-11-14 11:00:20 +0700
+categories: [Kubeflow]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### SDK
+PipeLines을 구축하고 사용하기 위해서  Jupyter Notebook과 interacting이 가능한 SDK에 대해서 먼저 알아보자.  
+**SDK란 ML Workflow를 지정하고 실행하는데 사용할 수 있는 Python Package이다.**  
+SDK는 다음과 같은 Component를 가지고 있다.  
+
+**kfp.compiler**: 파이프 라인 구성 요소에 대한 Docker 컨테이너 이미지를 빌드하기 위한 클래스 및 메소드를 포함한다.  
+- <code>kfp.compiler.Compiler.compile</code>: Kubeflow Pipelines service가 가능하게 Python DSL Code를 YAML형식으로 변환시킨다.
+- <code>kfp.compiler.build_docker_image</code>: Dockerfile을 기반으로하는 Container image를 build하고 image를 URL로 Push한다.
+- <code>kfp.compiler.build_python_component</code>: Python Function을 기반으로하는 Container image를 build하고 image를 URL로 Push한다.
+
+<br>
+
+**kfp.components**: 파이프 라인과 interacting하기 위한 Class 및 Method를 포함한다.  
+- <code>kfp.components.func_to_container_op</code>: Python FUnction을 Pipeline 구성요소로 변환시키고 factory function으로 Return한다. 이러한 factory function은 Container안에 실행되는 함수이다. factory function은 pipeline task대신에 호출할 수 있다.
+- <code>kfp.components.load_component_from_file</code>: Pipeline의 구성요소 중 file를 부를수 있고 factory function을 Return한다.
+- <code>kfp.components.load_component_from_url</code>: Pipeline의 구성요소 중 URL를 부를수 있고 factory function을 Return한다.
+
+<br>
+
+**kfp.dsl**: 파이프 라인 및 구성 요소를 정의하고 상호 작용하는 데 사용할 수 있는 DSL이 포함되어있다.  
+- <code>kfp.dsl.ContainerOp</code>: 컨테이너 이미지로 구현 된 파이프 라인 작업 (op)을 나타냅니다.
+- <code>kfp.dsl.PipelineParam</code>: 한 파이프 라인 구성 요소에서 다른 파이프 라인 구성 요소로 전달할 수있는 파이프 라인 매개 변수를 나타냅니다.
+- <code>kfp.dsl.component</code>: 파이프 라인 구성 요소를 반환하는 DSL 함수의 데코레이터입니다.
+- <code>kfp.dsl.pipeline</code>: 파이프 라인을 반환하는 Python 함수의 데코레이터
+- <code>kfp.dsl.python_component</code>: 파이프 라인 구성 요소 메타 데이터를 함수 객체에 추가하는 Python 함수의 데코레이터입니다.
+- <code>kfp.dsl.types</code>: Kubeflow Pipelines SDK에 의해 정의 된 유형 목록이 포함되어 있습니다. 유형에는 String, Integer, Float 및 Bool과 같은 기본 유형과 GCPProjectID 및 GCRPath와 같은 도메인 별 유형이 포함됩니다. 
+- <code>kfp.dsl.ResourceOp</code>: Kubernetes 리소스를 직접 조작(create, get, apply, ...)
+- <code>kfp.dsl.VolumeOp</code>: PVC를 빠르게 만드는데 사용
+- <code>kfp.dsl.VolumeSnapshotOp</code>: VolumeSnapshot을 빠르게 작성하는 일반적인 경우를 사용
+- <code>kfp.dsl.PipelineVolume</code>: 파이프 라인 단계간에 데이터를 전달하는 데 사용되는 볼륨을 나타낸다.  
+
+<br>
+
+**kfp.Client**: Kubeflow Pipelines를 위한 client libraries  
+- <code>kfp.Client.create_experiment</code>: pipeline experiments를 생성하고 experiment object를 반환한다.
+- <code>kfp.Client.run_pipeline</code>: Pipeline을 실행하고 object를 반환한다.
+
+<br><br>
+
+### Install the Kubeflow Pipelines SDK
+
+
+
+<hr>
+참조:<a href="https://www.kubeflow.org/docs/pipelines/sdk/">Kubeflow-SDK</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

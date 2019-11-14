@@ -1,0 +1,68 @@
+---
+layout: post
+title:  "Pipelines"
+date:   2019-11-14 10:00:20 +0700
+categories: [Kubeflow]
+---
+<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
+### What is Kubeflow Piplines?
+>- A user interface (UI) for managing and tracking experiments, jobs, and runs.
+>- An engine for scheduling multi-step ML workflows.
+>- An SDK for defining and manipulating pipelines and components.
+>- Notebooks for interacting with the system using the SDK.
+
+Kubeflow에서 제공하는 Piplines란 다양한 Step을 가진 ML workflows를 UI형태로 제공하는 것 이다.  
+이러한 과정은 **SDK를 통하여 이루워지며 SDK는 Jupyter Notebook과 interacting이 가능하다.**  
+또한 Kubeflow의 Pipelines를 사용하면 다음과 같은 장점이 있다고 설명하고 있다.  
+>- End-to-end orchestration: enabling and simplifying the orchestration of machine learning pipelines
+>- Easy experimentation: making it easy for you to try numerous ideas and techniques and manage your various trials/experiments.
+>- Easy re-use: enabling you to re-use components and pipelines to quickly create end-to-end solutions without having to rebuild each time.
+
+즉 한번 정의하여 계속해서 손쉽게 사용하고 다양한 환경에서 실험할 수 있게 도와주는 End-toend orchestration이다.  
+<br><br>
+
+### PipeLine 예제 실행
+Kubeflow자체에서 Pipeline을 실행할 수 있는 환경을 만들어 두었다.  
+이러한 예제를 실행하고 어떻게 실행되는지 알아보자.  
+
+**예제1: [Sample] Basic - Parallel Execution**  
+[Sample] Basic - Parallel Execution Click  
+<img src="https://www.kubeflow.org/docs/images/click-pipeline-sample.png"/><br><br>
+
+Click Create experiment  
+<img src="https://www.kubeflow.org/docs/images/pipelines-start-experiment.png"/><br><br>
+
+Enviroment 선언  
+<img src="src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/31.PNG" height="100%" width="100%" "/><br><br>
+
+Enviroment 선언  
+<img src="src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/31.PNG" height="100%" width="100%" "/><br><br>
+
+Run details 선언  
+<img src="src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/32.PNG" height="100%" width="100%" "/><br><br>
+
+Experiments 확인  
+<img src="src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/33.PNG" height="100%" width="100%" "/><br><br>
+
+Status가 Unknwon Status -> Executed Success 이되면 Name Click  
+<img src="src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/34.PNG" height="100%" width="100%" "/><br><br>
+
+결과 확인 결과 Graph, Run output, Config등을 확인 가능하다.  
+<img src="src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/35.PNG" height="100%" width="100%" "/><br><br>
+<br>
+
+**예제2: [Sample] ML - XGBoost - Training with Confusion Matrix**  
+위와 같은 과정을 거치나 중요한 점은 GCP에 결과를 저장하기 때문에 다음과 같은 Parameter에 특정한 값을 넣어야 한다는 것 이다.  
+<img src="https://www.kubeflow.org/docs/images/pipelines-start-xgboost-run.png"/><br><br>
+
+실행을 시키면 실제 Pod이 Container를 생성하시키면서 실행하는 것을 살펴볼 수 있다.  
+<img src="src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/36.PNG" height="100%" width="100%" "/><br><br>
+
+**현재 Kubeflow자체는 Minikube에서 Local로서 돌리는 것을 목표롤 잡고 환경설정을하여서 실제 GCP연동에대한 Kubernetes의 Setting을 하지 않아서 kubeflow Xboost Pod안에서 Container가 생성되지 않는다. 결과 확인 못하였다.**  
+<br>
+
+
+<hr>
+참조:<a href="https://www.kubeflow.org/docs/pipelines/pipelines-quickstart/">Kubeflow-PipeLines</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.

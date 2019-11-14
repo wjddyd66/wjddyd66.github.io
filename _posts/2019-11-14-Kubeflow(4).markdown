@@ -28,11 +28,13 @@ Kubeflow에서 Jupyter Notebooks를 사용하는 이유를 다음과 같은 2가
 ### Multi-user Isolation
 본격적인 Jupyter Notebooks를 알아보기 이전에 사용하고자 하는 곳이 회사나 다른 조직이라고 생각하였을 때 다수의 사용자를 등록시켜야 하는 일이 발생한다.  
 먼저 처음 Kubeflow에 접속하게 되면 임의의 User를 생성할 수 있다.  
+<br>
 **간단한 profile을 소개한다.**  
 <img src="https://www.kubeflow.org/docs/images/auto-profile1.png"><br>
+<br>
 **User는 이름을 지정하고 등록할 수 있다.**  
 <img src="https://www.kubeflow.org/docs/images/auto-profile2.png"><br>
-
+<br>
 **초창기 이후의 User는 관리자를 통하여 등록시킬 수 있다.**  
 먼저 Object Spec을 정의한다.  
 ```code
@@ -185,6 +187,7 @@ Notebook 환경 설정
 
 **주의사항**  
 먼저 JupyterNotebooks를 할당하기 위해서는 2가지의 사전사항이 필요하다.  
+<br>
 **1. Default StorageClass Object를 생성해야 한다.**  
 StorageClass를 할당하는 이유는 JupyterNotebook의 저장소를 연결하기 위해서이다.  
 **Default StorageClass를 통하여 JupyterNotebook이 생성하는 PVC와 PV를 연결할 수 있게 된다.**  
@@ -200,7 +203,6 @@ provisioner: io.k8s.api.storage.v1.StorageClass
 volumeBindingMode: WaitForFirstConsumer
 
 ```
-<br>
 위의 Code에서 가장 중요한 것은 **storageclass.beta.kubernetes.io/is-default-class: "true"**이다.  
 이 명령어로 인하여 생성된 StorageClass는 Default로서 선언될 수 있다.  
 <code>kubectl apply -f StorageClass.yaml</code>을 실행하게 되면 다음 화면을 확인할 수 있다.  
@@ -285,6 +287,10 @@ print(device_lib.list_local_devices())
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/30.PNG" height="100%" width="100%" /></div><br>
 확인결과 다행이 CPU, GPU Device를 둘다 잘 잡아서 사용하는 것을 확인할 수 있다.  
 <br>
+**참고사항**  
+실제 Kubeflow에서 기본으로 제공하는 Docker Image로 Jupyter Notebooks를 만들었을때 Tensorflow 1.14v 은 Python2에서 돌아가고 Tensorflow 2.0v 는 Python3에서 돌아간다.  
+Python3에서 Tensorflpw 1.14v을 pip으로서 설치하려하였으나 Error가 발생한다. 즉, Docker Image로서 Pull하여야 사용가능하다.  
+
 <hr>
 참조:<a href="https://www.kubeflow.org/docs/notebooks/why-use-jupyter-notebook/">Kubeflow-JupyterNotebooks</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
