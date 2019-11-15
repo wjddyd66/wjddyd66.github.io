@@ -51,14 +51,17 @@ VGG는 위와같은 Layer 중 위에서 표시한 Box의 부분만을 사용하�
 또한 위에서 VGG 를사용하여 FineTuning을 실시하지만 FC Layer는 거치지 않는다고 하였다.  
 즉, FCN은 VGG의 FC Layer를 Convolution으로 대체하였다고 할 수 있다.  
 사용한 Convolution은 1x1 Size의 Kernel을 이용하여 Convolution을 수행하였다.  
+
+<br>
+
 **먼저 FC Layer를 거치는 Image를 살펴보자**  
 <img src="https://k.kakaocdn.net/dn/cSbIVE/btqvI5YqCii/k6AP2w27BjDtdEQYKgu5Tk/img.png"/><br>
-사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br>
+사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br><br>
 **최종적인 결과는 1 Dimension의 1차원 Vector로서 나오게 된다. 이러한 결과는 Segmentation에서 중요한 위치정보를 잃게되는 불상사가 발생하게 된다.** 이러한 FC Layer는 위에서 이미지 분류 중 Classification에서 사용한다.  
-<br>
+<br><br>
 **다음으로 FC Layer를 1x1 Convolution으로 대체한 FCN을 살펴보자**  
 <img src="https://k.kakaocdn.net/dn/bFIfAW/btqvHhd0D3s/FIyW7ZKEzL1DFOjk0EfFA1/img.png"/><br>
-사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br>
+사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br><br>
 위의 결과로서 알 수 있는 FCN의 장점을 살펴보자.
 
 1. Image의 크기는 결국에 H/32 x W/32로서 Input Image의 크기는 상관이 없다. 기존의 Classification을 위해 FC Layer를 거쳐야하는 VGG Model은 Input Image의 크기를 일일이 맞춰줬어야 한다.
@@ -70,28 +73,32 @@ VGG는 위와같은 Layer 중 위에서 표시한 Box의 부분만을 사용하�
 Upsampling이란 Feature-level Classification를 통하여 H/32 x W/32 x 21의 Feature와 Location의 정보를 가지고 있는 Vector를 다시 원래의 Imae의 크기로 맞춰주어서 Segmentation을 하기위한 과정이다.  
 중요한 점은 **Feature-level Classification의 결과가 Coarse한 결과라는 것이다.**  
 즉, Heatmap의 한 pixel은 원본 Image의 32 x 32의 특징을 대략적(coarse)으로 가지고 있기 때문에 Upsampling결과 Detail한 Segemntation이 불가능하다는 것 이다.  
+
+<br>
+
 이러한 점은 <a href="https://wjddyd66.github.io/opencv/2019/11/07/OpenCV(8).html">OpenCV의 디스크립터</a>들이 가지는 문제와도 같다.  
 대표적인 이러한 문제점을 해결하는 방식은 **이미지 피라미드를 구성하는 것 이다.**  
 즉, 다양한 Image의 Size에서 Image의 전체적인 특징 부터 Detail한 특징까지 모두 합치는 과정이 필요하다.  
 참고로, <a href="https://wjddyd66.github.io/pytorch/2019/09/27/Pytorch-StyleTransfer.html">Style Transfer</a>에서도 Style Reconsturction과정에서 전체적인 분위기서부터 좁은 영역의 모든 분위기를 사용하기 위하여 위와 같은 과정을 사용하였다.  
 또한 <a href="https://wjddyd66.github.io/pytorch/2019/09/26/Pytorch-Unet.html">Unet</a>에서도 Copy and Crop의 과정에서 이러한 과정을 거쳤다.  
 즉, **End to End Netowork의 구조에서 Feature Extraction결과에서 다시 Upsampling을 하는 Network의 구조에서는 위와 같은 과정이 필수인 것을 알 수 있다.**  
+<br>
 **참고(Upsampling)**  
 CNN에서 Upsampling의 경우 Deconvolution을 통하여 이루워 집니다.  Deconvolution의 자세한 내용은 아래 링크를 참조하시기 바랍니다.  
 **Deconvolution**: <a href="https://wjddyd66.github.io/pytorch/2019/09/24/Pytorch-AutoEncoder.html">Pytorch-Autoencoder</a><br>
-
+<br>
 위와 같은 과정의 최종적인 결과는 아래 그림과 같다.  
 <img src="https://k.kakaocdn.net/dn/pU9Xh/btqvGCXt7hJ/yFa9DNVZi99eGvVoBXut8k/img.png"/><br>
 사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br>
 
 논문에서는 위의 그림의 최종적인 결과 Ground truth을  **skip combining**이라는 기법을 사용하여 구현하였다.  
-
+<br><br>
 먼저 **FCN-32s라고 표현한 결과부터 살펴보자.**  
 <img src="https://k.kakaocdn.net/dn/bwdTpY/btqvHixmi52/Bq3qFblKq2M59qH3DTQ6Xk/img.jpg"/><br>
 사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br>
 FCN-32s는 위의 결과처럼 Heatmap의 크기를 단순히 32배로 증가시키는 과정으로 이루워졌다.  
 앞에서도 이야기 하였지만 Heatmap은 Coarse한 특성이므로 전체적인 Detail을 표현하기에는 부족하다는 것을 알 수 있다.  
-
+<br><br>
 **FCN-16s라고 표현한 결과를 살펴보자.**  
 <img src="https://k.kakaocdn.net/dn/IGdNu/btqvIlt4uDG/fcPrxA9rRuGSK0k7urG1SK/img.jpg"/><br>
 사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br>
@@ -102,7 +109,7 @@ FCN-32s는 위의 결과처럼 Heatmap의 크기를 단순히 32배로 증가시
 3. Result2 x 16Upsampling
 
 위와 같은 과정으로 Coarse한 특성을 좀 더 완만하게 해결하였다.  
-
+<br><br>
 **FCN-8s라고 표현한 결과를 살펴보자.**  
 <img src="https://k.kakaocdn.net/dn/cUvGlz/btqvJ6CMaea/mhXVZg7xJk9rEdLR7KRgWk/img.jpg"/><br>
 사진 출처: <a href="https://bskyvision.com/491">bskyvision.com</a><br>
@@ -127,7 +134,7 @@ FCN.py를 제외한 Utility의 함수의 경우 모두 주석으로 설명이 �
 **FCN.py**  
 **필요한 라이브러리 Import**  
 기본적인 tensorflow, numpy뿐만아니라 Trainning과 Utility를 포함한 Python File까지 모두 import한다.  
-```code
+```python
 from __future__ import print_function
 import tensorflow as tf
 import numpy as np
@@ -168,7 +175,7 @@ import BatchDatsetReader as dataset
 
 </table>
 <br>
-```code
+```python
 # 학습에 필요한 설정값들을 tf.flag.FLAGS로 지정합니다.
 FLAGS = tf.flags.FLAGS
 tf.flags.DEFINE_integer("batch_size", "2", "batch size for training")
@@ -186,7 +193,7 @@ VGG-19 Parameter가 지정된 mat file의 URL과 Trainning에 필요한 Paramete
 - INAGE_SIZE: VGG Model의 Input Size의 크기는 224이다.  
 
 
-```code
+```python
 # VGG-19의 파라미터가 저장된 mat 파일(MATLAB 파일)을 받아올 경로를 지정합니다.
 MODEL_URL = 'http://www.vlfeat.org/matconvnet/models/beta16/imagenet-vgg-verydeep-19.mat'
 
@@ -200,7 +207,7 @@ IMAGE_SIZE = 224
 **VGG Model 정의**  
 mat File로부터 Tensorflow로 API를 이용하여 VGGNet 그래프를 구축  
 먼저 TensorflowUtils.py에서 선언한 Method부터 살펴보자.  
-```code
+```python
 def get_variable(weights, name):
     init = tf.constant_initializer(weights, dtype=tf.float32)
     var = tf.get_variable(name=name, initializer=init,  shape=weights.shape)
@@ -220,7 +227,7 @@ def avg_pool_2x2(x):
 - avg_pool_2x2: Pooling을 통하여 Image의 크기 1/2로 줄임
 
 이제 위의 Method를 활용하여 실질적인 VGGNet구조를 살펴보자.  
-```code
+```python
 # VGGNet 그래프 구조를 구축합니다.
 def vgg_net(weights, image):
   layers = (
@@ -272,7 +279,7 @@ VGGNet Model의 구조는 당연히 FC Layer가 포함되지 않았고 또한 �
 - keep_prop: drop out하지 않을 Node의 비율
 
 
-```code
+```python
 # FCN 그래프 구조를 정의합니다.
 def inference(image, keep_prob):
   """
@@ -355,7 +362,7 @@ def inference(image, keep_prob):
 위의 코드가 길지만 하나하나 살펴보면 다음과 같다.  
 먼저 <code>def process_image(image, mean_pixel)</code>을통하여 Image를 Mean Normalization한다.  
 def process_image()는 다음과 같이 정의된다.  
-```code
+```python
 def process_image(image, mean_pixel):
     return image - mean_pixel
 ```
@@ -385,7 +392,7 @@ IMAGE의 NUM_OF_CLASSES 중 가장 큰값들을 합치는 과정이다.
 <code>annotation_pred = tf.argmax(conv_t3, dimension=3, name="prediction")</code><br><br>
 
 **main함수 지정 후 Input Image, Target Image, Dropout 비율을 정한다.**  
-```code
+```python
 def main(argv=None):
   # 인풋 이미지와 타겟 이미지, 드롭아웃 확률을 받을 플레이스홀더를 정의합니다.
   keep_probability = tf.placeholder(tf.float32, name="keep_probabilty")
@@ -396,7 +403,7 @@ def main(argv=None):
 <br>
 
 **FCN을 선언하고 Tensorboard를 위한 summary 지정**  
-```code
+```python
   pred_annotation, logits = inference(image, keep_probability)
   tf.summary.image("input_image", image, max_outputs=2)
   tf.summary.image("ground_truth", tf.cast(annotation, tf.uint8), max_outputs=2)
@@ -405,7 +412,7 @@ def main(argv=None):
 <br><br>
 
 **Loss, Optimization 선언, Tensorboard에 Loss기록**  
-```code
+```python
   # 손실함수를 선언하고 손실함수에 대한 summary를 지정합니다.
   loss = tf.reduce_mean((tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits,
                                                                         labels=tf.squeeze(annotation, squeeze_dims=[3]), name="entropy")))
@@ -418,7 +425,7 @@ def main(argv=None):
 <br><br>
 
 **Dataset을 불러오고 Batch단위로 묶는다.**  
-```code
+```python
  # training 데이터와 validation 데이터의 개수를 불러옵니다.
   print("Setting up image reader...")
   train_records, valid_records = scene_parsing.read_dataset(FLAGS.data_dir)
@@ -435,7 +442,7 @@ def main(argv=None):
 <br><br>
 
 **Session을 열고 Train의 Log들을 지정한 Directory로 저장**  
-```code
+```python
   # 세션을 엽니다.
   sess = tf.Session()
 
@@ -456,7 +463,7 @@ def main(argv=None):
 
 **선언한 Model과 Parameter를 통하여 학습을 진행**  
 위에서 정의한 FLAG.mode에 따라서 Train을 할 것인지 결과를 저장하는 Visualisation을 할지 지정한다.  
-```code
+```python
   if FLAGS.mode == "train":
     for itr in range(MAX_ITERATION):
       # 학습 데이터를 불러오고 feed_dict에 데이터를 지정합니다
@@ -509,11 +516,11 @@ if __name__ == "__main__":
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/153.PNG" height="100%" width="100%" />
 <br>
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/153_2.PNG" height="100%" width="100%" />
-<br>
+<br><br>
 
 **Tensorboard1**  
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/154.PNG" height="100%" width="100%" />
-<br>
+<br><br>
 
 **Tensorboard2**  
 <img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/155.PNG" height="50%" width="50%" />
