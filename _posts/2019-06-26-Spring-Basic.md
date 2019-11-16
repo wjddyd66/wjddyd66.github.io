@@ -80,7 +80,7 @@ bean을 사용하기 위하여 Mapping하는 방법은 3가지가 있다.
 ###  Bean Scope
 스프링은 기본적으로 bean을 하나의 Singletone객체로 설정한다.  
 bean의 Scope를 사용하여 다른 범위로 사용할 수 있다.  
-<a href="https://wjddyd66.github.io/others/2019/06/14/SingleTon.html">SingleTon 자세한 내용</a>
+<a href="https://wjddyd66.github.io/others/SingleTon">SingleTon 자세한 내용</a>
 <br>
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
@@ -149,6 +149,7 @@ Maven이란 사용할 라이브러리뿐만 아니라 해당 라이브러리가 
 <br>
 
 <br>
+
 <hr>
 내용참조:<a href="https://12bme.tistory.com/157">12bme 블로그</a><br>
 내용참조:<a href="https://limmmee.tistory.com/8">dongdong_ 블로그</a><br>

@@ -12,8 +12,8 @@ mlflow란 Machine Learning의 Workflow를 의미한다.
 즉 Machine Learning을 Kubernetes를 활용하여 쉽게 관리하게 도와주는 것이 Kubeflow라는 것 이다.  
 따라서 Kubeflow의 기반인 Kubernetes에 대해서 깊게는 아니여도 기본적인 개념은 알아두고 Kubeflow에 대해새 알아보자  
 **먼저 Kubernetes에대해서 알기 전에 Docker 에 대해서 사전지식이 필요한다.**  
-Docker 사전지식: <a href="https://wjddyd66.github.io/category/Docker">Docker Category</a><br>
-<a href="https://wjddyd66.github.io/docker/2019/10/15/Docker(9).html">클라우드를 사용한 Docker 실행 환경 구축</a> Post를 살펴보면 Kubernetes를 컨테이너 오케스트레이션의 하나라고 잠시 언급하였다.  
+Docker 사전지식: <a href="https://wjddyd66.github.io/categories/#docker">Docker Category</a><br>
+<a href="https://wjddyd66.github.io/docker/Docker(9)">클라우드를 사용한 Docker 실행 환경 구축</a> Post를 살펴보면 Kubernetes를 컨테이너 오케스트레이션의 하나라고 잠시 언급하였다.  
 
 컨테이너 오케스트레이션은 **컨테이너의 시작 및 정지와 같은 조작뿐만 아니라 호스트간의 네트워크 연결이나 스토리지 관리, 컨테이너를 어떤 호스트에서 가동할지와 같은 스케줄링, 컨테이너가 정상적으로 작동하고 있는지 아닌지를 감시하는 기능을 갖춘 툴**이라고 정의하였다.  
 

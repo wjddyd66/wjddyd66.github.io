@@ -37,7 +37,7 @@ XML(EXtensible Markup Language): HTML과 매우 비슷한 문자 기반의 마�
 <br>
 <br>
 Ajax( Asynchronous Javascript And Xml)  
-<a href="https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html">AJAX 참고</a>  
+<a href="https://wjddyd66.github.io/web/JavaScript-DOM,JQuery,Ajax">AJAX 참고</a>  
 Ajax통신에서 사용하는 Parameter  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 <table class="table">
