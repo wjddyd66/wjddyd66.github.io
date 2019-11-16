@@ -12,10 +12,11 @@ GAN이란 상대적 적대 신경망으로서 Generative Adversarial Network이�
 - Adversarial(적대적): 적대란 대립하거나 상반되는 관계를 뜻한다. GAN에서는 생성네트워크와 구분 네트워크간의 상반되는 목적함수로 인해 적대성이 생기게 된다.
 - Network: 생성자와 구분자의 구조가 인공 신경망의 형태를 이룬다.
 
-자세한 내용은 앞선 Post <a href="https://wjddyd66.github.io/pytorch/2019/10/07/Pytorch-GAN.html">Pytorch-GAN</a>을 참조  
+자세한 내용은 앞선 Post <a href="https://wjddyd66.github.io/pytorch/Pytorch-GAN">Pytorch-GAN</a>을 참조  
 
 이번 Post에서는 Tensorflow로서 같은 작업을 해보며 성능 비교 및 결과를 확인하는 것을 목표로 한다.
 <br><br>
+
 ### GAN 구현
 <br>
 #### 필요한 라이브러리 임포트
@@ -227,16 +228,19 @@ D_fake, D_fake_logits = build_discriminator(G)  # D(G(z))
 
 #### LossFunction 정의
 
-<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{G}{min} \underset{D}{max}V(D,G)$$</p>
+<p>$$= \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 <p>$$\mathbb{E}: \text{기대값}$$</p>
 <p>$$x\text{~}P_{data}(x): \text{x를 실제 data의 분포에서 샘플링}$$</p>
 <p>$$z\text{~}P_{z}(z): \text{z를 Noise의 분포에서 샘플링}$$</p>
 
 **구분자**  
-<p>$$ \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{D}{max}V(D,G)$$</p>
+<p>$$= \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 
 **생성자**  
-<p>$$ \underset{G}{min}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{G}{min}V(D,G)$$</p>
+<p>$$= \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 <p>$$=> Trainning의 시간을 줄이기 위하여 식 변경$$</p>
 <p>$$ \underset{G}{max}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$</p>
 
@@ -259,7 +263,9 @@ tf.nn.sigmoid_cross_entropy_with_logits(logits = x, labels =z)
 d_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_real_logits, labels=tf.ones_like(D_real_logits)))
 ```
 위의 코드를 식으로서 표현하게 된다면  
-<p>$$d_loss_real = mean(1 * -log(sigmoid(\text{D_real_logits}) + (1-1) * -log(1-sigmoid(\text{D_real_logits}))))$$</p>
+<p>$$d_loss_real$$</p>
+<p>$$= mean(1 * -log(sigmoid(\text{D_real_logits})$$</p>
+<p>$$+ (1-1) * -log(1-sigmoid(\text{D_real_logits}))))$$</p>
 <p>$$= mean(-log(sigmoid(\text{D_real_logits})))$$</p>
 <p>$$= mean(-log(\frac{1}{1+e^{-\text{D_real_logits}}}))$$</p>
 <p>$$= mean(log(1+e^{-\text{D_real_logits}}))$$</p>

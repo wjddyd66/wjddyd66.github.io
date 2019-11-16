@@ -76,16 +76,16 @@ Upsampling이란 Feature-level Classification를 통하여 H/32 x W/32 x 21의 F
 
 <br>
 
-이러한 점은 <a href="https://wjddyd66.github.io/opencv/2019/11/07/OpenCV(8).html">OpenCV의 디스크립터</a>들이 가지는 문제와도 같다.  
+이러한 점은 <a href="https://wjddyd66.github.io/opencv/OpenCV(8)">OpenCV의 디스크립터</a>들이 가지는 문제와도 같다.  
 대표적인 이러한 문제점을 해결하는 방식은 **이미지 피라미드를 구성하는 것 이다.**  
 즉, 다양한 Image의 Size에서 Image의 전체적인 특징 부터 Detail한 특징까지 모두 합치는 과정이 필요하다.  
-참고로, <a href="https://wjddyd66.github.io/pytorch/2019/09/27/Pytorch-StyleTransfer.html">Style Transfer</a>에서도 Style Reconsturction과정에서 전체적인 분위기서부터 좁은 영역의 모든 분위기를 사용하기 위하여 위와 같은 과정을 사용하였다.  
-또한 <a href="https://wjddyd66.github.io/pytorch/2019/09/26/Pytorch-Unet.html">Unet</a>에서도 Copy and Crop의 과정에서 이러한 과정을 거쳤다.  
+참고로, <a href="https://wjddyd66.github.io/pytorch/Pytorch-StyleTransfer">Style Transfer</a>에서도 Style Reconsturction과정에서 전체적인 분위기서부터 좁은 영역의 모든 분위기를 사용하기 위하여 위와 같은 과정을 사용하였다.  
+또한 <a href="https://wjddyd66.github.io/pytorch/Pytorch-Unet">Unet</a>에서도 Copy and Crop의 과정에서 이러한 과정을 거쳤다.  
 즉, **End to End Netowork의 구조에서 Feature Extraction결과에서 다시 Upsampling을 하는 Network의 구조에서는 위와 같은 과정이 필수인 것을 알 수 있다.**  
 <br>
 **참고(Upsampling)**  
 CNN에서 Upsampling의 경우 Deconvolution을 통하여 이루워 집니다.  Deconvolution의 자세한 내용은 아래 링크를 참조하시기 바랍니다.  
-**Deconvolution**: <a href="https://wjddyd66.github.io/pytorch/2019/09/24/Pytorch-AutoEncoder.html">Pytorch-Autoencoder</a><br>
+**Deconvolution**: <a href="https://wjddyd66.github.io/pytorch/Pytorch-AutoEncoder">Pytorch-Autoencoder</a><br>
 <br>
 위와 같은 과정의 최종적인 결과는 아래 그림과 같다.  
 <img src="https://k.kakaocdn.net/dn/pU9Xh/btqvGCXt7hJ/yFa9DNVZi99eGvVoBXut8k/img.png"/><br>
