@@ -1,7 +1,11 @@
 ---
 title:  "JAVA-조건문, 반복문"
 date:   2019-06-13 11:45:20 +0700
-categories: [JAVA]
+categories:
+  - JAVA
+tags:
+  - JAVA
+  - 조건문, 반복문
 ---
 
 ### 자바의 조건문, 반복문
