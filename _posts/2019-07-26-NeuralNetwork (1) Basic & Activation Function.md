@@ -15,7 +15,7 @@ Neural Network는 아래와 같은 그림으로 이루워져 있다.
 
 각각의 Hidden Layer의 Node하나하나를 이전에 Post하였던 Perceptron이라고 생각할 수 있다.  
 
-<a href="<https://wjddyd66.github.io/ai/2019/07/26/Perceptron.html>">Perceptron 자세한 내용</a><br>
+<a href="https://wjddyd66.github.io/dl/Perceptron">Perceptron 자세한 내용</a><br>
 
 Neural Network는 다음과 같은 중요한 개념은 크개5개로서 이루워진다고 할 수 있다.  
 

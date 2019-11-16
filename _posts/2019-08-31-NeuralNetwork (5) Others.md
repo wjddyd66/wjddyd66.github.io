@@ -156,18 +156,28 @@ ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천
 위와 같이 Parameter가 정의되어 있으면 Target Data는 아래처럼 표현 할 수 있다.  
 $$t = f(x) + ϵ$$
 
-Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은 <span>$E\{(t-y)^2\}$</span>으로서 표현 할 수 있다.  
+Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은 <span>$$Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은E\{(t-y)^2\}$$ </span>으로서 표현 할 수 있다.  
 Loss Function을 조금 더 풀어보면 다음과 같다.  
 
 $$E\{(t-y)^2\} = E\{(t-f+f-y)^2\}$$
 $$= E\{(t-f)^2\} + E\{(f-y)^2\} + 2E\{(f-y)(t-f)\}$$
-$$= E\{ϵ^2\} + E\{(f-y)^2\} + 2[E\{ft\} - E\{f^2\} - E\{yt\} + E\{yf\}]$$
+$$
+\begin{multline}
+= E\{ϵ^2\} + E\{(f-y)^2\} + 2[E\{ft\} \\
+- E\{f^2\} - E\{yt\} + E\{yf\}]
+\end{multline}
+$$
 $$= E\{(f - E\{y\} + E\{y\} - y)^2\} + E\{ϵ^2\}$$
 <br>
 $$(\because t = f + ϵ 이므로 ft - f^2 - yt + yf$$
 $$f(f + ϵ) - f^2 - y(f + ϵ) + yf = fϵ - yϵ = 0)$$
 <br>
-$$= E\{(f-E\{y\})^2\} + E\{(E\{y\}-y)^2\} + 2E\{(E\{y\}-y)(f-E\{y\})\} + E\{ϵ^2\}$$
+$$
+\begin{multline}
+= E\{(f-E\{y\})^2\} + E\{(E\{y\}-y)^2\} \\
++ 2E\{(E\{y\}-y)(f-E\{y\})\} + E\{ϵ^2\}
+\end{multline}
+$$
 $$= E\{(f-E\{y\})^2\} + E\{(E\{y\}-y)^2\} + E\{ϵ^2\}$$
 <br>
 $$(\because 2E\{(E\{y\}-y)(f-E\{y\})\} =0 )$$

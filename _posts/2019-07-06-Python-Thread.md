@@ -8,7 +8,7 @@ categories: [Python]
 ###  Python Thread
 Thread란 Main Process와 병렬로 수행되는 미니 Process이다.  
 Thread를 사용함으로 인하여 멀티태스킹이 가능해진다.  
-<a href="https://wjddyd66.github.io/java/2019/06/15/Thread.html">Thread 자세한 내용</a>
+<a href="https://wjddyd66.github.io/java/Thread">Thread 자세한 내용</a>
 <br><br>
 
 Thread 기본 예제

@@ -10,7 +10,7 @@ Class란 객체를 만들기 위하여 정의한다.
 여러가지의 공통된 것을 정의하기 위하여 사용한다.  
 각각의 객체들은 원형 클래스를 참조하는 방식이다.  
 class '이름' 으로서 선언하게 된다.  
-<a href="https://wjddyd66.github.io/java/2019/06/14/Class_Method.html">Class 내용</a><br>
+<a href="https://wjddyd66.github.io/java/Class_Method">Class 내용</a><br>
 <span style ="color: red">**자바와의 차이**</span><br>
 <span style ="color: red">**1) 메소드 오버로딩, 생성자 오버로딩X(메소드 오버로딩 O)**</span><br>
 <span style ="color: red">**2) 접근 지정자X**</span><br>
@@ -209,7 +209,7 @@ oscar의 회전량은 직진0
 <br>
 ###  메소드 오버로딩
 오버로딩이란 상위클래스안에 선언된 메소드를 하위클래스에서 새로 선언 혹은 정의하는 것  
-<a href="https://wjddyd66.github.io/java/2019/06/14/Inheritance.html">오버로딩 참조</a><br>
+<a href="https://wjddyd66.github.io/java/Inheritance">오버로딩 참조</a><br>
 
 ```python
 #Method 오버로딩

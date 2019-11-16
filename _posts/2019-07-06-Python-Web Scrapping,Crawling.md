@@ -11,7 +11,7 @@ categories: [Python]
 
 <span style ="color: red">**XML, Json, HTML**</span>을 Web Scrapping,Crawling을 통하여 가져오고 가공하는 작업을 할 것이다.  
 3개의 Type은 DOM형식이므로 파일을 읽어오거나 ElementTree로서 가져올 수 있다.  
-<a href="https://wjddyd66.github.io/web/2019/06/20/JavaScript-DOM,JQuery,Ajax.html">DOM 자세한 내용</a>
+<a href="https://wjddyd66.github.io/web/JavaScript-DOM,JQuery,Ajax">DOM 자세한 내용</a>
 
 ###  XML 자료 읽기
 Local에 있는 my.xml자료를 읽는 과정이다.  
@@ -256,9 +256,8 @@ http://www.naver.com/index.htmlhttps://www.navercorp.com/
 2. find_all(): 해당 조건에 맞는 모든 태그들을 가져온다.
 3. prettify(): Html모양처럼 보기에 편하게 만들어주는 함수
 
-<span style ="color: red">** 추가 요소**</span><br>
-1. 정규표현식: 정규표현식을 활용하여 원하는 정보를 Filterring 하여 가져올 수 있다.
- - <a href="https://wjddyd66.github.io/others/2019/06/16/RegularExpression.html">정규표현식 자세한 내용</a>
+** 추가 요소**  
+1. 정규표현식: 정규표현식을 활용하여 원하는 정보를 Filterring 하여 가져올 수 있다. <a href="https://wjddyd66.github.io/others/RegularExpression">정규표현식 자세한 내용</a>
 
 2. CSS Selector를 활용하여 원하는 정보 Filterring
 

@@ -22,8 +22,7 @@ MyBatis를 이해하기 위한 기본은 DAO, DTO, Bean이다.
     1)데이터 전달을 위해 만들어진 객체  
     2)Private로 변수를 선언하고 getter, setter Method로 접근한다.
 
-
-<a href="https://wjddyd66.github.io/java/2019/06/14/AccessModifier.html">자세한 내용</a><br>
+<a href="https://wjddyd66.github.io/java/AccessModifier">자세한 내용</a><br>
 
  - FormBean:DTO와 같지만 Client 에서 WebServer로 전달하는 Data 객채이다.
 

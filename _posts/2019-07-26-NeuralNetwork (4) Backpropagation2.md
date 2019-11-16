@@ -16,7 +16,7 @@ categories: [DL]
 <p>$$\frac{\partial z}{\partial x} = 1$$</p>
 <p>$$\frac{\partial z}{\partial y} = 1$$</p>
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F99FB57455B98F67407FADD" height="200" width="600" /></div>
-위의 <span>$$z = x + y$$</span>계산은 전체 그래프의 중간 어딘가에 존재한다고 가정했기 때문에, 이 계산 그래프의 앞부분에서 부터 <span>\frac{\partial L}{\partial z}</span>가 전해졌다고 가정한다.  
+위의 <span>$$z = x + y$$</span>계산은 전체 그래프의 중간 어딘가에 존재한다고 가정했기 때문에, 이 계산 그래프의 앞부분에서 부터 <span>$$\frac{\partial L}{\partial z}$$</span>가 전해졌다고 가정한다.  
 위의 그림은 아래와 같은 Code로서 간단히 구현될 수 있다.  
 ```python
 class AddLayr:
@@ -38,7 +38,7 @@ class AddLayr:
 <p>$$\frac{\partial z}{\partial x} = y$$</p>
 <p>$$\frac{\partial z}{\partial y} = x$$</p>
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F99E3EF435B98F69309175D" height="200" width="600" /></div>
-위의 <span>$$z = x + y$$</span>계산은 전체 그래프의 중간 어딘가에 존재한다고 가정했기 때문에, 이 계산 그래프의 앞부분에서 부터 <span>\frac{\partial L}{\partial z}</span>가 전해졌다고 가정한다.  
+위의 <span>$$z = x + y$$</span>계산은 전체 그래프의 중간 어딘가에 존재한다고 가정했기 때문에, 이 계산 그래프의 앞부분에서 부터 <span>$$\frac{\partial L}{\partial z}$$</span>가 전해졌다고 가정한다.  
 위의 그림은 아래와 같은 Code로서 간단히 구현될 수 있다.  
 ```python
 class MulLayer:
@@ -100,7 +100,7 @@ print("%d, %.1f, %.1f, %d, %d" % (dapple_num, dapple, dorange, dorange_num, dtax
 <br><br>
 #### Activation Function 계층 구현하기
 Activation Function에 대한 사전지식은 아래 링크를 참조  
-<a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(1)-Basic-&-Activation-Function.html">Activation Function 자세한 내용</a>
+<a href="https://wjddyd66.github.io/dl/NeuralNetwork-(1)-Basic-&-Activation-Function/">Activation Function 자세한 내용</a>
 위의 내용에서는 Activation Function에 대한 개념과 식 그리고 미분 방법에 대하여 Post하였다.  
 이를 활용하여 Activation Function에 Forward 와 Backward를 실제 구현해보자.  
 
@@ -249,7 +249,7 @@ class Affine:
 이러한 Softmax계층을 구현할때, 손실함수인 Cross Entropy를 포함하여 아래와 같이 Softmax-with_Loss 계층을 구현한다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F99EBF5395B98F7792B42CE" height="200" width="600" /></div>
 Softmax-with-Loss의 개념과 미분방법은 아래 링크를 참조하면 된다.  
-<a href="https://wjddyd66.github.io/tensorflow/2019/08/18/Logistic-Regression.html">Softmax-with-Loss</a><br>
+<a href="https://wjddyd66.github.io/tensorflow/Logistic-Regression">Softmax-with-Loss</a><br>
 위의 링크에서도 알 수 있듯이 정답 레이블이 (0,1,0)일 경우 예측값이 (0.3,0.2,0.5)를 출력하게 되면 Backpropagation으로서 (0.3,-0.8(0.2-1),0.5)를 전달하게 되어 Parameter의 Update를 빠르게 진행 할 수 있는 것을 알 수 있다.  
 이러한 Softmax-with-Loss의경우 아래와 같은 Code로서 간단히 구현 될 수 있다.  
 ```python

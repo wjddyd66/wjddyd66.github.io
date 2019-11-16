@@ -150,7 +150,7 @@ print('Error2: ',error2) #Error2:  -1.589027019340636
 ```
 <br>
 <hr>
-참조:<a href="https://github.com/wjddyd66/DeepLearning/blob/master/Loss%20Function.ipynb">원본코드</a>
+참조:<a href="https://github.com/wjddyd66/DeepLearning/blob/master/Loss%20Function.ipynb">원본코드</a><br>
 참조: <a href="https://ratsgo.github.io/deep%20learning/2017/09/24/loss/">ratsgo 블로그</a> <br>
 참조:<a href="http://blog.naver.com/PostView.nhn?blogId=qbxlvnf11&logNo=221386519587&categoryNo=52&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search&userTopListOpen=true&userTopListCount=5&userTopListManageOpen=false&userTopListCurrentPage=1">예비계발자 블로그</a><br>
 참조: <a href="https://wikidocs.net/22647">딥 러닝을 이용한 자연어 처리 입문</a> <br>

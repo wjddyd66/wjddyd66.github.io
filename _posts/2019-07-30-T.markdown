@@ -54,7 +54,7 @@ categories: [DataAnalysis]
 </table>
 <br>
 
-T검정에 대한 자세한 내용:<a href="https://wjddyd66.github.io/r/2019/06/17/T.html">T 검정</a>  
+T검정에 대한 자세한 내용:<a href="https://wjddyd66.github.io/r/T">T 검정</a>  
 위의 Link를 타고가면 모수검정이 T검정에 대한 이론이 잘 나와있다.  
 Python에서의 T검정을 실습한다.  
 

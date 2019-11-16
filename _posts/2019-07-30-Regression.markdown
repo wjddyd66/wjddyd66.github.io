@@ -8,7 +8,7 @@ categories: [DataAnalysis]
 ###  회귀분석
 회귀분석은 상관분석과 더불어 널리 쓰이는 통계적 방법이다. 상관분석이 상관관계를 알아보기 위함이라면 회귀분석의 경우 인과관계를 파악하는 분석 방법이다.  
 회귀분석의 대한 자세한 내용은 아래 링크 참조  
-<a href="https://wjddyd66.github.io/r/2019/06/17/Regression.html">회귀분석 자세한 내용</a>
+<a href="https://wjddyd66.github.io/r/Regression">회귀분석 자세한 내용</a>
 ### 회귀 분석 방법
 Python으로 회귀분석은 크게 4가지가 가능하다.  
 1. make regression

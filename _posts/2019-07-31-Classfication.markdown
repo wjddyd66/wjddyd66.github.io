@@ -17,7 +17,7 @@ categories: [DataAnalysis]
 6. K-NN Classfication
 
 위에대한 자세한 내용은 아래 링크 참조  
-<a href="https://wjddyd66.github.io/r/2019/06/17/Classfication.html">분류분석 자세한 내용</a>  
+<a href="https://wjddyd66.github.io/r/Classfication">분류분석 자세한 내용</a>  
 
 ### 공통사항
 많은 분류분석을 비교하기 전에 공통적으로 사용하는 것을 Method로서 선언하였다.  
