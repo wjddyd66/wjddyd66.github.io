@@ -206,8 +206,8 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_{g}}\text{[}1 - logD^{*}_{G}(x)\text{]}$$</p>
 
-<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)$$</p>
-<p>$$+ p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}1 - log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)+ p_g(x)}\text{]}$$</p>
+<p>$$ + \mathbb{E}_{x \text{~} p_g}\text{[}1 - log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 
  
 
@@ -229,14 +229,14 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
 <p>$$C(G) = C(G) + log(4) - log(4)$$</p>
 
-<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)$$</p>
-<p>$$+ p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4)$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)+ p_g(x)}\text{]}$$</p>
+<p>$$ + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4)$$</p>
 
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 <p>$$+log(4) - log(4) +log(2) + log(2) - log(4)$$</p>
 
-<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x)$$</p>
-<p>$$+ p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x)+ p_g(x)}\text{]}$$</p>
+<p>$$ + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</p>
 
 위의 식에서 <span>$$\mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</span>과 <span>$$\mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</span>에 각각 **KL-Divergence**를 적용하면 다음과 같은 수식이 나오게 된다.  
 
