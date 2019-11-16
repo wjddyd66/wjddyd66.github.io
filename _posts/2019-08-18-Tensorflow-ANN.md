@@ -10,8 +10,8 @@ categories: [Tensorflow]
 
 **ANN** 은 딥러닝에서 사용하는 인공신경망(Artificial Neural Network)이다.  
 **대표적인 예**와 그에 **해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
-1. <a href="https://wjddyd66.github.io/dl/2019/07/26/Perceptron.html">Perceptron</a>
-2. <a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(1)-Basic-&-Activation-Function.html">MLP(NeuralNetwork)</a>
+1. <a href="https://wjddyd66.github.io/dl/Perceptron">Perceptron</a>
+2. <a href="https://wjddyd66.github.io/dl/NeuralNetwork-(1)-Basic-&-Activation-Function">MLP(NeuralNetwork)</a>
 
 위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 MLP를 구현**해보자  
 

@@ -14,7 +14,8 @@ categories: [Tensorflow]
 간단한 수식으로는 y= bx + a로서 표현할 수 있다.  
 여기서 우리가 중점적으로 봐야할 것은 <span style ="color: red">**weight: b, bias: a**</span>의 상수 2개이다.  
 이 상수 2개를 찾아낼 수 있으면 우리는 앞으로 Input이 들어올 경우 Output을 구할 수 있다.  
-<a href="https://wjddyd66.github.io/r/2019/06/17/Regression.html">회귀분석 자세한 내용</a>
+<a href="https://wjddyd66.github.io/r/Regression">회귀분석 자세한 내용</a>
+
 ### Linear Regression 예시
 아래 표와 같은 DataSet이 있다고 가정하자.  
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
@@ -57,7 +58,7 @@ Loss Function은 아래와 같은 그림으로 나타낼 수 있다.
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/2.PNG" height="250" width="600" /></div>
 Cost가 0이 될 확률을 매우 낮지만 <span style ="color: red">**0에 가까울 때(미분했을때의 기울기가 0인 점)**</span>의 값을 구하는 것이 Cost를 최소로 할 수 있다.  
 간단하게 구할 수 있다고 생각하지만 Weight가 많아지게 되면 수식이 복잡하게 되므로 Gradient Decent를 사용하게 된다.   
-<a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(3)-Optimazation.html">GradientDescent의 자세한 내용</a><br>
+<a href="https://wjddyd66.github.io/dl/NeuralNetwork-(3)-Optimazation">GradientDescent의 자세한 내용</a><br>
 
 ### Linear Regression 실제 구현
 Linear Regression을 실제로 구현하기 전에 구현하기 위하여 사용된 기법을 먼저 정리하였다.  

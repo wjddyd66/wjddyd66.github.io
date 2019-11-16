@@ -8,14 +8,15 @@ categories: [Pytorch]
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 ### Pytorch vs Tensorflow
 기존 DeepLearning을 Tensorflow로서 작성하였으나 Pytorch라는 새로운 Framework를 배우기 위하여 2 FrameWork간의 차이를 살펴보자.  
-참조: <a href="https://wjddyd66.github.io/category/Tensorflow">Tensorflow 자세한 내용</a><br>
+참조: <a href="https://wjddyd66.github.io/categories/#tensorflow">Tensorflow 자세한 내용</a><br>
 Pytorch와 Tensorflow의 가장 큰 차이점은 작동 방싱에서 있다. 아래 그림을 살펴보자.  
+
 <div><img src="https://t1.daumcdn.net/cfile/tistory/9974C3485C3085C80C" height="250" width="600" /></div>
 위의 그림을 살펴보게 되면 다음과 같은 차이가 있다.  
 **Tensorflow: Static Graph**  
 - 매 iteration 단계에서 기존에 구축된 정적인 동일한 computational graph에 sess.run방식으로 동작(FP)  
 - 동일한 그래프를 반복적으로 다시 사용하게 되므로 framework에서 그래프에 대한 최적화를 진행
-- 그래프의 자료구조를 disk로 serialize를 할 수 있다. 이로 인해 original code에 대한 Access없이 해당 파일만으로 이용하여 구동 가능. 즉, Platform이 서로 다른 언어에서 쉽게 네트워크를 import가능(.proto 사용)<br><a href="https://wjddyd66.github.io/others/2019/08/21/GoogleProtocolBuffers.html">Google Protocol Buffer3 자세한 내용</a>
+- 그래프의 자료구조를 disk로 serialize를 할 수 있다. 이로 인해 original code에 대한 Access없이 해당 파일만으로 이용하여 구동 가능. 즉, Platform이 서로 다른 언어에서 쉽게 네트워크를 import가능(.proto 사용)<br><a href="https://wjddyd66.github.io/others/GoogleProtocolBuffers">Google Protocol Buffer3 자세한 내용</a>
 
 
 **Pytorch: Dynamic Graph**  
@@ -391,7 +392,7 @@ print(x.grad, y.grad, z.grad)
 tensor([ 8., 12.]) None None
 ```
 앞으로의 Pytorch Post는 실제 구현만 올린다.  
-Pytorch로서 구현하는 실질적인 개념은 <a href="https://wjddyd66.github.io/category/DL">DeepLearning 개념</a><br>을 참조
+Pytorch로서 구현하는 실질적인 개념은 <a href="https://wjddyd66.github.io/categories/#dl">DeepLearning 개념</a><br>을 참조
 <br>
 
 <hr>

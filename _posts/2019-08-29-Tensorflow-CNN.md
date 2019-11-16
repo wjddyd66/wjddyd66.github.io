@@ -11,9 +11,9 @@ categories: [Tensorflow]
 **CNN** 은 딥러닝 이미지 처리 사용하는 인공신경망(Artificial Neural Network)이다.  
 **CNN에 해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
 
-1. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(1)-CNN%EC%9D%B4%EB%9E%80.html">CNN이란</a>
-2. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(2)-CNN%EC%A2%85%EB%A5%98.html">CNN종류</a>
-3. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(3)-CNN%EA%B5%AC%ED%98%84.html">CNN구현</a>
+1. <a href="https://wjddyd66.github.io/dl/CNN-(1)-CNN%EC%9D%B4%EB%9E%80">CNN이란</a>
+2. <a href="https://wjddyd66.github.io/dl/CNN-(2)-CNN%EC%A2%85%EB%A5%98">CNN종류</a>
+3. <a href="https://wjddyd66.github.io/dl/CNN-(3)-CNN%EA%B5%AC%ED%98%84">CNN구현</a>
 
 위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 CNN를 구현**해보자  
 <br><br>
@@ -520,7 +520,7 @@ Model 정확도: 0.984500
 
 이렇게 저장된 File은 Checkpoint State Protocol Buffer이다.  
 이러한 Protocol Buffer에 관한 자세한 내용은 아래 링크 참조  
-<a href="https://wjddyd66.github.io/others/2019/08/21/GoogleProtocolBuffers.html">Protocol Buffer 자세한 내용</a>  
+<a href="https://wjddyd66.github.io/others/GoogleProtocolBuffers">Protocol Buffer 자세한 내용</a>  
 
 <hr>
 참조:<a href="https://github.com/wjddyd66/Tensorflow/blob/master/CNN.ipynb">원본코드</a><br>

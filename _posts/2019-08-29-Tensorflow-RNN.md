@@ -10,10 +10,10 @@ categories: [Tensorflow]
 **RNN** 은 딥러닝 자연어 처리 사용하는 인공신경망(Artificial Neural Network)이다.  
 **RNN에 해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
 
-1. <a href="hhttps://wjddyd66.github.io/dl/2019/09/05/%EC%9E%90%EC%97%B0%EC%96%B4%EC%99%80-%EB%8B%A8%EC%96%B4%EC%9D%98-%EB%B6%84%EC%82%B0-%ED%91%9C%ED%98%84.html">자연어와 단어의 분산 표현</a>
-2. <a href="https://wjddyd66.github.io/dl/2019/09/05/word2vec.html">word2vec</a>
-3. <a href="https://wjddyd66.github.io/dl/2019/09/06/Fast-word2vec.html">Fast word2vec</a>
-4. <a href="https://wjddyd66.github.io/dl/2019/09/09/RNN.html">RNN</a>
+1. <a href="https://wjddyd66.github.io/dl/%EC%9E%90%EC%97%B0%EC%96%B4%EC%99%80-%EB%8B%A8%EC%96%B4%EC%9D%98-%EB%B6%84%EC%82%B0-%ED%91%9C%ED%98%84">자연어와 단어의 분산 표현</a>
+2. <a href="https://wjddyd66.github.io/dl/word2vec">word2vec</a>
+3. <a href="https://wjddyd66.github.io/dl/Fast-word2vec">Fast word2vec</a>
+4. <a href="https://wjddyd66.github.io/dl/RNN">RNN</a>
 
 위의 내용에서 이번 Post에서는 **Tensorflow를 활용하여 RNN를 구현**해보자  
 <br><br>

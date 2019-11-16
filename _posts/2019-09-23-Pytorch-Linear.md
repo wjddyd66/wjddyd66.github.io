@@ -7,7 +7,7 @@ categories: [Pytorch]
 
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 ### 선형 회귀 분석
-<a href="https://wjddyd66.github.io/tensorflow/2019/08/17/Tensorflow-Linear-Regression.html">선형 회귀 분석 개념</a><br>
+<a href="https://wjddyd66.github.io/tensorflow/Tensorflow-Linear-Regression">선형 회귀 분석 개념</a><br>
 필요한 라이브러리
 - torch.nn: 신경망 모델 포함
 - torch.optim: Optimizer 포함

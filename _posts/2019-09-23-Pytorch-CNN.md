@@ -10,8 +10,8 @@ categories: [Pytorch]
 **CNN** 은 딥러닝에서 사용하는 Convolutional Neural Network 이다.  
 **대표적인 예**와 그에 **해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
 
-1. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(1)-CNN%EC%9D%B4%EB%9E%80.html">CNN (1) CNN이란</a>
-2. <a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(3)-CNN%EA%B5%AC%ED%98%84.html">CNN (3) CNN구현</a>
+1. <a href="https://wjddyd66.github.io/dl/CNN-(1)-CNN%EC%9D%B4%EB%9E%80">CNN (1) CNN이란</a>
+2. <a href="https://wjddyd66.github.io/dl/CNN-(3)-CNN%EA%B5%AC%ED%98%84">CNN (3) CNN구현</a>
 
 
 필요한 라이브러리 임포트  
@@ -129,7 +129,8 @@ Tensorflow 와 다르거나 추가된 부분만 알아보자.
 위의 식은 아래와 같이 정의 된다.  
 $$input size = (N, C_{in}, H, W)$$<br>
 $$output size = (N, C_{out}, H_{out}, W_{out})$$<br>
-$$out(N_i,C_{out_j}) = bias(C_{out_j}) + \sum_{k=0}^{C_{in - 1}}weight(C_{out_j}, k) * input(N_i,k)$$
+<p>$$out(N_i,C_{out_j})$$</p> 
+<p>$$= bias(C_{out_j}) + \sum_{k=0}^{C_{in - 1}}weight(C_{out_j}, k) * input(N_i,k)$$</p>
 
 아래 식에서 중요한 함수는 view함수가 있다.  
 nn.Linear에 값을 전달하기 위하여 Convolution의 결과의 행렬의 크기를 맞춰주어야 한다.  

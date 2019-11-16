@@ -263,7 +263,7 @@ tf.nn.sigmoid_cross_entropy_with_logits(logits = x, labels =z)
 d_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_real_logits, labels=tf.ones_like(D_real_logits)))
 ```
 위의 코드를 식으로서 표현하게 된다면  
-<p>$$d_loss_real$$</p>
+<p>$$d-loss-real$$</p>
 <p>$$= mean(1 * -log(sigmoid(\text{D_real_logits})$$</p>
 <p>$$+ (1-1) * -log(1-sigmoid(\text{D_real_logits}))))$$</p>
 <p>$$= mean(-log(sigmoid(\text{D_real_logits})))$$</p>

@@ -12,7 +12,7 @@ categories: [Tensorflow]
 로지스틱 회귀는 이항형 또는 다향형이 될 수 있다. 종속변수의 결과가 2개의 종류라면 이항형, 그 이상이라면 다항형이다.  
 이항형 다항형에 따라 활성화 함수(active function)이 아래와 같은 종류를 가지게 된다.  
 <span style ="color: red">**이항형: 시그모이드 혹은 하이퍼 볼릭 탄젠트, 다항형: 소프트맥스**</span><br>
-<a href="https://wjddyd66.github.io/r/2019/06/17/Regression.html">로지스틱 회귀분석 자세한 내용</a><br>
+<a href="https://wjddyd66.github.io/r/Regression">로지스틱 회귀분석 자세한 내용</a><br>
 
 로지스틱 회귀분석에서 활성화 함수를 시그모이드를 사용한다고 하면 아래와 같은 식을 얻을 수 있다.  
 <p> $$ y(x) = {1 \over 1+e^{-ax+b}}$$ </p><br>
@@ -91,11 +91,11 @@ a에 따른 Cost Function의 식은 아래와 같다.
 	<tr>	
 		<td>$$p_i$$</td><td>Softmax의 i 번째 출력값</td>
 	</tr>
-	
+
 
 </table>
 또한 앞으로의 내용은 **Softmax 의 미분**에 대해서는 생략 되어있으므로 아래 링크에서 선행 학습이 필요하다.  
-<a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(2)-Loss-Function.html">**Softmax 자세한 내용**</a>  
+<a href="https://wjddyd66.github.io/dl/NeuralNetwork-(2)-Loss-Function">**Softmax 자세한 내용**</a>  
 <br>
 **Softmax-with-Loss 순전파**  
 - Softmax 출력값  
@@ -136,7 +136,7 @@ a에 따른 Cost Function의 식은 아래와 같다.
 	<tr>	
 		<td>Optimazation</td><td>Gradient Descent</td><td>Gradient Descent</td>
 	</tr>
-	
+
 
 </table>
 <br>
