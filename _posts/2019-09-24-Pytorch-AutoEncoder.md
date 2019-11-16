@@ -11,7 +11,7 @@ categories: [Pytorch]
 AutoEncoder 은 아래의 그림과 같이 단순히 입력을 출력으로 복사하는 신경 망(비지도 학습) 이다. 
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F996C93475BDC97C00AE328" height="100%" width="100%" /></div><br>
 아래 링크는 AutoEncoder에 관한 개념 설명이 나와있다.  
-<a href="https://wjddyd66.github.io/tensorflow/2019/08/28/Tensorflow-AutoEncoder.html">Auto Encoder</a>
+<a href="https://wjddyd66.github.io/tensorflow/Tensorflow-AutoEncoder">Auto Encoder</a>
 
 
 ### 1. Settings
@@ -170,8 +170,12 @@ Pytorch는 이러한 연산을 **ConvTranspose2d**을 통하여 지원한다.
 - 출력 크기: (N, C_{out}, H_{out}, W_{out})
 
 
-<p>$$H_{out}=(H_{in}−1)×stride[0]−2×padding[0]+dilation[0]×(kernel_size[0]−1)+output_padding[0]+1$$</p>
-<p>$$W_{out}=(W_{in}−1)×stride[0]−2×padding[0]+dilation[0]×(kernel_size[0]−1)+output_padding[0]+1$$</p>
+<p>$$H_{out}$$</p>
+<p>$$=(H_{in}−1)×stride[0]−2×padding[0]+dilation[0]$$</p>
+<p>$$×(kernel_size[0]−1)+output_padding[0]+1$$</p>
+<p>$$W_{out}$$</p>
+<p>$$=(W_{in}−1)×stride[0]−2×padding[0]+dilation[0]$$</p>
+<p>$$×(kernel_size[0]−1)+output_padding[0]+1$$</p>
 
 좀 더 명확히 알아보기 위하여 그림으로서 알아보자.  
 아래 그림의 Parameter는 다음과 같다.

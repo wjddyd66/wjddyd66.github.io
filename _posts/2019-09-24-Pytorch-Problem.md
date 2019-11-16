@@ -10,8 +10,9 @@ categories: [Pytorch]
 
 **Model 구성 시 성능향상을 위해 고려해야 하는 사항**에 대해서 알아보자.  
 아래 링크는 현재 Post에서 구현할 개념을 다룬 내용이다.<br>
-<a href="https://wjddyd66.github.io/dl/2019/08/31/NeuralNetwork-(5)-Others.html">NeuralNetwork (5) 학습 관련 기술들</a>
+<a href="https://wjddyd66.github.io/dl/NeuralNetwork-(5)-Others">NeuralNetwork (5) 학습 관련 기술들</a>
 <br>
+
 ### 정형화 
 
 **매우 큰 가중치가 존재**한다고 생각하면 **그 하나의 가중치에 의해서 Model이 결정**되므로 Overfitting된다고 생각할 수 있기 때문이다.  
@@ -33,7 +34,7 @@ categories: [Pytorch]
 
 **Loss 가 커지게 되면** Gradinet Descent 를 생각하였을 때 더욱 더 빨리 최소값에 수렴하게 되고 빨리 수렴하게 되면 무한정으로 커지는 것을 막을 수 있다.  
 
-**Pytorch에서의 Weight Regularization은 weight_decay($\lambda$) Parameter로 조절할 수 있습니다.**
+**Pytorch에서의 Weight Regularization은 weight_decay(<span>$$\lambda$$ </span>) Parameter로 조절할 수 있습니다.**
 - weight_decay (float, optional) – weight decay (L2 penalty) (default: 0)
 
 **Weight_decay는 L2 Regularization으로 적용되므로 L1 Regularization으로 적용시키기 위해서는 명시적으로 손실함수에 식을 추가해야 한다.**
@@ -436,7 +437,7 @@ with torch.no_grad():
 **Accuracy of Test Data: 12.64022445678711**<br><br>
 
 ### 학습률
-<a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(3)-Optimazation.html">NeuralNetwork (3) Optimazation</a>를 보게 되면 Normal Equation과 Gradient Descent비교에서 **Feature가 많이 존재하더라도 학습할 수 있다는 장점**이 존재하고 **대신 Learning Rate를 잘 설정해야 한다는 단점**이 있다고 올렸었다.  
+<a href="https://wjddyd66.github.io/dl/NeuralNetwork-(3)-Optimazation">NeuralNetwork (3) Optimazation</a>를 보게 되면 Normal Equation과 Gradient Descent비교에서 **Feature가 많이 존재하더라도 학습할 수 있다는 장점**이 존재하고 **대신 Learning Rate를 잘 설정해야 한다는 단점**이 있다고 올렸었다.  
 Learning Rate가 너무 크면 발산하게 되고, 너무 작으면 최적의 Weight로서 Update하는데너무 오래 걸릴 가능성이 있다.  
 아래 사진을 보게 되면 학습률에 대한 손실 그래프를 보여준다.  
 
@@ -817,7 +818,7 @@ with torch.no_grad():
 **Accuracy of Test Data: 91.85697174072266**<br><br>
 
 ### 다양한 Optimazation
-<a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(3)-Optimazation2.html">NeuralNetwork (3) Optimazation2</a>에 Optimizer가 고려해야 하는 사항과 다양한 Optimizer를 소개하였다.  
+<a href="https://wjddyd66.github.io/dl/NeuralNetwork-(3)-Optimazation2">NeuralNetwork (3) Optimazation2</a>에 Optimizer가 고려해야 하는 사항과 다양한 Optimizer를 소개하였다.  
 Pytorch에서는 torch.optim에서 이러한 종류를 구현하여서 제공하고 있다.
 
 **SGD**  

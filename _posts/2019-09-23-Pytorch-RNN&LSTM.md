@@ -10,10 +10,10 @@ categories: [Pytorch]
 **RNN** 은 딥러닝에서 사용하는 Recurrent Neural Network으로서 시계열 데이터를 다룰때 사용하는 신경망 이다.  
 **대표적인 예**와 그에 **해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
 
-1. <a href="https://wjddyd66.github.io/dl/2019/09/05/%EC%9E%90%EC%97%B0%EC%96%B4%EC%99%80-%EB%8B%A8%EC%96%B4%EC%9D%98-%EB%B6%84%EC%82%B0-%ED%91%9C%ED%98%84.html">자연어와 단어의 분산 표현</a>
-2. <a href="https://wjddyd66.github.io/dl/2019/09/05/word2vec.html">word2vec</a>
-3. <a href="https://wjddyd66.github.io/dl/2019/09/06/Fast-word2vec.html">Fast word2vec</a>
-4. <a href="https://wjddyd66.github.io/dl/2019/09/09/RNN.html">RNN</a>
+1. <a href="https://wjddyd66.github.io/dl/%EC%9E%90%EC%97%B0%EC%96%B4%EC%99%80-%EB%8B%A8%EC%96%B4%EC%9D%98-%EB%B6%84%EC%82%B0-%ED%91%9C%ED%98%84">자연어와 단어의 분산 표현</a>
+2. <a href="https://wjddyd66.github.io/dl/word2vec">word2vec</a>
+3. <a href="https://wjddyd66.github.io/dl/Fast-word2vec">Fast word2vec</a>
+4. <a href="https://wjddyd66.github.io/dl/RNN">RNN</a>
 
 #### 필요한 라이브러리 import
 ```python
@@ -587,9 +587,9 @@ NO
 **LSTM** 은 딥러닝에서 사용하는 Long Short Term Memory Model으로서 RNN의 **Long Term Dependency**를 해결한 Model이다.
 **대표적인 예**와 **알아두면 좋은 추가적인 이론**은 아래 링크를 참조하자.  
 
-1. <a href="https://wjddyd66.github.io/dl/2019/09/10/LSTM.html">LSTM</a>
-2. <a href="https://wjddyd66.github.io/dl/2019/09/15/seq2seq.html">seq2seq</a>
-3. <a href="https://wjddyd66.github.io/dl/2019/09/19/Attention.html">Attention</a>
+1. <a href="https://wjddyd66.github.io/dl/LSTM">LSTM</a>
+2. <a href="https://wjddyd66.github.io/dl/seq2seq">seq2seq</a>
+3. <a href="https://wjddyd66.github.io/dl/Attention">Attention</a>
 
 **1) Model**  
 위의 RNN과 거의 같고, 달라진 부분은 <code>nn.RNN</code>을 <code>nn.LSTM</code>으로 바꾼것 뿐이다.
