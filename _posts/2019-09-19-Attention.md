@@ -8,7 +8,7 @@ categories: [DL]
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 ### seq2seq 문제점
-이전 Post **<a href="https://wjddyd66.github.io/dl/2019/09/15/seq2seq.html">seq2seq</a>**에서는 두가지의 방법으로 인하여 개선된 seq2seq Model을 만들 수 있었다.
+이전 Post **<a href="https://wjddyd66.github.io/dl/seq2seq/">seq2seq</a>**에서는 두가지의 방법으로 인하여 개선된 seq2seq Model을 만들 수 있었다.
 1. Input Data의 반전
 2. Peeky
 
