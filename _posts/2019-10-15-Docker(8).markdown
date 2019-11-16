@@ -21,11 +21,12 @@ categories: [Docker]
 
 ### Docker Machine
 **Docker Machine이란?**  
-이전 Pose <a href="https://wjddyd66.github.io/docker/2019/09/30/Docker(2).html">컨테이너 기술과 Docker의 개요</a>에서 Docker Machine은 다음과 같이 정의하였다.  
+이전 Pose <a href="https://wjddyd66.github.io/docker/Docker(2)">컨테이너 기술과 Docker의 개요</a>에서 Docker Machine은 다음과 같이 정의하였다.  
 **Docker Machine(Docker 실행 환경 구축)**
 로컬 호스트용인 VirtualBox를 비롯하여 AWS 같은 클라우드 환경에 Docker의 실행 환경을 명령으로 자동 생성하기 위한 툴  
 즉, 하나의 호스트 머신이 아닌 여러대의 호스트 머신에서 Docker의 실행 환경을 명령으로 자동 생성하기 위한 툴 이다.  
 이러한 Docker Machine을 자세히 살펴보게 되면 다음과 같은 기능이 존재한다.  
+
 1. Docker Engine을 사용자 앞의 기계가 아닌 클라우드 컴퓨팅 VM을 비롯한 원격지의 서버에 설치
 2. 명령 하나로 아직 존재하지 않는 기계를 새로 만들어서 Engine까지 한방에 설치
 3. 원격지에 위치한 다수의 Docker Node를 손쉽게 규정하고 관리

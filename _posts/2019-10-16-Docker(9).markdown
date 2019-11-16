@@ -10,7 +10,7 @@ categories: [Docker]
 Post에 앞서 이번 Post의 내용과 실습은<a href="https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html">subicura 블로그</a>의 내용과 개념을 그대로 따라해본 것 입니다. <br>
 
 ### 분산 환경에서의 컨테이너 운용 관리
-이전 Post에서는 <a href="https://wjddyd66.github.io/docker/2019/10/15/Docker(8).html">멀티호스트 환경과 클러스터링</a>에 대해서 얘기하였다.  
+이전 Post에서는 <a href="https://wjddyd66.github.io/docker/Docker(8)">멀티호스트 환경과 클러스터링</a>에 대해서 얘기하였다.  
 이제 더 나아가서 멀티호스트로 구성된 실제 환경을 클러스터 구성으로 가동시키려면 **컨테이너의 시작 및 정지와 같은 조작뿐만 아니라 호스트 간의 네트워크 연결이나 스토리지 관리, 컨테이너를 어떤 호스트에서 가동할지와 같은 스케줄링, 컨테이너가 정상적으로 작동하고 있는지 아닌지를 감시할 장치도 필요하다.**  
 이러한 기능을 갖추고 컨테이너를 통합 관리할 수 있는 툴을 컨테이너 오케스트레이션 툴 이라고 한다.  
 <br>

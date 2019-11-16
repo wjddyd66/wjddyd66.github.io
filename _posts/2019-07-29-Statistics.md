@@ -7,7 +7,7 @@ categories: [DataAnalysis]
 
 ### Statistics
 통계에 대한 기초와 용어 정리는 아래 링크에 정리가 되어있습니다.  
-<a href="https://wjddyd66.github.io/r/2019/06/16/Sampling&Scale.html">통계기초</a>  
+<a href="https://wjddyd66.github.io/r/Sampling&Scale">통계기초</a>  
 이번 글에서는 Pandas를 활용하여 도수분포표 작성과 **평균, 표준편차와 분산**에 대해서 알아보자  
 **도수분포표**란 자료의 분표를 몇 개의 구간으로 나누고, 나누어진 각 구간에 속하는 자료가 몇 개인지 정리한 표이다.  
 구간으로 나누는 이유는 **데이터의 기준**을 정리하여서 Data를 읽고 활용하기 쉽게 가공하기 위해서 이다.  
