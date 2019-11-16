@@ -35,7 +35,9 @@ categories: [Pytorch]
 이러한 이유는 **Style Layer는 Input Data를 Correlation을 통하여 GramMatrix로서 변환하여 대입하기 때문이다.**  
 
 **GramMatrix**를 수식으로 표현하면 아래와 같다.  
-<p>$$ G_{ij} = \begin{bmatrix} <v_1,v_1> & <v_1,v_2> & <v_1,v_3> \\ <v_2,v_1> & <v_2,v_2> & <v_2,v_3> \\ <v_3,v_1> & <v_3,v_2> & <v_3,v_3> \\ \end{bmatrix} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} \begin{bmatrix} v_1 & v_2 & v_3 \end{bmatrix} $$</p>
+<p>$$ G_{ij}$$</p>
+<p>$$= \begin{bmatrix} <v_1,v_1> & <v_1,v_2> & <v_1,v_3> \\ <v_2,v_1> & <v_2,v_2> & <v_2,v_3> \\ <v_3,v_1> & <v_3,v_2> & <v_3,v_3> \\ \end{bmatrix}$$</p>
+<p>$$= \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} \begin{bmatrix} v_1 & v_2 & v_3 \end{bmatrix} $$</p>
 
 위와 같은 과정을 Style Image에 적용시키면 다음 그림과 같다.
 
@@ -413,7 +415,7 @@ Newton's Method는 위의 그림과 같다.
 
 위와 같이 2차 미분 값을 얻기 위한 <span>$$f\prime\prime(x_t)$$</span>는 시간이 <span>$$O(n^3)$$</span>이나 걸리므로 이 값을 근사하는 방식으로 바꿔서 연산 속도를 높인 방식이 바로 **BFGS**이다.  
 **BFGS**에서 최근 m개의 1차 미분 값만을 사용해서 더 적은 메모리를 사용하게 변형한 방법이 바로 **L-BFGS**이다.  
- 
+
 <a href="https://www.cs.ubc.ca/~schmidtm/Software/minFunc.html">L-BGFS 자세한 내용</a>
 ```python
 # LBFGS 최적화 함수를 사용합니다.

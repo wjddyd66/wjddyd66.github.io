@@ -170,10 +170,10 @@ Pytorch는 이러한 연산을 **ConvTranspose2d**을 통하여 지원한다.
 - 출력 크기: (N, C_{out}, H_{out}, W_{out})
 
 
-<p>$$H_{out}$$</p>
+$$H_{out}$$
 <p>$$=(H_{in}−1)×stride[0]−2×padding[0]+dilation[0]$$</p>
 <p>$$×(kernel_size[0]−1)+output_padding[0]+1$$</p>
-<p>$$W_{out}$$</p>
+$$W_{out}$$
 <p>$$=(W_{in}−1)×stride[0]−2×padding[0]+dilation[0]$$</p>
 <p>$$×(kernel_size[0]−1)+output_padding[0]+1$$</p>
 

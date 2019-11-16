@@ -366,7 +366,7 @@ $$E = \sum_{x \in \Omega}w(x)log(p_{l(x)}(x))$$
 
 **위의 사진에서도 알 수 있듯이 Cell이 인접해 있으면, 각 셀과 배경을 구분하도록 둘 사이에 배경으로 인식할 틈을 만들겠다는 의미이다.**
 
-#### 간단한 <span> $$w_c(x)$$ </span> 확인
+#### 간단한 w_c(x) 확인
 ```python
 def imshow2(tensor, title=None):
     image = tensor.cpu().clone()  # 텐서의 값에 변화가 적용되지 않도록 텐서를 복제합니다

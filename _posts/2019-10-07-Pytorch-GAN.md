@@ -38,7 +38,7 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 <br><br>
 ### Adversarial Nets
 위의 설명은 다음과 같이 정의 될 수 있다.  
-<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) =$$</p> <p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 <p>$$\mathbb{E}: \text{기대값}$$</p>
 <p>$$x\text{~}P_{data}(x): \text{x를 실제 data의 분포에서 샘플링}$$</p>
 <p>$$z\text{~}P_{z}(z): \text{z를 Noise의 분포에서 샘플링}$$</p>
@@ -46,12 +46,16 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 위에서 쓰여진 식을 D, G에 관해 나누어서 생각해보자  
 
 **구분자**  
-<p>$$ \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{D}{max}V(D,G) = $$</p>
+<p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 위에서 정의한 구분자의 목적은 실제 데이터는 1, 만들어진 데이터는 0 으로서 판별되는 것이다.  
-이에 연관되어 <span>$$\underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</span>에 넣어서 생각을 해보게 되면 D(x) = 1, D(G(z)) = 0, 으로서 학습되는 것이다.  
+이에 연관되어  
+<p>$$\underset{D}{max}V(D,G) = $$</p>
+<p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>에 넣어서 생각을 해보게 되면 D(x) = 1, D(G(z)) = 0, 으로서 학습되는 것이다.  
 
 **생성자**  
-<p>$$ \underset{G}{min}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{G}{min}V(D,G) = $$</p>
+<p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 위에서 정의한 생성자의 목적은 만들어진 데이터를 1로서 판별되는 것 이다. 
 위의 목적에 맞게 다시 식을 작성하면 다음과 같다.  
 <p>$$ \underset{G}{min}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
@@ -72,11 +76,12 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 - 파란 점선: 판별자가 데이터의 판별 결과 분포(Generative Distribution), <span>$$D(x)$$</span>
 
 (a): 처음 시작할 때는 <span>$$p_{data}$$</span>와 <span>$$p_{g}$$</span>의 분포는 매우 다른 것을 알 수 있다.  
-(b), (c): 이러한 상황에서 <span>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</span>을 학습하다 보면 D(x)의 파란점선이 점점 smooth하고 잘 구별하는 Distribution이 만들어 진다.  
+(b), (c): 이러한 상황에서  
+<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) =$$</p> <p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>을 학습하다 보면 D(x)의 파란점선이 점점 smooth하고 잘 구별하는 Distribution이 만들어 진다.  
 (d): Trainning의 최종적인 Distribution의 모양은 <span>$$p_{data} = p_{g}$$</span>으로서 <span>$$D(x) = \frac{1}{2}$$</span>의 값을 가지는 것을 알 수 있다.  
 
 최종적인 목적으로서 앞에서 정의한 식  
-<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{G}{min} \underset{D}{max}V(D,G) =$$</p> <p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 의 해결하기 위해서는 **<span>$$p_{data} = p_{g}$$</span>으로서 <span>$$D(x) = \frac{1}{2}$$</span>의 값을 가지는 것**을 찾는 문제로서 생각할 수 있다.
 
 ### Theoretical Results
@@ -87,7 +92,7 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 
 그러한 과정을 위하여 먼저 선수 과정으로 알아야 하는 수식에 대해서 알아보자.  
 
- 
+
 <br>
 #### 사전지식
 
@@ -123,7 +128,7 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 
 추가적인 자세한 내용은 아래를 참조하자.  
 
-<a href="https://wjddyd66.github.io/dl/2019/07/26/NeuralNetwork-(2)-Loss-Function.html">정보량과 Entropy에 대한 자세한 내용</a><br>
+<a href="https://wjddyd66.github.io/dl/NeuralNetwork-(2)-Loss-Function">정보량과 Entropy에 대한 자세한 내용</a><br>
 
 <br>
 
@@ -151,7 +156,7 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
  
 
-#### Global Optimality of <span>$$p_g = p_{data}$$</span>
+#### Global Optimality of <span>$p_g = p_{data}$</span>
 
 먼저 다음과 같은 가정을 하자  
 
@@ -201,7 +206,8 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_{g}}\text{[}1 - logD^{*}_{G}(x)\text{]}$$</p>
 
-<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}1 - log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)$$</p>
+<p>$$+ p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}1 - log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 
  
 
@@ -223,15 +229,19 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
 <p>$$C(G) = C(G) + log(4) - log(4)$$</p>
 
-<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4)$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)$$</p>
+<p>$$+ p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4)$$</p>
 
-<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4) +log(2) + log(2) - log(4)$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
+<p>$$+log(4) - log(4) +log(2) + log(2) - log(4)$$</p>
 
-<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x)$$</p>
+<p>$$+ p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</p>
 
 위의 식에서 <span>$$\mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</span>과 <span>$$\mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</span>에 각각 **KL-Divergence**를 적용하면 다음과 같은 수식이 나오게 된다.  
 
-<p>$$C(G) = KL(p_{data} || \frac{p_{data}+p_g}{2}) + KL(p_{g} || \frac{p_{data}+p_g}{2}) - log(4)$$</p>
+<p>$$C(G) = KL(p_{data} || \frac{p_{data}+p_g}{2})$$</p>
+<p>$$+ KL(p_{g} || \frac{p_{data}+p_g}{2}) - log(4)$$</p>
 
 <p>$$= 2JSD(p_{data}||p_g) - log(4)$$</p>
 
@@ -272,7 +282,8 @@ then <span>$$p_g$$</span> converges to <span>$$p_{data}$$</span>
 
 즉 <span>$$U(p_g,D)$$</span>가 <span>$$p_g$$</span>에 대하여 Convex하다는 것이 가장 중요시 된다.  
 위의 식을 살펴보게 되면 다음과 같다.  
-<p>$$V(G,D) = U(p_g,D) = \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_{g}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
+<p>$$V(G,D) = U(p_g,D)$$</p>
+<p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_{g}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 위의 식을 <span>$$p_g$$</span>에 나타내기 위하여 <span>$$p_{data}$$</span>를 상수로 잠시 치환하자면 다음과 같은 식이 나오게 된다.  
 <p>$$U(p_g,D) = \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{\alpha}{\alpha + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_g(x)}{\alpha + p_g(x)}\text{]}$$</p>
 
@@ -501,10 +512,12 @@ Generator에서 Input Data를 받는것이 아니라 Noise를 Input으로 받는
 <p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 
 **구분자**  
-<p>$$ \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
+<p>$$ \underset{D}{max}V(D,G) = $$</p>
+<p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
 
 **생성자**
-<p>$$ \underset{G}{max}V(D,G) = \mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$</p>
+<p>$$ \underset{G}{max}V(D,G) = $$</p>
+<p>$$\mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$</p>
 을 각각 적용한다.
 
 ```python
