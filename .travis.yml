@@ -1,0 +1,18 @@
+language: ruby
+cache: bundler
+
+install:
+  # Install Jekyll and dependencies
+  - bundle install
+
+#before_install:
+#  - gem install bundler
+script:
+  - bundle exec rake site:deploy --quiet
+  # - bundle exec jekyll algolia --config _config.yml
+branches:
+  only:
+    # Change this to gh-pages if you're deploying using the gh-pages branch
+    - master
+rvm:
+ - 2.4.2
