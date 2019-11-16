@@ -401,24 +401,6 @@ Class(일반, 비지니스, VIP)안에서 좌석을 고를 수 있으면 체크�
 
 ---
 
-#### PROJECT '드래곤헌터 FOR KAKAO'
-* Main Promotion
-  
-  <iframe width="700" height="480" src="https://www.youtube.com/embed/82HsgOqylOc" frameborder="0" allowfullscreen></iframe>
-* CBT Promotion
-  
-  <iframe width="700" height="480" src="https://www.youtube.com/embed/mbzc_Lamt7I" frameborder="0" allowfullscreen></iframe>
-* '드래곤헌터' 서버 개발 : 프로젝트 초기부터 작업하여 런칭, 서비스 운영까지 참여
-* C++/MSSQL로 작업 (Windows 플랫폼)
-* 스테이지, 강화/초월, 미션처리, PVP, 무한의숲 등 비즈니스 로직 개발
-* 사내 공용플랫폼 시스템과의 연동작업(아이템전송, 이벤트연동, 로깅)
-* 운영툴 제작 (ASP.NET, MySQL)
-* 유저 데이터 조회, 랭킹 조회, 아이템, 스테이지 조회 등 운영툴의 모든 기본기능을 구현
-* 아이템 발송 기능, 유저 데이터 수정 등 데이터 입력/수정 기능을 구현
-* 실제 서비스 이후 유지보수 및 추가개발 작업 담당
-* SVN 서버 관리, 테스트서버 설치/유지관리와 서버설정 등의 개발인프라 관리 담당
-
----
 <br>
 
 ### Paper
@@ -426,7 +408,21 @@ Class(일반, 비지니스, VIP)안에서 좌석을 고를 수 있으면 체크�
 ---
 
 #### 자연어처리 기술을 활용한 생성형 문서요약
-실제로 논문을 정식 학회에 등록한 것이 아닌 학교 졸업논문을 작성하였습니다.  
-<a href="http://ice.hufs.ac.kr/">한국외국어대학교 정보통신학과 홈페이지</a>에 접속하면 확인할 수 있으나 Login해야 하는 번거로움이 있어 간단히 볼 수 있게 Post하였습니다.  
+**Abstract**  
+인터넷과 정보통신 기술이 발달하면서 이제는 누구나 수 많은 정보에 접근 가능하게 되었다. 그러나 정보에 접근하기는 쉬워졌으나 이러한 정보를 잘 이용하는 것은 다른 문제이다. 자신에게 필요하고 유용한 정보만을 적은시간안에 획득하고 이용할 수 있다면 보다 효율적으로 인터넷과 정보통신 기술을 활용할 수 있게 될 것이다.  
+또한 과거일부의 사람만이 정보의 확산에기여했던것과는 다르게 최근에는 소셜네트워크서비스(SNS, Social Networking Service)의 확산에 따라 정보의 생성 및 전파가 그 어느 때와 다르게 활발하고 다양하게 이루어지고 있다. 이와 같이 누구나 정보의 생산과 전파가 가능하게 되어 많은 장점도 있으나 정제되지 않은 데이터들이 범람하고 있다. 한정된 시간 내에 신뢰성,의미,가치 있는 정보를 찾아내 위해서는 정보의 요약은 반드시 필요하다. 최근 한 조사결과에 따르면 현대인들의 미디어 소비에서 요약형 정보가 훨씬 선호되고 있음을 알 수 있는데 이 결과를 그림 1 를 통해 나타내었다.  
 
-<embed src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/projects/paper.pdf" width="800px" height="1000px"/>
+**그림 1. 현대인들의 미디어 소비**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/paper.PNG" height="100%" width="100%" /></div><br>
+출처: http://www.segye.com/newsView/20180622004444
+<br>
+그림 1 에서 전체 응답자의 85.4% 는 요약형 정보를 선호하는 것으로 나타났고 요약형 정보의 선호 이유로는 핵심만 알면 된다고 생각하는 것과 시간을 절약할 수 있는 것, 내용을 더 쉽게 이해할 수 있는 것 등의 이유를 들었다. 이처럼 요약형 정보는 현대인의 정보 이용에 있어서 중요한 역할을 담당하고 있고, 요구되고 있는 상황이다.  
+이에 따라서 요약기술 또한 요구 되고 있다. 현재 인터넷 상에서 생산되고 공유되는 정보의 대다수는
+텍스트 정보이다.  따라서 많은 줄의 텍스트 데이터의 내용을 파악하고 중복적인 정보를 제거하는 문서요약 기법의 필요성이 대두되고 있으며 중요성 또한 점점 커지고 있다. 본 논문에서는 수 많은 텍스트 정보들을 효율적으로 확보, 이용하기 위한 방법으로 NLP(Natural Language Processing, 자연어 처리)를 활용 하여 텍스트 정보들을 요약하는 방법들에 대해 연구하려 한다.  
+
+<br>
+**참조 사항**  
+실제로 논문을 정식 학회에 등록한 것이 아닌 학교 졸업논문을 작성하였습니다.  
+<a href="http://ice.hufs.ac.kr/">한국외국어대학교 정보통신학과 홈페이지</a>에 접속하면 확인할 수 있으나 Login해야 하는 번거로움이 있어 다운로드 가능한 링크를 아래 첨부하였습니다.  
+
+**PaperLink**: <a href="https://github.com/wjddyd66/wjddyd66.github.io/blob/master/static/projects/paper.pdf">자연어처리 기술을 활용한 생성형 문서요약</a><br>
