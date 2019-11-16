@@ -9,7 +9,7 @@ categories: [Pytorch]
 ### CNN 종류
 이번 Post에서 **CNN** 의 대표적인 예와 구현을 해보자  
 **대표적인 예**와 그에 **해당하는 이론에 대한 내용**은 아래 링크를 참조하자.  
-<a href="https://wjddyd66.github.io/dl/2019/09/01/CNN-(2)-CNN%EC%A2%85%EB%A5%98.html">CNN (2) CNN종류</a>
+<a href="https://wjddyd66.github.io/dl/CNN-(2)-CNN%EC%A2%85%EB%A5%98">CNN (2) CNN종류</a>
 
 **CNN의 종류를 다양하게 비교하기 위하여 먼저 GPU Setting과 Image 구축을하여 DataSet구출에 대하여 먼저 알아보자**  
 
@@ -39,7 +39,7 @@ Successfully installed olefile-0.46 pillow-6.1.0
 
 Crawling을 통하여 각각의 Poodle과 Siamesecat에대한 Image를 각각 20개 저장
 
-<a href="https://wjddyd66.github.io/python/2019/09/18/Pytube,Selenium.html">Crawling 코드 및 설명</a>
+<a href="https://wjddyd66.github.io/python/Pytube,Selenium">Crawling 코드 및 설명</a>
 
 #### 1. Settings
 ##### 1) Import required libraries
