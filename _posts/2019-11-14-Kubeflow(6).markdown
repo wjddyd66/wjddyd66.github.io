@@ -4,7 +4,6 @@ title:  "SDK"
 date:   2019-11-14 11:00:20 +0700
 categories: [Kubeflow]
 ---
-<link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
 
 ### SDK
 PipeLines을 구축하고 사용하기 위해서  Jupyter Notebook과 interacting이 가능한 SDK에 대해서 먼저 알아보자.  
@@ -311,7 +310,7 @@ Input Parameter로서 argument에서 선언한 a의 값 7이 들어같 것을 �
 Input Parameter로서 argument에서 add의 결과값과 b값이 들어간 것을 확인할 수 있다.  
 **b의 값이 8이 들어간것으로 보아 처음 Pipeline을 구성할때 선언한 값이 뒤에서 변경하면 변경되어 들어가는 것을 알 수 있다.**  
 또한, Multiple Output의 값이 잘 나오는 것이 확인되었고 json Type으로도 잘 나오는 것을 확인할 수 있다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/46.PNG" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/48.PNG" height="250" width="600" /></div><br>
 <br>
 또한 Log를 살펴보게되면 subprocess로 지정한 명령어가 잘 수행중인것을 확인할 수 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/47.PNG" height="250" width="600" /></div><br>
@@ -321,15 +320,6 @@ add와 같지만 중요한 것은 딱 하나이다.
 <code>result_task = add_op(divmod_task.outputs['quotient'], c)</code>: 즉, Multiple Output인 경우 Name으로 지정하여 값을 넣는다는 것을 알 수 있다.<br>
 
 <br>
-<br><br>
-### Build Components and Pipelines
-PipeLines를 구성하는 Componet란 Pipeline task의 implementation이다.  
-이러한 Component는 Workflow의 각 한 단계를 의미하며, 각각의 Componenet는 하나 이상의 input을 받아들이고 하나 이상의 output을 출력한다.  
-이러한 Component의 구성요소는 다음과 같다.
-- interface: input & output
-- implementation: Docker container image and command-line argument
-- metadata: name, description
-
 
 <hr>
 참조:<a href="https://www.kubeflow.org/docs/pipelines/sdk/">Kubeflow-SDK</a><br>

@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "SDK(2)"
+date:   2019-11-20 11:00:20 +0700
+categories: [Kubeflow]
+---
+
+### Build Components and Pipelines
+PipeLines를 구성하는 Componet란 Pipeline task의 implementation이다.  
+이러한 Component는 Workflow의 각 한 단계를 의미하며, 각각의 Componenet는 하나 이상의 input을 받아들이고 하나 이상의 output을 출력한다.  
+이러한 Component의 구성요소는 다음과 같다.
+- interface: input & output
+- implementation: Docker container image and command-line argument
+- metadata: name, description
+
+<br><br>
+<hr>
+참조:<a href="https://www.kubeflow.org/docs/pipelines/sdk/">Kubeflow-SDK</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
