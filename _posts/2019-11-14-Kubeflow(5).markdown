@@ -27,7 +27,7 @@ Kubeflow에서 제공하는 Piplines란 다양한 Step을 가진 ML workflows를
 Kubeflow자체에서 Pipeline을 실행할 수 있는 환경을 만들어 두었다.  
 이러한 예제를 실행하고 어떻게 실행되는지 알아보자.  
 
-**예제1: [Sample] Basic - Parallel Execution**  
+#### 예제1: [Sample] Basic - Parallel Execution  
 [Sample] Basic - Parallel Execution Click  
 <img src="https://www.kubeflow.org/docs/images/click-pipeline-sample.png"/><br><br>
 
@@ -36,7 +36,6 @@ Click Create experiment
 
 Enviroment 선언  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/31.PNG" height="100%" width="100%"/></div><br><br>
-
 Run details 선언  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/32.PNG" height="100%" width="100%"/></div><br><br>
 Experiments 확인  
@@ -46,7 +45,7 @@ Status가 Unknwon Status -> Executed Success 이되면 Name Click
 결과 확인 결과 Graph, Run output, Config등을 확인 가능하다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/35.PNG" height="100%" width="100%"/></div><br><br>
 <br>
-**예제2: [Sample] ML - XGBoost - Training with Confusion Matrix**  
+#### 예제2: [Sample] ML - XGBoost - Training with Confusion Matrix  
 위와 같은 과정을 거치나 중요한 점은 GCP에 결과를 저장하기 때문에 다음과 같은 Parameter에 특정한 값을 넣어야 한다는 것 이다.  
 <img src="https://www.kubeflow.org/docs/images/pipelines-start-xgboost-run.png"/><br><br>
 

@@ -95,7 +95,6 @@ kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable
 ```
 <br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/20.PNG" height="150" width="600" /></div><br><br>
-
 **5. Kubeflow 설치**  
 1) https://github.com/kubeflow/kubeflow/releases/tag/v0.7.0에서 linux.tar.gz 다운
 2) 압축 해제
@@ -110,7 +109,11 @@ export PATH=$PATH:"/home/jyhwang"
 export KF_NAME="my-kubeflow"
 export BASE_DIR="/home/jyhwang"
 export KF_DIR=${BASE_DIR}/${KF_NAME}
+#Single User
 export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_k8s_istio.yaml"
+ 
+#Multi User
+#export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v0.7-branch/kfdef/kfctl_existing_arrikto.0.7.0.yaml"
 ```
 <br>
 <table class="table">
@@ -169,6 +172,13 @@ kubectl apply -f pv5.yaml
 mkdir -p ${KF_DIR}
 cd ${KF_DIR}
 kfctl apply -V -f ${CONFIG_FILE}
+
+#MultiUser
+#mkdir -p ${KF_DIR}
+#cd ${KF_DIR}
+#wget -O kfctl_existing_arrikto.yaml $CONFIG_URI
+#export CONFIG_FILE=${KF_DIR}/kfctl_existing_arrikto.yaml
+#kfctl apply -V -f ${CONFIG_FILE}
 ```
 <br>
 
@@ -180,7 +190,20 @@ kubectl port-forward -n istio-system svc/istio-ingressgateway 8080:80
 <br>
 
 **10. 접속 화면**  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/21.PNG" height="250" width="600" /></div><br><br>
+
+**Single User**
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/21.PNG" height="250" width="600" /></div><br>
+
+**Multi User**
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/37.PNG" height="250" width="600" /></div><br>
+
+Single User의 Kubeflow와 달리 특정 NameSpace생성 후 접근권한 부여가 가능하다.  
+Default Admin의 계정은 다음과 같다.  
+- E-mail: admin@kubeflow.org
+- Passward: 12341234
+
+<br><br>
+
 **참조사항(Minikube 재설치)**  
 중간중간 설치가 잘못되어 재설치를 해야하는 경우 **특정 설정 파일을 삭제해야 한다. 그렇지 않으면 이전에 설정들이 같이 따라와서 이전 작업에서 발생한 에러가 그대로 발생하는 경우가 있다.**  
 
