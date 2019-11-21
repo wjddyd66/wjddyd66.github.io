@@ -116,12 +116,12 @@ spec:
 .yaml File을 kubectl로 apply시키면 다음과 같은 결과를 얻게 된다.  
 
 **experiment 확인**  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/161.png" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/161.png" height="250" width="600" /></div><br>
 **trial 확인**  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/162.png" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/162.png" height="250" width="600" /></div><br>
 
 최종적인 결과는 Kubeflow UI에 접속하여 확인할 수 있다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/163.png" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/163.png" height="100%" width="100%" /></div><br>
 
 ### Katib 실제 적용
 
