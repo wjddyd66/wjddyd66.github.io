@@ -1,0 +1,130 @@
+---
+layout: post
+title:  "Katib"
+date:   2019-11-21 11:00:20 +0700
+categories: [Kubeflow]
+---
+
+### Hyperparameter Tunning(Katib)
+Kubeflow에서는 Katib를 다음과 같이 설명하고 있습니다.  
+>The Katib project is inspired by Google vizier. Katib is a scalable and flexible hyperparameter tuning framework and is tightly integrated with Kubernetes. It does not depend on any specific deep learning framework (such as TensorFlow, MXNet, or PyTorch).
+
+위의서의 설명을 종합하면 다음과 같은 큰 2가지 장점이 존재합니다.
+1. 다양한 Framework에서 작동할 수 있다.
+2. 유연한 Hyperparameter Tuning이 가능하다.
+
+위의 장점 중 2번째 유연한 Hyperparameter Tuning이라는 것은 결국에 Code를 수정할 필요없이 그저 Katib를 실행시킬 .yaml File만 고치면 된다는 이야기입니다.  
+
+좀 더 자세한 사항은 설치부터 실제 구동을 살펴보면서 알아보자.  
+<br><br>
+
+### Katib 에제 실행
+Katib를 실행하기 위해서는 먼저 PV를 만들어서 하나의 Pod이 돌아갈때 PVC와 연동시키는 작업이 필요하다.  
+다음과 같이 PV.yaml을 작성하고 적용시키자.  
+```code
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: katib-mysql
+  labels:
+    type: local
+    app: katib
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/katib
+```
+<br>
+
+평소에 적용시키던 PV와 별로 다른점이 없다.  
+
+다음으로 Katib를 통하여 Hyperparameter를 Tunning하기 위한 .yaml File을 살펴보자.  
+```code
+apiVersion: "kubeflow.org/v1alpha3"
+kind: Experiment
+metadata:
+  namespace: kubeflow
+  name: tfjob-example
+spec:
+  parallelTrialCount: 3
+  maxTrialCount: 12
+  maxFailedTrialCount: 3
+  objective:
+    type: maximize
+    goal: 0.99
+    objectiveMetricName: accuracy_1
+  algorithm:
+    algorithmName: random
+  metricsCollectorSpec:
+    source:
+      fileSystemPath:
+        path: /train
+        kind: Directory
+    collector:
+      kind: TensorFlowEvent
+  parameters:
+    - name: --learning_rate
+      parameterType: double
+      feasibleSpace:
+        min: "0.01"
+        max: "0.05"
+    - name: --batch_size
+      parameterType: int
+      feasibleSpace:
+        min: "100"
+        max: "200"
+  trialTemplate:
+    goTemplate:
+        rawTemplate: |-
+          apiVersion: "kubeflow.org/v1"
+          kind: TFJob
+          metadata:
+            name: {{.Trial}}
+            namespace: {{.NameSpace}}
+          spec:
+           tfReplicaSpecs:
+            Worker:
+              replicas: 1 
+              restartPolicy: OnFailure
+              template:
+                spec:
+                  containers:
+                    - name: tensorflow 
+                      image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+                      imagePullPolicy: Always
+                      command:
+                        - "python"
+                        - "/var/tf_mnist/mnist_with_summaries.py"
+                        - "--log_dir=/train/metrics"
+                        {{- with .HyperParameters}}
+                        {{- range .}}
+                        - "{{.Name}}={{.Value}}"
+                        {{- end}}
+                        {{- end}}
+```
+<br>
+위에서 중요한 Parameter를 살펴보자.  
+- trial: spec에서 trial의 숫자를 지정한다. 병렬로 수행할 trial개수와 최대 trial, 최대 실패 trial을 적어준다. 이러한 trial은 실제 Python Code를 수행하는 Thread에대한 제약조건이라고 생각하면 이해하기 쉽다.
+- objective: 결과적으로 우리가 얻고자 하는 Parameter의 정의이다. 최대 0.99의 정확도를 요구하고 있다.  
+- algorithm: Hpyerparameter Tunning을 위한 Algorithm이다. 다양한 방식이 있지만, Random을 많이 사용되고 그 이유는 다른 방식은 적용시키기 위한 조건 충족이 어렵기 때문이다. (대중적으로 모든 사람들이 사용하기 편한 Hpyerparameter Tunning 이 정립되지 않았다.)
+- parameters: Hyperparameter Tunning을 할 Parameter의 모음이다. min과 max를 설정할 수 있다.
+- containers: 실질적으로 Image를 올리고 Code를 수행할 제약사항에 대하여 연결한다.
+
+.yaml File을 kubectl로 apply시키면 다음과 같은 결과를 얻게 된다.  
+
+**experiment 확인**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/161.png" height="250" width="600" /></div><br>
+**trial 확인**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/162.png" height="250" width="600" /></div><br>
+
+최종적인 결과는 Kubeflow UI에 접속하여 확인할 수 있다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/163.png" height="100%" width="100%" /></div><br>
+
+### Katib 실제 적용
+
+<hr>
+참조:<a href="https://www.kubeflow.org/docs/components/hyperparameter-tuning/hyperparameter/">Kubeflow-Katib</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
