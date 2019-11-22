@@ -124,6 +124,259 @@ spec:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/163.png" height="100%" width="100%" /></div><br>
 
 ### Katib 실제 적용
+Katib를 사용하기 위하여 다음과 같은 과정을 거친다.  
+#### Python File 작성
+먼저 적용시키고자 하는 Python File을 작성한다.  
+```python
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import argparse
+import numpy as np
+from tensorflow.keras.datasets.cifar10 import load_data
+import os
+import sys
+import tensorflow as tf
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--num_epoch', type=int, default=1000, help='Number of steps to run trainer.')
+parser.add_argument('--learning_rate', type=float, default=0.001, help='Initial learning rate')
+
+FLAGS, unparsed = parser.parse_known_args()
+
+num_epoch = FLAGS.num_epoch
+learning_rate = FLAGS.learning_rate
+
+def next_batch(num, data, labels):
+    idx = np.arange(0, len(data))
+    np.random.shuffle(idx)
+    idx = idx[:num]
+    data_shuffle = [data[i] for i in idx]
+    labels_shuffle = [labels[i] for i in idx]
+    
+    return np.asarray(data_shuffle), np.asarray(labels_shuffle)
+
+def build_CNN_Classifier(x):
+    x_image = x
+    
+    W_conv1 = tf.Variable(tf.truncated_normal(shape=[5,5,3,64],stddev=5e-2))
+    b_conv1 = tf.Variable(tf.constant(0.1, shape=[64]))
+    h_conv1 = tf.nn.relu(tf.nn.conv2d(x_image, W_conv1, strides=[1,1,1,1],padding='SAME')+b_conv1)
+    
+    h_pool1 = tf.nn.max_pool(h_conv1,ksize=[1,3,3,1],strides=[1,2,2,1],padding='SAME')
+    
+    W_conv2 = tf.Variable(tf.truncated_normal(shape=[5,5,64,64],stddev=5e-2))
+    b_conv2 = tf.Variable(tf.constant(0.1, shape=[64]))
+    h_conv2 = tf.nn.relu(tf.nn.conv2d(h_pool1, W_conv2,strides=[1,1,1,1],padding='SAME')+b_conv2)
+    
+    h_pool2 = tf.nn.max_pool(h_conv2,ksize=[1,3,3,1],strides=[1,2,2,1],padding='SAME')
+    
+    W_conv3 = tf.Variable(tf.truncated_normal(shape=[3,3,64,128],stddev=5e-2))
+    b_conv3 = tf.Variable(tf.constant(0.1, shape=[128]))
+    h_conv3 = tf.nn.relu(tf.nn.conv2d(h_pool2, W_conv3,strides=[1,1,1,1],padding='SAME')+b_conv3)
+    
+    
+    W_conv4 = tf.Variable(tf.truncated_normal(shape=[3,3,128,128],stddev=5e-2))
+    b_conv4 = tf.Variable(tf.constant(0.1, shape=[128]))
+    h_conv4 = tf.nn.relu(tf.nn.conv2d(h_conv3, W_conv4,strides=[1,1,1,1],padding='SAME')+b_conv4)
+    
+    
+    W_conv5 = tf.Variable(tf.truncated_normal(shape=[3,3,128,128],stddev=5e-2))
+    b_conv5 = tf.Variable(tf.constant(0.1, shape=[128]))
+    h_conv5 = tf.nn.relu(tf.nn.conv2d(h_conv4, W_conv5,strides=[1,1,1,1],padding='SAME')+b_conv5)
+    
+    W_fc1 = tf.Variable(tf.truncated_normal(shape=[8*8*128, 384],stddev=5e-2))
+    b_fc1 = tf.Variable(tf.constant(0.1,shape=[384]))
+    h_conv5_flat = tf.reshape(h_conv5,[-1,8*8*128])
+    h_fc1 = tf.nn.relu(tf.matmul(h_conv5_flat,W_fc1)+b_fc1)
+    
+    h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
+    
+    W_fc2 = tf.Variable(tf.truncated_normal(shape=[384, 10],stddev=5e-2))
+    b_fc2 = tf.Variable(tf.constant(0.1,shape=[10]))
+    logits = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
+    y_pred = tf.nn.softmax(logits)
+    
+    return y_pred, logits
+
+x = tf.placeholder(tf.float32, shape = [None, 32, 32, 3])
+y = tf.placeholder(tf.float32, shape = [None, 10])
+keep_prob = tf.placeholder(tf.float32)
+
+
+(x_train, y_train), (x_test, y_test) = load_data()
+y_train_one_hot = tf.squeeze(tf.one_hot(y_train,10),axis=1)
+y_test_one_hot = tf.squeeze(tf.one_hot(y_test,10),axis=1)
+
+y_pred, logits = build_CNN_Classifier(x)
+
+loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y,logits=logits))
+train_step = tf.train.RMSPropOptimizer(learning_rate).minimize(loss)
+
+correct_prediction = tf.equal(tf.argmax(y_pred,1),tf.argmax(y,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
+tf.summary.scalar('accuracy', accuracy)
+tf.summary.scalar('test_input', 1)
+
+merged = tf.summary.merge_all()
+
+with tf.Session() as sess:
+    train_writer = tf.summary.FileWriter('/train', sess.graph)
+    sess.run(tf.global_variables_initializer())
+    
+    for i in range(num_epoch):
+        batch = next_batch(128, x_train, y_train_one_hot.eval())
+        
+        if i % 100 == 0:
+            train_accuracy = accuracy.eval(feed_dict={x: batch[0], y: batch[1], keep_prob: 1.0})
+            loss_print = loss.eval(feed_dict={x: batch[0], y: batch[1], keep_prob: 1.0})
+            
+            print('Epoch: %d, Accuracy: %f, Loss: %f'%(i, train_accuracy, loss_print))
+            
+        summary,_ = sess.run([merged,train_step], feed_dict={x: batch[0], y:batch[1], keep_prob:0.8})
+        train_writer.add_summary(summary, i)
+
+    train_writer.close()
+
+    test_accuracy = 0.0
+    for i in range(10):
+        test_batch = next_batch(1000,x_test,y_test_one_hot.eval())
+        test_accuracy = test_accuracy + accuracy.eval(feed_dict={x: test_batch[0], y:test_batch[1], keep_prob: 1.0})
+            
+    test_accuracy = test_accuracy/10
+    print('Test Accuracy: %f'%(test_accuracy))
+```
+<br>
+
+여기서 주의하여야하는 점이 몇가지 있다.  
+1. Tuning하고자 하는 Hyperparameter는 parser를 통하여 받는다. 나중에 .yaml File작성시 paser로 받아들이는 값을 변화시켜 Trainning이 진행되기 때문이다.
+2. 목표하고자 하는 값을 반드시 <code>tf.summary.scalar('accuracy', accuracy)</code>로서 받아야 한다. 나중에 .yaml File에 작성하여 이름을 맞춰서 접근한다.
+3. **한글은 사용하지 말자** https://github.com/kubeflow/katib/issues/926 Issue를 직접작성하고 답변을 들었으나 한들을 사용하게 되면 Pod 내부에서 Python을 실행시킬때 Error가 발생하여 Pod이 실행되지 않는다.
+
+
+<br>
+#### Dockerfile 작성, Image Build, Image push
+**Docker File 작성**  
+```code
+FROM tensorflow/tensorflow:1.14.0
+
+ADD . /var/tf_cnn
+ENTRYPOINT ["python", "/var/tf_cnn/cnn-example.py"]
+```
+<br>
+
+**Image Build**  
+```code
+docker build -f Dockerfile -t wjddyd66/cnn-example:15.0 ./
+```
+<br>
+
+**Image Push**  
+```code
+docker push wjddyd66/cnn-example:15.0
+```
+<br>
+<br>
+
+#### tfjob .yaml File적용
+먼저 위의 과정에 맞는 .yaml File의 내용은 다음과 같다.  
+```code
+apiVersion: "kubeflow.org/v1alpha3"
+kind: Experiment
+metadata:
+  namespace: kubeflow
+  name: cnn-example-accuracy2
+spec:
+  parallelTrialCount: 3
+  maxTrialCount: 12
+  maxFailedTrialCount: 3
+  objective:
+    type: maximize
+    goal: 1
+    objectiveMetricName: accuracy
+  algorithm:
+    algorithmName: random
+  metricsCollectorSpec:
+    source:
+      fileSystemPath:
+        path: /train
+        kind: Directory
+    collector:
+      kind: TensorFlowEvent
+  parameters:
+    - name: --learning_rate
+      parameterType: double
+      feasibleSpace:
+        min: "0.01"
+        max: "0.05"
+    - name: --num_epoch
+      parameterType: int
+      feasibleSpace:
+        min: "100"
+        max: "1000"
+  trialTemplate:
+    goTemplate:
+        rawTemplate: |-
+          apiVersion: "kubeflow.org/v1"
+          kind: TFJob
+          metadata:
+            name: {{.Trial}}
+            namespace: {{.NameSpace}}
+          spec:
+           tfReplicaSpecs:
+            Worker:
+              replicas: 1 
+              restartPolicy: OnFailure
+              template:
+                spec:
+                  containers:
+                    - name: tensorflow 
+                      image: wjddyd66/cnn-example:15.0
+                      imagePullPolicy: Always
+                      command:
+                        - "python"
+                        - "/var/tf_cnn/cnn-example.py"
+                        {{- with .HyperParameters}}
+```
+<br>
+실제 주의하여서 작성해야 하는 부분에 대해서 알아보자.  
+- objective: 실질적으로 HyperparameterTunning을 그만두는 조건을 적어두는 곳 이다. Object값을 maximize할지 minimize할 지 정할수 있고 목표 값을 설정할 수 있다. 또한 **objectiveMetricName**이 위에서 PythonFile에서 언급하였던 <code>tf.summary.scalar('accuracy', accuracy)</code>와 Mapping한다.
+- metricsCollectorSpec: 실질적으로 **Python File에서 LogFile의 위치와 collector의 종류를 적어주어야 한다.(Pytorch등 다른 Framework는 Collector를 변경하여야 한다.)**
+- parameter: Tunning하기 위한 Parameter를 적어둔다. **PythonFile에서 parser = argparse.ArgumentParser()에서 지정한 Parameter와 Mapping하여야 한다.**
+
+위의 3가지만 조심하면 나머지는 직관적으로 알기 쉽게 작성할 수 있다.  
+
+**위에서 작성한 .yaml File의 내용대로 HyperParameter를 Tunning하여 Object의 goal값에 도달할때까지 Trainning을 진행한다. 아래 결과를 살펴보게 되면 Accuracy가 1에 도달하지 못하므로 Trial개수 최대값인 12번이 실행된 것을 알 수 있다.**  
+```code
+$ kubectl get trials -n kubeflow
+
+NAME                             TYPE        STATUS   AGE
+cnn-example-accuracy2-49v7nkrm   Succeeded   True     14m
+cnn-example-accuracy2-4kpwrq8c   Succeeded   True     37m
+cnn-example-accuracy2-4ml8g7bp   Succeeded   True     19m
+cnn-example-accuracy2-5j9krjzb   Succeeded   True     29m
+cnn-example-accuracy2-5kd6vtwc   Succeeded   True     31m
+cnn-example-accuracy2-7cw78nrf   Succeeded   True     23m
+cnn-example-accuracy2-7jrznr4n   Succeeded   True     23m
+cnn-example-accuracy2-grvjzdjh   Succeeded   True     31m
+cnn-example-accuracy2-l2wql9bz   Succeeded   True     37m
+cnn-example-accuracy2-m4qtkddl   Succeeded   True     21m
+cnn-example-accuracy2-n8wlfc4n   Succeeded   True     33m
+cnn-example-accuracy2-s2p87kps   Succeeded   True     37m
+```
+<br>
+
+**UI 확인 결과**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/49.png" height="250" width="600" /></div><br>
+
+**참고 사항**  
+Experiment가 생성되고 **Trials가 생성되어 실질적인 Hyperparameter Tunning을 위한 Python File을 실행하고 결과를 서로 통신한다.**  
+결과적으로 Trials가 생성되는지 확인하고 생성이 안되면 다음과 같은 명령어로 인하여 Trial들의 각각의 상태를 확인할 수 있다.  
+```code
+kubectl logs  -n [Pod name] -c tensorflow
+```
+<br><br>
 
 <hr>
 참조:<a href="https://www.kubeflow.org/docs/components/hyperparameter-tuning/hyperparameter/">Kubeflow-Katib</a><br>
