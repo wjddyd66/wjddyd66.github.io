@@ -1,0 +1,30 @@
+---
+layout: post
+title:  "Keras란"
+date:   2019-11-25 11:10:20 +0700
+categories: [Keras]
+---
+
+### Keras란?
+**Keras는 빠르게 딥러닝 연구 및 실험을 가능**하게 하는 데에 중점을 두고 개발되었다.  
+가능한 개발 시간을 최소화하면서, 빠르게 도출할 수 있게 합니다.  
+
+위의 설명은 Tensorflow에서 Keras를 설명하는 이유이다.  
+하지만 직접적으로 **내가 사용하는 이유는 Tensorflow 2.0을 대비하기 위해서 이다.**  
+Tensorflow 2.0이 Tensorflow 1.x와 어떤점이 달라졌는지는 Tensorflow 2.0을 Post하면서 자세히 알아보도록 하고 **Tensorflow 2.0을 위해서 Keras를 사용하는 이유는 Tensorflow 2.0에서 Model을 구성하는데에 있어서 Keras가 필수이기 때문이다.**  
+따라서 앞으로의 Keras에 대한 예제는 미리 <a href="https://wjddyd66.github.io/categories/#pytorch">Pytorch</a>, <a href="https://wjddyd66.github.io/categories/#dl">DeepLearning</a>, <a href="https://wjddyd66.github.io/categories/#tensorflow">Tensorflow 1.x</a>에서 올려둔 Post의 내용이 어떻게 변화였는지에 대해 중점을 두고 알아본다.  
+
+### Keras의 특징
+**1. 사용자 친근성(User Friendliness)**  
+Keras는 기계가 아닌 인간을 위해 설계된 API(Application Programming Interface, 응용 프로그램 프로그래밍 인터페이스)입니다. Keras는 일관성 있고 간단한 API를 제공하고, 일반적으로 필요한 사용자 작업의 수를 최소화하며, 사용자 오류 시 명확하고 실용적인 피드백을 제공합니다.  
+**2. 모듈성(Modularity)**  
+모델은 가능한 최소한의 제한으로 독립적으로 생성가능 합니다. 또한, 신경층(Neural Layers), 비용함수(Cost Functions), 최적화기(Optimizers), 초기화 스킴(Initialization Schemes), 활성 함수(Activation Functions), 정규화 스킴(Regularization Schemes)은 모두 새로운 모델을 생성하기 위해 결합할 수있는 독립 실행형 모듈입니다.  
+**3. 쉬운 확장성(Easy Extensibility)**  
+새로운 모듈은 (새로운 클래스와 함수로서) 추가하기 쉽습니다. 새로운 모듈을 쉽게 만들 수 있기 때문에, Keras가 고급 연구에 적합합니다.  
+**4. Python 작업(Work with Python)**  
+모델은 작고, 디버그하기 쉽고, 확장성이 용이한 Python을 기반으로 두고 있습니다.  
+<br>
+
+<hr>
+참조:<a href="https://medium.com/@psychet_learn/keras-%EA%B8%B0%EC%B4%88-1%EC%9E%A5-keras-intro-9939d8a07926">medium.com</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
