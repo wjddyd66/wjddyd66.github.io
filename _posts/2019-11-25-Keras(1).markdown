@@ -13,6 +13,7 @@ categories: [Keras]
 하지만 직접적으로 **내가 사용하는 이유는 Tensorflow 2.0을 대비하기 위해서 이다.**  
 Tensorflow 2.0이 Tensorflow 1.x와 어떤점이 달라졌는지는 Tensorflow 2.0을 Post하면서 자세히 알아보도록 하고 **Tensorflow 2.0을 위해서 Keras를 사용하는 이유는 Tensorflow 2.0에서 Model을 구성하는데에 있어서 Keras가 필수이기 때문이다.**  
 따라서 앞으로의 Keras에 대한 예제는 미리 <a href="https://wjddyd66.github.io/categories/#pytorch">Pytorch</a>, <a href="https://wjddyd66.github.io/categories/#dl">DeepLearning</a>, <a href="https://wjddyd66.github.io/categories/#tensorflow">Tensorflow 1.x</a>에서 올려둔 Post의 내용이 어떻게 변화였는지에 대해 중점을 두고 알아본다.  
+<br><br>
 
 ### Keras의 특징
 **1. 사용자 친근성(User Friendliness)**  
@@ -23,8 +24,121 @@ Keras는 기계가 아닌 인간을 위해 설계된 API(Application Programming
 새로운 모듈은 (새로운 클래스와 함수로서) 추가하기 쉽습니다. 새로운 모듈을 쉽게 만들 수 있기 때문에, Keras가 고급 연구에 적합합니다.  
 **4. Python 작업(Work with Python)**  
 모델은 작고, 디버그하기 쉽고, 확장성이 용이한 Python을 기반으로 두고 있습니다.  
+<br><br>
+
+### Keras 기초(Mnist)
+본격적으로 Keras에 대해서 알아보기 전에 간단한 MNIST예제를 통하여 Tensorflow에 비해서 얼마나 간편하고 사용하기 쉬워졌는지 알아보자.  
+
+#### 필요한 라이브러리 Import
+```python
+from keras.datasets import mnist
+from keras.utils import to_categorical
+from keras import models
+from keras import layers
+```
+<br>
+
+#### Mnist Data
+Mnist Data를 다운받고 Train 시키기한 과정
+```python
+(train_images, train_labels),(test_images,test_labels) = mnist.load_data()
+
+print(train_images.shape)
+print(len(train_labels))
+```
+<br>
+(60000, 28, 28)  
+60000  
+<br>
+
+#### Network 구성
+network는 <code>models.Sequential()</code>로서 구성  
+Network안의 Layer는 <code>models.add()</code>로서 Layer를 Network에 추가한다.  
+하나의 완전연결 Layer는 <code>layer.Dense()</code>로서 Layer를 구성한다.  
+
+**Layer.Dense() Parameter**
+- units: Output의 차원
+- activation: Activation Function
+- use_bias: Bias사용 여부
+- input_shape: Input Shape, 아래 코드에서는 Train Image의 Size인 28 * 28로서 선언하였고 Batch Size나 Channel은 알아서 맞춰 들어가게 된다.
+
+
+```python
+network=models.Sequential()
+network.add(layers.Dense(512,activation='relu',input_shape=(28*28,)))
+network.add(layers.Dense(10,activation='softmax'))
+```
+<br>
+
+#### Compile 구성
+Tensorflow와 달리 **Keras는 network.compile()을 통하여 Optimizer, Loss Function, Trainning을 시킬 Object를 한꺼번에 선언한다.**
+```python
+network.compile(optimizer='rmsprop',loss='categorical_crossentropy',metrics=['accuracy'])
+```
+<br>
+
+#### Dataset 준비
+1. 이미지 데이터는 0 ~ 255사이의 값을 가지는 RGB 형태의 Image이므로 0 ~ 1 사이의 값으로 변환
+2. <code>keras.np_utils.categorical()</code>을 통하여 One-Hot-Encoding으로서 변환
+
+
+```python
+train_images = train_images.reshape((60000,28*28))
+train_images = train_images.astype('float32') / 255
+
+test_images = test_images.reshape((10000,28*28))
+test_images = test_images.astype('float32') / 255
+
+train_labels = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)
+```
+<br>
+
+### Train 및 결과 확인
+**Keras는 Tensorflow와 달리 Session을 열고 닫고 변수를 초기화 하는 과정을 거치면서 Trainning할 필요가 없다. 그저 <code>network.fit()</code>으로서 Network를 Trainning을 시키고 <code>network.evaluate()</code>를 통하여 TestData에 대하여 평가를 한다.**  
+
+구성한 Network는 <code>network.summary()</code>를 통하여 Network의 구조를 간단히 확인할 수 있다.
+```python
+print(network.summary())
+network.fit(train_images,train_labels,epochs=5,batch_size=128)
+test_loss,test_acc = network.evaluate(test_images,test_labels)
+print('test_acc = ',test_acc)
+```
+<br>
+```code
+Model: "sequential_1"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense_1 (Dense)              (None, 512)               401920    
+_________________________________________________________________
+dense_2 (Dense)              (None, 10)                5130      
+=================================================================
+Total params: 407,050
+Trainable params: 407,050
+Non-trainable params: 0
+_________________________________________________________________
+None  
+
+Epoch 1/5
+60000/60000 [==============================] - 1s 18us/step - loss: 0.2548 - accuracy: 0.9263
+Epoch 2/5
+60000/60000 [==============================] - 1s 16us/step - loss: 0.1038 - accuracy: 0.9694
+Epoch 3/5
+60000/60000 [==============================] - 1s 15us/step - loss: 0.0686 - accuracy: 0.9798
+Epoch 4/5
+60000/60000 [==============================] - 1s 17us/step - loss: 0.0497 - accuracy: 0.9852
+Epoch 5/5
+60000/60000 [==============================] - 1s 15us/step - loss: 0.0380 - accuracy: 0.9881
+10000/10000 [==============================] - 1s 55us/step
+('test_acc = ', 0.9812999963760376)
+```
+<br>
+Tensorflow에 비해서 매우 간편하게 Network를 구성하고 확인할 수 가 있는것을 확인하였다.  
+**Pytorch와 같은 간편한 Network구성과 Trainning을 할 수 있고, Tensorflow의 장점인 Define & Run 구조를 그대로 가지고 갈 수 있다는 점에서 매우 매력적인 API인것은 부정할 수 없을 것 같다.**  
 <br>
 
 <hr>
+참조:<a href="https://github.com/wjddyd66/Keras/blob/master/Ch01.ipynb">원본코드</a><br>
 참조:<a href="https://medium.com/@psychet_learn/keras-%EA%B8%B0%EC%B4%88-1%EC%9E%A5-keras-intro-9939d8a07926">medium.com</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
