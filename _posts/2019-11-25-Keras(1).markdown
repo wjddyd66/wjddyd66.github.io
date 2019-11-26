@@ -141,4 +141,6 @@ Tensorflow에 비해서 매우 간편하게 Network를 구성하고 확인할 �
 <hr>
 참조:<a href="https://github.com/wjddyd66/Keras/blob/master/Ch01.ipynb">원본코드</a><br>
 참조:<a href="https://medium.com/@psychet_learn/keras-%EA%B8%B0%EC%B4%88-1%EC%9E%A5-keras-intro-9939d8a07926">medium.com</a><br>
+참조: 케라스 창시자에게 배우는 딥러닝<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
