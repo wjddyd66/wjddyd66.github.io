@@ -1,0 +1,164 @@
+---
+layout: post
+title:  "ROS"
+date:   2019-11-27 09:00:20 +0700
+categories: [others]
+---
+
+**LiDAR Institute 세미나에 대한 내용을 정리한 것 입니다.**  
+### 자율주행 요소기술
+자율주행 요소 기술로서 크게 4개로서 구별을 하였다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/1.png" height="250" width="600" /></div><br>
+사진 출처: LiDAR Institute 세미나  
+
+여기서 이번 세미나에서는 개체 인지 쪽에서의 DeepLearning과 다른 분야에서는 LiDAR를 활용하여 어떻게 자율주행 요소 기술을 적용하였는지에 대해 알아보는 세미나 이다.  
+사전사항으로서 다음과 같은 HW Spec과 Software가 요구된다.  
+**HW Spec**  
+- OS: 64-bit Ubuntu Linux 18.04 LTS 권장
+- Processor: 1.8 GHz Intel64 or AMD 64 (X86_64 compatible processor) processor 이상
+- Memory: 8 GB RAM.
+- Graphics: 최소 OpenGL compatible 1280 x 960 display, NVIDIA GeForce GTX 960 2GB 이상 권장 
+- Storage: 30 GB available space.
+
+<br>
+**Soft Ware**  
+- ROS Melodic 설치: <a href="http://wiki.ros.org/melodic/Installation/Ubuntu">설치 방법</a>
+
+<br>
+
+**참고사항(LiDAR)**  
+LiDAR는 Light Detection And Ranging(빛 탐지 및 범이 측정) 또는 Laser Imagint, Detection and Ranging(레이저 이미징, 탐지 및 범위 측정)의 약자로 펄스 레이저를 목표물에 방출하고 빛이 돌아오기까지 걸리는 시간 및 강도를 측정해 거리, 방향 속도, 온도, 물질 분포 및 농도 특성을 감지하는 기술이다.  
+<br>
+<img class="wp-image size-full wp-image-303563 view-size-adjust" src="http://www.bloter.net/wp-content/uploads/2018/02/googlecar04.gif"width="604" height="403"><br>
+사진 출처: <a href="http://www.bloter.net/archives/303561"></a><br>
+
+<br><br>
+
+### 실습
+위의 사전사항을 만족하고 다음과 같은 명령어로 인하여 LiDAR를 실습하게 된다.  
+현재 몇몇 사항은 사전측에서 미리 준비해둔 Setting으로 진행하므로 직접 구동하거나 실습하는데에는 무리가 있을 것으로 예상됩니다.(LiDAR의 가격이 2000만원 가량이라고 합니다.)  
+
+
+#### 실습 1 ROS 패키징 생성하기(C++)
+(1) C++ 언어로 개발할 수 있는 ROS 패키지를 생성합니다.  
+```code
+catkin_create_pkg creating_ros_pkg_cpp roscpp
+```
+<br>
+참고사항으로 위에서 사용한 명령어는 다음과 같다.  
+- <code>catkin_create_pkg</code>: Package를 생성한다.
+- <code>creating_ros_pkg_cpp</code>: Package의 이름을 지정한다.
+- <code>roscpp</code>: 설치할 Package를 정의한다.(C++ 예제이므로 roscpp 사용)
+
+<br>
+
+(2) 생성한 패키지 폴더 안의 CMakeLists의 내용을 알맞게 변경합니다.  
+
+(3) 실행할 cpp File을 생성한다. (File의 위치와 실행할 File의 이름을 CMakeLists에 작성하여야 실행된다.)  
+
+(4) src위의 Directory에 접속하여 Build를 실행한다. <code>catkin_make</code>  
+
+(5) 실제 동작을 확인한다. <code>catkin_make</code>  
+
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2.png" height="250" width="600" /></div><br>
+
+#### 실습 2 ROS 패키지 생성하기 (Python)
+위의 실습 1과 전부 동일하나 다른것은 (1) C++ 언어로 개발할 수 있는 ROS 패키지 생성에서 C++이 아니라 Python Package를 설치한다. <code>catkin_create_pkg creating_ros_pkg_python rospy</code> 나머지는 위와 작업이 동일하다.  
+<br>
+
+#### 실습 3 LiDAR 실행하기
+(1) C++ 언어로 개발할 수 있는 ROS 패키지를 생성합니다.  
+```code
+catkin_create_pkg creating_ros_pkg_cpp roscpp
+```
+<br>
+참고사항으로 위에서 사용한 명령어는 다음과 같다.  
+- <code>catkin_create_pkg</code>: Package를 생성한다.
+- <code>creating_ros_pkg_cpp</code>: Package의 이름을 지정한다.
+- <code>roscpp</code>: 설치할 Package를 정의한다.(C++ 예제이므로 roscpp 사용)
+
+<br>
+
+(2) 생성한 패키지 폴더 안의 CMakeLists의 내용을 알맞게 변경합니다.  
+
+(3) 실행할 cpp File을 생성한다. (File의 위치와 실행할 File의 이름을 CMakeLists에 작성하여야 실행된다.)  
+
+(4) src위의 Directory에 접속하여 Build를 실행한다. <code>catkin_make</code>  
+
+(5) ip를 LiDAR와 통신할 수 있게 설정한다.  
+
+(6) source를 통하여 Build를 수행한 파일을 추가한다. <code>source ./devel/sartup.bash</code>  
+
+(7) 시각화를 위하여 RViz를 실행 후 Point Cloud Data를 추가한다.  
+
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3.png" height="250" width="600" /></div><br>
+<br>
+
+#### 실습 4 Dyamic Object Detection
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2.png" height="250" width="600" /></div><br><br>
+
+#### LiDAR Point cloud
+(1) 제공해준 File Build <code>catkin_make</code>  
+(2) LiDAR Point Cloud File 실시
+- resource 실행
+- SL LiDAR rviz 실행 <code>rviz –d ~/catkin_ws/src/sl_tracking/rviz/l
+idar.rviz</code>
+- rosbag play <code>rosbag play --clock SL_starfield.bag</code>
+
+직접 LiDAR를 통하여 실시간 Data를 받와와서 실행하는 것이 아닌 미리 저장되어있는 bag File을 보여주는 작업이다.  
+<br>
+
+#### Ground Alignment
+실제 LiDAR는 정면을 찍는 것이 아닌 위에서 아래를 바라보는 방향으로 진행하기 때문에 관측하는 각도를 바꿔야 하는 작업이다.  
+간단한 회전변환으롯 이루워진다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/4.png" height="250" width="600" /></div><br>
+
+<br>
+
+#### Filtering
+Voxel grid filter, Distance filter를 사용한다.(Uniform 하게 Data를 DownSampling을 하고 원하는 거리만큼 확인할 수 있다.)  
+또한 ROS의 Filtering의 Parameter들은 .yaml File로 제공하여 손쉽게 바꿀수 있게 바꾸었다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/6.png" height="250" width="600" /></div><br>
+
+<br>
+
+#### Background Removal
+<a href="https://wjddyd66.github.io/opencv/OpenCV(9)/">OpenCV-비디오 처리<a>에서도 언급하였던 움직이는 Object를 추출하기 위하여 일정 Frame동안에서 움직인 Object를 확인 즉 Frame의 값이 바뀐것을 확인하여 Object를 추출하는 방법이다.  
+각각의 Parameter는 검출하고자 하는 Object의 특성에 맞게 조정하여 Detection하게 된다.  
+아래 사진을 보게 되면 움직이지 않는 물체는 파란색으로, 움직이는 물체는 빨간색으로서 표시하게 된다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/7.png" height="250" width="600" /></div><br>
+
+
+<br>
+
+#### Clustering
+K-means를 사용하지 않고 DBSCAN을 사용하여 Clustering을 실시한다.  
+Clustering을 기준 Object를 기준으로 묶게되어서 의미없는 Noise는 없어지게 되는 효과가 나타나게 된다.  
+DBScan을 통하여 많은 Computing Power가 소모될 것이라고 생각하였지만, 위에서 Background Removal에서부터 확인한 **빨간색 Pixel에 대하여 즉, 움직이는 Object에 관하여 DBSCAN을 사용하게 되므로 연산에 소요되는 시간을 매우 낮출 수 있다**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/8.png" height="250" width="600" /></div><br>
+
+
+<br>
+
+#### Classification
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/9.png" height="250" width="600" /></div><br>
+위에서 Clustering된 Object에 관하여 어떤 Class인지 구별할 수 있다.  
+사람의 경우 원통으로서 표시되서 보여지게 된다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/10.png" height="250" width="600" /></div><br><br>
+
+### Mission
+실제로 해보라고 주어진 환경은 LiDAR로서 받은 실제 Data를 Dynamic Object Detection알고리즘을 수행하여 확인하는 것 이다.  
+1. 각각의 최적의 Parameter를 찾기위하여 Parameter가 정의된 .yaml File 변경
+2. LiDAR 실행하여 Data 받아오기
+3. Dynamic Object Detection Algorithm 적용
+
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/10.png" height="250" width="600" /></div><br>
+실습 결과에 대해서 정확한 Accuracy에 대한 평가방법이 있다면 맞추고 싶었으나, **논문이나 다른 연구에 의한 기준이 없는 경우 눈으로서 제일 판단이 잘 된다고 평가한 Parameter로서 선정하기도 한다고 한다.**  
+<br>
+
+
+<hr>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
