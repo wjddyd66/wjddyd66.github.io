@@ -58,39 +58,30 @@ catkin_create_pkg creating_ros_pkg_cpp roscpp
 
 (4) src위의 Directory에 접속하여 Build를 실행한다. <code>catkin_make</code>  
 
-(5) 실제 동작을 확인한다. <code>catkin_make</code>  
+(5) 실제 동작을 확인한다.  
 
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2.png" height="250" width="600" /></div><br>
 
 #### 실습 2 ROS 패키지 생성하기 (Python)
 위의 실습 1과 전부 동일하나 다른것은 (1) C++ 언어로 개발할 수 있는 ROS 패키지 생성에서 C++이 아니라 Python Package를 설치한다. <code>catkin_create_pkg creating_ros_pkg_python rospy</code> 나머지는 위와 작업이 동일하다.  
 <br>
 
 #### 실습 3 LiDAR 실행하기
-(1) C++ 언어로 개발할 수 있는 ROS 패키지를 생성합니다.  
-```code
-catkin_create_pkg creating_ros_pkg_cpp roscpp
-```
-<br>
-참고사항으로 위에서 사용한 명령어는 다음과 같다.  
-- <code>catkin_create_pkg</code>: Package를 생성한다.
-- <code>creating_ros_pkg_cpp</code>: Package의 이름을 지정한다.
-- <code>roscpp</code>: 설치할 Package를 정의한다.(C++ 예제이므로 roscpp 사용)
+(1) 기본적인 실습 1,2 와 동일한 과정을 거칩니다. 주어진 Souce를 File에 지정하여 넣고 Build를 실시하여야 합니다.  
+
+(2) ip를 LiDAR와 통신할 수 있게 설정한다.  
+
+(3) source를 통하여 Build를 수행한 파일을 추가한다. <code>source ./devel/sartup.bash</code>  
+
+(4) <code>rospack profile</code>을 통하여 실제 Direcory 가 잘 추가되었는지 확인합니다.  
+
+(5) 실제 추가한 Directory에 맞는 File을 실행하여야 합니다. <code>roslaunch arg1 arg2</code>  
+- arg1: 실제 src File안에 실행시킬 Directory
+- arg2: src/arg1/launch 안에서의 launch File 이름
 
 <br>
 
-(2) 생성한 패키지 폴더 안의 CMakeLists의 내용을 알맞게 변경합니다.  
-
-(3) 실행할 cpp File을 생성한다. (File의 위치와 실행할 File의 이름을 CMakeLists에 작성하여야 실행된다.)  
-
-(4) src위의 Directory에 접속하여 Build를 실행한다. <code>catkin_make</code>  
-
-(5) ip를 LiDAR와 통신할 수 있게 설정한다.  
-
-(6) source를 통하여 Build를 수행한 파일을 추가한다. <code>source ./devel/sartup.bash</code>  
-
-(7) 시각화를 위하여 RViz를 실행 후 Point Cloud Data를 추가한다.  
+(6) 시각화를 위하여 RViz를 실행 후 Point Cloud Data를 추가한다.  
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/3.png" height="250" width="600" /></div><br>
 <br>
@@ -111,7 +102,14 @@ idar.rviz</code>
 
 #### Ground Alignment
 실제 LiDAR는 정면을 찍는 것이 아닌 위에서 아래를 바라보는 방향으로 진행하기 때문에 관측하는 각도를 바꿔야 하는 작업이다.  
-간단한 회전변환으롯 이루워진다.  
+간단한 회전변환으로 이루워진다.  
+앞으로의 작업은 3개의 Terminal에서 진행되며 각각의 Terminal은 다음과 같은 역할을 합니다.  
+- Terminal1: 실제 Data를 받아들일 .bag File을 실행시킵니다.
+- Terminal2: 실제 받아들인 Data를 Filtering을 거치게 합니다. 즉 .bag File의 Data를 Algorithm을 거친 뒤의 값으로 변환시킵니다.
+- Terminal3: Terminal2에서의 값을 rviz를 통하여 실제로 확인합니다.
+
+<br>
+
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/4.png" height="250" width="600" /></div><br>
 
 <br>
