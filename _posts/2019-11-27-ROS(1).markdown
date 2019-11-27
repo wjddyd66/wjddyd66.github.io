@@ -122,7 +122,7 @@ Voxel grid filter, Distance filter를 사용한다.(Uniform 하게 Data를 DownS
 <br>
 
 #### Background Removal
-<a href="https://wjddyd66.github.io/opencv/OpenCV(9)/">OpenCV-비디오 처리<a>에서도 언급하였던 움직이는 Object를 추출하기 위하여 일정 Frame동안에서 움직인 Object를 확인 즉 Frame의 값이 바뀐것을 확인하여 Object를 추출하는 방법이다.  
+<a href="https://wjddyd66.github.io/opencv/OpenCV(9)/">OpenCV-비디오 처리</a>에서도 언급하였던 움직이는 Object를 추출하기 위하여 일정 Frame동안에서 움직인 Object를 확인 즉 Frame의 값이 바뀐것을 확인하여 Object를 추출하는 방법이다.  
 각각의 Parameter는 검출하고자 하는 Object의 특성에 맞게 조정하여 Detection하게 된다.  
 아래 사진을 보게 되면 움직이지 않는 물체는 파란색으로, 움직이는 물체는 빨간색으로서 표시하게 된다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/7.png" height="250" width="600" /></div><br>
