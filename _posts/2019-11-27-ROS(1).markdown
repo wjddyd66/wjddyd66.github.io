@@ -29,9 +29,8 @@ categories: [others]
 **참고사항(LiDAR)**  
 LiDAR는 Light Detection And Ranging(빛 탐지 및 범이 측정) 또는 Laser Imagint, Detection and Ranging(레이저 이미징, 탐지 및 범위 측정)의 약자로 펄스 레이저를 목표물에 방출하고 빛이 돌아오기까지 걸리는 시간 및 강도를 측정해 거리, 방향 속도, 온도, 물질 분포 및 농도 특성을 감지하는 기술이다.  
 <br>
-<img src="https://post-phinf.pstatic.net/MjAxOTA1MjhfMjg2/MDAxNTU5MDM3NjY5ODAw.4i_K4yTvqOJA8KOwlS8JXzxIvNsM-1TvariLKHu2uH0g.uOoBOSWVXTJ53JwXGR8XY_CDRAiRfgOZu924pYcemkkg.JPEG/LiDAR.jpeg?type=w1200" />
+<img src="https://post-phinf.pstatic.net/MjAxOTA1MjhfMjg2/MDAxNTU5MDM3NjY5ODAw.4i_K4yTvqOJA8KOwlS8JXzxIvNsM-1TvariLKHu2uH0g.uOoBOSWVXTJ53JwXGR8XY_CDRAiRfgOZu924pYcemkkg.JPEG/LiDAR.jpeg?type=w1200" height="250" width="600" />
 <br>
-사진 출처: <a href="http://www.bloter.net/archives/303561">bloter.net</a><br>
 
 <br><br>
 
