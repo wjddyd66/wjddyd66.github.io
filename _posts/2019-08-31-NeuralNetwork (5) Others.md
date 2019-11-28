@@ -156,7 +156,7 @@ ReLu를 Activation Function으로서 사용할 경우 **He 초기값**을 추천
 위와 같이 Parameter가 정의되어 있으면 Target Data는 아래처럼 표현 할 수 있다.  
 $$t = f(x) + ϵ$$
 
-Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은 <span>$$Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은E\{(t-y)^2\}$$ </span>으로서 표현 할 수 있다.  
+Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은 Loss Function을 MSE로서 사용하여 되면 Loss의 기대값은<span>$$E\{(t-y)^2\}$$ </span>으로서 표현 할 수 있다.  
 Loss Function을 조금 더 풀어보면 다음과 같다.  
 
 $$E\{(t-y)^2\} = E\{(t-f+f-y)^2\}$$
@@ -195,6 +195,9 @@ $$(\because 2E\{(E\{y\}-y)(f-E\{y\})\} =0 )$$
 위의 그림으로서 살펴보게 되면 결론적으로 Overfitting과 Underfitting은 다음과 같은 현상일 때 나타난다.  
 **Overfitting은 분산은 작으나 편차가 클 경우 발생(High Bias)**  
 **Underfitting은 분산이 큰 경우 발생(High Variance)**  
+조금 더 직관적으로 살펴보면 다음과 같은 사진으서 생각할 수 있다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/164.PNG" height="250" width="600" /></div>
+
 **위에서 말하는 분산은 Model에 적용시키면 Feature라고 할 수 있다.**  
 아래 그림은 Feature에 따른 Underfit과 Overfit에 관한 그림이다.  
 <div><img src="https://t1.daumcdn.net/cfile/tistory/9994AF495B76CC9B0F" height="250" width="600" /></div>
