@@ -106,7 +106,6 @@ minimum_range
 mapping_line_resolution  
 mapping_plane_resolution  
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/23.png" height="250" width="600" /></div><br>
 
 <br>
 <hr>
