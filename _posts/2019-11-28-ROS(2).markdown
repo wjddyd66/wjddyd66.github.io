@@ -83,8 +83,31 @@ Bag File을 원본을 사용할때 너무 빨리 실행됭 실질적으로 Rviz�
 <br>
 
 #### LIDAR SLAM
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/21.png" height="250" width="600" /></div><br>
+(1) ceres solver 설치 <code>sudo apt-get install libceres-dev</code>  
+(2) catkin _ ws의 src폴더에 aloam 소스 클론 <code>git clone https://github.com/HKUST-Aerial-Robotics/A-LOAM</code>  
+(3) catkin _ ws 폴더에서 <code>catkin_make</code> 수행하여 빌드  
+(4) aloam 실행 <code>roslaunch aloam_velodyne aloam_velodyne_VLP_16.launch</code>  
+(5) 다운받은 bag파일을 play <code>rosbag play nsh_indoor_outdoor.bag --clock</code>  
 
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/22.png" height="250" width="600" /></div><br>
 <br>
 
+### Mission(LOAM과 SL1을 이용해 환경맵핑 해보기)
+(1) Launch파일에 다음의 문구 삽입  
+```code
+<remap from=“velodyne_points” to=“soslab_sl1/pointcloud”/>
+```<br>
+
+(2) 파라미터 조정을 통해 테스트  
+scan_line  
+mapping_skip_frame  
+minimum_range  
+mapping_line_resolution  
+mapping_plane_resolution  
+
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/23.png" height="250" width="600" /></div><br>
+
+<br>
 <hr>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
