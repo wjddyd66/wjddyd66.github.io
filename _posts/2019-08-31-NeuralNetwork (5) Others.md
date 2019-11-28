@@ -161,12 +161,7 @@ Loss Function을 조금 더 풀어보면 다음과 같다.
 
 $$E\{(t-y)^2\} = E\{(t-f+f-y)^2\}$$
 $$= E\{(t-f)^2\} + E\{(f-y)^2\} + 2E\{(f-y)(t-f)\}$$
-$$
-\begin{multline}
-= E\{ϵ^2\} + E\{(f-y)^2\} + 2[E\{ft\} \\
-- E\{f^2\} - E\{yt\} + E\{yf\}]
-\end{multline}
-$$
+$$= E\{ϵ^2\} + E\{(f-y)^2\} + 2[E\{ft\} - E\{f^2\} - E\{yt\} + E\{yf\}]$$
 $$= E\{(f - E\{y\} + E\{y\} - y)^2\} + E\{ϵ^2\}$$
 <br>
 $$(\because t = f + ϵ 이므로 ft - f^2 - yt + yf$$
@@ -196,7 +191,7 @@ $$(\because 2E\{(E\{y\}-y)(f-E\{y\})\} =0 )$$
 **Overfitting은 분산은 작으나 편차가 클 경우 발생(High Bias)**  
 **Underfitting은 분산이 큰 경우 발생(High Variance)**  
 조금 더 직관적으로 살펴보면 다음과 같은 사진으서 생각할 수 있다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/164.PNG" height="250" width="600" /></div>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/164.png" height="250" width="600" /></div>
 
 **위에서 말하는 분산은 Model에 적용시키면 Feature라고 할 수 있다.**  
 아래 그림은 Feature에 따른 Underfit과 Overfit에 관한 그림이다.  
