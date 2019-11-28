@@ -91,20 +91,6 @@ Bag File을 원본을 사용할때 너무 빨리 실행됭 실질적으로 Rviz�
 (5) 다운받은 bag파일을 play <code>rosbag play nsh_indoor_outdoor.bag --clock</code>  
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/22.png" height="250" width="600" /></div><br>
-<br>
-
-### Mission(LOAM과 SL1을 이용해 환경맵핑 해보기)
-(1) Launch파일에 다음의 문구 삽입  
-```code
-<remap from=“velodyne_points” to=“soslab_sl1/pointcloud”/>
-```<br>
-
-(2) 파라미터 조정을 통해 테스트  
-scan_line  
-mapping_skip_frame  
-minimum_range  
-mapping_line_resolution  
-mapping_plane_resolution  
 
 
 <br>
