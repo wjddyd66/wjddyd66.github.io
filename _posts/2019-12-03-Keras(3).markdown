@@ -4,6 +4,7 @@ title:  "CNN 시작하기"
 date:   2019-12-03 09:00:20 +0700
 categories: [Keras]
 ---
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 ### CNN 시작하기
 이번 Post에서는 CNN을 활용하여 Image Dataset에 대한 Model을 생성하고 알아본다.    
@@ -765,27 +766,7 @@ model = load_model('./cats_and_dogs_small_2.h5')
 model.summary()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/3.png" height="250" width="600" /></div><br>
-<br><br>
 
-#### Trainning & Validation Accuracy Visualization
-
-```python
-plt.clf() # 그래프를 초기화
-accuracy = history_dict['accuracy']
-val_accuracy = history_dict['val_accuracy']
-
-epoch = range(1,len(loss)+1)
-
-plt.plot(epoch,accuracy,'bo',label='Training accuracy')
-plt.plot(epoch,val_accuracy,'b',label='Validation accuracy')
-plt.title('Training and Validation accuracy Visualization')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.legend()
-plt.show()
-```
-<br>
 ```code
 Model: "sequential_2"
 _________________________________________________________________
@@ -841,7 +822,7 @@ plt.show()
 ```
 <br>
 (1, 150, 150, 3)  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/13.png" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/13.png" height="150" width="300" /></div><br>
 <br><br>
 
 **Model 자르기**  
@@ -884,7 +865,7 @@ plt.imshow(first_layer_activation[0,:,:,10],cmap='viridis')
 ```
 <br>
 (1, 148, 148, 32)  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/14.png" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/14.png" height="150" width="300" /></div><br>
 <br><br>
 
 **모든 Layer의 이미지 출력**  
@@ -901,12 +882,12 @@ plt.imshow(first_layer_activation[0,:,:,10],cmap='viridis')
 
 위의 과정에서 Parameter들은 다음과 같은 의미를 가진다.  
 - x: 정상화되는 원수치
-- <span>$\sigma$</span>: 모집단에서의 표준편차
+- <span>$$\sigma$$</span>: 모집단에서의 표준편차
 - u: 모집단에서의 평균
 
 따라서 x = 256의 값을 가지게 된다.0 ~ 255사이의 값으로 나타내야 되므로  
 u는 0 ~ 255사이의 중앙값인 128을 가진다. 모집단의 크기가 충분히 크면 평균은 중앙값으로 수렴할 것이라는 예상 때문이다.  
-**중요한 것은 여기서의 표준편차(<span>$\sigma$</span>)로서 몇% 이상의 값들을 뽑아낼지 정할 수 있다.**  
+**중요한 것은 여기서의 표준편차(<span>$$\sigma$$</span>)로서 몇% 이상의 값들을 뽑아낼지 정할 수 있다.**  
 - 표준점수 0.0(=편차치 50) 이상은 전체의 50％이다.
 - 표준점수 1.0(=편차치 60) 이상은 전체의 15.866％이다.
 - 표준점수 2.0(=편차치 70) 이상은 전체의 2.275％이다.
@@ -1063,7 +1044,7 @@ def generate_pattern(layer_name,filter_index,size=150):
 plt.imshow(generate_pattern('block3_conv1',0))
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/18.png" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/18.png" height="150" width="300" /></div><br>
 <br><br>
 
 **Layer 전체 Filter 시각화**  
@@ -1174,7 +1155,7 @@ heatmap /= np.max(heatmap)
 plt.matshow(heatmap)
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/21.png" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/21.png" height="150" width="300" /></div><br>
 <br><br>
 
 **결과 저장**
