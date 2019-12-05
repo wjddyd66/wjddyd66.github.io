@@ -139,7 +139,7 @@ print(len(x_train[0]))
 **imdb 데이터에 Embedding 층과 분류기 사용**  
 실질적인 Train Data를 통하여 Train시키고 결과를 확인하기 위하여 Embedding 층과 분류기를 사용한다.  
 자세히 살펴보기 이전에 먼저 CBOW의 Model구조를 살펴보고 실제 Code에서 어떻게 Embedding구조에 적용하였는지 알아보자.  
-<img src="https://datascienceschool.net/upfiles/e62aadf1e8324d16a66288f2c83c470a.png" height="250" width="600">
+<img src="https://datascienceschool.net/upfiles/e62aadf1e8324d16a66288f2c83c470a.png" height="250" width="600"><br>
 위의 그림의 Embedding Layer를 구성하기 위하여 실질적인 Code는 <code>Embedding(10000,8,input_length=maxlen)</code>로서 구성하였다.  
 하나하나 Paramter를 살펴보면 다음과 같다.  
 - 10000: One-Hot-Encoding으로서 바꾸었을때의 Vector의 Size이다. 위에서 num_words를 10000로서 정의하였기 때문에 같은 값으로서 맞춰주었다.
@@ -651,7 +651,7 @@ plt.legend()
 plt.show()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/25.png" height="150" width="300" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/25.png" height="250" width="600" /></div><br>
 <br><br>
 
 ### LSTM
@@ -733,7 +733,7 @@ plt.legend()
 plt.show()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/26.png" height="150" width="300" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/26.png" height="250" width="600" /></div><br>
 <br><br>
 
 ### RNN의 고급 사용법
@@ -1467,7 +1467,13 @@ history = model.fit_generator(train_gen,
 ```
 <br>
 ```code
+Epoch 1/20
+500/500 [==============================] - 7s 13ms/step - loss: 0.2963 - val_loss: 0.2225
 
+...
+
+Epoch 20/20
+500/500 [==============================] - 7s 14ms/step - loss: 0.1066 - val_loss: 0.3351
 ```
 <br>
 <br><br>
@@ -1493,52 +1499,7 @@ plt.legend()
 plt.show()
 ```
 <br>
-```code
-Epoch 1/20
-500/500 [==============================] - 7s 13ms/step - loss: 0.2963 - val_loss: 0.2225
-
-...
-
-Epoch 20/20
-500/500 [==============================] - 7s 14ms/step - loss: 0.1066 - val_loss: 0.3351
-```
-<br>
-<br><br>
-
-**결과 시각화**  
-RNN Network보다 Accuracy는 떨어지게 되나, 시간은 훨씬 단축되는 것을 확인할 수 있다.  
-Model의 대략적인 방향을 잡기위한 Parameter선택이나, 단어 수준의 감성 분류 작업같은 작은 Network구조에서 빠르게 결과를 확인하기 위하여 많이 사용된다.
-```python
-history_dict = history.history
-
-acc = history_dict['acc']
-val_acc = history_dict['val_acc']
-
-loss = history_dict['loss']
-val_loss = history_dict['val_loss']
-
-epoch = range(1,len(loss)+1)
-
-plt.plot(epoch,acc,'bo',label='Training Accuracy')
-plt.plot(epoch,val_acc,'b',label='Validation Accuracy')
-plt.title('Training and Validation Accuracy Visualization')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.legend()
-plt.figure()
-
-plt.plot(epoch,loss,'bo',label='Training Loss')
-plt.plot(epoch,val_loss,'b',label='Validation Loss')
-plt.title('Training and Validation Loss Visualization')
-
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend()
-
-plt.show()
-```
-<br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/34.png" height="250" width="600" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/36.png" height="250" width="600" /></div><br><br>
 <br><br>
 
 **Convolution1D + RNN**  
