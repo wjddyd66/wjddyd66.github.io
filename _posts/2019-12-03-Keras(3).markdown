@@ -1,12 +1,11 @@
 ---
 layout: post
-title:  "CNN 시작하기"
+title:  "컴퓨터 비전을 위한 딥러닝"
 date:   2019-12-03 09:00:20 +0700
 categories: [Keras]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
-### CNN 시작하기
+### 컴퓨터 비전을 위한 딥러닝
 이번 Post에서는 CNN을 활용하여 Image Dataset에 대한 Model을 생성하고 알아본다.    
 
 이에 관하여 알아두면 좋은 Post는 아래 링크를 참조하자.  
@@ -879,7 +878,6 @@ plt.imshow(first_layer_activation[0,:,:,10],cmap='viridis')
 표준값 z는 원수치인 x가 평균에서 얼마나 떨어져 있는지를 나타낸다.  
 음수이면 평균 이하, 양수이면 평균 이상이다.  
 <p>$$z = \frac{x-u}{\sigma}$$</p>
-
 위의 과정에서 Parameter들은 다음과 같은 의미를 가진다.  
 - x: 정상화되는 원수치
 - <span>$$\sigma$$</span>: 모집단에서의 표준편차
@@ -899,7 +897,6 @@ u는 0 ~ 255사이의 중앙값인 128을 가진다. 모집단의 크기가 충�
 따라서 다음과 같은 편차를 구할 수 있다.  
 <p>$$2 = \frac{256-128}{\sigma}$$</p>
 <p>$$\sigma = 64$$</p>
-
 따라서 우리는 양측절단을 하게되었을 경우 100 - 2.275 * 2 % 즉, 대략 95%의 값들을 취하여 확인한다.  
 참고: <a href="https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80_%EC%A0%90%EC%88%98">Wikipedia</a>
 
@@ -1095,7 +1092,6 @@ plt.imshow(results)
 ```
 <br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/20.png" height="250" width="600" /></div><br>
-
 #### 클래스 활성화의 히트맵 시각화하기
 클래스 활성화 맵(Class Actication Map, CAM)을 시각화 함으로써 다음과 같은 3가지의 장점을 가지게 된다.  
 - 이미지의 어느 부분이 컨브넷의 최종 분류 결정에 기여하는지 이해하는데 매우 유용하다.  
@@ -1171,7 +1167,6 @@ cv2.imwrite('./Dataset/elephant_cam.jpg',superimposed_img)
 ```
 <br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/22.png" height="250" width="600" /></div><br><br>
-
 <hr>
 참조: <a href="https://github.com/wjddyd66/Keras/blob/master/Ch03.ipynb">원본코드</a><br>
 참조: 케라스 창시자에게 배우는 딥러닝<br>
