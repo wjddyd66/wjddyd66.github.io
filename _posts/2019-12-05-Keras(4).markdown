@@ -66,20 +66,7 @@ word_docs = tokenizer.word_counts
 for index, docs in enumerate([word_index,word_docs]):
     print(index,docs)
 ```
-<br><br>
-
-#### 데이터셋 확인
-
-```python
-print('Train Cat Image Count: ',len(os.listdir(train_cats_dir)))
-print('Train Dog Image Count: ',len(os.listdir(train_dogs_dir)))
-print('Validation Cat Image Count: ',len(os.listdir(validation_cats_dir)))
-print('Validation Dog Image Count: ',len(os.listdir(validation_dogs_dir)))
-print('Test Cat Image Count: ',len(os.listdir(test_cats_dir)))
-print('Test Dog Image Count: ',len(os.listdir(test_dogs_dir)))
-```
 <br>
-
 ```code
 0 {'the': 1, 'cat': 2, 'sat': 3, 'on': 4, 'mat': 5, 'dog': 6, 'ate': 7, 'my': 8, 'homework': 9}
 1 OrderedDict([('the', 3), ('cat', 1), ('sat', 1), ('on', 1), ('mat', 1), ('dog', 1), ('ate', 1), ('my', 1), ('homework', 1)])
@@ -1565,7 +1552,13 @@ history = model.fit_generator(train_gen,
 ```
 <br>
 ```code
+Epoch 1/40
+500/500 [==============================] - 38s 77ms/step - loss: 0.2614 - val_loss: 0.7438
 
+...
+
+Epoch 40/40
+500/500 [==============================] - 39s 78ms/step - loss: 0.0611 - val_loss: 0.5860
 ```
 <br>
 <br><br>
