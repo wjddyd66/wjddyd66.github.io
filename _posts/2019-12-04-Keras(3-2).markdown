@@ -114,15 +114,15 @@ Predicted: [('n02504458', 'African_elephant', 0.9101746), ('n01871265', 'tusker'
 <p>$$a_k^c = \frac{1}{Z}\sum_i \sum_j \frac{\partial y^c}{\partial A_{ij}^k}$$</p>
 
 - c: Class
-- <span>$a_k^c$</span>: Grad-CAM의 중요도를 결정하는 Scalar(논문에서는 GAP(Global Average Pooling)이라고 표현하였습니다.)
-- <span>$y^c$</span>: Score Class(before the softmax)
-- <span>$A_{ij}^k$</span>: Feature maps of aconvolutional Layer
+- <span>$$a_k^c$$</span>: Grad-CAM의 중요도를 결정하는 Scalar(논문에서는 GAP(Global Average Pooling)이라고 표현하였습니다.)
+- <span>$$y^c$$</span>: Score Class(before the softmax)
+- <span>$$A_{ij}^k$$</span>: Feature maps of aconvolutional Layer
 
 위의 식을 조금 더 생각하면 어떤 Class로 판별해서 출력하는지에 대한 Score Class를 시각화 하고자하는 Convolution Layer로 미분을 통하여 k번째 Feature맵에 대한 Gradient를 얻게 된다.  
 
 생각을 해보면 해당되는 Class가 맞다면 최종적인 출력값을 크게 나올거고 그러한 판단을 한 요소의 값은 크게 나올 수 밖에 없다.  
 
-이러한 값을 Crad-CAM에서는 사용하기 위하여 <span>$a_k^c$</span>라는 수식과 GAP이라는 용어로 어느 Class와 어느 Feature맵에 대한 값으로서 나타내었다.  
+이러한 값을 Crad-CAM에서는 사용하기 위하여 <span>$$a_k^c$$</span>라는 수식과 GAP이라는 용어로 어느 Class와 어느 Feature맵에 대한 값으로서 나타내었다.  
 
 **3. Heatmap 생성**  
 위에서 GAP이라는 Scalar를 통하여 간단한 수식으로서 최종적인 Heatmap을 구현하였다.  
@@ -139,37 +139,37 @@ Predicted: [('n02504458', 'African_elephant', 0.9101746), ('n01871265', 'tusker'
         <td>설명</td>
     </tr>
     <tr>
-        <td><span>$c$</span></td>
+        <td><span>$$c$$</span></td>
         <td><code>np.argmax(preds[0]) = 386</code></td>
         <td>Model에 Input을 넣어 어떤 Class인지 판별하였고 그 Class가 Softmax Vector에서 몇번째인지 알아내었다.</td>
     </tr>
     <tr>
-        <td><span>$y^c$</span></td>
+        <td><span>$$y^c$$</span></td>
         <td><code>model.output[:,386]</code></td>
         <td>Score Class를 위에서 구한 c를 통하여 대입(Softmax에 들어가기 전의 1 x 1000의 크기의 Vector중에서 African Elephant의 값)</td>
     </tr>
     <tr>
-        <td><span>$k$</span></td>
+        <td><span>$$k$$</span></td>
         <td><code>block5_conv3</code></td>
         <td>Visual Explanation하고 싶은 Feature Layer</td>
     </tr>
     <tr>
-        <td><span>$A_{ij}^k$</span></td>
+        <td><span>$$A_{ij}^k$$</span></td>
         <td><code>model.get_layer('block5_conv3')</code></td>
         <td>구하고자하는 Featuremap</td>
     </tr>
     <tr>
-        <td><span>$\frac{\partial y^c}{\partial A_{ij}^k}$</span></td>
+        <td><span>$$\frac{\partial y^c}{\partial A_{ij}^k}$$</span></td>
         <td><code>K.gradients(african_elephant_output,last_conv_layer.output)[0]</code></td>
         <td>어떤 Class로 판별해서 출력하는지에 대한 Score Class를 시각화 하고자하는 Convolution Layer로 미분을 통하여 k번째 Feature맵에 대한 Gradient를 얻게 된다.</td>
     </tr>
     <tr>
-        <td><span>$a_k^c = \frac{1}{Z}\sum_i \sum_j \frac{\partial y^c}{\partial A_{ij}^k}$</span></td>
+        <td><span>$$a_k^c = \frac{1}{Z}\sum_i \sum_j \frac{\partial y^c}{\partial A_{ij}^k}$$</span></td>
         <td><code>K.mean(grads,axis=(0,1,2))</code></td>
         <td><b>Input Image에 도달하는 최종적인 Gradient는 RGB값으로 3개의 Channel의 값으로서 들어오게된다. 또한 각각의 평균을 구하는 과정을 추가한다.</b></td>
     </tr>
     <tr>
-        <td><span>$\sum_k a_k^c A^k$</span></td>
+        <td><span>$$\sum_k a_k^c A^k$$</span></td>
         <td><code>
             for i in range(512):
                 conv_layer_output_value[:,:,i] *= pooled_grads_value[i]
@@ -178,7 +178,7 @@ Predicted: [('n02504458', 'African_elephant', 0.9101746), ('n01871265', 'tusker'
         <td>Model에서 구하고자 하는 block5_conv3 의 output은 (None, 14, 14, 512)이다 따라서 k=512로 두고 식에 대입한다.</td>
     </tr>
     <tr>
-        <td><span>$ReLU(\sum_k a_k^c A^k)$</span></td>
+        <td><span>$$ReLU(\sum_k a_k^c A^k)$$</span></td>
         <td><code>heatmap = np.maximum(heatmap,0)</code></td>
         <td>Interest에서 양의 값의 영향에 관심을 받기위하여 ReLU를 적용</td>
     </tr>
