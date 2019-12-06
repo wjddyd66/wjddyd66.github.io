@@ -77,12 +77,12 @@ LSTM Dropout 을 설명하기에 앞서 기본적으로 간단하게 LSTM에 대
 - <span>$$h_{t-1}^l$$</span>: Time Step t 에서의 layer l-1 에서의 Hidden state이다. 아래 행렬을 참조하면 이해하기 쉽다.  
 
 <p>$$
-\begin{matrix}
+\begin{pmatrix}
 W_{xh_o}x_t \\
 W_{xh_f}x_t \\
 W_{xh_g}x_t \\
 W_{xh_i}x_t
-\end{matrix} = h_{t-1}^l$$</p>
+\end{pmatrix} = h_{t-1}^l$$</p>
 
 이러한 LSTM의 식을 논문에서는 다음과 같이 표현하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/40.png" height="250" width="600" /></div><br>
@@ -94,35 +94,36 @@ W_{xh_i}x_t
 위의 과정을 좀 더 이태까지 사용하였던 알기 쉬운 구조로서 바꾸면 다음과 같다.  
 먼저 기본적인 LSTM의 구조부터 알아보자.  
 <p>$$
-\begin{matrix}
+\begin{pmatrix}
 i_t \\
 f_t \\
 o_t \\
 g_t
-\end{matrix} = 
-\begin{matrix}
-\sigmoid(W_i[x_t,h_{t-1}]+b_i) \\
-\sigmoid(W_f[x_t,h_{t-1}]+b_f) \\
-\sigmoid(W_o[x_t,h_{t-1}]+b_o) \\
+\end{pmatrix} = 
+\begin{pmatrix}
+\sigma(W_i[x_t,h_{t-1}]+b_i) \\
+\sigma(W_f[x_t,h_{t-1}]+b_f) \\
+\sigma(W_o[x_t,h_{t-1}]+b_o) \\
 tanh(W_g[x_t,h_{t-1}]+b_g)
-\end{matrix}
+\end{pmatrix}
 $$</p>
-<p>c_t = f_t * c_{t-1} + i_t * g_t</p>
-<p>h_t = o_t * tanh(c_t)</p>
+
+<p>$$c_t = f_t * c_{t-1} + i_t * g_t$$</p>
+<p>$$h_t = o_t * tanh(c_t)$$</p>
 위와 같은 LSTM에서 최종적인 Dropout을 적용시킨 식은 다음과 같다.  
 <p>$$
-\begin{matrix}
+\begin{pmatrix}
 i_t \\
 f_t \\
 o_t \\
 g_t
-\end{matrix} = 
-\begin{matrix}
-\sigmoid(W_i[x_t,D(h_{t-1})]+b_i) \\
-\sigmoid(W_f[x_t,D(h_{t-1})]+b_f) \\
-\sigmoid(W_o[x_t,D(h_{t-1})]+b_o) \\
+\end{pmatrix} = 
+\begin{pmatrix}
+\sigma(W_i[x_t,D(h_{t-1})]+b_i) \\
+\sigma(W_f[x_t,D(h_{t-1})]+b_f) \\
+\sigma(W_o[x_t,D(h_{t-1})]+b_o) \\
 tanh(W_g[x_t,D(h_{t-1})]+b_g)
-\end{matrix}
+\end{pmatrix}
 $$</p>
 
 위의 설명이 이해가 안되면 아래 LSTM의 구조를 살펴보자.  
