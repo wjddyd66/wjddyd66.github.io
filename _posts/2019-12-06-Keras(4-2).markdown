@@ -1,0 +1,111 @@
+---
+layout: post
+title:  "RNN에서의 Dropout"
+date:   2019-12-06 09:00:20 +0700
+categories: [Keras]
+---
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+### RNN에서의 Dropout
+이전 Post에서 LSTM Model에 Dropout Layer를 추가할 때 Sequencial()에 Layer를 쌓는것이 아닌, Keras가 구현해둔 LSTM Layer안에서의 Dropout option을 추가하여서 구현하였다.  
+이번 Post에서는 왜 Keras에서는 LSTM과 같은 RNN Network에서는 Dropout Layer를 쌓는 것이 아닌 Option으로서 선언해야 하는지 알아보자.  
+
+**참고사항**  
+자세한 수식 유도는 <a href="https://wjddyd66.github.io/dl/RNN/">RNN</a>에 유도하였습니다. 이번 Post에서는 개념을 잡고가는 정도로 RNN을 설명합니다.  
+
+<br>
+#### RNN Backpropagation
+RNN(Recurrent Neural Network)이란 순차적인 정보를 처리하는 데 있다.  
+RNN은 동일한 Task에 대하여 하나의 Hidden Layer를 계속하여 Trainning 하기 떄문이다.
+출력 결과는 이전의 계산 결과에 영향을 받기 때문에 RNN은 현재지 계산된 결과에 대한 “메모리” 정보를 갖고 있다고 볼 수도 있다.
+RNN의 구조는 아래와 같이 나타낸다.  
+<img src="http://www.wildml.com/wp-content/uploads/2015/09/rnn.jpg" width="100%" height="100%"><br>
+
+- <span>$$x_t$$</span>는 시간 스텝(time step) t 에서의 입력값이다.
+- <span>$$x_t$$</span>는 시간 스텝(time step) t 에서의 Hidden state이다. 네트워크의 "메모리" 부분으로서, 이전 시간의 스텝의 hidden state 값과 현재 시간 스텝의 입력값에 의해 계산된다.  
+<span>$$s_t = f(Ux_t + Ws_{t-1}) \text{   f는 tanh or ReLU}$$</span>
+- <span>$$o_t$$</span>는 시간 스텝(time step)에서의 출력값이다. 예를 들어 다음 단어를 추축하고 싶다면 단어 수만큼의 차원의 확률 벡터가 될 것이다. <span>$$o_t = softmax(Vs_t)$$</span>
+
+위와 같은 RNN Model에 BackPropagation을 구하기 위하여 RNN Model을 아래와 같이 간단히 나타내고 Backpropagation을 유도하여 보자.  
+<img src="http://www.wildml.com/wp-content/uploads/2015/10/rnn-bptt1.png" height="250" width="600"><br>
+
+정확한 수식의 유도는 위의 링크를 참조하고 결과를 살펴보자.  
+- Parameter V: <span>$$\frac{\partial E_3}{\partial V} = (\hat{y_3} - y_3) \bigotimes s_3$$</span>
+- Parameter W: <span>$$\frac{\partial E_3}{\partial W} = \delta_i^3 s_{i-1}^{T}$$</span>
+- Parameter U: <span>$$\frac{\partial E_3}{\partial V} = \delta_i^3 x_i^{T}$$</span>
+
+Parameter W,U 는 <span>$$\delta_i^3$$</span> Parameter 때문에 Chain Rule이 발생하여 다음과 같은 BackPropagation 이 발생한다.  
+<img src="http://www.wildml.com/wp-content/uploads/2015/10/rnn-bptt-with-gradients.png" height="250" width="600"><br>
+위의 결과에서도 알 수 있듯이 모든 Time Step의 Gradient에 기여하게 된다.  
+따라서 RNN Network에 기존의 Dropout을 적용하게 되면 Memory에 영향을 미치게 되고, 과거의 중요한 정보를 잃어버리게 되어 Model의 성능이 나빠진다고 설명하고 있습니다.  
+> As such, applying standard dropout to RNN’s tends limits the ability of the networks to retain their memory, hindering their performance. The issue with applying dropout to a recurrent neural network (RNN) was noted by Bayer et al. (2013) in that if the complete outgoing weight vecors were set to zero, the “resulting changes to the dynamics of an RNN during every forward pass are quite dramatic.”.
+> 
+
+<br><br>
+
+### LSTM Dropout
+위에서 RNN Network에서는 기본적인 Dropout Layer를 사용하게 되면 **중요한 과거 정보를 잃어버릴 확률이 높아지게 되고 따라서 Model의 성능이 나빠진다.**라고 이야기 하였다.  
+따라서 특정한 방법으로 Dropout을 적용해야 하고 그 Model을 우선적으로 LSTM으로 설명하겠습니다.  
+LSTM Dropout 을 설명하기에 앞서 기본적으로 간단하게 LSTM에 대해서 다시 알아보자.(LSTM의 구현같은 경우에는 <a href="https://wjddyd66.github.io/dl/LSTM/"></a>을 참조하시면 됩니다.)  
+<div><img src="http://i.imgur.com/jKodJ1u.png" height="100%" width="100%" /></div>
+**LSTM 은 장기 의존성을 해결하기 위한 방안이다. LSTM 은 Forget gate와 Input gate가 특징으로 Forget gate는 과거 정보를 잊기 위한 게이트이다. Input gate 는 현재 정보를 기억하기 위한 게이트이다.**  
+두 게이트 모두 앞에 σ(시그모이드)를곱하여 0~1사이에값을 가지게 된다.  
+σ(시그모이드)를 곱한 Forget gate 와Input gate를 통해 과거의 정보와 현재의 정보를 얼마나 기억할 것인가를 정하여 장기 의존성의 문제를 해결한다.  
+이러한 Forget gate와 Input gate는 아래와 같은 그림으로서 나타낼 수 있다.  
+
+<div><img src="http://i.imgur.com/MPb3OvZ.png" height="100%" width="100%" /></div>
+위의 Gate의 설명에서 비선형 효과를 주기 위하여 Activation Function의 종류를 2개 사용하였다.  
+각각의 Activation Function과 Parameter에 대해서 알아보자.  
+- σ(시그모이드): 0 ~ 1의 범위를 가지게 출력형태를 바꿔주며 데이터를 얼마만큼 통과시킬지를 정하는 비율
+- tanh(하이퍼 볼릭 탄젠트): -1 ~ 1의 범위를 가지게 출력형태를 바꿔주며 실질적인 정보의 비율
+- Output gate: <span>$$o = \sigma (W_{xh_o}x_t +W_{hh_o}h_{t-1} + b_{h_o})$$</span>: 다음 시간의 Hidden Layer에서 얼만큼 중요한가를 나타내는 상수
+- Forget gate: <span>$$f_t = \sigma (W_{xh_f}x_t +W_{hh_f}h_{t-1} + b_{h_f})$$</span>: 과거 정보를 잊기 위한 게이트(0 ~ 1사이의 값을 가지는 Scalar로서 얼만큼 잊을지 비율로서 표현)
+-  <span>$$g$$</span>: <span>$$tanh(W_{xh_g}x_t +W_{hh_g}h_{t-1} + b_{h_g})$$</span>: tanh를 사용하여 현재 LSTM Layer에서의 실질적인 정보의 비율
+- Input gate: <span>$$i_t = \sigma (W_{xh_i}x_t +W_{hh_i}h_{t-1} + b_{h_i})$$</span>: 현재 정보를 기억하기 위한 게이트(0 ~ 1사이의 값을 가지는 Scalar로서 얼만큼 기억할 비율로서 표현)
+- <span>$$c_t$$</span>: 기억 셀로서 과거로부터 시각 t까지에 필요한 모든 정보가 저장된 Cell, <span>$$c_t = f \odot c_{t-1} + g \odot i $$</span>
+- <span>$$h_t$$</span>: <span>$$o \odot tanh(c_t)$$</span>: Hidden Layer의 출력 o가 Sigmoid의 Output으로서 상수이므로 <span>$$\odot$$ </span>사용
+
+위와 같은 LSTM의 망을 **Affine 변환**을 통해 빠르게 계산수행을 위해 아래와 같이 망을 최종적으로 구성한다.  
+
+위에서 설명한 LSTM 의 구조를 해당 논문은 아래처럼 표현하였다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/39.png" height="250" width="600" /></div><br>
+위의 Network에서 표현한 Parameter들에서 좀 더 자세히 알아보자.  
+- <span>$$h_{t}^l$$</span>: Time Step t 에서의 layer l 에서의 Hidden state 여기서의 layer l 이라는 것은 출력 단의 Layer를 의미한다.
+- <span>$$h_{t-1}^l$$</span>: Time Step t-1 에서의 layer l 에서의 Hidden state 이다 즉 Time Step t로 들어오게 되는 Hidden State라고 생각해도 된다.
+- <span>$$h_{t-1}^l$$</span>: Time Step t 에서의 layer l-1 에서의 Hidden state이다. 아래 행렬을 참조하면 이해하기 쉽다.  
+
+<p>$$
+\begin{matrix}
+W_{xh_o}x_t \\
+W_{xh_f}x_t \\
+W_{xh_g}x_t \\
+W_{xh_i}x_t
+\end{matrix} = h_{t-1}^l$$</p>
+
+이러한 LSTM의 식을 논문에서는 다음과 같이 표현하였다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/40.png" height="250" width="600" /></div><br>
+<span>$$h_{t-1}^l$$</span>만 제외하면 LSTM의 기존 설명과 같으므로 이해하는데 어려움이 없을 것이라고 생각한다.  
+
+위의 LSTM의 구조에서 논문이 제시하는 Dropout의 식은 다음과 같다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/41.png" height="250" width="600" /></div><br>
+**D()는 일반적인 Dropout과 같다. 기존의 Dropout과 다른점은 Network에서 과거의 정보에 같는 Parameter에 Dropout을 적용하는 것이 아닌 현재 Input에 영향을 받는 Parameter에만 Dropout을 적용하자는 것 이다.**  
+
+위의 설명이 이해가 안되면 아래 LSTM의 구조를 살펴보자.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/42.png" height="250" width="600" /></div><br>
+위의 그림에서 **점선은 Dropout으로 연결된 Connection, 실선은 일반적인 Connection이라고 설명하고 있다.**  
+위의 그림에서 살펴볼 수 있듯이 **과거 부터 Forward해서 오는 값은 언제나 100% 보존되지만, 현재 Time Step, 즉 아래에서 위로 올라오는 값은 특정 확률로 Dropout이 진행된다.**  
+
+전체 Time Step이 T, 일반적인 Dropout을 LSTM에 적용하고 Backpropagation을 진행한다고 하였을때 Parameter W, U에 관해서는  T + 1 번 영향을 미치게 된다.  
+하지만 논문에서 설명한 방식으로는 다음과 같은 방향으로 Backpropagation이 진행된다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/43.png" height="250" width="600" /></div><br>
+T + 1번이 아니라 훨씬 적게 영향을 받는 것을 확인할 수 있다.  
+
+<br><br>
+
+
+<hr>
+참조: <a href="https://medium.com/@bingobee01/a-review-of-dropout-as-applied-to-rnns-72e79ecd5b7b">medium.com</a><br>
+참조: <a href="http://sanghyukchun.github.io/89/">sanghyukchun 블로그</a><br>
+논문: <a href="http://arxiv.org/abs/1409.2329">Recurrent Neural Network Regularization</a><br>
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
