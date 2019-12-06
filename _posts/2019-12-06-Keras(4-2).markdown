@@ -5,7 +5,6 @@ date:   2019-12-06 09:00:20 +0700
 categories: [Keras]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 ### RNN에서의 Dropout
 이전 Post에서 LSTM Model에 Dropout Layer를 추가할 때 Sequencial()에 Layer를 쌓는것이 아닌, Keras가 구현해둔 LSTM Layer안에서의 Dropout option을 추가하여서 구현하였다.  
 이번 Post에서는 왜 Keras에서는 LSTM과 같은 RNN Network에서는 Dropout Layer를 쌓는 것이 아닌 Option으로서 선언해야 하는지 알아보자.  
@@ -44,6 +43,9 @@ Parameter W,U 는 <span>$$\delta_i^3$$</span> Parameter 때문에 Chain Rule이 
 <br><br>
 
 ### LSTM Dropout
+아래 설명은 <a href="https://arxiv.org/pdf/1409.2329.pdf">RECURRENT NEURAL NETWORK
+REGULARIZATION</a>에 대한 내용입니다.  
+
 위에서 RNN Network에서는 기본적인 Dropout Layer를 사용하게 되면 **중요한 과거 정보를 잃어버릴 확률이 높아지게 되고 따라서 Model의 성능이 나빠진다.**라고 이야기 하였다.  
 따라서 특정한 방법으로 Dropout을 적용해야 하고 그 Model을 우선적으로 LSTM으로 설명하겠습니다.  
 LSTM Dropout 을 설명하기에 앞서 기본적으로 간단하게 LSTM에 대해서 다시 알아보자.(LSTM의 구현같은 경우에는 <a href="https://wjddyd66.github.io/dl/LSTM/"></a>을 참조하시면 됩니다.)  
@@ -89,6 +91,39 @@ W_{xh_i}x_t
 위의 LSTM의 구조에서 논문이 제시하는 Dropout의 식은 다음과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/41.png" height="250" width="600" /></div><br>
 **D()는 일반적인 Dropout과 같다. 기존의 Dropout과 다른점은 Network에서 과거의 정보에 같는 Parameter에 Dropout을 적용하는 것이 아닌 현재 Input에 영향을 받는 Parameter에만 Dropout을 적용하자는 것 이다.**  
+위의 과정을 좀 더 이태까지 사용하였던 알기 쉬운 구조로서 바꾸면 다음과 같다.  
+먼저 기본적인 LSTM의 구조부터 알아보자.  
+<p>$$
+\begin{matrix}
+i_t \\
+f_t \\
+o_t \\
+g_t
+\end{matrix} = 
+\begin{matrix}
+\sigmoid(W_i[x_t,h_{t-1}]+b_i) \\
+\sigmoid(W_f[x_t,h_{t-1}]+b_f) \\
+\sigmoid(W_o[x_t,h_{t-1}]+b_o) \\
+tanh(W_g[x_t,h_{t-1}]+b_g)
+\end{matrix}
+$$</p>
+<p>c_t = f_t * c_{t-1} + i_t * g_t</p>
+<p>h_t = o_t * tanh(c_t)</p>
+위와 같은 LSTM에서 최종적인 Dropout을 적용시킨 식은 다음과 같다.  
+<p>$$
+\begin{matrix}
+i_t \\
+f_t \\
+o_t \\
+g_t
+\end{matrix} = 
+\begin{matrix}
+\sigmoid(W_i[x_t,D(h_{t-1})]+b_i) \\
+\sigmoid(W_f[x_t,D(h_{t-1})]+b_f) \\
+\sigmoid(W_o[x_t,D(h_{t-1})]+b_o) \\
+tanh(W_g[x_t,D(h_{t-1})]+b_g)
+\end{matrix}
+$$</p>
 
 위의 설명이 이해가 안되면 아래 LSTM의 구조를 살펴보자.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/42.png" height="250" width="600" /></div><br>
@@ -102,10 +137,26 @@ T + 1번이 아니라 훨씬 적게 영향을 받는 것을 확인할 수 있다
 
 <br><br>
 
+### Recurrent Dropout
+아래 설명은 <a href="http://www.nextgenvis.eu/publicationfiles/C16-1165.pdf">Recurrent Dropout without Memory Loss</a>에 대한 내용입니다.  
+먼저 논문에서 제안하는 Dropout의 Model부터 살펴보자.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/44.png" height="250" width="600" /></div><br>
+**위에서 2번째의 경우 위에서 설명한 RNN Dropout이고 이번 논문에서 주장하는 Recurrent Dropout은 3번째이다.**  
+식을 살펴보게 되면 다음과 같다.  
+<p>$$c_t = f_t * c_{t-1} + i_t*D(g_t)$$</p>
+<p>$$g_t = tanh(W_g[x_t,h_{t-1}]+b_g)$$</p>
+에서 <span>$$g_t$$</span>는 현재 LSTM Layer에서 실질적인 정보의 비율이다.  
+이 값으로 인하여 최종적인 <span>$$c_t$$</span>는 과거 정보와 현재 정보를 종합하여 기억하게 된다.  
+여기서 <span>$$g_t$$</span>의 일부 값을 Dropout시키면 **모든 현재 정보는 기억하지 말고 일부 기억에 대해서만 기억하라**라고 Model을 변경할 수 있다.  
+이렇게 변형시킨 Model은 Parameter W,U에 영향을 덜 미치면서(<span>$$\because c_t \neq 0$$</span>, 과거 정보에 대한 손실 X) 일반적으로 적용하던 Dropout 의 역할을 수행할 수 있다.  
+논문에서의 최종적인 결과는 다음과 같다고 한다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/45.png" height="250" width="600" /></div><br>
 
+<br>
 <hr>
 참조: <a href="https://medium.com/@bingobee01/a-review-of-dropout-as-applied-to-rnns-72e79ecd5b7b">medium.com</a><br>
 참조: <a href="http://sanghyukchun.github.io/89/">sanghyukchun 블로그</a><br>
 논문: <a href="http://arxiv.org/abs/1409.2329">Recurrent Neural Network Regularization</a><br>
+논문: <a href="http://www.nextgenvis.eu/publicationfiles/C16-1165.pdf">Recurrent Dropout without Memory Loss</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
