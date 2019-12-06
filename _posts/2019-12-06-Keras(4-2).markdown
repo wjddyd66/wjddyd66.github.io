@@ -146,6 +146,20 @@ T + 1번이 아니라 훨씬 적게 영향을 받는 것을 확인할 수 있다
 식을 살펴보게 되면 다음과 같다.  
 <p>$$c_t = f_t * c_{t-1} + i_t*D(g_t)$$</p>
 <p>$$g_t = tanh(W_g[x_t,h_{t-1}]+b_g)$$</p>
+<p>$$
+\begin{pmatrix}
+i_t \\
+f_t \\
+o_t \\
+g_t
+\end{pmatrix} = 
+\begin{pmatrix}
+\sigma(W_i[x_t,h_{t-1}]+b_i) \\
+\sigma(W_f[x_t,h_{t-1}]+b_f) \\
+\sigma(W_o[x_t,h_{t-1}]+b_o) \\
+D(tanh(W_g[x_t,h_{t-1}]+b_g))
+\end{pmatrix}
+$$</p>
 에서 <span>$$g_t$$</span>는 현재 LSTM Layer에서 실질적인 정보의 비율이다.  
 이 값으로 인하여 최종적인 <span>$$c_t$$</span>는 과거 정보와 현재 정보를 종합하여 기억하게 된다.  
 여기서 <span>$$g_t$$</span>의 일부 값을 Dropout시키면 **모든 현재 정보는 기억하지 말고 일부 기억에 대해서만 기억하라**라고 Model을 변경할 수 있다.  
