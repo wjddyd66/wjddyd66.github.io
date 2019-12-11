@@ -9,7 +9,7 @@ categories: [Keras]
 이번 Post에서는 예술 창작에 딥러닝이 어떻게 쓰일 수 있는지 다양한 각도에서 살펴본다.  
 시퀀스 데이터 생성(글을 쓰거나 작곡할 수 있다.), 딥드립, 변이형 오토인코더, 적대적 생성 네트워크(GAN)을 사용한 이미지 생성을 알아본다.  
 
-아래 링크는 이번 Post와 관련된 수식이나 내용을 미리 정리해둔 거이므로 참고하면 좋다.  
+아래 링크는 이번 Post와 관련된 수식이나 내용을 미리 정리해둔것 이므로 참고하면 좋다.  
 1. <a href="https://wjddyd66.github.io/tensorflow/Tensorflow-AutoEncoder/">Tensorflow-AutoEncoder</a>, <a href="https://wjddyd66.github.io/pytorch/Pytorch-AutoEncoder/">Pytorch-AutoEncoder</a>
 2. <a href="https://wjddyd66.github.io/tensorflow/Tensorflow-GAN/">Tensorflow-GAN</a>, <a href="https://wjddyd66.github.io/pytorch/Pytorch-GAN/">Pytorch-GAN</a>, <a href="https://wjddyd66.github.io/pytorch/Pytorch-DCGAN/">Pytorch-DCGAN</a>
 3. <a href="https://wjddyd66.github.io/dl/seq2seq/">seq2seq</a>
@@ -156,7 +156,7 @@ Downloading data from https://s3.amazonaws.com/text-datasets/nietzsche.txt
 One-Hot_Encoding으로 맞추기 위하여 각각의 Character를 어떻게 Mapping할지에 대하여 정의하여야 한다.  
 다음과 같은 과정으로서 Mapping하기 위한 Vectoer를 준비한다.
 1. 위의 데이터 준비 단계에서 Text를 전부 소문자로서 바꾼다.
-2. Python set 자료구조를 통하여 중복되는 Character는 제외ㅎ시킨다.
+2. Python set 자료구조를 통하여 중복되는 Character는 제외시킨다.
 3. Python Dict 자료구조를 통하여 Character: Set Index로서 One-Hot-Encoding으로 Mapping하기 위한 Vocab을 정의한다.
 
 
