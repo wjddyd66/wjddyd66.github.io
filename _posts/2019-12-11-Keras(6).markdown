@@ -452,10 +452,10 @@ Downloading data from https://github.com/fchollet/deep-learning-models/releases/
 
 #### Loss 정의  
 **(1) Content Loss**  
-- <span>$S_l$</span>: Style Input의 l번째 Layer의 Feature Map
-- <span>$P_l$</span>: Content Input의 l번째 Layer의 Feature Map
-- <span>$F_l$</span>: Result Input의 l번째 Layer의 Feature Map
-- <span>$x^l$</span>: l번째 Layer에서 복원한 Image
+- <span>$$S_l$$</span>: Style Input의 l번째 Layer의 Feature Map
+- <span>$$P_l$$</span>: Content Input의 l번째 Layer의 Feature Map
+- <span>$$F_l$$</span>: Result Input의 l번째 Layer의 Feature Map
+- <span>$$x^l$$</span>: l번째 Layer에서 복원한 Image
 
 <p>$$L_{content}(p,x,l) = \frac{1}{2}\sum_{ij}(F_{ij}^{l}-P_{ij}^{l})^2$$</p>
 <br>
@@ -463,14 +463,13 @@ Downloading data from https://github.com/fchollet/deep-learning-models/releases/
 **(2) Style Loss**  
 **Style Reconsturction의 경우 모든 Layer에서의 Feature Map을 사용한다. 즉 'Texture'를 표현하기 위하여 전체적인 분위기서 부터 좁은 영역의 분위기까지 모두 사용하겠다는 의미이다.**  
 따라서 모든 Feature Map을 사용함으로 인하여 최종적인 Loss를 세우기 위한 추가적인 Parameter는 다음과 같다.  
-- <span>$A^l$</span>: Style Feature Map Inner Product(Gram Vector of a) at Layer l
-- <span>$G^l$</span>: Result Feature Map Inner Product(Gram Vector of a) at Layer l
-- <span>$N_l$</span>: Feature Maps at Layer l
-- <span>$M_l$</span>: Height x width of Feature Maps at Layer l
+- <span>$$A^l$$</span>: Style Feature Map Inner Product(Gram Vector of a) at Layer l
+- <span>$$G^l$$</span>: Result Feature Map Inner Product(Gram Vector of a) at Layer l
+- <span>$$N_l$$</span>: Feature Maps at Layer l
+- <span>$$M_l$$</span>: Height x width of Feature Maps at Layer l
 
 즉 위의 Parameter를 활용하여 각 레이어 l에서의 style loss는 아래와 같이 정의된다.  
 <p>$$E_l = \frac{1}{4N_l^2 M_l^2}\sum_{i,j}(G_{ij}^l-A_{ij}^l)^2$$</p>
-
 **(3) 총 변위 손실(variation loss)**  
 Keras 책에서는 Variation Loss를 설정하였다.  
 이것은 **이미지가 공간적인 연속성을 가지도록 도와주며 픽셀의 격자 무늬가 과도하게 나타나는 것을 막아준다.**  
@@ -508,13 +507,11 @@ def total_variation_loss(x):
 위에서 Style Loss는 이미지의 전체적인 분위기의 뽑아내기 위하여 각 Layer에서의 Loss를 모두 던한다고 설명하였다.  
 위에서 정의한 식을 위의 설명에 적용하면 다음과 같다.  
 <p>$$L_{style}(a,x) = \sum_{l=0}^L w_l E_l$$</p>  
-
 <br>
 위에서 최종적인 Content Loss와 Style Loss를 모두구하였으면 최종적인 Loss는 다음과 같다.  
 <p>$$L_{total}(p,a,x) = \alpha L_{content}(p,x) + \beta L_{style}(a,x)$$</p>
-
-- <span>$\alpha$</span>: content_weight
-- <span>$\beta$</span>: style_weight
+- <span>$$\alpha$$</span>: content_weight
+- <span>$$\beta$$</span>: style_weight
 
 ```python
 # 층 이름과 활성화 텐서를 매핑한 딕셔너리
@@ -706,8 +703,8 @@ AutoEncoder와 같이 **Encoder를 통하여 Compressed representation으로 변
 위의 내용을 간단하게 정리하자면 **Encoder를 통하여 얻은 z_mean, z_log_var를 통하여 확률분포를 만들고 Sampling을 실시한 Data를 Decoder에 넣어서 Image-to-Image구조의 VAE Network를 만든다.**  
 
 위의 설명을 다시 수학적으로 나타내면 다음과 같다.  
-Encoder의 역할은 데이터가 주어졌을 때 Decoder가 원래의 데이테로 잘 복원할 수 있는 z를 샘플링 할 수 있는 **이상적인 확률 분포 <span>$p(z|x)$</span>를 찾는 것 이다.**  
-**이러한 확률적인 분포를 찾기 위하여 계산하기 쉬운 Gaussian 분포 <span>$q_{\phi}(z|x)$</span>를 정의하고 Encoder의 Parameter <span>$\phi$</span>를 조절하게 <span>$p(z|x) \leftarrow q_{\phi}(z|x)$</span>를 Training한다.**  
+Encoder의 역할은 데이터가 주어졌을 때 Decoder가 원래의 데이테로 잘 복원할 수 있는 z를 샘플링 할 수 있는 **이상적인 확률 분포 <span>$$p(z|x)$$</span>를 찾는 것 이다.**  
+**이러한 확률적인 분포를 찾기 위하여 계산하기 쉬운 Gaussian 분포 <span>$$q_{\phi}(z|x)$$</span>를 정의하고 Encoder의 Parameter <span>$$\phi$$</span>를 조절하게 <span>$$p(z|x) \leftarrow q_{\phi}(z|x)$$</span>를 Training한다.**  
 z의 평균과 분산은 우리가 정할 수 있다. 평균과 분산은 일치하되 거기서의 확률분포는 Training으로서 결정되는 것 이다.  
 따라서 z의 평균과 분산은 계산하기 쉽게 각각 0,1로서 선언한다.  
 
@@ -751,19 +748,18 @@ z_log_var = layers.Dense(latent_dim)(x)
 먼저 최종적인 식을 살펴보면 다음과 같다.  
 <p>$$z^{i,l} \text{~} N(u_i,\sigma_{i}^2) \rightarrow z^{i,l} = u_i + \sigma_{i} \odot \epsilon$$</p>
 <p>$$\epsilon \text{~} N(0,1)$$</p>
-
 위의 최종적인 식을 간단히 설명하자면 다음과 같다.  
-- <span>$z^{i,l} \text{~} N(u_i,\sigma_{i}^2) \rightarrow z^{i,l}$</span>: Training할 분포에서 Sampling을 한다.
-- <span>$u_i + \sigma_{i} \odot \epsilon$</span>: Sampling할 x의 값을 변경한다.
+- <span>$$z^{i,l} \text{~} N(u_i,\sigma_{i}^2) \rightarrow z^{i,l}$$</span>: Training할 분포에서 Sampling을 한다.
+- <span>$$u_i + \sigma_{i} \odot \epsilon$$</span>: Sampling할 x의 값을 변경한다.
 
 위와 같이 식을 변경한 이유는 다음과 같다.  
 먼저 Gaussian 분포를 정의하면 다음과 같다.  
 <p>$$\frac{1}{\sigma \sqrt{2\pi}}exp(-\frac{(x-u)^2}{2 \sigma^2})$$</p>
 위와 같은 Gaussian 분포에서 X를 통해 Z를 정규화함으로써 평균이 0, 표준편차가 1인 정규분포를 만들기 위한 z-분포의 식은 다음과 같다.  
 <p>$$Z = \frac{X-u}{\sigma}$$</p>
-즉 위의 식에 대입하기 위하여 X를 <span>$u_i + \sigma_{i} \odot \epsilon$</span>로 바꾸게 되면 z-분포의 식을 얻을 수 있다.  
+즉 위의 식에 대입하기 위하여 X를 <span>$$u_i + \sigma_{i} \odot \epsilon$$</span>로 바꾸게 되면 z-분포의 식을 얻을 수 있다.  
 
-위와 같은 과정을 통해서 평균이 0, 표준편차가 1인 정규분포에서 Data를 Sampling함과 동시에 z_mean(<span>$u_i$</span>)와 z_log_var(<span>$\sigma_{i}$</span>)에 대하여 미분가능해지면서 Hyperparameter를 Tuning할 Backpropagation이 가능해진다.
+위와 같은 과정을 통해서 평균이 0, 표준편차가 1인 정규분포에서 Data를 Sampling함과 동시에 z_mean(<span>$$u_i$$</span>)와 z_log_var(<span>$$\sigma_{i}$$</span>)에 대하여 미분가능해지면서 Hyperparameter를 Tuning할 Backpropagation이 가능해진다.
 ```python
 def sampling(args):
     z_mean, z_log_var = args
@@ -822,9 +818,9 @@ _________________________________________________________________
 #### LossFunction
 LossFunction을 구현하기 전에 **ELBO(Evidence LowerBOund)** 에 대하여 알아야 한다.  
 
-위에서 언급한 **<span>$p(z|x) \leftarrow q_{\phi}(z|x)$</span>를 Training한다.** 를 위하여 하나의 확률분포를 다른 확률분포로 만들기 위하여 CrossEntropy가 사용 될 것이라는 것을 예상은 하지만 정확히 어떻게 구현해야 하는지에 대한 내용이다.  
-먼저 위에서 언급한 <span>$p(z|x) \leftarrow q_{\phi}(z|x)$</span>에서 우리가 알 수 있는 것은 <span>$q_{\phi}(z|x)$</span>뿐이다.  
-따라서 우리가 구하고자 하는 <span>$p(z|x)$</span>에 대하여 알고있는 <span>$q_{\phi}(z|x)$</span>로서 식을 나타내야 한다.  
+위에서 언급한 **<span>$$p(z|x) \leftarrow q_{\phi}(z|x)$$</span>를 Training한다.** 를 위하여 하나의 확률분포를 다른 확률분포로 만들기 위하여 CrossEntropy가 사용 될 것이라는 것을 예상은 하지만 정확히 어떻게 구현해야 하는지에 대한 내용이다.  
+먼저 위에서 언급한 <span>$$p(z|x) \leftarrow q_{\phi}(z|x)$$</span>에서 우리가 알 수 있는 것은 <span>$$q_{\phi}(z|x)$$</span>뿐이다.  
+따라서 우리가 구하고자 하는 <span>$$p(z|x)$$</span>에 대하여 알고있는 <span>$$q_{\phi}(z|x)$$</span>로서 식을 나타내야 한다.  
 
 **전체 확률 법칙**  
 가장 기본이 되는 이론부터 살펴보면 다음과 같다.  
@@ -843,29 +839,25 @@ LossFunction을 구현하기 전에 **ELBO(Evidence LowerBOund)** 에 대하여 
 <br><br>
 
 **Jensen's Inequality**  
-먼저 <span>$log(p(x))$</span>에 위에서 설명한 전체 확률 법칙을 적용하면 다음과 같다.  
+먼저 <span>$$log(p(x))$$</span>에 위에서 설명한 전체 확률 법칙을 적용하면 다음과 같다.  
 <p>$$log(p(x)) = log(\int p(x,z)\, dz) = log(\int p(x|z)p(z)\, dz)$$</p>
-
-<span>$q_{\phi}(z|x)$</span>를 사용하여 위의 식을 나타내면 다음과 같다.  
+<span>$$q_{\phi}(z|x)$$</span>를 사용하여 위의 식을 나타내면 다음과 같다.  
 <p>$$log(p(x)) = log(\int p(x|z)\frac{p(z)}{q_{\phi}(z|x)}q_{\phi}(z|x)\, dz)$$</p>
-
 위의 식에서 <a href="https://en.wikipedia.org/wiki/Jensen%27s_inequality">Jensen's Inequality</a>하기 위하여 간략히 Jensen's Inequality의최종적인 식만 적으면 다음과 같다.(자세한 사항은 링크를 참조하시면 됩니다.)  
 - X: random variable
-- <span>$\phi$</span>: convex Function
+- <span>$$\phi$$</span>: convex Function
 <p>$$\phi(E[X]) \le E[\phi(X)]$$</p>
-
 이제 위에서 구한 식 중 log함수는 Concave하므로 다음과 같은 식이 적용될 수 있다.(Convex Function과 반대)  
 <p>$$log(p(x)) \ge \int log(p(x|z)\frac{p(z)}{q_{\phi}(z|x)})q_{\phi}(z|x)\, dz$$</p>
 <p>$$log(p(x)) \ge \int log(p(x|z)q_{\phi}(z|x)\, dz - \int log(\frac{q_{\phi}(z|x)}{p(z)})q_{\phi}(z|x)\, dz$$</p>
-
 위의 식에서 우변의 식을 **ELBO**라고 부른다.  
-이 ELBO(<span>$\phi$</span>)값을 최대화 하는 <span>$\phi$</span>찾으면 우변과 좌변은 같게 된다.  
+이 ELBO(<span>$$\phi$$</span>)값을 최대화 하는 <span>$$\phi$$</span>찾으면 우변과 좌변은 같게 된다.  
 위의 식을 줄여서 사용하면 다음과 같다.  
 <p>$$\int log(p(x|z)q_{\phi}(z|x)\, dz = \mathbb{E}_{q_{\phi}(z|x)}[log(p(x|z))]$$</p>
 <p>$$\int log(\frac{q_{\phi}(z|x)}{p(z)})q_{\phi}(z|x)\, dz = KL(q_{\phi}(z|x)||p(z))$$</p>
 Kullback-Leibler divergence(KL-Divergence)의 자세히 설명은 링크 참조: <a href="https://wjddyd66.github.io/pytorch/Pytorch-GAN/#%EC%82%AC%EC%A0%84%EC%A7%80%EC%8B%9D">KL-Divergence</a>)  
 
-따라서 최종적인 ELBO(<span>$\phi$</span>)의 식은 다음과 같이 정의할 수 있다.  
+따라서 최종적인 ELBO(<span>$$\phi$$</span>)의 식은 다음과 같이 정의할 수 있다.  
 <p>$$ELBO(\phi) = \mathbb{E}_{q_{\phi}(z|x)}[log(p(x|z))] - KL(q_{\phi}(z|x)||p(z))$$</p>
 <br><br>
 
@@ -876,13 +868,12 @@ log(p(x))부터 식을 전개한다.
 <p>$$log(p(x)) = \int log(\frac{p(x,z)}{p(z|x)})q_{\phi}(z|x)\, dz$$</p>
 <p>$$= \int log(\frac{p(x,z)}{q_{\phi}(z|x)}\frac{q_{\phi}(z|x)}{p(z|x)})q_{\phi}(z|x)\, dz$$</p>
 <p>$$= \int log(\frac{p(x,z)}{q_{\phi}(z|x)})q_{\phi}(z|x)\, dz + \int log(\frac{q_{\phi}(z|x)}{p(z|x)})q_{\phi}(z|x)\, dz$$</p>
-
 위의 식을 정리하게 되면  
 <p>$$= \int log(\frac{p(x,z)}{q_{\phi}(z|x)})q_{\phi}(z|x)\, dz = ELBO(\phi)$$</p>
 <p>$$\int log(\frac{q_{\phi}(z|x)}{p(z|x)})q_{\phi}(z|x)\, dz = KL(q_{\phi}(z|x)||p(z|x))$$</p>
 <p>$$\therefore log(p(x)) = ELBO(\phi) + KL(q_{\phi}(z|x)||p(z|x))$$</p>
 위의 KL-Divergence를 참조하게 되면 KL-Divergence값이 작을 수록 두 분포가 유사하다는 의미를 가지고 0이면 두 분포가 같다는 의미를 가진다고 설명하였다.  
-즉, <span>$KL(q_{\phi}(z|x)||p(z|x))$</span>이 작을수록 처음부터 구하고자하는 <span>$p(z|x) \leftarrow q_{\phi}(z|x)$</span>이 성립하게 되고 이를 위해서는 <span>$ELBO(\phi)$</span>의 값이 최대화가 되어야 한다는 의미이다.  
+즉, <span>$$KL(q_{\phi}(z|x)||p(z|x))$$</span>이 작을수록 처음부터 구하고자하는 <span>$$p(z|x) \leftarrow q_{\phi}(z|x)$$</span>이 성립하게 되고 이를 위해서는 <span>$$ELBO(\phi)$$</span>의 값이 최대화가 되어야 한다는 의미이다.  
 
 위의 설명을 그림으로 나타내면 아래와 같다.  
 <img src="https://datascienceschool.net/upfiles/2b17600871204ad69d074389bab587c4.png"><br>
@@ -890,33 +881,31 @@ log(p(x))부터 식을 전개한다.
 <br><br>
 
 **LossFunction**  
-최종적인 LossFunction은 <span>$ELBO(\phi)$</span>의 값이 최대화해야하는 방향으로 정하였다.  
-먼저 <span>$ELBO(\phi)$</span>의 식을 다시 살펴보면 다음과 같다.  
+최종적인 LossFunction은 <span>$$ELBO(\phi)$$</span>의 값이 최대화해야하는 방향으로 정하였다.  
+먼저 <span>$$ELBO(\phi)$$</span>의 식을 다시 살펴보면 다음과 같다.  
 <p>$$ELBO(\phi) = \mathbb{E}_{q_{\phi}(z|x)}[log(p(x|z))] - KL(q_{\phi}(z|x)||p(z))$$</p>
-위의 식에서 <span>$p(x|z)$</span>의 의미를 살펴보게 되면 z를 Input으로 넣어서 Output인 x를 출력하는 Decoder의 형태로 나타낼 수 있다.  
-Decoder의 Hyperparameter를 <span>$\theta$</span>라고 생각하면 최종적인 LossFunction은 다음과 같다.  
-(Encoder의 경우에도 <span>$q_{\phi}(z|x)$</span> 라고 정의하였다. 즉, x를 input으로 넣어서 z를 출력한다. Hpyerparameter는 <span>$\phi$</span>라고 생각할 수 있다.)  
+위의 식에서 <span>$$p(x|z)$$</span>의 의미를 살펴보게 되면 z를 Input으로 넣어서 Output인 x를 출력하는 Decoder의 형태로 나타낼 수 있다.  
+Decoder의 Hyperparameter를 <span>$$\theta$$</span>라고 생각하면 최종적인 LossFunction은 다음과 같다.  
+(Encoder의 경우에도 <span>$$q_{\phi}(z|x)$$</span> 라고 정의하였다. 즉, x를 input으로 넣어서 z를 출력한다. Hpyerparameter는 <span>$$\phi$$</span>라고 생각할 수 있다.)  
 <p>$$L_{(\theta,\phi,x^i)} = -\mathbb{E}_{q_{\phi}(z|x^i)}[log(p_{\theta}(x^i|z))] + KL(q_{\phi}(z|x^i)||p(z))$$</p>
 위의 식을 Training시키기 위하여 식을 변경하게 되면 다음과 같다.  
 <p>$$\theta^*, \phi^* = argmax_{\theta, \phi} \sum_{i=1}^N L(\theta,\phi,x^i)$$</p>
-위의 최종적인 LossFunction에서 <span>$\mathbb{E}_{q_{\phi}(z|x^i)}[log(p_{\theta}(x^i|z))]$</span>, <span>$KL(q_{\phi}(z|x^i)||p(z))$</span>을 따로 생각하여 계산하자.  
+위의 최종적인 LossFunction에서 <span>$$\mathbb{E}_{q_{\phi}(z|x^i)}[log(p_{\theta}(x^i|z))]$$</span>, <span>$$KL(q_{\phi}(z|x^i)||p(z))$$</span>을 따로 생각하여 계산하자.  
 <br>
 
-**LossFunction1(<span>$KL(q_{\phi}(z|x^i)||p(z))$</span>)**  
-Encoder부분에서 <span>$q_{\phi}(z|x^i), p(z)$</span>를 평균 0, 분산 1인 정규분포로서 가정하였다.  
+**LossFunction1(<span>$$KL(q_{\phi}(z|x^i)||p(z))$$</span>)**  
+Encoder부분에서 <span>$$q_{\phi}(z|x^i), p(z)$$</span>를 평균 0, 분산 1인 정규분포로서 가정하였다.  
 <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence#Multivariate_normal_distributions"></a>를 참조하여 식을 변형하면 다음과 같이 나타낼 수 있다.  
 <p>$$KL(q_{\phi}(z|x^i)||p(z))$$</p>
 <p>$$= \frac{1}{2}\sum_{j=1}^{j}(u_{i,j}^2+\sigma_{i,j}^2 - ln(\sigma_{i,j}^2)-1)$$</p>
 <br>
 
-**LossFunction2(<span>$\mathbb{E}_{q_{\phi}(z|x^i)}[log(p_{\theta}(x^i|z))]$</span>)**  
+**LossFunction2(<span>$$\mathbb{E}_{q_{\phi}(z|x^i)}[log(p_{\theta}(x^i|z))]$$</span>)**  
 <p>$$\mathbb{E}_{q_{\phi}(z|x^i)}[log(p_{\theta}(x^i|z))] = \int log(p_{\theta}(x|z)q_{\phi}(z|x)\, dz$$</p>
 <p>$$ = \int log(p_{\theta}(x|z)\, dz$$</p>
 <p>$$\because \int q_{\phi}(z|x)\, dz = 1$$</p>
-
 위의 식을 Mini-Batch 처리를 한다면 다음과 같다.(L = BatchSize, 대부분 L=1로 두고 계산한다.)  
 <p>$$\frac{1}{L} \sum_{z^{i,l}}log(p_{\theta}(x^i|z^{i,l})\, dz$$</p>
-
 위의 식에서 Mini-Batch Size L=1로 가정하고, p(x) = Bernoulli분포로 가정한다.  
 Bernoulli 분포는 1 아니면 0으로서의 확률값을 가지는 확률분포를 의미하게 된다.  
 Decoder의 마지막 단을 살펴보게 되면 <code>x = layers.Conv2D(1, 3, padding='same', activation='sigmoid')(x)</code>로서 0 ~ 1의 값을 가지는 Sigmoid로서 Activation Function으로서 설정하였다.  
@@ -924,8 +913,7 @@ Decoder의 마지막 단을 살펴보게 되면 <code>x = layers.Conv2D(1, 3, pa
 <p>$$\int log(p_{\theta}(x^i|z^i)\, dz = \sum_{j=1}^D log(p_{\theta}(x_{i,j}|z^i)$$</p>
 <p>$$= \sum_{j=1}^D log(p_{i,j}^{x_{i,j}}(1-p_{i,j}^{1-x_{i,j}}))$$</p>
 <p>$$= \sum_{j=1}^D x_{i,j}log(p_{i,j}) + (1-x_{i,j})(1-p_{i,j}))$$</p>
-
-위의 식을 살펴보면 Decoder의 출력인 <span>$p_{i,j}$</span>와 Input인 <span>$x_{i,j}$</span>의 CrossEntropy인 것을 확인할 수 있다.(따라서 나중에 Input Image또한 0~1사이의 값으로 변화시켜야 한다.)
+위의 식을 살펴보면 Decoder의 출력인 <span>$$p_{i,j}$$</span>와 Input인 <span>$$x_{i,j}$$</span>의 CrossEntropy인 것을 확인할 수 있다.(따라서 나중에 Input Image또한 0~1사이의 값으로 변화시켜야 한다.)
 ```python
 class CustomVariationalLayer(layers.Layer):
 
@@ -1065,6 +1053,9 @@ plt.show()
 <br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/Keras/blob/master/Ch06.ipynb">원본코드</a><br>
+참조: <a href="https://datascienceschool.net/view-notebook/c5248de280a64ae2a96c1d4e690fdf79/">데이터사이언스 스쿨</a><br>
+참조: <a href="https://blog.naver.com/PostView.nhn?blogId=mykepzzang&logNo=220834919339&parentCategoryNo=&categoryNo=38&viewDate=&isShowPopularPosts=false&from=postView">mykepzzang 블로그</a><br>
+참조: <a href="https://subinium.github.io/Keras-8/#84-%EB%B3%80%EC%9D%B4%ED%98%95-%EC%98%A4%ED%86%A0%EC%9D%B8%EC%BD%94%EB%8D%94%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1">subinium 블로그</a><br>
 참조: 케라스 창시자에게 배우는 딥러닝<br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
