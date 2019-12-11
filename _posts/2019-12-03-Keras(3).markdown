@@ -287,7 +287,7 @@ history = model.fit_generator(
     validation_data = validation_generator,
     validation_steps=50)
 
-model.save('cats_and_dogs_small_1.h5')
+model.save('./Model/cats_and_dogs_small_1.h5')
 ```
 <br>
 ```code
@@ -440,7 +440,7 @@ history = model.fit_generator(
     validation_data = validation_generator,
     validation_steps=50)
 
-model.save('cats_and_dogs_small_2.h5')
+model.save('./Model/cats_and_dogs_small_2.h5')
 ```
 <br>
 ```code
@@ -761,7 +761,7 @@ Tensorflow나 Pytorch에서 다루지 못한 내용이다.
 Training하여 저장된 Model을 불러와서 확인한다.
 
 ```python
-model = load_model('./cats_and_dogs_small_2.h5')
+model = load_model('./Model/cats_and_dogs_small_2.h5')
 model.summary()
 ```
 <br>
