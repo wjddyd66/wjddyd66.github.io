@@ -208,7 +208,6 @@ volumeBindingMode: WaitForFirstConsumer
 이 명령어로 인하여 생성된 StorageClass는 Default로서 선언될 수 있다.  
 <code>kubectl apply -f StorageClass.yaml</code>을 실행하게 되면 다음 화면을 확인할 수 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/26.PNG" height="100%" width="100%" /></div><br><br>
-
 **2. JupyterNotebook과 연결할 PV를 선언하여야 한다.**  
 마찬가지로 Object Spec을 정의하고 Object를 생성하도록 한다.  
 ```code
@@ -234,7 +233,6 @@ spec:
 <br>
 생성하게되면 최종적인 화면은 다음과 같이 나오게 된다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/27.PNG" height="100%" width="100%" /></div><br><br>
-
 ### Jupyter Notebooks 실행
 다음과 같은 간단한 예제를 돌려보자.  
 ```code
@@ -278,7 +276,6 @@ print(os.getcwd())
 위의 Code를 실행하면 아까 JupyterNotebook에서 지정한 Directory랑 같은 것을 확인할 수 있다.  
 실제 Local에서 확인해보면 잘 있는것을 확인할 수 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/29.PNG" height="100%" width="100%" /></div><br>
-
 마지막으로 GPU와 CPU를 둘 다 사용하는지 알아보기 위하여 다음과 같은 Code를 실행해 보자.  
 ```code
 from tensorflow.python.client import device_lib
@@ -287,9 +284,289 @@ print(device_lib.list_local_devices())
 <br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/30.PNG" height="100%" width="100%" /></div><br>
 확인결과 다행이 CPU, GPU Device를 둘다 잘 잡아서 사용하는 것을 확인할 수 있다.  
-<br>
+<br><br>
+### Jupyter Notebook Customize
+Kubeflow 에서는 다음 링크에서 Jupyter Notebook을 Customize해서 사용할 수 있게 제공해 준다. <a href="https://github.com/kubeflow/kubeflow/tree/master/components">Kubeflow Jupyter Notebook Customize GitHub</a>  
+위의 링크에서 다운받은 File안에서 다음과 같은 명령어로서 Jupyter Notebook을 생성할 수 있다.  
+<code>python3 build_image.py --registry=wjddyd66/custom-jupyter --tag=0.0.3 --tf_version=1.6.0 --platform=gpu tf_notebook</code>  
 
+**참고 사항**  
+**1. Version 주의**  
+현재 모든 Jupyter의 Version을 제공하는 것은 아니다.  
+CPU, GPU 지원 하는 Version은 정해져있다.
+- CPU: 1.4.1, 1.5.1, 1.6.0, 1.7.0, 1.8.0
+- GPU: 1.4.1, 1.5.1, 1.6.0, 1.7.0, 1.8.0
+
+**2. Parameter**  
+- registry: Docker registry
+- tag: Docker tag
+- tf_version: Tensorflow Version
+- platform: GPU or CPU (Default: CPU)
+- tf_notebook: Serving or JupyterNotebook Customize 둘 중 하나 선택
+
+이제 Kubeflow에서 제공한 Dockerfile을 자신의 상황에 맞게 Customize하고 위의 명령어를 사용하면 원하는 JupyterNotebook으로 Customize하여 Docker Image로 만들 수 있다.  
+Docker File의 위치는 Kubeflow → components → tensorflow-notebook-image → Dockerfile  
+원본 Dockerfile을 살펴보면 다음과 같다.  
+```code
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+
+ARG BASE_IMAGE=tensorflow/tensorflow:1.13.2-py3-jupyter
+
+FROM $BASE_IMAGE
+
+ARG TF_SERVING_VERSION=0.0.0
+ARG NB_USER=jovyan
+
+# TODO: User should be refactored instead of hard coded jovyan
+
+USER root
+
+ENV DEBIAN_FRONTEND noninteractive
+
+ENV NB_USER $NB_USER
+
+ENV NB_UID 1000
+ENV HOME /home/$NB_USER
+ENV NB_PREFIX /
+
+
+# Use bash instead of sh
+SHELL ["/bin/bash", "-c"]
+
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+  apt-transport-https \
+  build-essential \
+  bzip2 \
+  ca-certificates \
+  curl \
+  g++ \
+  git \
+  gnupg \
+  graphviz \
+  locales \
+  lsb-release \
+  openssh-client \
+  sudo \
+  unzip \
+  vim \
+  wget \
+  zip \
+  emacs \
+  python3-pip \
+  python3-dev \
+  python3-setuptools \
+  && apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+
+# Install Nodejs for jupyterlab-manager
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+  nodejs \
+  && apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+
+ENV DOCKER_CREDENTIAL_GCR_VERSION=1.4.3
+RUN curl -LO https://github.com/GoogleCloudPlatform/docker-credential-gcr/releases/download/v${DOCKER_CREDENTIAL_GCR_VERSION}/docker-credential-gcr_linux_amd64-${DOCKER_CREDENTIAL_GCR_VERSION}.tar.gz && \
+    tar -zxvf docker-credential-gcr_linux_amd64-${DOCKER_CREDENTIAL_GCR_VERSION}.tar.gz && \
+    mv docker-credential-gcr /usr/local/bin/docker-credential-gcr && \
+    rm docker-credential-gcr_linux_amd64-${DOCKER_CREDENTIAL_GCR_VERSION}.tar.gz && \
+    chmod +x /usr/local/bin/docker-credential-gcr
+
+# Install AWS CLI
+RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "/tmp/awscli-bundle.zip" && \
+    unzip /tmp/awscli-bundle.zip && ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws && \
+    rm -rf ./awscli-bundle
+
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    locale-gen
+
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
+# Create NB_USER user with UID=1000 and in the 'users' group
+# but allow for non-initial launches of the notebook to have
+# $HOME provided by the contents of a PV
+RUN useradd -M -s /bin/bash -N -u $NB_UID $NB_USER && \
+    chown -R ${NB_USER}:users /usr/local/bin && \
+    mkdir -p $HOME
+
+RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
+    echo "deb https://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+    apt-get update && \
+    apt-get install -y google-cloud-sdk kubectl
+
+# Install Tini - used as entrypoint for container
+RUN cd /tmp && \
+    wget --quiet https://github.com/krallin/tini/releases/download/v0.18.0/tini && \
+    echo "12d20136605531b09a2c2dac02ccee85e1b874eb322ef6baf7561cd93f93c855 *tini" | sha256sum -c - && \
+    mv tini /usr/local/bin/tini && \
+    chmod +x /usr/local/bin/tini
+
+# NOTE: Beyond this point be careful of breaking out
+# or otherwise adding new layers with RUN, chown, etc.
+# The image size can grow significantly.
+
+# Install base python3 packages
+RUN pip3 --no-cache-dir install \
+    jupyter-console==6.0.0 \
+    jupyterlab \
+    xgboost \
+    git+https://github.com/kubeflow/fairing@a9bb9d5cc1c9f1d75efa31198ddbdccfe176b7bf
+
+COPY --chown=jovyan:users requirements.txt /tmp
+
+RUN docker-credential-gcr configure-docker && chown ${NB_USER}:users $HOME/.docker/config.json
+
+# Configure container startup
+EXPOSE 8888
+USER jovyan
+ENTRYPOINT ["tini", "--"]
+CMD ["sh","-c", "jupyter notebook --notebook-dir=/home/${NB_USER} --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]
+```
+<br>
+위의 DockerFile에서 현재 환경에 맞게 변경한 Dockerfile 수정내용은 다음과 같다.  
+```code
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+ 
+ARG BASE_IMAGE=tensorflow/tensorflow:1.13.2-py3-jupyter
+ 
+FROM $BASE_IMAGE
+ 
+ARG TF_SERVING_VERSION=0.0.0
+ARG NB_USER=jyhwang
+ 
+# TODO: User should be refactored instead of hard coded jovyan
+ 
+USER root
+ 
+ENV DEBIAN_FRONTEND noninteractive
+ 
+ENV NB_USER $NB_USER
+ 
+ENV NB_UID 1000
+ENV HOME /home/$NB_USER
+ENV NB_PREFIX /
+ 
+ 
+# Use bash instead of sh
+SHELL ["/bin/bash", "-c"]
+ 
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+  apt-transport-https \
+  build-essential \
+  bzip2 \
+  ca-certificates \
+  curl \
+  g++ \
+  git \
+  gnupg \
+  graphviz \
+  locales \
+  lsb-release \
+  openssh-client \
+  sudo \
+  unzip \
+  vim \
+  wget \
+  zip \
+  emacs \
+  python3-pip \
+  python3-dev \
+  python3-setuptools \
+  && apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+ 
+# Install Nodejs for jupyterlab-manager
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+  nodejs \
+  && apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+ 
+ENV DOCKER_CREDENTIAL_GCR_VERSION=1.4.3
+RUN curl -LO https://github.com/GoogleCloudPlatform/docker-credential-gcr/releases/download/v${DOCKER_CREDENTIAL_GCR_VERSION}/docker-credential-gcr_linux_amd64-${DOCKER_CREDENTIAL_GCR_VERSION}.tar.gz && \
+    tar -zxvf docker-credential-gcr_linux_amd64-${DOCKER_CREDENTIAL_GCR_VERSION}.tar.gz && \
+    mv docker-credential-gcr /usr/local/bin/docker-credential-gcr && \
+    rm docker-credential-gcr_linux_amd64-${DOCKER_CREDENTIAL_GCR_VERSION}.tar.gz && \
+    chmod +x /usr/local/bin/docker-credential-gcr
+ 
+ 
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    locale-gen
+ 
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ 
+# Create NB_USER user with UID=1000 and in the 'users' group
+# but allow for non-initial launches of the notebook to have
+# $HOME provided by the contents of a PV
+RUN useradd -M -s /bin/bash -N -u $NB_UID $NB_USER && \
+    chown -R ${NB_USER}:users /usr/local/bin && \
+    mkdir -p $HOME && \
+    chown -R ${NB_USER}:users $HOME
+ 
+# Install Tini - used as entrypoint for container
+RUN cd /tmp && \
+    wget --quiet https://github.com/krallin/tini/releases/download/v0.18.0/tini && \
+    echo "12d20136605531b09a2c2dac02ccee85e1b874eb322ef6baf7561cd93f93c855 *tini" | sha256sum -c - && \
+    mv tini /usr/local/bin/tini && \
+    chmod +x /usr/local/bin/tini
+ 
+# NOTE: Beyond this point be careful of breaking out
+# or otherwise adding new layers with RUN, chown, etc.
+# The image size can grow significantly.
+ 
+# Install base python3 packages
+RUN pip3 --no-cache-dir install \
+    jupyter-console \
+    jupyterlab \
+    ipython==7.0 \
+    xgboost \
+    git+https://github.com/kubeflow/fairing@a9bb9d5cc1c9f1d75efa31198ddbdccfe176b7bf
+ 
+COPY --chown=jyhwang:users requirements.txt /tmp
+ 
+RUN docker-credential-gcr configure-docker && chown ${NB_USER}:users $HOME/.docker/config.json
+ 
+# Configure container startup
+EXPOSE 8888
+USER jyhwang
+ENTRYPOINT ["tini", "--"]
+CMD ["sh","-c", "jupyter notebook --notebook-dir=/$HOME --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]
+
+```
+<br>
+**변경한 내용은 다음과 같다.**  
+- Jovyan → jyhwang: 원하는 User로서 변경
+- <code>chown -R ${NB_USER}:users $HOME</code> 추가: <a href="https://github.com/kubeflow/kubeflow/issues/4520">이전 Issue</a> 였던 Permission Denied 해결을 위한 Code
+- <code>jupyter-console \</code>, <code>ipython==7.0 \</code> 추가: 현재 Base Image는 Ubuntu 16.04 입니다. 따라서 Python3는 자동으로 3.5.2이므로 이에 맞는 Jupyter Version을 설정하여야 합니다.
+
+위와 같이 변경한 Dockerfile을 바탕으로 Image를 생성하고 Push한다.  
+1. DockerFile Build: <code>python3 build_image.py --registry=wjddyd66/custom-jupyter --tag=3.0.0 --tf_version=1.6.0 --platform=gpu tf_notebook</code>
+2. Docker Image를 Push 하기 위하여 Tag 및 repository 변경: <code>docker tag wjddyd66/custom-jupyter/tensorflow-1.6.0-notebook-gpu:3.0.0 wjddyd66/custom-jupyter:10.0.0</code>
+3. Image Push: <code>docker psuh wjddyd66/custom-jupyter:10.0.0</code>
+
+**주의 사항**  
+Python 명령어로써 Build하여 올린 Image에 자동적으로 Tensorflow가 깔려있을 줄 알았는데 깔려있는 Package의 List에 Tensorflow 존재 X  
+**Dockerfile변경을 잘못하였거나 Python에서 인수 전달을 못한 경우일 확률이 매우 높다. 따라서 수정한 Dockerfile에서 추가하고자 하는 Package와 Tensorflow를 추가하여 최종적인 Customizing된 Jupyter Image를 사용할 수 있다.**  
+```code
+RUN pip3 --no-cache-dir install \
+    jupyter-console \
+    jupyterlab \
+    tensorflow \
+    ipython==7.0 \
+    xgboost \
+    git+https://github.com/kubeflow/fairing@a9bb9d5cc1c9f1d75efa31198ddbdccfe176b7bf
+```
+<br>
+<br>
 
 <hr>
 참조:<a href="https://www.kubeflow.org/docs/notebooks/why-use-jupyter-notebook/">Kubeflow-JupyterNotebooks</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
