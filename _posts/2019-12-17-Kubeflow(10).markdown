@@ -270,9 +270,142 @@ if __name__ == '__main__':
 
 ### Fairing on Jupyter
 Jupyter상에서 위에서 사용하였던 Code를 사용하여 Fairing이 되는지 확인하기 위하여 먼저 다음과 같은 작업이 필요하다.  
+<br><br>
 
 **1. Docker Setting**  
+Jupyter Notebook또한 하나의 Pod으로서 작동하기때문에 Pod자체에서 Docker를 통하여 Image를 Build하고 Push할 수 있게 Setting하여야 한다.  
+**Local에서 구성한 Docker Repository에는 접근하기 어렵기 때문에 Dockerhub에 올리는 것을 기준으로 Setting하고 작업하였다.**  
 
+**1-1. Docker Container 접근**  
+결국에는 Kubernetes의 Pod또한 Docker의 Container와 다른 많은 요소들을 결합한 것이기 때문에 생성한 JupyterNotebook의 Container중 하나로 접속하여 Docker Setting을 하여야 한다.  
+<code>kubectl describe po -n [Namespace] [Pod Name]</code>  
+```code
+root@jyhwang-XPS-15-9570:/home/jyhwang/fairing# kubectl describe po -n admin wjddyd66-0
+
+...
+
+Containers:
+  wjddyd66:
+    Container ID:   docker://cd86d99023783c27eb7efc0972de32ed13bd7a3b90a5898a309330c1087782c3
+    Image:          gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0
+    Image ID:       docker-pullable://gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu@sha256:5c68ba7d700814c3deb8f91787ee2dd95c1ad5d3e2a11e8b328d55ca507c7b20
+
+...
+
+```
+<br>
+위의 생성한 JupyterNotebook의 Pod을 살펴보게 되면 3개의 Container로서 구성되어있다.  
+- istio-init
+- wjddyd66
+- istio-proxy
+
+위의 3개 중 istio-init, istio-proxy는 Network setting이기 때문에 wjddyd66의 Container ID를 확인하여 아래 명령어로 Container에 접속한다.  
+
+<code>docker exec -u 0 -it --privileged my_container_id bash</code>  
+위의 Code에서 사용한 option을 살펴보자면  
+- exec: Docker Container에 명령을 사용하겠다.
+- u 0: Docker Container에 내리는 명령의 User를 Root로서 명령하겠다.
+- i: 표준 입력(stdin)을 확성화 하며 컨테이너와 연결되어 있지 않더라도 표준 입력을 유지한다.
+- t: TTY 모드를 사용한다. bash를 사용하려면 이 옵션을 설정해야 한다.
+- priviledged: 모든 장치에 접근할 수 있을 뿐만 아니라 호스트 컴퓨터 커널의 대부분의 기능을 사용할 수 있다.
+
+위의 명령어로 인하여 Container에 접속하여 아래와 같은 결과를 얻게 된다.  
+<code>docker exec -u 0 -it --privileged cd86d99023783c27eb7efc0972de32ed13bd7a3b90a5898a309330c1087782c3 bash</code>  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/55.png" height="250" width="600" /></div><br>
+<br>
+
+**1-2. Docker Setting**  
+Docker 설치와 Docker Hub에 Image를 올리기 위한 Setting이다.  
+Docker 설치  
+```code
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+sudo apt-key add - && \
+sudo add-apt-repository \
+"deb [arch=amd64]
+https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+sudo apt-get update && \
+apt-cache policy docker-ce && \
+sudo apt-get install -y docker-ce && \
+sudo systemctl status docker
+```
+<br>
+
+Docker Hub login  
+<code>docker login</code>  
+<br>
+
+Docker Setting  
+결과적으로 **JupyterNotebook에서 사용하는 user는 jovyan(Customizing을 하지 않은 경우)이다. ( JupyterNotebook을 Customizing을 하여 사용하는 경우는 Dockerfile에 지정한 User로서 아래 명령어를 바꾸어서 따라해야 한다.)**  
+따라서 jovyan(JupyterNotebook 사용자)이 Docker명령어를 사용할수 있게 Setting하여야 하고 또한 DockerHub에 접속하기 위한 .json File에 대한 접근도 추가하여야 한다.  
+특정 User Docker 명령어 사용 가능하게 Setting  
+<code>sudo usermod -aG docker jovyan</code><br>
+
+DockerHube에 접속하기 위한 .json File에 대한 접근 추가  
+<code>chmod -R 777 /home/jovyan/</code><br>
+위의 명령어를 사용하는 이유는 **DockerHub에 접속하기 위한 .json File의 위치가 /home/jovyan/.docker/config.json이기 때문이다.**  
+<br><br>
+
+**2. JupyterNotebook Setting**  
+**2-1 Kubeflow-fairing 설치**  
+위의 Local환경과 같이 <code>!pip install kubeflow-fairing --user</code>로서 JupyteNotebook안에서 Kubeflow-fairing을 사용할 수 있게 다운로드 한다.(JupyteNotebook안에서 Kernel에서 명령어를 내리기 위해서는 앞에 !만으로서 명령어를 사용할 수 있습니다.)  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/56.png" height="250" width="600" /></div><br><br>
+
+**2-2 Kubeflow-fairing Code 작성**  
+```code
+import os
+import tensorflow as tf
+
+from kubeflow import fairing
+# Setting up google container repositories (GCR) for storing output containers
+# You can use any docker container registry istead of GCR
+DOCKER_REGISTRY = 'wjddyd66'
+fairing.config.set_builder(
+    'append',
+    base_image='gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0',
+    registry=DOCKER_REGISTRY,
+    push=True)
+fairing.config.set_deployer('job',namespace='admin')
+
+def train():
+    tf.print(tf.constant(os.environ['HOSTNAME']))
+
+if __name__ == '__main__':
+    print('local train()')
+    train()
+    print('remote train()')
+    remote_train = fairing.config.fn(train)
+    remote_train()
+
+```
+<br>
+**결과**  
+```code
+local train()
+wjddyd66-0
+
+...
+
+remote train()
+[W 191218 07:47:37 append:54] Image successfully built in 1.9422208619944286s.
+[W 191218 07:47:37 append:94] Pushing image wjddyd66/fairing-job:133FF110...
+
+...
+
+fairing-job-4r67n-czcmc
+[W 191218 07:47:55 job:162] Cleaning up job fairing-job-4r67n...
+```
+<br>
+실제 Docker Hube에 가서 살펴보게 되면 Image를 Build하여 Push한 최종적인 Image를 볼 수 있다.  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/57.png" height="250" width="600" /></div><br>
+
+**주의 사항**  
+Docker Container 위에서 Docker를 설치한 것 이기 때문에 Builder를 Docker로 하면 다음과 같은 Error 발생  
+```code
+DockerException: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
+```
+<br>
+
+따라서 **append만 사용할 수 밖에 없음(Kubeflow를 지원하는 CloudStorage를 사용하지 않는 이상)**  
 <br>
 
 <hr>
