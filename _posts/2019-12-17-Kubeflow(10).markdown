@@ -1,0 +1,283 @@
+---
+layout: post
+title:  "Fairing"
+date:   2019-12-17 11:00:20 +0700
+categories: [Kubeflow]
+---
+
+### Fairing 이란?
+**Fairing**이란 Build, Train, Deploy를 <a href="https://wjddyd66.github.io/kubeflow/Kubeflow(9)/">TF-Trainjob</a> 형태로 원격으로 할 수 있는 Kubeflow의 기능 중 하나입니다.  
+위의 링크에서 TF-JOB형태로 만들기 위해서 DockerFile로서 Image를 만들고 Push한 뒤 Image를 기반으로 .yaml File로 작성하여 TF-JOB을 실행하였던 과정이 간소화 되는 것 이다.  
+이러한 Fairing기능을 사용하게 되면 Python 또는 Jupyter 환경에서 Code몇 줄을 추가하는 형식으로 가능하다.  
+이러한 Fairing은 다음과 같은 과정으로 이루워진다.
+1. Python or Jupyter환경에서 Fairing관련된 Code추가
+2. Docker Image로 Package
+3. TF-JOB형태로 배포 및 실행
+4. Training된 Model을 Endpoint on Kubeflow에 Deply가능
+
+<br><br>
+
+### Fairing on Local
+Jupyter Notebook환경이 아닌 Local에서 Python환경에서 Fairing을 실습하여 보자.  
+#### **1. 가상환경 준비**  
+<a href="https://wjddyd66.github.io/kubeflow/Kubeflow(6)/">SDK</a>에서 가상황경으로 잡았던 Miniconda를 활용하여 가상환경을 준비  
+<code>conda create --name fairing python=3.6</code>  
+<code>conda activate fairing</code>  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/53.png" height="250" width="600" /></div><br>
+<br><br>
+
+#### **2. kubeflow-fairing 설치**  
+<code>pip install kubeflow-fairing</code>
+결과 확인  
+```code
+(fairing) root@jyhwang-XPS-15-9570:/home/jyhwang# pip show kubeflow-fairing
+Name: kubeflow-fairing
+Version: 0.7.0.1
+Summary: Kubeflow Fairing Python SDK.
+Home-page: https://github.com/kubeflow/fairing
+Author: Kubeflow Authors
+Author-email: hejinchi@cn.ibm.com
+License: Apache License Version 2.0
+Location: /usr/local/lib/python3.6/dist-packages
+Requires: oauth2client, setuptools, google-api-python-client, docker, requests, urllib3, six, google-auth, notebook, cloudpickle, numpy, tornado, azure, google-cloud-storage, future, boto3, httplib2, python-dateutil, kubernetes, kfserving
+```
+<br>
+tensorflow 설치  
+<code>pip install tensorflow</code>
+<br><br>
+
+#### **3. Docker Registry 구성**  
+Kubeflow Fairing을 사용하여 Docker Image를 올릴수 있는 Docker Registry는 2종류 이다.  
+1. GCR(Google Container Repositories) 사용
+2. 개인 Repository 생성
+
+위의 2번 방법을 선택하여 개인 Docker Repository를 구성하였다.  
+- <code>docker pull registry</code>: registry 이미지 가져오기
+- <code>docker run -dit --name docker-registry -p 5000:5000 registry</code>: registry 실행하기
+
+<br><br>
+#### **4. Python Code작성**  
+현제 사용한 Code는 <a href="https://github.com/mojokb/handson-kubeflow/blob/master/fairing/fairing_append_simple_job.py">mojokb Github</a>의 코드 입니다.  
+```code
+import os
+import tensorflow as tf
+
+from kubeflow import fairing
+# Setting up google container repositories (GCR) for storing output containers
+# You can use any docker container registry istead of GCR
+DOCKER_REGISTRY = 'localhost:5000'
+fairing.config.set_builder(
+    'append',
+    base_image='gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0',
+    registry=DOCKER_REGISTRY,
+    push=True)
+fairing.config.set_deployer('job',
+                            namespace='test')
+
+def train():
+    tf.print(tf.constant(os.environ['PATH']))
+
+if __name__ == '__main__':
+    print('local train()')
+    train()
+    print('remote train()')
+    remote_train = fairing.config.fn(train)
+    remote_train()
+```
+<br>
+위의 Code에서 <code>train()</code>전까지는 Docker Image를 Push하기 위한 설정 작업이다.  
+현재 Localhost에서 Port 5000번으로 구성하였으므로 registry는 localhost:5000이 될 것이다.  
+위에서 중요한 것은  
+- <code>fairing.config.set_deployer('job', namespace='test')</code>: Kubeflow에 Job형태로 실행되게 한다.
+- <code>train()</code>: Local환경에서의 Train진행. PATH를 출력할 것이다.  
+- <code>fairing.config.fn(train)</code>: TF-JOB에게 PATH 출력
+
+<br><br>
+#### **5. 실행**  
+```code
+(fairing) root@jyhwang-XPS-15-9570:/home/jyhwang/fairing# python fairing_append_simple_job.py
+
+# Local Train 실행
+local train()
+/root/miniconda3/envs/fairing/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+# Docker Image만들고 Push
+remote train()
+[W 191217 16:03:35 function:49] The FunctionPreProcessor is optimized for using in a notebook or IPython environment. For it to work, the python version should be same for both local python and the python in the docker. Please look at alternatives like BasePreprocessor or FullNotebookPreprocessor.
+[I 191217 16:03:35 config:123] Using preprocessor: <kubeflow.fairing.preprocessors.function.FunctionPreProcessor object at 0x7fde9f42cb50>
+[I 191217 16:03:35 config:125] Using builder: <kubeflow.fairing.builders.append.append.AppendBuilder object at 0x7fde66cdbd50>
+[I 191217 16:03:35 config:127] Using deployer: <kubeflow.fairing.builders.append.append.AppendBuilder object at 0x7fde66cdbd50>
+[W 191217 16:03:35 append:50] Building image using Append builder...
+[I 191217 16:03:35 base:105] Creating docker context: /tmp/fairing_context_39wi82qz
+[W 191217 16:03:35 base:92] /root/miniconda3/envs/fairing/lib/python3.7/site-packages/kubeflow/fairing/__init__.py already exists in Fairing context, skipping...
+[I 191217 16:03:35 docker_creds_:234] Loading Docker credentials for repository 'gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0'
+[W 191217 16:03:38 append:54] Image successfully built in 2.427372837002622s.
+[W 191217 16:03:38 append:94] Pushing image localhost:5000/fairing-job:E11C94...
+[I 191217 16:03:38 docker_creds_:234] Loading Docker credentials for repository 'localhost:5000/fairing-job:E11C94'
+[W 191217 16:03:38 append:81] Uploading localhost:5000/fairing-job:E11C94
+[I 191217 16:03:38 docker_session_:284] Layer sha256:b5ff3e3cab27890dfd0b520eeeaf68baaf0b7e957bea0f567af3e6ea8e15c6ed pushed.
+
+...
+
+# TF-JOB 실행
+[W 191217 17:06:20 job:90] The job fairing-job-dhvh6 launched.
+[W 191217 17:06:20 manager:227] Waiting for fairing-job-dhvh6-xfscv to start...
+[W 191217 17:06:20 manager:227] Waiting for fairing-job-dhvh6-xfscv to start...
+[W 191217 17:06:20 manager:227] Waiting for fairing-job-dhvh6-xfscv to start...
+[I 191217 17:06:23 manager:233] Pod started running True
+
+...
+
+# 원격에서 Train() 실행
+2019-12-17 08:06:23.882515: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3117 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1050 Ti with Max-Q Design, pci bus id: 0000:01:00.0, compute capability: 6.1)
+/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[W 191217 17:06:24 job:162] Cleaning up job fairing-job-dhvh6...
+```
+<br>
+
+**Docker Repository 확인**  
+```code
+(fairing) root@jyhwang-XPS-15-9570:/home/jyhwang/fairing# curl -X GET http://localhost:5000/v2/_catalog
+
+{"repositories":["fairing-job"]}
+```
+<br>
+위의 결과를 살펴보면 fairing-job으로서 Repository가 올라간 것을 확인할 수 있다.  
+
+**TF-JOB 확인**  
+위의 결과에서 마지막 Code를 살펴보게 되면  
+Cleaning up job fairing-job-dhvh6... 으로서 수동으로 삭제해야 했던 PV, PVC, POD을 다 삭제하여 결과를 확인할 수는 없다.  
+
+**주의사항(Python Version)**  
+Python Version을 Conda와 Kubernetes의 Version을 일치시켜야 한다.  
+```code
+[E 191217 17:00:22 manager:247] Failed to launch fairing-job-24km7-l546k, reason: Error, message: None
+Traceback (most recent call last):
+  File "/app/function_shim.py", line 78, in <module>
+    compare_version(args.python_version)
+  File "/app/function_shim.py", line 50, in compare_version
+    with Python ' + local_python_version + ' in the local environment.')
+RuntimeError: The Python version 3.6 mismatches                            with Python 3.7 in the local environment.
+[W 191217 17:00:22 job:162] Cleaning up job fairing-job-24km7...
+```
+<br>
+**참고사항(Kubeflow Fairing Builder 종류)**  
+- append: Builds a docker image by appending a new layer tarball to an exisiting base image
+- cluster: Builds a docker image in a Kubernetes cluster. **Needs a context storage(like s3, gcp storage)**
+- docker: A builder using the local Docker clinet
+
+위의 예시는 **append를 사용**하여 Docker Image를 Build하고 Push하였다.  
+```code
+fairing.config.set_builder(
+    'append',
+    base_image='gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0',
+    registry=DOCKER_REGISTRY,
+    push=True)
+```
+<br>
+위의 Code에서 'append'만 'docker'로 변경시 Image Build를 docker로 할 수 있고, Local환경에서도 작동된다.  
+**Code**  
+```code
+import os
+import tensorflow as tf
+
+from kubeflow import fairing
+# Setting up google container repositories (GCR) for storing output containers
+# You can use any docker container registry istead of GCR
+DOCKER_REGISTRY = 'localhost:5000'
+fairing.config.set_builder(
+    'docker',
+    base_image='gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0',
+    registry=DOCKER_REGISTRY,
+    push=True)
+fairing.config.set_deployer('job',namespace='admin')
+
+def train():
+    tf.print(tf.constant(os.environ['PATH']))
+
+if __name__ == '__main__':
+    print('local train()')
+    train()
+    print('remote train()')
+    remote_train = fairing.config.fn(train)
+    remote_train()
+```
+<br>
+**결과**  
+```code
+local train()
+
+...
+
+/root/miniconda3/envs/fairing/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+[I 191217 17:36:34 config:123] Using preprocessor: <kubeflow.fairing.preprocessors.function.FunctionPreProcessor object at 0x7f525aa53748>
+[I 191217 17:36:34 config:125] Using builder: <kubeflow.fairing.builders.docker.docker.DockerBuilder object at 0x7f52892cc160>
+[I 191217 17:36:34 config:127] Using deployer: <kubeflow.fairing.builders.docker.docker.DockerBuilder object at 0x7f52892cc160>
+[I 191217 17:36:34 docker:32] Building image using docker
+
+...
+
+2019-12-17 08:36:41.968297: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3122 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1050 Ti with Max-Q Design, pci bus id: 0000:01:00.0, compute capability: 6.1)
+/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[W 191217 17:36:42 job:162] Cleaning up job fairing-job-q7km6...
+```
+<br>
+**하지만 cluster의 경우에는 위에서도 언급하였지만 Kubeflow를 지원하는 Storage상에서만 가능하다.**  
+
+<br><br>
+### DockerHub에 올리기
+**3. Docker Registry 구성**에서 사용 가능한 Registry는 Google과 개인 Registry가 가능하다고 하였다.  
+하지만 사용해보니 DockerHub에도 Image를 올릴 수 있어서 올리는 방법에 대해서 올려둔다.  
+
+**1. DockerHub login**  
+기본적으로 <code>docker login</code>을 사용하여 개인 계정에 접속한다.  
+**2. Code Repository 수정**  
+<code>DOCKER_REGISTRY = 'wjddyd66'</code>처럼 접속한 개인 계정 ID로서 설정한다.  
+Builder의 종류는 상관없이 정상 작동 된다.  
+
+```code
+import os
+import tensorflow as tf
+
+from kubeflow import fairing
+# Setting up google container repositories (GCR) for storing output containers
+# You can use any docker container registry istead of GCR
+DOCKER_REGISTRY = 'wjddyd66'
+fairing.config.set_builder(
+    'docker',
+    base_image='gcr.io/kubeflow-images-public/tensorflow-2.0.0a0-notebook-gpu:v0.7.0',
+    registry=DOCKER_REGISTRY,
+    push=True)
+fairing.config.set_deployer('job',namespace='admin')
+
+def train():
+    tf.print(tf.constant(os.environ['PATH']))
+
+if __name__ == '__main__':
+    print('local train()')
+    train()
+    print('remote train()')
+    remote_train = fairing.config.fn(train)
+    remote_train()
+```
+<br>
+
+**결과**  
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/54.png" height="250" width="600" /></div><br>
+
+<br><br>
+
+### Fairing on Jupyter
+Jupyter상에서 위에서 사용하였던 Code를 사용하여 Fairing이 되는지 확인하기 위하여 먼저 다음과 같은 작업이 필요하다.  
+
+**1. Docker Setting**  
+
+<br>
+
+<hr>
+참조:<a href="https://www.kubeflow.org/docs/fairing/">Fairing</a><br>
+참조:<a href="https://www.youtube.com/watch?v=cFXplM3IdyI&app=desktop">Kubeflow 2탄-Handson Kubeflow</a><br>
+
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
