@@ -271,13 +271,13 @@ if __name__ == '__main__':
 
 ### Fairing on Jupyter
 Jupyter상에서 위에서 사용하였던 Code를 사용하여 Fairing이 되는지 확인하기 위하여 먼저 다음과 같은 작업이 필요하다.  
-<br><br>
+<br>
 
 #### **1. Docker Setting**  
 Jupyter Notebook또한 하나의 Pod으로서 작동하기때문에 Pod자체에서 Docker를 통하여 Image를 Build하고 Push할 수 있게 Setting하여야 한다.  
 **Local에서 구성한 Docker Repository에는 접근하기 어렵기 때문에 Dockerhub에 올리는 것을 기준으로 Setting하고 작업하였다.**  
 
-**1-1. Docker Container 접근**  
+##### **1-1. Docker Container 접근**  
 결국에는 Kubernetes의 Pod또한 Docker의 Container와 다른 많은 요소들을 결합한 것이기 때문에 생성한 JupyterNotebook의 Container중 하나로 접속하여 Docker Setting을 하여야 한다.  
 <code>kubectl describe po -n [Namespace] [Pod Name]</code>  
 ```code
@@ -315,8 +315,10 @@ Containers:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/55.png" height="250" width="600" /></div><br>
 <br>
 
-**1-2. Docker Setting**  
+##### **1-2. Docker Setting**  
 Docker 설치와 Docker Hub에 Image를 올리기 위한 Setting이다.  
+<br>
+
 Docker 설치  
 ```code
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
@@ -335,7 +337,7 @@ Docker Hub login
 <code>docker login</code>  
 <br>
 
-Docker Setting  
+Permission Setting  
 결과적으로 **JupyterNotebook에서 사용하는 user는 jovyan(Customizing을 하지 않은 경우)이다. ( JupyterNotebook을 Customizing을 하여 사용하는 경우는 Dockerfile에 지정한 User로서 아래 명령어를 바꾸어서 따라해야 한다.)**  
 따라서 jovyan(JupyterNotebook 사용자)이 Docker명령어를 사용할수 있게 Setting하여야 하고 또한 DockerHub에 접속하기 위한 .json File에 대한 접근도 추가하여야 한다.  
 특정 User Docker 명령어 사용 가능하게 Setting  
@@ -347,11 +349,11 @@ DockerHube에 접속하기 위한 .json File에 대한 접근 추가
 <br><br>
 
 #### **2. JupyterNotebook Setting**  
-**2-1 Kubeflow-fairing 설치**  
+##### **2-1 Kubeflow-fairing 설치**  
 위의 Local환경과 같이 <code>!pip install kubeflow-fairing --user</code>로서 JupyteNotebook안에서 Kubeflow-fairing을 사용할 수 있게 다운로드 한다.(JupyteNotebook안에서 Kernel에서 명령어를 내리기 위해서는 앞에 !만으로서 명령어를 사용할 수 있습니다.)  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/56.png" height="250" width="600" /></div><br><br>
 
-**2-2 Kubeflow-fairing Code 작성**  
+##### **2-2 Kubeflow-fairing Code 작성**  
 ```code
 import os
 import tensorflow as tf
