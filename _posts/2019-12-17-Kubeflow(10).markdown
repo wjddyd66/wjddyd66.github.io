@@ -226,6 +226,7 @@ local train()
 **하지만 cluster의 경우에는 위에서도 언급하였지만 Kubeflow를 지원하는 Storage상에서만 가능하다.**  
 
 <br><br>
+
 ### DockerHub에 올리기
 **3. Docker Registry 구성**에서 사용 가능한 Registry는 Google과 개인 Registry가 가능하다고 하였다.  
 하지만 사용해보니 DockerHub에도 Image를 올릴 수 있어서 올리는 방법에 대해서 올려둔다.  
@@ -272,7 +273,7 @@ if __name__ == '__main__':
 Jupyter상에서 위에서 사용하였던 Code를 사용하여 Fairing이 되는지 확인하기 위하여 먼저 다음과 같은 작업이 필요하다.  
 <br><br>
 
-**1. Docker Setting**  
+#### **1. Docker Setting**  
 Jupyter Notebook또한 하나의 Pod으로서 작동하기때문에 Pod자체에서 Docker를 통하여 Image를 Build하고 Push할 수 있게 Setting하여야 한다.  
 **Local에서 구성한 Docker Repository에는 접근하기 어렵기 때문에 Dockerhub에 올리는 것을 기준으로 Setting하고 작업하였다.**  
 
@@ -345,7 +346,7 @@ DockerHube에 접속하기 위한 .json File에 대한 접근 추가
 위의 명령어를 사용하는 이유는 **DockerHub에 접속하기 위한 .json File의 위치가 /home/jovyan/.docker/config.json이기 때문이다.**  
 <br><br>
 
-**2. JupyterNotebook Setting**  
+#### **2. JupyterNotebook Setting**  
 **2-1 Kubeflow-fairing 설치**  
 위의 Local환경과 같이 <code>!pip install kubeflow-fairing --user</code>로서 JupyteNotebook안에서 Kubeflow-fairing을 사용할 수 있게 다운로드 한다.(JupyteNotebook안에서 Kernel에서 명령어를 내리기 위해서는 앞에 !만으로서 명령어를 사용할 수 있습니다.)  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/56.png" height="250" width="600" /></div><br><br>
