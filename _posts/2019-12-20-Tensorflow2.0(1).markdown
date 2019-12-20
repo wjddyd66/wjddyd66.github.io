@@ -524,19 +524,19 @@ plt.imshow(gen_output[0,...])
 아래에서 LossFunction에 관한 Code와 관련하면 다음과 같다.  
 <br>
 
-**<span>$\mathbb{E}_{x,z}[log(D(x,G(x,z)))]$</span>**  
+**<span>$$\mathbb{E}_{x,z}[log(D(x,G(x,z)))]$$</span>**  
 밑의 Code에서 <code>loss_object = tf.keras.losses.BinaryCrossentropy(from_logits=True)</code>로서 선언하였다.  
 따라서 <code>gan_loss = loss_object(tf.ones_like(disc_generated_output), disc_generated_output)</code>를 식에서 적용하면  
-- <code>disc_generated_output</code>: <span>$log(D(x,G(x,z)))$</span>
+- <code>disc_generated_output</code>: <span>$$log(D(x,G(x,z)))$$</span>
 - <code>tf.ones_like(disc_generated_output)</code>: Generator에서 생성된 값을 1이라고 Discriminator에서 판단하게 하고 싶음
 
 <br>
 
-**<span>$\lambda L_{L1}(G)$</span>**  
-- <code>LAMBDA = 100</code>: <span>$\lambda$</span>
-- <code>l1_loss = tf.reduce_mean(tf.abs(target - gen_output))</code>: <span>$\mathbb{E}_{x,y,z}[||y-G(x,z)||_1]$</span>
+**<span>$$\lambda L_{L1}(G)$$</span>**  
+- <code>LAMBDA = 100</code>: <span>$$\lambda$$</span>
+- <code>l1_loss = tf.reduce_mean(tf.abs(target - gen_output))</code>: <span>$$\mathbb{E}_{x,y,z}[||y-G(x,z)||_1]$$</span>
  - <code>target</code>: y
- - <code>gen_output</code>: <span>$G(x,z)$</span>
+ - <code>gen_output</code>: <span>$$G(x,z)$$</span>
 
 위와 같은 과정을 그림으로 나타내면 다음과 같다.  
 <img src="https://github.com/tensorflow/docs/blob/master/site/en/tutorials/generative/images/gen.png?raw=1"><br>
@@ -625,8 +625,8 @@ plt.colorbar()
 아래에서 LossFunction에 관한 Code와 관련하면 다음과 같다.  
 <br>
 
-**<span>$\mathbb{E}_{x,y}[logD(x,y)]$</span>**  
-아래 Code에서 <span>$D(x,y)$</span> = <code>disc_real_output</code> or <code>disc_generated_output</code>이다 즉, Discriminator가 Generator Image or Target Image를 입력으로 받아서 1 or 0으로서 판단하는 것 이다.  
+**<span>$$\mathbb{E}_{x,y}[logD(x,y)]$$</span>**  
+아래 Code에서 <span>$$D(x,y)$$</span> = <code>disc_real_output</code> or <code>disc_generated_output</code>이다 즉, Discriminator가 Generator Image or Target Image를 입력으로 받아서 1 or 0으로서 판단하는 것 이다.  
 또한 실제 Target Image는 1로서 판단하고, Generator Image는 0으로서 판단하여 최종적인 Loss를 구성하게 된다.
 
 위와 같은 과정을 그림으로 나타내면 다음과 같다.  
