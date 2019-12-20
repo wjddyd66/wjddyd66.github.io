@@ -209,7 +209,7 @@ plt.imshow(re/255.0)
 ```
 <br>
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/3.png" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/3.png" height="250" width="400" /></div><br>
 <br><br>
 
 #### Data preprocessing
@@ -506,7 +506,7 @@ gen_output = generator(inp[tf.newaxis,...], training=False)
 plt.imshow(gen_output[0,...])
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/8.png" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/8.png" height="250" width="400" /></div><br>
 <br><br>
 
 #### Generator Loss
@@ -611,7 +611,7 @@ plt.imshow(disc_out[0,...,-1], vmin=-20, vmax=20, cmap='RdBu_r')
 plt.colorbar()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/10.png" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/10.png" height="250" width="400" /></div><br>
 <br><br>
 
 #### Discriminator Loss
@@ -789,7 +789,7 @@ fit(train_dataset, EPOCHS, test_dataset)
 
 
 <hr>
-참조: <a href="https://github.com/wjddyd66/Keras/blob/master/Ch06.ipynb">원본코드</a><br>
+참조: <a href="https://github.com/wjddyd66/Tensorflow2.0/blob/master/Pix2Pix.ipynb">원본코드</a><br>
 참조: <a href="https://www.tensorflow.org/tutorials/generative/pix2pix">Tensorflow2.0 Pix2Pix</a><br>
 참조: <a href="https://arxiv.org/pdf/1611.07004.pdf">Image-to-Image Translation with Conditional Adversarial Networks</a><br>
 참조: <a href="http://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221306150417&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView">리온피플 블로그</a><br>
