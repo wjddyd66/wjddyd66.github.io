@@ -155,6 +155,20 @@ Training할 때 값이 빠져나와서 String형태가 된다면 비교가 가�
 
 CLASS_NAMES를 Numpy의 구조로서 선언하고 String값과 비교하게 되면 원래 다음과 같은 결과를 얻어야 한다.  
 ```python
+a = 'tulips'
+print(a == CLASS_NAMES) # [False False False False  True]
+```
+<br>
+하지만 현재 FALSE로만 나오기 때문에 어디선가 Error가 발생했다고 예상은 하지만, 해결하지는 못하고 있다.  
+
+**<span style="color:red">해결 방안</span>**  
+현재 <a href="https://github.com/tensorflow/tensorflow/issues/35355">Issue</a>에서 답변은 이렇다.  
+**Tensorflow 2.0 beta1에서는 작동하지 않지만, Tensorflow 2.0 에서는 작동한다.**  
+Tensorflow 2.0 beta1이여서 발생하였던 문제였다.  
+현재 Tesnrflow 2.0 Version으로 변경시 잘 작동되는 것을 확인하였다.  
+참조: <a href="https://colab.research.google.com/gist/ravikyram/2fef781e3672efc80b454acd42e8ddb8/untitled497.ipynb">Tensorflow Version에 따른 Data전처리 결과</a>
+
+```python
 def get_label(file_path):
     parts = tf.strings.split(file_path, os.path.sep)
     tf.print(parts, output_stream=sys.stderr)
@@ -255,21 +269,18 @@ tulips
 ```
 <br>
 <br><br>
+#### Basic methods for training
+<code>tf.data</code>를 활용하여 Data를 선언하고 Batch처리를 한뒤 결과를 확인한다.  
+<code>ds.prefetch()</code>을 활용하여 좀 더 빠르게 작동하도록 한다.  
 
-#### Performance
-tf.data를 사용하는 것과 keras.preprocessing의 실행 속도를 비교한다.  
-최종적인 결과를 비교하면 다음과 같다.  
-```code
-....................................................................................................
-1000 batches: 37.84613561630249 s
-845.52886 Images/s
-....................................................................................................
-1000 batches: 3.2440004348754883 s
-9864.36366 Images/s
-```
-<br>
+**Prefatch**  
+>Prefetching overlaps the preprocessing and model execution of a training step. While the model is executing training step s, the input pipeline is reading the data for step s+1. Doing so reduces the step time to the maximum (as opposed to the sum) of the training and the time it takes to extract the data.
 
-tf.data를 사용하는 것이 약 10배이상 빠른 것으로 확인되었다.(Label을 비교하는 것에서 Error가 없어지면 tf.data를 사용하는 것이 훨씬 빠른속도로 Data의 전처리가 가능할 것 이다.)
+즉, Model이 Training하는 동안 데이터 전처리 작업을 쉬지 말고, 동적으로 전처리 과정을 동시에 진행하여 Model Training의 시간을 좀 더 단축시킬 수 있다는 의미이다.  
+
+Tensorflow Guide는 위의 과정을 그림으로서 다음과 같이 나타내었다.  
+<img src="https://www.tensorflow.org/guide/images/data_performance/naive.svg?hl=ko"><br>
+사진 참조 <a href="https://www.tensorflow.org/guide/data_performance?hl=ko">data_performance 설명서</a>
 
 ```python
 def get_label(file_path):
@@ -294,8 +305,6 @@ def process_path(file_path):
     img = decode_img(img)
     return img, label
 
-labeled_ds = list_ds.map(process_path, num_parallel_calls=AUTOTUNE)
-
 def prepare_for_training(ds, cache=True, shuffle_buffer_size=1000):
     # This is a small dataset, only load it once, and keep it in memory.
     # use `.cache(filename)` to cache preprocessing work for datasets that don't
@@ -305,9 +314,8 @@ def prepare_for_training(ds, cache=True, shuffle_buffer_size=1000):
             ds = ds.cache(cache)
         else:
             ds = ds.cache()
-
+        
     ds = ds.shuffle(buffer_size=shuffle_buffer_size)
-
     # Repeat forever
     ds = ds.repeat()
 
@@ -320,7 +328,31 @@ def prepare_for_training(ds, cache=True, shuffle_buffer_size=1000):
     return ds
 
 train_ds = prepare_for_training(labeled_ds)
+image_batch, label_batch = next(iter(train_ds))
 
+show_batch(image_batch.numpy(), label_batch.numpy())
+```
+<br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/29.png" height="100%" width="100%" /></div><br>
+
+
+#### Performance
+#### Performance
+tf.data를 사용하는 것과 keras.preprocessing의 실행 속도를 비교한다.  
+최종적인 결과를 비교하면 다음과 같다.  
+```code
+....................................................................................................
+1000 batches: 56.4826819896698 s
+566.54534 Images/s
+....................................................................................................
+1000 batches: 3.5700411796569824 s
+8963.48204 Images/s
+```
+<br>
+
+tf.data를 사용하는 것이 약 15배이상 빠른 것으로 확인되었다.(Label을 비교하는 것에서 Error가 없어지면 tf.data를 사용하는 것이 훨씬 빠른속도로 Data의 전처리가 가능할 것 이다.)
+
+```python
 default_timeit_steps = 1000
 
 def timeit(ds, steps=default_timeit_steps):
@@ -346,11 +378,11 @@ timeit(train_ds)
 <br>
 ```code
 ....................................................................................................
-1000 batches: 37.84613561630249 s
-845.52886 Images/s
+1000 batches: 56.4826819896698 s
+566.54534 Images/s
 ....................................................................................................
-1000 batches: 3.2440004348754883 s
-9864.36366 Images/s
+1000 batches: 3.5700411796569824 s
+8963.48204 Images/s
 ```
 <br>
 <br><br>
