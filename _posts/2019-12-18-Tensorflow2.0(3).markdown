@@ -5,7 +5,6 @@ date:   2019-12-18 09:00:20 +0700
 categories: [Tnesorflow2.0]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 ### Load and preprocess Data
 Tensorflow 2.0에 맞게 다시 Tensorflow를 살펴볼 필요가 있다고 느껴져서 <a href="https://www.tensorflow.org/?hl=ko">Tensorflow 정식 홈페이지</a>에 나와있는 예제부터 전반적인 Tensorflow 사용법을 먼저 익히는 Post가 된다.  
 <br>
@@ -20,6 +19,96 @@ import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
 ```
+<br><br>
+
+### tf.data
+<code>tf.data</code>는 Input Data에 대하여 복잡한 전처리 과정이나 Loading하는 과정을 쉽게 할 수 있게 지원하는 것 이다.  
+위의 과정으로 Input Data -> tf.data -> Input Tensor로서 편하게 Pipelines를 구출할 수 있는 것 이다.  
+tf.data API를 사용하면 많은 양의 데이터를 처리하고 서로 다른 데이터 형식에서 데이터를 읽고 복잡한 변환(전처리 과정)을 수행할 수 있다.  
+이러한 dataset을 구축하기 위해서는 다음과 같은 2가지의 조건이 필요하다.
+- Dataset은 Memory 혹은 File로서 저장되어있어야 한다.
+- Transformation은 tf.data.Dataset object에서 행해 진다. ex) Image의 경우 tf.data.Dataset으로 Object로 만들고 회전변환 혹은 Scaling등 다양한 Transformation을 실시한다.
+
+#### Basic mechanics
+기본적으로 <code>tf.data.Dataset</code>으로 만들기 위해서는 Source(원본 데이터)를 <code>tf.data.Dataset.from_tensors()</code>나 <code>tf.data.Dataset.from_tensor_slices()</code> 등으로서 선언하여 Dataset Object로서 변화 시켜야 한다.  
+
+이러한 바뀐 Dataset Object는 다음과 같은 특징을 가지게 된다.  
+**Dataset Object 특징**  
+- <code>Dataset.map()</code>과 같이 각각의 element에게 Function을 적용할 수 있다.
+- <code>Dataset.batch()</code>와 같이 다양한 element에게 Function을 적용할 수 있다.
+
+아래 Code는 간단한 [8, 3, 0, 8, 2, 1]을 Dataset Object로 변환시키고 결과를 확인한다.  
+**중요한 점은 TensorSliceDataset같이 Dataset Object는 Numpy의 <code>.take()</code>를 적용하여 가져올 수 있고 EagerTensor는 <code>.numpy()</code>로서 바로 결과를 확인 가능하다.**  
+위와 같은 작업을 Eager execution이라 하고 **바로 그래프를 생성하지 않고 계산값을 즉시 알려주는 Tensor로서 Model의 Debugging을 좀 더 쉽게 할 수 있는 기능이라고 한다.(이러한 기능은 나중에 다시 자세히 알아보기로 하자.)**
+
+```python
+# Dataset Object 선언
+dataset = tf.data.Dataset.from_tensor_slices([8, 3, 0, 8, 2, 1])
+print(dataset)
+
+# 각각의 Eager Tensor 확인
+for elem in dataset.take(1):
+    print(type(elem))
+    print(elem.numpy())
+    
+# Dataset Object는 iter(), next()가 가능하다.
+it = next(iter(dataset))
+print(it.numpy())
+
+# Dataset Object에 Function 적용
+print(dataset.reduce(10, lambda state, value: state + value).numpy())
+```
+<br>
+<TensorSliceDataset shapes: (), types: tf.int32>  
+<class 'tensorflow.python.framework.ops.EagerTensor'>  
+8  
+8  
+32  
+<br><br>
+
+#### Datastructure
+Dataset은 <a href="https://www.tensorflow.org/api_docs/python/tf/TypeSpec?version=stable">tf.TypeSpec</a>이 표시할 수 있는 모든 구조를 포함할 수 있다.  
+<code>Dataset.element_spec</code>: Dataset안의 tf.TypeSpec Object를 확인할 수 있다.  
+<code>tf.TypeSpec.value_type</code>: tf.TypeSpec의 구조를 확인할 수 있다.
+
+```python
+# Dataset Object => Tensor로 이루워져 있다.
+dataset1 = tf.data.Dataset.from_tensor_slices(tf.random.uniform([4, 10]))
+
+# Dataset Object => Tensor로 이루워져 있다.
+dataset2 = tf.data.Dataset.from_tensor_slices(
+   (tf.random.uniform([4]),
+    tf.random.uniform([4, 100], maxval=100, dtype=tf.int32)))
+
+# Dataset Object => Tensor Array
+dataset3 = tf.data.Dataset.zip((dataset1, dataset2))
+
+# Dataset Object => Sparse Tensor로 이루워져 있다.
+dataset4 = tf.data.Dataset.from_tensors(tf.SparseTensor(indices=[[0, 0], [1, 2]], values=[1, 2], dense_shape=[3, 4]))
+
+# Dataset Object안의 ty.TypeSpec 구조의 자료 Tensor정보 확인
+print('Dataset Object 안의 Tensor 정보 확인')
+print('dataset1: ',dataset1.element_spec)
+print('dataset2: ',dataset2.element_spec)
+print('dataset3: ',dataset3.element_spec)
+print('dataset4: ',dataset4.element_spec)
+
+print()
+print('Tensor 정보 확인')
+print('dataset4: ',dataset4.element_spec.value_type)
+```
+<br>
+```code
+Dataset Object 안의 Tensor 정보 확인
+dataset1:  TensorSpec(shape=(10,), dtype=tf.float32, name=None)
+dataset2:  (TensorSpec(shape=(), dtype=tf.float32, name=None), TensorSpec(shape=(100,), dtype=tf.int32, name=None))
+dataset3:  (TensorSpec(shape=(10,), dtype=tf.float32, name=None), (TensorSpec(shape=(), dtype=tf.float32, name=None), TensorSpec(shape=(100,), dtype=tf.int32, name=None)))
+dataset4:  SparseTensorSpec(TensorShape([3, 4]), tf.int32)
+
+Tensor 정보 확인
+dataset4:  <class 'tensorflow.python.framework.sparse_tensor.SparseTensor'>
+```
+<br>
 <br><br>
 
 ### Load CSV data
