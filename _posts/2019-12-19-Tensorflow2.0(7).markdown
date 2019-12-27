@@ -687,7 +687,7 @@ RaggedTensor의 Shape는 Tensor와 마찬가지 <code>.shape()</code>를 통하�
 **이러한 RaggedTensor 특성 때문에 <code>.bounding_shape()</code>를 사용하게 된다.**  
 .bounding_shape()의 출력 형태를 보면 다음과 같다.  
 <code>tf.Tensor([2 3], shape=(2,), dtype=int64)</code>
-- [2,3]: 최대 Shape
+- 2,3: 최대 Shape
 - shape=(2,): 2차원 이나 나머지 차원은 다르다.
 - dtype: DType
 
