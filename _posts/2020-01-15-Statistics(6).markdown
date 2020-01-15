@@ -16,33 +16,24 @@ categories: [statistics]
 
 #### (1)정규분포의 적률함수
 <p>$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$$</p>
-
 <p>$$M_{x}(t) = \int_{-\infty}^{\infty}e^{xt}f(x)\,dx = \int_{-\infty}^{\infty}e^{xt}\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}\,dx$$</p>
-
 <p>$$= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty}e^{xt-\frac{(x-\mu)^2}{2\sigma^2}}\,dx$$</p>
 위의 식에서 e의 지수만을 생각해서 계산해보자.  
 
 <p>$$xt-\frac{(x-\mu)^2}{2\sigma^2} = \frac{1}{2\sigma^2}(2\sigma^2 xt - (x-\mu)^2)$$</p>
-
 <p>$$= \frac{1}{2\sigma^2}(2\sigma^2 xt - ((x-\mu)^2 -2(x-\mu)\sigma^2 t + (\sigma^2 t)^2 + 2(x-\mu)\sigma^2 t - (\sigma^2 t)^2))$$</p>
-
 <p>$$= \frac{1}{2\sigma^2}(2\mu\sigma^2 t + \sigma^4 t^2 - (x-\mu-\sigma^2 t)^2)$$</p>
-
 <p>$$\therefore M_{x}(t) = \int_{-\infty}^{\infty}e^{xt}f(x)\,dx = \int_{-\infty}^{\infty}e^{\frac{1}{2\sigma^2}(2\mu\sigma^2 t + \sigma^4 t^2 - (x-\mu-\sigma^2 t)^2)}\,dx$$</p>
-
 <p>$$ = e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}  \int_{-\infty}^{\infty}e^{-\frac{(x-\mu-\sigma^2 t)^2}{2\sigma^2}}\,dx$$</p>
 위의 식에서 <span>$$\mu^{'} = \mu + \sigma^2 t$$</span>라고 치환하면 식은 다음과 같이 정의된다.  
 <p>$$= e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}  \int_{-\infty}^{\infty}e^{-\frac{(x-\mu^{'})^2}{2\sigma^2}}\,dx$$</p>
 <p>$$= e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}$$</p>
-
 **따라서 최종적인 정규분포의 적률함수는 다음과 같이 나타낼 수 있다.**  
 <p>$$M_{x}(t) = e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}$$</p>
-
 #### (2)표본평균의 적률함수
 표본평균의 적률함수는 다음과 같이 나타낼 수 있다.  
 <p>$$N \text{~} (\mu,\sigma^2), \bar{X} \text{~} (\mu,\frac{\sigma^2}{n})$$</p>
 <p>$$M_{\bar{x}}(t) = E(e^{\bar{x}t}) = E(e^{\frac{x_1+ x_2+ ... + x_n}{n}t}) = E(e^{\frac{x_1}{n}t}e^{\frac{x_2}{n}t}...e^{\frac{x_n}{n}t})$$</p>
-
 <p>$$= E(e^{\frac{x_1}{n}t})E(e^{\frac{x_2}{n}t})...E(e^{\frac{x_n}{n}t}) = {E(e^{\frac{x}{n}t})}^n$$</p>
 위의 식에서 약간의 식 변형한다.  
 
@@ -60,11 +51,9 @@ categories: [statistics]
 <p>$$M_{\bar{x}}(t) = e^{\mu t}(1+\frac{t^2}{2n}s^2+\frac{1}{n^2}(k))$$</p>
 위의 식에서 n을 극한값을 주면 다음과 같다.  
 
-<p>$$\lim_{n \to \infty}ㅡ_{M_{\bar{x}}(t)} = e^{\mu t + \frac{s^2 t^2}{2}}$$</p>
-
+<p>$$\lim_{n \to \infty} {M_{\bar{x}}(t)} = e^{\mu t + \frac{s^2 t^2}{2}}$$</p>
 **따라서 최종적인 정규분포의 적률함수는 다음과 같이 나타낼 수 있다.**  
 <p>$$M_{\bar{x}}(t) = e^{\frac{1}{2}(2\mu t+s^2 t^2)}$$</p>
-
 **최종적으로 구한 정규분포의 적률함수와 표본평균의 적률함수를 극값을 주었을 경우에 값이 같다는 것을 확인할 수 있다. 즉, 알 수 없는 모집단에서 표본이 충분히 크다면, 이 표본평균의 분포는 정규분포에 근사하다는 것 이다.**  
 
 따라서 이전까지 배운 분포의 최종적인 관계를 표현하면 다음과 같이 표현할 수 있다. <img src="https://postfiles.pstatic.net/MjAxNjExMDNfMjgw/MDAxNDc4MTAzMjU2OTc1.yjgARG869IWWmWAy2IgGUfn0DFYs-HEXs_HND021XUkg._YsI9zZRLRK1QCCHA9jwGKRXLMe4shK7r8TuLlEVNCYg.JPEG.mykepzzang/%ED%99%95%EB%A5%A0%EA%B3%BC%ED%86%B5%EA%B3%84.jpg?type=w2"/><br>

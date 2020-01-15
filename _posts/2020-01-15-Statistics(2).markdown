@@ -65,7 +65,7 @@ ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 
 <p>$${}_{5}\mathrm{C}_{2}(\frac{275}{1000})^2(\frac{725}{1000})^3 = 0.2882$$</p>
 #### (3) 초기화분포(Hypergeometric distribution)
 모집단(N) 중에 부적합품 수가 M개이고 **비복원 추출**로 n개의 시료를 뽑았을 때, 그 중의 부적합품개수(불량품수) X는 X=x가 되는 확률 f(x)를 따른다.  
-$$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} = \frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}} {\begin{pmatrix} N  \\ n  \end{pmatrix}}$$
+<p>$$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} = \frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}} {\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
 
 평균: <span>$$E(x) = n\frac{M}{N}$$</span>  
 <p>$$f(x) = \frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
@@ -75,7 +75,7 @@ $$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} 
 <p>$$= \sum_{x=1}^{n} x\frac{M!}{x!(M-x)!} \frac{\begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
 
 
-<p>$$= \sum_{x=1}^{n} M\frac{(M-1)!}{(x-1)!(M-x)!} \frac{\begin{pmatrix} (N-1)-(M-1)  \\ (n-1)-(x-1)  \end{pmatrix}}{\left( \frac{N}{n} \right) \begin{pmatrix} (N-1)  \\ (n-1)  \end{pmatrix}}} \because \begin{pmatrix} \alpha  \\ \beta  \end{pmatrix} = \frac{\alpha}{\beta}\begin{pmatrix} \alpha-1  \\ \beta-1  \end{pmatrix}$$</p>
+<p>$$= \sum_{x=1}^{n} M\frac{(M-1)!}{(x-1)!(M-x)!} \frac{\begin{pmatrix} (N-1)-(M-1)  \\ (n-1)-(x-1)  \end{pmatrix}}{\left( \frac{N}{n} \right) \begin{pmatrix} (N-1)  \\ (n-1)  \end{pmatrix}} \because \begin{pmatrix} \alpha  \\ \beta  \end{pmatrix} = \frac{\alpha}{\beta}\begin{pmatrix} \alpha-1  \\ \beta-1  \end{pmatrix}$$ </p>
 
 위의 식에서 x-1 = X라고 치환하면 결과는 다음과 같다.  
 <p>$$n\frac{M}{N} \sum_{X=0}^{n-1} \frac{ \begin{pmatrix} M-1  \\ x  \end{pmatrix} {(N-1) - (M-1) \choose (n-1) - X}}{\begin{pmatrix} N-1  \\ n-1  \end{pmatrix}}$$</p>
@@ -92,7 +92,9 @@ $$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} 
 위의 식을 그대로 분산을 구하는 것은 많이 힘들기 때문에 편법을 사용하여 구한다.  
 <p>$$V(x) = E(X(X-1))+E(x)-(E(x))^2$$</p>
 <p>$$E(X(X-1)) = \sum_{x=0}^{n} x(x-1)\frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
-<p>$$= M(M-1) \sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\frac{N}{n} \frac{N-1}{n-1}\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</p>
+
+<p>$$= \frac{M(M-1)n(n-1)}{N(N-1)}  \sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</p>
+
 <p>$$= \frac{M(M-1)n(n-1)}{N(N-1)} \sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</p>
 평균에서와 똑같이 <span>$$\sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</span>의 값이 적용되는 것을 알 수 있다.  
 <p>$$\therefore V(x) = \frac{M(M-1)n(n-1)}{N(N-1)} + n\frac{M}{N} - (n\frac{M}{N})^2$$</p>
