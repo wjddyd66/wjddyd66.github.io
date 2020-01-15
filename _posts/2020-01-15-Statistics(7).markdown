@@ -37,7 +37,6 @@ t분포에 대한 정의는 아래와 같이 정의된다.
 
 확률변수 Z는 표준정규분포를 따르고, V는 자유도가 v인 카이제곱분포를 따를 때, 서로 독립인 Z와 V에 대해 새로운 확률변수 T는 다음과 같다.  
 <p>$$T = \frac{Z}{\sqrt{\frac{V}{v}}}$$</p>
-
 그리고 확률변수 T는 자유도가 v인 t-분포를 따른다. 위의 t-분포의 정의에서 각각의 변수를 위에서 정리한 식에 Mapping을 하면 다음과 같다.  
 - <span>$$v: n-1$$</span>
 - <span>$$V: \frac{(n-1)S^2}{\sigma^2}$$</span>
@@ -52,12 +51,10 @@ t분포에 대한 정의는 아래와 같이 정의된다.
 위의 식을 유도하면 다음과 같다.  
 <p>$$T = \frac{Z}{\sqrt{\frac{V}{v}}} = \frac{1}{\sqrt{\frac{V}{v}}} \frac{\sqrt{n}}{\sigma}(\bar{X}-\mu)$$</p>
 <p>$$= \sqrt{n}(\bar{X}-\mu)\frac{1}{\sqrt{\frac{V\sigma^2}{v}}} = \sqrt{n}(\bar{X}-\mu)\frac{1}{\sqrt{S^2}} = (\bar{X}-\mu)\frac{\sqrt{n}}{S}$$</p>
-
 **위의 식으로 인하여 모수중 하나인 <span>$$\sigma$$</span>를 몰라도 되고 t-분포의 목적인 표본평균을 이용해 정규분포의 평균을 해석할 때 사용될 수 있다.**  
 
 t-분포가 다음과 같을 때 t-분포의 확률밀도함수 f(t)는 다음과 같다.  
 <p>$$f(t) = \frac{\gamma(\frac{v+1}{2})}{\gamma(\frac{v}{2})\sqrt{\pi v}}(1+\frac{t^2}{v})^{-\frac{v+1}{2}}\text{ ,   } -\infty < t < \infty$$</p>
-
 f(t)를 자유도 v를 가진 t-분포의 확률밀도 함수라고 한다. (<span>$$\gamma$$</span>는 감마함수)  
 
 이러한 t-분포는 정규분포와 같이 t-분포표를 활용하여 구하게 된다.  
@@ -86,8 +83,7 @@ ex) 확률변수 T는 자유도 19인 t-분포일 때, <span>$$P(T \ge t) = 0.02
 - <span>$$\alpha$$</span>: 0.025
 - <span>$$df$$</span>: 19
 
-<p>$t_{\alpha}(df) = t_{0.025}(19) = 2.093$</p>
-
+<p>$$t_{\alpha}(df) = t_{0.025}(19) = 2.093$$</p>
 따라서 이전까지 배운 분포의 최종적인 관계를 표현하면 다음과 같이 표현할 수 있다. 
 <img src="https://postfiles.pstatic.net/MjAxNjExMDVfMTAy/MDAxNDc4Mjc3Mzk5MjAz.Bi7zkiFvP6xRlOKUXjOA-zxbQ6NtuenTK5KzCVswVeIg.HvJqZTnHVdjOvKUpHQZdZGJ95Fllo1UMUhyPmyIV7uMg.JPEG.mykepzzang/%ED%99%95%EB%A5%A0%EA%B3%BC%ED%86%B5%EA%B3%84.jpg?type=w2"/><br>
 사진 출처: <a href="https://blog.naver.com/PostView.nhn?blogId=mykepzzang&logNo=220853827288&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView">mykepzzang 블로그</a><br>
@@ -128,11 +124,9 @@ F분포는 다음과 같은 성질을 따른다.
 모분산이 각각 <span>$$\sigma_1^2,\sigma_2^2$$</span>인 정규모집단에서 서로 독립적으로 추출된 크기 <span>$$n_1,n_2$$</span>인 표본의 분산을 각각 <span>$$S_1^2, S_2^2$$</span>일 때  
 <span>$$F=\frac{\frac{U}{v_1}}{\frac{V}{v_2}}$$</span>은 자유도가 <span>$$(n_1-1,n_2-1)$$</span>인 F-분포를 따른다.  
 위의 식에서 각각의 <span>$$U,V$$</span>는 다음과 같이 정의 될 수 있다.  
-<p>$U=\frac{(n_1-1)S_1^2}{\sigma_1^2} \rightarrow \chi_{n_1-1}^2$</p>
-<p>$V=\frac{(n_2-1)S_2^2}{\sigma_2^2} \rightarrow \chi_{n_2-1}^2$</p>
-
+<p>$$U=\frac{(n_1-1)S_1^2}{\sigma_1^2} \rightarrow \chi_{n_1-1}^2$$</p>
+<p>$$V=\frac{(n_2-1)S_2^2}{\sigma_2^2} \rightarrow \chi_{n_2-1}^2$$</p>
 <p>$$\therefore F=\frac{\frac{U}{v_1}}{\frac{V}{v_2}} \rightarrow F(n_1-1,n_2-1) \because \text{F-분포의 정의로 인하여}$$</p>
-
 <hr>
 참조: <a href="http://www.kocw.net/home/cview.do?mty=p&kemId=1165032">한양대학교 수리통계학 수업</a><br>
 참조: <a href="https://m.blog.naver.com/mykepzzang/220838509912">mykepzzang 블로그</a><br>
