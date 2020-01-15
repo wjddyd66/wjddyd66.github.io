@@ -48,7 +48,6 @@ This view enables us to design a fast method of generating adversarial examples 
 <p>$$\bar{x} = x + \eta$$</p>
 위와 같은 식을 Linear한 Model에 넣게 되면 다음과 같이 변형된다.  
 <p>$$w^{T}\bar{x} = w^{T}x + w^{T}\eta$$</p>
-
 **Adversial Example은 위의 식에서 Pertubation에 해당하는 <span>$$w^{T}\eta$$</span>의 값이 매우 커져서 Model이 잘못된 Prediction을 한다고 생각할 수 있다.**  
 따라서 <span>$$w^{T}\eta$$</span>이 최대로 만들기 위하여 max norm constraint를 적용한다(Linear한 Model은 High Dimension이라는 가정이 있기 때문에 L1 norm, L2 norm이 아닌 max norm constraint를 적용한다).  
 <p>$$||x||_{\infty} = max_{1 \le i \le n}|x_i|$$</p>
@@ -63,7 +62,6 @@ This view enables us to design a fast method of generating adversarial examples 
 
 **참고사항 (Nrom의 종류)**  
 <p>$$\text{(In all definitions below, )} x = (x_1, x_2, ..., x_n))$$</p>
-
 1. The L1 norm: <span>$$||x||_1 = \sum_{i=1}^{n}|x_i|$$</span>
 2. The L2 norm: <span>$$||x||_2 = \sqrt{\sum_{i=1}^{n}x_i^2}$$</span>
 3. The infinity norm(or max-norm): <span>$$||x||_{\infty} = max_{1 \le i \le n} |x_i|$$</span>
@@ -100,29 +98,21 @@ Activation Sigmoid Function을 통하여 Cross Entropy의 식은 아래와 같�
 <p>$$-zlog(\sigma(x))-(1-z)log(1-\sigma(x))$$</p>
 위의 식을 변형하여 논문과 같은 식을 얻고자 하면 다음과 같다.  
 <p>$$-zlog(\sigma(x))-(1-z)log(1-\sigma(x))$$</p>
-
 <p>$$= -zlog(\frac{1}{1+e^{-x}})-(1-z)log(\frac{e^{-x}}{1+e^{-x}})$$</p>
-
 <p>$$= zlog(1+e^{-x})+(1-z)(log(1+e^{-x})-log(e^{-x}))$$</p>
-
 <p>$$= zlog(1+e^{-x})+(1-z)(log(1+e^{-x})+x)$$</p>
-
 <p>$$= x - xz + log(1+e^{-x})$$</p>
 위의 식에서 <span>$$log(1+e^{-x})$$</span>의 그래프를 살펴보게 되면 Overflow가 발생할 위험이 높다는 것을 알 수 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/46.png" height="50%" width="50%" /></div><br>
-
 <p>$$= x-xz + log(1+e^{-x}) = log(e^x)-xz+log(1+e^{-x}) = -xz + log(1+e^{x})$$</p>
- 
 최종적인 위의 식에서 조건인 <span>$$y \in {-1,1}$$</span>을 각각 대입하면 최종적인 식은 다음과 같다.  
 
 위의 식 <span>$$-xz + log(1+e^{x})$$</span>에 <span>$$z=1$$</span>을 대입하면 최종적인 식은 다음과 같다.  
 
 **if <span>$$y=1 \rightarrow z(\sigma(w^{T}x+b)) = 1$$</span>**    
 <p>$$-xz + log(1+e^{x}) = -x + log(1+e^{x}) = log(1+e^{-x}) = log(1+e^{-yx})$$</p>
-
 **if <span>$$y=-1 \rightarrow z(\sigma(w^{T}x+b)) = 0$$</span>**    
 <p>$$-xz + log(1+e^{x}) = log(1+e^{x}) = log(1+e^{-yx})$$</p>
-
 따라서 최종적인 식은 <span>$$x = w^{T}x+b$$</span>을 대입하면 다음과 같다.  
 <p>$$\therefore log(1+e^{-y(w^{T}x+b)})$$</p>
 <br>
@@ -144,12 +134,9 @@ y의 값을 다시한번 확인하고 적용하면 다음과 같다.
 
 **if <span>$$y=1 \rightarrow \frac{1}{1+e^{-y(w^{T}x+b)}} = 1$$</span>**    
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y)) = -\epsilon sign(w)$$</p>
-
 **if <span>$$y=-1 \rightarrow \frac{1}{1+e^{-y(w^{T}x+b)}} = 0$$</span>**    
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y)) = 0$$</p>
-
 <p>$$\therefore \eta = -\epsilon sign(w)$$</p>
-
 **(2) <span>$$\mathbb{E}_{x,y \text{~} p_{data}} \zeta(-y(w^{T}\bar{x} + b)) = \mathbb{E}_{x,y \text{~} p_{data}} \zeta(y(\epsilon||w||_1 -w^{T}x - b))$$</span>**  
 
 <p>$$\bar{x} = x + \eta = x -\epsilon sign(w) $$</p>
@@ -266,7 +253,7 @@ plt.title('{} : {:.2f}% Confidence'.format(image_class, class_confidence*100))
 plt.show()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/47.png" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/47.png" height="250" width="250" /></div><br>
 <br><br>
 
 #### Prediction of Adversial Example
@@ -281,7 +268,6 @@ Adversial Example을 생성하고 Model에서는 어떻게 Prediction하는지 �
 
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y))$$</p>
 <p>$$\bar{x} = x + \eta$$</p>
-
 아래 Code에서 어떻게 Mapping하는지 살펴보면 다음과 같다.  
 
 **create_adversial_pattern()**  
@@ -289,10 +275,10 @@ Adversial Example을 생성하고 Model에서는 어떻게 Prediction하는지 �
 위에서 설명한 식과 Mapping하면 다음과 같다.  
 - <span>$$x$$</span>: <code>input_image</code>
 - <span>$$y$$</span>: <code>input_label</code>
-- <span>$$J()$(loss_object)</span>: <code>tf.keras.losses.CategoricalCrossentropy()</code>
-- <span>$$J(\theta,x,y)$(loss)</span>: <code>loss_object(input_label, prediction)</code>
-- <span>$$\triangledown_x J(\theta,x,y)$(gradient)</span>: <code>tape.gradient(loss, input_image)</code>
-- <span>$$sign(\triangledown_x J(\theta,x,y))$(signed_grad)</span>: <code>tf.sign(gradient)</code>
+- <span>$$J()$$(loss_object)</span>: <code>tf.keras.losses.CategoricalCrossentropy()</code>
+- <span>$$J(\theta,x,y)$$(loss)</span>: <code>loss_object(input_label, prediction)</code>
+- <span>$$\triangledown_x J(\theta,x,y)$$(gradient)</span>: <code>tape.gradient(loss, input_image)</code>
+- <span>$$sign(\triangledown_x J(\theta,x,y))$$(signed_grad)</span>: <code>tf.sign(gradient)</code>
 
 위의 Function으로서 <span>$$sign(\triangledown_x J(\theta,x,y))$$</span>을 얻을 수 있다.
 ```python
@@ -348,13 +334,14 @@ for i, eps in enumerate(epsilons):
 ```
 <br>
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/48.png" height="100%" width="100%" /></div><br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/49.png" height="100%" width="100%" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/48.png" height="250" width="250" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/49.png" height="250" width="250" /></div><br>
 
 
 <hr>
 참조: <a href="https://github.com/wjddyd66/Tensorflow2.0/blob/master/FGSM.ipynb">원본코드</a><br>
 참조: <a href="https://www.tensorflow.org/tutorials/generative/adversarial_fgsm?hl=ko">Tensorflow2.0 FGSM</a><br>
+참조: <a href="https://leedakyeong.tistory.com/entry/%EB%85%BC%EB%AC%B8-FGSM-%EB%A6%AC%EB%B7%B0-EXPLAINING-AND-HARNESSING-ADVERSARIAL-EXAMPLES">leedakyeong 블로그</a><br>
+참조: <a href="https://lepoeme20.github.io/archive/FGSM">lepeoeme's 블로그</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
