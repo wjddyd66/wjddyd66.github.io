@@ -41,46 +41,46 @@ This view enables us to design a fast method of generating adversarial examples 
 해당 논문은 위에서 Adversial Example의 문제가 DNN의 비선형성이 아니라는 것을 고차원의 선형성에서도 이러한 문제가 발생함으로써 보인다고 하였다.  
 이러한 문제는 간단하게 나타낼 수 있다.  
 먼저 Adversial Example은 Original Image + Pertubation라고 표현하였고 각각을 다음과 같이 나타내어 보자.
-- Adversial Example: <span>$\bar{x}$</span>
-- Original Image: <span>$x$</span>
-- Pertubation: <span>$\eta$</span>
+- Adversial Example: <span>$$\bar{x}$$</span>
+- Original Image: <span>$$x$$</span>
+- Pertubation: <span>$$\eta$$</span>
 
 <p>$$\bar{x} = x + \eta$$</p>
 위와 같은 식을 Linear한 Model에 넣게 되면 다음과 같이 변형된다.  
 <p>$$w^{T}\bar{x} = w^{T}x + w^{T}\eta$$</p>
 
-**Adversial Example은 위의 식에서 Pertubation에 해당하는 <span>$w^{T}\eta$</span>의 값이 매우 커져서 Model이 잘못된 Prediction을 한다고 생각할 수 있다.**  
-따라서 <span>$w^{T}\eta$</span>이 최대로 만들기 위하여 max norm constraint를 적용한다(Linear한 Model은 High Dimension이라는 가정이 있기 때문에 L1 norm, L2 norm이 아닌 max norm constraint를 적용한다).  
+**Adversial Example은 위의 식에서 Pertubation에 해당하는 <span>$$w^{T}\eta$$</span>의 값이 매우 커져서 Model이 잘못된 Prediction을 한다고 생각할 수 있다.**  
+따라서 <span>$$w^{T}\eta$$</span>이 최대로 만들기 위하여 max norm constraint를 적용한다(Linear한 Model은 High Dimension이라는 가정이 있기 때문에 L1 norm, L2 norm이 아닌 max norm constraint를 적용한다).  
 <p>$$||x||_{\infty} = max_{1 \le i \le n}|x_i|$$</p>
-위의 식에 적용한다면 <span>$\eta = \epsilon sign(w)$</span>일 때 <span>$w^{T}\eta$</span>의 값은 매우 커질 것 이다.  
+위의 식에 적용한다면 <span>$$\eta = \epsilon sign(w)$$</span>일 때 <span>$$w^{T}\eta$$</span>의 값은 매우 커질 것 이다.  
 
 <p>$$\therefore w^{T}\eta = w^{T} \epsilon sign(w) = \epsilon||w||$$</p>
 위의 w의 절대값의 평균을 m이라고 한다면 최종적인 식은 다음과 같다.  
 <p>$$w^{T}\eta = \epsilon m n\text{(n은 w의 Dimension)}$$</p>
-위의 식에서 <span>$\epsilon$</span>이 매우 작은수라고 하여도 High Dimension의 경우 n값이 커짐으로 인하여 <span>$w^{T}\eta$</span>의 값은 매우 커질 것이다.  
+위의 식에서 <span>$$\epsilon$$</span>이 매우 작은수라고 하여도 High Dimension의 경우 n값이 커짐으로 인하여 <span>$$w^{T}\eta$$</span>의 값은 매우 커질 것이다.  
 
 **최종적으로 정리하게 되면, Noise의 값이 작은 값이여도 High Dimension Linear Model에서는 Adversial Example이 발생할 수 있다.**  
 
 **참고사항 (Nrom의 종류)**  
 <p>$$\text{(In all definitions below, )} x = (x_1, x_2, ..., x_n))$$</p>
 
-1. The L1 norm: <span>$||x||_1 = \sum_{i=1}^{n}|x_i|$</span>
-2. The L2 norm: <span>$||x||_2 = \sqrt{\sum_{i=1}^{n}x_i^2}$</span>
-3. The infinity norm(or max-norm): <span>$||x||_{\infty} = max_{1 \le i \le n} |x_i|$</span>
-4. (Less common) Lp norm: <span>$||x||_p = (\sum_{i=1}^{n}|x_i|^p)^{\frac{1}{p}}$</span>
+1. The L1 norm: <span>$$||x||_1 = \sum_{i=1}^{n}|x_i|$$</span>
+2. The L2 norm: <span>$$||x||_2 = \sqrt{\sum_{i=1}^{n}x_i^2}$$</span>
+3. The infinity norm(or max-norm): <span>$$||x||_{\infty} = max_{1 \le i \le n} |x_i|$$</span>
+4. (Less common) Lp norm: <span>$$||x||_p = (\sum_{i=1}^{n}|x_i|^p)^{\frac{1}{p}}$$</span>
 
 #### (4) LINEAR PERTURBATION OF NON-LINEAR MODELS
 예측하기 힘든 문제 혹은 Linear한 상태로는 해결할 수 없는 문제(ex) XOR 문제)를 해결하기 위하여 우리는 **비선형인 Activation Function을 사용하여 DNN Model을 사용하였다. 하지만, 해당논문에서는 이러한 DNN의 Model은 Linear한 특성이 많다고 얘기하고 있고, 이러한 결과로 인하여 Adversial Examples에 취약하다고 이야기 한다.  
 또한 논문에서는 이러한 DNN이 Linear한 특성을 가지고 있다는 것을 Linear Adversial Example을 만들어서 보여주었으며 이러한 Linear Adversial Example을 생성하는 방법이 이번 post의 제목과도 같은 FGSM(Fast Gradient Sign Method)이다.**  
 FGSM의 식은 다음과 같다.  
-- <span>$x$</span>: input
-- <span>$y$</span>: target
-- <span>$\theta$</span>: hyper parameter
-- <span>$J(\theta,x,y)$</span>: cost function
-- <span>$\epsilon$</span>: Noise의 크기(사용자가 지정, 매우 작은 값)
+- <span>$$x$$</span>: input
+- <span>$$y$$</span>: target
+- <span>$$\theta$$</span>: hyper parameter
+- <span>$$J(\theta,x,y)$$</span>: cost function
+- <span>$$\epsilon$$</span>: Noise의 크기(사용자가 지정, 매우 작은 값)
 
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y))$$</p>
-위와 같은 식으로서 FGSM을 생성하고 <span>$\bar{x} = x + \eta$</span>로서 Adversial Example이 생성된다고 얘기하고 있다.  
+위와 같은 식으로서 FGSM을 생성하고 <span>$$\bar{x} = x + \eta$$</span>로서 Adversial Example이 생성된다고 얘기하고 있다.  
 
 
 
@@ -89,10 +89,10 @@ FGSM의 식은 다음과 같다.
 현재 논문에서 예시로 들고있는 조건과 식은 다음과 같다.  
 - <span>Model</span>: Logistic Regression
 - <span>Cost Function</span>: Cross Entropy
-- <span>Activation Function$\sigma(x)$</span>: Sigmoid
-- <span>$y \in {-1,1}$</span>: Label
+- <span>Activation Function$\sigma(x)$$</span>: Sigmoid
+- <span>$$y \in {-1,1}$$</span>: Label
 
-다음과 같이 조건이 주어질 경우, <span>$P(y=1) = \sigma(w^{T}x+b)$</span>가 될 것이고 **Training Consists of Gradient Descent는 다음과 같은 식이 될 것이다.**  
+다음과 같이 조건이 주어질 경우, <span>$$P(y=1) = \sigma(w^{T}x+b)$$</span>가 될 것이고 **Training Consists of Gradient Descent는 다음과 같은 식이 될 것이다.**  
 <p>$$\mathbb{E}_{x,y \text{~} p_{data}} \zeta(-y(w^{T}x + b))$$</p>
 <p>$$\zeta(z) = log(1+exp(z))$$</p>
 먼저 위와 같은 식이 어떻게 나왔는지 생각해보자.  
@@ -108,22 +108,22 @@ Activation Sigmoid Function을 통하여 Cross Entropy의 식은 아래와 같�
 <p>$$= zlog(1+e^{-x})+(1-z)(log(1+e^{-x})+x)$$</p>
 
 <p>$$= x - xz + log(1+e^{-x})$$</p>
-위의 식에서 <span>$log(1+e^{-x})$</span>의 그래프를 살펴보게 되면 Overflow가 발생할 위험이 높다는 것을 알 수 있다.  
+위의 식에서 <span>$$log(1+e^{-x})$$</span>의 그래프를 살펴보게 되면 Overflow가 발생할 위험이 높다는 것을 알 수 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/46.png" height="50%" width="50%" /></div><br>
 
 <p>$$= x-xz + log(1+e^{-x}) = log(e^x)-xz+log(1+e^{-x}) = -xz + log(1+e^{x})$$</p>
  
-최종적인 위의 식에서 조건인 <span>$y \in {-1,1}$</span>을 각각 대입하면 최종적인 식은 다음과 같다.  
+최종적인 위의 식에서 조건인 <span>$$y \in {-1,1}$$</span>을 각각 대입하면 최종적인 식은 다음과 같다.  
 
-위의 식 <span>$-xz + log(1+e^{x})$</span>에 <span>$z=1$</span>을 대입하면 최종적인 식은 다음과 같다.  
+위의 식 <span>$$-xz + log(1+e^{x})$$</span>에 <span>$$z=1$$</span>을 대입하면 최종적인 식은 다음과 같다.  
 
-**if <span>$y=1 \rightarrow z(\sigma(w^{T}x+b)) = 1$</span>**    
+**if <span>$$y=1 \rightarrow z(\sigma(w^{T}x+b)) = 1$$</span>**    
 <p>$$-xz + log(1+e^{x}) = -x + log(1+e^{x}) = log(1+e^{-x}) = log(1+e^{-yx})$$</p>
 
-**if <span>$y=-1 \rightarrow z(\sigma(w^{T}x+b)) = 0$</span>**    
+**if <span>$$y=-1 \rightarrow z(\sigma(w^{T}x+b)) = 0$$</span>**    
 <p>$$-xz + log(1+e^{x}) = log(1+e^{x}) = log(1+e^{-yx})$$</p>
 
-따라서 최종적인 식은 <span>$x = w^{T}x+b$</span>을 대입하면 다음과 같다.  
+따라서 최종적인 식은 <span>$$x = w^{T}x+b$$</span>을 대입하면 다음과 같다.  
 <p>$$\therefore log(1+e^{-y(w^{T}x+b)})$$</p>
 <br>
 
@@ -133,24 +133,24 @@ Activation Sigmoid Function을 통하여 Cross Entropy의 식은 아래와 같�
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y))$$</p>
 위의 두 식을 활용하기 위하면 다음과 같은 식이 유도될 수 있다.  
 
-**(1) <span>$\eta = -\epsilon sign(w)$</span>**  
+**(1) <span>$$\eta = -\epsilon sign(w)$$</span>**  
 
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y))$$</p>
 <p>$$ = \epsilon sign(\triangledown_x \zeta(-y(w^{T}x + b))$$</p>
-위의 식에서 <span>$f(x) = g(h(x)) \rightarrow f(x)^{'} = h(x)^{'}g(h)^{'}$</span>를 활용하며 다음과 같은 식이 성립한다.  
+위의 식에서 <span>$$f(x) = g(h(x)) \rightarrow f(x)^{'} = h(x)^{'}g(h)^{'}$$</span>를 활용하며 다음과 같은 식이 성립한다.  
 <p>$$\triangledown_x \zeta(-y(w^{T}x + b) = -yw*e^{-y(w^{T}x+b)}*\frac{1}{1+e^{-y(w^{T}x+b)}}$$</p>
-위의 식에서 <span>$\frac{1}{1+e^{-y(w^{T}x+b)}}$</span>는 Sigmoid의 식이므로 항상 양수, <span>$e^{-y(w^{T}x+b)}$</span>는 지수함수로서 항상 양수 인 것을 확인할 수 있다.  
+위의 식에서 <span>$$\frac{1}{1+e^{-y(w^{T}x+b)}}$$</span>는 Sigmoid의 식이므로 항상 양수, <span>$$e^{-y(w^{T}x+b)}$$</span>는 지수함수로서 항상 양수 인 것을 확인할 수 있다.  
 y의 값을 다시한번 확인하고 적용하면 다음과 같다.  
 
-**if <span>$y=1 \rightarrow \frac{1}{1+e^{-y(w^{T}x+b)}} = 1$</span>**    
+**if <span>$$y=1 \rightarrow \frac{1}{1+e^{-y(w^{T}x+b)}} = 1$$</span>**    
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y)) = -\epsilon sign(w)$$</p>
 
-**if <span>$y=-1 \rightarrow \frac{1}{1+e^{-y(w^{T}x+b)}} = 0$</span>**    
+**if <span>$$y=-1 \rightarrow \frac{1}{1+e^{-y(w^{T}x+b)}} = 0$$</span>**    
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y)) = 0$$</p>
 
 <p>$$\therefore \eta = -\epsilon sign(w)$$</p>
 
-**(2) <span>$\mathbb{E}_{x,y \text{~} p_{data}} \zeta(-y(w^{T}\bar{x} + b)) = \mathbb{E}_{x,y \text{~} p_{data}} \zeta(y(\epsilon||w||_1 -w^{T}x - b))$</span>**  
+**(2) <span>$$\mathbb{E}_{x,y \text{~} p_{data}} \zeta(-y(w^{T}\bar{x} + b)) = \mathbb{E}_{x,y \text{~} p_{data}} \zeta(y(\epsilon||w||_1 -w^{T}x - b))$$</span>**  
 
 <p>$$\bar{x} = x + \eta = x -\epsilon sign(w) $$</p>
 <p>$$-y(w^{T}\bar{x} + b) = -y(w^{T}(x -\epsilon sign(w)) + b)$$</p>
@@ -168,14 +168,14 @@ We can thus view L1 weight decay as being more “worst case” than adversarial
 >
 
 개인적으로 이해가 잘 안되지만 다음과 같이 해석하였다.  
-위의 최종적인 식은 <span>$\mathbb{E}_{x,y \text{~} p_{data}} \zeta(y(\epsilon||w||_1 -w^{T}x - b))$</span>은 L1 Regularization과 식이 매우 유사하게 되어있다.  
+위의 최종적인 식은 <span>$$\mathbb{E}_{x,y \text{~} p_{data}} \zeta(y(\epsilon||w||_1 -w^{T}x - b))$$</span>은 L1 Regularization과 식이 매우 유사하게 되어있다.  
 하지만 L1 Regularization의 식으로서 나타내면 다음과 같은 차이를 보이고 있다.    
-- L1 Resularization: <span>$Cost = \frac{1}{n}\sum_{i=1}^{n}{L(y_i,\bar{y(x)})+\frac{\lambda}{2}|w|}$</span>
-- Adversial Example: <span>$Cost = \frac{1}{n}\sum_{i=1}^{n}{L(y_i,\bar{y(x+|w|))}}$</span>
+- L1 Resularization: <span>$$Cost = \frac{1}{n}\sum_{i=1}^{n}{L(y_i,\bar{y(x)})+\frac{\lambda}{2}|w|}$$</span>
+- Adversial Example: <span>$$Cost = \frac{1}{n}\sum_{i=1}^{n}{L(y_i,\bar{y(x+|w|))}}$$</span>
 
 위의 식이 정확하지는 않으나 이해되게 쉽게 적었다.  
-위의 식에서 <span>$\lambda$</span>는 매우 작은값으로서 Training과정에서 L1 Regularization의 값은 점점 0이되면서 Training이 진행되는 것을 알 수 있다.  
-**하지만 Adversial Example에서는 LossFunction + <span>$\lambda$</span>가아닌 LossFunction의 Input에 추가적으로 <span>$\lambda$</span>가 들어감으로 인하여 추가적인 Bias값이 생기고 그로 인하여 High Bias -> 즉, Underfitting의 위험이 매우 크다는 것을 알 수 있다.**
+위의 식에서 <span>$$\lambda$$</span>는 매우 작은값으로서 Training과정에서 L1 Regularization의 값은 점점 0이되면서 Training이 진행되는 것을 알 수 있다.  
+**하지만 Adversial Example에서는 LossFunction + <span>$$\lambda$$</span>가아닌 LossFunction의 Input에 추가적으로 <span>$$\lambda$$</span>가 들어감으로 인하여 추가적인 Bias값이 생기고 그로 인하여 High Bias -> 즉, Underfitting의 위험이 매우 크다는 것을 알 수 있다.**
 
 #### (6) ADVERSARIAL TRAINING OF DEEP NETWORKS
 (5) ADVERSARIAL TRAINING OF LINEAR MODELS VERSUS WEIGHT DECAY에서는 간단하게 **Linear한 Model인 경우에서 Adversial Training을 어떻게 진행하는지 살펴보았다.**  
@@ -189,7 +189,7 @@ such as translations that are expected to actually occur in the test set.
 위의 인용문을 살펴보게 되면 Clean Image + Noise가 섞인 Image로 인하여 좀더 Regularization에서 강점을 보인다고 한다.  
 이러한 방식은 L-BFGS기법을 사용하나 Resource가 너무 많이 들기 때문에 해당 논문에서는 다음과 같이 **FGSM에 근거한 정규화에 효율적인 Adversial Object Function**을 제공한다.  
 <p>$$\bar{J}(\theta,x,y) = \alpha J(\theta,x,y)+ (1-\alpha)J(\theta,x+\epsilon sign(\triangledown_x J(\theta,x,y)))$$</p>
-<span>$\alpha$</span>값은 사용자가 지정하는 값이나 해당논문에서는 0.5로 두고 실험하였다고 한다.  
+<span>$$\alpha$$</span>값은 사용자가 지정하는 값이나 해당논문에서는 0.5로 두고 실험하였다고 한다.  
 이러한 결과는 89.4%의 Error Rate에서 17.9%의 Error Rate로서 줄어드는 효과를 발생하게 하였다.  
 
 <br><br>
@@ -272,12 +272,12 @@ plt.show()
 #### Prediction of Adversial Example
 Adversial Example을 생성하고 Model에서는 어떻게 Prediction하는지 살펴본다.  
 위의 논문에서 설명한 FGSM의 식은 다음과 같다.  
-- <span>$x$</span>: input
-- <span>$y$</span>: target
-- <span>$\bar{x}$</span>: adversial example
-- <span>$\theta$</span>: hyper parameter
-- <span>$J(\theta,x,y)$</span>: cost function
-- <span>$\epsilon$</span>: Noise의 크기(사용자가 지정, 매우 작은 값)
+- <span>$$x$$</span>: input
+- <span>$$y$$</span>: target
+- <span>$$\bar{x}$$</span>: adversial example
+- <span>$$\theta$$</span>: hyper parameter
+- <span>$$J(\theta,x,y)$$</span>: cost function
+- <span>$$\epsilon$$</span>: Noise의 크기(사용자가 지정, 매우 작은 값)
 
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y))$$</p>
 <p>$$\bar{x} = x + \eta$$</p>
@@ -285,16 +285,16 @@ Adversial Example을 생성하고 Model에서는 어떻게 Prediction하는지 �
 아래 Code에서 어떻게 Mapping하는지 살펴보면 다음과 같다.  
 
 **create_adversial_pattern()**  
-위의 Function은 <span>$sign(\triangledown_x J(\theta,x,y))$</span>을 Return한다.  
+위의 Function은 <span>$$sign(\triangledown_x J(\theta,x,y))$$</span>을 Return한다.  
 위에서 설명한 식과 Mapping하면 다음과 같다.  
-- <span>$x$</span>: <code>input_image</code>
-- <span>$y$</span>: <code>input_label</code>
-- <span>$J()$(loss_object)</span>: <code>tf.keras.losses.CategoricalCrossentropy()</code>
-- <span>$J(\theta,x,y)$(loss)</span>: <code>loss_object(input_label, prediction)</code>
-- <span>$\triangledown_x J(\theta,x,y)$(gradient)</span>: <code>tape.gradient(loss, input_image)</code>
-- <span>$sign(\triangledown_x J(\theta,x,y))$(signed_grad)</span>: <code>tf.sign(gradient)</code>
+- <span>$$x$$</span>: <code>input_image</code>
+- <span>$$y$$</span>: <code>input_label</code>
+- <span>$$J()$(loss_object)</span>: <code>tf.keras.losses.CategoricalCrossentropy()</code>
+- <span>$$J(\theta,x,y)$(loss)</span>: <code>loss_object(input_label, prediction)</code>
+- <span>$$\triangledown_x J(\theta,x,y)$(gradient)</span>: <code>tape.gradient(loss, input_image)</code>
+- <span>$$sign(\triangledown_x J(\theta,x,y))$(signed_grad)</span>: <code>tf.sign(gradient)</code>
 
-위의 Function으로서 <span>$sign(\triangledown_x J(\theta,x,y))$</span>을 얻을 수 있다.
+위의 Function으로서 <span>$$sign(\triangledown_x J(\theta,x,y))$$</span>을 얻을 수 있다.
 ```python
 # Loss Object인 J()를 선언한다.
 loss_object = tf.keras.losses.CategoricalCrossentropy()
