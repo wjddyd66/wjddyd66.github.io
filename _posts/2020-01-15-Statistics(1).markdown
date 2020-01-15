@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "확률과통계(1)-기초"
-date:   2020-01-20 09:00:20 +0700
-categories: [others]
+title:  "Statistics(1)-Basic"
+date:   2020-01-20 09:10:20 +0700
+categories: [statistics]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 이번 POST는 <a href="http://www.kocw.net/home/cview.do?mty=p&kemId=1165032">한양대학교 수리통계학 수업 내용</a>을 정리한 것 입니다.  
@@ -42,7 +42,6 @@ ex) <span>$$S = {1,2,3,4,5,6}, A={1,2,4}, B={3,4}$$</span>
 <p>$$P(A)=\frac{1}{2}, P(B)=\frac{1}{3}, P(A \cap B) = \frac{1}{6}$$</p>
 <p>$$P(A)P(B) = P(A \cap B) \therefore \text{A,B는 서로 독립이다.}$$</p>
 <p>$$\text{단, 상호배반은 아니다.} \because P(A \cap B) = \emptyset$$</p>
-
 A, B, C가 상호 독립이라면 다음과 같은 조건을 검사하여야 한다.  
 1) <span>$$P(A,B) = P(A)P(B)$$</span>  
 2) <span>$$P(A,C) = P(A)P(C)$$</span>  
@@ -55,7 +54,6 @@ ex) S={(1,0,0),(0,1,0),(0,0,1),(1,1,1)}
 <p>$$P(A,B) = \frac{1}{4} = P(A)P(B) = \frac{1}{2}*\frac{1}{2}$$</p>  
 <p>$$P(A,B,C) = \frac{1}{4} = P(A)P(B)P(C) \neq \frac{1}{2}*\frac{1}{2}*\frac{1}{2}$$</p>
 <p>$$\therefore \text{A, B, C 는 상호 독립이 아니다.}$$</p>
-
 
 #### (6) 곱셈법칙
 원소의 개수 <span>$$n_1, n_2, ..., n_k$$</span>인 집합 <span>$$A_1, A_2, ..., A_k$$</span>에서 각각 하나의 원소를 택하여 나열한 순서열의 개수는 <span>$$n_1 * n_2 * n_3 * ....$$</span>
@@ -76,7 +74,6 @@ ex) <span>$$_{4}\mathrm{C}_{2} = \frac{4!}{(4-2)!2!} = 6$$</span>
 <p>$$P(A_j|B) = \frac{P(A_j \cap B)}{\sum_{i=1}^{k}P(A_i \cap B)} = \frac{P(A_j)P(B|A_j)}{\sum_{i=1}^{k}P(A_i)P(B|A_i)}$$</p>
 <p>$$\because P(B) = \sum_{i=1}^{k}P(A_i \cap B)$$</p>
 <p>$$P(A_j \cap B) = P(A_j)P(B|A_j)$$</p>
-
 <img src="http://i.imgur.com/jC7FfHv.png"/><br>
 사진 출처: <a href="https://ratsgo.github.io/statistics/2017/07/01/bayes/">ratsgo's blog</a><br>
 
@@ -84,12 +81,9 @@ ex) 제품을 A사가 30%, B사가 30%, C사가 40%를 생산할 때 각각 회�
 <p>$$P(A) = 0.3, P(B) = 0.3, P(C) = 0.4$$</p>
 <p>$$P(D|A) = 0.01, P(D|B) = 0.01, P(D|C) = 0.005$$</p>
 <p>$$P(A|D) = \frac{P(A \cap D)}{P(D)} = \frac{P(A \cap D)}{P(A \cap D) + P(B \cap D) + P(C \cap D)}$$</p>
-
 <p>$$P(D|A) = \frac{P(A \cap D)}{P(A)} = 0.01$$</p>
 <p>$$\therefore P(A \cap D) = 0.3*0.01 = 0.003$$</p>
-
 <p>$$\therefore P(A|D) = \frac{0.003}{0.003+0.003+0.002} = \frac{3}{8}$$</p>
-
 <br><br>
 
 ### 2. 확률 변수
@@ -109,7 +103,6 @@ ex) 동일한 동전 3회 던지는 경우 x = H의 수
 <p>$$P(X=1) = {}_{3}\mathrm{C}_{1} * \frac{1}{8} = \frac{3}{8}$$</p>
 <p>$$P(X=2) = {}_{3}\mathrm{C}_{2} * \frac{1}{8} = \frac{3}{8}$$</p>
 <p>$$P(X=3) = {}_{3}\mathrm{C}_{3} * \frac{1}{8} = \frac{1}{8}$$</p>
-
 누적확률 함수 <span>$$F(x) = P(X \le x)$$</span>의 성질  
 1. <span>$$F(-\infty) = 0, F(\infty) = 1$$</span>
 2. 비감소(non-decreasing) 함수
@@ -137,7 +130,6 @@ ex) 동일한 동전 3회 던지는 경우 x = H의 수
 P(x) = 이상형 확률 변수, Q(x) = 연속형 확률 변수라 하면  
 <p>$$P(x \le a) \neq P(x < a)$$</p>
 <p>$$Q(x \le a) = Q(x < a)$$</p>
-
 #### (3) 이산확률변수의 결합확률분포(Joint Probability Distribution of Discrete Random Variable)
 두 개의 이산확률변수 X와 Y가 각각 <span>$$x_1, x_2, ...$$</span>와 <span>$$y_1, y_2, ...$$</span>의 값을 가질때 <span>$$P(X=x,Y=y) = f(x,y)$$</span>를 만족하는 <span>$$f(x,y)$$</span>를 이산확률변수 X와 Y의 **결합확률분포**또는 **결합확률질량함수**라고 한다.  
 
@@ -154,7 +146,6 @@ ex) 3개의 검은 구슬, 2개의 붉은 구슬, 3개의 흰 구슬이 들어�
 <p>$$= \frac{3}{28} \text{ 전체 구슬 8개중 2개를 선택하는 경우 흰구슬 3개에서 2개를 모두 선택}$$</p>
 <p>$$f(0,1) = \frac{_{3}\mathrm{C}_{2} * _{2}\mathrm{C}_{1}}{_{8}\mathrm{C}_{2}}$$</p>
 <p>$$= \frac{6}{28} \text{ 전체 구슬 8개중 2개를 선택하는 경우 흰 구슬 3개에서 1개를 선택, 붉은 구슬2개중 1개를 선택}$$</p>
-
 위와 같이 모든 경우의 수를 계산하면 아래와 같은 결합확률 분포표를 얻을 수 있다.  
 <table>
     <tr>
@@ -172,7 +163,6 @@ ex) 3개의 검은 구슬, 2개의 붉은 구슬, 3개의 흰 구슬이 들어�
 </table>
 위의 결합분포표를 활용하여 <span>$$P[(x,y) \in A]$$</span>를 계산하게 되면 다음과 같다.  
 <p>$$P[(x,y) \in A] = f(0,0) + f(0,1) + f(1,0) = \frac{9}{14}$$</p>
-
 #### (4) 연속확률변수의 결합밀도 함수(Joing Density Function of Continuous Random Variable)
 결합밀도 함수는 연속확률변수가 두 개 이상인 확률밀도함수 이다.  
 **결합밀도함수의 성질**  
@@ -190,7 +180,6 @@ ex) 결합밀도 함수가 <span>$$f(x,y) = e^{-x-y} (x \ge 0, y \ge 0)$$</span>
 <p>$$\int_{0}^{1}\, \int_{0}^{1-x}\, e^{-x-y} dydx$$</p>
 <p>$$= \int_{0}^{1}\, [-e^{-x-y}]_0^{1-x} dx = \int_{0}^{1}\, e^{-x}-e^{-1} dx$$</p>
 <p>$$= [-e^{-x} -e^{-1}x]_0^1 = 1-\frac{2}{e}$$</p>
-
 #### (5) 주변확률분포(Marginal Probability Distribution)
 두 개의 변수로 이루어진 결합확률분포를 통해 하나의 변수로만 이루워진 확률함수를 구하는 것  
 즉, X,Y 두 개의 확률변수로 이루어진 함수를 X또는 Y의 하나의 확률변수로 표현하기 위해서 주변확률분포를 이용한다.  
@@ -199,11 +188,9 @@ ex) 결합밀도 함수가 <span>$$f(x,y) = e^{-x-y} (x \ge 0, y \ge 0)$$</span>
 (1) 확률변수가 이산확률변수일 경우  
 <p>$$f_X(x) = \sum_y f(x,y)$$</p>
 <p>$$f_Y(y) = \sum_x f(x,y)$$</p>
-
 (2) 확률변수가 연속확률변수일 경우  
 <p>$$f_X(x) = \int_{-\infty}^{\infty} f(x,y)\, dy$$</p>
 <p>$$f_Y(y) = \int_{-\infty}^{\infty} f(x,y)\, dx$$</p>
-
 위에서 이산확률변수의 결합확률분포로부터 얻은 결합분포표를 주변확률분포표로 변형하면 다음과 같다.  
 
 <table>
@@ -255,13 +242,11 @@ ex) X와 확률함수 f(x)가 아래와 같을때 평균과 분산을 구하여�
 <p>$$E(X^2) = \sum_{X^2}XP(X) = 0*\frac{1}{8} + 1*\frac{3}{8} + 4*\frac{3}{8} + 9*\frac{1}{8} = 3$$</p>
 <p>$$\therefore V(X) = 3 - \frac{9}{4} = \frac{3}{4}$$</p>
 
-
 #### (3) 평균과 분산의 특징
 **평균 특징**  
 <p>$$E(a) = a, E(aX) = aE(X), E(aX \pm b)$$</p>
 위의 평균 특징에서 <span>$$E(aX \pm b)$$</span>에 대해서 알아보자.  
 <p>$$E(aX \pm b) = \sum_{X}(ax \pm b)f(x) = a\sum_{X}xf(x) \pm b\sum_{X}f(x) = aE(X) \pm b$$</p>
-
 **분산 특징**  
 <p>$$V(a) = 0, V(aX) = a^2 V(X), V(aX \pm b) = a^2 V(X)$$</p>
 위의 평균 특징에서 <span>$$V(aX \pm b)$$</span>에 대해서 알아보자.  
@@ -269,7 +254,6 @@ ex) X와 확률함수 f(x)가 아래와 같을때 평균과 분산을 구하여�
 <p>$$= \sum_{X}(a^2 \pm 2abx + b^2) f(x) -(a^2(E(X))^2+2abE(X) + b^2)$$</p>
 <p>$$= a^2E(X^2) \pm 2abE(X) + b^2 - a^2(E(X))^2 \mp 2abE(X) - b^2$$</p>
 <p>$$= a^2(E(X^2)-(E(X))^2) = a^2V(X)$$</p>
-
 #### (4) 공분산(Covariance)
 **공분산(Covariance)은 두개의 확률변수의 관계를 보여주는 값**이다.  
 즉, 확률변수 X와 Y가 같이 변하는 정도를 나타낸 값으로서 <span>$$Cov(X,Y) = E[(X-\mu_x)(Y-\mu_y)] = E(XY) - \mu_X E(Y) - \mu_Y E(X) + \mu_X \mu_Y = E(XY) - \mu_X \mu_Y = E(XY) - E(X)E(Y)$$</span>로서 표현한다.  
@@ -297,7 +281,6 @@ a,b,c,d가 임의의 실수라면
 <p>$$= acE(X^2)+adE(X)+bcE(X)+bd -ac(E(X))^2-adE(X)-bcE(x)-bd$$</p>
 <p>$$= ac(E(X^2)-(E(X))^2)$$</p>
 <p>$$= acVar(X)$$</p>
-
 ex) 두 확률 변수 X와 Y의 결합확률밀도함수가 다음과 같이 주어졌다.  
 <p>$$
 f(x,y)=
@@ -316,7 +299,6 @@ $$</p>
 <p>$$\therefore E(Y) = \int_{0}^{1} 4y(1-y^2)\, dy = \frac{8}{15}$$</p>
 <p>$$\therefore E(XY) = \int_{0}^{1} \int_{0}^{x} 8xy\, dydx = \frac{4}{9}$$</p>
 <p>$$\therefore Cov(X,Y) = \frac{4}{9} - \frac{4}{5} - \frac{8}{15} = \frac{4}{255}$$</p>
-
 #### (5) 상관계수(Correlation Coefficient)
 **공분산의 경우에는 측정단위에 큰 영향을 받기 때문에 측정단위에 영향을 받지 않는 지표가 필요하고 이러한 값을 상관계수라고 표현한다.**  
 두 확률변수 X,Y의 상관계수를 <span>$$\rho(X,Y) = \frac{Cov(X,Y)}{\sigma_X \sigma_Y}, -1 \le \rho(X,Y) \le 1, \sigma_X, \sigma_Y \text{ 는 각각 X,Y의 표준편차}$$</span>
