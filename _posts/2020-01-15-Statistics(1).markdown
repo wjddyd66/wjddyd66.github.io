@@ -370,7 +370,7 @@ ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 
 <p>$${}_{5}\mathrm{C}_{2}(\frac{275}{1000})^2(\frac{725}{1000})^3 = 0.2882$$</p>
 #### (3) 초기화분포(Hypergeometric distribution)
 모집단(N) 중에 부적합품 수가 M개이고 **비복원 추출**로 n개의 시료를 뽑았을 때, 그 중의 부적합품개수(불량품수) X는 X=x가 되는 확률 f(x)를 따른다.  
-<p>$$f(x) = \frac{{ }_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{{ }_{N}\mathrm{C}_{n}} = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
+<p>$$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
 평균: <span>$$E(x) = n\frac{M}{N}$$</span>  
 <p>$$f(x) = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
 <p>$$E(x) = \sum_{x=0}^{n} x\frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
@@ -442,8 +442,8 @@ ex) 예를 들어, 어떤 도시에 n명의 여자와 m명의 남자가 있습�
 X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.  
 <p>$$P(X=x|X+Y=r) = \frac{P(X=x)P(Y=r-x)}{P(X+Y=r)}$$</p>
 각각의 확률은 이항분포를 따르므로 다음과 같이 정리될 수 있다.  
-<p>$$P(X=x|X+Y=r) = \frac{{ }_{m}\mathrm{C}_{r-x}p^rq^{m-r+x}{}_{n}\mathrm{C}_{x}p^xq^{n-x}}{{ }_{n+m}\mathrm{C}_{r}p^rq^{n+m-r}}$$</p>
-<p>$$=\frac{{ }_{m}\mathrm{C}_{r-x}{}_{n}\mathrm{C}_{x}}{{ }_{n+m}\mathrm{C}_{r}}$$</p>
+<p>$$P(X=x|X+Y=r) = \frac{_{m}\mathrm{C}_{r-x}p^rq^{m-r+x}{}_{n}\mathrm{C}_{x}p^xq^{n-x}}{_{n+m}\mathrm{C}_{r}p^rq^{n+m-r}}$$</p>
+<p>$$=\frac{_{m}\mathrm{C}_{r-x}{}_{n}\mathrm{C}_{x}}{_{n+m}\mathrm{C}_{r}}$$</p>
 위의 식을 살펴보면 **초기화 분포가 되는 것을 확인할 수 있다.**  
 
 이와 반대로 초기화 분포에 극한 <span>$$(N \rightarrow \infty)$$</span>를 취하면 이항분포가 된다.  
@@ -455,7 +455,7 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 - p: 불량품을 뽑을 확률(= <span>$$\frac{k}{N}$$</span>)
 
 위와 같은 Parameter가 존개하게 되면 초기화분포를 다음과 같이 나타낼 수 있다.  
-<p>$$f(x) = \frac{{ }_{k}\mathrm{C}_{x}{}_{N-k}\mathrm{C}_{n-x}}{{ }_{N}\mathrm{C}_{n}}$$</p>
+<p>$$f(x) = \frac{_{k}\mathrm{C}_{x}{}_{N-k}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}}$$</p>
 <p>$$= \frac{n!}{(n-x)!x!} * \frac{k!(N-K)!(N-n)!}{N!(k-x)!(N-k-n+x)!}$$</p>
 <p>$$= {}_{n}\mathrm{C}_{x}*\frac{(N-n)!}{N!}*\frac{k!}{(k-x)!}*\frac{(N-k)!}{(N-k-n+x)!}$$</p>
 <p>$$= {}_{n}\mathrm{C}_{x}*\frac{1}{N(N-1)...(N-n+1)}*(k(k-1)...(k-x+1))*((N-k)(N-k+1)...(N-k+n-x+1))$$</p>
