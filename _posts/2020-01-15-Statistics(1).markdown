@@ -5,7 +5,6 @@ date:   2020-01-20 09:00:20 +0700
 categories: [others]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 이번 POST는 <a href="http://www.kocw.net/home/cview.do?mty=p&kemId=1165032">한양대학교 수리통계학 수업 내용</a>을 정리한 것 입니다.  
 문제나 자세한 내용은 <a href="https://m.blog.naver.com/mykepzzang/220838509912">mykepzzang 블로그</a>를 참조하였습니다.  
 
@@ -43,7 +42,6 @@ ex) <span>$$S = {1,2,3,4,5,6}, A={1,2,4}, B={3,4}$$</span>
 <p>$$P(A)=\frac{1}{2}, P(B)=\frac{1}{3}, P(A \cap B) = \frac{1}{6}$$</p>
 <p>$$P(A)P(B) = P(A \cap B) \therefore \text{A,B는 서로 독립이다.}$$</p>
 <p>$$\text{단, 상호배반은 아니다.} \because P(A \cap B) = \emptyset$$</p>
-
 A, B, C가 상호 독립이라면 다음과 같은 조건을 검사하여야 한다.  
 1) <span>$$P(A,B) = P(A)P(B)$$</span>  
 2) <span>$$P(A,C) = P(A)P(C)$$</span>  
@@ -56,7 +54,6 @@ ex) S={(1,0,0),(0,1,0),(0,0,1),(1,1,1)}
 <p>$$P(A,B) = \frac{1}{4} = P(A)P(B) = \frac{1}{2}*\frac{1}{2}$$</p>  
 <p>$$P(A,B,C) = \frac{1}{4} = P(A)P(B)P(C) \neq \frac{1}{2}*\frac{1}{2}*\frac{1}{2}$$</p>
 <p>$$\therefore \text{A, B, C 는 상호 독립이 아니다.}$$</p>
-
 
 #### (6) 곱셈법칙
 원소의 개수 <span>$$n_1, n_2, ..., n_k$$</span>인 집합 <span>$$A_1, A_2, ..., A_k$$</span>에서 각각 하나의 원소를 택하여 나열한 순서열의 개수는 <span>$$n_1 * n_2 * n_3 * ....$$</span>
@@ -77,7 +74,6 @@ ex) <span>$$_{4}\mathrm{C}_{2} = \frac{4!}{(4-2)!2!} = 6$$</span>
 <p>$$P(A_j|B) = \frac{P(A_j \cap B)}{\sum_{i=1}^{k}P(A_i \cap B)} = \frac{P(A_j)P(B|A_j)}{\sum_{i=1}^{k}P(A_i)P(B|A_i)}$$</p>
 <p>$$\because P(B) = \sum_{i=1}^{k}P(A_i \cap B)$$</p>
 <p>$$P(A_j \cap B) = P(A_j)P(B|A_j)$$</p>
-
 <img src="http://i.imgur.com/jC7FfHv.png"/><br>
 사진 출처: <a href="https://ratsgo.github.io/statistics/2017/07/01/bayes/">ratsgo's blog</a><br>
 
@@ -85,12 +81,9 @@ ex) 제품을 A사가 30%, B사가 30%, C사가 40%를 생산할 때 각각 회�
 <p>$$P(A) = 0.3, P(B) = 0.3, P(C) = 0.4$$</p>
 <p>$$P(D|A) = 0.01, P(D|B) = 0.01, P(D|C) = 0.005$$</p>
 <p>$$P(A|D) = \frac{P(A \cap D)}{P(D)} = \frac{P(A \cap D)}{P(A \cap D) + P(B \cap D) + P(C \cap D)}$$</p>
-
 <p>$$P(D|A) = \frac{P(A \cap D)}{P(A)} = 0.01$$</p>
 <p>$$\therefore P(A \cap D) = 0.3*0.01 = 0.003$$</p>
-
 <p>$$\therefore P(A|D) = \frac{0.003}{0.003+0.003+0.002} = \frac{3}{8}$$</p>
-
 <br><br>
 
 ### 2. 확률 변수
@@ -110,7 +103,6 @@ ex) 동일한 동전 3회 던지는 경우 x = H의 수
 <p>$$P(X=1) = {}_{3}\mathrm{C}_{1} * \frac{1}{8} = \frac{3}{8}$$</p>
 <p>$$P(X=2) = {}_{3}\mathrm{C}_{2} * \frac{1}{8} = \frac{3}{8}$$</p>
 <p>$$P(X=3) = {}_{3}\mathrm{C}_{3} * \frac{1}{8} = \frac{1}{8}$$</p>
-
 누적확률 함수 <span>$$F(x) = P(X \le x)$$</span>의 성질  
 1. <span>$$F(-\infty) = 0, F(\infty) = 1$$</span>
 2. 비감소(non-decreasing) 함수
@@ -138,7 +130,6 @@ ex) 동일한 동전 3회 던지는 경우 x = H의 수
 P(x) = 이상형 확률 변수, Q(x) = 연속형 확률 변수라 하면  
 <p>$$P(x \le a) \neq P(x < a)$$</p>
 <p>$$Q(x \le a) = Q(x < a)$$</p>
-
 #### (3) 이산확률변수의 결합확률분포(Joint Probability Distribution of Discrete Random Variable)
 두 개의 이산확률변수 X와 Y가 각각 <span>$$x_1, x_2, ...$$</span>와 <span>$$y_1, y_2, ...$$</span>의 값을 가질때 <span>$$P(X=x,Y=y) = f(x,y)$$</span>를 만족하는 <span>$$f(x,y)$$</span>를 이산확률변수 X와 Y의 **결합확률분포**또는 **결합확률질량함수**라고 한다.  
 
@@ -155,7 +146,6 @@ ex) 3개의 검은 구슬, 2개의 붉은 구슬, 3개의 흰 구슬이 들어�
 <p>$$= \frac{3}{28} \text{ 전체 구슬 8개중 2개를 선택하는 경우 흰구슬 3개에서 2개를 모두 선택}$$</p>
 <p>$$f(0,1) = \frac{_{3}\mathrm{C}_{2} * _{2}\mathrm{C}_{1}}{_{8}\mathrm{C}_{2}}$$</p>
 <p>$$= \frac{6}{28} \text{ 전체 구슬 8개중 2개를 선택하는 경우 흰 구슬 3개에서 1개를 선택, 붉은 구슬2개중 1개를 선택}$$</p>
-
 위와 같이 모든 경우의 수를 계산하면 아래와 같은 결합확률 분포표를 얻을 수 있다.  
 <table>
     <tr>
@@ -173,7 +163,6 @@ ex) 3개의 검은 구슬, 2개의 붉은 구슬, 3개의 흰 구슬이 들어�
 </table>
 위의 결합분포표를 활용하여 <span>$$P[(x,y) \in A]$$</span>를 계산하게 되면 다음과 같다.  
 <p>$$P[(x,y) \in A] = f(0,0) + f(0,1) + f(1,0) = \frac{9}{14}$$</p>
-
 #### (4) 연속확률변수의 결합밀도 함수(Joing Density Function of Continuous Random Variable)
 결합밀도 함수는 연속확률변수가 두 개 이상인 확률밀도함수 이다.  
 **결합밀도함수의 성질**  
@@ -191,7 +180,6 @@ ex) 결합밀도 함수가 <span>$$f(x,y) = e^{-x-y} (x \ge 0, y \ge 0)$$</span>
 <p>$$\int_{0}^{1}\, \int_{0}^{1-x}\, e^{-x-y} dydx$$</p>
 <p>$$= \int_{0}^{1}\, [-e^{-x-y}]_0^{1-x} dx = \int_{0}^{1}\, e^{-x}-e^{-1} dx$$</p>
 <p>$$= [-e^{-x} -e^{-1}x]_0^1 = 1-\frac{2}{e}$$</p>
-
 #### (5) 주변확률분포(Marginal Probability Distribution)
 두 개의 변수로 이루어진 결합확률분포를 통해 하나의 변수로만 이루워진 확률함수를 구하는 것  
 즉, X,Y 두 개의 확률변수로 이루어진 함수를 X또는 Y의 하나의 확률변수로 표현하기 위해서 주변확률분포를 이용한다.  
@@ -200,11 +188,9 @@ ex) 결합밀도 함수가 <span>$$f(x,y) = e^{-x-y} (x \ge 0, y \ge 0)$$</span>
 (1) 확률변수가 이산확률변수일 경우  
 <p>$$f_X(x) = \sum_y f(x,y)$$</p>
 <p>$$f_Y(y) = \sum_x f(x,y)$$</p>
-
 (2) 확률변수가 연속확률변수일 경우  
 <p>$$f_X(x) = \int_{-\infty}^{\infty} f(x,y)\, dy$$</p>
 <p>$$f_Y(y) = \int_{-\infty}^{\infty} f(x,y)\, dx$$</p>
-
 위에서 이산확률변수의 결합확률분포로부터 얻은 결합분포표를 주변확률분포표로 변형하면 다음과 같다.  
 
 <table>
@@ -256,13 +242,11 @@ ex) X와 확률함수 f(x)가 아래와 같을때 평균과 분산을 구하여�
 <p>$$E(X^2) = \sum_{X^2}XP(X) = 0*\frac{1}{8} + 1*\frac{3}{8} + 4*\frac{3}{8} + 9*\frac{1}{8} = 3$$</p>
 <p>$$\therefore V(X) = 3 - \frac{9}{4} = \frac{3}{4}$$</p>
 
-
 #### (3) 평균과 분산의 특징
 **평균 특징**  
 <p>$$E(a) = a, E(aX) = aE(X), E(aX \pm b)$$</p>
 위의 평균 특징에서 <span>$$E(aX \pm b)$$</span>에 대해서 알아보자.  
 <p>$$E(aX \pm b) = \sum_{X}(ax \pm b)f(x) = a\sum_{X}xf(x) \pm b\sum_{X}f(x) = aE(X) \pm b$$</p>
-
 **분산 특징**  
 <p>$$V(a) = 0, V(aX) = a^2 V(X), V(aX \pm b) = a^2 V(X)$$</p>
 위의 평균 특징에서 <span>$$V(aX \pm b)$$</span>에 대해서 알아보자.  
@@ -270,7 +254,6 @@ ex) X와 확률함수 f(x)가 아래와 같을때 평균과 분산을 구하여�
 <p>$$= \sum_{X}(a^2 \pm 2abx + b^2) f(x) -(a^2(E(X))^2+2abE(X) + b^2)$$</p>
 <p>$$= a^2E(X^2) \pm 2abE(X) + b^2 - a^2(E(X))^2 \mp 2abE(X) - b^2$$</p>
 <p>$$= a^2(E(X^2)-(E(X))^2) = a^2V(X)$$</p>
-
 #### (4) 공분산(Covariance)
 **공분산(Covariance)은 두개의 확률변수의 관계를 보여주는 값**이다.  
 즉, 확률변수 X와 Y가 같이 변하는 정도를 나타낸 값으로서 <span>$$Cov(X,Y) = E[(X-\mu_x)(Y-\mu_y)] = E(XY) - \mu_X E(Y) - \mu_Y E(X) + \mu_X \mu_Y = E(XY) - \mu_X \mu_Y = E(XY) - E(X)E(Y)$$</span>로서 표현한다.  
@@ -298,7 +281,6 @@ a,b,c,d가 임의의 실수라면
 <p>$$= acE(X^2)+adE(X)+bcE(X)+bd -ac(E(X))^2-adE(X)-bcE(x)-bd$$</p>
 <p>$$= ac(E(X^2)-(E(X))^2)$$</p>
 <p>$$= acVar(X)$$</p>
-
 ex) 두 확률 변수 X와 Y의 결합확률밀도함수가 다음과 같이 주어졌다.  
 <p>$$
 f(x,y)=
@@ -317,7 +299,6 @@ $$</p>
 <p>$$\therefore E(Y) = \int_{0}^{1} 4y(1-y^2)\, dy = \frac{8}{15}$$</p>
 <p>$$\therefore E(XY) = \int_{0}^{1} \int_{0}^{x} 8xy\, dydx = \frac{4}{9}$$</p>
 <p>$$\therefore Cov(X,Y) = \frac{4}{9} - \frac{4}{5} - \frac{8}{15} = \frac{4}{255}$$</p>
-
 #### (5) 상관계수(Correlation Coefficient)
 **공분산의 경우에는 측정단위에 큰 영향을 받기 때문에 측정단위에 영향을 받지 않는 지표가 필요하고 이러한 값을 상관계수라고 표현한다.**  
 두 확률변수 X,Y의 상관계수를 <span>$$\rho(X,Y) = \frac{Cov(X,Y)}{\sigma_X \sigma_Y}, -1 \le \rho(X,Y) \le 1, \sigma_X, \sigma_Y \text{ 는 각각 X,Y의 표준편차}$$</span>
@@ -345,7 +326,6 @@ q=(1-p), & x=0
 \end{cases}
 $$</p>
 <p>$$f(x)=p^x (1-p)^{1-x}$$</p>
-
 평균: <span>$$E(x) = \sum_{x=0}^{1} xf(x) = 0f(0)+f(1) = p$$</span>  
 분산: <span>$$V(x) = \sum_{x=0}^{1} x^2f(x) - E(x)^2 = 0f(0)+f(1)-p^2 = p(1-p) =pq$$</span>
 
@@ -361,7 +341,6 @@ $$</p>
 
 <p>$$E(x) = p = \frac{1}{2}$$</p>
 <p>$$V(x) = pq = \frac{1}{2} * \frac{1}{2} = \frac{1}{4}$$</p>
-
 #### (2) 이항분포(Binomial distribution)
 성공확률이 p인 경우 n번의 베르누이 실험에서 나타나는 성공횟수에 대한 확률변수 X가 따르는 분포를 이항분포라 한다. 이러한 이항분포를 따르는 확률변수 X의 확률함수는 아래와 같이 정의 된다. (단, <span>$$p \neq 0$$</span>)
 <p>$$f(x) = {}_{n}\mathrm{C}_{x}p^x(1-p)^{n-x} = {}_{n}\mathrm{C}_{x}p^xq^{n-x}$$</p>
@@ -375,7 +354,6 @@ $$</p>
 <p>$$=np\sum_{r=1}^n {}_{n-1}\mathrm{C}_{r-1}p^{r-1}(1-p)^{n-1}$$</p>
 <p>$$=np\sum_{r=0}^{n-1}B(n-1,p) \text{  (단, B(n,p)는 확률인 p인 베르누이 실험을 n번한 이항분포)}$$</p>
 <p>$$=np$$</p>
-
 분산: <span>$$V(x) = npq$$</span>  
 <p>$$V(x) = \sum_{r=0}^n r^2 f(r) - (np)^2 = \sum_{r=0}^n r^2{}_{n}\mathrm{C}_{r}p^r q^{n-r}  - (np)^2$$</p>
 <p>$$= \sum_{r=1}^n r \frac{n(n-1)!}{(n-r)!(r-1)!}pp^{r-1}q^{n-r} - (np)^2$$</p>
@@ -390,11 +368,9 @@ $$</p>
 <p>$$\therefore V(x) = np((n-1)p + 1) - (np)^2 = np(1-p) = npq$$</p>
 ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 어떤 경기에서 5버느이 타석에 들어섰을 때, 2개의 안타를 칠 확률은? (단, 각 타석의 결과는 서로 무관하다.)  
 <p>$${}_{5}\mathrm{C}_{2}(\frac{275}{1000})^2(\frac{725}{1000})^3 = 0.2882$$</p>
-
 #### (3) 초기화분포(Hypergeometric distribution)
 모집단(N) 중에 부적합품 수가 M개이고 **비복원 추출**로 n개의 시료를 뽑았을 때, 그 중의 부적합품개수(불량품수) X는 X=x가 되는 확률 f(x)를 따른다.  
 <p>$$f(x) = \frac{{}_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{{}_{N}\mathrm{C}_{n}} = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
-
 평균: <span>$$E(x) = n\frac{M}{N}$$</span>  
 <p>$$f(x) = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
 <p>$$E(x) = \sum_{x=0}^{n} x\frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
@@ -411,21 +387,18 @@ ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 
 위의 식을 살펴보게 되면 이항분포에서의 기댓값과 같다는 것을 알 수 있다.  
 
 
-분산: <span>$$V(x) = \frac{N-n}{N-1}n\frac{M}{N}(1-\frac{M}{N})$$</span>  
+분산: <span>$$V(x) = \frac{N-n}{N-1}n \frac{M}{N}(1-\frac{M}{N})$$ </span>  
 위의 식을 그대로 분산을 구하는 것은 많이 힘들기 때문에 편법을 사용하여 구한다.  
 <p>$$V(x) = E(X(X-1))+E(x)-(E(x))^2$$</p>
 <p>$$E(X(X-1)) = \sum_{x=0}^{n} x(x-1)\frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
-
 <p>$$= M(M-1) \sum_{x=2}^{n} \frac{{M-2 \choose x-2} {(N-2)-(M-2) \choose (n-2)-(x-2)}}{\frac{N}{n} \frac{N-1}{n-1}{N-2 \choose n-2}}$$</p>
 <p>$$= \frac{M(M-1)n(n-1)}{N(N-1)} \sum_{x=2}^{n} \frac{{M-2 \choose x-2} {(N-2)-(M-2) \choose (n-2)-(x-2)}}{{N-2 \choose n-2}}$$</p>
 평균에서와 똑같이 <span>$$\sum_{x=2}^{n} \frac{{M-2 \choose x-2} {(N-2)-(M-2) \choose (n-2)-(x-2)}}{{N-2 \choose n-2}}$$</span>의 값이 적용되는 것을 알 수 있다.  
 <p>$$\therefore V(x) = \frac{M(M-1)n(n-1)}{N(N-1)} + n\frac{M}{N} - (n\frac{M}{N})^2$$</p>
 위의 식을 정리하면 다음과 같은 것을 알 수 있다.  
 <p>$$V(x) = \frac{N-n}{N-1}n\frac{M}{N}(1-\frac{M}{N})$$</p>
-
 **평균과 마찬가지로 불량품을 뽑을 확률을 p라고 생각하면 다음과 같이 식을 변경할 수 있다.**  
 <p>$$V(x) = \frac{N-n}{N-1}p(1-p) = \frac{N-n}{N-1}pq$$</p>
-
 ex) 1000개의 제품 중 13개가 풀량품이다. 1000개의 제품에서 임의로 20개를 뽑았을 때, 불량품이 3개가 포함될 확률을 구하시오.  
 - N(전체 개수): 1000
 - K(어떤 특성을 가진 제품의 수): 13
@@ -442,7 +415,6 @@ n, & n < k
 $$</p>
 위의 조건을 통하여 문제를 풀어보면 식은 다음과 같다.  
 <p>$$P(X=3)=\frac{{K \choose x} {N-K \choose n-x}}{{N \choose n}} = \frac{{13 \choose 3} {987 \choose 17}}{{1000 \choose 20}} \approx 0.00165$$</p>
-
 **초기화 분포와 이항분포의 관계**  
 기본적으로 **이항분포는 복원추출, 초기화분포는 비복원 추출이다.**  
 이러한 이항분포와 초기화의 분포를 간단한 예를 통하여 확인하여 보자.  
@@ -465,7 +437,6 @@ ex) 예를 들어, 어떤 도시에 n명의 여자와 m명의 남자가 있습�
 
 여자의 수 X, 남자의 수 Y는 전염병에 걸릴 확률 p를 따르는 이항분포라고 가정하게 되면 두 확률 변수는 서로 독립이다.  
 <p>$$X ~ (n,p), Y ~ (m,p)$$</p>
-
 전염병에 걸린 사람 중에 여자일 확률을 구하게 되면 다음과 같다.  
 <p>$$P(X=x|X+Y=r) = \frac{P(X=x \cap Y=r-x)}{P(X+Y=r)}$$</p>
 X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.  
@@ -473,7 +444,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 각각의 확률은 이항분포를 따르므로 다음과 같이 정리될 수 있다.  
 <p>$$P(X=x|X+Y=r) = \frac{{}_{m}\mathrm{C}_{r-x}p^rq^{m-r+x}{}_{n}\mathrm{C}_{x}p^xq^{n-x}}{{}_{n+m}\mathrm{C}_{r}p^rq^{n+m-r}}$$</p>
 <p>$$=\frac{{}_{m}\mathrm{C}_{r-x}{}_{n}\mathrm{C}_{x}}{{}_{n+m}\mathrm{C}_{r}}$$</p>
-
 위의 식을 살펴보면 **초기화 분포가 되는 것을 확인할 수 있다.**  
 
 이와 반대로 초기화 분포에 극한 <span>$$(N \rightarrow \infty)$$</span>를 취하면 이항분포가 된다.  
@@ -494,7 +464,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 위의 식에서 <span>$$p=\frac{k}{N}$$</span>으로서 나타내고 <span>$$(N \rightarrow \infty)$$</span>으로서 값을 변경하면 다음과 같이 식을 나타낼 수 있다.<p>$$= {}_{n}\mathrm{C}_{x}*\frac{1}{1*1...1}*(p*...p)*((1-p)...(1-p))$$</p>
 최종적으로 이항분포로 표현하기 위하여 <span>$$1-p = q$$</span>로서 나타내게 되면 정리된 식은 다음과 같다.  
 <p>$${}_{n}\mathrm{C}_{x}p^x q^{n-x}$$</p>
-  
 
 
 따라서 둘의 관계를 표현하면 다음과 같이 나타낼 수 있다.  
@@ -511,7 +480,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 <p>$$= \lambda \sum_{x=1}^{\infty} \frac{e^{-\lambda t}(\lambda t)^{x-1}}{(x-1)!}$$</p>
 위의 식에서 <span>$$\sum_{x=1}^{\infty} \frac{e^{-\lambda t}(\lambda t)^{x-1}}{(x-1)!}$$</span>은 f(x-1)의 확률의 총합 이므로  
 <p>$$\therefore E(x) = \lambda$$</p>
-
 분산: <span>$$V(x) = \lambda$$</span>  
 <p>$$V(x) = E(x(x-1))+E(x)-(E(x))^2 = E(x(x-1))+ \lambda-\lambda^2$$</p>
 <p>$$E(x(x-1)) = \sum_{x=0}^{\infty} x(x-1)f(x) = \sum_{x=0}^{\infty} x(x-1)\frac{e^{-\lambda t}(\lambda t)^x}{x!}$$</p>
@@ -519,7 +487,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 위의 식에서 <span>$$\sum_{x=2}^{\infty} \frac{e^{-\lambda t}(\lambda t)^{x-2}}{(x-2)!}$$</span>은 f(x-2)의 확률의 총합 이므로  
 <p>$$\therefore E(x(x-1)) = \lambda^2$$</p>
 <p>$$\therefore V(x) = \lambda^2 + \lambda -\lambda^2 = \lambda$$</p>
-
 **포아송 프로세스**  
 포아송 프로세스란 어떤 사건의 발생횟수가 포아송 분포를 따르는 확률과정이다.  
 즉, 포아송 분포를 따르기 위하여 필요한 조건이라고 생각할 수 있다.  
@@ -566,7 +533,6 @@ X,Y가 서로 독립이므로(포아송 프로세스 1번째 독립성) 다음�
 <p>$$(1-\frac{x+1}{n}) \rightarrow 1$$</p>
 <p>$$((1-\frac{\lambda}{n})^{-x} \rightarrow 1$$</p>
 <p>$$P(X=x) = {}_{n}\mathrm{C}_{x} p^x (1-p)^{n-x}$$</p>
-
 따라서 둘의 관계를 표현하면 다음과 같이 나타낼 수 있다.  
 <img src="https://mblogthumb-phinf.pstatic.net/MjAxNjEwMjBfMTI0/MDAxNDc2OTA1MTEzMjY2.ZdUCNP0gw9X5nhm2dDapcF6EKfArTlysvixz2xn1j4Qg.ICh2sHOBQ8gQkpnBT2KJYHZJc7ZLC13ppxDCQsjzwP0g.JPEG.mykepzzang/%ED%94%84%EB%A0%88%EC%A0%A0%ED%85%8C%EC%9D%B4%EC%85%981.jpg?type=w2"/><br>
 사진 출처: <a href="https://m.blog.naver.com/mykepzzang/220840724901">mykepzzang 블로그</a><br>
@@ -582,27 +548,22 @@ X,Y가 서로 독립이므로(포아송 프로세스 1번째 독립성) 다음�
 평균: <span>$$E(x) = \frac{b+a}{2}$$</span>  
 <p>$$E(x) = \int_{-\infty}^{\infty}xf(x)\, dx = \int_{a}^{b} \frac{x}{b-a}\, dx$$</p>
 <p>$$= [\frac{x^2}{2(b-a)}]^{b}_{a} = \frac{a+b}{2}$$</p>
-
 분산: <span>$$V(x) = \frac{(b-a)^2}{12}$$</span>  
 <p>$$V(x) = E(X^2)-(E(x))^2 = \int_{a}^{b} \frac{x^2}{b-a}\, dx - \frac{(a+b)^2}{4}$$</p>
 <p>$$= \frac{b^3-a^3}{3(b-a)} - \frac{(a+b)^2}{4} = \frac{(b-a)^2}{12}$$</p>
-
 문제) 어느 버스 정류장에 버스는 10분 간격으로 도착한다고 한다. 어떤 사람이 임의로 이 정류장에 와서 기다리는 시간이 균일분포를 따른다면, 이 사람이 5분 미만 기다릴 확률을 구하여라.  
 
 <p>$$R_x = [0,10], f(x) = \frac{1}{10-0} = \frac{1}{10}$$</p>
 <p>$$P(x<5) = \int_{0}^{5} \frac{1}{10}\, dx = \frac{1}{2}$$</p>
-
 #### (2) 정규분포(Normal distribution, Gaussian Distribution)
 연속형 확률변수 X의 값이 중심값 근처에 대다수가 밀집되고 좌우 대칭의 종모양 분포를 가지는 경우, 이러한 확률분포를 정규분포라 하고, 기호로 <span>$$X ~ N(\mu,\sigma^2)$$</span>로 표현한다. 정규분포의 확률밀도함수 f(x)는 다음과 같다.  
 <p>$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\text{  , 단, } -\infty \le X \le \infty\text{  ,  }e=2.71828...\text{  ,  }\pi=3.14\text{  이다.}$$</p>
-
 평균: <span>$$E(x) = \mu$$</span>  
 <p>$$E(x) = \int_{-\infty}^{\infty}xf(x)\, dx = \int_{-\infty}^{\infty}x\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\, dx$$</p>
 <p>$$= \frac{1}{\sqrt{2\pi}\sigma}(\int_{-\infty}^{\infty}(x-\mu)e^{-\frac{(x-\mu)^2}{2\sigma^2}}\, dx+\int_{-\infty}^{\infty}\mu e^{-\frac{(x-\mu)^2}{2\sigma^2}}\, dx)$$</p>
 위의 식에서 <span>$$\int_{-\infty}^{\infty}(x-\mu)e^{-\frac{(x-\mu)^2}{2\sigma^2}}\, dx$$</span>는 기함수로서 적분의 값이 0이나오게 된다.  
 따라서 최종적인 평균의 식은 다음과 같이 정리된다.  
 <p>$$\therefore E(x) = \mu * \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\, dx\mu = \mu*\int_{-\infty}^{\infty}f(x;\mu,\sigma) \,dx = \mu$$</p>
-
 분산: <span>$$V(x)^2 = \sigma$$</span>  
 <p>$$V(x) = E[(x-\mu^2)] = \int_{-\infty}^{\infty}(x-\mu^2)\,dx = \int_{-\infty}^{\infty} \frac{\sigma(x-\mu)^2}{\sqrt{2\pi}\sigma^2} e^{-\frac{(x-\mu)^2}{\sigma^2}} \,dx$$</p>
 위의 식에서 <span>$$z = \frac{x-\mu}{\sigma}$$</span>로 치환하게 되면 <span>$$\frac{1}{\sigma}\frac{\partial x}{\partial z} = 1 \rightarrow dx=\sigma dz$$</span>
@@ -616,7 +577,6 @@ X,Y가 서로 독립이므로(포아송 프로세스 1번째 독립성) 다음�
 <p>$$[-ze^{-\frac{z^2}{2}}]_{-\infty}^{\infty} = [xe^{-\frac{x^2}{2}}]_{\infty}^{-\infty} = 0 - 0 = 0$$</p>
 따라서 위의 식을 최종적으로 정리하면 다음과 같다.  
 <p>$$V(x) = \frac{\sigma^2}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{z^2}{2}}\,dz = \sigma^2 \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu^2)}{\sigma^2}} \,dx = \sigma^2 \int_{-\infty}^{\infty} N(\mu,\sigma^2) = \sigma^2$$</p>
-
 **정규분포의 특징**  
 1. 정규분포는 평균 <span>$$\mu$$</span>에 대하여 좌우 대칭이다.
 2. 정규분포의 밀도함수는 평균 <span>$$\mu$$</span>와 표준편차 <span>$$\sigma$$</span>에 의해 변한다.
@@ -653,17 +613,14 @@ X,Y가 서로 독립이므로(포아송 프로세스 1번째 독립성) 다음�
 위의 표준화과정이 성립되는 이유를 살펴보면 다음과 같다.  
 <p>$$E(Z) = E(\frac{X-\mu}{\sigma}) = \frac{1}{\sigma}E(X-\mu) = 0$$</p>
 <p>$$V(Z) = V(\frac{X-\mu}{\sigma}) = \frac{1}{\sigma^2}V(X-\mu) = \frac{1}{\sigma^2}*\sigma^2 = 1$$</p>
-
 ex) 천명의 종원원을 고용하고 있는 회사가 있다. 이 회사의 종업원들의 근무연수는 평균 9년 , 표준편차 5년으로 정규분포를 이룬다고 한다. 종원원들 중에서 20년 이상 근무한 사람은 약 몇명인가?  
 <p>$$P(X \ge 20) = P(Z \ge \frac{20-9}{5}) = 0.5 - P(Z \le 2.2) = 0.0139$$</p>
-
 #### (3) 감마분포(Gamma Distribution)
 감마분포를 이해하기 위해서는 감마함수에 대해 먼저 이해해야 한다.  
 **감마합수(Gamma function)**  
 감마함수(Gamma function)은 계승(factorial)을 일반화한 형태(자연수 뿐만아니라 복소수까지 포함한 형태)의 함수로써, 다음과 같이 나타낸다.  
 <p>$$\gamma(z) = \int_{0}^{\infty} x^{z-1} e^{-x}\, dx$$</p>
 <p>$$\gamma(z) = \lim_{n \to \infty} \frac{1*2*3*...*n}{z(z+1)...(z+n)}n^z \text{  }(z \neq 0,-1,-2, ...)$$</p>
-
 Factorial을 일반화하였다는 것을 의미하기 위해서는 먼저 Gamma function의 특징 몇가지를 살펴보면 금새 이해할 수 있다.  
 1) <span>$$\gamma(1) = 1$$</span>
 <p>$$\gamma(1) = \int_{0}^{\infty}e^{-x}\, dx = [-e^{-x}]^{\infty}_{0} = 0 - (-1) = 1$$</p>
@@ -703,14 +660,12 @@ $$</p>
 <p>$$E(x) = \int_{0}^{\infty} x f(x;\alpha,\beta)\, dx = \int_{0}^{\infty} \frac{1}{\beta^{\alpha}\gamma(a)}x^{\alpha} e^{-\frac{x}{\beta}}\, dx$$</p>
 <p>$$= \int_{0}^{\infty} \frac{\alpha \beta}{\beta^{\alpha+1}\gamma(\alpha+1)}x^{\alpha} e^{-\frac{x}{\beta}}\, dx \text{  } \because(\gamma(\alpha + 1) = \alpha \gamma(\alpha))$$</p>
 <p>$$=\alpha\beta\int_{0}^{\infty} \frac{1}{\beta^{\alpha+1}\gamma(\alpha+1)}x^{\alpha} e^{-\frac{x}{\beta}}\, dx = \alpha\beta\int_{0}^{\infty} f(x;\alpha+1,\beta)\, dx = \alpha\beta$$</p>
-
 분산: <span>$$V(x) = \alpha\beta^2$$</span>  
 <p>$$V(x) = E(x^2) - (E(x))^2 = E(x^2) - (\alpha\beta)^2$$</p>
 <p>$$E(x^2) = \int_{0}^{\infty} x^2 f(x;\alpha,\beta)\, dx = \int_{0}^{\infty} \frac{1}{\beta^{\alpha}\gamma(a)}x^{\alpha+1} e^{-\frac{x}{\beta}}\, dx$$</p>
 <p>$$= \int_{0}^{\infty} \frac{\alpha(\alpha+1) \beta^2}{\beta^{\alpha+2}\gamma(\alpha+2)}x^{\alpha+1} e^{-\frac{x}{\beta}}\, dx$$</p>
 <p>$$=\alpha(\alpha+1)\beta^2 \int_{0}^{\infty} \frac{1}{\beta^{\alpha+2}\gamma(\alpha+2)}x^{\alpha+1} e^{-\frac{x}{\beta}}\, dx = \alpha(\alpha+1)\beta^2\int_{0}^{\infty} f(x;\alpha+2,\beta)\, dx = \alpha(\alpha+1)\beta^2$$</p>
 <p>$$\therefore V(x) = \alpha(\alpha+1)\beta^2 - (\alpha\beta)^2 = \alpha\beta^2$$</p>
-
 #### (4) 지수분포(Exponential Distribution)
 **지수분포는 감마분포의 특수한 경우이다. 특수한 경우라는 것은 감마분포의 <span>$$\alpha=1$$</span>인 경우 이다.**  
 따라서 감마분포와 지수분포를 정의하면 다음과 같다.  
@@ -744,7 +699,6 @@ $$</p>
 <p>$$=\beta^2 \int_{0}^{\infty} t^2e^{-t}\,dt$$</p>
 <p>$$= \beta^2([-t^2 e^{-t}]_{0}^{\infty}+2 \int_{0}^{\infty} te^{-t}\,dt) = 2\beta^2$$</p>
 <p>$$\therefore V(x) = 2\beta^2-\beta^2 = \beta^2$$</p>
-
 **포아송분포와 지수분포의 관계**  
 먼저 위에서 정의한 포아송분포의 정의부터 다시 살펴보면 다음과 같다.  
 확률변수 X를 시간 (0,t)에서 발생하는 사건의 수라 하면 확률함수 f(x)는 다음과 같다.  
@@ -753,7 +707,6 @@ $$</p>
 
 **위의 포아송 분포에서 시간 t시간 에서 처음으로 사건이 발생하고 사건의 평균을 <span>$$\lambda$$</span>라하면 t전까지 확률변수는 0이되고 이것을 포아송분포의 확률함수로서 나타내면 다음과 같다.**  
 <p>$$f(0) = \frac{e^{-\lambda t}(\lambda t)^0}{0!} = e^{-\lambda t}$$</p>
-
 위의 식을 활용하여 사건이 처음 발생하기까지 걸린시간을 확률변수X라 하고, 이 확률변수 X가 시간 t를 초과하는 것은 아래와 같이 나타낼 수 있다.    
 <p>$$P(X>t) = e^{-\lambda t}$$</p>
 여기서 확률변수 X에 대한 누적분포함수는 다음과 같다.    
@@ -761,7 +714,6 @@ $$</p>
 누적분포함수를 미분하면 확률질량함수가 되므로 다음과 같은 식이 나오게 된다.  
 <p>$$\frac{\partial F(t)}{\partial t} = \frac{\partial}{\partial t}(1-e^{-\lambda t})$$</p>
 <p>$$\rightarrow f(t) = \lambda e^{-\lambda t}$$</p>
-
 즉 위의 식과 지수분포의 식을 비교하면 다음과 같다.  
 
 - 지수분포: <span>$$\frac{1}{\beta} e^{-\frac{x}{\beta}}$$</span>
@@ -774,7 +726,6 @@ $$</p>
 먼저 기하분포(Geometric Distribution)의 정의를 살펴보게 되면 다음과 같다.  
 베르누이 시행에서 처음 성공까지 시도한 횟수 X의 분포, 지지집함은 {1,2,3,...}이다.  
 <p>$$P(X=k) = (1-p)^{k-1}p$$</p>
-
 지수분포와 기하분포 둘 다 처음 실패 혹은 성공할때까지의 확률을 구하는 함수 이다.  
 이산형으로서 표현한 것이 기하분포, 연속형으로서 표현한 것이 지수분포 이다.  
 따라서 기하분포에서 <span>$$n \rightarrow \infty$$</span>로서 표현한 것이 지수분포인 것을 알 수 있다.  
@@ -788,7 +739,6 @@ ex) 고장횟수가 포아송 분포를 따르는 어떤 기계는 1개월에 �
 확률밀도 함수: <span>$$f(x) = \lambda e^{-\lambda x} = 3e^{-3x}$$</span>  
 누적분포 함수: <span>$$F(x) = 1 - e^{-\lambda x} = 1- e^{-3x}$$</span>  
 <p>$$P(X>2) - 1-P(0 \le X \le 2) = 1-F(2) = 1-e^{-6}$$</p>
-
 <br><br>
 
 ### 6. 샘플링 분포
@@ -821,10 +771,8 @@ ex) 고장횟수가 포아송 분포를 따르는 어떤 기계는 1개월에 �
 분산: <span>$$V(\bar{X}) = \frac{\sigma^2}{n}$$</span>  
 <p>$$V(\bar{X}) = V(\frac{1}{n}(X_1+X_2+...+X_n)) = \frac{1}{n^2}(V(X_1)+V(X_2)+...+V(X_n))$$</p>
 <p>$$=\frac{1}{n^2}(\sigma^2+\sigma^2+...+\sigma^2)=\frac{\sigma^2}{n}$$</p>
-
 위에서 평균과 분산과 정규분포이 특성을 생각하면 다음과 같이 나타낼 수 있다.  
 <p>$$\bar{X} = N(\mu,\frac{\sigma^2}{n})$$</p>
-
 #### (2) 카이제곱분포(Chi-square distribution)
 표본분산의 분포를 구하기 전에 카이제곱의 분포를 알아야 한다.  
 만약 확률변수 Z가 정규분포를 따른다고 가정한다면 새로운 변수 <span>$$Y=Z^2$$</span>는 자유도가 1인 카이제곱분포를 따른다고 한다. 먄약, <span>$$Z_i \text{~} iid N(0,1)$$</span>라면 <span>$$V = Z_1^2+Z_2^2+...+Z_n^2$$</span>은 자유도가 n인 카이제곱분포를 따른다고 하며 기호로서는 <span>$$V \text{~} \chi_{(n)}^2$$</span>로서 표현한다.  
@@ -857,12 +805,10 @@ ex) 고장횟수가 포아송 분포를 따르는 어떤 기계는 1개월에 �
 <p>$$\sum(\frac{X_i -\bar{X}}{\sigma})^2 = \sum_{i=1}^{n} Z_i^2 = \chi_{n}^2$$</p>
 <p>$$\sum(\frac{\bar{X} -\mu}{\sigma})^2 = n(\frac{\bar{X}-\mu}{\sigma})^2=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}})^2 = \chi_{1}^2 \because \bar{X} \text{~} N(\mu,\frac{\sigma^2}{n})$$</p>
 <p>$$\therefore \chi_{n}^2 = \sum(\frac{X_i -\bar{X}}{\sigma})^2 + \chi_{1}^2 \rightarrow \sum(\frac{X_i -\bar{X}}{\sigma})^2 = \chi_{(n-1)}^2$$</p>
-
 위의 식을 다시 표본분산에 맞게 정리하면 다음과 같다.  
 <p>$$S^2 = \frac{\sum_{i-1}^{n}(X_i-\bar{X})^2}{n-1} \rightarrow \frac{(n-1)S^2}{\sigma^2} \text{~} \chi^2_{(n-1)}$$</p>
 위의 식에서 Chisquare의 각각의 평균과 분산은 n-1, 2(n-1)이므로 최종적인 평균과 분산은 다음과 같다.  
 <p>$$E(S^2) = (n-1)\frac{\sigma^2}{(n-1)} = \sigma^2 \text{ ,  } V(S^2) = 2(n-1)\frac{\sigma^2}{(n-1)} = 2\sigma^2$$</p>
-
 **위에서 표본평균 분포의 기댓값과 표본분산 분포의 기댓값을 활용하여 구할 수 없었던 모수의 평균과 분산을 추정할 수 있다.**  
 
 <br><br>
@@ -892,24 +838,18 @@ M_x (t) =
 $$</p>
 적률생헝함수 구하기  
 <p>$$\frac{\partial^r}{\partial t^r}M_{x}(t)|_{t=0} = M_{x}^{(r)}(0) = E(x^r) = \mu r^{'}$$</p>
-
 위에식에서 적률생성 함수를 변형하게 되면 다음과 같다.  
 <p>$$\frac{\partial}{\partial t} M_{x}(t)|_{t=0} = \frac{\partial}{\partial t} \int_{-\infty}^{\infty} xe^{tx}f(x)\, dx |_{t=0} = \int_{-\infty}^{\infty} xf(x)\, dx = E(X) = \mu 1^{'}$$</p>
-
 <p>$$\frac{\partial}{\partial t^2}M_{x}(t)|_{t=0} = \frac{\partial}{\partial t^2} \int_{-\infty}^{\infty} x^2e^{tx}f(x)\, dx |_{t=0} = \int_{-\infty}^{\infty} x^2f(x)\, dx = E(X^2) = \mu 2^{'}$$</p>
 <p>$$\therefore \frac{\partial^r}{\partial t^r}M_{x}(t)|_{t=0} = M_{x}^{(r)}(0) = E(x^r) = \mu r^{'}$$</p>
-
 ex) 확률변수 X가 B(n,p)를 따를 때 X의 적률생성함수를 구하고 이를 이용하여 <span>$$\mu = np, \sigma^2 = npq$$</span>임을 증명하여라.  
 <p>$$B(n,p) = {}_{n}\mathrm{C}_{x} p^x q^{n-x}$$</p>
 <p>$$B(n,p) = \sum_{x=0}^{n} {}_{n}\mathrm{C}_{x} p^x q^{n-x} = (p+q)^n$$</p>
 <p>$$M_x(t) = \sum_{x} e^{tx}f(x) = \sum_{x=0}^{n} e^{tx} {}_{n}\mathrm{C}_{x} p^x q^{n-x}$$</p>
 <p>$$= \sum_{x=0}^{n} {}_{n}\mathrm{C}_{x} (e^t p)^x q^{n-x} = (pe^t+q)^n$$</p>
-
 <p>$$\frac{\partial}{\partial t} M_{x}(t)|_{t=0} = n(pe^t + q)^{n-1}pe^t|_{t=0} = n(p+1)^{n-1}p = np = E(X)$$</p>
-
 <p>$$\frac{\partial}{\partial t^2} M_{x}(t)|_{t=0} = n(n-1)(pe^t + q)^{n-2}pe^tpe^t + n(pe^t+q)^{n-1}pe^t|_{t=0} = n(n-1)p^2+np = np(np+1-p)=np(np+q) = E(X^2)$$</p>
 <p>$$V(X) = E(X^2) - (E(X))^2 = np(np+q)-np^2 = npq$$</p>
-
 **적률함수의 특징**  
 확률변수 X와 Y가 같은 적률생성함수를 가지면 즉, 모든 t에 대하여 <span>$$M_{x}(t) = M_{Y}(t)$$</span>이면 두 확률변수(x,y)는 같은 확률분포(f(x),g(y))를 가진다.  
 
@@ -924,7 +864,6 @@ ex) 확률변수 X가 B(n,p)를 따를 때 X의 적률생성함수를 구하고 
 위의 식에서 먼저 가정을 <span>$$M_{x}(t) = M_{Y}(t) \rightarrow f(x) = g(y)$$</span>로서 두었기 때문에 대입한다.  
 <p>$$M_{x}(t) = M_{y}(t) \rightarrow M_{x}(t) - M_{y}(t) = 0 = \int_{-\infty}^{\infty} e^{ta}(f(a) - g(a))\, da$$</p>
 <p>$$\therefore f(a) = g(a) \rightarrow f(x) = g(y) \because e^{ta} > 0$$</p>
-
 <br><br>
 
 ### 8. 중심극한정리(Central Limit Theorem)
@@ -935,33 +874,24 @@ ex) 확률변수 X가 B(n,p)를 따를 때 X의 적률생성함수를 구하고 
 
 #### (1)정규분포의 적률함수
 <p>$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$$</p>
-
 <p>$$M_{x}(t) = \int_{-\infty}^{\infty}e^{xt}f(x)\,dx = \int_{-\infty}^{\infty}e^{xt}\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}\,dx$$</p>
-
 <p>$$= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty}e^{xt-\frac{(x-\mu)^2}{2\sigma^2}}\,dx$$</p>
 위의 식에서 e의 지수만을 생각해서 계산해보자.  
 
 <p>$$xt-\frac{(x-\mu)^2}{2\sigma^2} = \frac{1}{2\sigma^2}(2\sigma^2 xt - (x-\mu)^2)$$</p>
-
 <p>$$= \frac{1}{2\sigma^2}(2\sigma^2 xt - ((x-\mu)^2 -2(x-\mu)\sigma^2 t + (\sigma^2 t)^2 + 2(x-\mu)\sigma^2 t - (\sigma^2 t)^2))$$</p>
-
 <p>$$= \frac{1}{2\sigma^2}(2\mu\sigma^2 t + \sigma^4 t^2 - (x-\mu-\sigma^2 t)^2)$$</p>
-
 <p>$$\therefore M_{x}(t) = \int_{-\infty}^{\infty}e^{xt}f(x)\,dx = \int_{-\infty}^{\infty}e^{\frac{1}{2\sigma^2}(2\mu\sigma^2 t + \sigma^4 t^2 - (x-\mu-\sigma^2 t)^2)}\,dx$$</p>
-
 <p>$$ = e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}  \int_{-\infty}^{\infty}e^{-\frac{(x-\mu-\sigma^2 t)^2}{2\sigma^2}}\,dx$$</p>
 위의 식에서 <span>$$\mu^{'} = \mu + \sigma^2 t$$</span>라고 치환하면 식은 다음과 같이 정의된다.  
 <p>$$= e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}  \int_{-\infty}^{\infty}e^{-\frac{(x-\mu^{'})^2}{2\sigma^2}}\,dx$$</p>
 <p>$$= e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}$$</p>
-
 **따라서 최종적인 정규분포의 적률함수는 다음과 같이 나타낼 수 있다.**  
 <p>$$M_{x}(t) = e^{\frac{1}{2}(2\mu t+\sigma^2 t^2)}$$</p>
-
 #### (2)표본평균의 적률함수
 표본평균의 적률함수는 다음과 같이 나타낼 수 있다.  
 <p>$$N \text{~} (\mu,\sigma^2), \bar{X} \text{~} (\mu,\frac{\sigma^2}{n})$$</p>
 <p>$$M_{\bar{x}}(t) = E(e^{\bar{x}t}) = E(e^{\frac{x_1+ x_2+ ... + x_n}{n}t}) = E(e^{\frac{x_1}{n}t}e^{\frac{x_2}{n}t}...e^{\frac{x_n}{n}t})$$</p>
-
 <p>$$= E(e^{\frac{x_1}{n}t})E(e^{\frac{x_2}{n}t})...E(e^{\frac{x_n}{n}t}) = {E(e^{\frac{x}{n}t})}^n$$</p>
 위의 식에서 약간의 식 변형한다.  
 
@@ -980,10 +910,8 @@ ex) 확률변수 X가 B(n,p)를 따를 때 X의 적률생성함수를 구하고 
 위의 식에서 n을 극한값을 주면 다음과 같다.  
 
 <p>$$\lim_{n \to \infty}ㅡ_{M_{\bar{x}}(t)} = e^{\mu t + \frac{s^2 t^2}{2}}$$</p>
-
 **따라서 최종적인 정규분포의 적률함수는 다음과 같이 나타낼 수 있다.**  
 <p>$$M_{\bar{x}}(t) = e^{\frac{1}{2}(2\mu t+s^2 t^2)}$$</p>
-
 **최종적으로 구한 정규분포의 적률함수와 표본평균의 적률함수를 극값을 주었을 경우에 값이 같다는 것을 확인할 수 있다. 즉, 알 수 없는 모집단에서 표본이 충분히 크다면, 이 표본평균의 분포는 정규분포에 근사하다는 것 이다.**  
 
 따라서 이전까지 배운 분포의 최종적인 관계를 표현하면 다음과 같이 표현할 수 있다. <img src="https://postfiles.pstatic.net/MjAxNjExMDNfMjgw/MDAxNDc4MTAzMjU2OTc1.yjgARG869IWWmWAy2IgGUfn0DFYs-HEXs_HND021XUkg._YsI9zZRLRK1QCCHA9jwGKRXLMe4shK7r8TuLlEVNCYg.JPEG.mykepzzang/%ED%99%95%EB%A5%A0%EA%B3%BC%ED%86%B5%EA%B3%84.jpg?type=w2"/><br>
@@ -1020,9 +948,8 @@ t분포에 대한 정의는 아래와 같이 정의된다.
 
 확률변수 Z는 표준정규분포를 따르고, V는 자유도가 v인 카이제곱분포를 따를 때, 서로 독립인 Z와 V에 대해 새로운 확률변수 T는 다음과 같다.  
 <p>$$T = \frac{Z}{\sqrt{\frac{V}{v}}}$$</p>
-
 그리고 확률변수 T는 자유도가 v인 t-분포를 따른다. 위의 t-분포의 정의에서 각각의 변수를 위에서 정리한 식에 Mapping을 하면 다음과 같다.  
-- <span>$$v: n-1$$</span>
+- <span>$v: n-1$</span>
 - <span>$$V: \frac{(n-1)S^2}{\sigma^2}$$</span>
 - <span>$$Z: N \text{~} (0,1)$$</span>
 
@@ -1035,12 +962,10 @@ t분포에 대한 정의는 아래와 같이 정의된다.
 위의 식을 유도하면 다음과 같다.  
 <p>$$T = \frac{Z}{\sqrt{\frac{V}{v}}} = \frac{1}{\sqrt{\frac{V}{v}}} \frac{\sqrt{n}}{\sigma}(\bar{X}-\mu)$$</p>
 <p>$$= \sqrt{n}(\bar{X}-\mu)\frac{1}{\sqrt{\frac{V\sigma^2}{v}}} = \sqrt{n}(\bar{X}-\mu)\frac{1}{\sqrt{S^2}} = (\bar{X}-\mu)\frac{\sqrt{n}}{S}$$</p>
-
 **위의 식으로 인하여 모수중 하나인 <span>$$\sigma$$</span>를 몰라도 되고 t-분포의 목적인 표본평균을 이용해 정규분포의 평균을 해석할 때 사용될 수 있다.**  
 
 t-분포가 다음과 같을 때 t-분포의 확률밀도함수 f(t)는 다음과 같다.  
 <p>$$f(t) = \frac{\gamma(\frac{v+1}{2})}{\gamma(\frac{v}{2})\sqrt{\pi v}}(1+\frac{t^2}{v})^{-\frac{v+1}{2}}\text{ ,   } -\infty < t < \infty$$</p>
-
 f(t)를 자유도 v를 가진 t-분포의 확률밀도 함수라고 한다. (<span>$$\gamma$$</span>는 감마함수)  
 
 이러한 t-분포는 정규분포와 같이 t-분포표를 활용하여 구하게 된다.  
@@ -1070,7 +995,6 @@ ex) 확률변수 T는 자유도 19인 t-분포일 때, <span>$$P(T \ge t) = 0.02
 - <span>$$df$$</span>: 19
 
 <p>$t_{\alpha}(df) = t_{0.025}(19) = 2.093$</p>
-
 따라서 이전까지 배운 분포의 최종적인 관계를 표현하면 다음과 같이 표현할 수 있다. 
 <img src="https://postfiles.pstatic.net/MjAxNjExMDVfMTAy/MDAxNDc4Mjc3Mzk5MjAz.Bi7zkiFvP6xRlOKUXjOA-zxbQ6NtuenTK5KzCVswVeIg.HvJqZTnHVdjOvKUpHQZdZGJ95Fllo1UMUhyPmyIV7uMg.JPEG.mykepzzang/%ED%99%95%EB%A5%A0%EA%B3%BC%ED%86%B5%EA%B3%84.jpg?type=w2"/><br>
 사진 출처: <a href="https://blog.naver.com/PostView.nhn?blogId=mykepzzang&logNo=220853827288&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView">mykepzzang 블로그</a><br>
@@ -1113,9 +1037,7 @@ F분포는 다음과 같은 성질을 따른다.
 위의 식에서 각각의 <span>$$U,V$$</span>는 다음과 같이 정의 될 수 있다.  
 <p>$U=\frac{(n_1-1)S_1^2}{\sigma_1^2} \rightarrow \chi_{n_1-1}^2$</p>
 <p>$V=\frac{(n_2-1)S_2^2}{\sigma_2^2} \rightarrow \chi_{n_2-1}^2$</p>
-
 <p>$$\therefore F=\frac{\frac{U}{v_1}}{\frac{V}{v_2}} \rightarrow F(n_1-1,n_2-1) \because \text{F-분포의 정의로 인하여}$$</p>
-
 <br><br>
 
 
