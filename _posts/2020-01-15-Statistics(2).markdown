@@ -75,7 +75,7 @@ $$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} 
 <p>$$= \sum_{x=1}^{n} x\frac{M!}{x!(M-x)!} \frac{\begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
 
 
-<p>$$= \sum_{x=1}^{n} M\frac{(M-1)!}{(x-1)!(M-x)!} \frac{\begin{pmatrix} (N-1)-(M-1)  \\ (n-1)-(x-1)  \end{pmatrix}}{{ \frac{N}{n} \begin{pmatrix} (N-1)  \\ (n-1)  \end{pmatrix}}} \because \begin{pmatrix} \alpha  \\ \beta  \end{pmatrix} = \frac{\alpha}{\beta}\begin{pmatrix} \alpha-1  \\ \beta-1  \end{pmatrix}$$</p>
+<p>$$= \sum_{x=1}^{n} M\frac{(M-1)!}{(x-1)!(M-x)!} \frac{\begin{pmatrix} (N-1)-(M-1)  \\ (n-1)-(x-1)  \end{pmatrix}}{\left( \frac{N}{n} \right) \begin{pmatrix} (N-1)  \\ (n-1)  \end{pmatrix}}} \because \begin{pmatrix} \alpha  \\ \beta  \end{pmatrix} = \frac{\alpha}{\beta}\begin{pmatrix} \alpha-1  \\ \beta-1  \end{pmatrix}$$</p>
 
 위의 식에서 x-1 = X라고 치환하면 결과는 다음과 같다.  
 <p>$$n\frac{M}{N} \sum_{X=0}^{n-1} \frac{ \begin{pmatrix} M-1  \\ x  \end{pmatrix} {(N-1) - (M-1) \choose (n-1) - X}}{\begin{pmatrix} N-1  \\ n-1  \end{pmatrix}}$$</p>
