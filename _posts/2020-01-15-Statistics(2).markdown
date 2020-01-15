@@ -69,7 +69,7 @@ ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 
 
 #### (3) 초기화분포(Hypergeometric distribution)
 모집단(N) 중에 부적합품 수가 M개이고 **비복원 추출**로 n개의 시료를 뽑았을 때, 그 중의 부적합품개수(불량품수) X는 X=x가 되는 확률 f(x)를 따른다.  
-<p>$$f(x) = \frac{{}_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{{}_{N}\mathrm{C}_{n}} = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
+<p>$$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{{}_{N}\mathrm{C}_{n}} = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
 
 평균: <span>$$E(x) = n\frac{M}{N}$$</span>  
 <p>$$f(x) = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
