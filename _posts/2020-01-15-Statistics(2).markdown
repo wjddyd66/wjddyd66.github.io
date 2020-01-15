@@ -21,7 +21,6 @@ q=(1-p), & x=0
 \end{cases}
 $$</p>
 <p>$$f(x)=p^x (1-p)^{1-x}$$</p>
-
 평균: <span>$$E(x) = \sum_{x=0}^{1} xf(x) = 0f(0)+f(1) = p$$</span>  
 분산: <span>$$V(x) = \sum_{x=0}^{1} x^2f(x) - E(x)^2 = 0f(0)+f(1)-p^2 = p(1-p) =pq$$</span>
 
@@ -37,7 +36,6 @@ $$</p>
 
 <p>$$E(x) = p = \frac{1}{2}$$</p>
 <p>$$V(x) = pq = \frac{1}{2} * \frac{1}{2} = \frac{1}{4}$$</p>
-
 #### (2) 이항분포(Binomial distribution)
 성공확률이 p인 경우 n번의 베르누이 실험에서 나타나는 성공횟수에 대한 확률변수 X가 따르는 분포를 이항분포라 한다. 이러한 이항분포를 따르는 확률변수 X의 확률함수는 아래와 같이 정의 된다. (단, <span>$$p \neq 0$$</span>)
 <p>$$f(x) = {}_{n}\mathrm{C}_{x}p^x(1-p)^{n-x} = {}_{n}\mathrm{C}_{x}p^xq^{n-x}$$</p>
@@ -51,7 +49,6 @@ $$</p>
 <p>$$=np\sum_{r=1}^n {}_{n-1}\mathrm{C}_{r-1}p^{r-1}(1-p)^{n-1}$$</p>
 <p>$$=np\sum_{r=0}^{n-1}B(n-1,p) \text{  (단, B(n,p)는 확률인 p인 베르누이 실험을 n번한 이항분포)}$$</p>
 <p>$$=np$$</p>
-
 분산: <span>$$V(x) = npq$$</span>  
 <p>$$V(x) = \sum_{r=0}^n r^2 f(r) - (np)^2 = \sum_{r=0}^n r^2{}_{n}\mathrm{C}_{r}p^r q^{n-r}  - (np)^2$$</p>
 <p>$$= \sum_{r=1}^n r \frac{n(n-1)!}{(n-r)!(r-1)!}pp^{r-1}q^{n-r} - (np)^2$$</p>
@@ -66,19 +63,18 @@ $$</p>
 <p>$$\therefore V(x) = np((n-1)p + 1) - (np)^2 = np(1-p) = npq$$</p>
 ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 어떤 경기에서 5버느이 타석에 들어섰을 때, 2개의 안타를 칠 확률은? (단, 각 타석의 결과는 서로 무관하다.)  
 <p>$${}_{5}\mathrm{C}_{2}(\frac{275}{1000})^2(\frac{725}{1000})^3 = 0.2882$$</p>
-
 #### (3) 초기화분포(Hypergeometric distribution)
 모집단(N) 중에 부적합품 수가 M개이고 **비복원 추출**로 n개의 시료를 뽑았을 때, 그 중의 부적합품개수(불량품수) X는 X=x가 되는 확률 f(x)를 따른다.  
-$$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} = \frac{{M \choose x} {N-M \choose n-x}} {{N \choose n}}$$
+$$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} = \frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}} {\begin{pmatrix} N  \\ n  \end{pmatrix}}$$
 
 평균: <span>$$E(x) = n\frac{M}{N}$$</span>  
-<p>$$f(x) = \frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
-<p>$$E(x) = \sum_{x=0}^{n} x\frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
-<p>$$= \sum_{x=1}^{n} x\frac{M!}{x!(M-x)!} \frac{N-M \choose n-x}{N \choose n}$$</p>
-<p>$$= \sum_{x=1}^{n} M\frac{(M-1)!}{(x-1)!(M-x)!} \frac{(N-1)-(M-1) \choose (n-1)-(x-1)}{ \frac{N}{n} {(N-1) \choose (n-1)}} \because {\alpha \choose \beta} = \frac{\alpha}{\beta}{\alpha-1 \choose \beta-1}$$</p>
+<p>$$f(x) = \frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
+<p>$$E(x) = \sum_{x=0}^{n} x\frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
+<p>$$= \sum_{x=1}^{n} x\frac{M!}{x!(M-x)!} \frac\begin{pmatrix} N-M  \\ n-x  \end{pmatrix}\begin{pmatrix} N  \\ n  \end{pmatrix}$$</p>
+<p>$$= \sum_{x=1}^{n} M\frac{(M-1)!}{(x-1)!(M-x)!} \frac\begin{pmatrix} (N-1)-(M-1)  \\ (n-1)-(x-1)  \end{pmatrix}{ \frac{N}{n} \begin{pmatrix} (N-1)  \\ (n-1)  \end{pmatrix}} \because \begin{pmatrix} \alpha  \\ \beta  \end{pmatrix} = \frac{\alpha}{\beta}\begin{pmatrix} \alpha-1  \\ \beta-1  \end{pmatrix}$$</p>
 위의 식에서 x-1 = X라고 치환하면 결과는 다음과 같다.  
-<p>$$n\frac{M}{N} \sum_{X=0}^{n-1} \frac{ {M-1 \choose X} {(N-1) - (M-1) \choose (n-1) - X}}{{N-1 \choose n-1}}$$</p>
-위의 식에서 <span>$$\sum_{X=0}^{n-1} \frac{ {M-1 \choose X} {(N-1) - (M-1) \choose (n-1) - X}}{{N-1 \choose n-1}}$$</span>는 초기화 분포의 모든 합 이므로 1이 되는 것을 확인할 수 있다.  
+<p>$$n\frac{M}{N} \sum_{X=0}^{n-1} \frac{ \begin{pmatrix} M-1  \\ x  \end{pmatrix} {(N-1) - (M-1) \choose (n-1) - X}}{\begin{pmatrix} N-1  \\ n-1  \end{pmatrix}}$$</p>
+위의 식에서 <span>$$\sum_{X=0}^{n-1} \frac{ \begin{pmatrix} M-1  \\ x  \end{pmatrix} {(N-1) - (M-1) \choose (n-1) - X}}{\begin{pmatrix} N-1  \\ n-1  \end{pmatrix}}$$</span>는 초기화 분포의 모든 합 이므로 1이 되는 것을 확인할 수 있다.  
 <p>$$\therefore E(x) = n\frac{M}{N}$$</p>
 위의 최종적인 식에서 N은 전체 개수, M은 불량품의 갯수이다.  
 
@@ -90,18 +86,15 @@ $$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} 
 분산: <span>$$V(x) = \frac{N-n}{N-1}n\frac{M}{N}(1-\frac{M}{N})$$</span>  
 위의 식을 그대로 분산을 구하는 것은 많이 힘들기 때문에 편법을 사용하여 구한다.  
 <p>$$V(x) = E(X(X-1))+E(x)-(E(x))^2$$</p>
-<p>$$E(X(X-1)) = \sum_{x=0}^{n} x(x-1)\frac{{M \choose x} {N-M \choose n-x}}{{N \choose n}}$$</p>
-
-<p>$$= M(M-1) \sum_{x=2}^{n} \frac{{M-2 \choose x-2} {(N-2)-(M-2) \choose (n-2)-(x-2)}}{\frac{N}{n} \frac{N-1}{n-1}{N-2 \choose n-2}}$$</p>
-<p>$$= \frac{M(M-1)n(n-1)}{N(N-1)} \sum_{x=2}^{n} \frac{{M-2 \choose x-2} {(N-2)-(M-2) \choose (n-2)-(x-2)}}{{N-2 \choose n-2}}$$</p>
-평균에서와 똑같이 <span>$$\sum_{x=2}^{n} \frac{{M-2 \choose x-2} {(N-2)-(M-2) \choose (n-2)-(x-2)}}{{N-2 \choose n-2}}$$</span>의 값이 적용되는 것을 알 수 있다.  
+<p>$$E(X(X-1)) = \sum_{x=0}^{n} x(x-1)\frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
+<p>$$= M(M-1) \sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\frac{N}{n} \frac{N-1}{n-1}\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</p>
+<p>$$= \frac{M(M-1)n(n-1)}{N(N-1)} \sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</p>
+평균에서와 똑같이 <span>$$\sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</span>의 값이 적용되는 것을 알 수 있다.  
 <p>$$\therefore V(x) = \frac{M(M-1)n(n-1)}{N(N-1)} + n\frac{M}{N} - (n\frac{M}{N})^2$$</p>
 위의 식을 정리하면 다음과 같은 것을 알 수 있다.  
 <p>$$V(x) = \frac{N-n}{N-1}n\frac{M}{N}(1-\frac{M}{N})$$</p>
-
 **평균과 마찬가지로 불량품을 뽑을 확률을 p라고 생각하면 다음과 같이 식을 변경할 수 있다.**  
 <p>$$V(x) = \frac{N-n}{N-1}p(1-p) = \frac{N-n}{N-1}pq$$</p>
-
 ex) 1000개의 제품 중 13개가 풀량품이다. 1000개의 제품에서 임의로 20개를 뽑았을 때, 불량품이 3개가 포함될 확률을 구하시오.  
 - N(전체 개수): 1000
 - K(어떤 특성을 가진 제품의 수): 13
@@ -117,8 +110,7 @@ n, & n < k
 \end{cases}
 $$</p>
 위의 조건을 통하여 문제를 풀어보면 식은 다음과 같다.  
-<p>$$P(X=3)=\frac{{K \choose x} {N-K \choose n-x}}{{N \choose n}} = \frac{{13 \choose 3} {987 \choose 17}}{{1000 \choose 20}} \approx 0.00165$$</p>
-
+<p>$$P(X=3)=\frac{\begin{pmatrix} K  \\ x  \end{pmatrix} \begin{pmatrix} N-K  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}} = \frac{\begin{pmatrix} 13  \\ 3  \end{pmatrix} \begin{pmatrix} 987  \\ 17  \end{pmatrix}}{\begin{pmatrix} 1000  \\ 20  \end{pmatrix}} \approx 0.00165$$</p>
 **초기화 분포와 이항분포의 관계**  
 기본적으로 **이항분포는 복원추출, 초기화분포는 비복원 추출이다.**  
 이러한 이항분포와 초기화의 분포를 간단한 예를 통하여 확인하여 보자.  
@@ -141,7 +133,6 @@ ex) 예를 들어, 어떤 도시에 n명의 여자와 m명의 남자가 있습�
 
 여자의 수 X, 남자의 수 Y는 전염병에 걸릴 확률 p를 따르는 이항분포라고 가정하게 되면 두 확률 변수는 서로 독립이다.  
 <p>$$X ~ (n,p), Y ~ (m,p)$$</p>
-
 전염병에 걸린 사람 중에 여자일 확률을 구하게 되면 다음과 같다.  
 <p>$$P(X=x|X+Y=r) = \frac{P(X=x \cap Y=r-x)}{P(X+Y=r)}$$</p>
 X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.  
@@ -149,7 +140,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 각각의 확률은 이항분포를 따르므로 다음과 같이 정리될 수 있다.  
 <p>$$P(X=x|X+Y=r) = \frac{_{m}\mathrm{C}_{r-x}p^rq^{m-r+x}{}_{n}\mathrm{C}_{x}p^xq^{n-x}}{_{n+m}\mathrm{C}_{r}p^rq^{n+m-r}}$$</p>
 <p>$$=\frac{_{m}\mathrm{C}_{r-x}{}_{n}\mathrm{C}_{x}}{_{n+m}\mathrm{C}_{r}}$$</p>
-
 위의 식을 살펴보면 **초기화 분포가 되는 것을 확인할 수 있다.**  
 
 이와 반대로 초기화 분포에 극한 <span>$$(N \rightarrow \infty)$$</span>를 취하면 이항분포가 된다.  
@@ -170,7 +160,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 위의 식에서 <span>$$p=\frac{k}{N}$$</span>으로서 나타내고 <span>$$(N \rightarrow \infty)$$</span>으로서 값을 변경하면 다음과 같이 식을 나타낼 수 있다.<p>$$= {}_{n}\mathrm{C}_{x}*\frac{1}{1*1...1}*(p*...p)*((1-p)...(1-p))$$</p>
 최종적으로 이항분포로 표현하기 위하여 <span>$$1-p = q$$</span>로서 나타내게 되면 정리된 식은 다음과 같다.  
 <p>$${}_{n}\mathrm{C}_{x}p^x q^{n-x}$$</p>
-  
 
 
 따라서 둘의 관계를 표현하면 다음과 같이 나타낼 수 있다.  
@@ -187,7 +176,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 <p>$$= \lambda \sum_{x=1}^{\infty} \frac{e^{-\lambda t}(\lambda t)^{x-1}}{(x-1)!}$$</p>
 위의 식에서 <span>$$\sum_{x=1}^{\infty} \frac{e^{-\lambda t}(\lambda t)^{x-1}}{(x-1)!}$$</span>은 f(x-1)의 확률의 총합 이므로  
 <p>$$\therefore E(x) = \lambda$$</p>
-
 분산: <span>$$V(x) = \lambda$$</span>  
 <p>$$V(x) = E(x(x-1))+E(x)-(E(x))^2 = E(x(x-1))+ \lambda-\lambda^2$$</p>
 <p>$$E(x(x-1)) = \sum_{x=0}^{\infty} x(x-1)f(x) = \sum_{x=0}^{\infty} x(x-1)\frac{e^{-\lambda t}(\lambda t)^x}{x!}$$</p>
@@ -195,7 +183,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 위의 식에서 <span>$$\sum_{x=2}^{\infty} \frac{e^{-\lambda t}(\lambda t)^{x-2}}{(x-2)!}$$</span>은 f(x-2)의 확률의 총합 이므로  
 <p>$$\therefore E(x(x-1)) = \lambda^2$$</p>
 <p>$$\therefore V(x) = \lambda^2 + \lambda -\lambda^2 = \lambda$$</p>
-
 **포아송 프로세스**  
 포아송 프로세스란 어떤 사건의 발생횟수가 포아송 분포를 따르는 확률과정이다.  
 즉, 포아송 분포를 따르기 위하여 필요한 조건이라고 생각할 수 있다.  
@@ -242,7 +229,6 @@ X,Y가 서로 독립이므로(포아송 프로세스 1번째 독립성) 다음�
 <p>$$(1-\frac{x+1}{n}) \rightarrow 1$$</p>
 <p>$$((1-\frac{\lambda}{n})^{-x} \rightarrow 1$$</p>
 <p>$$P(X=x) = {}_{n}\mathrm{C}_{x} p^x (1-p)^{n-x}$$</p>
-
 따라서 둘의 관계를 표현하면 다음과 같이 나타낼 수 있다.  
 <img src="https://mblogthumb-phinf.pstatic.net/MjAxNjEwMjBfMTI0/MDAxNDc2OTA1MTEzMjY2.ZdUCNP0gw9X5nhm2dDapcF6EKfArTlysvixz2xn1j4Qg.ICh2sHOBQ8gQkpnBT2KJYHZJc7ZLC13ppxDCQsjzwP0g.JPEG.mykepzzang/%ED%94%84%EB%A0%88%EC%A0%A0%ED%85%8C%EC%9D%B4%EC%85%981.jpg?type=w2"/><br>
 사진 출처: <a href="https://m.blog.naver.com/mykepzzang/220840724901">mykepzzang 블로그</a><br>
