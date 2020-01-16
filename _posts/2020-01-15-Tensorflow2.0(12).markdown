@@ -9,14 +9,14 @@ categories: [Tnesorflow2.0]
 Code 참조: <a href="https://www.tensorflow.org/tutorials/generative/adversarial_fgsm?hl=ko">Adversarial example using FGSM</a><br>
 논문 참조: <a href="https://arxiv.org/pdf/1412.6572.pdf">EXPLAINING AND HARNESSING ADVERSARIAL EXAMPLES</a><br>
 
-해당 Post의 제목에서도 알 수 있듯이 Adversarial Examples에 대하여 활용하는지에 대해서 설명하는 Paper와 Code이다. 이를 위해서 먼저 Adversial Example이란 무엇인지 사전지식으로 알 고 있어야 한다.  
+해당 Post의 제목에서도 알 수 있듯이 Adversarial Examples에 대하여 활용하는지에 대해서 설명하는 Paper와 Code이다. 이를 위해서 먼저 Adversarial Example이란 무엇인지 사전지식으로 알 고 있어야 한다.  
 
-#### (1) Adversial Example
-Adversial Example에 대해서 먼저 사진으로 살펴보면 다음과 같다.  
+#### (1) Adversarial Example
+Adversarial Example에 대해서 먼저 사진으로 살펴보면 다음과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/45.png" height="100%" width="100%" /></div><br>
 기본적으로 Training된 Model은 57.7%의 Panda라고 Classify를 하나 8.2%의 nematode라고 판단되는 Noise를 합침으로 인하여 gibbon이라고 99.3% 판단하게 된다.  
 
-즉, **Adversial Example은 Original Image + Pertubation(매우 작은 Noise) -> Model의 오분류**를 일으키는 Example이다.  
+즉, **Adversarial Example은 Original Image + Pertubation(매우 작은 Noise) -> Model의 오분류**를 일으키는 Example이다.  
 
 
 #### (2) INTRODUCTION
@@ -29,26 +29,26 @@ This view enables us to design a fast method of generating adversarial examples 
 >
 
 해당 논문의 Introduction에서 개인적으로 가장 중요하다고 생각하는 문제이다.  
-**현재 많은 Model에서는 Adversial Example에 대한 대책이 존재하지 않다.**  
+**현재 많은 Model에서는 Adversarial Example에 대한 대책이 존재하지 않다.**  
 많은 이들은 이러한 문제의 원인을 크게 2가지로 설명하고 있다.
 1. extreme nonlinearity of deep neural networks: DNN의 극심한 비선형성 때문이다.
 2. combined with insufficient model averaging and insufficient regularization of the purely supervised learning problem: 불충분한 Model의 정규화 때문이다.
 
-하지만 해당논문에서는 1이 문제가 아니라는 것을 Linear한 Model의 고차원에서 같은 문제가 발생하는 것을 보여줌으로써 Adversial Example은 2번에 Focus를 맞추고 해결하며 된다고 주장하고 있다.  
-2번의 정규화의 문제는 이전까지는 Dropout으로서 해결하려 하였으나, 현재 논문에서는 이것보다 좋은 방법을 제시하여 Adversial Example을 해결하는 것을 목표로 하고 있다.
+하지만 해당논문에서는 1이 문제가 아니라는 것을 Linear한 Model의 고차원에서 같은 문제가 발생하는 것을 보여줌으로써 Adversarial Example은 2번에 Focus를 맞추고 해결하며 된다고 주장하고 있다.  
+2번의 정규화의 문제는 이전까지는 Dropout으로서 해결하려 하였으나, 현재 논문에서는 이것보다 좋은 방법을 제시하여 Adversarial Example을 해결하는 것을 목표로 하고 있다.
 
 #### (3) THE LINEAR EXPLANATION OF ADVERSARIAL EXAMPLES
-해당 논문은 위에서 Adversial Example의 문제가 DNN의 비선형성이 아니라는 것을 고차원의 선형성에서도 이러한 문제가 발생함으로써 보인다고 하였다.  
+해당 논문은 위에서 Adversarial Example의 문제가 DNN의 비선형성이 아니라는 것을 고차원의 선형성에서도 이러한 문제가 발생함으로써 보인다고 하였다.  
 이러한 문제는 간단하게 나타낼 수 있다.  
-먼저 Adversial Example은 Original Image + Pertubation라고 표현하였고 각각을 다음과 같이 나타내어 보자.
-- Adversial Example: <span>$$\bar{x}$$</span>
+먼저 Adversarial Example은 Original Image + Pertubation라고 표현하였고 각각을 다음과 같이 나타내어 보자.
+- Adversarial Example: <span>$$\bar{x}$$</span>
 - Original Image: <span>$$x$$</span>
 - Pertubation: <span>$$\eta$$</span>
 
 <p>$$\bar{x} = x + \eta$$</p>
 위와 같은 식을 Linear한 Model에 넣게 되면 다음과 같이 변형된다.  
 <p>$$w^{T}\bar{x} = w^{T}x + w^{T}\eta$$</p>
-**Adversial Example은 위의 식에서 Pertubation에 해당하는 <span>$$w^{T}\eta$$</span>의 값이 매우 커져서 Model이 잘못된 Prediction을 한다고 생각할 수 있다.**  
+**Adversarial Example은 위의 식에서 Pertubation에 해당하는 <span>$$w^{T}\eta$$</span>의 값이 매우 커져서 Model이 잘못된 Prediction을 한다고 생각할 수 있다.**  
 따라서 <span>$$w^{T}\eta$$</span>이 최대로 만들기 위하여 max norm constraint를 적용한다(Linear한 Model은 High Dimension이라는 가정이 있기 때문에 L1 norm, L2 norm이 아닌 max norm constraint를 적용한다).  
 <p>$$||x||_{\infty} = max_{1 \le i \le n}|x_i|$$</p>
 위의 식에 적용한다면 <span>$$\eta = \epsilon sign(w)$$</span>일 때 <span>$$w^{T}\eta$$</span>의 값은 매우 커질 것 이다.  
@@ -58,7 +58,7 @@ This view enables us to design a fast method of generating adversarial examples 
 <p>$$w^{T}\eta = \epsilon m n\text{(n은 w의 Dimension)}$$</p>
 위의 식에서 <span>$$\epsilon$$</span>이 매우 작은수라고 하여도 High Dimension의 경우 n값이 커짐으로 인하여 <span>$$w^{T}\eta$$</span>의 값은 매우 커질 것이다.  
 
-**최종적으로 정리하게 되면, Noise의 값이 작은 값이여도 High Dimension Linear Model에서는 Adversial Example이 발생할 수 있다.**  
+**최종적으로 정리하게 되면, Noise의 값이 작은 값이여도 High Dimension Linear Model에서는 Adversarial Example이 발생할 수 있다.**  
 
 **참고사항 (Nrom의 종류)**  
 <p>$$\text{(In all definitions below, )} x = (x_1, x_2, ..., x_n))$$</p>
@@ -68,8 +68,8 @@ This view enables us to design a fast method of generating adversarial examples 
 4. (Less common) Lp norm: <span>$$||x||_p = (\sum_{i=1}^{n}|x_i|^p)^{\frac{1}{p}}$$</span>
 
 #### (4) LINEAR PERTURBATION OF NON-LINEAR MODELS
-예측하기 힘든 문제 혹은 Linear한 상태로는 해결할 수 없는 문제(ex) XOR 문제)를 해결하기 위하여 우리는 **비선형인 Activation Function을 사용하여 DNN Model을 사용하였다. 하지만, 해당논문에서는 이러한 DNN의 Model은 Linear한 특성이 많다고 얘기하고 있고, 이러한 결과로 인하여 Adversial Examples에 취약하다고 이야기 한다.  
-또한 논문에서는 이러한 DNN이 Linear한 특성을 가지고 있다는 것을 Linear Adversial Example을 만들어서 보여주었으며 이러한 Linear Adversial Example을 생성하는 방법이 이번 post의 제목과도 같은 FGSM(Fast Gradient Sign Method)이다.**  
+예측하기 힘든 문제 혹은 Linear한 상태로는 해결할 수 없는 문제(ex) XOR 문제)를 해결하기 위하여 우리는 **비선형인 Activation Function을 사용하여 DNN Model을 사용하였다. 하지만, 해당논문에서는 이러한 DNN의 Model은 Linear한 특성이 많다고 얘기하고 있고, 이러한 결과로 인하여 Adversarial Examples에 취약하다고 이야기 한다.  
+또한 논문에서는 이러한 DNN이 Linear한 특성을 가지고 있다는 것을 Linear Adversarial Example을 만들어서 보여주었으며 이러한 Linear Adversarial Example을 생성하는 방법이 이번 post의 제목과도 같은 FGSM(Fast Gradient Sign Method)이다.**  
 FGSM의 식은 다음과 같다.  
 - <span>$$x$$</span>: input
 - <span>$$y$$</span>: target
@@ -78,7 +78,7 @@ FGSM의 식은 다음과 같다.
 - <span>$$\epsilon$$</span>: Noise의 크기(사용자가 지정, 매우 작은 값)
 
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y))$$</p>
-위와 같은 식으로서 FGSM을 생성하고 <span>$$\bar{x} = x + \eta$$</span>로서 Adversial Example이 생성된다고 얘기하고 있다.  
+위와 같은 식으로서 FGSM을 생성하고 <span>$$\bar{x} = x + \eta$$</span>로서 Adversarial Example이 생성된다고 얘기하고 있다.  
 
 
 
@@ -117,8 +117,8 @@ Activation Sigmoid Function을 통하여 Cross Entropy의 식은 아래와 같�
 <p>$$\therefore log(1+e^{-y(w^{T}x+b)})$$</p>
 <br>
 
-이제 위에서 구한 식으로 인하여 Adversial Example을 만드는 과정을 유도하도록 하자.  
-위에서 Adversial Example을 다음과 같이 정의하였다.  
+이제 위에서 구한 식으로 인하여 Adversarial Example을 만드는 과정을 유도하도록 하자.  
+위에서 Adversarial Example을 다음과 같이 정의하였다.  
 <p>$$\bar{x} = x + \eta$$</p>
 <p>$$\eta = \epsilon sign(\triangledown_x J(\theta,x,y))$$</p>
 위의 두 식을 활용하기 위하면 다음과 같은 식이 유도될 수 있다.  
@@ -158,23 +158,23 @@ We can thus view L1 weight decay as being more “worst case” than adversarial
 위의 최종적인 식은 <span>$$\mathbb{E}_{x,y \text{~} p_{data}} \zeta(y(\epsilon||w||_1 -w^{T}x - b))$$</span>은 L1 Regularization과 식이 매우 유사하게 되어있다.  
 하지만 L1 Regularization의 식으로서 나타내면 다음과 같은 차이를 보이고 있다.    
 - L1 Resularization: <span>$$Cost = \frac{1}{n}\sum_{i=1}^{n}{L(y_i,\bar{y(x)})+\frac{\lambda}{2}|w|}$$</span>
-- Adversial Example: <span>$$Cost = \frac{1}{n}\sum_{i=1}^{n}{L(y_i,\bar{y(x+|w|))}}$$</span>
+- Adversarial Example: <span>$$Cost = \frac{1}{n}\sum_{i=1}^{n}{L(y_i,\bar{y(x+|w|))}}$$</span>
 
 위의 식이 정확하지는 않으나 이해되게 쉽게 적었다.  
 위의 식에서 <span>$$\lambda$$</span>는 매우 작은값으로서 Training과정에서 L1 Regularization의 값은 점점 0이되면서 Training이 진행되는 것을 알 수 있다.  
-**하지만 Adversial Example에서는 LossFunction + <span>$$\lambda$$</span>가아닌 LossFunction의 Input에 추가적으로 <span>$$\lambda$$</span>가 들어감으로 인하여 추가적인 Bias값이 생기고 그로 인하여 High Bias -> 즉, Underfitting의 위험이 매우 크다는 것을 알 수 있다.**
+**하지만 Adversarial Example에서는 LossFunction + <span>$$\lambda$$</span>가아닌 LossFunction의 Input에 추가적으로 <span>$$\lambda$$</span>가 들어감으로 인하여 추가적인 Bias값이 생기고 그로 인하여 High Bias -> 즉, Underfitting의 위험이 매우 크다는 것을 알 수 있다.**
 
 #### (6) ADVERSARIAL TRAINING OF DEEP NETWORKS
-(5) ADVERSARIAL TRAINING OF LINEAR MODELS VERSUS WEIGHT DECAY에서는 간단하게 **Linear한 Model인 경우에서 Adversial Training을 어떻게 진행하는지 살펴보았다.**  
-이번 Chapter는 실제 DeepLearning Network에서 어떻게 Adversial Training을 진행하는지 알아보자.  
-논문에서는 DNN의 Adversial Training에 관해서 다음과 같이 설명하고 있다.  
-DNN은 일반적인 Linear한 Model에 비하여 Layer가 많기 때문에 비선형적일 확률이 높음으로 인하여 Adversial Training에 저항할 확률이 높다.  
+(5) ADVERSARIAL TRAINING OF LINEAR MODELS VERSUS WEIGHT DECAY에서는 간단하게 **Linear한 Model인 경우에서 Adversarial Training을 어떻게 진행하는지 살펴보았다.**  
+이번 Chapter는 실제 DeepLearning Network에서 어떻게 Adversarial Training을 진행하는지 알아보자.  
+논문에서는 DNN의 Adversarial Training에 관해서 다음과 같이 설명하고 있다.  
+DNN은 일반적인 Linear한 Model에 비하여 Layer가 많기 때문에 비선형적일 확률이 높음으로 인하여 Adversarial Training에 저항할 확률이 높다.  
 >Szegedy et al. (2014b) showed that by training on a mixture of adversarial and clean examples, a
 neural network could be regularized somewhat. Training on adversarial examples is somewhat different from other data augmentation schemes; usually, one augments the data with transformations
 such as translations that are expected to actually occur in the test set.
 
 위의 인용문을 살펴보게 되면 Clean Image + Noise가 섞인 Image로 인하여 좀더 Regularization에서 강점을 보인다고 한다.  
-이러한 방식은 L-BFGS기법을 사용하나 Resource가 너무 많이 들기 때문에 해당 논문에서는 다음과 같이 **FGSM에 근거한 정규화에 효율적인 Adversial Object Function**을 제공한다.  
+이러한 방식은 L-BFGS기법을 사용하나 Resource가 너무 많이 들기 때문에 해당 논문에서는 다음과 같이 **FGSM에 근거한 정규화에 효율적인 Adversarial Object Function**을 제공한다.  
 <p>$$\bar{J}(\theta,x,y) = \alpha J(\theta,x,y)+ (1-\alpha)J(\theta,x+\epsilon sign(\triangledown_x J(\theta,x,y)))$$</p>
 <span>$$\alpha$$</span>값은 사용자가 지정하는 값이나 해당논문에서는 0.5로 두고 실험하였다고 한다.  
 이러한 결과는 89.4%의 Error Rate에서 17.9%의 Error Rate로서 줄어드는 효과를 발생하게 하였다.  
@@ -182,7 +182,7 @@ such as translations that are expected to actually occur in the test set.
 <br><br>
 
 ### Adversarial example using FGSM
-Tensorflow 2.0에서 제공하는 <a href="https://www.tensorflow.org/tutorials/generative/adversarial_fgsm?hl=ko">Adversarial example using FGSM</a>을 통하여 실제 Adversial Example을 생성하고 논문처럼 Model이 잘못 Classify하는지 살펴보자.  
+Tensorflow 2.0에서 제공하는 <a href="https://www.tensorflow.org/tutorials/generative/adversarial_fgsm?hl=ko">Adversarial example using FGSM</a>을 통하여 실제 Adversarial Example을 생성하고 논문처럼 Model이 잘못 Classify하는지 살펴보자.  
 
 <br>
 
@@ -256,12 +256,12 @@ plt.show()
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/47.png" height="250" width="250" /></div><br>
 <br><br>
 
-#### Prediction of Adversial Example
-Adversial Example을 생성하고 Model에서는 어떻게 Prediction하는지 살펴본다.  
+#### Prediction of Adversarial Example
+Adversarial Example을 생성하고 Model에서는 어떻게 Prediction하는지 살펴본다.  
 위의 논문에서 설명한 FGSM의 식은 다음과 같다.  
 - <span>$$x$$</span>: input
 - <span>$$y$$</span>: target
-- <span>$$\bar{x}$$</span>: adversial example
+- <span>$$\bar{x}$$</span>: Adversarial example
 - <span>$$\theta$$</span>: hyper parameter
 - <span>$$J(\theta,x,y)$$</span>: cost function
 - <span>$$\epsilon$$</span>: Noise의 크기(사용자가 지정, 매우 작은 값)
@@ -270,7 +270,7 @@ Adversial Example을 생성하고 Model에서는 어떻게 Prediction하는지 �
 <p>$$\bar{x} = x + \eta$$</p>
 아래 Code에서 어떻게 Mapping하는지 살펴보면 다음과 같다.  
 
-**create_adversial_pattern()**  
+**create_Adversarial_pattern()**  
 위의 Function은 <span>$$sign(\triangledown_x J(\theta,x,y))$$</span>을 Return한다.  
 위에서 설명한 식과 Mapping하면 다음과 같다.  
 - <span>$$x$$</span>: <code>input_image</code>
@@ -325,9 +325,9 @@ epsilons = [0, 0.01, 0.1, 0.15]
 descriptions = [('Epsilon = {:0.3f}'.format(eps) if eps else 'Input')
                 for eps in epsilons]
 
-# 최종적인 Adversial Example을 생성하고 결과를 확인한다.
+# 최종적인 Adversarial Example을 생성하고 결과를 확인한다.
 for i, eps in enumerate(epsilons):
-    # 𝑥 = x+ 𝜖𝑠𝑖𝑔𝑛(▿𝑥𝐽(𝜃,𝑥,𝑦)) 로서 Adversial Example을 생성한다.
+    # 𝑥 = x+ 𝜖𝑠𝑖𝑔𝑛(▿𝑥𝐽(𝜃,𝑥,𝑦)) 로서 Adversarial Example을 생성한다.
     adv_x = image + eps*perturbations
     adv_x = tf.clip_by_value(adv_x, 0, 1)
     display_images(adv_x, descriptions[i])
@@ -336,7 +336,6 @@ for i, eps in enumerate(epsilons):
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/48.png" height="250" width="250" /></div><br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/49.png" height="250" width="250" /></div><br>
-
 
 <hr>
 참조: <a href="https://github.com/wjddyd66/Tensorflow2.0/blob/master/FGSM.ipynb">원본코드</a><br>
