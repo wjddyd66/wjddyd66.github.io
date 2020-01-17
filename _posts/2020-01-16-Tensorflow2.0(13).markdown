@@ -296,16 +296,10 @@ title = ['Horse', 'To Zebra', 'Zebra', 'To Horse']
 for i in range(len(imgs)):
     plt.subplot(2, 2, i+1)
     plt.title(title[i])
-    if i % 2 == 0:
-        # sample_horse, sample_zebra는 [-1,1]로 Normalization되었기 때문에
-        # [0,1]로서 값을 바꾸는 과정이다.
-        plt.imshow(imgs[i][0] * 0.5 + 0.5)
-    else:
-        
-        
-        # 나중에 Model결과 확인후 확인해보기 개인적으로는 tanh를 마지막
-        # Activation으로 하였으므로 위와 같이 Normalization해도 될 것 같음
-        plt.imshow(imgs[i][0] * 0.5 * contrast + 0.5)
+    # sample_horse, sample_zebra는 [-1,1]로 Normalization되었기 때문에
+    # [0,1]로서 값을 바꾸는 과정이다.
+    plt.imshow(imgs[i][0] * 0.5 + 0.5)
+    
 plt.show()
 ```
 <br>
