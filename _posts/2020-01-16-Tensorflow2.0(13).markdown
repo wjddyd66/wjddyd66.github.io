@@ -5,7 +5,6 @@ date:   2020-01-20 10:00:20 +0700
 categories: [Tnesorflow2.0]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 ### Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks
 Code 참조: <a href="https://www.tensorflow.org/tutorials/generative/cyclegan?hl=ko">CycleGAN</a><br>
 논문 참조: <a href="https://arxiv.org/pdf/1703.10593.pdf">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a><br>
@@ -13,7 +12,6 @@ Code 참조: <a href="https://www.tensorflow.org/tutorials/generative/cyclegan?h
 #### (1) Introduction
 대부분의 Generate Paper와 마찬가지로 처음의 사진으로서 해당 Paper의 목적을 강력하게 나타내고 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/50.png" height="100%" width="100%" /></div><br>
-
 위의 사진에서도 알 수 있듯이 **CycleGAN의 최종적인 목적은 서로 다른 도메인으로 변환을 하기 위해서 사용되는 것 이다. 즉, Image to Image Translation의 한 종류이다.**  
 
 이러한 CycleGAN의 Abstract에서 해당 논문은 다음과 같이 설명하고 있다.  
@@ -27,7 +25,6 @@ Because this mapping is highly under-constrained, we couple it with an inverse m
 1) Image-to-Image Translation에서는 Paired-Image Set으로서 Training을 많이 진행한다.(ex) <a href="https://wjddyd66.github.io/tnesorflow2.0/Tensorflow2.0(1)/">Pix2Pix</a>)  
 하지만 이러한 Paired-Dataset을 만드는 것은 현식적으로 많이 어렵기 때문에 **Unpaired Dataset으로서 Model을 구축하는 방법에 대해서 얘기한다.** Unpaired Dataset의 예시는 아래와 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/51.png" height="100%" width="100%" /></div><br>
-
 2) Model을 구축하기 위한 방법으로서 **cycle consistency loss**을 사용하여 Model의 성능을 향상시킨다.  
 X,Y를 예로들어서 GAN을 생각하면 다음과 같다.(G: Generator, D: Discriminator)  
 - <span>$$G(X) \rightarrow 1$$</span>
@@ -48,19 +45,15 @@ However, such a translation does not guarantee that an individual input x and ou
 **단순히 X를 Y Domain으로 이동시키는 것이 아니라 X -> Y -> X로서 Reconstruction을 한 뒤, Loss를 구하여 계산하겠다는 의미이다.**  
 해당논문에서는 이러한 방법을 Cycle consistency loss라고 칭하였고 그림으로는 다음과 같이 나타내었다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/52.png" height="100%" width="100%" /></div><br>
-
-
 #### (2) Formulation
 기본적으로 CycleGAN도 GAN이기 때문에 <a href="https://wjddyd66.github.io/pytorch/Pytorch-GAN/">GAN</a>에서 사용한 Loss Function을 살펴보면 다음과 같다.  
 <p>$$L_{GAN}(G,D_{Y},X,Y) = \mathbb{E}_{y\text{~}p_{data}(y)}[log D_{Y}(y)]+\mathbb{E}_{x\text{~}p_{data}(x)}[1-log D_{Y}(G(x))]$$</p>
-
 위와 같이 서로 상반되는 Loss값을 더해주는 형식을 **Adversial Loss**라고 부르게 된다.  
 위의 GAN은 이러한 Adversial Loss형식을 취하게 된다.  
 <br>
 
 **논문에서 설명하고 있는 CycleGAN을 위한 Cycle Consistency Loss부분만 살펴보면 다음과 같다.**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/53.png" height="100%" width="100%" /></div><br>
-
 위의 식을 위하여 앞으로 사용할 Parameter들을 다음과 같이 정의하고 같다.  
 - <span>$$\left\{ x_i \right\}_{i=1}^{N} \in X$$</span>: Training Data
 - <span>$$\left\{ y_j \right\}_{j=1}^{M} \in Y$$</span>: Target Data
@@ -75,20 +68,16 @@ However, such a translation does not guarantee that an individual input x and ou
 
 위와 같은 식일경우 **Cycle Consistency Loss**는 다음과 같이 정의된다.  
 <p>$$L_{cyc}(G,F) = \mathbb{E}_{x\text{~}p_{data}(x)}[||F(G(x))-x||_{1}]+\mathbb{E}_{y\text{~}p_{data}(y)}[||G(F(y))-y||_{1}]$$</p>
-
-
 **즉, 단순한 Mapping으로 인하여 Label Domain처럼 보이게 만들면 되기 때문에 변하기 쉬운 Label만 만들게 되는 것이 아닌 Reconstuction을 통하여 실제 Training, Target Data와의 L1 Loss로 인하여 좀 더 Target Data와 비슷한 Image가 생성된다고 예상할 수 있다.**  
 
 최종적인 Loss Object는 다음과 같이 정의된다.  
 <p>$$L(G,F,D_{X},D_{Y}) = L_{GAN}(G,D_{Y},X,Y) + L_{GAN}(F,D_{X},Y,X) + \lambda L_{cyc}(G,F)$$</p>
 <p>$$G^{*},F^{*} =arg min_{G,F} max_{G_{X},D_{Y}} L(G,F,D_{X},D_{Y})$$</p>
-
 #### (3) CycleGan vs Pix2Pix
 <a href="https://wjddyd66.github.io/tnesorflow2.0/Tensorflow2.0(1)/">Pix2Pix</a>에서 Pix2Pix의 LossFunction을 살펴보면 다음과 같이 설명하였다.  
 
 <p>$$L_{L1}(G) = \mathbb{E}_{x,y,z}[||y-G(x,z)||_1]$$</p>
 <p>$$G^{*} = \text{arg } \underset{G}{min} \underset{D}{max} L_{cGAN}(G,D) + \lambda L_{L1}(G)$$</p>
-
 **CNN L1 Loss Function(MSE) Model결과는 BlurFilter를 적용시킨 같은 결과로서 Image의 Low-Frequency를 학습하게 된다.**  
 **CGAN Model결과는 Figh Frequency를 학습하게 된다.**  
 따라서 Image의 Low Frequency와 High Frequency를 전부 학습하여 좀 더 Sharp하면서 Realistic한 Image의 결과를 얻을 수 있다.  
@@ -265,7 +254,7 @@ plt.axis('off')
 plt.imshow(random_jitter(sample_zebra[0]) * 0.5 + 0.5)
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/54.png" height="250" width="250" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/54.png" height="500" width="500" /></div><br>
 <br><br>
 
 #### Import and reuse the Pix2Pix models
@@ -320,7 +309,7 @@ for i in range(len(imgs)):
 plt.show()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/55.png" height="250" width="250" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/55.png" height="500" width="500" /></div><br>
 단순한 Discriminator를 Visualization한 것이다.  
 Discriminator의 최종적인 Size는 (Batch, 30, 30, 1)이므로 30 * 30으로서 결과를 Visualization되었다는 정도만 알아도 된다.
 ```python
@@ -337,7 +326,7 @@ plt.imshow(discriminator_x(sample_horse)[0, ..., -1], cmap='RdBu_r')
 plt.show()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/56.png" height="250" width="250" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/56.png" height="500" width="500" /></div><br>
 <br><br>
 
 #### Loss functions
@@ -346,33 +335,26 @@ plt.show()
 먼저 GAN, CGAN, Pix2Pix, CycleGAN의 LossFunction을 살펴보면 다음과 같다.  
 **GAN**  
 <p>$$L_{GAN}(G,D_{Y},X,Y) = \mathbb{E}_{y\text{~}p_{data}(y)}[log D_{Y}(y)]+\mathbb{E}_{x\text{~}p_{data}(x)}[1-log D_{Y}(G(x))]$$</p>
-
 **CGAN**  
 <p>$$L_{CGAN}(G,D_{Y},X,Y) = \mathbb{E}_{y\text{~}p_{data}(y)}[log D_{Y}(y,z)]+\mathbb{E}_{x\text{~}p_{data}(x)}[1-log D_{Y}(G(x,z),z)]$$</p>
-
 **Pix2Pix**  
 <p>$$L_{L1}(G) = \mathbb{E}_{x,y,z}[||y-G(x,z)||_1]$$</p>
 <p>$$G^{*} = \text{arg } \underset{G}{min} \underset{D}{max} L_{cGAN}(G,D) + \lambda L_{L1}(G)$$</p>
-
 **CycleGAN**  
 <p>$$L_{cyc}(G,F) = \mathbb{E}_{x\text{~}p_{data}(x)}[||F(G(x))-x||_{1}]+\mathbb{E}_{y\text{~}p_{data}(y)}[||G(F(y))-y||_{1}]$$</p>
 <p>$$L(G,F,D_{X},D_{Y}) = L_{GAN}(G,D_{Y},X,Y) + L_{GAN}(F,D_{X},Y,X) + \lambda L_{cyc}(G,F)$$</p>
 <p>$$G^{*},F^{*} =arg \underset{G,F}{min} \underset{G_{X},D_{Y}}{max} L(G,F,D_{X},D_{Y})$$</p>
-
 즉, 기본적인 CycleGAN을 사용하되, Pix2Pix의 <span>$$L_{L1}(G)$$</span>또한 생각해야 한다는 것 이다.  
 
 따라서 최종적인 Loss Object는 다음과 같이 구성된다.  
 <p>$$L(G,F,D_{X},D_{Y}) = L_{GAN}(G,D_{Y},X,Y) + L_{GAN}(F,D_{X},Y,X) +$$</p> 
 <p>$$\lambda_{1} L_{cyc}(G,F) + \lambda_{2}L_{L1}(G)+ \lambda_{2}L_{L1}(F)$$</p>
 <p>$$G^{*},F^{*} =arg \underset{G,F}{min} \underset{G_{X},D_{Y}}{max} L(G,F,D_{X},D_{Y})+ \lambda_{2}L_{L1}(G)+ \lambda_{2}L_{L1}(F)$$</p>
-
-
 위의 식에서 <span>$$G^{*}$$</span>와 <span>$$F^{*}$$</span>는 구성이 똑같으므로 <span>$$G^{*}$$</span>에대해서만 알아보자면 다음과 같다.  
 
 **<span>$$G^{*}$$</span> Loss Function**  
 <p>$$G^{*} = arg \underset{G}{min} \underset{D_{Y}}{max} L(G,F,D_{X},D_{Y})+ \lambda_{2}L_{L1}(G)+ \lambda_{2}L_{L1}(F)$$</p>
 <p>$$= arg \underset{G}{min} \underset{D_{Y}}{max} L_{GAN}(G,D_{Y},X,Y)+ \lambda_{1}L_{cyc}(G)+ \lambda_{2}L_{L1}(G)$$</p>
-
 **Generator**  
 위의 식에서 Generator의 관련된 식을 정리하면 다음과 같다.  
 <p>$$Loss_{G^{*} \text{  } Generator} = \underset{G}{max} \mathbb{E}_{x\text{~}p_{data}(x)}[log D_{Y}(G(x))] + \lambda_{1}L_{cyc}(G)+ \lambda_{2}L_{L1}(G)$$</p>
@@ -381,7 +363,6 @@ plt.show()
 **Discriminator**  
 Discriminator의 관련된 식을 정리하면 다음과 같다.  
 <p>$$Loss_{G^{*} \text{  } Discriminator} = \underset{D_{Y}}{max} \mathbb{E}_{y\text{~}p_{data}(y)}[log D_{Y}(y)]+\mathbb{E}_{x\text{~}p_{data}(x)}[1-log D_{Y}(G(x))]$$</p>
-
 아래 Code에서 각각의 Loss Function은 다음과 같습니다.  
 
 **discriminator_loss(real, generated)**
@@ -611,7 +592,7 @@ for epoch in range(EPOCHS):
                                                       time.time()-start))
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/57.png" height="250" width="250" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/57.png" height="500" width="500" /></div><br>
 <br><br>
 #### Check TestSet
 실제 Training을 마친 Generator(<span>$$G(X -> Y)$$</span>)로서 Testset의 결과를 확인한다.
@@ -622,9 +603,8 @@ for inp in test_horses.take(5):
 ```
 <br>
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/58.png" height="250" width="250" /></div><br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/59.png" height="250" width="250" /></div><br>
-
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/58.png" height="500" width="500" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/59.png" height="500" width="500" /></div><br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/Tensorflow2.0/blob/master/CycleGAN.ipynb">원본코드</a><br>
 참조: <a href="https://www.tensorflow.org/tutorials/generative/cyclegan?hl=ko">Tensorflow2.0 CycleGAN</a><br>
