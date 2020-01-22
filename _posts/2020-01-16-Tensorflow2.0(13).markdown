@@ -597,7 +597,7 @@ for inp in test_horses.take(5):
 ```
 <br>
 
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/58.png" height="500" width="500" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/58.png" height="500" width="500" /></div>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/59.png" height="500" width="500" /></div><br>
 **위의 Testset결과를 확인하여 보면 Training시킨 갈색말을 중점적으로 Zebra 형태로 바뀌는 것을 볼 수 있으나, Pix2Pix만큼 Sharp하면서 뚜렷한 결과를 얻지는 못하였다.**  
 
