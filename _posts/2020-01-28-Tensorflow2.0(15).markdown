@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "SSD(Only Concept)"
+title:  "SSD(Concept)"
 date:   2020-01-22 10:00:20 +0700
 categories: [Tnesorflow2.0]
 ---
@@ -100,7 +100,7 @@ Aspect Ratio이란 **Bounding Box가 가질만한 크기를 몇 가지만 추려
 사진 출처: <a href="https://mc.ai/ssd-object-detection-single-shot-multibox-detector-for-real-time-processing/">mc.ai</a><br>
 <br>
 위의 과정으로 인하여 Output Tensor의 크기를 확인하면 다음과 같다.  
-<p>$$(38x38x512) \longrightarrow^{4x3x3x512x(20+4)}_{} (38x38x4x(20+4))  \text{,  Num of Categories=20}$$</p>
+<p>$$(38*38*512) \longrightarrow^{4*3*3*512*(20+4)}_{} (38*38*4*(20+4))  \text{,  Num of Categories=20}$$</p>
 
 솔직히 개인적으로는 위의 사진과, 설명만으로는 어떻게 Default Box를 생성하는지 이해가 되지 않았다.  
 나중에 Python Code로서 직접 Default Box를 생성하는 과정이 따로 있다.  
@@ -151,8 +151,8 @@ Matching Strategy는 첫번째인 Location of Box를 판단하는 과정이다.
 <div><img src="https://cdn-images-1.medium.com/max/1024/1*mvF9g_zH2DaQK2KgutndFg.jpeg" height="100%" width="100%" /></div><br>
 사진 출처: <a href="https://mc.ai/ssd-object-detection-single-shot-multibox-detector-for-real-time-processing/">mc.ai</a><br>
 <br>
-<p>$$(38x38x512) \longrightarrow^{4x3x3x512x(20+4)}_{} (38x38x4x(20+4))  \text{,  Num of Categories=20}$$</p>
-<p>$$\therefore l = 38x38xNx(c_i+(cx,cy,w,h))\text{  ,  }i = 20(Class(19) + Background(1))$$</p>
+<p>$$(38*38*512) \longrightarrow^{4*3*3*512*(20+4)}_{} (38*38*4*(20+4))  \text{,  Num of Categories=20}$$</p>
+<p>$$\therefore l = 38*38*N*(c_i+(cx,cy,w,h))\text{  ,  }i = 20(Class(19) + Background(1))$$</p>
 
 **Training objective**  
 위에서도 언급하였듯이 Loss Function을 구하기 위해서는 Location of Box와 Class of Box의 두개의 LossFunction이 필요하다.  
