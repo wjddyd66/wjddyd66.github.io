@@ -2,7 +2,7 @@
 layout: post
 title:  "ApacheArrow"
 date:   2019-08-22 10:00:00 +0700
-categories: [others]
+categories: [Others]
 ---
 
 ### ApacheArrow

@@ -2,7 +2,7 @@
 layout: post
 title:  "ROS(1)"
 date:   2019-11-27 09:00:20 +0700
-categories: [others]
+categories: [Others]
 ---
 
 **LiDAR Institute 세미나에 대한 내용을 정리한 것 입니다.**  
@@ -88,7 +88,6 @@ catkin_create_pkg creating_ros_pkg_cpp roscpp
 
 #### 실습 4 Dyamic Object Detection
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/2.png" height="250" width="600" /></div><br><br>
-
 #### LiDAR Point cloud
 (1) 제공해준 File Build <code>catkin_make</code>  
 (2) LiDAR Point Cloud File 실시
@@ -111,14 +110,12 @@ idar.rviz</code>
 <br>
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/4.png" height="250" width="600" /></div><br>
-
 <br>
 
 #### Filtering
 Voxel grid filter, Distance filter를 사용한다.(Uniform 하게 Data를 DownSampling을 하고 원하는 거리만큼 확인할 수 있다.)  
 또한 ROS의 Filtering의 Parameter들은 .yaml File로 제공하여 손쉽게 바꿀수 있게 바꾸었다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/6.png" height="250" width="600" /></div><br>
-
 <br>
 
 #### Background Removal
@@ -126,7 +123,6 @@ Voxel grid filter, Distance filter를 사용한다.(Uniform 하게 Data를 DownS
 각각의 Parameter는 검출하고자 하는 Object의 특성에 맞게 조정하여 Detection하게 된다.  
 아래 사진을 보게 되면 움직이지 않는 물체는 파란색으로, 움직이는 물체는 빨간색으로서 표시하게 된다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/7.png" height="250" width="600" /></div><br>
-
 
 <br>
 
@@ -136,7 +132,6 @@ Clustering을 기준 Object를 기준으로 묶게되어서 의미없는 Noise�
 DBScan을 통하여 많은 Computing Power가 소모될 것이라고 생각하였지만, 위에서 Background Removal에서부터 확인한 **빨간색 Pixel에 대하여 즉, 움직이는 Object에 관하여 DBSCAN을 사용하게 되므로 연산에 소요되는 시간을 매우 낮출 수 있다**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/8.png" height="250" width="600" /></div><br>
 
-
 <br>
 
 #### Classification
@@ -144,7 +139,6 @@ DBScan을 통하여 많은 Computing Power가 소모될 것이라고 생각하�
 위에서 Clustering된 Object에 관하여 어떤 Class인지 구별할 수 있다.  
 사람의 경우 원통으로서 표시되서 보여지게 된다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/10.png" height="250" width="600" /></div><br><br>
-
 ### Mission
 실제로 해보라고 주어진 환경은 LiDAR로서 받은 실제 Data를 Dynamic Object Detection알고리즘을 수행하여 확인하는 것 이다.  
 1. 각각의 최적의 Parameter를 찾기위하여 Parameter가 정의된 .yaml File 변경

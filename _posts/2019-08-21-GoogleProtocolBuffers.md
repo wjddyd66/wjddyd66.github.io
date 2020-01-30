@@ -2,7 +2,7 @@
 layout: post
 title:  "Google Protocol Buffer3"
 date:   2019-08-21 09:30:00 +0700
-categories: [others]
+categories: [Others]
 ---
 
 ### Google Protocol Buffer3
@@ -25,7 +25,7 @@ Google Protocol Buffer3를 사용하기 이전에는 다음과 같은 방법과 
 		</ul>		
 		</td>
 	</tr>
-
+	
 	<tr>	
 		<td>Encode the data items into a Single String</td>
 		<td>
@@ -35,7 +35,7 @@ Google Protocol Buffer3를 사용하기 이전에는 다음과 같은 방법과 
 		</ul>		
 		</td>
 	</tr>
-
+	
 	<tr>	
 		<td>XML</td>
 		<td>
@@ -58,7 +58,6 @@ Getter 와 Setter를 제공하고 프로토콜 버퍼를 단위로 읽고 쓰는
 이렇게 정의된 데이터 타입을 프로그래밍 언어에 사용하려면, **해당 언어에 맞는 클래스**로 생성해야 한다.  
 **protoc 컴파일러로 proto file을 컴파일 하면, 각 언어에 맞는 형태의 데이터 클래스 파일을 생성**해 준다.  
 <div><img src="https://t1.daumcdn.net/cfile/tistory/233E2635594F907222" height="100%" width="100%" /></div><br>
-
 
 ### Proto file
 .proto file은 각 **Field**에 대한 **Name과 Type**으로 지정된다.  
@@ -118,7 +117,7 @@ message AddressMonster{
 	<tr>	
 		<td>.proto Type</td><td>Python Type</td>
 	</tr>
-
+	
 	<tr>	
 		<td>double</td><td>float</td>
 	</tr>
@@ -126,59 +125,59 @@ message AddressMonster{
 	<tr>	
 		<td>float</td><td>float</td>
 	</tr>
-
+	
 	<tr>	
 		<td>int32</td><td>int</td>
 	</tr>
-
+	
 	<tr>	
 		<td>int64</td><td>int/long</td>
 	</tr>
-
+	
 	<tr>	
 		<td>unit32</td><td>int/long</td>
 	</tr>
-
+	
 	<tr>	
 		<td>unit64</td><td>int/long</td>
 	</tr>
-
+	
 	<tr>	
 		<td>sint32</td><td>int</td>
 	</tr>
-
+	
 	<tr>	
 		<td>sint64</td><td>int/long</td>
 	</tr>
-
+	
 	<tr>	
 		<td>fixed32</td><td>int/long</td>
 	</tr>
-
+	
 	<tr>	
 		<td>fixed64</td><td>int/long</td>
 	</tr>
-
+	
 	<tr>	
 		<td>sfixed32</td><td>int</td>
 	</tr>
-
+	
 	<tr>	
 		<td>sfixed64</td><td>int/long</td>
 	</tr>
-
+	
 	<tr>	
 		<td>bool</td><td>bool</td>
 	</tr>
-
+	
 	<tr>	
 		<td>string</td><td>str</td>
 	</tr>
-
+	
 	<tr>	
 		<td>bytes</td><td>bytes</td>
 	</tr>
-
+	
 	<tr>	
 		<td>다른 message</td><td></td>
 	</tr>
@@ -364,27 +363,27 @@ with open(sys.argv[1], "wb") as f:
 	<tr>	
 		<td>name</td><td>monster1</td>
 	</tr>
-
+	
 	<tr>	
 		<td>mana</td><td>10</td>
 	</tr>
-
+	
 	<tr>	
 		<td>hp</td><td>20</td>
 	</tr>
-
+	
 	<tr>	
 		<td>friendly</td><td>True</td>
 	</tr>
-
+	
 	<tr>	
 		<td>Color</td><td>Red</td>
 	</tr>
-
+	
 	<tr>	
 		<td>Pos</td><td>10, 20, 30</td>
 	</tr>
-
+	
 	<tr>	
 		<td>weapons</td>
 		<td>
@@ -394,7 +393,7 @@ with open(sys.argv[1], "wb") as f:
 		</ul>		
 		</td>
 	</tr>
-
+	
 	<tr>	
 		<td>inventory</td>
 		<td>
@@ -405,7 +404,7 @@ with open(sys.argv[1], "wb") as f:
 		</ul>		
 		</td>	
 	</tr>
-
+	
 	<tr>	
 		<td>path</td>
 		<td>
@@ -428,27 +427,27 @@ with open(sys.argv[1], "wb") as f:
 	<tr>	
 		<td>name</td><td>monster2</td>
 	</tr>
-
+	
 	<tr>	
 		<td>mana</td><td>100</td>
 	</tr>
-
+	
 	<tr>	
 		<td>hp</td><td>200</td>
 	</tr>
-
+	
 	<tr>	
 		<td>friendly</td><td>False</td>
 	</tr>
-
+	
 	<tr>	
 		<td>Color</td><td>Green</td>
 	</tr>
-
+	
 	<tr>	
 		<td>Pos</td><td>100, 200, 300</td>
 	</tr>
-
+	
 	<tr>	
 		<td>weapons</td>
 		<td>
@@ -458,7 +457,7 @@ with open(sys.argv[1], "wb") as f:
 		</ul>		
 		</td>
 	</tr>
-
+	
 	<tr>	
 		<td>inventory</td>
 		<td>
@@ -469,7 +468,7 @@ with open(sys.argv[1], "wb") as f:
 		</ul>		
 		</td>	
 	</tr>
-
+	
 	<tr>	
 		<td>path</td>
 		<td>
@@ -613,3 +612,4 @@ z: 10.0
 참조: <a href="https://github.com/wjddyd66/others/tree/master/Project/google_protocol_buffer_3">원본코드</a><br> 
 참조: <a href="https://bcho.tistory.com/1182">조대협의 블로그</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+

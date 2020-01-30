@@ -2,7 +2,7 @@
 layout: post
 title:  "ROS(2)"
 date:   2019-11-28 09:00:20 +0700
-categories: [others]
+categories: [Others]
 ---
 
 **LiDAR Institute 세미나에 대한 내용을 정리한 것 입니다.**  
@@ -23,12 +23,10 @@ categories: [others]
 
 <br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/12.png" height="250" width="600" /></div><br>
-
 (4) config _ kodas _ 2.py의 root_dir Direcotry를 COmplex-TOLOv3/KODAS/sync_train이 위치한 Directory로 바꾼다.
 
 (5) Bird Top View를 확인한다.   
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/13.png" height="250" width="600" /></div><br>
-
 (6) Model Training  
 현재 Notebook 환경에서는 GPU Resource가 부족하여 돌려보지 못하였습니다.  
 대신 현재 제공되어있는 Training되어 있는 logs와 Model을 통하여 결과를 확인하였습니다.  
@@ -36,11 +34,9 @@ categories: [others]
 (7) Tnesorboard로서 결과 확인  
 <code>tensorboard --logdir=logs</code><br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/14.png" height="250" width="600" /></div><br>
-
 (8) Model Test  
 <code>/test_kodas.py --weights_path=checkpoints/yolov3_ckpt_epoch-22_MAP-0.50.pth</code><br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/15.png" height="250" width="600" /></div><br>
-
 (8) Evaludation  
 <code>$ ./eval_mAP.py --weights_path=checkpoints/yolov3_ckpt_epoch-22_MAP-0.50.pth</code><br>
 마찬가지로 GPU의 Memory부족으로 인하여 실행 불가  
@@ -79,7 +75,6 @@ Bag File을 원본을 사용할때 너무 빨리 실행됭 실질적으로 Rviz�
 (3) Bag파일 재생 <code>rosbag play demo_mapping.bag --clock</code>  
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/19.png" height="250" width="600" /></div><br>
-
 <br>
 
 #### LIDAR SLAM
@@ -97,7 +92,7 @@ Bag File을 원본을 사용할때 너무 빨리 실행됭 실질적으로 Rviz�
 (1) Launch파일에 다음의 문구 삽입  
 ```code
 <remap from=“velodyne_points” to=“soslab_sl1/pointcloud”/>
-```<br>
+​```<br>
 
 (2) 파라미터 조정을 통해 테스트  
 scan_line  
@@ -110,3 +105,5 @@ mapping_plane_resolution
 <br>
 <hr>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
+```

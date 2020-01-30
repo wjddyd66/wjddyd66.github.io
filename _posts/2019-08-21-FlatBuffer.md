@@ -2,7 +2,7 @@
 layout: post
 title:  "FlatBuffer"
 date:   2019-08-21 10:00:00 +0700
-categories: [others]
+categories: [Others]
 ---
 
 ### FlatBuffer
@@ -20,7 +20,6 @@ categories: [others]
 
 아래 사진을 참고하면 **FlatBuffer**를 사용하는 이유를 알 수 있다.  
 <div><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2243D54F582EA75B1FCD94" height="100%" width="100%" /></div><br>
-
 **Google Protocol Buffer** 와 **FlatBuffer**의 가장 큰 차이점은 FlatBuffer의 사용 이유의 1번의 내용처럼 데이터 송/수신 시 Parsing/Unpacking이 필요 없다는 점 이다.(Zero-copy)  
 이로 인하여 **시간**의 측면에서 매우 큰 장점을 나타내는 것을 보인다.  
 
@@ -46,7 +45,6 @@ Zero Copy는 Network에서 Read/Write할때 걸리는 불필요한 Copy과정을
 **Google Protocol Buffer** 와 마찬가지로 과정이 진행된다.  
 IDL(Interface Description Language)작성 -> flatc로서 Compile -> 사용
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/flatbuffer2.png" height="100%" width="100%" /></div><br>
-
 
 ### IDL(Interface Description Language) 작성
 아래와 같은 예시를 살펴보고 이것에 대한 내용을 정리한다.  
@@ -288,23 +286,23 @@ if __name__ == '__main__':
 	<tr>	
 		<td>name</td><td>monster1</td>
 	</tr>
-
+	
 	<tr>	
 		<td>mana</td><td>10</td>
 	</tr>
-
+	
 	<tr>	
 		<td>hp</td><td>20</td>
 	</tr>
-
+	
 	<tr>	
 		<td>Color</td><td>Red</td>
 	</tr>
-
+	
 	<tr>	
 		<td>Pos</td><td>10, 20, 30</td>
 	</tr>
-
+	
 	<tr>	
 		<td>weapons</td>
 		<td>
@@ -314,12 +312,12 @@ if __name__ == '__main__':
 		</ul>		
 		</td>
 	</tr>
-
+	
 	<tr>	
 		<td>inventory</td>
 		<td>10</td>	
 	</tr>
-
+	
 	<tr>	
 		<td>Equipped</td><td>name: w1, damage: 10</td>
 	</tr>
@@ -455,3 +453,4 @@ Weapon damage:  10
 참조: <a href="https://capnproto.org/news/2014-06-17-capnproto-flatbuffers-sbe.html">capnproto</a><br>
 참조: <a href="https://skydays.tistory.com/155">skydays 블로그</a><br>
 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+

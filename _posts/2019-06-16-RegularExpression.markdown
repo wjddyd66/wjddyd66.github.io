@@ -2,7 +2,7 @@
 layout: post
 title:  "정규 표현식"
 date:   2019-06-16 09:30:20 +0700
-categories: [others]
+categories: [Others]
 ---
 
 ###  정규 표현

@@ -2,7 +2,7 @@
 layout: post
 title:  "SingleTon"
 date:   2019-06-14 12:51:20 +0700
-categories: [others]
+categories: [Others]
 ---
 
 ### SingleTon: 여러명이 공유하는 웹 환경에서 하나만 사용하는 디자인 패턴.

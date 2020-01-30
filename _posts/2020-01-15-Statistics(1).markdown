@@ -2,7 +2,7 @@
 layout: post
 title:  "Statistics(1)-Basic"
 date:   2020-01-20 09:10:20 +0700
-categories: [statistics]
+categories: [Statistics]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 이번 POST는 <a href="http://www.kocw.net/home/cview.do?mty=p&kemId=1165032">한양대학교 수리통계학 수업 내용</a>을 정리한 것 입니다.  
@@ -54,7 +54,6 @@ ex) S={(1,0,0),(0,1,0),(0,0,1),(1,1,1)}
 <p>$$P(A,B) = \frac{1}{4} = P(A)P(B) = \frac{1}{2}*\frac{1}{2}$$</p>  
 <p>$$P(A,B,C) = \frac{1}{4} = P(A)P(B)P(C) \neq \frac{1}{2}*\frac{1}{2}*\frac{1}{2}$$</p>
 <p>$$\therefore \text{A, B, C 는 상호 독립이 아니다.}$$</p>
-
 #### (6) 곱셈법칙
 원소의 개수 <span>$$n_1, n_2, ..., n_k$$</span>인 집합 <span>$$A_1, A_2, ..., A_k$$</span>에서 각각 하나의 원소를 택하여 나열한 순서열의 개수는 <span>$$n_1 * n_2 * n_3 * ....$$</span>
 
@@ -241,7 +240,6 @@ ex) X와 확률함수 f(x)가 아래와 같을때 평균과 분산을 구하여�
 <p>$$V(X) = E(X^2) - (E(X))^2 = E(X^2) - \frac{9}{4}$$</p>
 <p>$$E(X^2) = \sum_{X^2}XP(X) = 0*\frac{1}{8} + 1*\frac{3}{8} + 4*\frac{3}{8} + 9*\frac{1}{8} = 3$$</p>
 <p>$$\therefore V(X) = 3 - \frac{9}{4} = \frac{3}{4}$$</p>
-
 #### (3) 평균과 분산의 특징
 **평균 특징**  
 <p>$$E(a) = a, E(aX) = aE(X), E(aX \pm b)$$</p>

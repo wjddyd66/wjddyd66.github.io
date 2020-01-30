@@ -2,7 +2,7 @@
 layout: post
 title:  "Statistics(4)-Sampling distribution"
 date:   2020-01-20 09:30:20 +0700
-categories: [statistics]
+categories: [Statistics]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 이번 POST는 <a href="http://www.kocw.net/home/cview.do?mty=p&kemId=1165032">한양대학교 수리통계학 수업 내용</a>을 정리한 것 입니다.  

@@ -2,7 +2,7 @@
 layout: post
 title:  "Statistics(2)-Discrete Probability Distributions"
 date:   2020-01-20 09:20:20 +0700
-categories: [statistics]
+categories: [Statistics]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 이번 POST는 <a href="http://www.kocw.net/home/cview.do?mty=p&kemId=1165032">한양대학교 수리통계학 수업 내용</a>을 정리한 것 입니다.  
@@ -66,17 +66,13 @@ ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 
 #### (3) 초기화분포(Hypergeometric distribution)
 모집단(N) 중에 부적합품 수가 M개이고 **비복원 추출**로 n개의 시료를 뽑았을 때, 그 중의 부적합품개수(불량품수) X는 X=x가 되는 확률 f(x)를 따른다.  
 <p>$$f(x) = \frac{_{M}\mathrm{C}_{x}*{}_{N-M}\mathrm{C}_{n-x}}{_{N}\mathrm{C}_{n}} = \frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}} {\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
-
 평균: <span>$$E(x) = n\frac{M}{N}$$</span>  
 <p>$$f(x) = \frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
 <p>$$E(x) = \sum_{x=0}^{n} x\frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
 
-
 <p>$$= \sum_{x=1}^{n} x\frac{M!}{x!(M-x)!} \frac{\begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
 
-
 <p>$$= \sum_{x=1}^{n} M\frac{(M-1)!}{(x-1)!(M-x)!} \frac{\begin{pmatrix} (N-1)-(M-1)  \\ (n-1)-(x-1)  \end{pmatrix}}{\left( \frac{N}{n} \right) \begin{pmatrix} (N-1)  \\ (n-1)  \end{pmatrix}} \because \begin{pmatrix} \alpha  \\ \beta  \end{pmatrix} = \frac{\alpha}{\beta}\begin{pmatrix} \alpha-1  \\ \beta-1  \end{pmatrix}$$ </p>
-
 위의 식에서 x-1 = X라고 치환하면 결과는 다음과 같다.  
 <p>$$n\frac{M}{N} \sum_{X=0}^{n-1} \frac{ \begin{pmatrix} M-1  \\ x  \end{pmatrix} {(N-1) - (M-1) \choose (n-1) - X}}{\begin{pmatrix} N-1  \\ n-1  \end{pmatrix}}$$</p>
 위의 식에서 <span>$$\sum_{X=0}^{n-1} \frac{ \begin{pmatrix} M-1  \\ x  \end{pmatrix} {(N-1) - (M-1) \choose (n-1) - X}}{\begin{pmatrix} N-1  \\ n-1  \end{pmatrix}}$$</span>는 초기화 분포의 모든 합 이므로 1이 되는 것을 확인할 수 있다.  
@@ -91,11 +87,8 @@ ex) KBC리그에 뛰는 A선수는 타율이 2할7푼5리 이다. 이 선수가 
 분산: <span>$$V(x) = \frac{N-n}{N-1}n\frac{M}{N}(1-\frac{M}{N})$$</span>  
 위의 식을 그대로 분산을 구하는 것은 많이 힘들기 때문에 편법을 사용하여 구한다.  
 <p>$$V(x) = E(X(X-1))+E(x)-(E(x))^2$$</p>
-
 <p>$$E(X(X-1)) = \sum_{x=0}^{n} x(x-1)\frac{\begin{pmatrix} M  \\ x  \end{pmatrix} \begin{pmatrix} N-M  \\ n-x  \end{pmatrix}}{\begin{pmatrix} N  \\ n  \end{pmatrix}}$$</p>
-
 <p>$$= M(M-1)  \sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{ \frac{N}{n} \frac{N-1}{n-1} \begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</p>
-
 <p>$$= \frac{M(M-1)n(n-1)}{N(N-1)} \sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</p>
 평균에서와 똑같이 <span>$$\sum_{x=2}^{n} \frac{\begin{pmatrix} M-2  \\ x-2  \end{pmatrix} \begin{pmatrix} (N-2)-(M-2)  \\ (n-2)-(x-2)  \end{pmatrix}}{\begin{pmatrix} N-2  \\ n-2  \end{pmatrix}}$$</span>의 값이 적용되는 것을 알 수 있다.  
 <p>$$\therefore V(x) = \frac{M(M-1)n(n-1)}{N(N-1)} + n\frac{M}{N} - (n\frac{M}{N})^2$$</p>
@@ -168,7 +161,6 @@ X,Y는 서로 독립이므로 식을 다음과 같이 변형할 수 있다.
 위의 식에서 <span>$$p=\frac{k}{N}$$</span>으로서 나타내고 <span>$$(N \rightarrow \infty)$$</span>으로서 값을 변경하면 다음과 같이 식을 나타낼 수 있다.<p>$$= {}_{n}\mathrm{C}_{x}*\frac{1}{1*1...1}*(p*...p)*((1-p)...(1-p))$$</p>
 최종적으로 이항분포로 표현하기 위하여 <span>$$1-p = q$$</span>로서 나타내게 되면 정리된 식은 다음과 같다.  
 <p>$${}_{n}\mathrm{C}_{x}p^x q^{n-x}$$</p>
-
 
 따라서 둘의 관계를 표현하면 다음과 같이 나타낼 수 있다.  
 <img src="https://mblogthumb-phinf.pstatic.net/20161019_66/mykepzzang_1476816211335trWYM_JPEG/%C7%C1%B7%B9%C1%A8%C5%D7%C0%CC%BC%C71.jpg?type=w2"/><br>
