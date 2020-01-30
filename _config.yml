@@ -113,9 +113,9 @@ author:
   location         : "Seoul, South Korea"
   email            : "wjddyd66@naver.com"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: mailto:wjddyd66@naver.com
+    #- label: "Email"
+      #icon: "fas fa-fw fa-envelope-square"
+      #url: mailto:wjddyd66@naver.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://wjddyd66.github.io"
