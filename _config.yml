@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Corner's Blog"
+title                    : "Cornor's Blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "JeongYong Hwang"
@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "JeongYong Hwang"
   avatar           : "/static/img/AI/149.PNG"# path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Hakuna matata"
+  bio              : "You will never know until you try"
   location         : "Seoul, South Korea"
   email            : "wjddyd66@naver.com"
   links:
