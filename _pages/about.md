@@ -29,7 +29,7 @@ AI에서도 Vision분야, DeepLearning 분야에 대해 관심이 많고 또한 
 * Language - JAVA / Python / R
 * Database -  MySQL / NoSQL(Mongo DB)
 * Infra - Docker / Kubernetes / Kubeflow
-* AI - Tensorflow(1.x) / Pytorch
+* AI - Pytorch / Tensorflow(1.x) / Keras / Tensorflow(2.0)
 * Vision - OpenCV (Python)
 * Windows & Linux Platform
 * Web Based Server & Tools - JS / JSP / JQuery / Spring / Django
@@ -336,7 +336,6 @@ Project의 Main 기능인 항공권 예매와 렌트카 예매의 경우 바로 
 회원 가입 같은 경우 회원의 ID를 Primary Key로서 사용하기 때문에 중복체크를 하여 확인하였다.  
 주소 입력같은 경우 모든 주소를 DB에 넣는 작업이 커질것을 우려하여 다음 API를 사용하여 주소를 입력하게 하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo7.PNG" height="100%" width="100%" /></div>  
-
 #### ID, 비밀번호 찾기
 계정의 정보를 잃어버려 ID, 비밀번호 찾기를 해야 하는경우, ID는 바로 보여줘도 상관없지만, 비밀번호 같은 경우 중요한 정보이므로 가입되어있는 Mail로 발송하는 식으로 구현하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo8.PNG" height="100%" width="100%" /></div>  
@@ -357,7 +356,6 @@ Project의 Main 기능인 항공권 예매와 렌트카 예매의 경우 바로 
 관리자의 경우 렌트카의 정보를 입력한 뒤 DB에 저장하게 되었다.  
 렌트카일 경우 차량의 사진을 File Upload하여 실제 저장소에 올라가게 구성하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo10.PNG" height="100%" width="100%" /></div>  
-
 #### 렌트카 예약
 사용자의 경우 관리자가 등록한 렌트카를 예약할 수 있게 구성하였다.  
 예약을 하고 예약정보를 확인할 수 있게 구성하였다.  
@@ -377,7 +375,6 @@ Project의 Main 기능인 항공권 예매와 렌트카 예매의 경우 바로 
 비행기의 조회는 Login이 되어있지 않은 사용자도 가능하지만, 예약은 불가능하게 구성하였다.  
 비행기를 예약하고 나면, 조회를 하여 예약정보를 확인할 수 있고 체크인 기능이 활성화 되도록 구성하였다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo13.PNG" height="100%" width="100%" /></div>  
-
 #### 체크인
 체크인이란 예약 몇일전에 사용자가 직접 좌석을 고를 수 있는 System이다.  
 Class(일반, 비지니스, VIP)안에서 좌석을 고를 수 있으면 체크인을 하게 되면 티켓을 확인하여 Print하거나 E-mail로 발송하여 티켓을 확인할 수 있게 구성하였다.  
@@ -398,7 +395,6 @@ Class(일반, 비지니스, VIP)안에서 좌석을 고를 수 있으면 체크�
 
 <hr>
 참조:<a href="https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final">원본 Project Folder</a><br>
-
 ---
 
 <br>
