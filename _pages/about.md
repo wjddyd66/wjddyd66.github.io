@@ -395,7 +395,6 @@ Class(일반, 비지니스, VIP)안에서 좌석을 고를 수 있으면 체크�
 
 <hr>
 참조:<a href="https://github.com/wjddyd66/Project/tree/master/BomAir_ver_Final">원본 Project Folder</a><br>
----
 
 <br>
 
