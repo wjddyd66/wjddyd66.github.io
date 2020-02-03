@@ -141,7 +141,7 @@ Matching Strategy는 첫번째인 Location of Box를 판단하는 과정이다.
 - <span>$$c_i$$</span>: Transfer Learning을 통하여 기존 Classify Model에서 Class를 예측한 값
 - <span>$$Pos$$</span>: Positive 즉, <span>$$x_{ij}^p$$</span>가 1인 Default Box
 - <span>$$Neg$$</span>: Negative 즉, <span>$$x_{ij}^p$$</span>가 0인 Default Box
-- <span>$N$</span>: Pos의 개수
+- <span>$$N$$</span>: Pos의 개수
 - <span>$$cx,cy$$</span>: Box의 중심 x,y의 좌표
 - <span>$$w, h$$</span>: Box의 width, height
 
@@ -257,7 +257,6 @@ Model의 성능을 증가시키기 위하여 다음과 같은 Data Augmentation�
 위의 결과에서 중요한 것은 **YOLO와 FPS는 비슷하나 Auccuary는 10%나 증가하였다는 것 이다.**  
 또한 YOLO에서 문제가 되었던 Small Object Detection에 대하여 다음과 같은 결과로서 잘 Detection한다는 것을 보여주고 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/73.png" height="100%" width="100%" /></div><br>
-
 
 <hr>
 참조: <a href="https://arxiv.org/pdf/1512.02325.pdf">SSD: Single Shot MultiBox Detector</a><br>

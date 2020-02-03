@@ -8,6 +8,7 @@ categories: [Tnesorflow2.0]
 ### SSD 구현 (Dataset, Utils)
 코드 참조: <a href="https://github.com/ChunML/ssd-tf2">ChunML GitHub</a><br>
 위의 Code를 참조하여 수정한 SSD의 현재 Directory의 구조는 다음과 같습니다.(위의 Code는 SSD 300,512를 둘 다 구현하였지만, 현재 Code는 논문에서 예제로 보여준 SSD300을 고정으로서 사용하였습니다.)  
+
 - Training Data
   - data/train/JPEGImages
   - data/train/Annotations
@@ -491,7 +492,7 @@ Data Augmentation방법이다. 논문에서는 다음과 같이 3가지 방법�
 - Using Patch(Sample a patch with IOU of 0.1, 0.3, 0.5, 0.7 or 0.9)
 - Resize and flipped with probablity of 0.5
 
-위의 방식대로 3가지로 진행하려고 하였으나, IOU가 0.1, 0.3, 0.5 에 맞게 계속해서 무한루프를 돌게되는 경우 많은 시간을 소비하여 제외하고 Original, Flipped의 2가지 방법을 사용하였다.
+논문의 방식대로 3가지로 진행하려고 하였으나, IOU가 0.1, 0.3, 0.5 에 맞게 계속해서 무한루프를 돌게되는 경우 많은 시간을 소비하여 제외하고 Original, Flipped의 2가지 방법을 사용하였다.
 ```python
 import os
 from PIL import Image
@@ -614,7 +615,9 @@ Data초기에 필요한 Argument들을 정의하는 부분이다.
 2) len(): 전체 데이터의 개수 파악  
 3) get_image(): 해당되는 Index의 Image를 반환  
 4) get_annotation(): 해당되는 Index의 Annotation.xml을 통하여 Label,(xmin, ymin, xmax, ymax)을 반환-> 0~1사이의 값으로서 정규화  
+<br>
 5) generate()
+
 1. Input Image의 Size를 받는다.
 2. get_annotation()을 통하여 Label과 Bounding Box의 Location을 입력받는다.
 3. Random하게 Original Image를 사용할지 Flip을 실행할 Image를 사용할지 결정한다.

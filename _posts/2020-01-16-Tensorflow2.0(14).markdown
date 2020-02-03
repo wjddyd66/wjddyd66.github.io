@@ -13,7 +13,6 @@ Object Detection에 대한 기법은 너무 많고 Training하기 위한 시간�
 #### (1) Introduction
 YOLO또한 결과부터 살펴보면 다음과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/60.png" height="70%" width="70%" /></div><br>
-
 **YOLO는 Image안의 Object를 Detection하여 Bounding Box로 표시하고 Classify까지 하는 기법이다.**  
 해당 논문에서 YOLO에 대한 장점을 다음과 같이 소개하고 있다.  
 >First, YOLO is extremely fast.  
@@ -92,8 +91,7 @@ Confidence Score에 대해서 자세히 알아보면 다음과 같다.
 위에서 주의하여할 점은 Pr()은 Bounding Box가 아니라 Bounding Box를 구성하는 각각의 Grid Cell에 대한 Probability의 값 이다.  
 
 이러한 YOLO기법을 PASCAL VOC로 평가((2) Unified Detection의 그림 예시)하게 되면 다음과 같은 Tensor로서 Prediction이 된다.  
-<p>$$SxSx(B*5+C) = 7x7x(2*5+20) = 7x7x30$$</p>
-
+<p>$$S*S*(B*5+C) = 7*7*(2*5+20) = 7*7*30$$</p>
 - S: Input Image를 나누는 기준
 - B: Bounding Box 개수
 - C: Label Class개수
@@ -103,7 +101,6 @@ Confidence Score에 대해서 자세히 알아보면 다음과 같다.
 #### (2-1) Network Design
 YOLO Model의 Network Architecture를 살펴보면 다음과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/66.png" height="100%" width="100%" /></div><br>
-
 GoogleNet의 영감을 받아서 Architecture를 구성하였다고 한다.  
 총 24개의 Convolution Layer와 2개의 Fully Connected Layer(Fast YOLO는 Compact한 9개의 Layer로서 구성)로서 구성되어있고 <a href="https://wjddyd66.github.io/pytorch/Pytorch-CNN2/#inception-module">Inception Module</a>을 전부 사용하는 것이 아닌 3x3 conv뒤에 따라오는 1x1 reduction conv Layer를 추가하였다고 한다.(1x1 Convolution Layer를 사용하는 이유는 위의 Inception Link를 참조하자.)  
 최종적인 Model의 결과로서 448x448 Input Image -> Model -> 7x7x30 tensor of prediction으로서 구성된다.  
@@ -157,7 +154,6 @@ $$</p>
 
 **Size of Bounding Box Loss**  
 <p>$$\lambda_{coord} \sum_{i=0}^{S^2} \sum_{j=0}^{B} \mathbb{1}_{ij}^{obj}[(\sqrt{w_i}-\sqrt{\hat{w_i}})^2 + (\sqrt{h_i} - \sqrt{\hat{h_i}})^2]$$</p>
-
 **큰 Box에서의 작은 편차가 작은 Box에서의 작은편차보다 덜 중요하다. 즉, Object를 찾는 Box의 크기가 작으면 작을수록 좋기 때문에 큰 Box와 작은 Box의 편차의 차이를 줄이기 위하여 w,h의 제곱근을 사용하여 계산한다.**  
 실제 계산을 위해 다음과 같은 Python Code를 작성하고 실행하면 제곱근을 사용하게 되면 작은 Box의 작은 편차가 더 커지는 것을 확인할 수 있다.  
 
@@ -188,7 +184,6 @@ print('%.3f' %(result1-result2)) #-0.006
 
 **Object Loss**  
 <p>$$\sum_{i=0}^{S^2} \sum_{j=0}^{B} \mathbb{1}_{ij}^{obj}(C_i-\hat{C_i})^2 + \lambda_{noobj} \sum_{i=0}^{S^2} \sum_{j=0}^{B} \mathbb{1}_{ij}^{noobj}(C_i-\hat{C_i})^2$$</p>
-
 각각의 Grid Cell에서 Object가 존재할 확률(<span>$$Pr(Object)$$</span>)을 구한다.  
 Label의 Data(<span>$$C_i$$</span>)는 다음과 같다.  
 <p>$$
@@ -230,7 +225,7 @@ It also only penalizes bounding box coordinate error if that predictor is “res
 - Data augmentation: random scailing and translations of up to 20% of the original image size
 <br>
 
-#### (2-4) Limitation of YOLO
+#### (2-3) Limitation of YOLO
 1. Grid Cell마다의 One Class를 예측하는 방법이기 때문에 Object주변에 작은 Object가 많이 포함되는 경우 작은 Object를 Detection하기 어렵다.
 2. General한 Model이기 때문에 Unusual aspect rations or configuration와 같이 새로운 Object에 대한 Detection을 하기 어렵다.
 3. Localization에 대한 부정확한 경우, 즉, 위에서 LossFunction을 정의할 때 Bounding box coordinate error(Location of Bounding Box Loss, Size of Bounding Box Loss)에 대하여 "큰 Box에서의 작은 편차가 작은 Box에서의 작은편차보다 덜 중요하다. 즉, Object를 찾는 Box의 크기가 작으면 작을수록 좋기 때문에 큰 Box와 작은 Box의 편차의 차이를 줄이기 위하여 w,h의 제곱근을 사용하여 계산한다"라고 설명하였다. 즉, 큰 Box에서의 작은 Error는 영향을 잘 안미치지만 작은 Box이면 작은 Error또한 <span>$$IOU^{truth}_{pred}$$</span>에 대하여 크게 영향을 미친다.

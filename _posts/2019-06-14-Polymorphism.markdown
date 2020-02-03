@@ -9,7 +9,7 @@ categories: [JAVA]
 다형성이란 같은 부모를 가진 다른 자식을 상황에 맞게 사용하는 것을 의미한다.  
 <span style ="color: red">**하나의 Type(부모)로서 다른 결과를 얻을 수 있다. => 객체를 부품화하여 유지 보수를 용이하게 한다.**</span> 
 
-<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/_posts/Polymorphism.PNG" height="300" width="600" />
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Java/Polymorphism.PNG" height="300" width="600" />
 
 참조 :<a href="https://m.blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=220979244668&proxyReferer=https%3A%2F%2Fwww.google.com%2F">JOKER 블로그</a>
 

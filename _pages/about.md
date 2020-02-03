@@ -12,7 +12,7 @@ AI에서도 Vision분야, DeepLearning 분야에 대해 관심이 많고 또한 
 
 #### Career
 
-* [한국외국어 대학교](http://www.hufs.ac.kr//) :: 2013. 03. ~ 2020.20.(졸업 예정)
+* [한국외국어 대학교](http://www.hufs.ac.kr//) :: 2013. 03. ~ 2020.02.(졸업)
 * [클라우드 기반 빅데이터분석 및 자바 딥러닝 개발자(국비교육)](http://kiccampus.co.kr//) :: 2019. 01. ~ 2019. 07.
 * [2019 머신러닝 스터디 잼 심화반](https://sites.google.com/view/studyjamkr/) :: 2019. 06. ~ 2019. 07.
 * [PopcornSAR](https://popcornsar.com/main/home) :: 2019. 08. ~ Today.
@@ -409,7 +409,7 @@ Class(일반, 비지니스, VIP)안에서 좌석을 고를 수 있으면 체크�
 또한 과거일부의 사람만이 정보의 확산에기여했던것과는 다르게 최근에는 소셜네트워크서비스(SNS, Social Networking Service)의 확산에 따라 정보의 생성 및 전파가 그 어느 때와 다르게 활발하고 다양하게 이루어지고 있다. 이와 같이 누구나 정보의 생산과 전파가 가능하게 되어 많은 장점도 있으나 정제되지 않은 데이터들이 범람하고 있다. 한정된 시간 내에 신뢰성,의미,가치 있는 정보를 찾아내 위해서는 정보의 요약은 반드시 필요하다. 최근 한 조사결과에 따르면 현대인들의 미디어 소비에서 요약형 정보가 훨씬 선호되고 있음을 알 수 있는데 이 결과를 그림 1 를 통해 나타내었다.  
 
 **그림 1. 현대인들의 미디어 소비**  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/paper.PNG" height="50%" width="50%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/paper.PNG" height="50%" width="50%" /></div><br>
 출처: <a href="http://www.segye.com/newsView/20180622004444">[S 스토리] 핵심만 콕콕! 긴 것은 NO!… ‘요약’에 빠진 현대인들</a><br><br>
 그림 1 에서 전체 응답자의 85.4% 는 요약형 정보를 선호하는 것으로 나타났고 요약형 정보의 선호 이유로는 핵심만 알면 된다고 생각하는 것과 시간을 절약할 수 있는 것, 내용을 더 쉽게 이해할 수 있는 것 등의 이유를 들었다. 이처럼 요약형 정보는 현대인의 정보 이용에 있어서 중요한 역할을 담당하고 있고, 요구되고 있는 상황이다.  
 이에 따라서 요약기술 또한 요구 되고 있다. 현재 인터넷 상에서 생산되고 공유되는 정보의 대다수는
