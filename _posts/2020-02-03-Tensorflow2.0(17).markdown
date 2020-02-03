@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "SSD(Concept)"
+title:  "SSD(Code-Model,Train & Test)"
 date:   2020-02-03 10:00:20 +0700
 categories: [Tnesorflow2.0]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 ### SSD 구현 (Model, Train & Test)
 코드 참조: <a href="https://github.com/ChunML/ssd-tf2">ChunML GitHub</a><br>
 위의 Code를 참조하여 수정한 SSD의 현재 Directory의 구조는 다음과 같습니다.(위의 Code는 SSD 300,512를 둘 다 구현하였지만, 현재 Code는 논문에서 예제로 보여준 SSD300을 고정으로서 사용하였습니다.)  
@@ -389,7 +388,6 @@ COnfidence loss에서 중요한 점은 0(Background)의 값이 높기 때문에 
 
 **Final Loss**  
 <p>$$L(x,c,l,g) = \frac{1}{N}(L_{conf}(x,c) + \alpha L_{loc}(x,l,g))$$</p>
-
 ```python
 import tensorflow as tf
 
@@ -712,7 +710,6 @@ usage: test.py [-h] [--data-dir DATA_DIR] [--num-examples NUM_EXAMPLES]
 최종적인 실행 결과를 살펴보면 다음과 같다.  
 
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/79.png" height="100%" width="100%" /></div><br>
-
 ```python
 import argparse
 import tensorflow as tf

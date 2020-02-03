@@ -1,37 +1,36 @@
 ---
 layout: post
-title:  "SSD(Concept)"
+title:  "SSD(Code-Dataset,Utils)"
 date:   2020-02-03 09:00:20 +0700
 categories: [Tnesorflow2.0]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 ### SSD 구현 (Dataset, Utils)
 코드 참조: <a href="https://github.com/ChunML/ssd-tf2">ChunML GitHub</a><br>
 위의 Code를 참조하여 수정한 SSD의 현재 Directory의 구조는 다음과 같습니다.(위의 Code는 SSD 300,512를 둘 다 구현하였지만, 현재 Code는 논문에서 예제로 보여준 SSD300을 고정으로서 사용하였습니다.)  
 - Training Data
- - data/train/JPEGImages
- - data/train/Annotations
+  - data/train/JPEGImages
+  - data/train/Annotations
 - Test Data
- - data/test/JPEGImages
- - data/test/Annotations
- - preprocess_test.py: Test Dataset을 사용하기 위하여 데이터 전처리
- - data/preprocessing_test/JPEGImages: 실제 Test에 사용할 Image Directory
- - data/preprocessing_test/Annotations: 실제 Test에 사용할 Label Directory
+  - data/test/JPEGImages
+  - data/test/Annotations
+  - preprocess_test.py: Test Dataset을 사용하기 위하여 데이터 전처리
+  - data/preprocessing_test/JPEGImages: 실제 Test에 사용할 Image Directory
+  - data/preprocessing_test/Annotations: 실제 Test에 사용할 Label Directory
 - Dataset(Dataset의 Batch처리를 위한 Code)
- - voc_data.py: Data Batch 처리
+  - voc_data.py: Data Batch 처리
 - Utils(전체적인 Code의 utils를 모아둔 Code)
- - config.yml: 미리 Image Size, ratios, scales, fm_size(Feature Map의 크기)를 정의
- - anchor.py: Default Box를 생성
- - box_utils.py: IOU측정등 box를 위한 utils
- - image_utils.py: 논문에서 제시한 Data Augmentation, ImageVisualization을 정의
+  - config.yml: 미리 Image Size, ratios, scales, fm_size(Feature Map의 크기)를 정의
+  - anchor.py: Default Box를 생성
+  - box_utils.py: IOU측정등 box를 위한 utils
+  - image_utils.py: 논문에서 제시한 Data Augmentation, ImageVisualization을 정의
 - Model(SSD의 Model을 위한 Code)
- - layers.py: SSD의 Layer를 선언
- - network.py: SSD의 Network를 선언
- - losses.py: SSD의 Loss를 선언
+  - layers.py: SSD의 Layer를 선언
+  - network.py: SSD의 Network를 선언
+  - losses.py: SSD의 Loss를 선언
 - Train & Test(Model의 Train 및 Test를 위한 Code)
- - train.py: Model의 Train을 위한 Code
- - test.py: Model의 Output을 위한 Code
+  - train.py: Model의 Train을 위한 Code
+  - test.py: Model의 Output을 위한 Code
 
 #### 사전사항 1(requirement)
 실제 SSD를 구현하기 위하여 필요한 사전설치사항은 requirement.txt에 저장해두었다.  
@@ -53,6 +52,7 @@ Directory의 Size는 2GB로서 다음링크에서 다운받을 수 있다.
   - SegmentationClass
   - SegmentationObject
   
+
 위의 5개의 Directory에서 2가지만 사용한다.  
 - JPEGImages: .jpg Image가 들어있다.
 - Annotation: .xml형식으로 해당 Image에 대한 Box의 위치가 적혀있다. (xmin,ymin,xmax,ymax)로서 구성되어있다.
@@ -69,6 +69,7 @@ Directory의 Size는 500MB이고 위에서 다운받은 링크에서 회원가�
   - ImageSets
   - JPEGImages
   
+
 위의 3개의 Directory에서 2가지만 사용한다.  
 - JPEGImages: .jpg Image가 들어있다.
 - Annotation: .xml형식으로 해당 Image에 대한 Box의 위치가 적혀있다. (xmin,ymin,xmax,ymax)로서 구성되어있다.
@@ -226,12 +227,10 @@ iou를 계산하기 위해서 (top_left(x_min,y_min),bot_right(x_max,y_max))를 
 4) compute_iou(boxes_a,boxes_b)  
 실제 Ground Truth Box와 Predicted Box를 jaccard overlap을 통하여 Matching strategy를 계산하는 과정이다.   
 <p>$$J(A,B) = \frac{|A \cap B|}{|A \cup B|} = \frac{|A \cap B|}{|A|+|B|-|A \cap B|}$$</p>
-
 5) encode(default_boxes, boxes)  
 Localization Loss를 위하여 식을 좌표를 변경하는 단계이다.  
 <p>$$\hat{g}_j^{cx}=(g_j^{cx}-d_i^{cx})/d_i^w, \hat{g}_j^{cy}=(g_j^{cy}-d_i^{cy})/d_i^h$$</p>
 <p>$$\hat{g}_j^{w} = log(\frac{g_j^w}{d_i^w}),  \hat{g}_j^{h} = log(\frac{g_j^h}{d_i^h})$$</p>
-
 6) decode(default_boxes, locs)  
 Encode의 반대 과정  
 
@@ -604,8 +603,8 @@ Data초기에 필요한 Argument들을 정의하는 부분이다.
 - image_dir: Image 경로
 - anno_dir: Annotations(Bounding Box의 Label 및 (xmin,ymin,xmax,ymax)) 경로
 - ids: Image와 해당되는 Annotation이 맞는지 확인하기 위한 것.
- - image_dir_example: 2008_000200.jpg
- - anno_dir_example: 2008_000200.xml
+  - image_dir_example: 2008_000200.jpg
+  - anno_dir_example: 2008_000200.xml
 - default_boxes: 입력 받는 Default Boxes
 - new_size: Model Input으로 들어가는 Image의 Size
 - train_ids: Trainning Dataset, 전체 Dataset의 75%
