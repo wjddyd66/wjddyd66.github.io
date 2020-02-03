@@ -26,7 +26,7 @@ While it can quickly identify objects in images it struggles to precisely locali
 **First, YOLO is extremely fast.**  
 YOLO는 제목에서만 봐도 알 수 있듯이, **You Only Look Once(한번만 보면 되고), Real-Time Object Detection(실시간 Object Detection)으로서 빠른것을 강조**하고 있다.  
 YOLO가 왜 이러한 것을 부각하였는지 알아보기 위해 먼저 Object Detection에 관련된 Paper들을 시간순으로서 살펴보면 다음과 같다.  
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/61.png" height="100%" width="100%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/80.png" height="100%" width="100%" /></div><br>
 사진 출처: <a href="https://github.com/hoya012/deep_learning_object_detection">hoya012 GitHub</a><br>
 
 해당 Paper에서는 다음과 같이 언급하고 있다.  

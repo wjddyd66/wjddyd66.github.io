@@ -8,6 +8,8 @@ categories: [Tnesorflow2.0]
 ### SSD
 논문: <a href="https://arxiv.org/pdf/1512.02325.pdf">SSD: Single Shot MultiBox Detector</a><br>
 
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/81.png" height="100%" width="100%" /></div><br>
+
 #### (1) Abstract
 >We present a method for detecting objects in images using a single deep neural network.  
 Our approach, named SSD, discretizes the output space of bounding boxes into a set of default boxes over different aspect ratios and scales per feature map location.  
@@ -257,7 +259,6 @@ Model의 성능을 증가시키기 위하여 다음과 같은 Data Augmentation�
 위의 결과에서 중요한 것은 **YOLO와 FPS는 비슷하나 Auccuary는 10%나 증가하였다는 것 이다.**  
 또한 YOLO에서 문제가 되었던 Small Object Detection에 대하여 다음과 같은 결과로서 잘 Detection한다는 것을 보여주고 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/73.png" height="100%" width="100%" /></div><br>
-
 <hr>
 참조: <a href="https://arxiv.org/pdf/1512.02325.pdf">SSD: Single Shot MultiBox Detector</a><br>
 참조: <a href="https://taeu.github.io/paper/deeplearning-paper-ssd/">taeu 블로그</a><br>
