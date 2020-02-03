@@ -42,7 +42,6 @@ SSD의 결과와 과정을 다음과 같이 그림으로서 나타내고 있다.
 #### (3-1) Model
 논문에서는 SSD의 Model을 YOLO와 비교하여 다음과 같이 나타내고 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/71.png" height="100%" width="100%" /></div><br>
-
 **중요한 점은 Model의 Input으로서 YOLO보다 더 작은 Size의 Input Image를 사용한다. 즉, 더 저해상도의 Image에서도 Object Detection을 수행한다는 것을 보여주고 있다.**  
 
 또한 해당 Model에 대하여 대략적으로 다음과 같이 설명하였다.  
@@ -101,7 +100,6 @@ Aspect Ratio이란 **Bounding Box가 가질만한 크기를 몇 가지만 추려
 <br>
 위의 과정으로 인하여 Output Tensor의 크기를 확인하면 다음과 같다.  
 <p>$$(38*38*512) \longrightarrow^{4*3*3*512*(20+4)}_{} (38*38*4*(20+4))  \text{,  Num of Categories=20}$$</p>
-
 솔직히 개인적으로는 위의 사진과, 설명만으로는 어떻게 Default Box를 생성하는지 이해가 되지 않았다.  
 나중에 Python Code로서 직접 Default Box를 생성하는 과정이 따로 있다.  
 따라서 지금 이해가 되지 않더라면 뒤의 Code과정에서 정확히 어떻게 생성하는지 알아보자.  
@@ -143,7 +141,7 @@ Matching Strategy는 첫번째인 Location of Box를 판단하는 과정이다.
 - <span>$$c_i$$</span>: Transfer Learning을 통하여 기존 Classify Model에서 Class를 예측한 값
 - <span>$$Pos$$</span>: Positive 즉, <span>$$x_{ij}^p$$</span>가 1인 Default Box
 - <span>$$Neg$$</span>: Negative 즉, <span>$$x_{ij}^p$$</span>가 0인 Default Box
-- <span>$$N$$</span>: Default Box의 개수 = Pos+Neg
+- <span>$N$</span>: Pos의 개수
 - <span>$$cx,cy$$</span>: Box의 중심 x,y의 좌표
 - <span>$$w, h$$</span>: Box의 width, height
 
@@ -153,7 +151,6 @@ Matching Strategy는 첫번째인 Location of Box를 판단하는 과정이다.
 <br>
 <p>$$(38*38*512) \longrightarrow^{4*3*3*512*(20+4)}_{} (38*38*4*(20+4))  \text{,  Num of Categories=20}$$</p>
 <p>$$\therefore l = 38*38*N*(c_i+(cx,cy,w,h))\text{  ,  }i = 20(Class(19) + Background(1))$$</p>
-
 **Training objective**  
 위에서도 언급하였듯이 Loss Function을 구하기 위해서는 Location of Box와 Class of Box의 두개의 LossFunction이 필요하다.  
 해당 논문에서는 **Location of Box에 대한 LossFunction을 localization loss(<span>$$L_{loc}(x,l,g)$$</span>), Class of Box에 대한 LossFunction을 confidence loss(<span>$$L_{conf}(x,c)$$</span>)로서 표현**하였다.  
@@ -208,7 +205,6 @@ Smooth L1 Loss에 대한 자세한 내용은 링크를 참조하자.
 
 **Confidence Loss**  
 <p>$$L_{conf}(x,c) = -\sum_{i \in Pos}^N x_{ij}^p log(\hat{c}_i^p)-\sum_{i \in Neg} log(\hat{c}_i^0) \text{,  where  } \hat{c}_i^p = \frac{exp(c_i^p)}{\sum_p c_i^p}$$</p>
-
 위의 식은 Class of Box의 LossFunction이다.  
 위의 식의 과정을 정리하면 다음과 같다.  
 1. Matching strategy을 통하여 Default Box와 Ground Truth Box가 Matching되었다면(Pos) Softmax를 통하여 Classify된 값을 Cross Entropy식에 적용
@@ -218,7 +214,6 @@ Smooth L1 Loss에 대한 자세한 내용은 링크를 참조하자.
 
 **Final Loss**  
 <p>$$L(x,c,l,g) = \frac{1}{N}(L_{conf}(x,c) + \alpha L_{loc}(x,l,g))$$</p>
-
 위의 Localization Loss와 Confidence Loss를 통하여 최종적인 Loss를 적용한다.  
 <span>$$\alpha$$</span>의 경우 cross validation에 의해 정의되는 weight term으로서 해당 논문에서는 1로서 정의하였다.
 
@@ -262,7 +257,6 @@ Model의 성능을 증가시키기 위하여 다음과 같은 Data Augmentation�
 위의 결과에서 중요한 것은 **YOLO와 FPS는 비슷하나 Auccuary는 10%나 증가하였다는 것 이다.**  
 또한 YOLO에서 문제가 되었던 Small Object Detection에 대하여 다음과 같은 결과로서 잘 Detection한다는 것을 보여주고 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/73.png" height="100%" width="100%" /></div><br>
-
 
 
 <hr>
