@@ -8,10 +8,9 @@ categories: [NoSQL]
 ###  MapReduce
 대용량 데이터 베이스를 응축하기 위한 데이터 프로세싱 패러다임  
 Ex) 게시판에서 사용자들이 이용했던 로그를 이용해 누가 활동적인지 파악 가능  
-<div><img src="https://t1.daumcdn.net/cfile/tistory/27571135574E6E4630" height="300" width="600" /></div><br>
-출처:<a href="https://cocomo.tistory.com/361?category=686190">Cocomo Coding 블로그</a> <br>
 
 <link rel = "stylesheet" href ="/static/css/bootstrap.min.css">
+
 <table class="table">
 	<tbody>
 	<tr>

@@ -825,10 +825,10 @@ LossFunction을 구현하기 전에 **ELBO(Evidence LowerBOund)** 에 대하여 
 **전체 확률 법칙**  
 가장 기본이 되는 이론부터 살펴보면 다음과 같다.  
 표본공간 S가 있고 이 표본공간을 4개의 사건으로 나눠져 있다고 생각하자.  
-<img src="https://postfiles.pstatic.net/20161013_128/mykepzzang_14762993174643mpvy_JPEG/%C7%C1%B7%B9%C1%A8%C5%D7%C0%CC%BC%C72.jpg?type=w2"><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/61.png" height="250" width="600" /></div><br>
 사진 출처: <a href="https://blog.naver.com/PostView.nhn?blogId=mykepzzang&logNo=220834919339&parentCategoryNo=&categoryNo=38&viewDate=&isShowPopularPosts=false&from=postView">mykepzzang 블로그</a><br>
 이 나눠진 4개의 영역을 포함하는 표본공간 S의 사건 A를 생각하면 다음과 같다.  
-<img src="https://postfiles.pstatic.net/20161013_294/mykepzzang_1476299365916TH0Lh_JPEG/%C7%C1%B7%B9%C1%A8%C5%D7%C0%CC%BC%C71.jpg?type=w2"><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/62.png" height="250" width="600" /></div><br>
 사진 출처: <a href="https://blog.naver.com/PostView.nhn?blogId=mykepzzang&logNo=220834919339&parentCategoryNo=&categoryNo=38&viewDate=&isShowPopularPosts=false&from=postView">mykepzzang 블로그</a><br>
 위의 사진을 살펴보면 총 4개의 교집합이 생성되었다. 따라서 사건 A를 나타내는 방법은 다음과 같다.  
 <p>$$P(A) = P((B_1 \cap A) \cup (B_2 \cap A) \cup (B_3 \cap A) \cup (B_4 \cap A))$$</p>

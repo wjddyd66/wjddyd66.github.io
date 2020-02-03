@@ -84,7 +84,7 @@ CNN과 RNN만을 비교해 봐도 입력 Data의 Format에 따라서 강점을 �
 **3. 층으로 구성되 유황 비순환 그래프**  
 >유향 비순환 그래프(directed acyclic graph, DAG, 유향 비사이클 그래프), 방향 비순환 그래프(방향 비사이클 그래프, 방향성 비사이클 그래프)는 수학, 컴퓨터 과학 분야의 용어의 하나로서 방향 순환이 없는 무한 유향 그래프이다. 즉, 무한히 수많은 꼭짓점과 간선으로 구성되며 각 간선은 하나의 꼭짓점에서 다른 꼭짓점으로 방향을 잇는데 이처럼 어떠한 꼭짓점 v에서 시작하여 끝내 다시 v로 돌아가 순환 반복되는 일정한 방향의 일련한 간선을 따라가는 방법이 없다.
 
-<img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Topological_Ordering.svg/220px-Topological_Ordering.svg.png">
+<img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Topological_Ordering.svg/220px-Topological_Ordering.svg.png"><br>
 출처: <a href="https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%96%A5_%EB%B9%84%EC%88%9C%ED%99%98_%EA%B7%B8%EB%9E%98%ED%94%84">위키백과</a>
 
 대표적인 예로 아래 그림과 같은 Inception Module과 같은 구조가 있다.  
@@ -631,25 +631,21 @@ Log를 남기면서 Training이 진행되기 때문에 평소보다 느기레 Tr
 Keras는 기본적으로 Training되면서 loss와 acc를 log에 남기게 된다. 이로 인하여 우리는 callback기능 중 하나인 progress bar를 확인하면서 Training결과를 확인할 수 있는 것 이다.  
 Validation Option을 주어서 Training Dataset, Validation Dataset에 대한 acc와 loss를 Tensorboard에서 확인하면 다음과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/52.png" height="100%" width="100%" /></div><br><br>
-
 **Graph 확인**  
 개인적으로 생각하는 **Tensorflow 장점은 Define and Run 구조를 가진다는 거 이다**  
 즉, Graph를 Training전에 구성하고 진행하게 되면서 Graph의 Hyperparameter를 Tuning하게 되는 것이고 이렇게 정적인 Graph구조를 가지므로 Google Protocol Buffer를 사용하여 통신하거나 Serving에서 매우 강점을 가지는 언어라고 생각이 든다.  
 Tensorflow와 같이 Keras에서도 이러한 Graph를 Tensorboard에서 확인 가능하다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/53.png" height="100%" width="100%" /></div><br><br>
-
 **Histogram 확인**  
 위에서 Tensorboard callback을 선언할 때 <code>histogram_freq=1</code> Option을 사용항 Histogram을 남겼다.  
 결과는 역시 Tensorboard에서 확인할 수 있다.  
 Tensorboard로서 Histogram은 처음 확인하는데 각각의 Layer에 관하여 결과를 보여주는데 정확한 해석은 못하겠다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/54.png" height="100%" width="100%" /></div><br><br>
-
 **Embedding 확인**  
 위에서 Tensorboard callback을 선언할 때 <code>embeddings_freq=1</code>, <code>embeddings_data = x_train</code> Option을 사용항 Embedding 결과를 남겼다.    
 결과는 역시 Tensorboard에서 확인할 수 있다.  
 **매우 흥미로웠던 점은 160차원(8 x max_len)의 Embedding에서 Tensorboard자체에서 Data의 분포를 쉽게 확인하기 위하여 PCA나 T-SNE로서 Visualization을 해준다는 것 이다.**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Keras/55.png" height="100%" width="100%" /></div><br><br>
-
 **참고 사항(Google Protocol Buffer3)**  
 매우 중요하다고 생각하는 부분중 하나입니다.  
 결국에는 Java인 Web Service에 우리가 개발한 Model을 올린다거나 Python이 아닌 다른 언어와 통신하면서 값을 주고받을 수 있는 환경을 구성해야 할 것입니다.  

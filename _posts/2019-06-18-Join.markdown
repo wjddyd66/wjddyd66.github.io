@@ -23,7 +23,7 @@ select a.jikwon_name, b.jikwon_jik from jikwon a, jikwon b where a.jikwon_no=b.j
 ```
 ###  Outer Join
 Outer Join은 조인하는 여러 테이블에서 한 쪽에는 데이터가 있고 한 쪽에는 데이터가 없는 경우(NULL 값), 데이터가 있는 쪽 테이블의 내용을 전부 출력하는 방법이다. 없는 쪽의 값은 NULL값으로 나오게 된다.  
-1. Left Outer Join
+1) Left Outer Join  
  - 왼쪽에 있는 테이블의 모든 결과를 가져온 후 오른쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.  
 <div ><img src="https://t1.daumcdn.net/cfile/tistory/224EFA4656EF49B309" height="200" width="400"/></div><br>
 ```sql
@@ -31,7 +31,7 @@ select jikwon_name, buser_name from jikwon, buser where buser_num=buser_no (+);
 -- 없는 값 null
 select jikwon_name, buser_name from jikwon inner join buser on buser_num=buser_no (+); 
 ```
-2. Right Outer Join
+2) Right Outer Join  
  - 오른쪽에 있는 테이블의 모든 결과를 가져온 후 왼쪽 테이블의 데이터를 매칭하고, 매칭되는 데이터가 없는 경우 NULL을 표시한다.  
 <div><img src="https://t1.daumcdn.net/cfile/tistory/2418A25056EF4BA912" height="200" width="400"/></div><br>
 ```sql
@@ -40,7 +40,7 @@ select jikwon_name, buser_name from jikwon, buser where buser_num(+)=buser_no;
 select jikwon_name, buser_name from jikwon inner join buser on buser_num(+)=buser_no;
 ```
 
-3. Full Outer Join
+3) Full Outer Join  
  - Left Outer Join + Right Outer Join. 양쪽 모두 조건이 일치하지 않는 것들까지 모두 결합하여 출력  
 <div><img src="https://t1.daumcdn.net/cfile/tistory/232EF54356EF4DA123" height="200" width="400"/></div><br>
 ```sql
