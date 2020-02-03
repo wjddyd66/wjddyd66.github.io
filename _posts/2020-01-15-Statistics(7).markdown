@@ -58,7 +58,7 @@ t-분포가 다음과 같을 때 t-분포의 확률밀도함수 f(t)는 다음�
 f(t)를 자유도 v를 가진 t-분포의 확률밀도 함수라고 한다. (<span>$$\gamma$$</span>는 감마함수)  
 
 이러한 t-분포는 정규분포와 같이 t-분포표를 활용하여 구하게 된다.  
-<img src="https://postfiles.pstatic.net/MjAxNjExMDVfMjAy/MDAxNDc4Mjc2NDkyNTAy.zX3mW-IUzPwia1fiXjyGdqaWBPxoIGvGS3-DsOWOC0Ig.2SyHg7SPXvf_NalroaenfpGv-VlmrtyRTMJZPCeLfVAg.JPEG.mykepzzang/%ED%94%84%EB%A0%88%EC%A0%A0%ED%85%8C%EC%9D%B4%EC%85%981.jpg?type=w2"/><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/29.png" height="100%" width="100%" /></div><br>
 사진 출처: <a href="https://blog.naver.com/PostView.nhn?blogId=mykepzzang&logNo=220853827288&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView">mykepzzang 블로그</a><br>
 
 **또한 중요한 것은 t-분포 또한 중심극한 정리에 의해서 <span>$$n \rightarrow \infty$$</span>즉, 표본의 크기가 커지게 되면 정규분포가 된다. 따라서 표본의 크기가 일정크기(대부분 30 이하)일 경우 사용하게 된다.**  
@@ -110,7 +110,7 @@ F-분포 또한 t-분포와 같이 확률분포표를 참조하여서 값을 구
 F-분포의 확률(f-value)은 다음과 같다.  
 <p>$$p[F \ge f_{\alpha}(v_1,v_2)] = \alpha$$</p>
 위의 확률영역을 그림으로 나타내면 다음과 같다.  
-<img src="https://postfiles.pstatic.net/MjAxNjExMDdfNjEg/MDAxNDc4NDQ3MzY3MTI0.FO2LZiAg6QzS5FsJveAUYyTYbwKDQjc2QF2JfEaURccg.N8UISVtVG--UR3NmQc5MMX_xmkGeJuCHaRd919PZf3Ag.JPEG.mykepzzang/IMG_3480.jpg?type=w2"/><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/others/30.png" height="100%" width="100%" /></div><br>
 사진 출처: <a href="https://blog.naver.com/PostView.nhn?blogId=mykepzzang&logNo=220855136935&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView">mykepzzang 블로그</a><br>
 <br>
 
