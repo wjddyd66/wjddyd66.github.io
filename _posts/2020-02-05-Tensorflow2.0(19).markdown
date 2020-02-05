@@ -8,7 +8,6 @@ categories: [Tnesorflow2.0]
 ### YOLOv3
 논문 참조: <a href="https://pjreddie.com/media/files/papers/YOLOv3.pdf">YOLOv3: An Incremental Improvement</a><br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/94.png" height="70%" width="70%" /></div><br>
-
 ### 1) Introduction
 YOLOv3는 성능을 향상시켰다고 한다. 성능을 살펴보면 다음과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/95.png" height="70%" width="70%" /></div><br>
@@ -22,24 +21,21 @@ YOLOv1이나 YOLO9000처럼 새로운 기법으로서 Object Detection을 구성
 
 #### 2.1) Bounding Box Prediction
 기존 <a href="https://wjddyd66.github.io/tnesorflow2.0/Tensorflow2.0(18)/#5-direct-location-prediction">YOLO9000</a>에서 사용한 방식에 대해서 생각하면 다음과 같다.  
-- <span>$c_x,c_y$</span>: 각 Grid Cell의 좌상단 끝 offset
-- <span>$p_w,p_h$</span>: Prior Anchor Box의 Width, Height. 즉, 5개의 Anchor Box중에서 가장 IOU가 높은 Anchor Box의 Width, Height.
-- <span>$b_x,b_y,b_w,b_h$</span>: 실제 Label Data의 Bounding Box 정보
-- <span>$t_x,t_y,t_w,t_h$</span>: Model이 예측한 Bounding Box 정보
-- <span>$\sigma$</span>: Sigmoid 함수
+- <span>$$c_x,c_y$$</span>: 각 Grid Cell의 좌상단 끝 offset
+- <span>$$p_w,p_h$$</span>: Prior Anchor Box의 Width, Height. 즉, 5개의 Anchor Box중에서 가장 IOU가 높은 Anchor Box의 Width, Height.
+- <span>$$b_x,b_y,b_w,b_h$$</span>: 실제 Label Data의 Bounding Box 정보
+- <span>$$t_x,t_y,t_w,t_h$$</span>: Model이 예측한 Bounding Box 정보
+- <span>$$\sigma$$</span>: Sigmoid 함수
 
 <p>$$b_x = \sigma(t_x)+c_x$$</p>
 <p>$$b_y = \sigma(t_y)+c_y$$</p>
 <p>$$b_w = p_w e^{t_w}$$</p>
 <p>$$b_h = p_h e^{t_h}$$</p>
-
 위의 식을 그림으로서 표현하면 아래와 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/86.png" height="70%" width="70%" /></div><br>
-
 위의 식과 그림을 살펴보게 되면 각각의 목적은 보이게 된다.  
 <p>$$b_x,b_y = \frac{1}{2}+c_x,c_y \rightarrow t_x,t_y = 0$$</p>
 <p>$$b_w,b_h = p_w*1,p_h*1 \rightarrow t_w,t_h = 0$$</p>
-
 **위의 수식 그대로에서 차이점을 살펴보면 LossFunction과 IOU에 있어서 나타나게 된다.**  
 
 <br>
@@ -49,12 +45,12 @@ LossFUnction을 살펴보게 되면 다음과 같다.
 - YOLO9000: L2 Loss사용(MSE)
 - YOLOv3: L1 Loss사용
 
-위의 식에서 <span>$t_x,t_y$</span>에 대해 살펴보면 다음과 같다.  
+위의 식에서 <span>$$t_x,t_y$$</span>에 대해 살펴보면 다음과 같다.  
 <p>$$t_x = \sigma(b_x-c_x)^{-1}, t_y = \sigma(b_y-c_y)^{-1}$$</p>
 위의 식을 각각 L1, L2 Loss에 적용하면 다음과 같다.  
 
-L1 Loss: <span>$\hat{t_x}-t_x = \hat{t_x}-\sigma(b_x-c_x)^{-1}$</span>  
-L2 Loss: <span>$(\hat{t_x}-t_x)^2 = (\hat{t_x}-\sigma(b_x-c_x)^{-1})^2$</span>  
+L1 Loss: <span>$$\hat{t_x}-t_x = \hat{t_x}-\sigma(b_x-c_x)^{-1}$$</span>  
+L2 Loss: <span>$$(\hat{t_x}-t_x)^2 = (\hat{t_x}-\sigma(b_x-c_x)^{-1})^2$$</span>  
 
 즉, L2 loss를 사용하게 되면 **logstic의 제곱꼴이 나오기 때문에 학습에 부정적인 영향을 미치기 때문에 logstic의 그대로를 사용하기 위하여 L1Loss를 사용하였다.**  
 <br>
@@ -68,7 +64,6 @@ L2 Loss: <span>$(\hat{t_x}-t_x)^2 = (\hat{t_x}-\sigma(b_x-c_x)^{-1})^2$</span>
 #### 2.2) Class Prediction
 기존의 <a href="https://wjddyd66.github.io/tnesorflow2.0/Tensorflow2.0(18)/#1-hierarchical-classification">YOLO9000의 Class Prediction</a>을 살펴보게 되면 다음과 같다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/91.png" height="70%" width="70%" /></div><br>
-
 각각의 동일한 종류의 Label을 묶어서 Softmax로서 표현하였고, 이러한 Softmax의 Length는 서로 다른 길이를 가지게 되었다.  
 **하지만, 역시 mutually exclusive문제로 인하여 Overlapping되는 문제가 많았다. 즉, 여자 사람 Image의 Class는 Softmax이므로 Person과 Woman에 값이 부여되게 되고 Woman을 원했으나 Person의 값이 더 높아지는 결과가 나타날 수 있다는 것 이다.**  
 
@@ -97,10 +92,8 @@ L2 Loss: <span>$(\hat{t_x}-t_x)^2 = (\hat{t_x}-\sigma(b_x-c_x)^{-1})^2$</span>
 
 **DarkNet-53 Network Architecture**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/96.png" height="70%" width="70%" /></div><br>
-
 **DarkNet-53 Performance**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/97.png" height="70%" width="70%" /></div><br>
-
 <br><br>
 
 #### 2.5) Training
@@ -115,7 +108,6 @@ Training에서 사용한 방법은 다음과 같다.
 
 ### 3. How We Do
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/98.png" height="70%" width="70%" /></div><br>
-
 위의 ObjectDetection의 결과를 살펴보게되면 IOU를 기준으로서 YOLOv3의 장점과 단점에 대해서 설명하고 있다.  
 장점에 대해 설명하면 다음과 같다.  
 
@@ -138,7 +130,7 @@ YOLOv3을 만드는데 있어서 다양한 시도들을 하였으나, 실패하�
 Linear activation을 사용하여 다양한 box의 x,y offset, width,height를 측정하려고 하였으나, 이러한 방식은 Model의 stability를 떨어트리고 잘 작동하지 않았습니다.  
 
 #### 4.2) Linear x,y predictions instead of logistic
-logistic (<span>$b_x = \sigma(t_x)+c_x, b_y = \sigma(t_y)+c_y$</span>에서 <span>$sigma()$</span>)대신 Linear activation을 사용하여 Direct로 x,y의 offset값을 예측하려고 했지만 오히려 성능은 약화되었습니다.
+logistic (<span>$$b_x = \sigma(t_x)+c_x, b_y = \sigma(t_y)+c_y$$</span>에서 <span>$$sigma()$$</span>)대신 Linear activation을 사용하여 Direct로 x,y의 offset값을 예측하려고 했지만 오히려 성능은 약화되었습니다.
 
 #### 4.3) Focal Loss
 Focal Loss를 사용하였지만, 오히려 성능이 떨어졌다고 한다.  
@@ -162,8 +154,8 @@ Dual IOU thresholds란 다음을 의미하게 된다.
 Focal Loss는 <a href="https://arxiv.org/pdf/1708.02002.pdf">Focal Loss for Dense Object Detection</a>에서 제시하는 방법이다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/99.png" height="70%" width="70%" /></div><br>
 아직 정확히 Paper에 대해서 살펴보지 않아서 대략적으로 Concept에 대해서만 이야기하면 다음과 같다.  
-기본적으로 CrossEntropy에서 <span>$(1-p_r)^{\gamma}$</span>의 weight를 부여한다.  
-**중요한 점은 <span>$(1-p_r)^{\gamma}$</span>로 인하여 값은 작게 될 것이다. 즉, 구분하기 어려운 Object에 관하여 Detection하는 경우 CrossEntropy를 사용하여 Backpropagation을 진행하게 되고, 분류하기 쉬운(BackGround가 대부분인) Object에 대해서는 Focal Loss를 사용하여 적은양을 Backpropagation을 실시한다는 것 이다.**  
+기본적으로 CrossEntropy에서 <span>$$(1-p_r)^{\gamma}$$</span>의 weight를 부여한다.  
+**중요한 점은 <span>$$(1-p_r)^{\gamma}$$</span>로 인하여 값은 작게 될 것이다. 즉, 구분하기 어려운 Object에 관하여 Detection하는 경우 CrossEntropy를 사용하여 Backpropagation을 진행하게 되고, 분류하기 쉬운(BackGround가 대부분인) Object에 대해서는 Focal Loss를 사용하여 적은양을 Backpropagation을 실시한다는 것 이다.**  
 자세한 내용에 대해서는 논문이 제시한 방안을 다시 살펴봐야 할 것 같다.  
 
 <hr>
