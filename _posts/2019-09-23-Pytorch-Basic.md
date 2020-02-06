@@ -136,7 +136,8 @@ tensor([[0., 0., 0.],
 - 같은 연산이 각각 어떻게 구동이 되는지 알아보고 속도 역시 비교해보도록 하겠습니다.
 - x * y + z
 
-##### Python
+**Python**  
+
 ```python
 # 연산에 필요한 numpy, 시간을 측정하기 위해 datetime을 불러옵니다.
 import numpy as np 
@@ -184,7 +185,7 @@ print(datetime.now()-start)
 0:00:00.001167
 ```
 
-#####  Tensorflow
+**Tensorflow**  
 
 ```python
 # 이번에는 텐서플로 프레임워크를 이용해 같은 연산을 해보도록 하겠습니다.
@@ -236,7 +237,8 @@ print(datetime.now()-start)
 0:00:00.061126
 ```
 
-#####  Pytorch
+**Pytorch**  
+
 ```python
 # 이번에는 파이토치를 이용해 같은 연산을 진행해보도록 하겠습니다.
 import torch

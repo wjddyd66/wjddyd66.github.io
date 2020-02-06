@@ -31,7 +31,7 @@ DCGAN은 Deep Convolutional GAN으로서 GAN이라는 Network에 Convolution Net
 
 위의 사진은 Generator의 구조이다.  
 위와 같은 Generator의 구조를 만들기위한 레시피는 다음과 같이 공개하였다.  
-<img src="https://postfiles.pstatic.net/MjAxODAyMDZfMjc5/MDAxNTE3ODc0NTY1MTc1.C1Qk8ccLMS3IHIhSYUTbv7if4aQHdWoDpm9jPmPTJkgg._itEXYa5ZOfTCNh4xRKO5jnPfWS2ShNhUMWfNkwchYwg.PNG.laonple/%EC%9D%B4%EB%AF%B8%EC%A7%80_3.png?type=w2"/><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/175.PNG" height="100%" width="100%"><br>
 **사진 출처**: <a href="https://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221201915691">라온피플</a><br>
 
 1. Max-pooling Layer를 없애고, strided Convolution이나 fasctial convolution을 사용하여 Feature map크기 조절, 이러한 전체적인 망을 ALL Convolution Net으로서 구성하였다.
@@ -45,7 +45,7 @@ DCGAN은 Deep Convolutional GAN으로서 GAN이라는 Network에 Convolution Net
 <br>
 
 #### Discriminator
-<img src="https://postfiles.pstatic.net/MjAxODAyMDZfODIg/MDAxNTE3ODc0NTY2NDcx.bXwxVNMhAoYoM-29vBaAUsy8lwHx0xtx5Wop5TcCEtsg.Sj_vuXxZkhcIwpmp3YuLiEh7rRUQ8S3ZnjgLZTxJyhIg.PNG.laonple/%EC%9D%B4%EB%AF%B8%EC%A7%80_7.png?type=w2"/><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/176.PNG" height="100%" width="100%"><br>
 **사진 출처**: <a href="https://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221201915691">라온피플</a><br>
 통상적인 Convolution Network에서 Feature Extraction을 통하여 결과를 확인하는 것과 같다.  
 <br><br>
@@ -79,26 +79,26 @@ Noise의 경우에는 위에서 설명한 DCGAN의 Architecture로 인하여 해
 위의 문제점을 해결한 증거로서 논문은 다음과 같이 결과를 제시하였다.  
 **반복 횟수에 따른 Image의 변화**  
 아래 사진은 1번 Epoch에 대한 결과이고 학습을 1번밖에 반복하지 않아서 Generator가 기억하고 있다고 할 수 없다.  
-<img src="https://postfiles.pstatic.net/MjAxODAyMDZfMjQy/MDAxNTE3ODc0NTY2ODc5.NXOTid8I8DKRtaWylutO8UgUB3Y0nKybG8pQVGDRqQYg.r8WAzgTPp31BUUSio-Nd-0KW2pubbEhRO32jhGlfwvog.PNG.laonple/%EC%9D%B4%EB%AF%B8%EC%A7%80_8.png?type=w2"/><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/177.PNG" height="100%" width="100%"><br>
 **사진 출처**: <a href="https://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221201915691">라온피플</a><br>
 
 아래 사진은 5번 Epoch에 대한 결과이다.  
 점차적으로 Trainning하면서 사진의 화질이 개선되는 것을 확인할 수 있고 이로 인하여 Generator는 **기억하고 있는것이 아닌 Trainning에 의하여 Parameter가 개선되는 것을 알 수 있다.**  
-<img src="https://postfiles.pstatic.net/MjAxODAyMDZfMTQz/MDAxNTE3ODc0NTY3Mzg1.hJjP3yx8synWerEudcWYXYk--HBfkuhvqckURECV9isg.6kjVJSpwkGk3ibhpTOuZZDK-6k3lxNV_91_Cv-rayTAg.PNG.laonple/%EC%9D%B4%EB%AF%B8%EC%A7%80_9.png?type=w2"/><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/178.PNG" height="100%" width="100%"><br>
 **사진 출처**: <a href="https://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221201915691">라온피플</a><br>
 <br>
 **Input Data z의 변환**  
 DCGAN Architecture(Generator)를 살펴보게 되면 Input으로서 Noise인 z가 들어가는 것을 알 수 있다.  
 만약 **Generator가 기억하지 않는 것이라면 z의 변화에 대해서 급격한 변화를 보이지 않을 것 이라는 가정이다.**  
 결론부터 말하자면 z의 변화에 따라서 서서히 결과 Image가 바뀌는 것을 알 수 있다.  
-<img src="https://postfiles.pstatic.net/MjAxODAyMDZfOTEg/MDAxNTE3ODc0NTY3OTEx.3a3UerqHa2vHlwZQ0S5aBg8NnACHo6yGZ9VM5S-mw1cg.IXqUIhmRivrz-e90J4zcT0TpyBgEJZBIwZJQGcbEMBAg.PNG.laonple/%EC%9D%B4%EB%AF%B8%EC%A7%80_10.png?type=w2"/><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/179.PNG" height="100%" width="100%"><br>
 **사진 출처**: <a href="https://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221201915691">라온피플</a><br>
 <br>
 
 **참고사항**  
 Convolution Network의 의미를 확인하기 위하여 Discriminator의 Feature를 시각화 하였을때의 결과는 다음과 같다고 합니다.  
 Input Image에 따라서 Edge부분을 잘 추출하는 것을 확인할 수 있다.  
-<img src="https://postfiles.pstatic.net/MjAxODAyMDZfNDgg/MDAxNTE3ODc0NTY4MzY2.RQfDbmeY88jL6cr7eezr9byLsIzSfjHcFzOoY0rwc_Mg.jhy__Ze0l2hjxzeyGFiBfAXZ2kKRaZDAZNDImnN_1Fwg.PNG.laonple/%EC%9D%B4%EB%AF%B8%EC%A7%80_11.png?type=w2"/><br>
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/180.PNG" height="100%" width="100%"><br>
 **사진 출처**: <a href="https://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221201915691">라온피플</a><br>
 <br><br>
 

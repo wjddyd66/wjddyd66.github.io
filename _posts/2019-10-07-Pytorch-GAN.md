@@ -42,7 +42,6 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 <p>$$\mathbb{E}: \text{기대값}$$</p>
 <p>$$x\text{~}P_{data}(x): \text{x를 실제 data의 분포에서 샘플링}$$</p>
 <p>$$z\text{~}P_{z}(z): \text{z를 Noise의 분포에서 샘플링}$$</p>
-
 위에서 쓰여진 식을 D, G에 관해 나누어서 생각해보자  
 
 **구분자**  
@@ -52,7 +51,6 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 이에 연관되어  
 <p>$$\underset{D}{max}V(D,G) = $$</p>
 <p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>에 넣어서 생각을 해보게 되면 D(x) = 1, D(G(z)) = 0, 으로서 학습되는 것이다.  
-
 **생성자**  
 <p>$$ \underset{G}{min}V(D,G) = $$</p>
 <p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
@@ -107,7 +105,6 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 정보량이란 확률 p를 가지는 사건 A의 정보를 정의한다.  
 
 <p>$$I(m) = log(\frac{1}{p(m)}) = - log(p(m))$$</p>
-
 <br>
 
 **Entropy**  
@@ -119,12 +116,10 @@ GAN에서 가장 중요한 것은 **생성 네트워크와 구분 네트워크�
 **(1) Discrete**  
 
 <p>$$H(M) = E\text{[}I(M)\text{[} = \sum_{m \in M}p(m)I(m) = -\sum_{m \in M}p(m)log p(m)$$</p>
-
 **(2) Continuous**  
 
 <p>$$H(X) = E\text{[}I(M)\text{[} = \int p(x)I(x)dx = - \int p(x)log(p(x))dx$$</p>
 
- 
 
 추가적인 자세한 내용은 아래를 참조하자.  
 
@@ -143,20 +138,16 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 **즉 두 확률분포의 Cross Entropy의 값과 자기자신의 Entropy의 값이 같으면 두 확률분포는 같다는 Idea에서 시작하는 수식이다.**  
 
 <p>$$D_{KL}(p||q) = H(p,q) - H(p)$$</p>
-
 <p>$$= -\sum_{x \in X}p(x)log(q(x)) - (-\sum_{x \in X}p(x)log(p(x)))$$</p>
-
 <p>$$= \sum_{x \in X}p(x)(log(p(x)) - log(q(x)))$$</p>
-
 <p>$$= \sum_{x \in X}p(x)log\frac{p(x)}{q(x)}$$ </p> 
-
 참조:<a href="https://reniew.github.io/17/">reniew 블로그</a><br>
 
 <br>
 
  
 
-#### Global Optimality of <span>$p_g = p_{data}$</span>
+#### Global Optimality of <span>$$p_g = p_{data}$$</span>
 
 먼저 다음과 같은 가정을 하자  
 
@@ -164,36 +155,25 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 
 <p>$$D_G^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}$$</p>
 
- 
 
 위의 결과는 아래와 같은 과정으로서 이루워 진다.  
 
 <p>$$V(G,D) = \mathbb{E}_{x \text{~} p_{data}(x)}\text{[}logD(x)\text{]} + \mathbb{E}_{x \text{~} p_{z}(z)}\text{[}1 - logD(G(z))\text{]}$$</p>
-
 <p>$$= \int_x p_{data}(x) log(D(x)) dx + \int_z p_{z}(x) log(1 - D(G(z))) dz$$</p>
-
 <p>$$= \int_x p_{data}(x) log(D(x)) dx + p_g log(1-D(x))$$</p>
-
 위의 식을 간단히 하기 위하여 다음과 같이 치환하여 생각을 해보자.  
 
 <p>$$y = alog(y) + blog(1-y)$$</p>
-
 <p>$$y\prime = \frac{a}{y} - \frac{b}{1-y} = \frac{a}{y} = \frac{b}{y - 1}$$</p>
-
 <p>$$= \frac{a(y-1) + by}{y(y-1)}$$</p>
-
 <p>$$= \frac{ay -a + by}{y(y-1)}$$</p>
-
 위의 조건에서 만약 <span>$$y \neq 0,1$$</span>이라면 <span>$$y\prime = 0$$</span>의 조건은  
 
 <p>$$ay - a + by = 0 $$</p>
-
 <p>$$y = \frac{a}{a+b}$$</p>
-
 위에서 얻은 식에 <span>$$a = p_{data}, b=p_g$$</span>를 대입하게 되면
 
 <p>$$D_G^*(x) = \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}$$</p>
-
 위에서 선언한 식을 알 수 있다.  
 
  
@@ -201,15 +181,11 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 최종적으로 얻고자 하는 global minumum을 <span>$$C(G)$$</span>라 하면 다음과 같은 식을 유도할 수 있다.  
 
 <p>$$C(G) = \underset{D}{max}V(G,D)$$</p>
-
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{z \text{~} p_{z}}\text{[}1 - logD^{*}_{G}(G(z))\text{]}$$</p>
-
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_{g}}\text{[}1 - logD^{*}_{G}(x)\text{]}$$</p>
-
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)+ p_g(x)}\text{]}$$</p>
 <p>$$ + \mathbb{E}_{x \text{~} p_g}\text{[}1 - log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 
- 
 
 위에서 증명한 식을 사용하여 이제 실질적인 main theorem을 증명해 보자.  
 
@@ -224,35 +200,25 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 이러한 값을 **Proposition 1 에서 얻은 최종적인 값**에 대입하게 되면 다음과 같다.  
 
 <p>$$C(G) = \mathbb{E}_{x \text{~} p_{data}}\text{[}-log(2)\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[}-log(2)\text{]} = -log(4)$$</p>
-
 위의 식의 결과를 좀더 정리하면 다음과 같다.  
 
 <p>$$C(G) = C(G) + log(4) - log(4)$$</p>
-
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x)+ p_g(x)}\text{]}$$</p>
 <p>$$ + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} +log(4) - log(4)$$</p>
-
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 <p>$$+log(4) - log(4) +log(2) + log(2) - log(4)$$</p>
-
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x)+ p_g(x)}\text{]}$$</p>
 <p>$$ + \mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</p>
-
 위의 식에서 <span>$$\mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</span>과 <span>$$\mathbb{E}_{z \text{~} p_z}\text{[} log\frac{2p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]}- log(4)$$</span>에 각각 **KL-Divergence**를 적용하면 다음과 같은 수식이 나오게 된다.  
 
 <p>$$C(G) = KL(p_{data} || \frac{p_{data}+p_g}{2})$$</p>
 <p>$$+ KL(p_{g} || \frac{p_{data}+p_g}{2}) - log(4)$$</p>
-
 <p>$$= 2JSD(p_{data}||p_g) - log(4)$$</p>
-
 <p>$$\because JSD(P||Q) = \frac{1}{2}D_{KL}(P||M) + \frac{1}{2}D_{KL}(Q||M)$$</p>
 
- 
 
 <p>$$C(G) = -log(4) = -log(4) + 2JSD(p_{data}||p_g)$$</p>
-
 <p>$$\therefore JSD(p_{data}||p_g) = 0$$</p>
-
 위의 식에서 **KL-Divergence**에서도 얘기하였지만 KL-Divergence는 그 값이 작을 수록 두 분포가 유사하다는 의미를 가지고 0이되면 두 분포가 같다는 의미를 가진다.  
 
 따라서 <span>$$JSD(p_{data}||p_g) = 0$$</span>의 값을 가지기 위해서는  
@@ -275,7 +241,6 @@ KL-Divergence를 계산하기 위해서는 Cross Entropy를 사용하여 p를 q�
 **Proposition 2.** If G and D have enough capacity, and at each step of Algorithm1, the discriminator is allowed to reach its optimum given G, and <span>$$p_g$$</span> is updated so as to improve the criterion  
 
 <p>$$\mathbb{E}_{x \text{~} p_{data}}\text{[}logD^{*}_{G}(x)\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log(1 - D^{*}_{G}(x))\text{]}$$  </p>
-
 then <span>$$p_g$$</span> converges to <span>$$p_{data}$$</span>
 
 논문에서의 가장 첫 증명은 <span>$$V(G,D) = U(p_g,D)$$</span> as a function of <span>$$p_g$$</span> as done in the above criterion. Note that <span>$$U(p_g,D)$$</span> is convex in <span>$$p_g$$</span>
@@ -286,7 +251,6 @@ then <span>$$p_g$$</span> converges to <span>$$p_{data}$$</span>
 <p>$$= \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{p_{data}(x)}{p_{data}(x) + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_{g}(x)}{p_{data}(x) + p_g(x)}\text{]}$$</p>
 위의 식을 <span>$$p_g$$</span>에 나타내기 위하여 <span>$$p_{data}$$</span>를 상수로 잠시 치환하자면 다음과 같은 식이 나오게 된다.  
 <p>$$U(p_g,D) = \mathbb{E}_{x \text{~} p_{data}}\text{[}log\frac{\alpha}{\alpha + p_g(x)}\text{]} + \mathbb{E}_{x \text{~} p_g}\text{[} log\frac{p_g(x)}{\alpha + p_g(x)}\text{]}$$</p>
-
 로그함수의 그래프를 살펴보면 아래와 같다.  
 <img src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Logarithms.svg/315px-Logarithms.svg.png"/>
 <br>
@@ -295,7 +259,6 @@ Log 함수는 **Concave**하다는 것을 알 수 있다.
 <p>$$\frac{\alpha}{\alpha + p_g(x + t)} > \frac{\alpha}{\alpha + p_g(x)}$$</p>
 <p>$$p_g(x) > p_g(x + t)$$</p>
 <p>$$\therefore U(p_g,D) \text{ is Convex in } p_g$$</p>
-
 <span>$$U(p_g,D) \text{ is Convex in } p_g$$</span>가 **Convex**하다는 가정을 하고 아래와 같이 수식을 치환한다고 하면    
 <p>$$\partial(sup_DU(p_g,D)) = \partial f$$</p>
 <span>$$sup:$$</span> supremum(상한) 또는 최소 상계(least upper bound)로서 집합의 모든 상계 z에 대해 z0≤z를 만족하는 값. 즉, min(z)를 의미한다.  
@@ -510,11 +473,9 @@ Generator에서 Input Data를 받는것이 아니라 Noise를 Input으로 받는
 <code>z = init.normal_(torch.Tensor(batch_size,z_size),mean=0,std=0.1).to(device)</code><br>
 **최종적인 식**  
 <p>$$ \underset{G}{min} \underset{D}{max}V(D,G) = \mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
-
 **구분자**  
 <p>$$ \underset{D}{max}V(D,G) = $$</p>
 <p>$$\mathbb{E}_{x\text{~}P_{data}(x)}[logD(x)] + \mathbb{E}_{z\text{~}P_{z}(z)}[log(1 - D(G(z)))]$$</p>
-
 **생성자**
 <p>$$ \underset{G}{max}V(D,G) = $$</p>
 <p>$$\mathbb{E}_{z\text{~}P_{z}(z)}[log( D(G(z)))]$$</p>

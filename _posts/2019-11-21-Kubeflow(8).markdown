@@ -119,10 +119,8 @@ spec:
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/161.png" height="250" width="600" /></div><br>
 **trial 확인**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/162.png" height="250" width="600" /></div><br>
-
 최종적인 결과는 Kubeflow UI에 접속하여 확인할 수 있다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/AI/163.png" height="100%" width="100%" /></div><br>
-
 ### Katib 실제 적용
 Katib를 사용하기 위하여 다음과 같은 과정을 거친다.  
 #### Python File 작성
@@ -252,7 +250,7 @@ with tf.Session() as sess:
 여기서 주의하여야하는 점이 몇가지 있다.  
 1. Tuning하고자 하는 Hyperparameter는 parser를 통하여 받는다. 나중에 .yaml File작성시 paser로 받아들이는 값을 변화시켜 Trainning이 진행되기 때문이다.
 2. 목표하고자 하는 값을 반드시 <code>tf.summary.scalar('accuracy', accuracy)</code>로서 받아야 한다. 나중에 .yaml File에 작성하여 이름을 맞춰서 접근한다.
-3. **한글은 사용하지 말자** https://github.com/kubeflow/katib/issues/926 Issue를 직접작성하고 답변을 들었으나 한들을 사용하게 되면 Pod 내부에서 Python을 실행시킬때 Error가 발생하여 Pod이 실행되지 않는다.
+3. **한글은 사용하지 말자** <a href="https://github.com/kubeflow/katib/issues/926">Issue</a>를 직접작성하고 답변을 들었으나 한들을 사용하게 되면 Pod 내부에서 Python을 실행시킬때 Error가 발생하여 Pod이 실행되지 않는다.
 
 
 <br>
@@ -369,7 +367,6 @@ cnn-example-accuracy2-s2p87kps   Succeeded   True     37m
 
 **UI 확인 결과**  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Kubeflow/49.png" height="250" width="600" /></div><br>
-
 **참고 사항**  
 Experiment가 생성되고 **Trials가 생성되어 실질적인 Hyperparameter Tunning을 위한 Python File을 실행하고 결과를 서로 통신한다.**  
 결과적으로 Trials가 생성되는지 확인하고 생성이 안되면 다음과 같은 명령어로 인하여 Trial들의 각각의 상태를 확인할 수 있다.  
@@ -381,3 +378,4 @@ kubectl logs  -n [Pod name] -c tensorflow
 <hr>
 참조:<a href="https://www.kubeflow.org/docs/components/hyperparameter-tuning/hyperparameter/">Kubeflow-Katib</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
+
