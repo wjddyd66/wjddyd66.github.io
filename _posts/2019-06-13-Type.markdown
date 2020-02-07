@@ -94,34 +94,39 @@ categories: [JAVA]
 	</tr>
 </table>
 <br>
-{% highlight java %}
-		//정수형 변수 선언		
-		byte i1 = 1;
-		short i2 = 2;
-		int i3 = 3;
-		long i4 = 4;
+
+```java
+//정수형 변수 선언		
+byte i1 = 1;
+short i2 = 2;
+int i3 = 3;
+long i4 = 4;
 		
-		//실수형 변수 선언
-		float r1 = 3.14F;
-		double r2 = 3.2;
-{% endhighlight %}
+//실수형 변수 선언
+float r1 = 3.14F;
+double r2 = 3.2;
+```
+
 <span style ="color: red">**자바에서 float Type은 값 뒤에 F를 붙여주어야 한다.**</span><br><br>
+
 ### 2. 논리형
 논리형은 오직 True 혹은 False만의 값만 가진다. => 대부분 조건문에서 사용한다.
 
-{% highlight java %}
+```java
 boolean b1 = true;
 if(b1){
 ... // 조건 선언
 }
-{% endhighlight %}
+```
 <br>
-###3. 문자형
+
+### 3. 문자형
 문자형의 경우 크게 문자와 문자열로 나뉘게 된다<br>
 문자 - Memory Size: 1Byte, Range: \u0000 ~ \uFFFF<br>
 문자열 - Memory Size: X, Range: X  
 <span style ="color: red">참고 사항</span>  
 문자열의 경우 특별한 데이터 Type 이므로 String Buffer 라는 것을 사용한다. String Buffer 전에 String 과 String Buffer의 차이를 생각해 보자  
+
 1. String Buffer는 오직 한번만 생성된다.
 2. String 은 생성될때와 연산을 할 때 마다 생성되게 된다.
 3. String 은 한 번 생성하게 되면 수정하기 어렵다.

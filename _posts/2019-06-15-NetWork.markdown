@@ -21,9 +21,9 @@ NetWork 주요 용어
    
 
 밑의 코드를 수행하기에 앞서 필요한 작업이다.  
-1. TCP/IP 주소 확인을 위하여 먼저 자신의 IP를 검색하여야 한다. Cmd 창에 ipconfig라는 명령어를 통해 자신의 IP를 알 수 있다.
-<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Java/IpCheck.PNG" height="300" width="600" />
-2. Server와 Client를 동시에 돌려야 하므로 두가지의 상태를 확인하기 위한 환경이 필요하다. 아래 주소에 환경에 관한 자세한 내용이 나와있다.  
+1) TCP/IP 주소 확인을 위하여 먼저 자신의 IP를 검색하여야 한다. Cmd 창에 ipconfig라는 명령어를 통해 자신의 IP를 알 수 있다.  
+<img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Java/IpCheck.PNG" height="300" width="600" /><br>
+2) Server와 Client를 동시에 돌려야 하므로 두가지의 상태를 확인하기 위한 환경이 필요하다. 아래 주소에 환경에 관한 자세한 내용이 나와있다.  
 참조: <a href="https://m.blog.naver.com/PostView.nhn?blogId=xxxstarxxx&logNo=221014452771&proxyReferer=https%3A%2F%2Fwww.google.com%2F">Kissme Jones 블로그</a><br> 
 
 {% highlight java %}

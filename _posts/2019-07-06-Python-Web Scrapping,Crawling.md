@@ -195,7 +195,7 @@ print("*"*50)
 
 ###  BeautifulSoup
 BeautifulSoup은 HTML,XML document 안에 있는 수많은 HTML 태그들을 사용하기 편한 Python객체 형태로 만들어준다.  
-<span style ="color: red">** Json**</span>형태는 지원하지 않는다.  
+**<span style ="color: red"> Json</span>**형태는 지원하지 않는다.  
 
 ```code
 pip install requests
@@ -256,7 +256,8 @@ http://www.naver.com/index.htmlhttps://www.navercorp.com/
 2. find_all(): 해당 조건에 맞는 모든 태그들을 가져온다.
 3. prettify(): Html모양처럼 보기에 편하게 만들어주는 함수
 
-** 추가 요소**  
+**추가 요소**  
+
 1. 정규표현식: 정규표현식을 활용하여 원하는 정보를 Filterring 하여 가져올 수 있다. <a href="https://wjddyd66.github.io/others/RegularExpression">정규표현식 자세한 내용</a>
 
 2. CSS Selector를 활용하여 원하는 정보 Filterring

@@ -40,7 +40,7 @@ Private는 Class내에서만 접근할 수 있어서, 자원이나 Logic을 보�
 
 <span style ="color: red">**Get 과 Set을 사용할때 같은 같은 변수명을 사용하기 위하여 this를 사용하게 된다. this는 객체, 자기 자신을 나타내게 된다. => 변수의 이름을 같게하여 자원의 재활용성을 늘리게 된다.**</span>
 
-{% highlight java %}
+```java
 	private int a = 3;
 	//Public - Variables and methods with public 
 	access control can be accessed from any Class
@@ -61,11 +61,12 @@ Private는 Class내에서만 접근할 수 있어서, 자원이나 Logic을 보�
 	 access the method as public and execute the operation on the variable.
 	 Advantage: Encryption, Automation
 	 */
-{% endhighlight %}
+```
+<br>
 
 ### 2. Protected
 Protected가 붙은 변수, 메소드는 동일 패키지내의 클래스 또는 해당 클래스를 상속받은 외부 패키지의 클래스에서 접근이 가능하다.   
-{% highlight java %}		
+```java		
 
 	public class Car {
 		protected String name = "Car";
@@ -78,28 +79,23 @@ Protected가 붙은 변수, 메소드는 동일 패키지내의 클래스 또는
 			//car
 		}
 	}
-{% endhighlight %}
+```
+<br>
+
 ### 3. Default
 
-Access Modifier를 설정하지 않으면 자동으로 정의되는 Access Modifier이다. 해당 패키지 내에서만 접근이 가능하다.
-
-<br>
-{% highlight java %}
-
+Access Modifier를 설정하지 않으면 자동으로 정의되는 Access Modifier이다. 해당 패키지 내에서만 접근이 가능하다.  
+```java
 	int a =3;
-{% endhighlight %}
+```
 <br>
 
 ### 4. Public
 
 Public은 Public 접근 제어자가 붙은 변수, 메소드는 어떤 클래스 에서도 접근이 가능하다.
 
-<span style ="color: red">**Public으로 선언하게 되면 어디에서도 사용가능한 편리성이 생기지만, Private의 장점인 Encryption과 Automation를 보장받을 수 없다. => 많이 사용되는 것만 최소한으로 사용하는 습관을 들이도록 하자 **</span>
-
-<br>
-{% highlight java %}
-
-```
+<span style ="color: red">**Public으로 선언하게 되면 어디에서도 사용가능한 편리성이 생기지만, Private의 장점인 Encryption과 Automation를 보장받을 수 없다. => 많이 사용되는 것만 최소한으로 사용하는 습관을 들이도록 하자 **</span>  
+```java
 public class Car {
 	protected String name = "Car";
 }
@@ -112,8 +108,6 @@ public class Sonata {
 	}
 }
 ```
-
-{% endhighlight %}
 <br>
 
 <hr>
