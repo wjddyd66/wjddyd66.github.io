@@ -173,7 +173,7 @@ dataframe = pd.read_csv(io.StringIO(x.decode('utf8')))
 dataframe.head()
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 2.png" height="70%" width="70%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 3.png" height="70%" width="70%" /></div><br>
 <br><br>
 
 #### Split the dataframe into train, validation, and test
