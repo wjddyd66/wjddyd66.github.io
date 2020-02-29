@@ -222,9 +222,9 @@ Keras의 Metric을 잘 모르겠다면 아래 링크를 참조하자.
 사용하는 Metric중에서 많이 사용하는 Metrics를 몇 개 소개하자면 다음과 같다.  
 - False: 잘 못 Classify한 결과
 - True: 잘 Classify한 결과
-- Accuracy: 정확도($\frac{true samples}{total samples}$)
-- Precision: ($\frac{true positives}{treu potitives + false positives}$)
-- Recall: ($\frac{true positives}{true potivies + false negatives}$)
+- Accuracy: 정확도(<span>$$\frac{true samples}{total samples}$$</span>)
+- Precision: (<span>$$\frac{true positives}{treu potitives + false positives}$$</span>)
+- Recall: (<span>$$\frac{true positives}{true potivies + false negatives}$$</span>)
 
 위의 Useful Metrics의 자세한 내용은 링크를 참조하자. <a href="https://wjddyd66.github.io/tnesorflow2.0/Tensorflow2.0(18)/">mAP</a>  
 
@@ -419,7 +419,7 @@ plot_loss(zero_bias_history, "Zero Bias", 0)
 plot_loss(careful_bias_history, "Careful Bias", 1)
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 7.png" height="70%" width="70%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 18.png" height="70%" width="70%" /></div><br>
 <br><br>
 
 
@@ -630,13 +630,13 @@ weighted_history = weighted_model.fit(
     verbose = 0)
 ```
 <br>
-```code
+```python
 # Check the training history
 plot_metrics(weighted_history)
 ```
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 11.png" height="70%" width="70%" /></div><br>
 
-```code
+```python
 # Evaluate metrics
 train_predictions_weighted = weighted_model.predict(train_features, batch_size=BATCH_SIZE)
 test_predictions_weighted = weighted_model.predict(test_features, batch_size=BATCH_SIZE)
@@ -670,7 +670,7 @@ Total Fraudulent Transactions:  97
 <br>
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 12.png" height="70%" width="70%" /></div><br>
 
-```code
+```python
 # Plot ROC
 plot_roc("Train Baseline", train_labels, train_predictions_baseline, color=colors[0])
 plot_roc("Test Baseline", test_labels, test_predictions_baseline, color=colors[0], linestyle='--')
@@ -804,7 +804,7 @@ Epoch 00013: early stopping
 plot_metrics(resampled_history )
 ```
 <br>
-<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 14.png" height="70%" width="70%" /></div><br>
+<div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Tensorflow/img 19.png" height="70%" width="70%" /></div><br>
 <br><br>
 
 
@@ -897,7 +897,7 @@ plt.legend(loc='lower right')
 <br>
 <hr>
 참조: <a href="https://github.com/wjddyd66/Tensorflow2.0/blob/master/StructedData/ClassificationOnImbalancedData.ipynb">원본코드</a><br>
-참조: <https://www.tensorflow.org/tutorials/structured_data/imbalanced_data">Classification on imbalanced data</a><br>
+참조: <a href="https://www.tensorflow.org/tutorials/structured_data/imbalanced_data">Classification on imbalanced data</a><br>
 코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
 
 
