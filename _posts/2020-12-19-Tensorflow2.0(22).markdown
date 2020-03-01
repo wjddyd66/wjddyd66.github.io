@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Time series forcastring"
+title:  "Time series forcasting"
 date:   2019-12-19 10:40:20 +0700
 categories: [Tnesorflow2.0]
 ---
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
-### Time series forcastring
+### Time series forcasting
 Tensorflow 2.0에 맞게 다시 Tensorflow를 살펴볼 필요가 있다고 느껴져서 <a href="https://www.tensorflow.org/?hl=ko">Tensorflow 정식 홈페이지</a>에 나와있는 예제부터 전반적인 Tensorflow 사용법을 먼저 익히는 Post가 된다.  
 <br>
 
