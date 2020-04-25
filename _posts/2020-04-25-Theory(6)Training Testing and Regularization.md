@@ -189,15 +189,17 @@ Regularization값이 커지면 커질 수록 즉, Weight의 값이 클 수록 Er
 <p>$$p(w) = \frac{1}{\sqrt{2\pi}\sigma_w}exp(-\frac{w^2}{2\sigma_w^2})$$</p>
 
 위와 같이 w에 대한 Prior Knowledge를 정의하고 MAP를 w를 통하여 Maximization한다면 다음과 같이 식을 정리할 수 있다.  
-<p>$$w^{*} = argmax_{w} P(w|D) = argmax_{w} log(P(w|D)) \varpropto argmax_{w} log(P(D|w))+log(P(w))$$</p>
+<p>$$w^{*} = \argmax_{w} P(w|D) = \argmax_{w} log(P(w|D))$$</p>
+<p>$$\varpropto \argmax_{w} log(P(D|w))+log(P(w))$$</p>
 
-위의 식에서 <span>$$argmax_{w} log(P(D|w))$$</span>는 Likelihood를 최대화 한다는 의미이다. 즉, **사용하고자하는 Model의 LossFunction을 L(w)라고 한다면, L(w)를 최소화 하는 문제라고 생각할 수도 있다.** 따라서 LossFunction을 L(w)라고 한다면 <span>$$argmax_{w} log(P(D|w)) \rightarrow argmax_{w} -L(w)$$</span>로서 표현할 수 있다.
-<p>$$w^{*} = argmax_{w} log(P(D|w))+log(P(w)) = argmax_{w} -L(w)+log(P(\theta))$$</p>
+위의 식에서 <span>$$\argmax_{w} log(P(D|w))$$</span>는 Likelihood를 최대화 한다는 의미이다. 즉, **사용하고자하는 Model의 LossFunction을 L(w)라고 한다면, L(w)를 최소화 하는 문제라고 생각할 수도 있다.** 따라서 LossFunction을 L(w)라고 한다면 <span>$$\argmax_{w} log(P(D|w)) \rightarrow \argmax_{w} -L(w)$$</span>로서 표현할 수 있다.
+<p>$$w^{*} = \argmax_{w} log(P(D|w))+log(P(w)) = \argmax_{w} -L(w)+log(P(\theta))$$</p>
 
 위의 식에서 우리는 **P(w)에 대하여 Gaussian Distribution이라는 Prior Knowledge를 선언하였으므로 식을 다음과 같이 변형할 수 있다.**
-<p>$$w^{*} = argmax_{w} -L(w)+log(P(\theta)) = argmax_{w} -L(w) -log(\sqrt{2\pi}\sigma_w)-\frac{w^2}{2\sigma_w^2}$$</p>
+<p>$$w^{*} = \argmax_{w} -L(w)+log(P(\theta))$$</p>
+<p>$$= \argmax_{w} -L(w) -log(\sqrt{2\pi}\sigma_w)-\frac{w^2}{2\sigma_w^2}$$</p>
 위의 식을 Minimize형태로 다음과 같이 식을 변형시킬 수 있다.  
-<p>$$w^{*} = argmin_{w} L(w) + log(\sqrt{2\pi}\sigma_w) + \frac{w^2}{2\sigma_w^2}$$</p>
+<p>$$w^{*} = \argmin_{w} L(w) + log(\sqrt{2\pi}\sigma_w) + \frac{w^2}{2\sigma_w^2}$$</p>
 
 **위에서 선언한 L2 Regularization식을 살펴보면 다음과 같다.**  
 <p>$$E(w) = \frac{1}{2}\sum_{n=0}^{N}(train_n - g(x_n,w))^2 + \frac{\lambda}{2}||w||^2 = L(w) + \frac{\lambda}{2}||w||^2$$</p>

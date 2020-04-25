@@ -34,7 +34,8 @@ Thumbtack Question
 
 위와 같은 확률 분포가 만약 Data의 분포형태로 나타내고 싶으면 다음과 같이 나타낼 수 있다.  
 <p>$$P(D|\theta) = \theta^{\alpha_H}(1-\theta)^{\alpha_T}$$</p>
-<p>$$\alpha_H: \text{ 앞면이 나온 횟수,  }\alpha_T: \text{ 뒷면이 나온 횟수}$$</p>
+<p>$$\alpha_H$$</p>: 앞면이 나온 횟수
+<p>$$\alpha_T$$</p>:  뒷면이 나온 횟수
 
 그렇다면 어떻게 식을 세워야 최적의 <span>$$\theta$$</span>를 구할 수 있을까?
 
@@ -62,7 +63,7 @@ Thumbtack Question
 실제 Noise까지(<span>$$\zeta$$</span>)까지 고려하여 <a href="">Hoeffding’s inequality</a>로서 표현하면 다음과 같다.
 
 <p>$$P(|\hat{\theta} - \theta^{*}| \ge \zeta) \le 2e^{-2N \zeta^2}$$</p>
-<p>$$\theta^{*}: \text{실제 Noise까지 완벽하게 예측하는 확률변수}$$</p>
+<p>$$\theta^{*}$$</p>: 실제 Noise까지 완벽하게 예측하는 확률변수
 
 위의 식을 해석하면 다음과 같다.
 - <span>$\zeta$</span>(Error Bound)를 많이 허용할 수록 실제 확률과 가까워 진다.
