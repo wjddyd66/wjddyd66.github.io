@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory1. Motivations and Basics"
 date:   2020-04-25 09:00:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">
