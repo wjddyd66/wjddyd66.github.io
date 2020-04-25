@@ -23,7 +23,7 @@ Machine Learning의 기초적인 이론부분을 다시 제대로 잡고 싶어�
 - 4.5 Logistic Regression Parameter Approximation 2
 
 ### 4.1 Decision Boundary
-<a href="">지난 Post Naive Bayes Classifier</a>를 사용하면 Non Linear한 형태로서 S Curve형태로 Bayes Risk를 Linear한 Model에 비하여 줄일 수 있었으나, **Conditional Independence**하다는 가정을 했었어야 했다.  
+<a href="https://wjddyd66.github.io/machine%20learning/Theory(3)Naive-Bayes-Classifier/">지난 Post Naive Bayes Classifier</a>를 사용하면 Non Linear한 형태로서 S Curve형태로 Bayes Risk를 Linear한 Model에 비하여 줄일 수 있었으나, **Conditional Independence**하다는 가정을 했었어야 했다.  
 
 Logistic Regression은 S Curve형태로 Non Linear한 형태인 것은 같으나, Conditional Independence하다는 가정없이 설계하는 Model이다.
 
@@ -63,7 +63,7 @@ Logestic Regression의 식을 <span>$$f(x) = \frac{e^{\beta_0+\beta_1x}}{1+e^{\b
 
 ### 4.3 Logistic Regression Parameter Approximation 1
 위의 식에서 Prior 정보는 없으므로 MLE로서 Function Approximation을 수행하게 된다.  
-여기에서 이전 <a href="">Conditional Independence</a>의 개념을 적용시킨 **Maximum Conditional Likelihood Estimation(MCLE)를 진행한다.** (Feature를 여러개라고 생각한다.)
+여기에서 이전 <a href="https://wjddyd66.github.io/machine%20learning/Theory(3)Naive-Bayes-Classifier/#32-conditional-independence">Conditional Independence</a>의 개념을 적용시킨 **Maximum Conditional Likelihood Estimation(MCLE)를 진행한다.** (Feature를 여러개라고 생각한다.)
 
 **MCLE**  
 <p>$$\hat{\theta} = \argmax_{\theta} P(D|\theta) = \argmax_{\theta} \prod_{i=1}^N P(Y_i|X_i ;\theta)$$</p>

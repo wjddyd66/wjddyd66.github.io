@@ -59,7 +59,7 @@ Conditional independence 는 Latent variable의 정보만이 X1의 행동에 영
 
 ### 7.3 Interpretation of Bayesian Network
 
-이전 <a href="">NaiveBayes Classifier</a>에서 선언한 식을 다시 살펴보면 다음과 같다.  
+이전 <a href="https://wjddyd66.github.io/machine%20learning/Theory(3)Naive-Bayes-Classifier/#3-naive-bayes-classifier">NaiveBayes Classifier</a>에서 선언한 식을 다시 살펴보면 다음과 같다.  
 <p>$$f^{*} = \argmax_{Y=y} P(Y=y|X=x) = \argmax_{Y=y}P(X=x|Y=y)P(Y=y)$$</p>
 <p>$$\approx \argmax_{Y=y}\prod_{i=1}^n P(X_i=x_i|Y=y)P(Y=y)$$</p>
 
@@ -316,9 +316,9 @@ Marginalization을 통하여 확률의 곱셈에 대하여 Summation을 실시�
 실제 얻을 수 있는 Data는 Joint Probability가 아닌 Joint Probability이다.  
 따라서, Bayesian Network에 Conditional Probability를 활용하여 Belief Propagation을 실시하여 보자.  
 먼저, Bayesian Network를 다시 다음과 같다고 정의하여 보자.
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/22.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/22.png)<br>
 위와 같은 Bayesian Network를 Clique Graph로서 변형하면 다음과 같이 나타낼 수 있다.
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/23.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/23.png)<br>
 - <span>$$\psi(a,b) = P(a|b), \psi(b,c) = P(b|c)P(c)$$</span>
 - <span>$$\phi(b) = 1$$</span>
 

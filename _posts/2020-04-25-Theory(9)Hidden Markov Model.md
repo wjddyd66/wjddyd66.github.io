@@ -56,7 +56,7 @@ $$\newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}$$
 ### 9.2 Viterbi Decoding Algorithm
 먼저 최종적인 Viterbi Algorithm을 살펴보면 Notation은 다음과 같이 정리 된다.
 
-- <span>$$𝑉_t(𝑗)=max_i[𝑉_t−1(𝑖)𝑎_{ij}𝑏_j]$<span>: Viterbi Algorithm => t번째 시점에서 j번째 은닉 상태가 관측되고 관측치 𝑂𝑡(=A or T or C or G) 가 관측될 확률
+- <span>$$𝑉_t(𝑗)=max_i[𝑉_t−1(𝑖)𝑎_{ij}𝑏_j]$$<span>: Viterbi Algorithm => t번째 시점에서 j번째 은닉 상태가 관측되고 관측치 𝑂𝑡(=A or T or C or G) 가 관측될 확률
  - j=0: A
  - j=1: T
  - j=2: C

@@ -26,12 +26,12 @@ Machine Learning의 기초적인 이론부분을 다시 제대로 잡고 싶어�
 ### 6.1 Overfitting and Underfitting 
 **Dataset**
 - Training Dataset
- - Parameter inference procedure
- - Prior Knowledge, past experience
- - There is no guarantee that this will work in the future => Not General
+  - Parameter inference procedure
+  - Prior Knowledge, past experience
+  - There is no guarantee that this will work in the future => Not General
 - Testing Dataset
- - Testing the learned ML algorithms/the inferred parameters
- - New dataset that is unrelated to the training process
+  - Testing the learned ML algorithms/the inferred parameters
+  - New dataset that is unrelated to the training process
 
 => 즉, ML Algorithm의 단점으로는 Training된 Data의 Distribution에서만, 잘 작동 된다는 것 이다. 따라서 Dataset 중 일부를 Test Dataset으로서 Split하여 새로운 Data Distribution에 대한 Model의 성능을 측정해야 한다는 것 이다.
 
@@ -141,9 +141,9 @@ Example) 희귀병을 진단하는 문제를 생각해보자. Dataset은 희귀�
 </table>
 
 <p>$$Accuracy = \frac{TP+FN}{TP+FP+FN+TN}$$</p>
-<p>$$Precision = \frac{TP}{TP+FP} \text{  :Model이 참이라 하였을 때 실제 참일 확률}$$</p>
-<p>$$Recall = \frac{TP}{TP+FN} \text{  :실제 참인데 Model이 참이라 분류할 확률}$$</p>
-<p>$$F_1 = \frac{2}{\frac{1}{Precision}+\frac{1}{Recall}} = \frac{TP}{TP+\frac{FN+FP}{2}} \text{  :정밀도와 재형율의 조화평균(harmonic mean)}$$</p>
+<p>$$Precision = \frac{TP}{TP+FP}$$: Model이 참이라 하였을 때 실제 참일 확률</p>
+<p>$$Recall = \frac{TP}{TP+FN}$$: 실제 참인데 Model이 참이라 분류할 확률</p>
+<p>$$F_1 = \frac{2}{\frac{1}{Precision}+\frac{1}{Recall}} = \frac{TP}{TP+\frac{FN+FP}{2}} $$: 정밀도와 재형율의 조화평균(harmonic mean)</p>
 
 정밀도와 재현률에 대하여 예시를 살펴보면 다음과 같다.  
 >1. 어린아이에게 안전한 동영상을 걸러내는 분류기를 훈련시킨다고 가정하면. 재현율은 높으나 정말 나쁜 동영상이 몇 개 노출되는 것보다 좋은 동영상이 많이 제외되더라도(낮은 재현율) 안전한 것들만 노출시키는(높은 정밀도) 분류기를 선호할 것 이다.

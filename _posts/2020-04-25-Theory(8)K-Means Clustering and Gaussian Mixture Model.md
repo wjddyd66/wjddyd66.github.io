@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Theory9. Hidden Markov Model"
+title:  "Theory8. K-Means Clustering and Gaussian Mixture Model"
 date:   2020-04-25 10:55:20 +0700
 categories: [Machine Learning]
 ---
@@ -71,7 +71,7 @@ K-Means Clusturing은 분리형 군집화 알고리즘중 하나로서, **각 �
 - Outlier에 Robust하지 않다.(K-Medoids를 사용하면 해결 가능하나 Complexity가 증가되어서 사용되지 않는다.)
 - Hard Clustering 이다. Cluster에 속하냐 안하냐로서만 표현하지, Probability로서 표현되지는 않는다.
 
-그림 출처: https://ratsgo.github.io/machine%20learning/2017/04/19/KC/
+그림 출처: <a href="https://ratsgo.github.io/machine%20learning/2017/04/19/KC/">ratsgo Blog</a>
 <br>
 
 **참조**  
@@ -121,7 +121,7 @@ Bottom Up 방식(Agglomerative Hierarchical Clustering)으로 예시를 들면 �
 
 5. 위와 같은 최종적인 Dendrogram Structure에서 사용자가 어떤 Cluster로 분류할 지 정하여 Cut(Post-Processing) 한다. Ex) 만약 두번째 층에서 끝게 되면 -> (A,D), C, B로서 3개의 Cluster로서 분할이 가능하다.
 
-그림 출처: https://ratsgo.github.io/machine%20learning/2017/04/18/HC/
+그림 출처: <a href="https://ratsgo.github.io/machine%20learning/2017/04/18/HC/">ratsgo 블로그</a>
 
 ### 8.3 Multinomial Distribution
 - Selecting 0 or 1 => Binomial Distribution

@@ -102,7 +102,7 @@ Step2의 경우도 Step1과 같은 결과로서 결과가 나오게 된다.
 
 **Step3**  
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/2.PNG)
-위의 결과를 살펴보면, Generalize Hypothsis를 통하여 Dataset 3(<span>$</span>)가 Yes라고 판단되게 된다.  
+위의 결과를 살펴보면, Generalize Hypothsis를 통하여 Dataset 3(<span>$$<Rainy, Cold, High, Strong, Warm, Change>$$</span>)가 Yes라고 판단되게 된다.  
 따라서 Label과 일치하지 않기 때문에 Generalize Hypothesis를 바꾸에서 Dataset 3이 False로서 판단되게 바꾸어야 한다.
 
 **Step4**

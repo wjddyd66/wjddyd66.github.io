@@ -30,7 +30,7 @@ X(Feature)가 주어진 상황에서 Y(Label)일 확률에 대하여 보여주�
 
 <p>$$f^{*} = \argmin_f P(f(X) \neq Y) = \argmin_f P(\hat{y} \neq Y)$$</p>
 
-위의 식을 살펴보면 <a href="">지난번의 Post</a>에서의 Linear Regression의 Function Approximation과 같은 꼴인 것을 알 수 있다.  
+위의 식을 살펴보면 <a href="https://wjddyd66.github.io/machine%20learning/Theory(2)Fundamentals-of-Machine-Learning/#24-linear-regression">지난번의 Post</a>에서의 Linear Regression의 Function Approximation과 같은 꼴인 것을 알 수 있다.  
 위의 식을 argmin -> argmax로서 식을 변형하면 다음과 같이 나올 수 있다.(Label이 2개인 경우)
 
 <p>$$f^{*} = \argmax_{Y=y} P(Y=y|X=x)$$</p>
@@ -43,7 +43,7 @@ X(Feature)가 주어진 상황에서 Y(Label)일 확률에 대하여 보여주�
 **위의 그림은 실제 Linear한 Classifier와 Non Linear한 Classifier는 Bayes Risk만큼 Error의 차이가 발생하는 것을 확인할 수 있다.**  
 **Bayes Classifier란 결국 Bayes Risk를 최대한 줄이는 Classifier이다.(Non Linear)**
 
-Bayes Classifier의 Risk를 줄이기 위하여 <a href="">1장에서 배운 MLE, MAP</a>를 활용하여 위의 식을 Function Approximation하여 Target Function과 비슷한 형태로 만드는 것을 목표로 하자.  
+Bayes Classifier의 Risk를 줄이기 위하여 <a href="https://wjddyd66.github.io/machine%20learning/Theory(1)Motivations-and-Basics/">1장에서 배운 MLE, MAP</a>를 활용하여 위의 식을 Function Approximation하여 Target Function과 비슷한 형태로 만드는 것을 목표로 하자.  
 
 잠깐 MAP의 식을 다시 살펴보면 다음과 같다.
 <p>$$P(\theta|D) = \frac{P(D|\theta)P(\theta)}{P(D)}$$</p>
@@ -85,8 +85,8 @@ Bayes Classifier의 Risk를 줄이기 위하여 <a href="">1장에서 배운 MLE
 
 Dataset이 위와 같이 존재한다고 할때 <span>$$\argmax_{Y=y}P(X=x|Y=y)P(Y=y)$$</span>를 계산하기 위하여 몇개의 Parameter가 필요한지 알아보자.
 
-- <span>$P(Y=y)$</span>: k-1, k: Label Category 개수
-- <span>$</span>, d는 Feature 개수
+- <span>$$P(Y=y)$$</span>: k-1, k: Label Category 개수
+- <span>$$P(X=x|Y=y): (2^d -1)k$$</span>, d는 Feature 개수
 
 위의 식을 살펴보게 되면 Feature의 개수에 따라서 <span>$$P(X=x|Y=y)$$</span>가 Exponential 하게 증가하기 때문에 Dataset을 구축하기 매우 어렵고 Model을 Training하기 매우 어렵다는 것을 알 수 있다.  
 
