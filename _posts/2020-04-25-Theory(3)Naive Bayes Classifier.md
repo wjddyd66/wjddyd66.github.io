@@ -55,7 +55,7 @@ Bayes Classifier의 Risk를 줄이기 위하여 <a href="https://wjddyd66.github
 
 위의 식을 사용하기 위해서는 다음과 같은 사전 정보가 필요하다.
 - Prior = Class Prior = P(Y=y)
-- Likelihood = Class Conditional Density = P(X=x|Y=y)
+- <span>Likelihood = Class Conditional Density = P(X=x|Y=y)</span>
 
 위와 같은 문제는 Dataset이 주어졌을 경우 쉽게 구할 수 있다.  
 하지만, X가 여러개의 Feature를 가지고 있을 경우 문제가 복잡해지는 것을 알 수 있다.

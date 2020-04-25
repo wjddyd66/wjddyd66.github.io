@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Theory9. Hidden Markov Model"
-date:   2020-04-25 11:00:20 +0700
+title:  "Theory9. Hidden Markov Model(2)"
+date:   2020-04-25 11:10:20 +0700
 categories: [Machine Learning]
 ---
 
