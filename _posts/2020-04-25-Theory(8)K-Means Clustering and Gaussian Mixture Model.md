@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory9. Hidden Markov Model"
 date:   2020-04-25 10:55:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">
@@ -234,7 +234,7 @@ plt.show()
 ```
 
 
-![png](8.%20K-Means%20Clustering%20and%20Gaussian%20Mixture%20Model_files/8.%20K-Means%20Clustering%20and%20Gaussian%20Mixture%20Model_5_0.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/29.png)
 
 
 **Mixture Model**  
@@ -272,7 +272,7 @@ Covariance Matrix는 정말 많이 사용되는 Matrix의 종류 중 하나이�
 
 Covariance Matrix를 좀 직관적으로 살피기 위하여 2차원이라고 한정하고 몇개의 예시를 살펴보면 다음과 같다.  
 
-![png](../images/24.png)<br>
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/24.png)<br>
 
 위의 그림을 왼쪽 위부터 살펴보면 다음과 같다.
 1. Varaince와 Covariance가 각각 1이다. 즉, x축으로의 분산, y축으로의 분산이 각각 1이고, Correlation값을 계산항여도 1이니, y=x와 같은 형태로서 나타내게 된다.

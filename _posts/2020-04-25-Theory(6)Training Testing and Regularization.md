@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory6. Training Testing and Regularization"
 date:   2020-04-25 10:00:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">

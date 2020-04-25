@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory2. Fundamentals of Machine Learning"
 date:   2020-04-25 09:10:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">
@@ -46,13 +46,13 @@ Rule Basec Machine Learning을 사용하기 위하여 다음과 같은 Dataset�
 위와 같은 Dataset과 사용할 Model, 또한 Hypothese H를 다음과 같이 용어 정리를 하고 넘어가자.
 
 - Instance X
- - Features: O: <Sunny, Warm, Normal, Strong, Warm, Same>
- - Label: Y: <Yes.>
+  - Features: O: <Sunny, Warm, Normal, Strong, Warm, Same>
+  - Label: Y: <Yes.>
 - Training Dataset D: A collection of observations on instance
 - Hypotheses H
- - Potentially posiible function to turn X into Y
- - <span>$</span>: <Summy, Warm, ?, ?, ?, Same> -> Yes
- - Hypothesis는 Catoegory 2 + Don't Care(?)의 값을 가질 수 있다. 따라서 최대 <span>$$3^6$$</span>의 개수가 될 수 있다.
+  - Potentially posiible function to turn X into Y
+  - <span>$$h_i$$</span>: <Summy, Warm, ?, ?, ?, Same> -> Yes
+  - Hypothesis는 Catoegory 2 + Don't Care(?)의 값을 가질 수 있다. 따라서 최대 <span>$$3^6$$</span>의 개수가 될 수 있다.
 - Target Function c
  - Unknown target function between the features and the label
 
@@ -89,10 +89,10 @@ Rule Based Model를 구성하는 최초 Hypothesis는 2개로 구성된다.
 <p>$$G_0 = {<?,?,?,?,?,?>}$$</p>
 위의 두개의 Hypothesis를 설명하면 <span>$$S_0$$</span>는 제일 Specific한 Hypothesis로서 모든 조건을 거부하는 Hypothsis이다. <span>$$G_0$$</span>는 제일 General한 Hypothesis로서 모든 조건을 허용하는 Hypothsis이다.  
 
-**Rule Based Model는 결국 <span>$$S_0$$</span>는 좀 더 Generalize하게 만들고, <span>$$G_0$$</span>는 좀 더 Specific하게 만들어서 Target Function을 찾아내는 것 이다.**  
+**Rule Based Model는 결국 <span>$S_0$</span>는 좀 더 Generalize하게 만들고, <span>$G_0$</span>는 좀 더 Specific하게 만들어서 Target Function을 찾아내는 것 이다.**  
 
 **Step 1,2**  
-![png](../images/1.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/1.PNG)
 
 위의 Step1과 Step2를 각각 생각하면 다음과 같다.  
 
@@ -101,16 +101,16 @@ Rule Based Model를 구성하는 최초 Hypothesis는 2개로 구성된다.
 Step2의 경우도 Step1과 같은 결과로서 결과가 나오게 된다.
 
 **Step3**  
-![png](../images/2.PNG)
-위의 결과를 살펴보면, Generalize Hypothsis를 통하여 Dataset 3(<span>$<Rainy, Cold, High, Strong, Warm, Change>$$</span>)가 Yes라고 판단되게 된다.  
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/2.PNG)
+위의 결과를 살펴보면, Generalize Hypothsis를 통하여 Dataset 3(<span>$</span>)가 Yes라고 판단되게 된다.  
 따라서 Label과 일치하지 않기 때문에 Generalize Hypothesis를 바꾸에서 Dataset 3이 False로서 판단되게 바꾸어야 한다.
 
 **Step4**
-![png](../images/3.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/3.PNG)
 최종적인 Dataset이 들어오게 되었을 경우 Step 1,2,3과 같은 과정으로 인하여 새롭게 Generalize Hypothsis와 Specific Hypothesis를 Trainin하였다.
 
 이 두가지의 사이에서 다음과 같이 다양한 Hypothesis가 생성될 수 있다.
-![png](../images/4.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/4.PNG)
 여전히 많은 Hypothesis가 있다는 것을 알 수 있다.
 
 결국 Target Function을 찾을 수 없었지만 그에 가깝게 Rule Based Model의 Hypothesis를 Approximation하였다는 것을 알 수 있다.
@@ -126,7 +126,7 @@ Step2의 경우도 Step1과 같은 결과로서 결과가 나오게 된다.
 
 즉, 위에서는 Rule Based Model은 결국 Hypothesis로서 표현하였다.  
 Decision Tree는 Rule Based Model과 Hypothsis를 Tree구조로서 만든 것 이다.(결국 같은 Algorithm이다.)
-![png](../images/5.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/5.PNG)
 
 **의문을 가져야 하는 것은 Rule Based Algorithm에서 문제점으로서 실제 Data는 Noise가 포함되고, 완벽하게 분리할 수 없다고 하였다.**  
 **따라서 100% Accuracy를 갖출수 없는 Model이라면, 결국 어떻게 Model을 평가하는지, 이러한 평가 결과로서 어떤 Model이 더 좋은 Model인지 판단 할 수 있어야 한다.**
@@ -156,7 +156,7 @@ P(X) = 1, P(Y) = 0인 지점에서는 Entropy는 0의 값이 나오게 되고, U
 **Information Gain**  
 
 이제 Decision Tree에 적용하기 위하여 다음과 같은 예제를 살펴보자.  
-![png](../images/6.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/6.PNG)
 
 위를 살펴보게 되면 A1, A9는 둘다 307개를 +, 383개를 -로 판단된다.  
 이러한 기존의 Hypothesis의 Entropy는 다음과 같이 나타낼 수 있다.  
@@ -205,7 +205,7 @@ Linear Regression은 이러한 Feature가 Linear하게 Label과 연관되어 있
 
 위의 Linear Regression의 문제점은 무엇일까?  
 아래 그림을 살펴보면 알 수 있다.
-![png](../images/7.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/7.PNG)
 
 왼쪽의 그림을 보면 Linear한 Regression만으로는 선형적으로 분류하기 때문에 Model이 잘 분류할 수 없다고 한다.  
 

@@ -50,7 +50,7 @@ Thumbtack Question
 
 <p>$$\argmax_{\theta}\theta^{\alpha_H}(1-\theta)^{\alpha_T} = \argmax_{\theta}ln(\theta^{\alpha_H}(1-\theta)^{\alpha_T})$$</p>
 <p>$$= \argmax_{\theta} \alpha_H ln(\theta) + \alpha_T ln(1-\theta)$$</p>
-위의 식에서 <span>$$$</span>는 시도 횟수이므로 양수이다. 또한, <span>$$$</span>는 확률이므로 0~1사이의 값을 가지므로 Concave한 Function인 것을 확인할 수 있다.
+위의 식에서 <span>$$\alpha_H, \alpha_T$$</span>는 시도 횟수이므로 양수이다. 또한, <span>$$\theta$$ </span>는 확률이므로 0~1사이의 값을 가지므로 Concave한 Function인 것을 확인할 수 있다.
 
 따라서 Concave Function에서 argmax를 구하기 위하여 미분한 값이 0인 Point를 찾는 문제로 변하게 된다.
 

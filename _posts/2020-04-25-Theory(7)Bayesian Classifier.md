@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory7. Bayesian Classifier"
 date:   2020-04-25 10:10:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">
@@ -181,14 +181,14 @@ Bayesian Network의 확률은 Conditional Independence하다면 다음과 같이
 즉, <span>$$p(x_1 | x_2,x_3)$$</span>는 각각의 x가 true, false라면 4가지 상황에 대해서 생각해야 하지만, <span>$$p(x_1 | x_2)$$</span>이 되면 2가지 상황에 대해서만 생각하면 된다는 것 이다.  
 
 실제 Bayesian Network를 다음과 같이 주어졌을 경우 Joint Probability를 생각하여 보자.  
-![png](../images/16.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/16.png)
 <p>$$p(x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9)$$</p>
 <p>$$=p(x_1)p(x_2)p(x_3|x_1)p(x_4|x_2)p(x_5|x_2)p(x_6|x_3,x_4)p(x_7|x_6)p(x_8|x_5,x_6)$$</p>
 
 ### 7.6 Inference Question on Bayesian Network
 **Inference Question이라는 것은 Model이 Training이 된 후에, Model에 Query를 날려서 다른 예측값을 뽑아낼 수 있냐는 것 이다.**  
 먼저, 사용하게 될 예제는 다음과 같다.  
-![png](../images/17.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/17.png)
 
 위의 그림을 살펴보게 되면, Bayesian Network로서 구성되어 있고, P(B), P(E), P(A|B,E), P(J|A), P(M|A)에 관한 확률을 모두 알 수 있다.(Model이 Training된 상황이기 때문이다.)  
 
@@ -250,14 +250,14 @@ Marginalization을 통하여 확률의 곱셈에 대하여 Summation을 실시�
 <p>$$P(E,J,M) = f_E(e)\sum_{B}f_{B}(b)\sum_{A}f_A(a,b,e)f_J(a)f_M(a)$$</p>
 위의 수식은 Inference Question on Bayesian Network에서 사용한 Example에 적용하면 다음과 같이 적용할 수 있다.  
 
-![png](../images/18.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/18.png)
 
 <p>$$P(E,J,M) = f_E(e)\sum_{B}f_{B}(b)\sum_{A}f_A(a,b,e)f_{JM}(a)$$</p>
 
-![png](../images/19.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/19.png)
 <p>$$P(E,J,M) = f_E(e)\sum_{B}f_{B}(b)\sum_{A}f_{AJM}(a,b,e)$$</p>
 
-![png](../images/20.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/20.png)
 <p>$$P(E,J,M) = f_E(e)\sum_{B}f_{B}(b)f_{\bar{A}JM}(a,b,e)$$</p>
 
 위와 같은 형식으로 계속하여 계산할 수 있다.
@@ -267,7 +267,7 @@ Marginalization을 통하여 확률의 곱셈에 대하여 Summation을 실시�
 - Potential function on nodes: <span>$$\psi(a,b),\psi(b,c),\psi(c,d)$$</span> => Clique
 - Potential function on links: <span>$$\phi(b), \phi(c)$$</span> => Separateor
 
-![png](../images/21.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/21.png)
 
 **Potential Function이라는 것은 PDF로서 표현하기 위한 방법이다. Bayesian Network를 Clique(Fully Conntected)와 Separator로서 표현한다.**  
 
@@ -316,9 +316,9 @@ Marginalization을 통하여 확률의 곱셈에 대하여 Summation을 실시�
 실제 얻을 수 있는 Data는 Joint Probability가 아닌 Joint Probability이다.  
 따라서, Bayesian Network에 Conditional Probability를 활용하여 Belief Propagation을 실시하여 보자.  
 먼저, Bayesian Network를 다시 다음과 같다고 정의하여 보자.
-![png](../images/22.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/22.png)
 위와 같은 Bayesian Network를 Clique Graph로서 변형하면 다음과 같이 나타낼 수 있다.
-![png](../images/23.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/23.png)
 - <span>$$\psi(a,b) = P(a|b), \psi(b,c) = P(b|c)P(c)$$</span>
 - <span>$$\phi(b) = 1$$</span>
 

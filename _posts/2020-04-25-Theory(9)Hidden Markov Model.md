@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory9. Hidden Markov Model"
 date:   2020-04-25 11:00:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">
@@ -37,7 +37,7 @@ $$\newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}$$
 알 수 있는 사실은 State는 Intron, Exon이 존재하게 되고, 각각의 State의 Emission은 A,T,C,G가 있다는 것 이다.  
 
 앞으로 실제 접근할 Example을 살펴보면 다음과 같다.  
-![png](../images/25.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/25.png)
 
 위의 문제에 맞게 앞으로의 식에서 공통으로 사용할 Notation을 정리하면 다음과 같다.
 - 𝐴=<span>$$a_{ij}$$</span>: i 번째 State에서 j번째 State로 넘어갈 확률 => Transition Probability
@@ -71,7 +71,7 @@ Viterbi Algorithm값을 생각해보면, i->j가 될수 있는 모든 Transmissi
 Traceback을 살펴보게 되면, Viterbi Algorithm은 MAX값을 선택하므로 그 값을 어디에다가 저장해두면, Argmax를 통하여 가장 확률이 높은 곳으로서 Traceback이 가능하다는 것 이다.
 
 
-![png](../images/26.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/26.png)
     
 위의 그림을 Matrix로서 표현하기 위하여 각각의 𝑉𝑖(𝑗)를 계산하게 되면 다음과 같이 나타낼 수 있습니다. (Viterbi Algorithm식은 Max를 사용하여야 하나, q2를 예시로 하면, q1 -> q2는 처음만 가능하고, q1 -> q2, q3 -> q2, q4 -> q2는 불가능 합니다. 마찬가지로 q3도 적용할 수 있습니다. 따라서 max로서 값을 표현하는 것이 아닌 경우의 수가 하나만 가능한 상태로 식을 사용하였습니다.)
 
@@ -97,7 +97,7 @@ Traceback을 살펴보게 되면, Viterbi Algorithm은 MAX값을 선택하므로
 
 실제 계산한 값을 Matrix로서 표현하면 다음과 같다.  
     
-![png](../images/27.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/27.png)
     
 Trace Back을 수행한 결과는 다음과 같다.
 - End: 𝑎𝑟𝑔𝑚𝑎𝑥[0,0,0,1∗.000004982]=3=𝑞4
@@ -112,7 +112,7 @@ Trace Back을 수행한 결과는 다음과 같다.
 𝑞0→𝑞1→𝑞3→𝑞3→𝑞3→𝑞3→𝑞4→𝑞0  
     
 위의 과정을 Matrix에 연관지어 생각하면 다음과 같이 표시할 수 있다.
-![png](../images/28.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/28.png)
 
 ### 9.3 Forward-Backward probability Cacluation
 **Hidden Markov Model의 전반적인 내용과 State를 알아낼 수 있는 Viterbi Algorithm의 경우에는 간단하므로 실제 Data에 적용을 하여 알아보았다.**  

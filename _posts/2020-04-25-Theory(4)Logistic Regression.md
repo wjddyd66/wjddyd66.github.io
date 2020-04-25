@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory4. Logistic Regression"
 date:   2020-04-25 09:40:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">
@@ -30,7 +30,7 @@ Logistic Regression은 S Curve형태로 Non Linear한 형태인 것은 같으나
 <a href="https://wjddyd66.github.io/dl/NeuralNetwork-(1)-Basic-&-Activation-Function/">Non Linear한 형태를 가지는 다양한 함수</a>가 존재하나 이번 Logistic Regression에서 Sigmoid Function을 사용하여 설계한다고 생각하자.
 
 먼저 Decision Boundary가 무엇인지에 대하여 알아보자. 지난번에 사용하였던 사진을 살펴보면 다음과 같다.  
-![png](../images/9.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/9.PNG)
 
 **Decision Boundary란 <span>$$P(Y=y|X) = P(Y=y|X)$$</span>가 만나는 지점으로서 Model이 Label을 Prediction하는 값이 바꾸는 부분이다.(그림에서는 중앙이라고 생각하자.)**
 

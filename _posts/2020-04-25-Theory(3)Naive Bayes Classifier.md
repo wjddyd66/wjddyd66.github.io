@@ -2,7 +2,7 @@
 layout: post
 title:  "Theory3. Naive Bayes Classifier"
 date:   2020-04-25 09:20:20 +0700
-categories: [Handson]
+categories: [Machine Learning]
 ---
 
 <script type="text/x-mathjax-config">
@@ -22,7 +22,7 @@ Machine Learning의 기초적인 이론부분을 다시 제대로 잡고 싶어�
 
 ### 3.1 Optimal Classification
 
-![png](../images/8.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/8.PNG)
 위의 사진은 Classifier의 그림을 나타내고 있다.  
 X(Feature)가 주어진 상황에서 Y(Label)일 확률에 대하여 보여주고 있다.(Label은 o or 1로서 Category Value, Discrete한 형태를 보여주고 있다.)
 
@@ -38,7 +38,7 @@ X(Feature)가 주어진 상황에서 Y(Label)일 확률에 대하여 보여주�
 그렇다면 이러한 Bayes Classifier를 사용하기 전왜 왜 Bayes Classifier를 사용하는지 알아야 한다.  
 
 **위와 같이 Non-Linear한 Classifier를 사용하지 않고 Linear한 Classifier로서 사용하면 다음과 같다.**  
-![png](../images/9.PNG)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/HandsOn/Theory/9.PNG)
 
 **위의 그림은 실제 Linear한 Classifier와 Non Linear한 Classifier는 Bayes Risk만큼 Error의 차이가 발생하는 것을 확인할 수 있다.**  
 **Bayes Classifier란 결국 Bayes Risk를 최대한 줄이는 Classifier이다.(Non Linear)**
