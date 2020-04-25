@@ -30,12 +30,12 @@ Thumbtack Question
 각각의 앞정을 던질 확률은 iid(독립)이라고 가정하자.  
 그러면 이러한 확률분포는 Discrete Distribution이며, 경우의 수는 2개인 <a href="https://wjddyd66.github.io/statistics/Statistics(2)/#2-%EC%9D%B4%ED%95%AD%EB%B6%84%ED%8F%ACbinomial-distribution">Binomial Distribution</a>형태일 것 이다.  
 
-즉, 앞면이 나올 확률이 <span>$$P(H) = \theta$$</span>로서 가정하면 뒷면이 나올 확률은 자연적으로 <span>$$P(T) = 1- \theta$$</span>가 되는 것 이다.  
+즉, 앞면이 나올 확률이 <span>$P(H) = \theta$</span>로서 가정하면 뒷면이 나올 확률은 자연적으로 <span>$P(T) = 1- \theta$</span>가 되는 것 이다.  
 
 위와 같은 확률 분포가 만약 Data의 분포형태로 나타내고 싶으면 다음과 같이 나타낼 수 있다.  
 <p>$$P(D|\theta) = \theta^{\alpha_H}(1-\theta)^{\alpha_T}$$</p>
-<p>$$\alpha_H$$</p>: 앞면이 나온 횟수
-<p>$$\alpha_T$$</p>:  뒷면이 나온 횟수
+<p>$$\alpha_H$$: 앞면이 나온 횟수</p>
+<p>$$\alpha_T$$:  뒷면이 나온 횟수</p>
 
 그렇다면 어떻게 식을 세워야 최적의 <span>$$\theta$$</span>를 구할 수 있을까?
 
@@ -63,7 +63,7 @@ Thumbtack Question
 실제 Noise까지(<span>$$\zeta$$</span>)까지 고려하여 <a href="">Hoeffding’s inequality</a>로서 표현하면 다음과 같다.
 
 <p>$$P(|\hat{\theta} - \theta^{*}| \ge \zeta) \le 2e^{-2N \zeta^2}$$</p>
-<p>$$\theta^{*}$$</p>: 실제 Noise까지 완벽하게 예측하는 확률변수
+<p>$$\theta^{*}$$: 실제 Noise까지 완벽하게 예측하는 확률변수</p>
 
 위의 식을 해석하면 다음과 같다.
 - <span>$\zeta$</span>(Error Bound)를 많이 허용할 수록 실제 확률과 가까워 진다.
@@ -82,7 +82,7 @@ MAP(Maximum a Posteriori Estimation)이란 **MLE 방법에서 이미 사전에 �
 
 <p>$$P(\theta|D) \varpropto P(D|\theta)P(\theta)$$</p>
 
-위의 식에서 MLE에서 Likelihood는 <span>$</span>로서 표현하였다.
+위의 식에서 위의 식에서 MLE에서 Likelihood는 <span>$$P(D|\theta) = \theta^{\alpha_H}(1-\theta)^{\alpha_T}$$</span>로서 표현하였다.
 
 이제 그러면 <span>$$P(\theta)$$</span>만 잘 표현하면 Argmax의 값을 구할 수 있을 것 이다.
 

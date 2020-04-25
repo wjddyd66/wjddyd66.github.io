@@ -94,7 +94,7 @@ Gradient Method를 알기 위해서는 먼저 <a href="https://ko.wikipedia.org/
 <p>$$f(x) = f(a) + \frac{f^{'}(a)}{1!}(x-a) + \frac{f^{''}(a)}{2!}(x-a)^2 + ...$$</p>
 <p>$$= \sum_{n=0}^{\infty} \frac{f^{n}(a)}{n!}(x-a)^n$$</p>
 
-<img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Sintay_SVG.svg/270px-Sintay_SVG.svg.png" >사인 함수의 테일러 급수의 수렴. 검은 선은 사인 함수의 그래프이며, 색이 있는 선들은 테일러 급수를 각각 1차(<span style="color:red;">빨강</span>), 3차(<span style="color:orange;">주황</span>), 5차(<span style="color:yellow;">노랑</span>), 7차(<span style="color:green;">초록</span>), 9차(<span style="color:blue;">파랑</span>), 11차(<span style="color:indigo;">남색</span>), 13차(<span style="color:violet;">보라</span>) 항까지 합한 것이다.  
+<img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Sintay_SVG.svg/270px-Sintay_SVG.svg.png" ><br>사인 함수의 테일러 급수의 수렴. 검은 선은 사인 함수의 그래프이며, 색이 있는 선들은 테일러 급수를 각각 1차(<span style="color:red;">빨강</span>), 3차(<span style="color:orange;">주황</span>), 5차(<span style="color:yellow;">노랑</span>), 7차(<span style="color:green;">초록</span>), 9차(<span style="color:blue;">파랑</span>), 11차(<span style="color:indigo;">남색</span>), 13차(<span style="color:violet;">보라</span>) 항까지 합한 것이다.  
 참조: <a href="https://ko.wikipedia.org/wiki/%ED%85%8C%EC%9D%BC%EB%9F%AC_%EA%B8%89%EC%88%98">WIKI</a>
 
 **Gradient Descent/Ascent**  

@@ -47,14 +47,14 @@ Rule Basec Machine Learning을 사용하기 위하여 다음과 같은 Dataset�
 
 - Instance X
   - Features: O: <Sunny, Warm, Normal, Strong, Warm, Same>
-  - Label: Y: <Yes.>
+  - Label: Y: Yes.
 - Training Dataset D: A collection of observations on instance
 - Hypotheses H
   - Potentially posiible function to turn X into Y
   - <span>$$h_i$$</span>: <Summy, Warm, ?, ?, ?, Same> -> Yes
   - Hypothesis는 Catoegory 2 + Don't Care(?)의 값을 가질 수 있다. 따라서 최대 <span>$$3^6$$</span>의 개수가 될 수 있다.
 - Target Function c
- - Unknown target function between the features and the label
+  - Unknown target function between the features and the label
 
 **위와 같은 용어로서 정리하자면, Machine Learning이라는 학문을 다음과 같이 설명할 수 있다.**  
 **Machine Learning이란 Model(Hypothese)를 Training Dataset을 통하여 Model을 훈련하여 Hypothesis를 Target Function에 맞추는 작업이다. 이러한 작업을 Function Approximation이라고 한다. 이러한 결과로서 Instanxe X의 Feature가 Model에 Input으로 들어오면, Output으로서 Label을 Prediction한다.**
