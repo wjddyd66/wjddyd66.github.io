@@ -160,7 +160,7 @@ Latente Variable인 State를 측정하기 위하여 Forward, Backward 값을 계
 **1. Emission Probability**  
 특정 t시점에서 Observation이 j일 확률은 매우 계산하기 쉽다.  
 <p>$$\gamma_t(j) = P\left( { q }_{ t }=j|O,\theta  \right)$$</p>
-<p>$$= \frac{P\left( { q }_{ t }=j,O|\theta  \right)}{P(O|\theta)} = \frac{{ \alpha  }_{ t }\left( j \right) \times { \beta  }_{ t }\left( j \right)}{\sum_{i=1}^{n} \alpha_t(s)\beta_t(s)}$$</p>
+<p>$$= \frac{P\left( { q }_{ t }=j,O|\theta  \right)}{P(O|\theta)} = \frac{\alpha_{t}\left( j \right) \times \beta_{ t }\left( j \right)}{\sum_{i=1}^{n} \alpha_t(s)\beta_t(s)}$$</p>
 위에서 미리 구한 식으로서 편하게 나타낼 수 있기 때문이다.  
 
 위의 식을 활용하여 실제 Emission Probability를 Update하면 다음과 같이 나타낼 수 있다.  
