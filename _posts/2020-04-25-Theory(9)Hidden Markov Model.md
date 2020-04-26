@@ -151,3 +151,36 @@ Forward-Backward와 Baum-Welch Algorithm의 경우에는 Model을 실질적으�
 <p>$$P(O|\theta) = \sum_{i=1}^{n} \alpha_t(s)\beta_t(s) = P(q_t=q_0,O | \theta) = \beta_o(q_0)$$</p>
 
 ### 9.4 Baum-Welch Algorithm
+우리는 위에서 <span>$${ \alpha  }_{ t }\left( j \right) \times { \beta  }_{ t }\left( j \right) =P\left( { q }_{ t }=j,O|\theta  \right)$$</span>식을 얻었다.  
+
+잘 생각해보녀 Baum-Welch Algorithm은 EM Algorithm이다.  
+Latente Variable인 State를 측정하기 위하여 Forward, Backward 값을 계산하는 단계가 E-Step이고 이러한 값을 활용하여 A,B,Initial Probability를 Update하기 때문이다.  
+
+**M-Step**  
+**1. Emission Probability**  
+특정 t시점에서 Observation이 j일 확률은 매우 계산하기 쉽다.  
+<p>$$\gamma_t(j) = P\left( { q }_{ t }=j|O,\theta  \right)$$</p>
+<p>$$= \frac{P\left( { q }_{ t }=j,O|\theta  \right)}{P(O|\theta)} = \frac{{ \alpha  }_{ t }\left( j \right) \times { \beta  }_{ t }\left( j \right)}{\sum_{i=1}^{n} \alpha_t(s)\beta_t(s)}$$</p>
+위에서 미리 구한 식으로서 편하게 나타낼 수 있기 때문이다.  
+
+위의 식을 활용하여 실제 Emission Probability를 Update하면 다음과 같이 나타낼 수 있다.  
+
+<p>$$\hat{b_j}(v_k) = \frac{\sum_{t=1, s.t.o_t=v_k}^{T}\gamma_t(j)}{\sum_{t=1}^{T}\gamma_t(j)}$$</p>
+
+**위의 식을 살펴보게 되면, 모든 Observation에서 Emission Probability를 계산한 값과 Model이 예측한 Observation이 실제 Observation이 같은 때의 확률로서 나타내게 된다.**  
+
+**2. Transmission Probability**  
+Transmission인 경우에는 한가지 더 생각해야 하는 점이 있다. 특정 시점에서의 Emission이 <span>${ q }_{ t }=i$</span>인 경우에 <span>${ q }_{ t +1}=j$</span>이 되어야 하기 때문에다. 즉, 현재 측정하고자하는 t시점에서 다음 시점까지 생각해야 하기 때문이다.  
+
+따라서 위에서 구한 식에서 <span>$$a_{ij}b_{j}(o_t)$$</span>를 곱해주어야 한다는 것 이다. 이를 식으로서 나타내면 다음과 같다.  
+<p>$$% <![CDATA[
+\begin{align*}
+{ \xi  }_{ t }\left( i,j \right) =&\frac { P\left( { q }_{ t }=i,{ q }_{ t+1 }=j,O|\lambda  \right)  }{ P\left( O|\lambda  \right)  } \\ =&\frac { { \alpha  }_{ t }\times { a }_{ ij }\times { b }_{ j }\left( { o }_{ t+1 } \right) \times { \beta  }_{ t+1 }\left( j \right)  }{ \sum _{ s=1 }^{ n }{ \alpha _{ t }\left( s \right) \times \beta _{ t }\left( s \right)  }  }
+\end{align*} %]]>$$</p>
+
+위의 수식을 활용하여 Transmission Probability를 Update하면 다음과 같이 나타낼 수 있다.  
+<p>$$\hat { a } _{ ij }=\frac { \sum _{ t=1 }^{ T-1 }{ { \xi  }_{ t }\left( i,j \right)  }  }{ \sum _{ t=1 }^{ T-1 }{ \sum _{ k=1 }^{ N }{ { \xi  }_{ t }\left( i,k \right)  }  }  }$$</p>
+
+**위의 식을 살펴보게 되면 i시점에서 j번째 시점으로 갈 수 있는 모든 Transimission Probability에서 실제 확률로서 간 Transmission Probability의 확률로서 나타낸 것을 확인할 수 있다.**  
+
+위의 두가지에 대한 모든 자세한 수식은 <a href="https://wjddyd66.github.io/machine%20learning/Theory(8)K-Means-Clustering-and-Gaussian-Mixture-Model(3)/">EM-Algorithm</a>을 사용하고, <a href="https://kooc.kaist.ac.kr/machinelearning2__17/lecture/10872/">문일철 교수님 강의</a>에서 자세한 유도를 살펴볼 수 있습니다.
