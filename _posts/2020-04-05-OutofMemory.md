@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "CuDNN Error-No Initialization"
-date:   2020-04-05 12:00:20 +0700
+date:   2020-04-05 12:10:20 +0700
 categories: [Others]
 ---
 
