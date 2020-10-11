@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Paper07. Matching Networks for One Shot Learning
-date:   2020-10-11 10:56:20 +0700
+title:  "Paper07. Matching Network"
+date:   2020-10-11 09:00:20 +0700
 categories: [Paper]
 ---
 
