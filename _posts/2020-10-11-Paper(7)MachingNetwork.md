@@ -47,14 +47,14 @@ Model설명에서 <span>$$S \rightarrow C_{S}(\cdot)$$</span>을 목표로 하�
 이러한 식을 논문에서는 <span>$$P(\hat{y}|\hat{x},S)$$</span>로서 다시 정의하였다. 즉, Support set과 Target Input이 Input으로 들어오는 경우 Target Label 을 출력하는 확률을 Maximize하도록 Training하게 될 것이며, P는 논문에서 사용하는 Matching Network가 될 것 이다.
 
 위와 같이 Notation이 정의되어 있을 때 논문에서 사용한 Model은 다음과 같이 정의된다.
-<p>$$$\hat{y} = \sum_{i=1}^k a(\hat{x}, x_i)y_i$$$</p>
+<p>$$\hat{y} = \sum_{i=1}^k a(\hat{x}, x_i)y_i$$</p>
 
 위의 식에서 중요하게 살펴볼 것은 <span>$$a(\cdot)$$</span>이다. 위의 Notation에서 정의하였듯이 Attention Mechanism으로서 논문에서는 **KDE(Kernel Density Estimation)처럼 작동하여 non-parametric이므로 <span>$$C_{S}(\hat{x})$$</span>가 더 유연하고 어떤 support set에서도 잘 적용될 수 있다고 설명하고 있다.**  
 
 또한, Target input이 Support set중 similarity가 가까운 순으로서 Distance를 정렬할 수 있으므로 K neaarest neighbors처럼 작동한다고 설명할수도 있다. (왜 similarity라하는 지는 The Attention Kernel에서 설명)
 
 ### The Attention Kernel
-<p>$$$ a(\hat{x}, x_i) = e^{c(f(\hat{x}), g(x_i))} / \sum_{j=1}^k e^{c(f(\hat{x}), g(x_j))} $$$</p>
+<p>$$ a(\hat{x}, x_i) = e^{c(f(\hat{x}), g(x_i))} / \sum_{j=1}^k e^{c(f(\hat{x}), g(x_j))} $$</p>
 
 - <span>$$g(\cdot)$$</span>: Support Embedding Function
 - <span>$$f(\cdot)$$</span>: Target Embedding Function
@@ -82,9 +82,9 @@ Object Function은 위에서 <span>$$\text{argmax}_{y} P(y|\hat{x},S)$$</span> �
 
 
 **The Fully Conditional Embedding g**  
-<p>$$$g(x_i, S) = \overrightarrow{h_i}+\overleftarrow{h_i}+g^{'}(x_i) \text{ (}g^{'}\text{: Target Embedding Function)}$$$</p>
-<p>$$$\overrightarrow{h_i}, \overrightarrow{c_i} = LSTM(g^{'}(x_i), \overrightarrow{h_{i-1}}, \overrightarrow{c_{i-1}})$$$</p>
-<p>$$$\overleftarrow{h_i}, \overleftarrow{c_i} = LSTM(g^{'}(x_i), \overleftarrow{h_{i-1}}, \overleftarrow{c_{i-1}})$$$</p>
+<p>$$g(x_i, S) = \overrightarrow{h_i}+\overleftarrow{h_i}+g^{'}(x_i) \text{ (}g^{'}\text{: Target Embedding Function)}$$</p>
+<p>$$\overrightarrow{h_i}, \overrightarrow{c_i} = LSTM(g^{'}(x_i), \overrightarrow{h_{i-1}}, \overrightarrow{c_{i-1}})$$</p>
+<p>$$\overleftarrow{h_i}, \overleftarrow{c_i} = LSTM(g^{'}(x_i), \overleftarrow{h_{i-1}}, \overleftarrow{c_{i-1}})$$</p>
 
 1. Support set으로서 <span>$$x_i$$</span>가 들어오게 되면, Embedding Function인 <span>$$g^{'}(x)$$</span>로서 Embedding
 2. Embedding된 <span>$$g^{'}(x)$$</span>를 이전 모든 Support set을 고려하는 Bidirection LSTM에 적용
@@ -93,17 +93,17 @@ Object Function은 위에서 <span>$$\text{argmax}_{y} P(y|\hat{x},S)$$</span> �
 즉, 개별적이고 독립적인 <span>$$g^{'}(x)$$</span>가 아니라, 이전 Support set을 고려하게 된다.
 
 **The Fully Conditional Embedding f**  
-<p>$$$ f(\hat{x}, S) = \text{attLSTM}(f'(\hat{x}), g(S), K) \text{  (K: steps of reads, }f^{'}\text{: Target Embedding Function)}$$$</p>
-<p>$$$\hat{h_k}, c_k = \text{LSTM}(f^{'}(\hat{x}), [h_{k-1}, r_{k-1}], c_{k-1})$$$</p>
-<p>$$$h_k = \hat{h_{k}}+f^{'}(\hat{x})$$$</p>
-<p>$$$r_{k-1} = \sum_{i=1}^{|S|} a(h_{k-1}, g(x_i))g(x_i)$$$</p>
-<p>$$$a(h_{k-1}, g(x_i)) = \text{softmax}(h^T_{k-1} g(x_i))$$$</p>
+<p>$$ f(\hat{x}, S) = \text{attLSTM}(f'(\hat{x}), g(S), K) \text{  (K: steps of reads, }f^{'}\text{: Target Embedding Function)}$$</p>
+<p>$$\hat{h_k}, c_k = \text{LSTM}(f^{'}(\hat{x}), [h_{k-1}, r_{k-1}], c_{k-1})$$</p>
+<p>$$h_k = \hat{h_{k}}+f^{'}(\hat{x})$$</p>
+<p>$$r_{k-1} = \sum_{i=1}^{|S|} a(h_{k-1}, g(x_i))g(x_i)$$</p>
+<p>$$a(h_{k-1}, g(x_i)) = \text{softmax}(h^T_{k-1} g(x_i))$$</p>
 - <span>$$g(S)$$</span>: Embedding function g applied to each element <span>$$x_i$$</span> from the set S.
 
 위의 식을 살펴보게 되면, 결과적으로 단순히 Hidden Space Mapping이 아닌, LSTM + Attention을 사용하여 Target Input을 Support Input을 고려하여 값을 변형하게 된다.
 
 ### Training Strategy
-<p>$$$\theta = \arg \max_\theta E_{L \sim T} \big[ E_{S \sim L, B \sim L} \big[ \sum_{(x, y) \in B} \log P_\theta (y | x, S) \big] \big]$$$</p>
+<p>$$\theta = \arg \max_\theta E_{L \sim T} \big[ E_{S \sim L, B \sim L} \big[ \sum_{(x, y) \in B} \log P_\theta (y | x, S) \big] \big]$$</p>
 
 - <span>$$T$$</span>: Task
 - <span>$$L$$</span>: 가능한 Label
@@ -501,11 +501,11 @@ class Embedding(nn.Module):
 ```
 
 ### The Fully Conditional Embedding - Target Set
-<p>$$$ f(\hat{x}, S) = \text{attLSTM}(f'(\hat{x}), g(S), K) \text{  (K: steps of reads, }f^{'}\text{: Target Embedding Function)}$$$</p>
-<p>$$$\hat{h_k}, c_k = \text{LSTM}(f^{'}(\hat{x}), [h_{k-1}, r_{k-1}], c_{k-1})$$$</p>
-<p>$$$h_k = \hat{h_{k}}+f^{'}(\hat{x})$$$</p>
-<p>$$$r_{k-1} = \sum_{i=1}^{|S|} a(h_{k-1}, g(x_i))g(x_i)$$$</p>
-<p>$$$a(h_{k-1}, g(x_i)) = \text{softmax}(h^T_{k-1} g(x_i))$$$</p>
+<p>$$ f(\hat{x}, S) = \text{attLSTM}(f'(\hat{x}), g(S), K) \text{  (K: steps of reads, }f^{'}\text{: Target Embedding Function)}$$</p>
+<p>$$\hat{h_k}, c_k = \text{LSTM}(f^{'}(\hat{x}), [h_{k-1}, r_{k-1}], c_{k-1})$$</p>
+<p>$$h_k = \hat{h_{k}}+f^{'}(\hat{x})$$</p>
+<p>$$r_{k-1} = \sum_{i=1}^{|S|} a(h_{k-1}, g(x_i))g(x_i)$$</p>
+<p>$$a(h_{k-1}, g(x_i)) = \text{softmax}(h^T_{k-1} g(x_i))$$</p>
 - <span>$$g(S)$$</span>: Embedding function g applied to each element <span>$$x_i$$</span> from the set S.
 
 
@@ -536,9 +536,9 @@ class FullyConditionalEmbeddingTarget(nn.Module):
 
 ### The Fully Conditional Embedding - Support Images
 
-<p>$$$g(x_i, S) = \overrightarrow{h_i}+\overleftarrow{h_i}+g^{'}(x_i) \text{ (}g^{'}\text{: Target Embedding Function)}$$$</p>
-<p>$$$\overrightarrow{h_i}, \overrightarrow{c_i} = LSTM(g^{'}(x_i), \overrightarrow{h_{i-1}}, \overrightarrow{c_{i-1}})$$$</p>
-<p>$$$\overleftarrow{h_i}, \overleftarrow{c_i} = LSTM(g^{'}(x_i), \overleftarrow{h_{i-1}}, \overleftarrow{c_{i-1}})$$$</p>
+<p>$$g(x_i, S) = \overrightarrow{h_i}+\overleftarrow{h_i}+g^{'}(x_i) \text{ (}g^{'}\text{: Target Embedding Function)}$$</p>
+<p>$$\overrightarrow{h_i}, \overrightarrow{c_i} = LSTM(g^{'}(x_i), \overrightarrow{h_{i-1}}, \overrightarrow{c_{i-1}})$$</p>
+<p>$$\overleftarrow{h_i}, \overleftarrow{c_i} = LSTM(g^{'}(x_i), \overleftarrow{h_{i-1}}, \overleftarrow{c_{i-1}})$$</p>
 
 
 ```python
@@ -571,7 +571,7 @@ class FullyConditionalEmbeddingSupport(nn.Module):
 
 ### Cosine Distance
 
-<p>$$$\text{similarity} = cos(\theta) = \frac{A \cdot B}{\| A \| \| B \|} = \frac{\sum_{i=1}^n A_i B_i}{\sqrt{\sum_{i=1}^n A_i^2}\sqrt{\sum_{i=1}^n B_i^2}}$$$</p>
+<p>$$\text{similarity} = cos(\theta) = \frac{A \cdot B}{\| A \| \| B \|} = \frac{\sum_{i=1}^n A_i B_i}{\sqrt{\sum_{i=1}^n A_i^2}\sqrt{\sum_{i=1}^n B_i^2}}$$</p>
 
 
 ```python
