@@ -50,7 +50,8 @@ AI에서도 Vision분야, DeepLearning 분야에 대해 관심이 많고 또한 
 <a href="https://dreamai.kr/fair_nvidia">2020 Dream AI Healthcare Hackathon</a>은 NVIDIA에서 주체한 Hackathon에서 HealthCare부분 Covid19에 대한 의료 진단 챌린지에 참가하게 되었습니다. COVID를 판단할 수 있는 Image와 Audio의 Multimodality Model을 만듦으로서 COVID Prediction의 성능을 올릴 수 있습니다. 해당 Project에서 Modeling을 담당하였습니다.   
 팀원: 황정용, 김경덕, 김종범  
 프로젝트 기간: 3주  
-**입상: 4등**
+**입상: 4등**  
+Project Directory: https://github.com/wjddyd66/Project/tree/master/COVID
 
 #### Motivation
 현재 전세계적으로 COVID-19로 인해 매우 심각한 위기해 있습니다. COVIDIA는 이 프로젝트에 참여하여 COVID-19를 보다 정확하고 빠르게 진담함으로서 COVID-19예방에 도움이 되고자 참가하였습니다.
@@ -83,7 +84,7 @@ Time Shifting -> Time stretching(speed up) -> Time stretching(speed down) -> Pit
 **cough sound in corona Positive patients**  
 ![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/cough-heavy05acPS4aRGfvuOfku11Za8zve8i2.png)<br>
 
-**Audio Model은 Pretrain된 Dense Net을 사용하였으며, Performance는 Test Accuracy: 76%입니다.
+**Audio Model은 Pretrain된 Dense Net을 사용하였으며, Performance는 Test Accuracy: 76%입니다.**
 
 #### Image Model
 **Contribution**  
