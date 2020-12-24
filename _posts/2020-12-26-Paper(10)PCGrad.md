@@ -49,7 +49,7 @@ If we could tackle the optimization challenges of multi-task learning effectivel
 - <span>$$p(\tau)$$</span>: Distrubution of Tasks
 - <span>$$\min_{\theta} E_{T_i ~ p(\tau)}[L_i(\theta)]$$</span>: Optimization // <span>$$L_i(\theta)$$</span>: Loss function for i-th task(<span>$$\tau_i$$</span>)
 - <span>$$L(\theta) = \sum_{i}L_i(\theta)$$</span>: Multi-Task Loss
-- <span>$$g_i = \nabla L_i(\theta)\$$</span>: Gradient of each Task
+- <span>$$g_i = \nabla L_i(\theta)$$</span>: Gradient of each Task
 
 ### The Tragic Triad: Conflicting Gradients, Dominating Gradients, High Curvature
 논문에서는 먼저 **Multi-Task Learning이 잘 작동하지 않는 Condition** 3가지에 대하여 정의하였다.

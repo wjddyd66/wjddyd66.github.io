@@ -4,6 +4,11 @@ layout: single
 permalink: /about/
 author_profile: true
 ---
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 ### AI Developer
 
@@ -37,11 +42,209 @@ AI에서도 Vision분야, DeepLearning 분야에 대해 관심이 많고 또한 
 <br>
 ---
 
-### PROJECT
+## PROJECT
 
 ---
 
-#### 따봉 Django Project
+### 2020 DREAM_AI Healthcare Hackathon
+<a href="https://dreamai.kr/fair_nvidia">2020 Dream AI Healthcare Hackathon</a>은 NVIDIA에서 주체한 Hackathon에서 HealthCare부분 Covid19에 대한 의료 진단 챌린지에 참가하게 되었습니다. COVID를 판단할 수 있는 Image와 Audio의 Multimodality Model을 만듦으로서 COVID Prediction의 성능을 올릴 수 있습니다. 해당 Project에서 Modeling을 담당하였습니다.   
+팀원: 황정용, 김경덕, 김종범  
+프로젝트 기간: 3주  
+**입상: 4등**
+
+#### Motivation
+현재 전세계적으로 COVID-19로 인해 매우 심각한 위기해 있습니다. COVIDIA는 이 프로젝트에 참여하여 COVID-19를 보다 정확하고 빠르게 진담함으로서 COVID-19예방에 도움이 되고자 참가하였습니다.
+
+#### Audio Model
+Audio Model를 Modeling하기 위한 Dataset은 .wav File -> Spectrum으로 바꿔서 사용하였으며, Unbalanced한 Dataset을 맞추기 위하여, Augmentation을 실시하였으며, 또한 Oversampling을 실시하였습니다.  
+
+**Dataset**  
+1. https://github.com/iiscleap/Coswara-Data
+2. https://github.com/virufy/covid
+
+- Train: 3108: pos: 508, neg: 2532  
+- Validation: 220: pos: 110, neg: 110  
+- Test: 100: pos: 50, neg: 50
+
+**Data Preprocessing**  
+**Data Preprocessing (1) - Spectrum**  
+.wav sound file -> LobROSA package -> STFT(Short Time Fourier Transform) -> Mel Scale
+
+**Data Preprocessing(2) - Signal Clipping**  
+**The length of the sound data was different we set the time to 3 seconds**, the time when the cough sound was properly mixed.
+
+**Data Preprocessing(3) - Data Augmentation**  
+Time Shifting -> Time stretching(speed up) -> Time stretching(speed down) -> Pitch Shifting -> Oversampling
+
+**Result of preprocessing**  
+**cough sound in corona negative patients**  
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/cough-heavy1G9prDQSP1fpNL0yc7C6Rqy7jmK2.png)<br>
+
+**cough sound in corona Positive patients**  
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/cough-heavy05acPS4aRGfvuOfku11Za8zve8i2.png)<br>
+
+**Audio Model은 Pretrain된 Dense Net을 사용하였으며, Performance는 Test Accuracy: 76%입니다.
+
+#### Image Model
+**Contribution**  
+저희 팀은 의사가 환자를 식별하는 것과 동일하게 작동하는 Model을 만들려고 했습니다.  
+기본적으로 의사는 환자의 COVID CT를 보고 다음과 같은 순서로 판단한다고 생각합니다.  
+1. Check the suspected part of the patient's CT as COVID.
+2. Determine whether it is COVID by looking at the progress or characteristics of the part.
+
+1의 과정을 수행하기 위하여, Segmentation Model을 사용하였습니다. FCN, U-net, Inf-Net이 Segmentation Model의 후보가 돠었고, 최종적으로는 **Inf-Net이 선택되었습니다.**  
+2의 과정을 수행하기 위하여, Segmentation의 결과를 mask처럼 사용하여 환자 Ct에서 의심되는 부분을 강조 할 수 있는 "Attention"효과를 기대하였다. Classification Model의 후보로는 VGG, ResNet, Densenet이 후보로 선정되었으며, DenseNet이 최종적으로 선택되었습니다.
+
+Appendix. COVID Image Dataset으로서 X-ray와 CT가 많이 사용되지만, Segmentation의 Dataset은 CT밖에 없어, CT를 Dataset으로서 사용하였습니다.
+
+#### Classification Model
+- Paper: COVID-CT-Dataset: A CT Image Dataset about COVID-19 (https://arxiv.org/pdf/2003.13865.pdf)
+- Code: COVID-CT (https://github.com/UCSD-AI4H/COVID-CT)  
+
+**Dataset**  
+>The COVID-CT-Dataset has 349 CT images containing clinical findings of COVID-19 from 216 patients.  
+The images are collected from COVID19-related papers from medRxiv, bioRxiv, NEJM, JAMA, Lancet, etc. CTs containing COVID-19 abnormalities are selected by reading the figure captions in the papers. All copyrights of the data belong to the authors and publishers of these papers.  
+The dataset details are described in this preprint: <a href="https://arxiv.org/pdf/2003.13865.pdf">COVID-CT-Dataset: A CT Scan Dataset about COVID-19</a>  
+
+**Model**  
+Paper에서 제공하는 Dataset으로서 Model의 Performance는 다음과 같다.  
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/1.png)
+
+**BaseLine's Model (COVID-CT-349) standard, AUC is 90.1%.**  
+Paper와 동일하게 Dataset을 구축하고, Model을 구축하였을때 위와 같은 결과를 얻었습니다. **하지만, Hyperparameter Tuning을 하는데 Validation Dataset을 사용하지 않았습니다.** 따라서 저희는 Validation Dataset을 사용하여 **Early Stopping을 사용**하였습니다. **또한, Early Stopping을 사용하다 보니, Epoch가 너무빨리 끝나는 것을 알게 되어 Learning Rate를 1e-3 => 1e-6으로 줄인 뒤 Performance는 다음과 같습니다.**  
+- F1: 0.93658
+- Accuracy: 0.93596
+- AUC: 0.98425
+
+저희는 위의 Performance를 BaseLine Performance로서 잡고 Experiment를 수행하였습니다.
+
+#### Segmentation Model
+- Paper: Inf-Net: Automatic COVID-19 Lung Infection Segmentation from CT Images(https://arxiv.org/pdf/2004.14133.pdf)
+- Code: Inf-Net: Automatic COVID-19 Lung Infection Segmentation from CT Images (https://github.com/DengPingFan/Inf-Net)
+
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/2.png)<br>
+
+현재 Segmentation Model로 선정 된 InfNet은 다음과 같은 특징을 가지고 있습니다.
+
+**Edge Attention**  
+많은 이미지 모델에서 **Edge는 중요한 정보가됩니다.** 특히 COVID CT를 생각해보면, **Back Ground와 Lung을 비교하고 Lung안에서도 COVID로 의심되는 부분을 찾는데 Edge는 중요한 정보가 될 것 이다.**
+
+**Paralleled partial decoder**  
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/3.png)<br>
+
+**U-Net의 경우 최종 출력이 하나의 Output임을 알 수 있습니다.**
+즉, Down Sampling이 Up Sampling 결과에 연결되었지만 최종 Output은 하나뿐이므로 Gradient Vanishing이 발생할 수 있다.
+그러나 InfNet은 PPD를 사용하여이 문제를 해결했습니다.
+위의 그림을 보면 PPD가 Up Sampling을하면서 각 Down Sampling의 결과를 곱하여 전체적으로 Down Sampling의 모든 특성을 추출하는 역할을한다는 것을 알 수 있습니다.
+
+1. <span>$$S_g$$</span> is created by combining the general characteristics of the image and specific characteristics.
+
+2. By adding this <span>$$S_g$$</span> to each downsampling, the overall characteristics and the output characteristics of the convolution layer are all the same.
+
+3. By calculating the loss directly to the output of all downsampling, it can be used more directly for the gradient vanishing and each feature.
+
+**Result**  
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/4.png)<br>
+
+**결과를 보면 U-Net보다 더 Sharp하게 Ground Truth를 포착하고 있음을 알 수 있습니다.**  
+**실제로 U-Net과 FCN을 학습하고 결과를 확인했을 때 논문에서와 같이 폐를 전체적으로 잡는 결과를 보여, InfNet 모델을 선택했습니다.**
+
+### Classification with Mask
+
+먼저 InfNet의 Segmentation 결과 Mask를 사용하기 위해서는 다음과 같은 Hyperparameter를 설정해야합니다.  
+
+1. 위에서 볼 수 있듯이 InfNet의 Output은 5가지 입니다.. Edge(<span>$$S_e$$</span>), Conv3 Output(<span>$$S_3$$</span>), Conv4 Output(<span>$$S_4$$</span>), Conv5 Output(<span>$$S_5$$</span>), PPD Output(<span>$$S_g$$</span>). 만약 <span>$$S_5$$</span> 이 사용된다면, 전체적인 Feature을 사용하게 되고, <span>$$S_3$$</span> 을 사용하게 되면 좀 더 Specific한 Feature를 사용한다.
+
+2. InfNet의 Segmentation 결과 BackGround으로 판단되는 모든 부분은 0 입니다. 이것을 마스크로 사용하면 세분화 모델이 100 % Ground Truth를 캡처해도 문제가 없지만 실제 분류 모델은 어느 정도 주변 정보를 사용합니다. 따라서 분할 결과의 COVID가 아닌 부분을 어느 정도까지 사용할 것인지도 Hyperparameter로 선택해야합니다.
+
+위의 과정을 그림으로 나타내면 다음과 같다.
+
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/5.png)<br>
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/6.png)<br>
+
+**Hyperparameter를 변경하면서, Validation Loss가 가장 낮은 Hyperparameter의 Test Performance를 보면 다음과 같습니다.**
+- F1: 0.93658 -> 0.94930
+- Accuracy: 0.93596 -> 0.94581
+- AUC: 0.98425 -> 0.98765
+
+대략적으로, 단순한 Classification Model보다 0.3%성능이 올랐습니다.
+
+### Multi Modality Model
+**Experiment Setting**  
+There is no sample with all modality. = > Make Pair Dataset Randomly
+EX) Train Image Random Sampling(500), Train Audio Random Sampling(500)
+
+Num of Multimodality Dataset
+- Train: COVID: 500 // Non-COVID: 500
+- Validation: COVID: 100 // Non-COVID: 100
+-Test: COVID: 100 // Non-COVID: 100
+
+**BaseLine-Multi Modality Model**  
+Late Fusion
+- DenseNet Feature Extractor Output Shape: 1664
+- Input: 1664*2(Concat) → 835 → 100 → 2 → Softmax → Prediction
+- Activation Function: ReLU
+
+Result: TP=98, TN=86, FN=2, FP=14  
+- F1: 92.45
+- Accuracy: 92
+- AUC: 98.15
+
+Late Fusion의 단점은 Feature Extractor가 Modality Specific하다는 것 이다. 따라서 <a href="https://wjddyd66.github.io/paper/Paper(4)MFAS/">MFAS</a>로서 Architecture를 Search하여 확인하였다.
+
+**MFAS-Multi Modality Model**  
+**Configuration**  
+config_1 = [[0,0,1], [0,1,0]]  
+config_2 = [[2,0,0], [1,1,1], [0,2,0]]  
+Config_3 = [[0,2,1], [2,0,0], [2,1,1]]  
+
+0에 가까울수록, Output단에 가깝다. [Image Feature Extractor, Audio Feature Extractor, Activation Function]  
+[x,x,0] => Sigmoid // [x,x,1] => ReLU  
+
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/7.png)<br>
+
+**Effect of Multi Modality Model**  
+단순히 Image Model의 성능이 높기 때문에, Multi Modality의 Model의 성능이 높을 수도 있다. 따라서 Hardest Dataset, Convertible Dataset을 구축하고 Multimodality의 효과를 확인한다.  
+
+**Hardest Dataset**: Test samples that were accurate predictioned in the image classification model but with low probability (Pairs for all audio samples with the same label) => Trheshold < 0.7 => Num of Sample: 13
+- Late Fusion: 13.91% // - MFAS(Config3): 11.84%
+
+**Convertible Dataset**: Test samples that were unaccurate predictioned in the image classification model but with high probability (Pairs for all audio samples with the same label)  => Trheshold > 0.3
+- Late Fusion: 19.38% // - MFAS(Config3): 18.44%  => Convert 5 of 6 samples 
+
+**Result of Convertible Dataset**
+![png](https://raw.githubusercontent.com/wjddyd66/Project/master/image/8.png)<br>
+
+#### Result
+**Image Classification Model**  
+The attention effect was expected by using the segmentation model as a mask, and the performance of the classification model was improved.
+
+**Audio Classification Model**  
+The unbalanced problem of Audio Dataset was solved by Augmentation and Oversampling.
+
+**Multimodality Model**  
+1. Through Architecture Search, not just LateFusion, even though the accuracy is the same, we found a model with improved performance based on AUC.
+2. Hardest Dataset and Convertible Dataset were defined, and the COVID Classification performance improvement was proved as Multimodality in the defined Dataset.
+
+#### Demo
+Flask로서 Web Service단을 개발하였다.  
+<video width="800px" height="600px" src"https://raw.githubusercontent.com/wjddyd66/Project/master/COVID/result/demo.mp4"></video>
+
+#### Reference
+[1] Paper: Inf-Net: Automatic COVID-19 Lung Infection Segmentation from CT Images(https://arxiv.org/pdf/2004.14133.pdf)  
+[2] Code: Inf-Net: Automatic COVID-19 Lung Infection Segmentation from CT Images (https://github.com/DengPingFan/Inf-Net)  
+[3] Paper: COVID-CT-Dataset: A CT Image Dataset about COVID-19 (https://arxiv.org/pdf/2003.13865.pdf)  
+[4] Code: COVID-CT (https://github.com/UCSD-AI4H/COVID-CT)  
+[5] Code: BackBone(res2net101_v1b_26w_4s: 'https://shanghuagao.oss-cn-beijing.aliyuncs.com/res2net/res2net101_v1b_26w_4s-0812c246.pth)  
+[6] Audio Dataset: https://github.com/iiscleap/Coswara-Data  
+[7] Audio Dataset: https://github.com/virufy/covid  
+[8] Paper: MFAS(Multimodal Fusion Architecture Search) (https://openaccess.thecvf.com/content_CVPR_2019/papers/Perez-
+Rua_MFAS_Multimodal_Fusion_Architecture_Search_CVPR_2019_paper.pdf)  
+[9] Paper: Efficient Progressive Neural Architecture Search (http://www.bmva.org/bmvc/2018/contents/papers/0291.pdf)  
+
+
+
+### 따봉 Django Project
 따봉 Django Project는 실제 존재하는 따릉이 대여소와 기타 요인간의 상관관계분석을 통한 공공자전거 대여소 설치 구역 추천을 하는 시스템입니다.   
 팀원: 황정용, 김동혁, 안상민, 장보성, 천지훈, 표종은  
 프로젝트 기간: 2주  
@@ -264,7 +467,7 @@ MLP Classifer 모델의 Parameter를 반복적으로 변경
 
 ---
 
-#### BOM AIR(Best Of Most Airline & Rent Car) Spring Project
+### BOM AIR(Best Of Most Airline & Rent Car) Spring Project
 BOM AIR Spring Project는 실제 항공사들이 서비스하는 Flight Booking + Car Rent를 목표로 하여 만든 프로젝트 입니다.  
 <div><img src="https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Project/bomair_logo2.PNG" height="100%" width="100%" /></div>  
 팀원: 황정용, 김동혁, 안상민, 장보성, 천지훈, 표종은  
