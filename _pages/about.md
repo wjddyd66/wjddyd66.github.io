@@ -229,7 +229,7 @@ The unbalanced problem of Audio Dataset was solved by Augmentation and Oversampl
 
 #### Demo
 Flask로서 Web Service단을 개발하였다.  
-<video width="800px" height="600px" src"https://raw.githubusercontent.com/wjddyd66/Project/master/COVID/result/demo.mp4"></video>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/77a9f486333549d1b9c7db4502f80e9c" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 #### Reference
 [1] Paper: Inf-Net: Automatic COVID-19 Lung Infection Segmentation from CT Images(https://arxiv.org/pdf/2004.14133.pdf)  
