@@ -99,19 +99,22 @@ Uncertainity-based Learning으로서 Ensemble로서 Network를 구성할 수 있
 
 **(a)Confident Prediction**  
 EX) Evidence <span>$$e = [40, 1, 1]$$</span>로서 한 Class에 대한 Evidence가 큰 예시이다.  
-<span>$$e = [40, 1, 1] \rightarrow \alpha = [41, 2, 2], S = \sum_{i=1}^{K}\alpha_i = 45 \rightarrow u = \frac{3}{45} \approx 0.067, p_1 = \frac{41}{45} \approx 0.911, p_2 = \frac{2}{42} \approx 0.045, p_3 = \frac{2}{45} \approx 0.045$$</span>
+<span>$$e = [40, 1, 1] \rightarrow \alpha = [41, 2, 2], S = \sum_{i=1}^{K}\alpha_i = 45$$</span>  
+<span>$$\rightarrow u = \frac{3}{45} \approx 0.067, p_1 = \frac{41}{45} \approx 0.911, p_2 = \frac{2}{42} \approx 0.045, p_3 = \frac{2}{45} \approx 0.045$$</span>
 
 **Class=1일 확률은 0.911로서 매우 높고, 또한 Uncertainty도 0.067로서 매우 낮은 것을 알 수 있다.**
 
 **(b)Out of distribution**  
 EX) Evidence <span>$$e = [0.0001, 0.0001, 0.0001]$$</span>로서 한 Class에 대한 Evidence가 큰 예시이다.  
-<span>$$e = [0.0001, 0.0001, 0.0001] \rightarrow \alpha = [1.0001, 1.0001, 1.0001], S = \sum_{i=1}^{K}\alpha_i = 3.0003 \rightarrow u = \frac{3}{3.0003} \approx 1, p_1 = \frac{1.0001}{3.0003} \approx 0.333, p_2 = \frac{1.0001}{3.0003} \approx 0.333, p_3 = \frac{1.0001}{3.0003} \approx 0.333$$</span>
+<span>$$e = [0.0001, 0.0001, 0.0001] \rightarrow \alpha = [1.0001, 1.0001, 1.0001], S = \sum_{i=1}^{K}\alpha_i = 3.0003$$</span>  
+<span>$$\rightarrow u = \frac{3}{3.0003} \approx 1, p_1 = \frac{1.0001}{3.0003} \approx 0.333, p_2 = \frac{1.0001}{3.0003} \approx 0.333, p_3 = \frac{1.0001}{3.0003} \approx 0.333$$</span>
 
 **Class=1, 2, 3일 확률은 0.333이지만, Uncertainty도 1로서 매우 높은 것을 알 수 있다. 즉, Softmax로서 판단하는 경우에는 확률이 0.333이지만 Uncertainty는 1로서 Confidence가 매우 낮은 것을 알 수 있다.**
 
 **(c)High uncertainty**  
 EX) Evidence <span>$$e = [5, 5, 5]$$</span>로서 한 Class에 대한 Evidence가 큰 예시이다.  
-<span>$$e = [5, 5, 5] \rightarrow \alpha = [6, 6, 6], S = \sum_{i=1}^{K}\alpha_i = 18 \rightarrow u = \frac{3}{18} \approx 0.167,p_1 = \frac{6}{18} \approx 0.333, p_2 = \frac{6}{18} \approx 0.333, p_3 = \frac{6}{18} \approx 0.333$$</span>
+<span>$$e = [5, 5, 5] \rightarrow \alpha = [6, 6, 6], S = \sum_{i=1}^{K}\alpha_i = 18$$</span>  
+<span>$$\rightarrow u = \frac{3}{18} \approx 0.167,p_1 = \frac{6}{18} \approx 0.333, p_2 = \frac{6}{18} \approx 0.333, p_3 = \frac{6}{18} \approx 0.333$$</span>
 
 **Class=1, 2, 3일 확률은 0.333이지만, (b)에 비하여 Uncertainty도 0.167로서 (b)보다 낮은 것을 알 수 있다. 즉, Softmax로서 판단하는 경우에는 확률이 0.333으로서 (b)와 같지만, 해당 결과는 (b)보다 더 믿을 수 있는 결과인 것을 확인할 수 있다.**
 
