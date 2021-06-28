@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Paper15. TRUSTED MULTI-VIEW CLASSIFICATION"
+title:  "Paper15. Contrastive Multiview Coding"
 date:   2021-06-28 10:00:20 +0700
 categories: [Paper]
 ---
