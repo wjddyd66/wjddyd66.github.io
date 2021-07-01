@@ -150,8 +150,14 @@ Conventional Neural-Network는 위와 같은 Loss Function으로서 Update된다
 위의 식을 **Dirichlet Distribution**으로서 나타내면 다음과 같습니다. (Paper에서는 Adjust Cross Entropy라고 칭하고 있습니다.)  
 <p>$$L_{ace} = \int [\sum_{j=1}^K -y_{ij}log(p_{ij})] \frac{1}{B(\alpha_i)} \prod_{j=1}^K p_{ij}^{\alpha_{ij}-1} d p_i = \sum_{j=1}^K y_{ij}(\psi(S_i) - \psi(\alpha_{ij}))$$</p>
 
-**위의 식은 같은 Model Prediction인 올바른 경우에만 적용된다. 따라서 해당 논문에서는 다른 Class일 확률을 0으로서 만들기 위하여 다음과 같은 Loss를 추가하였다. Softmax의 경우에는 각 Class일 확률을 더하면 1이 되므로, Cross Entropy만 적용하면 되지만, 해당 Paper의 확률은 Uncertainty가 추가되므로, 다른 Class가 0이 되어야지 Confidence가 높아지는 것을 알 수 있다.**  
+위와 같은 Loss에 대한 문제점을 논문에서는 다음과 같이 지적하고 있다.
+>The above loss function ensures that the correct label of each sample generates more evidence than other classes, however, it cannot guarantee that less evidence will be generated for incorrect labels. 
+That is to say, in our model, we expect the evidence for incorrect labels to shrink to 0. To this end, the following KL divergence term is introduced:
+
+**위의 손실 함수는 각 샘플의 올바른 레이블이 다른 클래스보다 더 많은 증거를 생성하도록 보장하지만 잘못된 레이블에 대해 더 적은 증거가 생성된다는 것을 보장 할 수는 없습니다. 즉, 일반적인 DNN과 달리 Output을 Probability가 아닌 Score로서 Output을 생성하게 된다. 이러한 과정에서 위와 같은 문제가 발생하게 된다.**
+
 따라서 해당 논문은 다음과 같은 Loss를 추가하였다.
+
 
 <p>$$KL[D(p_i | \tilde{\alpha_i}) || D(p_i | 1)] = log(\frac{\Gamma(\sum_{k=1}^K \tilde{\alpha}_{ik})}{\Gamma(K) \prod_{k=1}^K \Gamma(\tilde{\alpha_{ik}})}) + \sum_{k=1}^K (\tilde{\alpha_{ik}}-1)[\psi(\tilde{\alpha_{ik}}) - \psi(\sum_{j=1}^K \tilde{\alpha_{ij}})]$$</p>
 
