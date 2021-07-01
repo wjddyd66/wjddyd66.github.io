@@ -85,7 +85,7 @@ Uncertainity-based Learning으로서 Ensemble로서 Network를 구성할 수 있
 
 1. Notation:
     - <span>$$K$$</span>: Num of Class, <span>$$v$$</span>: vth modality, <span>$$u$$</span>: Uncertainty
-1. Evidence <span>$$e^v = [e_1^v, e_2^v, \cdots, e_K^v, u^v]$$</span>을 Input으로 받는다.
+1. Evidence <span>$$e^v = [e_1^v, e_2^v, \cdots, e_K^v]$$</span>을 Input으로 받는다.
 2. Evidence <span>$$e^v$$</span>을 통하여 Dirichlet Distribution인 <span>$$\sum_{i=1}^K(e_i^v+1) = \sum_{k=1}^{K}\alpha^v$$</span>을 구한다.
 3. 2의 과정을 통하여 Probability로 나타내기 위하여 <span>$$S^v = \sum_{k=1}^K \alpha_i^v$$</span>를 구한다.
 4. 3의 과정을 통하여 얻은 <span>$$S^v$$</span>를 통하여 <span>$$b_k^v = \frac{e_k^v}{S^v} \rightarrow u^v + \sum_{k=1}^k b_k^v = 1$$</span>을 구한다.
