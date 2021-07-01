@@ -154,7 +154,7 @@ Conventional Neural-Network는 위와 같은 Loss Function으로서 Update된다
 >The above loss function ensures that the correct label of each sample generates more evidence than other classes, however, it cannot guarantee that less evidence will be generated for incorrect labels. 
 That is to say, in our model, we expect the evidence for incorrect labels to shrink to 0. To this end, the following KL divergence term is introduced:
 
-**위의 손실 함수는 각 샘플의 올바른 레이블이 다른 클래스보다 더 많은 증거를 생성하도록 보장하지만 잘못된 레이블에 대해 더 적은 증거가 생성된다는 것을 보장 할 수는 없습니다. 즉, 일반적인 DNN과 달리 Output을 Probability가 아닌 Score로서 Output을 생성하게 된다. 이러한 과정에서 위와 같은 문제가 발생하게 된다.**
+**위의 손실 함수는 각 샘플의 올바른 레이블이 다른 클래스보다 더 많은 증거를 생성하도록 보장하지만 잘못된 레이블에 대해 더 적은 증거가 생성된다는 것을 보장 할 수는 없습니다. 즉, 일반적인 DNN과 달리 Output을 Probability가 아닌 Score로서 Output을 생성하게 된다. 이러한 과정에서 위와 같은 문제가 발생하게 된다. => Probability로서 나타내게 되면, 해당 Class일 확률이 1이 되면, 자동적으로 다른 Class일 확률은 0으로서 바뀌게 되므로 생각하지 않아도 됬다. 하지만, Score로서 나타내게 되면서 이러한 Probability의 특성이 없어지게 되므로 고려해야 한다.**
 
 따라서 해당 논문은 다음과 같은 Loss를 추가하였다.
 
