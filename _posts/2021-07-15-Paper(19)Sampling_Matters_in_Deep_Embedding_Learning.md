@@ -23,7 +23,7 @@ MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 
 ### Introduction
 먼저 Deep Embedding Learning의 과정을 살펴보면, 아래 Figure와 같다.
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/1.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/1.png)
 
 모든 Metric Learning의 Focus는 2가지로 나타낼 수 있다.
 1. Similarity를 학습하는 Loss를 위하여, Dataset을 Pair로 잡아야 하기 때문에 Dataset을 어떻게 "Sampling"할 것인가?
@@ -80,14 +80,14 @@ Abstract에서 언급하였듯이 Contrast Loss를 사용할 경우 <span>$$O(n^
 <p>$$q(d) \propto d^{n-2}[1-\frac{1}{4}d^2]^{\frac{n-3}{2}}$$</p>
 
 이러한 식은 다음과 같이 Figure2로서 표현된다.
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/2.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/2.png)
 
 식은 어렵지만, 결국 Feature Embedding의 Output이 Normalization이 되어 나올 때, Output의 길이는 unit vector가 될 것이고, 따라서 Output은 Sphere형태를 띌 것이다. 모든 Dimension에서 Uniformly distribution이라면 위와 같은 식이 되는 것 이다.
 
 **이러한 식은 n이 충분히 크다면 <span>$$N(\sqrt{2}, \frac{1}{2n})$$</span>의 Normal Distribution의 형태로 나타낼 수 있는 것을 확인할 수 있다.**
 
 해당 논문의 Supplement중 아래 그림은 실제 훈련중에 Negative Distance Distribution을 보여준다.
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/3.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/3.png)
 
 식에서 유도하였듯이, first epoch이후에는 distribution이 bell shape인것을 확인할 수 있고, epoch가 지나갈 수록 점차적으로 concentrates(분산이 작아지는)되는 결과를 확인할 수 있다.
 
@@ -102,7 +102,7 @@ Abstract에서 언급하였듯이 Contrast Loss를 사용할 경우 <span>$$O(n^
 
 아래 Figure는 <span>$$z \text{~} N(0, \sigma^2 U)$$</span>에 대한 nuclear norm of covariance matrix를 Visualization한 결과이다.
 
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/4.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/4.png)
 
 **위의 결과를 확인하면, Distance가 작을수록, Noise와 Noise가 없는 Loss의 Covariance가 커지는 것을 확인할 수 있다. 즉, Hard Sample일 수록, Noise에 대한 Robust능력이 없어지게 되고 이로 인하여 Converge하는데 오랜 시간이 걸리거나 Training이 Stable하지 않다는 결과를 얻을 수 있다.**
 
@@ -115,7 +115,7 @@ Distance Weighted Sampling의 식은 다음과 같다.
 
 Distance weighted sampling과 다른 sampling방법의 차이는 아래 그림과 같다.
 
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/5.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/5.png)
 
 - Uniform sampling(=Random Samping): **Density of datapoints on the D-dimensional unit sphere**을 보게 되면 대부분의 sample은 <span>$$\sqrt{2}$$</span>에 집중되어있는 것을 알 수 있다. 따라서 Uniform한 weight로서 sampling을 하게 되면, 대부분의 sample의 distance는 <span>$$\sqrt{2}$$</span>가 될 것이고, 너무 쉬운 sample로서 학습을 하게 되므로 Loss=0이 된다.
 
@@ -126,7 +126,7 @@ Distance weighted sampling과 다른 sampling방법의 차이는 아래 그림�
 ### Margin based loss
 **Advantabes of Triplet Loss((<span>$$l_2$$</span>))**  
 해당 논문에서는 또한 Margin based loss를 설명하고 있다. 이 Loss에 대해 알아보기 전에 기존의 Loss를 설명하는 Figure를 살펴보자.
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/6.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/6.png)
 
 - (a): <span>$$y_{ij}D_{ij}^2 + (1-y_{ij})[\alpha - D_{ij}]^2_{+}$$</span>
 - (b): <span>$$[\|f(x_a) - f(x_p)\|_2^2 - \| f(x_a) - f(x_n)\|_2^2 +\alpha]_{+}$$</span>
@@ -172,12 +172,12 @@ Triplet Loss(<span>$$l_2^2$$</span>)의 경우에는 Negative Loss(Green Line)�
 - <span>$$\alpha = 0.2, \beta^{0} = 1.2, \beta^{\text{class}} = \beta^{\text{img}} = 0$$</span>: Margin Fix, <span>$$\beta$$</span> Initialize
 
 **Effect of Sampling**  
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/7.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/7.png)
 
 위의 결과는, Loss는 동일하게 학습하되 Sampling의 방법만 바꾸고 실험한 결과이다. 기본적으로 많이 사용하는 Random과 Semi-Hard Sampling과 해당 논문에서 주장하는 Distance weighted Sampling을 비교한다. **중요하게 봐야할 결과는 Loss에 상관없이 Distance weighted Sampling을 사용하는 것이 Performance가 좋은 것을 살펴볼 수 있다. 또한 "Margin based loss"에서 보았듯이 Contrastive Loss < Triplet Loss(<span>$$l_2^2$$</span>) < Triplet Loss(<span>$$l_2$$</span>) < Margin Loss순으로 Performance가 좋은 것을 알 수 있다.**
 
 **Convergence speed**  
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/8.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/8.png)
 
 - Margin Loss + Distance Weighted Sampling
 - Triplet Loss + Semi-Hard Sampling
@@ -186,7 +186,7 @@ Triplet Loss(<span>$$l_2^2$$</span>)의 경우에는 Negative Loss(Green Line)�
 위의 결과를 확인하게 되면, Margin Loss + Distance Weighted Sampling이 빠르게 수렴하고 Performance도 좋은 것을 알 수 있다. Semi-Hard Sampling또한 Performance가 좋으나, 수렴하기까지 오래 걸리는 것을 알 수 있다.
 
 **Quantitative Results**  
-![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Quadruplet/9.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Sampling_Embedding/9.png)
 해당 결과를 보게 되면, Training Images가 동일한 다른 Model에 비하여 Embedding Dimension이 작음에도 불고하고 Performance가 높은 것을 확인할 수 있다.
 
 ### Conclusion
