@@ -120,3 +120,9 @@ Abstract에서도 나왔듯이 해당 논문의 Loss는 Intra Class간의 Variat
 
 ### Conclusion
 해당 논문에서는 Intra Class간의 Variation을 크게하는 Triplet Loss + Inter Class간의 Variation을 작게 하는 추가적인 Loss를 사용하여, Quadruplet Loss를 제안하였다. Generalization에서 좋은 효과를 보여주어서 Performance가 좋은 것을 살펴볼 수 있었다. **하지만, 해당 Loss는 Multiclass에 적용할 수 있지만, Binary Class에서는 적용할 수 없다는 것이 아쉬웠다.**
+
+<hr>
+참조: <a href="https://arxiv.org/pdf/1704.01719.pdf">Beyond triplet loss: a deep quadruplet network for person re-identification</a><br>
+참조: <a href="https://github.com/sooooojinlee/P1">sooooojinlee GitHub</a><br>
+
+코드에 문제가 있거나 궁금한 점이 있으면 wjddyd66@naver.com으로  Mail을 남겨주세요.
