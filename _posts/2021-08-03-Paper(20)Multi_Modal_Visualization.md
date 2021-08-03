@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Paper20. Multimodal data visualization, denoising and clustering with integrated diffusion"
-date:   2021-0-03 09:00:20 +0700
+date:   2021-08-03 09:00:20 +0700
 categories: [Paper]
 ---
 <script type="text/x-mathjax-config">
