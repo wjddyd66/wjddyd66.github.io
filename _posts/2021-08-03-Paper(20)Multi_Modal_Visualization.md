@@ -125,7 +125,7 @@ t가 증가함에 따라서, 점진적으로 High-Pass-Filter(해당 Point와 �
 위에서 정의한 각각의 Modality에 대한 Spectral Entropy를 활용하여 최종적인 식을 적으면 다음과 같다.
 <p>$$\text{J} = \text{P}_1^{t_1} * \text{P}_2^{t_2}$$</p>
 
-**주요한 점은 <span>$$\text{J} = \text{P}_1^{t} * \text{P}_2^{t}$<span>로서 사용하면 Modality Specific Information을 잃어버릴 수 있으나 위의 식은 각각의 Modality의 Information의 양을 <span>$$t_1, t_2$$</span>로 나타내었기 때문에 이러한 문제점을 해결하였다.**
+**주요한 점은 <span>$$\text{J} = \text{P}_1^{t} * \text{P}_2^{t}$$</span>로서 사용하면 Modality Specific Information을 잃어버릴 수 있으나 위의 식은 각각의 Modality의 Information의 양을 <span>$$t_1, t_2$$</span>로 나타내었기 때문에 이러한 문제점을 해결하였다.**
     
 또한, <span>$$t_1:t_2 = 2:8$$</span>이라면 각 Modality의 Information을 1:4로서 나타낼 수 있다. 즉, t가 증가하면 할수록 LPF로서 그 Modality의 Information을 많이 가지고 있기 때문이다.
 
