@@ -90,14 +90,14 @@ DIABLO Model은 Multi-Omics Integration을 진행하는 PLS와 다른게, Classi
 
 **DIABLO visualization outputs**  
 
-1. **Sample Plots**: Raw Data -> DIABLO -> Feature Embedding이 되었을 때, 각 Label 및 각 Omics별로 Clustering결과를 Visualization하여서 보여줍니다. 이러한 결과는 DIABLO Model이 각 Label에 따라 잘 분류를 실시할 수 있는지 보여주게 됩니다.
+**1. Sample Plots**: Raw Data -> DIABLO -> Feature Embedding이 되었을 때, 각 Label 및 각 Omics별로 Clustering결과를 Visualization하여서 보여줍니다. 이러한 결과는 DIABLO Model이 각 Label에 따라 잘 분류를 실시할 수 있는지 보여주게 됩니다.
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/DIABLO/2.png)
 
-2. **Variable Plots**: Feature Selection상에서 각 선택된 변수와의 Correlation을 보여주는 Plot입니다. 이러한 Correlation은 Pearson Correlation으로서 슈사성 점수를 사용되어 계산됩니다.(Cut-off > 0.8) Line Plot은 각 표현형 그룹의 Expression입니다. => 즉, 각 변수별 Group간의 차이 및 다른 Omics와의 Correlation을 한번에 살펴볼 수 있습니다.
+**2. Variable Plots**: Feature Selection상에서 각 선택된 변수와의 Correlation을 보여주는 Plot입니다. 이러한 Correlation은 Pearson Correlation으로서 슈사성 점수를 사용되어 계산됩니다.(Cut-off > 0.8) Line Plot은 각 표현형 그룹의 Expression입니다. => 즉, 각 변수별 Group간의 차이 및 다른 Omics와의 Correlation을 한번에 살펴볼 수 있습니다.
 
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/DIABLO/3.png)
 
-3. **Clustered image mpas Plots**: 각 Label 및 각 Omics별로 Expression을 Clustering하여 보여줍니다.
+**3. Clustered image mpas Plots**: 각 Label 및 각 Omics별로 Expression을 Clustering하여 보여줍니다.
 
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/DIABLO/4.png)
 
@@ -158,6 +158,7 @@ DIABLO Model은 Multi-Omics Integration을 진행하는 PLS와 다른게, Classi
 
 **Benchmark: DIABLO identifies highly interconnected networks with superior biological enrichment**  
 Simulation Dataset이 아닌 실제 Real World Dataset을 사용하여 Experiment를 진행하게 위하여 아래와 같은 Dataset을 사용하였다.
+
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/DIABLO/6.png)
 
 - Dataset: Colone, Kindney, Giloblastoma, Lung, Breast Cancer, Asthma
