@@ -123,15 +123,7 @@ DNN을 사용하는 경우의 loss function은 다음과 같다.
 Linear regression을 사용하는 경우는 아래와 같다.  
 <p>$$J(\theta_1, \ldots, \theta_2) = \frac{1}{2} \| y - \sum_{m=1}^M X_{m}\theta_m \|^2 + \frac{\rho}{2} \sum_{m < m^{'}} \| (X_m\theta_m - X_{m^{'}}\theta_{m^{'}}) \|^2 + \sum_{m=1}^M \lambda_m \|\theta_m\|_1$$</p>
 
-- <span>$$\tilde{X} = \begin{pmatrix} 
-X_1 & X_2 & \ldots & X_{M-1} & X_M \\ 
--\sqrt{\rho}X_1 & \sqrt{\rho}X_2 & \ldots & 0 & 0 \\
--\sqrt{\rho}X_1 & 0 & \ldots & \sqrt{\rho}X_{M-1} & 0 \\
--\sqrt{\rho}X_1 & 0 & \ldots & 0 & \sqrt{\rho}X_M \\
-0 & -\sqrt{\rho}X_2 & \ldots & 0 & \sqrt{\rho}X_{M}  \\
-\ldots & \ldots & \ldots & \ldots & \ldots \\
-0 & 0 & \ldots & -\sqrt{\rho}X_{M-1} & \sqrt{\rho}X_M 
-\end{pmatrix}$$</span>
+- <span>$$\tilde{X} = \begin{pmatrix} X_1 & X_2 & \ldots & X_{M-1} & X_M \\ -\sqrt{\rho}X_1 & \sqrt{\rho}X_2 & \ldots & 0 & 0 \\-\sqrt{\rho}X_1 & 0 & \ldots & \sqrt{\rho}X_{M-1} & 0 \\-\sqrt{\rho}X_1 & 0 & \ldots & 0 & \sqrt{\rho}X_M \\0 & -\sqrt{\rho}X_2 & \ldots & 0 & \sqrt{\rho}X_{M}  \\\ldots & \ldots & \ldots & \ldots & \ldots \\0 & 0 & \ldots & -\sqrt{\rho}X_{M-1} & \sqrt{\rho}X_M \end{pmatrix}$$</span>
 - <span>$$\tilde{y} = 	(y \quad 0 \quad \ldots \quad 0)^T$$</span>
 - <span>$$\tilde{\beta} = (\theta_1 \quad \theta_2 \quad \ldots \quad \theta_M)^T$$</span>
 <p>$$\hat{\theta_m} = \text{Lasso}(X, y_m^*, \lambda_m), \text{where} y_m^* = \frac{y}{1+(M-1)\rho} - \frac{(1-\rho)\sum_{m^{'}\neq m}X_{m^{'}}\theta_{m^{'}}}{(1+(M-1)\rho)}$$</p>
