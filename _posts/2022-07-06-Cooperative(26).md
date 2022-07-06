@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Paper26. Cooperative Learning for Multi-view Analysis"
-date:   2022-07-06 09:00:20 +0700
+date:   2022-07-05 10:00:20 +0700
 categories: [Paper]
 ---
 <script type="text/x-mathjax-config">
