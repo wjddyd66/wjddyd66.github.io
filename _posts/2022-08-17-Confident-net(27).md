@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Paper27. Addressing Failure Prediction by Learning Model Confidence"
-date:   2022-08-18 10:00:20 +0700
+date:   2022-08-17 10:00:20 +0700
 categories: [Paper]
 ---
 <script type="text/x-mathjax-config">
@@ -95,10 +95,10 @@ Softmax는 Class개수만큼의 Probability중에서 값이 큰 것을 Predictio
 
 Calibration 이란 모형의 출력값이 실제 confidence를 반영하도록 만드는 것입니다. 예를 들어, X 의 Y1 에 대한 모형의 출력이 0.8이 나왔을 때, 80 % 확률로 Y1 일 것라는 의미를 갖도록 만드는 것입니다. 일반적으로 현대 딥러닝은 overconfident 합니다. 아래 그림은 1998 년 제시된 LeNet 과 2016년 제시된 ResNet (110 layer) 의 calibration 을 비교한 그림입니다. LeNet 의 경우 모형의 출력이 0~1 사이에 균일하게 분포되어있는 것을 볼 수 있지만, ResNet 의 경우 1 근처에 집중되어 있다는 것을 볼 수 있습니다. 그 결과로 아래 그림을 보면, ResNet 의 경우, confidence 와 accuracy가 많이 어긋난다는 것을 볼 수 있습니다.
 
-![png](./img/4.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Confident-Net/4.png)
 
 ### Learning TCP confidence with deep neural networks  
-![png](./img/2.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Confident-Net/2.png)
 
 TCP를 사용하기 위한 제일 큰 문제점은 Test과정에서 실제 Label에 대한 정보는 사용할 수 없다는 것 이다. 따라서 해당 논문은 Label에 대한 Probability를 뽑아내기 위하여 위의 Figure와 같이 "Confidence network"를 추가적으로 사용하였다.
 
@@ -353,7 +353,7 @@ print('AUPR-Error: ', ap_errors)
 
 
 **Comparative results on failure prediction.**
-![png](./img/3.png)
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/Confident-Net/3.png)
 
 ### Conclustion
 해당 논문은 TCP라는 Softmax와 다르게 Prediction이 아닌 실제 Label에 대한 Confidence를 추정 할 수 있는 새로운 방법을 제시하고, 이를 사용할 수 있는 Confident-net을 제안한다. 해당 방법으로 인하여 논문은 OOD sample에 대하여 Detection을 할 수 있었다. 
