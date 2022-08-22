@@ -90,19 +90,6 @@ Therefore, it is crucial for multimodal classification to be aware of the inform
 위와 같이 일반적인 softmax output의 notationd을 정의하게 되면, Loss Function(NLL)은 아래와 같다.
 <p>$$L^{cls} = - \sum_{m=1}^M \sum_{k=1}^K y_k \text{log}(p_k^m)$$</p>
 
-**Multimodal confidence.**  
-Softmax output의 overfitting되는 경향이 있으므로 해당 논문에서도 Modality의 confidence를 측정하기 위하여 <a href="https://wjddyd66.github.io/paper/Confident-net(27)/">TCP</a>를 사용하였다.
-TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 있다.
-<p>$$TCP^m = y \cdot p^m(y|x^m) = \sum_{k=1}^K y_k p_k^m$$<p>
-    
-    
-해당 논문은 TCP논문과 마찬가지로 실제 Class에 대한 Confidence를 측정할 수 있는 Confident-Net(. )을 추가적으로 학습한다.
-기존 Confident-Net과 다른점은 따로따로 학습하는 것이 아니라, 한번에 같이 학습을 진행한다는 것 이다. 최종적으로 Confident-Net을 학습하기 위한 Loss는 아래와 같다.
-
-
-<p>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</p>
-<p>$$\hat{TCP}^m = g^m(x^m)$$</p>
-
 
 ### Dynamical Multimodal Fusion
 위에서 설명한 "Feature-level Dynamics"으로 인하여 feature-level informativenss(<span>$$\{w^m\}_{m=1}^M$$</span>)과 "Modality-level Dynamics"으로 인하여 modality-level informativeness(<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)를 구할 수 있었다.  
