@@ -96,7 +96,8 @@ TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 �
 <p>$$TCP^m = y \cdot p^m(y|x^m) = \sum_{k=1}^K y_k p_k^m$$<p>
     
     
-해당 논문은 TCP논문과 마찬가지로 실제 Class에 대한 Confidence를 측정할 수 있는 Confident-Net (<span>$$g^m: x^m \rightarrow TCP^m$$</span>)을 추가적으로 학습한다. **기존 Confident-Net과 다른점은 따로따로 학습하는 것이 아니라, 한번에 같이 학습을 진행한다는 것 이다.** 최종적으로 Confident-Net을 학습하기 위한 Loss는 아래와 같다.
+해당 논문은 TCP논문과 마찬가지로 실제 Class에 대한 Confidence를 측정할 수 있는 Confident-Net (<span>$$g^m: x^m \rightarrow TCP^m$$</span>)을 추가적으로 학습한다.  
+**기존 Confident-Net과 다른점은 따로따로 학습하는 것이 아니라, 한번에 같이 학습을 진행한다는 것 이다.** 최종적으로 Confident-Net을 학습하기 위한 Loss는 아래와 같다.
 <p>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</p>
 <p>$$\hat{TCP}^m = g^m(x^m)$$</p>
 
