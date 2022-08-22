@@ -44,7 +44,7 @@ Bio Domain에서 Multi-modality를 사용하기 위한 문제점은 개인적으
 - <span>$$M$$</span>: Number of modalities
 - <span>$$x_n^m \in \mathbb{R}^{d_m}$$</span>: n-th sample m-th modality (High-Dimensional)
 - <span>$$y_n \in \mathbb{R}^K$$</span>: n-th label
-- <span>$$\{\{x_n^m\}_{m=1}^M, y_n\}_{n=1}^N$$</span>: multimodal dataset (i.i.d)
+- <span>$$\{\{x_n^m \}_{m=1}^M, y_n\}_{n=1}^N$$</span>: multimodal dataset (i.i.d)
 
 위와같이 정의되어있을때, 기본적인 neural network는 <span>$$f: \{x^m\}_{m=1}^M \rightarrow y$$</span>이다.
 
@@ -111,11 +111,11 @@ TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 �
 해당 논문은 이러한 2가지 값을 이용하여 최종적인 model prediction은 다음과 같이 구하였다.
 
 
-1. <span>$$\tilde{x} =sx^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정
-2. <span>$$h^m = f_1^m(\tilde{x})$$</span>: Important Feature -> Feature Extractor -> Output
-3. <span>$$\hat{TCP}^m = g^m(x^m)$$</span>: Modality Confidence
-4. <span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m], [.,.]: \text{concatenation}$$</span>: multimodal representation considering modality confidence
-5. <span>$$f: h \rightarrow y$$</span>: Additional classifier is trained with cross-entropy Loss (<span>$$L_f$$</span>)
+1. <span>$$\tilde{x} =sx^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정.  
+2. <span>$$h^m = f_1^m(\tilde{x})$$</span>: Important Feature -> Feature Extractor -> Output.  
+3. <span>$$\hat{TCP}^m = g^m(x^m)$$</span>: Modality Confidence.  
+4. <span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m], [.,.]: \text{concatenation}$$</span>: multimodal representation considering modality confidence.  
+5. <span>$$f: h \rightarrow y$$</span>: Additional classifier is trained with cross-entropy Loss (<span>$$L_f$$</span>).  
 
 <p>$$L = \sum_{i=1}^N (L^f + \lambda_1 L_{l_1}^s + \lambda_2 L^{conf}), \lambda_1, \lambda_2: \text{hyperparameters}$$</p>
 
