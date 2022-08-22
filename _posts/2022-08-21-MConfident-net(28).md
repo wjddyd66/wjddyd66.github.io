@@ -90,13 +90,6 @@ Therefore, it is crucial for multimodal classification to be aware of the inform
 위와 같이 일반적인 softmax output의 notationd을 정의하게 되면, Loss Function(NLL)은 아래와 같다.
 <p>$$L^{cls} = - \sum_{m=1}^M \sum_{k=1}^K y_k \text{log}(p_k^m)$$</p>
 
-**Maximum class probability**  
-
-**Multimodal confidence.**  
-Softmax output의 overfitting되는 경향이 있으므로 해당 논문에서도 Modality의 confidence를 측정하기 위하여 TCP를 사용하였다. TCP는 실제 Label에 대한 distribution이며, 아래와 같이 적을 수 있다.
-<p>$$\text{TCP}^{m} = y \cdot p^{m} (y|x^{m}) = \sum_{k=1}^{K} y_{k} p_{k}^{m}$$<p>
-
-
 
 
 ### Dynamical Multimodal Fusion
