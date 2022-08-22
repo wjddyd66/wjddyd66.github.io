@@ -96,15 +96,17 @@ TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 �
 <p>$$TCP^m = y \cdot p^m(y|x^m) = \sum_{k=1}^K y_k p_k^m$$<p>
     
     
-해당 논문은 TCP논문과 마찬가지로 실제 Class에 대한 Confidence를 측정할 수 있는 Confident-Net (<span>$$g^m: x^m \rightarrow TCP^m$$</span>)을 추가적으로 학습한다.  
+해당 논문은 TCP논문과 마찬가지로 실제 Class에 대한 Confidence를 측정할 수 있는 Confident-Net(<span>$$g^m:x^m \rightarrow TCP^m$$</span>)을 추가적으로 학습한다.
+  
 **기존 Confident-Net과 다른점은 따로따로 학습하는 것이 아니라, 한번에 같이 학습을 진행한다는 것 이다.** 최종적으로 Confident-Net을 학습하기 위한 Loss는 아래와 같다.
 <p>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</p>
 <p>$$\hat{TCP}^m = g^m(x^m)$$</p>
 
 ###  Dynamical Multimodal Fusion
-위에서 설명한 "Feature-level Dynamics"으로 인하여 feature-level informativenss (<span>$$\{w^m \}_{m=1}^M$$</span>)과 "Modality-level Dynamics"으로 인하여 modality-level informativeness (<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)를 구할 수 있었다.  
+위에서 설명한 "Feature-level Dynamics"으로 인하여 feature-level informativenss(<span>$$\{w^m \}_{m=1}^M$$</span>)과 "Modality-level Dynamics"으로 인하여 modality-level informativeness(<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)를 구할 수 있었다.  
 
 해당 논문은 이러한 2가지 값을 이용하여 최종적인 model prediction은 다음과 같이 구하였다.
+
 - <span>$$\tilde{x} = x^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정
 - <span>$$h^m = f_1^m(\tilde{x})$$</span>: Important Feature -> Feature Extractor -> Output
 - <span>$$\hat{TCP}^m = g^m(x^m)$$</span>: Modality Confidence
@@ -171,7 +173,6 @@ Ablation study결과를 살펴보게 되면, CF가 가장 많이 영향을 받�
 ^mh_m$$</span>)
 - <code>MMfeature = torch.cat([i for i in feature.values()], dim=1)</code>: multimodal representation considering modality confidence (<span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m]$$</span>)
 - <code>MMlogit = self.MMClasifier(MMfeature)</code>:Additional classifier is trained with cross-entropy Loss (<span>$$f: h \rightarrow y$$</span>)
-
 - <code>MMLoss = torch.mean(criterion(MMlogit, label))</code>:Cross-entropy Loss (<span>$$L^f$$</span>)
 - <code>torch.mean(FeatureInfo[view])</code>: <span>$$L_{l_1}^s = \sum_{m=1}^M \|w^m\|_1$$</span>
 - <code>confidence_loss = torch.mean(F.mse_loss(TCPConfidence[view].view(-1), p_target)+criterion(TCPLogit[view], label))</code>: <span>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</span>
