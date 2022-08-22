@@ -90,7 +90,7 @@ Therefore, it is crucial for multimodal classification to be aware of the inform
 위와 같이 일반적인 softmax output의 notationd을 정의하게 되면, Loss Function(NLL)은 아래와 같다.
 <p>$$L^{cls} = - \sum_{m=1}^M \sum_{k=1}^K y_k \text{log}(p_k^m)$$</p>
 
-
+![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/M-Confident/img.png)
 
 ### Dynamical Multimodal Fusion
 위에서 설명한 "Feature-level Dynamics"으로 인하여 feature-level informativenss(<span>$$\{w^m\}_{m=1}^M$$</span>)과 "Modality-level Dynamics"으로 인하여 modality-level informativeness(<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)를 구할 수 있었다.  
