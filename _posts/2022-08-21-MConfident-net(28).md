@@ -96,12 +96,8 @@ TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 �
 <p>$$TCP^m = y \cdot p^m(y|x^m) = \sum_{k=1}^K y_k p_k^m$$<p>
     
     
-해당 논문은 TCP논문과 마찬가지로 실제 Class에 대한 Confidence를 측정할 수 있는 Confident-Net을 추가적으로 학습한다.
-(<span>$$f^m: x_n^m \rightarrow y_n$$</span>)
-
-
-**기존 Confident-Net과 다른점은 따로따로 학습하는 것이 아니라, 한번에 같이 학습을 진행한다는 것 이다.**  
-최종적으로 Confident-Net을 학습하기 위한 Loss는 아래와 같다.
+해당 논문은 TCP논문과 마찬가지로 실제 Class에 대한 Confidence를 측정할 수 있는 Confident-Net(. )을 추가적으로 학습한다.
+기존 Confident-Net과 다른점은 따로따로 학습하는 것이 아니라, 한번에 같이 학습을 진행한다는 것 이다. 최종적으로 Confident-Net을 학습하기 위한 Loss는 아래와 같다.
 
 
 <p>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</p>
@@ -115,14 +111,13 @@ TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 �
 해당 논문은 이러한 2가지 값을 이용하여 최종적인 model prediction은 다음과 같이 구하였다.
 
 
-- <span>$$\tilde{x} =sx^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정
-- <span>$$h^m = f_1^m(\tilde{x})$$</span>: Important Feature -> Feature Extractor -> Output
-- <span>$$\hat{TCP}^m = g^m(x^m)$$</span>: Modality Confidence
-- <span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m], [.,.]: \text{concatenation}$$</span>: multimodal representation considering modality confidence
-- <span>$$f: h \rightarrow y$$</span>: Additional classifier is trained with cross-entropy Loss (<span>$$L_f$$</span>)
+1. <span>$$\tilde{x} =sx^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정
+2. <span>$$h^m = f_1^m(\tilde{x})$$</span>: Important Feature -> Feature Extractor -> Output
+3. <span>$$\hat{TCP}^m = g^m(x^m)$$</span>: Modality Confidence
+4. <span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m], [.,.]: \text{concatenation}$$</span>: multimodal representation considering modality confidence
+5. <span>$$f: h \rightarrow y$$</span>: Additional classifier is trained with cross-entropy Loss (<span>$$L_f$$</span>)
 
-<p>$$L = \sum_{i=1}^N (L^f + \lambda_1 L_{l_1}^s + \lambda
-_2 L^{conf}), \lambda_1, \lambda_2: \text{hyperparameters}$$</p>
+<p>$$L = \sum_{i=1}^N (L^f + \lambda_1 L_{l_1}^s + \lambda_2 L^{conf}), \lambda_1, \lambda_2: \text{hyperparameters}$$</p>
 
 ### Experimental Setup
 - Datasets: 
@@ -173,7 +168,7 @@ Ablation study결과를 살펴보게 되면, CF가 가장 많이 영향을 받�
 - self.MMClasifier: Classifier (<span>$$h \rightarrow y$$</span>)
 
 
-**Forward**  
+**Forward** s
 
 - torch.sigmoid(self.FeatureInforEncoder[view](data_list[view])):Feature-level informativeness (<span>$$w^m = \sigma(E^m (x^m))$$</span>)
 - feature[view] = data_list[view] * FeatureInfo[view]:Feature에 Weight를 주어서 important feature의 값만 살리는 과정 (<span>$$\tilde{x} = x^m \odot w^m$$</span>)
