@@ -106,15 +106,19 @@ TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 �
 <p>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</p>
 <p>$$\hat{TCP}^m = g^m(x^m)$$</p>
 
-###  Dynamical Multimodal Fusion
+### Dynamical Multimodal Fusion
 위에서 설명한 "Feature-level Dynamics"으로 인하여 feature-level informativenss(<span>$$\{w^m\}_{m=1}^M$$</span>)과 "Modality-level Dynamics"으로 인하여 modality-level informativeness(<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)를 구할 수 있었다.  
 
 해당 논문은 이러한 2가지 값을 이용하여 최종적인 model prediction은 다음과 같이 구하였다.
 
-- <span>$$\tilde{x} = x^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정
+- <span>$$\tilde{x} =sx^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정
+
 - <span>$$h^m = f_1^m(\tilde{x})$$</span>: Important Feature -> Feature Extractor -> Output
+
 - <span>$$\hat{TCP}^m = g^m(x^m)$$</span>: Modality Confidence
+
 - <span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m], [.,.]: \text{concatenation}$$</span>: multimodal representation considering modality confidence
+
 - <span>$$f: h \rightarrow y$$</span>: Additional classifier is trained with cross-entropy Loss (<span>$$L_f$$</span>)
 
 <p>$$L = \sum_{i=1}^N (L^f + \lambda_1 L_{l_1}^s + \lambda
@@ -158,27 +162,40 @@ Ablation study결과를 살펴보게 되면, CF가 가장 많이 영향을 받�
 해당 논문에서는 기존의 OOD sample을 제거하는데만 사용되었던 TCP를 활용하여, Modality의 Confidence를 적용하였다. 간단한 아이디어 추가와 이를 보여주기 위한 실험 설계를 잘 한 논문으로 생각된다.
 
 ### PytorchCode
-
 **Model**  
 - <code>self.FeatureInforEncoder</code>: Feature-informativeness encoder(<span>$$E^m(\cdot)$$</span>)
+
 - <code>self.TCPConfidenceLayer</code>: Multimodal confidence (<span>$$g^m(\cdot)$$</span>)
+
 - <code>self.TCPClassifierLayer</code>: m-th modality Classifier
+
 - <code>self.FeatureEncoder</code>: Feature Extractor (<span>$$f^m(\cdot)$$</span>)
+
 - <code>self.MMClasifier</code>: Classifier (<span>$$h \rightarrow y$$</span>)
 
 
 **Forward**  
 - <code>torch.sigmoid(self.FeatureInforEncoder[view](data_list[view]))</code>:Feature-level informativeness (<span>$$w^m = \sigma(E^m (x^m))$$</span>)
+
 - <code>feature[view] = data_list[view] * FeatureInfo[view]</code>:Feature에 Weight를 주어서 important feature의 값만 살리는 과정 (<span>$$\tilde{x} = x^m \odot w^m$$</span>)
+
 - <code>feature[view] = self.FeatureEncoder[view](feature[view])</code>: Important Feature -> Feature Extractor -> Output(<span>$$h^m = f_1^m(\tilde{x})$$</span>)
+
 - <code>TCPLogit[view] = self.TCPClassifierLayer[view](feature[view])</code>: (<span>$$TCP^m = y \cdot p^m(y|x^m)$$</span>)
+
 - <code>TCPConfidence[view] = self.TCPConfidenceLayer[view](feature[view])</code>:Modality Confidence (<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)
+
 - <code>feature[view] = feature[view] * TCPConfidence[view]</code>: (<span>$$\hat{TCP}
 ^mh_m$$</span>)
+
 - <code>MMfeature = torch.cat([i for i in feature.values()], dim=1)</code>: multimodal representation considering modality confidence (<span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m]$$</span>)
+
 - <code>MMlogit = self.MMClasifier(MMfeature)</code>:Additional classifier is trained with cross-entropy Loss (<span>$$f: h \rightarrow y$$</span>)
+
 - <code>MMLoss = torch.mean(criterion(MMlogit, label))</code>:Cross-entropy Loss (<span>$$L^f$$</span>)
+
 - <code>torch.mean(FeatureInfo[view])</code>: <span>$$L_{l_1}^s = \sum_{m=1}^M \|w^m\|_1$$</span>
+
 - <code>confidence_loss = torch.mean(F.mse_loss(TCPConfidence[view].view(-1), p_target)+criterion(TCPLogit[view], label))</code>: <span>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</span>
 
 
