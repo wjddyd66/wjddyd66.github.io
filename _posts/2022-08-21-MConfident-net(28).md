@@ -93,10 +93,8 @@ Therefore, it is crucial for multimodal classification to be aware of the inform
 **Maximum class probability**  
 
 **Multimodal confidence.**  
-Softmax output의 overfitting되는 경향이 있으므로 해당 논문에서도 Modality의 confidence를 측정하기 위하여 <a href="https://wjddyd66.github.io/paper/Confident-net(27)/">TCP</a>를 사용하였다.
-TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 있다.
-
-<p>$$TCP^m = y \cdot p^m(y|x^m) = \sum_{k=1}^K y_k p_k^m$$<p>
+Softmax output의 overfitting되는 경향이 있으므로 해당 논문에서도 Modality의 confidence를 측정하기 위하여 TCP를 사용하였다. TCP는 실제 Label에 대한 distribution이며, 아래와 같이 적을 수 있다.
+<p>$$\text{TCP}^{m} = y \cdot p^{m} (y|x^{m}) = \sum_{k=1}^{K} y_{k} p_{k}^{m}$$<p>
 
 
 
@@ -167,18 +165,17 @@ Ablation study결과를 살펴보게 되면, CF가 가장 많이 영향을 받�
 
 **Forward** s
 
-- torch.sigmoid(self.FeatureInforEncoder\[view\](data_list\[view\])):Feature-level informativeness (<span>$$w^m = \sigma(E^m (x^m))$$</span>)
-- feature\[view\] = data_list\[view\] * FeatureInfo\[view\]:Feature에 Weight를 주어서 important feature의 값만 살리는 과정 (<span>$$\tilde{x} = x^m \odot w^m$$</span>)
-- feature\[view\] = self.FeatureEncoder\[view\](feature\[view\]): Important Feature -> Feature Extractor -> Output(<span>$$h^m = f_1^m(\tilde{x})$$</span>)
-- TCPLogit\[view\] = self.TCPClassifierLayer\[view\](feature\[view\]): (<span>$$TCP^m = y \cdot p^m(y|x^m)$$</span>)
-- TCPConfidence\[view\] = self.TCPConfidenceLayer\[view\](feature\[view\]):Modality Confidence (<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)
-- feature\[view\] = feature\[view\] * TCPConfidence\[view\]: (<span>$$\hat{TCP}
-^mh_m$$</span>)
+- torch.sigmoid(self.FeatureInforEncoder \[view\](data_list \[view\])):Feature-level informativeness (<span>$$w^m = \sigma(E^m (x^m))$$</span>)
+- feature \[view\] = data_list \[view\] * FeatureInfo \[view\]:Feature에 Weight를 주어서 important feature의 값만 살리는 과정 (<span>$$\tilde{x} = x^m \odot w^m$$</span>)
+- feature \[view\] = self.FeatureEncoder \[view\](feature[view]): Important Feature -> Feature Extractor -> Output(<span>$$h^m = f_1^m(\tilde{x})$$</span>)
+- TCPLogit \[view\] = self.TCPClassifierLayer \[view\](feature \[view\]): (<span>$$TCP^m = y \cdot p^m(y|x^m)$$</span>)
+- TCPConfidence \[view\] = self.TCPConfidenceLayer \[view\](feature \[view\]):Modality Confidence (<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)
+- feature \[view\] = feature \[view\] * TCPConfidence \[view\]: (<span>$$\hat{TCP}^mh_m$$</span>)
 - MMfeature = torch.cat([i for i in feature.values()], dim=1): multimodal representation considering modality confidence (<span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m]$$</span>)
 - MMlogit = self.MMClasifier(MMfeature):Additional classifier is trained with cross-entropy Loss (<span>$$f: h \rightarrow y$$</span>)
 - MMLoss = torch.mean(criterion(MMlogit, label)):Cross-entropy Loss (<span>$$L^f$$</span>)
-- torch.mean(FeatureInfo\[view\]): <span>$$L_{l_1}^s = \sum_{m=1}^M \|w^m\|_1$$</span>
-- confidence_loss = torch.mean(F.mse_loss(TCPConfidence\[view\].view(-1), p_target)+criterion(TCPLogit\[view\], label)): <span>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</span>
+- torch.mean(FeatureInfo \[view\]): <span>$$L_{l_1}^s = \sum_{m=1}^M \|w^m\|_1$$</span>
+- confidence_loss = torch.mean(F.mse_loss(TCPConfidence \[view\].view(-1), p_target)+criterion(TCPLogit \[view\], label)): <span>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</span>
 
 
 ```python
@@ -199,10 +196,10 @@ class MMDynamic(nn.Module):
         self.classes = num_class
         self.dropout = dropout
 
-        self.FeatureInforEncoder = nn.ModuleList([LinearLayer(in_dim\[view\], in_dim\[view\]) for view in range(self.views)])
+        self.FeatureInforEncoder = nn.ModuleList([LinearLayer(in_dim[view], in_dim[view]) for view in range(self.views)])
         self.TCPConfidenceLayer = nn.ModuleList([LinearLayer(hidden_dim[0], 1) for _ in range(self.views)])
         self.TCPClassifierLayer = nn.ModuleList([LinearLayer(hidden_dim[0], num_class) for _ in range(self.views)])
-        self.FeatureEncoder = nn.ModuleList([LinearLayer(in_dim\[view\], hidden_dim[0]) for view in range(self.views)])
+        self.FeatureEncoder = nn.ModuleList([LinearLayer(in_dim[view], hidden_dim[0]) for view in range(self.views)])
 
         self.MMClasifier = []
         for layer in range(1, len(hidden_dim)-1):
@@ -220,14 +217,14 @@ class MMDynamic(nn.Module):
         criterion = torch.nn.CrossEntropyLoss(reduction='none')
         FeatureInfo, feature, TCPLogit, TCPConfidence = dict(), dict(), dict(), dict()
         for view in range(self.views):
-            FeatureInfo\[view\] = torch.sigmoid(self.FeatureInforEncoder\[view\](data_list\[view\]))
-            feature\[view\] = data_list\[view\] * FeatureInfo\[view\]
-            feature\[view\] = self.FeatureEncoder\[view\](feature\[view\])
-            feature\[view\] = F.relu(feature\[view\])
-            feature\[view\] = F.dropout(feature\[view\], self.dropout, training=self.training)
-            TCPLogit\[view\] = self.TCPClassifierLayer\[view\](feature\[view\])
-            TCPConfidence\[view\] = self.TCPConfidenceLayer\[view\](feature\[view\])
-            feature\[view\] = feature\[view\] * TCPConfidence\[view\]
+            FeatureInfo[view] = torch.sigmoid(self.FeatureInforEncoder[view](data_list[view]))
+            feature[view] = data_list[view] * FeatureInfo[view]
+            feature[view] = self.FeatureEncoder[view](feature[view])
+            feature[view] = F.relu(feature[view])
+            feature[view] = F.dropout(feature[view], self.dropout, training=self.training)
+            TCPLogit[view] = self.TCPClassifierLayer[view](feature[view])
+            TCPConfidence[view] = self.TCPConfidenceLayer[view](feature[view])
+            feature[view] = feature[view] * TCPConfidence[view]
 
         MMfeature = torch.cat([i for i in feature.values()], dim=1)
         MMlogit = self.MMClasifier(MMfeature)
@@ -235,10 +232,10 @@ class MMDynamic(nn.Module):
             return MMlogit
         MMLoss = torch.mean(criterion(MMlogit, label))
         for view in range(self.views):
-            MMLoss = MMLoss+torch.mean(FeatureInfo\[view\])
-            pred = F.softmax(TCPLogit\[view\], dim=1)
+            MMLoss = MMLoss+torch.mean(FeatureInfo[view])
+            pred = F.softmax(TCPLogit[view], dim=1)
             p_target = torch.gather(input=pred, dim=1, index=label.unsqueeze(dim=1)).view(-1)
-            confidence_loss = torch.mean(F.mse_loss(TCPConfidence\[view\].view(-1), p_target)+criterion(TCPLogit\[view\], label))
+            confidence_loss = torch.mean(F.mse_loss(TCPConfidence[view].view(-1), p_target)+criterion(TCPLogit[view], label))
             MMLoss = MMLoss+confidence_loss
         return MMLoss, MMlogit
     
