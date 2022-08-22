@@ -112,13 +112,9 @@ TCP는 실제 Labeld에 대한 distribution이며, 아래와 같이 적을 수 �
 해당 논문은 이러한 2가지 값을 이용하여 최종적인 model prediction은 다음과 같이 구하였다.
 
 - <span>$$\tilde{x} =sx^m \odot w^m, \odot: \text{elment-wise multiplication}$$</span>: Feature에 Weight를 주어서 important feature의 값만 살리는 과정
-
 - <span>$$h^m = f_1^m(\tilde{x})$$</span>: Important Feature -> Feature Extractor -> Output
-
 - <span>$$\hat{TCP}^m = g^m(x^m)$$</span>: Modality Confidence
-
 - <span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m], [.,.]: \text{concatenation}$$</span>: multimodal representation considering modality confidence
-
 - <span>$$f: h \rightarrow y$$</span>: Additional classifier is trained with cross-entropy Loss (<span>$$L_f$$</span>)
 
 <p>$$L = \sum_{i=1}^N (L^f + \lambda_1 L_{l_1}^s + \lambda
@@ -132,7 +128,8 @@ _2 L^{conf}), \lambda_1, \lambda_2: \text{hyperparameters}$$</p>
     - KIPAN: 658 samples, 3 classes (kidney cancer type)
 
 ### Quantitative Analysis
-**Multi-class classification & Binary classification** 
+
+**Multi-class classification & Binary classification**  
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/M-Confident/img3.png)
 
 해당 논문에서 제시하는 방법은 Binary Classification뿐만 아니라 Multi-class classification에서도 모두 best performance를 보여주었다.
@@ -144,11 +141,11 @@ _2 L^{conf}), \lambda_1, \lambda_2: \text{hyperparameters}$$</p>
 - sparse feature informativeness induced integration (FI)
 - and modality informativeness induced integration (MI)
 
-Ablation study결과를 살펴보게 되면, CF가 가장 많이 영향을 받고 각각의 FI와 MI또한 Performance에 영향을 주는 것을 알 수 있다. 특히, MI보다 FI가 효과적인 것을 알 수 있다.
-(CF를 제외하는 것은 어떻게 prediction하는지는 잘 모르겠습니다.)
+Ablation study결과를 살펴보게 되면, CF가 가장 많이 영향을 받고 각각의 FI와 MI또한 Performance에 영향을 주는 것을 알 수 있다. 특히, MI보다 FI가 효과적인 것을 알 수 있다. (CF를 제외하는 것은 어떻게 prediction하는지는 잘 모르겠습니다.)
 
 ### Qualitative Analysis
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/M-Confident/img5.png)
+
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/Paper/M-Confident/img6.png)
 
 먼저 위쪽 Figure를 살펴보게 되면, BRCA Dataset에서 Modality를 하나씩 제거하면서 Performance의 변화를 살펴보았다. 해당 결과 Performance에 영향을 많이 미치는 Modality의 순위는 다음과 같다.
@@ -162,41 +159,30 @@ Ablation study결과를 살펴보게 되면, CF가 가장 많이 영향을 받�
 해당 논문에서는 기존의 OOD sample을 제거하는데만 사용되었던 TCP를 활용하여, Modality의 Confidence를 적용하였다. 간단한 아이디어 추가와 이를 보여주기 위한 실험 설계를 잘 한 논문으로 생각된다.
 
 ### PytorchCode
+
 **Model**  
-- <code>self.FeatureInforEncoder</code>: Feature-informativeness encoder(<span>$$E^m(\cdot)$$</span>)
 
-- <code>self.TCPConfidenceLayer</code>: Multimodal confidence (<span>$$g^m(\cdot)$$</span>)
-
-- <code>self.TCPClassifierLayer</code>: m-th modality Classifier
-
-- <code>self.FeatureEncoder</code>: Feature Extractor (<span>$$f^m(\cdot)$$</span>)
-
-- <code>self.MMClasifier</code>: Classifier (<span>$$h \rightarrow y$$</span>)
+- self.FeatureInforEncoder: Feature-informativeness encoder(<span>$$E^m(\cdot)$$</span>)
+- self.TCPConfidenceLayer: Multimodal confidence (<span>$$g^m(\cdot)$$</span>)
+- self.TCPClassifierLayer: m-th modality Classifier
+- self.FeatureEncoder: Feature Extractor (<span>$$f^m(\cdot)$$</span>)
+- self.MMClasifier: Classifier (<span>$$h \rightarrow y$$</span>)
 
 
 **Forward**  
-- <code>torch.sigmoid(self.FeatureInforEncoder[view](data_list[view]))</code>:Feature-level informativeness (<span>$$w^m = \sigma(E^m (x^m))$$</span>)
 
-- <code>feature[view] = data_list[view] * FeatureInfo[view]</code>:Feature에 Weight를 주어서 important feature의 값만 살리는 과정 (<span>$$\tilde{x} = x^m \odot w^m$$</span>)
-
-- <code>feature[view] = self.FeatureEncoder[view](feature[view])</code>: Important Feature -> Feature Extractor -> Output(<span>$$h^m = f_1^m(\tilde{x})$$</span>)
-
-- <code>TCPLogit[view] = self.TCPClassifierLayer[view](feature[view])</code>: (<span>$$TCP^m = y \cdot p^m(y|x^m)$$</span>)
-
-- <code>TCPConfidence[view] = self.TCPConfidenceLayer[view](feature[view])</code>:Modality Confidence (<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)
-
-- <code>feature[view] = feature[view] * TCPConfidence[view]</code>: (<span>$$\hat{TCP}
+- torch.sigmoid(self.FeatureInforEncoder[view](data_list[view])):Feature-level informativeness (<span>$$w^m = \sigma(E^m (x^m))$$</span>)
+- feature[view] = data_list[view] * FeatureInfo[view]:Feature에 Weight를 주어서 important feature의 값만 살리는 과정 (<span>$$\tilde{x} = x^m \odot w^m$$</span>)
+- feature[view] = self.FeatureEncoder[view](feature[view]): Important Feature -> Feature Extractor -> Output(<span>$$h^m = f_1^m(\tilde{x})$$</span>)
+- TCPLogit[view] = self.TCPClassifierLayer[view](feature[view]): (<span>$$TCP^m = y \cdot p^m(y|x^m)$$</span>)
+- TCPConfidence[view] = self.TCPConfidenceLayer[view](feature[view]):Modality Confidence (<span>$$\hat{TCP}^m = g^m(x^m)$$</span>)
+- feature[view] = feature[view] * TCPConfidence[view]: (<span>$$\hat{TCP}
 ^mh_m$$</span>)
-
-- <code>MMfeature = torch.cat([i for i in feature.values()], dim=1)</code>: multimodal representation considering modality confidence (<span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m]$$</span>)
-
-- <code>MMlogit = self.MMClasifier(MMfeature)</code>:Additional classifier is trained with cross-entropy Loss (<span>$$f: h \rightarrow y$$</span>)
-
-- <code>MMLoss = torch.mean(criterion(MMlogit, label))</code>:Cross-entropy Loss (<span>$$L^f$$</span>)
-
-- <code>torch.mean(FeatureInfo[view])</code>: <span>$$L_{l_1}^s = \sum_{m=1}^M \|w^m\|_1$$</span>
-
-- <code>confidence_loss = torch.mean(F.mse_loss(TCPConfidence[view].view(-1), p_target)+criterion(TCPLogit[view], label))</code>: <span>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</span>
+- MMfeature = torch.cat([i for i in feature.values()], dim=1): multimodal representation considering modality confidence (<span>$$h = [\hat{TCP}^1h_1, \ldots, \hat{TCP}^mh_m]$$</span>)
+- MMlogit = self.MMClasifier(MMfeature):Additional classifier is trained with cross-entropy Loss (<span>$$f: h \rightarrow y$$</span>)
+- MMLoss = torch.mean(criterion(MMlogit, label)):Cross-entropy Loss (<span>$$L^f$$</span>)
+- torch.mean(FeatureInfo[view]): <span>$$L_{l_1}^s = \sum_{m=1}^M \|w^m\|_1$$</span>
+- confidence_loss = torch.mean(F.mse_loss(TCPConfidence[view].view(-1), p_target)+criterion(TCPLogit[view], label)): <span>$$L^{conf} = \sum_{m=1}^M (\hat{TCP}^m - TCP^m)^2 + L^{cls}$$</span>
 
 
 ```python
