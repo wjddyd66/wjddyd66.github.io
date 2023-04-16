@@ -5,7 +5,7 @@ date:   2023-04-16 11:00:20 +0700
 categories: [RecSys]
 ---
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({tex2jax: {inlineMath: [['<span>$','<span>$'], ['\\(','\\)']]}});
+MathJax.Hub.Config({tex2jax: {inlineMath: [['<span>$$','<span>$$'], ['\\(','\\)']]}});
 </script>
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -38,14 +38,14 @@ MathJax.Hub.Config({tex2jax: {inlineMath: [['<span>$','<span>$'], ['\\(','\\)']]
 
 ### Embedding generation algorithm
 **Notation**  
-- <span>$\mathbb{g}(V, \xi)$</span>: Graph
-- <span>$x_v, \forall v \in V$</span>: Node
-- <span>$K$</span>: Hop (or Depth, Node기준으로 얼마나 먼 거리까지 생각할 것 인가.)
-- <span>$AGGREGATE_k, \forall k \in \{1, \ldots, K\}$</span>: Aggregator fuction (ex. mean, pooling, LSTM, ...)
-- <span>$W^k, \forall k \in \{1, \ldots, K\}$</span>: Weight Matrices
-- <span>$\sigma$</span>: Activation Function
-- <span>$N_k: v \rightarrow 2^V, \forall k \in \{1, \ldots, K\}$</span>: Neightborhood sampling functions
-- <span>$z_v, v \in V$</span>: Vector representation
+- <span>$$\mathbb{g}(V, \xi)$$</span>: Graph
+- <span>$$x_v, \forall v \in V$$</span>: Node
+- <span>$$K$$</span>: Hop (or Depth, Node기준으로 얼마나 먼 거리까지 생각할 것 인가.)
+- <span>$$AGGREGATE_k, \forall k \in \{1, \ldots, K\}$$</span>: Aggregator fuction (ex. mean, pooling, LSTM, ...)
+- <span>$$W^k, \forall k \in \{1, \ldots, K\}$$</span>: Weight Matrices
+- <span>$$\sigma$$</span>: Activation Function
+- <span>$$N_k: v \rightarrow 2^V, \forall k \in \{1, \ldots, K\}$$</span>: Neightborhood sampling functions
+- <span>$$z_v, v \in V$$</span>: Vector representation
 
 해당 Section에서는 새로운 Node에 대하여 어떻게 Embedding할지 정하는 과정이다. 주요한 것은 **Model은 Training되어 있고, Parameter는 고정되어있다고 가정하고 진행하는 과정이다.**
 
@@ -54,17 +54,17 @@ Embedding Generation은 아래와 같이 정의될 수 있다.
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/RecSys/GraphSAGE/img2.png)
 
 해당 Algorithm을 Line by Line으로 생각하면 아래와 같다.
-- Line 1: <span>$h_v^0 \leftarrow x_v, \forall v \in V;$</span>: 모든 Vector에 대하여 생각하겠다.
-- Line 2: <span>$\text{for } k=1, \ldots, K \text{ do}$</span>: 얼만큼 먼 거리까지의 Node (hop=k)를 지정하고 그만큼 반복한다.
-- Line 3: <span>$\text{for }v \in V \text{ do}$</span>: 모든 알고있는 Node에 대하여 진행한다.
-- Line 4: <span>$h_{N(v)}^k \leftarrow AGGREGATE_k (\{ h_{u}^{k-1} \in N(v) \});$</span>: **<span>$h_{N(v)}^k$</span>는 Input으로 들어온 Node (<span>$h_v^{k-1}$</span>)와 이어진 Node라고 가정한 Node이다. (Sampling으로서 가정)** 이러한 주변 Node의 값을 Aggregate하여 사용한다.
-- Line 5: <span>$h_v^k \leftarrow \sigma(W^k \cdot \text{CONCAT}(h_v^{k-1}, h^k_{N(v)}))$</span>: Input으로 들어온 Node는 이어져 있다는 정의한 Node(<span>$h_{N(v)}^k$</span>)와 이전 정보 (<span>$h_v^{k-1}$</span>)를 Concat하여 Weight를 곱하여 나타낸다.
-- Line 7: <span>$h_v^k \leftarrow h^k_v / \| h_v^k\|_2, \forall v \in V$</span>: Normalization하여 사용한다.
-- Line 8: <span>$z_v \leftarrow h_v^K, \forall v \in V$</span>: 예측한 값까지 모두 포함하여 Hidden Representation으로서 표현한다.
+- Line 1: <span>$$h_v^0 \leftarrow x_v, \forall v \in V;$$</span>: 모든 Vector에 대하여 생각하겠다.
+- Line 2: <span>$$\text{for } k=1, \ldots, K \text{ do}$$</span>: 얼만큼 먼 거리까지의 Node (hop=k)를 지정하고 그만큼 반복한다.
+- Line 3: <span>$$\text{for }v \in V \text{ do}$$</span>: 모든 알고있는 Node에 대하여 진행한다.
+- Line 4: <span>$$h_{N(v)}^k \leftarrow AGGREGATE_k (\{ h_{u}^{k-1} \in N(v) \});$$</span>: **<span>$$h_{N(v)}^k$$</span>는 Input으로 들어온 Node (<span>$$h_v^{k-1}$$</span>)와 이어진 Node라고 가정한 Node이다. (Sampling으로서 가정)** 이러한 주변 Node의 값을 Aggregate하여 사용한다.
+- Line 5: <span>$$h_v^k \leftarrow \sigma(W^k \cdot \text{CONCAT}(h_v^{k-1}, h^k_{N(v)}))$$</span>: Input으로 들어온 Node는 이어져 있다는 정의한 Node(<span>$$h_{N(v)}^k$$</span>)와 이전 정보 (<span>$$h_v^{k-1}$$</span>)를 Concat하여 Weight를 곱하여 나타낸다.
+- Line 7: <span>$$h_v^k \leftarrow h^k_v / \| h_v^k\|_2, \forall v \in V$$</span>: Normalization하여 사용한다.
+- Line 8: <span>$$z_v \leftarrow h_v^K, \forall v \in V$$</span>: 예측한 값까지 모두 포함하여 Hidden Representation으로서 표현한다.
 
 위의 Algorithm과정을 살펴보았을 때, 해당 Algirhm을 사용하기 위해서는 2가지가 정의되어야 한다는 것을 알 수 있다.
-- **1. 새로운 Node와 이어져 있는 알고있는 Node중에서 어떻게 Sampling할 것 인가? (<span>$N(v)$</span>)**
-- **2. Aggregation (<span>$AGGREGATE_k$</span>)을 어떠한 방법으로 진행할 것 인가?**
+- **1. 새로운 Node와 이어져 있는 알고있는 Node중에서 어떻게 Sampling할 것 인가? (<span>$$N(v)$$</span>)**
+- **2. Aggregation (<span>$$AGGREGATE_k$$</span>)을 어떠한 방법으로 진행할 것 인가?**
 
 ### Relation to the Weisfeiler-Lehman Isomorphism Test
 
@@ -86,8 +86,8 @@ Graph Ismorphism이란 GCN에서 얘기한 Graph구조는 Location과 상관없�
 
 위의 Algorithm은 Weisfeiler-Lehman Algorithm에 관한 내용이다. 해당 Algorithm에 대한 내용은 아래에서 살펴보고, 해당 Algorithm에 대해 조심해야하는 점을 살펴보자.  
 **Weisfeiler-Lehman Algorithm은 Graph isomorphic하다는 것을 완벽히 증명할 수는 없습니다. 하지만 아래와 같은 조건을 만족한다.**
-- <span>$\text{Graph isomorphic} \rightarrow \text{WL Algorithm}$</span>
-- <span>$\text{WL Algorithm} \nrightarrow \text{Graph isomorphic}$</span>
+- <span>$$\text{Graph isomorphic} \rightarrow \text{WL Algorithm}$$</span>
+- <span>$$\text{WL Algorithm} \nrightarrow \text{Graph isomorphic}$$</span>
 
 즉, **WL Algorithm을 만족한다고 Graph isomorphic하지 않지만, Graph isomorphic을 만족하기 위해서는 무조건 WL Algorithm을 만족하여야 한다.** WL Algorithm의 자세한 내용은 아래와 같다.
 
@@ -95,7 +95,7 @@ Graph Ismorphism이란 GCN에서 얘기한 Graph구조는 Location과 상관없�
 ![png](https://harryjo97.github.io/assets/post/Weisfeiler-Lehman-Algorithm/eg-0.png)<br>
 그림참조: <a href="https://harryjo97.github.io/theory/Weisfeiler-Lehman-Algorithm/">harryjo97 블로그</a>
 
-다음으로, <span>$h_i^0=1$</span>로서 Initialization을 실시하자.
+다음으로, <span>$$h_i^0=1$$</span>로서 Initialization을 실시하자.
 ![png](https://harryjo97.github.io/assets/post/Weisfeiler-Lehman-Algorithm/eg-1.png)<br>
 그림참조: <a href="https://harryjo97.github.io/theory/Weisfeiler-Lehman-Algorithm/">harryjo97 블로그</a>
 
@@ -106,28 +106,28 @@ Graph Ismorphism이란 GCN에서 얘기한 Graph구조는 Location과 상관없�
 해당 과정을 반복해서 확인하면서, 계속하여 일치하는지 확인하는 방법이 WL Algorithm이다.
 
 WL Algorithm을 GraphSAGE embedding generation Algorithm에 대해 적용할 때, 아래와 같은 Setting으로 적용한다고 생각해보자.
-- <span>$K = \| V \|$</span>
-- <span>$W = \text{identity matrix}$</span>
-- <span>$\text{aggregator without activation function} = \text{hash function}$</span>
+- <span>$$K = \| V \|$$</span>
+- <span>$$W = \text{identity matrix}$$</span>
+- <span>$$\text{aggregator without activation function} = \text{hash function}$$</span>
 
 위와 같이 생각하면 WL Algorithm과 동일하다는 것을 알 수 있다. **즉, GraphSAGE는 WL Algorithm의 hash function을 neural network aggregator로서 변형한 것을 알 수 있다.**
 
-그렇다면, 해당 논문의 저자는 해당 Section을 넣은 의도는 무엇일까? **개인적으로 생각할 때는 Sampling을 적용해야 하기 때문이라고 생각한다. 즉, <span>$\{ z_v, \forall v \in V\}$</span>로서 Sampling하였을 때, 5개의 sampling의 조합의 순서는 다를 수 있습니다. 즉, <span>$\{ h_u^{k-1}, u=\{1,2,3,4,5\}  \}$</span>와 <span>$\{ h_u^{k-1}, u=\{5,4,3,1,2\}  \}$</span>의 결과가 다르면 안된다는 것 이다.**
+그렇다면, 해당 논문의 저자는 해당 Section을 넣은 의도는 무엇일까? **개인적으로 생각할 때는 Sampling을 적용해야 하기 때문이라고 생각한다. 즉, <span>$$\{ z_v, \forall v \in V\}$$</span>로서 Sampling하였을 때, 5개의 sampling의 조합의 순서는 다를 수 있습니다. 즉, <span>$$\{ h_u^{k-1}, u=\{1,2,3,4,5\}  \}$$</span>와 <span>$$\{ h_u^{k-1}, u=\{5,4,3,1,2\}  \}$$</span>의 결과가 다르면 안된다는 것 이다.**
 
 **결과적으로 Graph isomorphic를 유지할 수 있는 neural network aggregator를 선택하여야 한다는 것 이다.**
 
 ### Neighborhood definition
-해당 논문의 저자들은 Sampling하여 선언하는 Neighborhood (<span>$N(v)$</span>)에 대하여 Fixed and uniformly하게 Sampling하였다라고 적혀있습니다. 해당 저자들은 아래와 같은 Parameter로서 하였을 때, 성능이 가장 좋았다고 얘기하고 있습니다.
-- <span>$K=2$</span>: 최대 Hop=2로서 고정 하였다.
-- <span>$S_1 \cdot S_2 <= 300$</span>: Hop1과 Hop2의 Node개수를 곱하였을 때, 최대 500개 이하로서 Sampling하였다고 나와 있습니다.
+해당 논문의 저자들은 Sampling하여 선언하는 Neighborhood (<span>$$N(v)$$</span>)에 대하여 Fixed and uniformly하게 Sampling하였다라고 적혀있습니다. 해당 저자들은 아래와 같은 Parameter로서 하였을 때, 성능이 가장 좋았다고 얘기하고 있습니다.
+- <span>$$K=2$$</span>: 최대 Hop=2로서 고정 하였다.
+- <span>$$S_1 \cdot S_2 <= 300$$</span>: Hop1과 Hop2의 Node개수를 곱하였을 때, 최대 500개 이하로서 Sampling하였다고 나와 있습니다.
 
 ### Learning the parameters of GraphSAGE
 
 <p>$$J_{\mathbb{g}}(z_u) = -\log (\sigma (z_u^T z_v)) - Q \cdot \mathbb{E}_{v_n \sim P_n(v)} \log (\sigma(-z_{u}^T z_{v_n})) - (1)$$</p>
-- <span>$P_n$</span>: negative sampling distribution
-- <span>$Q$</span>: number of negative samples
+- <span>$$P_n$$</span>: negative sampling distribution
+- <span>$$Q$$</span>: number of negative samples
 
-해당 수식의 의미는 **특정 Node(<span>$z_u$</span>)를 기준으로 이어져있는 Node (<span>$z_v$</span>)와는 Representation이 비슷해지도록 학습하고, 이어져 있지 않은 Node(<span>$z_{v_n}$</span>)과는 점점 멀어지도록 학습하는 방법이다.**
+해당 수식의 의미는 **특정 Node(<span>$$z_u$$</span>)를 기준으로 이어져있는 Node (<span>$$z_v$$</span>)와는 Representation이 비슷해지도록 학습하고, 이어져 있지 않은 Node(<span>$$z_{v_n}$$</span>)과는 점점 멀어지도록 학습하는 방법이다.**
 
 원래 Binary Cross Entropy의 수식을 생각하면 아래와 같다.
 <p>$$BCE(x) = -\frac{1}{N}\sum_{i=1}^N y_i \log(h(x_i;\theta)) + (1-y_i) \log (1 - h(x_i;\theta))$$</p>
@@ -137,9 +137,9 @@ BCE의 수식와 (1) 수식은 매우 유사하지만, Negative Sample인 경우
 ### Aggregator Architecture
 
 주변 Node들의 정보를 활용해서 특정 Node의 정보를 나타내기 Aggregate방법은 총 3개를 사용했다고 나와있다. 각각의 Aggregate 방법은 아래와 같다.
-- Mean aggregator: <span>$h_v^k \leftarrow \sigma(W \cdot MEAN(\{h_v^{k-1}\} \cup \{h_u^{k-1}, \forall u \in N(v)\}) )$</span>
+- Mean aggregator: <span>$$h_v^k \leftarrow \sigma(W \cdot MEAN(\{h_v^{k-1}\} \cup \{h_u^{k-1}, \forall u \in N(v)\}) )$$</span>
 - LSTM aggregator
-- Pooling aggregator: <span>$AGGREGATE_k^{pool} = max(\{ \sigma(W_{pool}h_{u_i}^k +b), \forall u_i \in N(v) \})$</span>
+- Pooling aggregator: <span>$$AGGREGATE_k^{pool} = max(\{ \sigma(W_{pool}h_{u_i}^k +b), \forall u_i \in N(v) \})$$</span>
 
 **Mean aggregator**  
 GCN에서도 사용한 방법이다. 자기 자신 뿐만 아니라 이어진 Node에 대하여 모두 평균을 취하여 Aggregator로서 사용하였다.
@@ -161,13 +161,13 @@ GCN에서도 사용한 방법이다. 자기 자신 뿐만 아니라 이어진 No
 
 해당 논문에서의 실험은 총 3개의 Dataset에서 실험을 진행하였으며, 기존의 SOTA모델들과 비교하였다.  
 주요한 것은 아래와 같이 Setting을 하고 GraphSAGE를 진행하였다는 것 이다.
-- <span>$K=2$</span>
-- <span>$S_1=25, S_2=10$</span>
+- <span>$$K=2$$</span>
+- <span>$$S_1=25, S_2=10$$</span>
 
 ![png](https://raw.githubusercontent.com/wjddyd66/wjddyd66.github.io/master/static/img/RecSys/GraphSAGE/img3.png)
 
 위의 실험에서 주요한 점은 4가지 이다.
 - (1) 다른 Model들과 비교 하였을 때, 성능이 좋은 것을 알 수 있다.
 - (2) 기존의 DeepWalk와 비교하였을 때, Training시간이 매우 단축되는 것을 알 수 있따.
-- (3) <span>$AGGREGATE$</span> Function중에서 Pool이 대부분 성능이 좋았다.
+- (3) <span>$$AGGREGATE$$</span> Function중에서 Pool이 대부분 성능이 좋았다.
 - (4) Nieghborhood sample size가 증가할 수록 성능이 증가하지만, Runtime도 비하급수적으로 증가한다. 즉, 적절한 sample size를 정해야 합리적인 runtime을 얻을 수 있다.
