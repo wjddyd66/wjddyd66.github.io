@@ -136,9 +136,10 @@ len(data.test_mask), data.test_mask.sum()))
     Number of Edges: 2
     Number of Classes: 7
     Number of Node Features: 1433
-    
-    
-    
+
+
+​    
+​    
     --------------------Data--------------------
     Is Undirected?: True
     Data(x=[2708, 1433], edge_index=[2, 10556], y=[2708], train_mask=[2708], val_mask=[2708], test_mask=[2708])
@@ -186,24 +187,27 @@ print(train_dataset.x[100:103, :])
     tensor([[1., 0., 0.],
             [1., 0., 0.],
             [1., 0., 0.]])
-    
-    
+
+
+​    
     Test Dataset
     ENZYMES(60)
     Value
     tensor([[1., 0., 0.],
             [1., 0., 0.],
             [1., 0., 0.]])
-    
-    
+
+
+​    
     After Shuffle Train Dataset
     ENZYMES(540)
     Value
     tensor([[1., 0., 0.],
             [1., 0., 0.],
             [1., 0., 0.]])
-    
-    
+
+
+​    
     Permutation
     ENZYMES(540)
     Value

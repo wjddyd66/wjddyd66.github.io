@@ -41,10 +41,10 @@ MathJax.Hub.Config({tex2jax: {inlineMath: [['<span>$$','<span>$$'], ['\\(','\\)'
 - <span>$$\mathbb{g}(V, \xi)$$</span>: Graph
 - <span>$$x_v, \forall v \in V$$</span>: Node
 - <span>$$K$$</span>: Hop (or Depth, Node기준으로 얼마나 먼 거리까지 생각할 것 인가.)
-- <span>$$AGGREGATE_k, \forall k \in \{1, \ldots, K\}$$</span>: Aggregator fuction (ex. mean, pooling, LSTM, ...)
+- <span>$AGGREGATE_k, \forall k \in \{1, \ldots, K\}$</span>: Aggregator fuction (ex. mean, pooling, LSTM, ...)
 - <span>$$W^k, \forall k \in \{1, \ldots, K\}$$</span>: Weight Matrices
 - <span>$$\sigma$$</span>: Activation Function
-- <span>$$N_k: v \rightarrow 2^V, \forall k \in \{1, \ldots, K\}$$</span>: Neightborhood sampling functions
+- <span>$N_k: v \rightarrow 2^V, \forall k \in \{1, \ldots, K\}$</span>: Neightborhood sampling functions
 - <span>$$z_v, v \in V$$</span>: Vector representation
 
 해당 Section에서는 새로운 Node에 대하여 어떻게 Embedding할지 정하는 과정이다. 주요한 것은 **Model은 Training되어 있고, Parameter는 고정되어있다고 가정하고 진행하는 과정이다.**
